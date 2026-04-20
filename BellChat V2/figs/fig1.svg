@@ -1,0 +1,257 @@
+<svg viewBox="0 0 900 580" xmlns="http://www.w3.org/2000/svg" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2c3e50"/>
+    </marker>
+    <marker id="arr-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#2980b9"/>
+    </marker>
+    <marker id="arr-green" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#27ae60"/>
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#00000022"/>
+    </filter>
+    <!-- Cylinder top ellipse clip -->
+    <clipPath id="cylTop"><ellipse cx="0" cy="0" rx="28" ry="9"/></clipPath>
+  </defs>
+
+  <!-- ── Background ── -->
+  <rect width="900" height="580" fill="#f8f9fa" rx="6"/>
+
+  <!-- ══════════════════════════════════════════
+       LAYER LABELS (vertical on left)
+  ══════════════════════════════════════════ -->
+  <!-- Presentation layer bracket -->
+  <rect x="8" y="22" width="5" height="100" fill="#3498db" rx="2"/>
+  <text x="4" y="75" font-size="9" fill="#3498db" font-weight="700" transform="rotate(-90,4,75)" text-anchor="middle">PRESENTACIÓN</text>
+
+  <!-- Business layer bracket -->
+  <rect x="8" y="136" width="5" height="340" fill="#e67e22" rx="2"/>
+  <text x="4" y="310" font-size="9" fill="#e67e22" font-weight="700" transform="rotate(-90,4,310)" text-anchor="middle">CAPA DE NEGOCIO</text>
+
+  <!-- Persistence layer bracket -->
+  <rect x="8" y="488" width="5" height="72" fill="#27ae60" rx="2"/>
+  <text x="4" y="525" font-size="9" fill="#27ae60" font-weight="700" transform="rotate(-90,4,525)" text-anchor="middle">PERSISTENCIA</text>
+
+  <!-- ══════════════════════════════════════════
+       1. MOBILE APP — Presentation Layer
+  ══════════════════════════════════════════ -->
+  <rect x="28" y="18" width="860" height="108" rx="10" fill="#ebf5fb" stroke="#3498db" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="450" y="36" font-size="11" fill="#1a5276" font-weight="700" text-anchor="middle">APLICACIÓN MÓVIL — React Native</text>
+
+  <!-- Modules row -->
+  <!-- Registro de usuario -->
+  <rect x="50" y="46" width="120" height="32" rx="5" fill="#3498db" opacity=".15" stroke="#3498db" stroke-width="1"/>
+  <text x="110" y="66" font-size="9.5" fill="#1a5276" text-anchor="middle">Registro de usuario</text>
+
+  <!-- Lista de chats -->
+  <rect x="185" y="46" width="110" height="32" rx="5" fill="#3498db" opacity=".15" stroke="#3498db" stroke-width="1"/>
+  <text x="240" y="66" font-size="9.5" fill="#1a5276" text-anchor="middle">Lista de chats</text>
+
+  <!-- Obtención de mensaje e ID tipo -->
+  <rect x="310" y="46" width="150" height="32" rx="5" fill="#3498db" opacity=".15" stroke="#3498db" stroke-width="1"/>
+  <text x="385" y="59" font-size="9.5" fill="#1a5276" text-anchor="middle">Obtención de mensaje</text>
+  <text x="385" y="72" font-size="9.5" fill="#1a5276" text-anchor="middle">e identificar tipo</text>
+
+  <!-- Cifrado -->
+  <rect x="476" y="46" width="90" height="32" rx="5" fill="#f39c12" opacity=".2" stroke="#e67e22" stroke-width="1"/>
+  <text x="521" y="66" font-size="9.5" fill="#784212" text-anchor="middle">Cifrado AES</text>
+
+  <!-- Fragmentado / Chunks -->
+  <rect x="580" y="46" width="110" height="32" rx="5" fill="#f39c12" opacity=".2" stroke="#e67e22" stroke-width="1"/>
+  <text x="635" y="59" font-size="9.5" fill="#784212" text-anchor="middle">Fragmentado</text>
+  <text x="635" y="72" font-size="9.5" fill="#784212" text-anchor="middle">(chunks)</text>
+
+  <!-- WebSocket badge -->
+  <rect x="706" y="46" width="82" height="32" rx="5" fill="#e8daef" stroke="#8e44ad" stroke-width="1"/>
+  <text x="747" y="59" font-size="8.5" fill="#6c3483" font-weight="700" text-anchor="middle">WebSocket</text>
+  <text x="747" y="71" font-size="8" fill="#6c3483" text-anchor="middle">Envío fragmentos</text>
+
+  <!-- Discapacidad / Dirección -->
+  <rect x="800" y="46" width="82" height="32" rx="5" fill="#eafaf1" stroke="#27ae60" stroke-width="1"/>
+  <text x="841" y="59" font-size="8.5" fill="#145a32" text-anchor="middle">Dirección</text>
+  <text x="841" y="71" font-size="8.5" fill="#145a32" text-anchor="middle">por perfil</text>
+
+  <!-- Horizontal flow arrows inside mobile -->
+  <line x1="170" y1="62" x2="183" y2="62" stroke="#2c3e50" stroke-width="1.2" marker-end="url(#arr)"/>
+  <line x1="295" y1="62" x2="308" y2="62" stroke="#2c3e50" stroke-width="1.2" marker-end="url(#arr)"/>
+  <line x1="460" y1="62" x2="474" y2="62" stroke="#2c3e50" stroke-width="1.2" marker-end="url(#arr)"/>
+  <line x1="570" y1="62" x2="578" y2="62" stroke="#2c3e50" stroke-width="1.2" marker-end="url(#arr)"/>
+  <line x1="690" y1="62" x2="704" y2="62" stroke="#8e44ad" stroke-width="1.2" marker-end="url(#arr)"/>
+  <line x1="788" y1="62" x2="798" y2="62" stroke="#2c3e50" stroke-width="1.2" marker-end="url(#arr)"/>
+
+  <!-- ══════════════════════════════════════════
+       2. BUSINESS LAYER — API Java (Spring Boot)
+  ══════════════════════════════════════════ -->
+  <rect x="28" y="140" width="540" height="200" rx="10" fill="#fef9e7" stroke="#e67e22" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="298" y="158" font-size="11" fill="#784212" font-weight="700" text-anchor="middle">API REST — Spring Boot (Java)</text>
+
+  <!-- Internal boxes -->
+  <!-- Modelos -->
+  <rect x="45" y="168" width="80" height="28" rx="4" fill="#fff" stroke="#e67e22" stroke-width="1"/>
+  <text x="85" y="186" font-size="9" fill="#784212" text-anchor="middle" font-weight="600">Modelos</text>
+
+  <!-- Repositorio -->
+  <rect x="45" y="212" width="80" height="28" rx="4" fill="#fff" stroke="#e67e22" stroke-width="1"/>
+  <text x="85" y="230" font-size="9" fill="#784212" text-anchor="middle" font-weight="600">Repositorio</text>
+
+  <!-- Servicio -->
+  <rect x="148" y="212" width="80" height="28" rx="4" fill="#fff" stroke="#e67e22" stroke-width="1"/>
+  <text x="188" y="230" font-size="9" fill="#784212" text-anchor="middle" font-weight="600">Servicio</text>
+
+  <!-- Controlador -->
+  <rect x="252" y="195" width="90" height="44" rx="4" fill="#fff" stroke="#e67e22" stroke-width="1.5"/>
+  <text x="297" y="216" font-size="9" fill="#784212" text-anchor="middle" font-weight="700">Controlador</text>
+  <!-- gear icon simple -->
+  <circle cx="297" cy="228" r="6" fill="none" stroke="#e67e22" stroke-width="1.5"/>
+  <circle cx="297" cy="228" r="2.5" fill="#e67e22"/>
+
+  <!-- WebSocket -->
+  <rect x="362" y="168" width="90" height="28" rx="4" fill="#e8daef" stroke="#8e44ad" stroke-width="1"/>
+  <text x="407" y="186" font-size="9" fill="#6c3483" text-anchor="middle" font-weight="600">WebSocket</text>
+
+  <!-- WebSocketConfig -->
+  <rect x="362" y="210" width="90" height="28" rx="4" fill="#e8daef" stroke="#8e44ad" stroke-width="1"/>
+  <text x="407" y="228" font-size="9" fill="#6c3483" text-anchor="middle" font-weight="600">WS Config</text>
+
+  <!-- RabbitMQ -->
+  <rect x="462" y="185" width="90" height="44" rx="4" fill="#fdedec" stroke="#e74c3c" stroke-width="1.5"/>
+  <text x="507" y="205" font-size="9.5" fill="#922b21" text-anchor="middle" font-weight="700">RabbitMQ</text>
+  <text x="507" y="219" font-size="8" fill="#922b21" text-anchor="middle">Message Broker</text>
+
+  <!-- JPA label -->
+  <rect x="45" y="254" width="183" height="22" rx="3" fill="#fef5e7" stroke="#e67e22" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="136" y="269" font-size="8.5" fill="#784212" text-anchor="middle">JPA (Java) — ORM / Funciones</text>
+
+  <!-- Cifrado AES sub -->
+  <rect x="252" y="254" width="90" height="22" rx="3" fill="#eafaf1" stroke="#27ae60" stroke-width="1"/>
+  <text x="297" y="269" font-size="8.5" fill="#145a32" text-anchor="middle">Cifrado AES</text>
+
+  <!-- Procesamiento resultados -->
+  <rect x="362" y="254" width="90" height="22" rx="3" fill="#fff" stroke="#e67e22" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="407" y="265" font-size="8" fill="#784212" text-anchor="middle">Procesamiento</text>
+  <text x="407" y="274" font-size="8" fill="#784212" text-anchor="middle">de resultados</text>
+
+  <!-- Conexión API -->
+  <rect x="462" y="254" width="90" height="22" rx="3" fill="#eaf4fb" stroke="#2980b9" stroke-width="1"/>
+  <text x="507" y="269" font-size="8.5" fill="#1a5276" text-anchor="middle">Conexión API IA</text>
+
+  <!-- Internal arrows Java layer -->
+  <line x1="125" y1="182" x2="145" y2="182" stroke="#e67e22" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="125" y1="226" x2="146" y2="226" stroke="#e67e22" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="228" y1="226" x2="250" y2="217" stroke="#e67e22" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="342" y1="217" x2="360" y2="182" stroke="#8e44ad" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="342" y1="217" x2="360" y2="224" stroke="#8e44ad" stroke-width="1" marker-end="url(#arr)"/>
+  <line x1="452" y1="207" x2="462" y2="207" stroke="#e74c3c" stroke-width="1" marker-end="url(#arr)"/>
+
+  <!-- ══════════════════════════════════════════
+       3. API Django (Python) — AI Processing
+  ══════════════════════════════════════════ -->
+  <rect x="590" y="140" width="298" height="200" rx="10" fill="#eafaf1" stroke="#27ae60" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="739" y="158" font-size="11" fill="#145a32" font-weight="700" text-anchor="middle">API IA — Django (Python)</text>
+
+  <!-- AI model boxes -->
+  <rect x="605" y="168" width="125" height="28" rx="4" fill="#fff" stroke="#27ae60" stroke-width="1"/>
+  <text x="667" y="185" font-size="9" fill="#145a32" text-anchor="middle" font-weight="600">Texto → Audio (TTS)</text>
+
+  <rect x="605" y="204" width="125" height="28" rx="4" fill="#fff" stroke="#27ae60" stroke-width="1"/>
+  <text x="667" y="221" font-size="9" fill="#145a32" text-anchor="middle" font-weight="600">Audio → Texto (STT)</text>
+
+  <rect x="605" y="240" width="125" height="28" rx="4" fill="#fff" stroke="#27ae60" stroke-width="1"/>
+  <text x="667" y="257" font-size="9" fill="#145a32" text-anchor="middle" font-weight="600">Imagen → Texto (OCR)</text>
+
+  <rect x="605" y="276" width="125" height="28" rx="4" fill="#fff" stroke="#27ae60" stroke-width="1"/>
+  <text x="667" y="293" font-size="9" fill="#145a32" text-anchor="middle" font-weight="600">Imagen → Audio (BLIP)</text>
+
+  <rect x="605" y="312" width="125" height="22" rx="4" fill="#fef9e7" stroke="#f39c12" stroke-width="1"/>
+  <text x="667" y="327" font-size="9" fill="#784212" text-anchor="middle" font-weight="600">Vídeo → Subtítulo</text>
+
+  <!-- AI Models badge -->
+  <rect x="745" y="185" width="132" height="130" rx="6" fill="#d5f5e3" stroke="#27ae60" stroke-width="1.2"/>
+  <text x="811" y="202" font-size="9.5" fill="#145a32" font-weight="700" text-anchor="middle">Modelos de IA</text>
+  <text x="811" y="218" font-size="8.5" fill="#145a32" text-anchor="middle">Edge-TTS / SAPI5</text>
+  <text x="811" y="232" font-size="8.5" fill="#145a32" text-anchor="middle">Whisper (STT)</text>
+  <text x="811" y="246" font-size="8.5" fill="#145a32" text-anchor="middle">BLIP (captioning)</text>
+  <text x="811" y="260" font-size="8.5" fill="#145a32" text-anchor="middle">Tesseract (OCR)</text>
+  <text x="811" y="274" font-size="8.5" fill="#145a32" text-anchor="middle">Llama 1B (voz)</text>
+  <!-- AI badge circle -->
+  <circle cx="811" cy="295" r="14" fill="#27ae60"/>
+  <text x="811" y="300" font-size="11" fill="white" font-weight="900" text-anchor="middle">AI</text>
+
+  <!-- arrows from AI modules to Models badge -->
+  <line x1="730" y1="182" x2="743" y2="200" stroke="#27ae60" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#arr-green)"/>
+
+  <!-- ══════════════════════════════════════════
+       4. PERSISTENCE — PostgreSQL
+  ══════════════════════════════════════════ -->
+  <!-- Cylinder shape for DB -->
+  <g transform="translate(80,512)">
+    <!-- cylinder body -->
+    <rect x="-35" y="-12" width="70" height="52" fill="#d6eaf8" stroke="#2980b9" stroke-width="1.5"/>
+    <!-- top ellipse -->
+    <ellipse cx="0" cy="-12" rx="35" ry="10" fill="#aed6f1" stroke="#2980b9" stroke-width="1.5"/>
+    <!-- bottom ellipse -->
+    <ellipse cx="0" cy="40" rx="35" ry="10" fill="#aed6f1" stroke="#2980b9" stroke-width="1.5"/>
+    <text x="0" y="12" font-size="9" fill="#1a5276" text-anchor="middle" font-weight="700">BASE DE</text>
+    <text x="0" y="24" font-size="9" fill="#1a5276" text-anchor="middle" font-weight="700">DATOS</text>
+    <text x="0" y="36" font-size="8" fill="#2980b9" text-anchor="middle">PostgreSQL</text>
+  </g>
+
+  <!-- Spring Boot logo text -->
+  <rect x="28" y="488" width="36" height="15" rx="3" fill="#6db33f"/>
+  <text x="46" y="499" font-size="7.5" fill="white" font-weight="700" text-anchor="middle">Spring</text>
+  <rect x="28" y="506" width="36" height="12" rx="3" fill="#f89820"/>
+  <text x="46" y="516" font-size="7.5" fill="white" font-weight="700" text-anchor="middle">Java</text>
+
+  <!-- Django + Python badge -->
+  <rect x="800" y="488" width="82" height="38" rx="5" fill="#0c4b33"/>
+  <text x="841" y="503" font-size="9.5" fill="#44b78b" font-weight="700" text-anchor="middle">django</text>
+  <rect x="808" y="512" width="66" height="10" rx="2" fill="#3776ab"/>
+  <text x="841" y="521" font-size="7.5" fill="white" font-weight="700" text-anchor="middle">python</text>
+
+  <!-- ══════════════════════════════════════════
+       5. VERTICAL ARROWS — Inter-layer
+  ══════════════════════════════════════════ -->
+  <!-- Mobile → Java API (down) -->
+  <line x1="298" y1="126" x2="298" y2="138" stroke="#2c3e50" stroke-width="1.5" marker-end="url(#arr)"/>
+  <!-- Mobile → Django API (down) -->
+  <line x1="700" y1="126" x2="700" y2="138" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arr-green)"/>
+
+  <!-- Java API → PostgreSQL (down) -->
+  <line x1="160" y1="340" x2="100" y2="485" stroke="#2980b9" stroke-width="1.3" stroke-dasharray="5,3" marker-end="url(#arr-blue)"/>
+  <text x="108" y="420" font-size="8" fill="#2980b9" transform="rotate(-60,108,420)">ORM</text>
+
+  <!-- Java API ↔ Django API (horizontal) -->
+  <line x1="568" y1="230" x2="588" y2="230" stroke="#e67e22" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="588" y1="245" x2="568" y2="245" stroke="#27ae60" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="578" y="240" font-size="7.5" fill="#555" text-anchor="middle">REST</text>
+
+  <!-- RabbitMQ ↔ WebSocket arrow -->
+  <line x1="462" y1="207" x2="452" y2="207" stroke="#e74c3c" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arr)"/>
+
+  <!-- ══════════════════════════════════════════
+       6. TITLE & LEGEND
+  ══════════════════════════════════════════ -->
+  <text x="450" y="12" font-size="12" fill="#2c3e50" font-weight="800" text-anchor="middle">Arquitectura del Sistema de Mensajería Móvil Inclusiva</text>
+
+  <!-- Legend -->
+  <rect x="28" y="552" width="844" height="22" rx="4" fill="#ecf0f1" stroke="#bdc3c7" stroke-width="0.8"/>
+  <rect x="36" y="557" width="12" height="10" rx="2" fill="#3498db"/>
+  <text x="52" y="566" font-size="8" fill="#2c3e50">Capa Presentación</text>
+  <rect x="140" y="557" width="12" height="10" rx="2" fill="#e67e22"/>
+  <text x="156" y="566" font-size="8" fill="#2c3e50">Capa Negocio (Java)</text>
+  <rect x="266" y="557" width="12" height="10" rx="2" fill="#27ae60"/>
+  <text x="282" y="566" font-size="8" fill="#2c3e50">API IA (Python/Django)</text>
+  <rect x="398" y="557" width="12" height="10" rx="2" fill="#8e44ad"/>
+  <text x="414" y="566" font-size="8" fill="#2c3e50">WebSocket / Mensajería</text>
+  <rect x="526" y="557" width="12" height="10" rx="2" fill="#e74c3c"/>
+  <text x="542" y="566" font-size="8" fill="#2c3e50">RabbitMQ Broker</text>
+  <rect x="636" y="557" width="12" height="10" rx="2" fill="#2980b9"/>
+  <text x="652" y="566" font-size="8" fill="#2c3e50">Persistencia PostgreSQL</text>
+  <!-- arrow legend -->
+  <line x1="754" y1="562" x2="770" y2="562" stroke="#2c3e50" stroke-width="1.3" marker-end="url(#arr)"/>
+  <text x="775" y="566" font-size="8" fill="#2c3e50">Flujo de datos</text>
+  <line x1="826" y1="562" x2="842" y2="562" stroke="#2980b9" stroke-width="1.3" stroke-dasharray="3,2" marker-end="url(#arr-blue)"/>
+  <text x="847" y="566" font-size="8" fill="#2c3e50">ORM</text>
+</svg>

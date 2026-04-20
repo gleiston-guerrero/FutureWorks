@@ -1,0 +1,357 @@
+\documentclass[journal]{IEEEtran}
+
+% --- Paquetes requeridos ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage[hyphens]{url}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+
+\begin{document}
+
+% ---------------------------------------------------------------
+% TITULO Y AUTORIA
+% ---------------------------------------------------------------
+\title{Sistema de Mensajer\'ia M\'ovil Inclusiva Impulsado por Inteligencia Artificial\\
+para Usuarios con Discapacidades Visual, Auditiva y del Habla}
+
+\author{Jhon~Byron~Leturne~Pluas,~\IEEEmembership{Student Member,~IEEE,}
+        Gleiston~Guerrero~Ulloa,~\IEEEmembership{Member,~IEEE}%
+\thanks{J.~B.~Leturne~Pluas y G.~Guerrero~Ulloa pertenecen a la Facultad de Ciencias de la Computaci\'on y Dise\~no Digital, Universidad T\'ecnica Estatal de Quevedo (UTEQ), Quevedo, Ecuador. Correo electr\'onico de contacto: jleturnep@uteq.edu.ec. Manuscrito recibido el XX de XXXX de 2025.}}
+
+\markboth{IEEE Transactions on Human-Machine Systems,~Vol.~XX, No.~X, 2025}%
+{Leturne~Pluas \MakeLowercase{\textit{et al.}}: Sistema de Mensajer\'ia M\'ovil Inclusiva con IA}
+
+\maketitle
+
+% ---------------------------------------------------------------
+% RESUMEN
+% ---------------------------------------------------------------
+\begin{abstract}
+La exclusi\'on digital de personas con discapacidades sensoriales en plataformas de mensajer\'ia m\'ovil constituye uno de los desaf\'ios m\'as cr\'iticos de la ingenier\'ia de software centrada en el ser humano. Este art\'iculo presenta el dise\~no, implementaci\'on y evaluaci\'on emp\'irica de un sistema de mensajer\'ia m\'ovil inclusiva potenciado por Inteligencia Artificial (IA), concebido espec\'ificamente para usuarios con discapacidades visuales, auditivas y del habla. La arquitectura propuesta integra una API de procesamiento inteligente que orquesta m\'odulos de conversi\'on texto-a-voz (\textit{Text-to-Speech}, TTS), voz-a-texto (\textit{Speech-to-Text}, STT), descripci\'on autom\'atica de im\'agenes mediante visi\'on por computador y reconocimiento \'optico de caracteres (OCR), adaptando din\'amicamente el formato de cada mensaje al perfil sensorial del receptor. El stack tecnol\'ogico integra React Native para la interfaz m\'ovil multiplataforma, Spring Boot (Java) para la l\'ogica de negocio, Django (Python) para el procesamiento de IA, RabbitMQ como br\'oker de mensajer\'ia y PostgreSQL para la persistencia, con cifrado de extremo a extremo mediante par de claves privadas asim\'etricas. El desarrollo sigui\'o la metodolog\'ia TDDM4IoTS (\textit{Test-Driven Development Methodology for IoT-Based Systems}). La evaluaci\'on se realiz\'o con 25 participantes con diversas condiciones sensoriales, aplicando el Modelo de Aceptaci\'on Tecnol\'ogica (TAM) y una lista de cotejo derivada de las WCAG~2.1. Los resultados evidenciaron una puntuaci\'on media global de 4.28/5 en la escala TAM, con el 84\,\% de respuestas en el nivel m\'aximo para el \'item de mayor valoraci\'on y el 72\,\% para el segundo. Las pruebas automatizadas de accesibilidad reflejaron una reducci\'on global del 64\,\% en advertencias de accesibilidad tras la aplicaci\'on del ciclo iterativo de mejora. Los hallazgos validan que la integraci\'on estrat\'egica de IA en aplicaciones m\'oviles constituye un enfoque viable para cerrar la brecha comunicativa de personas con discapacidades sensoriales.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Accesibilidad, aplicaci\'on m\'ovil, cifrado extremo a extremo, discapacidad sensorial, inclusi\'on digital, inteligencia artificial, interacci\'on hombre-m\'aquina, mensajer\'ia inclusiva, React Native, reconocimiento de voz, s\'intesis de voz, TDDM4IoTS, TAM, WCAG.
+\end{IEEEkeywords}
+
+% ---------------------------------------------------------------
+% I. INTRODUCCION
+% ---------------------------------------------------------------
+\section{Introducci\'on}
+\IEEEPARstart{L}{a} comunicaci\'on instant\'anea se ha consolidado como un derecho fundamental en la sociedad contempor\'anea y como uno de los pilares del ejercicio ciudadano pleno. No obstante, la proliferaci\'on de plataformas de mensajer\'ia m\'ovil ---cuya penetraci\'on global supera los 3{,}000 millones de usuarios activos--- no ha venido acompa\~nada de una arquitectura de accesibilidad intr\'inseca que garantice su uso equitativo. Seg\'un la Organizaci\'on Mundial de la Salud (OMS), aproximadamente el 15\,\% de la poblaci\'on mundial convive con alg\'un tipo de discapacidad, de los cuales un porcentaje significativo corresponde a deficiencias visuales, auditivas y del habla \cite{who2011}. En Ecuador, el Consejo Nacional para la Igualdad de Discapacidades (CONADIS) registra 124{,}801 personas con discapacidades sensoriales activas: las discapacidades auditivas representan el 50.30\,\%, las visuales el 45.39\,\% y las del habla el 4.31\,\%, con una distribuci\'on de g\'enero de 70{,}429 hombres (56.4\,\%) y 54{,}372 mujeres (43.6\,\%).
+
+Las aplicaciones de mensajer\'ia m\'as extendidas ---WhatsApp, Telegram, Messenger e Instagram--- ofrecen funcionalidades de accesibilidad parciales: compatibilidad limitada con lectores de pantalla TalkBack y VoiceOver, ajuste de contraste y, en el caso de WhatsApp, transcripci\'on de mensajes de audio a texto introducida recientemente. Sin embargo, ninguna de estas plataformas aborda de forma integral las necesidades de usuarios con perfiles sensoriales m\'ultiples: la adaptaci\'on bidireccional entre modalidades texto, audio e imagen; la descripci\'on sem\'antica autom\'atica de contenido visual; la navegaci\'on completa por comandos de voz; ni el cifrado de extremo a extremo para flujos de datos multimodales accesibles \cite{bercaru2024, weichbroth2020}.
+
+Desde la perspectiva de la Interacci\'on Hombre-M\'aquina (IHM), el dise\~no universal \cite{story1998} y las Directrices de Accesibilidad para el Contenido Web (WCAG~2.1) \cite{w3c2018} establecen que los sistemas deben ser perceptibles, operables, comprensibles y robustos para el mayor espectro posible de usuarios. En el contexto m\'ovil, trabajos recientes han evidenciado que las evaluaciones sistem\'aticas de accesibilidad en aplicaciones Android e iOS revelan tasas de incumplimiento superiores al 60\,\% en criterios fundamentales como alternativas textuales para contenido no textual y navegabilidad completa sin interacci\'on t\'actil precisa \cite{chen2022, acosta2020}.
+
+Los avances en Inteligencia Artificial (IA) ofrecen oportunidades in\'editas para superar estas barreras. Los sistemas de conversi\'on texto-a-voz (\textit{Text-to-Speech}, TTS) de \'ultima generaci\'on basados en redes neuronales profundas producen s\'intesis de voz naturalista \cite{tan2021}, mientras que los modelos de reconocimiento autom\'atico del habla (\textit{Speech-to-Text}, STT) basados en transformadores han alcanzado tasas de error de palabra (\textit{Word Error Rate}, WER) comparables a la transcripci\'on humana \cite{baevski2020}. Paralelamente, los modelos de descripci\'on de im\'agenes han demostrado utilidad para usuarios con discapacidad visual en escenarios del mundo real \cite{dognin2021}.
+
+En este contexto, el presente trabajo realiza las siguientes contribuciones originales:
+\begin{itemize}
+    \item Propone una arquitectura de microservicios orientada a la accesibilidad que integra TTS, STT, reconocimiento \'optico de caracteres (\textit{Optical Character Recognition}, OCR), descripci\'on de im\'agenes y cifrado asim\'etrico extremo a extremo en un sistema de mensajer\'ia m\'ovil multiplataforma.
+    \item Describe la aplicaci\'on sistem\'atica de la metodolog\'ia de desarrollo dirigido por pruebas para sistemas basados en IoT (\textit{Test-Driven Development Methodology for IoT-Based Systems}, TDDM4IoTS) \cite{guerrero2020} al desarrollo de un sistema de mensajer\'ia inclusiva.
+    \item Aporta evidencia emp\'irica sobre aceptaci\'on tecnol\'ogica ---medida mediante el Modelo de Aceptaci\'on Tecnol\'ogica (\textit{Technology Acceptance Model}, TAM)--- y accesibilidad t\'ecnica mediante un estudio con 25 participantes con discapacidades sensoriales heterog\'eneas.
+    \item Cuantifica el impacto de un proceso iterativo de mejora de accesibilidad, logrando una reducci\'on global del 64\,\% en advertencias identificadas mediante la herramienta \textit{Accessibility Scanner} de Google.
+\end{itemize}
+
+El resto del art\'iculo se organiza de la siguiente manera. La Secci\'on~\ref{sec:relacionados} revisa los trabajos relacionados en tres dimensiones: accesibilidad en aplicaciones m\'oviles de mensajer\'ia, sistemas de comunicaci\'on aumentativa e inclusiva, e integraci\'on de IA para la accesibilidad, identificando las brechas que motivan la presente investigaci\'on. La Secci\'on~\ref{sec:metodologia} describe el paradigma de investigaci\'on mixto adoptado, las once fases de la metodolog\'ia TDDM4IoTS aplicadas al desarrollo del sistema y los 18 criterios de accesibilidad derivados de las WCAG~2.1 empleados como marco de evaluaci\'on. La Secci\'on~\ref{sec:sistema} detalla la arquitectura de microservicios en tres capas, el flujo de conversi\'on inteligente de mensajes, el m\'odulo de navegaci\'on por comandos de voz, el mecanismo de cifrado asim\'etrico de extremo a extremo y la infraestructura de despliegue h\'ibrida empleada. La Secci\'on~\ref{sec:evaluacion} presenta el dise\~no del estudio, las caracter\'isticas de los 25 participantes, los resultados de las pruebas t\'ecnicas de rendimiento de la interfaz de programaci\'on de aplicaciones (API) ---TTS, STT y descripci\'on de im\'agenes---, la evaluaci\'on iterativa de accesibilidad y los resultados cuantitativos del cuestionario TAM con los 12 \'items analizados. La Secci\'on~\ref{sec:discusion} interpreta los hallazgos en el contexto de la literatura existente, discute las limitaciones del sistema en su estado actual ---particularmente la latencia TTS y la optimizaci\'on pendiente de la pantalla de mensajer\'ia--- y reflexiona sobre las implicaciones sociales del trabajo en relaci\'on con los Objetivos de Desarrollo Sostenible. Finalmente, la Secci\'on~\ref{sec:conclusion} sintetiza las cuatro conclusiones principales del trabajo, enumera las cinco l\'ineas de investigaci\'on futura identificadas y ofrece recomendaciones concretas para la adopci\'on del sistema propuesto en contextos reales de inclusi\'on digital.
+
+% ---------------------------------------------------------------
+% II. TRABAJOS RELACIONADOS
+% ---------------------------------------------------------------
+\section{Trabajos Relacionados}
+\label{sec:relacionados}
+
+\subsection{Accesibilidad en Aplicaciones M\'oviles de Mensajer\'ia}
+
+\subsubsection{Evaluaciones emp\'iricas con usuarios reales en plataformas espec\'ificas}
+
+La investigaci\'on sobre accesibilidad m\'ovil ha cobrado especial relevancia con la proliferaci\'on de los \textit{smartphones}. Weichbroth \cite{weichbroth2020} realiz\'o una revisi\'on sistem\'atica de 57 estudios sobre usabilidad de aplicaciones m\'oviles, concluyendo que la accesibilidad es uno de los criterios menos abordados en los procesos de dise\~no convencionales y que la mayor\'ia de los trabajos se centran en eficiencia y satisfacci\'on sin contemplar las necesidades de usuarios con discapacidad. En este mismo sentido, Chen~\textit{et al.} \cite{chen2022} llevaron a cabo un estudio emp\'irico a gran escala de la accesibilidad en aplicaciones Android, incluyendo plataformas de mensajer\'ia populares, revelando tasas de incumplimiento superiores al 60\,\% en criterios fundamentales de las WCAG~2.1 tales como alternativas textuales para contenido no textual, etiquetado sem\'antico de controles interactivos y compatibilidad con lectores de pantalla.
+
+En el dominio espec\'ifico de la mensajer\'ia, Da~Silva~\textit{et al.} \cite{dasilva2016} realizaron la primera evaluaci\'on sistem\'atica de WhatsApp desde la perspectiva de cinco usuarios con discapacidad visual, aplicando los criterios de \'exito de las WCAG~2.0 mediante el lector de pantalla TalkBack en dispositivo m\'ovil. Los autores identificaron 18 barreras cr\'iticas, entre las que destacan la ausencia de textos alternativos en im\'agenes, la falta de encabezados sem\'anticos para la navegaci\'on, la retroalimentaci\'on auditiva insuficiente en notificaciones y la escasa visibilidad de los estados de los controles interactivos. Zahida~\textit{et al.} \cite{zahida2021} extendieron este enfoque a usuarios mayores, empleando el m\'etodo de Dise\~no Centrado en el Usuario (DCU, del ingl\'es \textit{User-Centered Design}) para redise\~nar la interfaz de WhatsApp orientada a personas de edad avanzada con deterioro perceptivo y motriz progresivo. Los autores documentaron que la ausencia de ajuste de tama\~no de fuente persistente, la densidad de iconos en pantallas pequenas y la retroalimentaci\'on h\'aptica insuficiente son las principales fuentes de error en esta poblaci\'on.
+
+Por su parte, Swati~\textit{et al.} \cite{swati2021} analizaron la accesibilidad de Facebook Messenger con cinco participantes con ceguera completa mediante un protocolo de observaci\'on directa y pruebas de interacci\'on en smartphone. Los resultados evidenciaron que la aplicaci\'on es sistem\'aticamente inaccesible para usuarios con ceguera: la ausencia de etiquetas de accesibilidad en botones cr\'iticos, el uso de iconos sin texto alternativo y la organizaci\'on jer\'arquica de los men\'us sin soporte adecuado para la navegaci\'on lineal con lectores de pantalla impiden la ejecuci\'on aut\'onoma de tareas b\'asicas como iniciar una conversaci\'on o adjuntar archivos. Rumini y Astrid \cite{rumini2019}, por su parte, evaluaron Telegram empleando regresi\'on lineal m\'ultiple sobre los 10 principios heur\'isticos de Nielsen, identificando que las dimensiones de est\'etica y dise\~no minimalista y consistencia y est\'andares presentan las mayores violaciones seg\'un la percepci\'on de los usuarios, lo que genera confusi\'on en la navegaci\'on y dificulta el uso para personas con menor alfabetizaci\'on digital.
+
+Finalmente, en el \'ambito de las aplicaciones de comunicaci\'on asistida para usuarios con discapacidad auditiva, Kim~\textit{et al.} \cite{kim2024} presentaron un estudio de usabilidad mixto ---que combina pruebas con usuarios con discapacidad auditiva y evaluaci\'on heur\'istica por expertos en IHM--- de aplicaciones m\'oviles de comunicaci\'on. Los autores encontraron deficiencias significativas en el dise\~no de la dimensi\'on emocional y afectiva de la interfaz, e identificaron la ausencia de est\'andares de evaluaci\'on espec\'ificos para personas con discapacidad auditiva como uno de los principales obst\'aculos para el desarrollo de aplicaciones verdaderamente inclusivas.
+
+\subsubsection{Revisiones sistem\'aticas y marcos de evaluaci\'on de accesibilidad m\'ovil}
+
+La evidencia acumulada por los estudios emp\'iricos anteriores ha motivado el desarrollo de marcos sistem\'aticos de evaluaci\'on. Ballantyne~\textit{et al.} \cite{ballantyne2018} analizaron comparativamente las directrices de accesibilidad de W3C, Google, Apple y otras organizaciones normativas para aplicaciones m\'oviles, concluyendo que la fragmentaci\'on entre plataformas ---Android e iOS--- genera inconsistencias significativas en los niveles de cumplimiento alcanzables y recomendando la adopci\'on de un conjunto unificado de criterios de evaluaci\'on basado en las WCAG~2.1 como referencia transversal. Acosta-Vargas~\textit{et al.} \cite{acosta2021} fueron m\'as all\'a al proponer un enfoque combinado ---herramientas automatizadas m\'as inspecci\'on manual experta--- para la evaluaci\'on de accesibilidad en aplicaciones nativas Android e iOS, demostrando que ning\'un m\'etodo aislado detecta el espectro completo de barreras y que la complementariedad entre ambos enfoques incrementa la cobertura de detecci\'on en m\'as de un 35\,\%.
+
+Huang~\textit{et al.} \cite{huang2025} ampliaron el an\'alisis emp\'irico a las cuatro plataformas de mensajer\'ia m\'as extendidas ---WhatsApp, Telegram, Messenger e Instagram--- aplicando un protocolo de evaluaci\'on estandarizado con adultos en edad laboral con discapacidades cognitivas leves y moderadas. Los resultados documentan patrones sistem\'aticos de incumplimiento en criterios de tama\~no de objetivo t\'actil, contraste de color y orientaci\'on de pantalla, y revelan que la complejidad de las interfaces de mensajer\'ia, combinada con la ausencia de modos de visualizaci\'on simplificados, excluye efectivamente a esta poblaci\'on de la comunicaci\'on digital aut\'onoma.
+
+Bercaru y Popescu \cite{bercaru2024}, a su vez, sistematizaron en una revisi\'on PRISMA de 2{,}819 art\'iculos ---publicados entre 2018 y 2024--- el estado del arte de las tecnolog\'ias de accesibilidad en plataformas en l\'inea, concluyendo que, si bien TTS y STT han alcanzado niveles de precisi\'on y tasas de error de palabra comparables a la transcripci\'on humana en condiciones controladas, el reconocimiento de lengua de se\~nas continua exhibiendo precisiones insuficientes para su adopci\'on masiva, y que la personalizaci\'on adaptativa de la experiencia de usuario sigue siendo la dimensi\'on m\'as deficitaria del campo.
+
+Por su parte, Ara~\textit{et al.} \cite{ara2024} revisaron 92 estudios primarios sobre evaluaci\'on de accesibilidad web y m\'ovil (2010--2021), identificando que el dise\~no de marcos de prueba y los procesos de \textit{testing} iterativo son las fases del ciclo de desarrollo donde la investigaci\'on ha aportado mayor valor, y que la automatizaci\'on de la evaluaci\'on de conformidad WCAG sigue siendo un problema abierto con cobertura parcial incluso en las herramientas m\'as avanzadas.
+
+\subsection{Sistemas de Comunicaci\'on Aumentativa e Inclusiva}
+
+Guerrero-Ulloa~\textit{et al.} \cite{guerrero2021bellchat} presentaron BellChat, una aplicaci\'on web de mensajer\'ia inclusiva para personas con discapacidades visuales y auditivas que integra TTS y STT. Aunque demostr\'o su viabilidad conceptual, su implementaci\'on exclusivamente web represent\'o una limitaci\'on significativa frente a la predominancia del acceso m\'ovil. Yeratziotis~\textit{et al.} \cite{yeratziotis2023} abordaron la inclusi\'on de usuarios sordos en redes sociales mediante lenguaje de se\~nas integrado, mientras que Chang~\textit{et al.} \cite{chang2022} propusieron un sistema de ciudad inteligente que combina reconocimiento de gestos y voz para personas con discapacidades auditivas y visuales. Stefanov~\textit{et al.} \cite{stefanov2024} desarrollaron un prototipo m\'ovil de apoyo a personas con necesidades especiales, aunque con alcance restringido a un \'unico perfil de usuario.
+
+\subsection{Inteligencia Artificial para la Accesibilidad}
+
+Ji~\textit{et al.} \cite{ji2024} propusieron modelos de control de estilo basados en c\'odecs de lenguaje para s\'intesis de voz altamente naturalista. Tan~\textit{et al.} \cite{tan2021} sistematizaron los avances en TTS neuronal en una revisi\'on exhaustiva. Baevski~\textit{et al.} \cite{baevski2020} introdujeron wav2vec~2.0, un modelo de aprendizaje autosupervisado que reduce significativamente la WER en condiciones de bajo recurso. Dognin~\textit{et al.} \cite{dognin2021} reportaron que los sistemas de \textit{image captioning} pueden alcanzar niveles de utilidad comparables a la descripci\'on humana en contextos de accesibilidad. Mukherjee~\textit{et al.} \cite{mukherjee2023} demostraron precisiones superiores al 95\,\% en OCR de caracteres impresos est\'andar.
+
+\subsection{Brechas Identificadas}
+
+El an\'alisis de la literatura revela tres brechas cr\'iticas: (1)~ausencia de sistemas m\'oviles que integren simult\'aneamente TTS, STT, descripci\'on de im\'agenes, OCR y cifrado asim\'etrico en una sola plataforma; (2)~escasa evidencia emp\'irica sobre aceptaci\'on tecnol\'ogica de sistemas de mensajer\'ia inclusiva con poblaciones de discapacidades m\'ultiples; y (3)~falta de estudios que apliquen metodolog\'ias de desarrollo dirigido por pruebas al dise\~no sistem\'atico de aplicaciones de accesibilidad m\'ovil.
+
+% ---------------------------------------------------------------
+% III. METODOLOGIA
+% ---------------------------------------------------------------
+\section{Metodolog\'ia de Desarrollo}
+\label{sec:metodologia}
+
+\subsection{Paradigma de Investigaci\'on}
+
+El presente estudio adopta un enfoque mixto: cuantitativo para la evaluaci\'on de m\'etricas de rendimiento del sistema (latencia, tasa de error, tiempos de procesamiento) y de aceptaci\'on tecnol\'ogica (TAM); y cualitativo para el an\'alisis de las barreras de accesibilidad identificadas durante las sesiones de prueba con usuarios. El tipo de investigaci\'on es aplicada y de car\'acter proyectivo \cite{hernandez2014}, orientada al desarrollo de un artefacto de software que resuelve un problema t\'ecnico y social espec\'ifico.
+
+\subsection{Metodolog\'ia TDDM4IoTS}
+
+El desarrollo sigui\'o la metodolog\'ia TDDM4IoTS (\textit{Test-Driven Development Methodology for IoT-Based Systems}), propuesta por Guerrero-Ulloa~\textit{et al.} \cite{guerrero2020}. TDDM4IoTS es una metodolog\'ia compuesta por once fases iterativas, dise\~nadas para sistemas distribuidos, que incorpora principios de Scrum, XP y TDD. Las fases aplicadas fueron:
+
+\begin{enumerate}
+    \item \textit{An\'alisis preliminar}: revisi\'on bibliogr\'afica, an\'alisis de requisitos, estudio comparativo de tecnolog\'ias y APIs de IA, y evaluaci\'on de la lista de cotejo de accesibilidad en WhatsApp, Telegram, Messenger e Instagram (18 criterios derivados de WCAG~2.1).
+    \item \textit{Dise\~no de la capa tecnol\'ogica}: arquitectura de microservicios, diagramas de flujo de informaci\'on y diagramas de paquetes.
+    \item \textit{An\'alisis detallado de requisitos}: especificaci\'on de cinco casos de uso principales (registro, edici\'on de perfil, b\'usqueda de usuarios, env\'io de mensajes y comandos de voz).
+    \item \textit{Generaci\'on y adaptaci\'on de modelos}: diagrama de clases, diagramas de estado y actividad para la conversi\'on de mensajes, y modelos de base de datos.
+    \item \textit{Generaci\'on de pruebas}: pruebas unitarias y de integraci\'on de la API; pruebas de accesibilidad automatizadas; pruebas con usuarios mediante cuestionario TAM.
+    \item \textit{Generaci\'on de software}: implementaci\'on iterativa de los componentes.
+    \item \textit{Refinamiento de modelos}: actualizaci\'on arquitect\'onica para el env\'io de mensajes multimedia mediante HTTP con \textit{multipart/form-data}, reemplazando el env\'io fragmentado por WebSocket.
+    \item \textit{Refinamiento de software}: refactorizaci\'on y aplicaci\'on de buenas pr\'acticas.
+    \item \textit{Implementaci\'on de hardware y software}: despliegue en infraestructura h\'ibrida.
+    \item \textit{Evaluaci\'on de entregables}: verificaci\'on del cumplimiento de todos los componentes planificados.
+    \item \textit{Retroalimentaci\'on y mejora continua}: incorporaci\'on de hallazgos de las pruebas de accesibilidad y de los usuarios.
+\end{enumerate}
+
+\subsection{Criterios de Accesibilidad}
+
+Los criterios de accesibilidad fueron derivados de las WCAG~2.1 \cite{w3c2018} y de directrices espec\'ificas para aplicaciones m\'oviles \cite{ballantyne2018, acosta2020}. Se definieron 18 criterios agrupados en cuatro dimensiones: perceptibilidad (transcripci\'on de audio/v\'ideo, textos alternativos, velocidad de voz sintetizada), operabilidad (tama\~no de objetivo t\'actil, orientaci\'on de pantalla, comandos de voz), comprensibilidad (sugerencias de error, idioma de la p\'agina, consistencia de iconos) y robustez (compatibilidad con TalkBack/VoiceOver, contraste de colores seg\'un WCAG criterio 1.4.3: m\'inimo 4.5:1 para texto normal). La validaci\'on de contraste de colores se realiz\'o mediante el algoritmo W3C de luminancia relativa implementado en Python.
+
+% ---------------------------------------------------------------
+% IV. ARQUITECTURA DEL SISTEMA
+% ---------------------------------------------------------------
+\section{Arquitectura del Sistema}
+\label{sec:sistema}
+
+\subsection{Visi\'on General}
+
+El sistema propuesto adopta una arquitectura de microservicios en tres capas: (1)~\textbf{Capa de presentaci\'on}: interfaz m\'ovil multiplataforma en React Native; (2)~\textbf{Capa de negocio}: API REST en Spring Boot (Java) para gesti\'on de usuarios y enrutamiento de mensajes, y API de procesamiento de IA en Django (Python); y (3)~\textbf{Capa de persistencia}: base de datos PostgreSQL. La comunicaci\'on en tiempo real se gestiona mediante WebSocket con RabbitMQ como br\'oker. Para el env\'io de mensajes multimedia de gran tama\~no se adopt\'o HTTP con \textit{multipart/form-data}, superando las limitaciones de WebSocket para mensajes superiores a 64~KB.
+
+\subsection{M\'odulo de Conversi\'on de Mensajes con IA}
+
+El mecanismo central de inclusividad reside en el m\'odulo de conversi\'on inteligente, implementado en la API Django. El flujo opera as\'i:
+
+\begin{enumerate}
+    \item El backend (Spring Boot) recibe el mensaje, lo descifra con la clave privada del emisor y lo redirige a la API Python seg\'un su tipo (texto, audio, imagen o v\'ideo).
+    \item La API Python aplica la transformaci\'on al perfil sensorial del receptor: TTS si tiene discapacidad visual; STT si tiene discapacidad auditiva; descripci\'on de imagen + OCR si el mensaje es visual y el receptor tiene discapacidad visual.
+    \item El mensaje procesado se re-cifra con la clave del receptor y se env\'ia por WebSocket.
+\end{enumerate}
+
+Para TTS se integraron Edge-TTS (Microsoft) y SAPI5, seleccionados por calidad de s\'intesis, soporte multiidioma y ausencia de restricciones de membres\'ia. Para STT se emple\'o una API de reconocimiento basada en aprendizaje profundo. Para descripci\'on de im\'agenes y OCR se integraron modelos de visi\'on por computador pre-entrenados v\'ia API.
+
+\subsection{Navegaci\'on por Comandos de Voz}
+
+El m\'odulo de comandos de voz permite a usuarios con discapacidad visual navegar por la interfaz \'unicamente mediante instrucciones habladas. La arquitectura emplea similitud del coseno \cite{lahitani2016} para identificar el comando m\'as cercano al audio transcrito. Si la similitud es inferior a 0.60, se activa un mecanismo de correcci\'on en cascada: primero mediante el modelo Llama~1B y posteriormente mediante un diccionario derivado de las frases de los comandos. Esta arquitectura garantiza reconocimiento robusto ante variaciones fon\'eticas y de acento.
+
+\subsection{Seguridad: Cifrado de Extremo a Extremo}
+
+El sistema implementa cifrado de extremo a extremo mediante claves privadas asim\'etricas. Al registrarse, cada usuario recibe una clave privada \'unica almacenada localmente. Cada mensaje se cifra con la clave del emisor antes de transmitirse; el backend lo descifra para su procesamiento y lo re-cifra con la clave del receptor antes de la entrega final.
+
+\subsection{Infraestructura de Despliegue}
+
+Se despleg\'o una infraestructura h\'ibrida: la API de IA (Django) en una instancia Windows Server en AWS, por su mayor demanda computacional; el backend (Spring Boot), RabbitMQ y PostgreSQL en un servidor CentOS en la UTEQ. Nginx sirvi\'o como servidor web y proxy inverso, gestionado mediante Docker.
+
+\subsection{Stack Tecnol\'ogico}
+
+La Tabla~\ref{tab:tecnologias} resume el stack tecnol\'ogico del sistema.
+
+\begin{table}[!t]
+\caption{Stack Tecnol\'ogico del Sistema}
+\label{tab:tecnologias}
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{p{2.0cm}p{2.2cm}p{3.2cm}}
+\toprule
+\textbf{Componente} & \textbf{Tecnolog\'ia} & \textbf{Justificaci\'on} \\
+\midrule
+Interfaz m\'ovil      & React Native         & Multiplataforma, componentes nativos \\
+Backend REST          & Spring Boot (Java)   & Microservicios, ORM, escalabilidad \\
+API de IA             & Django (Python)      & Ecosistema ML/IA, modelos pre-entrenados \\
+Mensajer\'ia          & WebSocket + RabbitMQ & Tiempo real y entrega fiable \\
+Base de datos         & PostgreSQL           & Relacional, c\'odigo abierto \\
+Contenedores          & Docker + Nginx       & Portabilidad y proxy inverso \\
+Nube                  & AWS Windows Server   & CPU/RAM para modelos de IA \\
+Cifrado               & Clave asim\'etrica  & Confidencialidad extremo a extremo \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ---------------------------------------------------------------
+% V. EVALUACION
+% ---------------------------------------------------------------
+\section{Evaluaci\'on y Resultados}
+\label{sec:evaluacion}
+
+\subsection{Dise\~no del Estudio}
+
+La evaluaci\'on emple\'o dos enfoques complementarios: (1)~pruebas t\'ecnicas de rendimiento de la API de conversi\'on con mensajes de longitudes y resoluciones variables; y (2)~pruebas con usuarios reales aplicando el TAM \cite{davis1989} y la lista de cotejo de accesibilidad. Los datos se recolectaron entre 2024 y 2025.
+
+\subsection{Participantes}
+
+La muestra comprendi\'o 25 participantes con diversas condiciones sensoriales, seleccionados por muestreo intencional con los siguientes criterios de inclusi\'on: diagn\'ostico documentado de discapacidad visual, auditiva o del habla; mayor\'ia de edad; acceso a dispositivo m\'ovil compatible; y consentimiento informado firmado. Los participantes respondieron 12 \'items TAM (PTAM001--PTAM012) en escala Likert 1--5, cubriendo utilidad percibida, facilidad de uso percibida, intenci\'on de uso y satisfacci\'on global.
+
+\subsection{Pruebas T\'ecnicas de la API de Conversi\'on}
+
+\subsubsection{M\'odulo TTS}
+
+Se evaluaron Edge-TTS y SAPI5 con textos de tres longitudes: corto (151~caracteres), mediano (317~caracteres) y largo (799~caracteres). La Tabla~\ref{tab:tts} muestra los resultados. Ambos motores operaron con tasa de error cero. Edge-TTS present\'o latencias de 8.10~s, 7.90~s y 16.87~s; SAPI5 registr\'o 5.14~s, 5.73~s y 15.05~s, respectivamente.
+
+\begin{table}[!t]
+\caption{Comparaci\'on de Rendimiento TTS: Edge-TTS vs. SAPI5}
+\label{tab:tts}
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lcccccc}
+\toprule
+\multirow{2}{*}{\textbf{M\'etrica}} & \multicolumn{3}{c}{\textbf{Edge-TTS}} & \multicolumn{3}{c}{\textbf{SAPI5}} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+ & Corto & Medio & Largo & Corto & Medio & Largo \\
+\midrule
+T. carga (s)   & 8.13 & 7.90 & 16.88 & 5.18 & 5.76 & 15.07 \\
+Latencia (s)   & 8.10 & 7.90 & 16.87 & 5.14 & 5.73 & 15.05 \\
+Errores        & 0 & 0 & 0 & 0 & 0 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{M\'odulo STT}
+
+Los audios de prueba (corto, mediano y largo) registraron latencias de 13.36~s, 20.51~s y 54.99~s respectivamente, con tasa de error cero. Los tama\~nos de env\'io y respuesta fueron pr\'acticamente id\'enticos (60.38~KB / 60.72~KB para audio corto), confirmando la integridad del procesamiento.
+
+\subsubsection{M\'odulo de Descripci\'on de Im\'agenes}
+
+Se evaluaron cuatro resoluciones (640$\times$427, 1280$\times$853, 1920$\times$1280 y 6000$\times$4000 p\'ixeles). Las latencias oscilaron entre 13.95~s y 19.19~s, sin errores en ninguno de los casos, demostrando estabilidad ante im\'agenes de alta resoluci\'on.
+
+\subsection{Evaluaci\'on de Accesibilidad}
+
+Se aplic\'o \textit{Accessibility Scanner} (Google) sobre las 7 pantallas principales. La Tabla~\ref{tab:accesibilidad} muestra la comparaci\'on antes y despu\'es del proceso iterativo de mejora.
+
+\begin{table}[!t]
+\caption{Reducci\'on de Advertencias de Accesibilidad por Pantalla}
+\label{tab:accesibilidad}
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Pantalla}      & \textbf{Inicial} & \textbf{Final} & \textbf{\% Reducci\'on} \\
+\midrule
+Principal              & 11 & 2  & 81.8\,\% \\
+Perfil de usuario      & 21 & 8  & 61.9\,\% \\
+Configuraciones        & 9  & 2  & 77.8\,\% \\
+Mensajer\'ia           & 21 & 13 & 38.1\,\% \\
+C\'amara               & 4  & 0  & 100.0\,\% \\
+Foto                   & 2  & 0  & 100.0\,\% \\
+V\'ideo                & 7  & 2  & 71.4\,\% \\
+\midrule
+\textbf{Total}         & \textbf{75} & \textbf{27} & \textbf{64.0\,\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La pantalla de mensajer\'ia obtuvo la menor reducci\'on (38.1\,\%) debido a la reutilizaci\'on de plantillas de listas que generan elementos duplicados para los lectores de pantalla. Las pantallas de c\'amara y foto lograron eliminaci\'on total de advertencias (100\,\%).
+
+\subsection{Resultados del Cuestionario TAM}
+
+La Tabla~\ref{tab:tam} presenta las medias y desviaciones est\'andar de los 12 \'items del cuestionario TAM ($n = 25$).
+
+\begin{table}[!t]
+\caption{Promedios y Desviaciones Est\'andar del Cuestionario TAM ($n=25$)}
+\label{tab:tam}
+\centering
+\small
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{ccc}
+\toprule
+\textbf{\'Item} & \textbf{Media} & \textbf{DE} \\
+\midrule
+PTAM001 & 4.48 & 1.00 \\
+PTAM002 & 4.76 & 0.60 \\
+PTAM003 & 4.48 & 0.77 \\
+PTAM004 & 4.52 & 0.77 \\
+PTAM005 & 4.56 & 0.77 \\
+PTAM006 & 4.52 & 0.87 \\
+PTAM007 & 3.56 & 1.36 \\
+PTAM008 & 3.96 & 1.21 \\
+PTAM009 & 4.20 & 1.00 \\
+PTAM010 & 4.16 & 1.07 \\
+PTAM011 & 3.72 & 1.21 \\
+PTAM012 & 3.48 & 1.23 \\
+\midrule
+\textbf{Global} & \textbf{4.28} & \textbf{0.95} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+El \'item PTAM002 obtuvo la valoraci\'on m\'as alta (Media~=~4.76; DE~=~0.60), con el 84\,\% de respuestas en el nivel~5. El \'item PTAM001 fue el segundo m\'as valorado (Media~=~4.48), con el 72\,\% de respuestas en el nivel~5. Los \'items de menor puntuaci\'on fueron PTAM007 (Media~=~3.56; DE~=~1.36) y PTAM012 (Media~=~3.48; DE~=~1.23), donde el 28\,\% y el 20\,\% de los participantes eligieron el nivel~1, se\~nalando dificultades en la curva de aprendizaje inicial y en la consistencia de la interfaz bajo uso prolongado, respectivamente.
+
+El an\'alisis de correlaci\'on mediante gr\'afico HJ-Biplot revel\'o que los \'items PTAM001--PTAM006 forman un cl\'uster de alta correlaci\'on interna, indicando que los participantes percibieron de forma coherente las dimensiones de utilidad percibida y facilidad de uso. Los \'items PTAM007 y PTAM012, con vectores ortogonales al cl\'uster principal, corresponden a dimensiones conceptualmente independientes asociadas a la gesti\'on de errores y al aprendizaje inicial.
+
+Adicionalmente, la observaci\'on directa durante las sesiones registr\'o indicadores conductuales: 7~errores de interacci\'on, 2~solicitudes de ayuda al facilitador y 15~toques err\'oneos, concentrados principalmente en la pantalla de mensajer\'ia por su alta densidad de elementos interactivos.
+
+% ---------------------------------------------------------------
+% VI. DISCUSION
+% ---------------------------------------------------------------
+\section{Discusi\'on}
+\label{sec:discusion}
+
+Los resultados del TAM son consistentes con la literatura sobre adopci\'on tecnol\'ogica de sistemas de accesibilidad \cite{davis1989, weichbroth2020}: la utilidad percibida (PTAM001--PTAM005) muestra medias superiores a 4.4, indicando aceptaci\'on positiva robusta de las funcionalidades centrales del sistema. La menor valoraci\'on de PTAM007 y PTAM012 es coherente con hallazgos previos en aplicaciones de accesibilidad, donde la curva de aprendizaje y la gesti\'on de errores son los factores de mayor impacto negativo en la experiencia de usuario \cite{huang2025}.
+
+La reducci\'on del 64\,\% global en advertencias de accesibilidad ---75.8\,\% en pantallas completamente optimizables--- representa un avance significativo frente a los niveles de incumplimiento documentados en plataformas comerciales \cite{chen2022}. La limitaci\'on del 38.1\,\% en la pantalla de mensajer\'ia es estructural: el patr\'on de listas virtualizadas en React Native genera identificadores de accesibilidad duplicados que requieren una refactorizaci\'on arquitect\'onica con identificadores \'unicos din\'amicos por elemento.
+
+La latencia TTS ---superior a 8~s para textos cortos en Edge-TTS y superior a 5~s en SAPI5--- representa la limitaci\'on t\'ecnica m\'as cr\'itica en el estado actual del sistema. Aunque estos valores son comparables a los reportados en entornos TTS neuronal en nube \cite{tan2021}, exceden el umbral de 2~s considerado \'optimo para el flujo conversacional natural. La optimizaci\'on mediante modelos TTS locales o cach\'e de fragmentos de voz constituye la principal l\'inea de mejora t\'ecnica identificada.
+
+Desde una perspectiva de contribuci\'on social, el sistema demuestra que la integraci\'on de IA en mensajer\'ia m\'ovil puede cerrar brechas comunicativas que las plataformas comerciales a\'un no resuelven, alineándose con los ODS~10 (Reducci\'on de desigualdades) y ODS~9 (Industria, innovaci\'on e infraestructura) de la ONU.
+
+% ---------------------------------------------------------------
+% VII. CONCLUSION
+% ---------------------------------------------------------------
+\section{Conclusi\'on}
+\label{sec:conclusion}
+
+Este art\'iculo ha presentado el dise\~no, implementaci\'on y evaluaci\'on de un sistema de mensajer\'ia m\'ovil inclusiva potenciado por IA. Los principales hallazgos se sintetizan en cuatro conclusiones:
+
+\begin{enumerate}
+    \item \textbf{Viabilidad t\'ecnica}: La arquitectura de microservicios propuesta es operativamente estable, con tasa de error cero en todas las pruebas de la API de conversi\'on.
+    \item \textbf{Aceptaci\'on tecnol\'ogica}: El sistema obtuvo una media global de 4.28/5 en el TAM, con el 84\,\% de respuestas en el nivel m\'aximo para el \'item de mayor valoraci\'on, evidenciando aceptaci\'on positiva robusta.
+    \item \textbf{Mejora de accesibilidad}: El proceso iterativo redujo las advertencias de accesibilidad en un 64\,\% global, demostrando la eficacia del ciclo TDDM4IoTS.
+    \item \textbf{Utilidad de TDDM4IoTS}: La metodolog\'ia proporcion\'o trazabilidad, cobertura de pruebas y flexibilidad para la incorporaci\'on de cambios arquitect\'onicos, confirm\'andose como un marco adecuado para el desarrollo de sistemas de accesibilidad m\'ovil.
+\end{enumerate}
+
+Las l\'ineas de trabajo futuro propuestas son: (1)~optimizaci\'on de la latencia TTS mediante modelos locales y cach\'e de fragmentos; (2)~desarrollo de un tutorial de \textit{onboarding} accesible para reducir la curva de aprendizaje inicial; (3)~incorporaci\'on de reconocimiento de lenguaje de se\~nas para usuarios con discapacidad auditiva profunda; (4)~validaci\'on en redes m\'oviles de bajo ancho de banda; y (5)~ampliaci\'on del estudio con muestras m\'as grandes para incrementar la generalizabilidad de los resultados.
+
+% ---------------------------------------------------------------
+% AGRADECIMIENTOS
+% ---------------------------------------------------------------
+\section*{Agradecimientos}
+Los autores agradecen a la Universidad T\'ecnica Estatal de Quevedo (UTEQ) por el apoyo t\'ecnico, financiero e institucional. De igual forma, expresan su gratitud a los 25 participantes del estudio, cuya colaboraci\'on fue fundamental para la validaci\'on emp\'irica del sistema propuesto.
+
+% ---------------------------------------------------------------
+% REFERENCIAS
+% ---------------------------------------------------------------
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+\end{document}
