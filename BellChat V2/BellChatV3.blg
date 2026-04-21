@@ -1,6 +1,6 @@
 This is BibTeX, Version 0.99e (TeX Live 2026)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: BellChatV2.aux
+The top-level auxiliary file: BellChatV3.aux
 The style file: IEEEtran.bst
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
@@ -13,44 +13,44 @@ Database file #1: refs.bib
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 49 entries,
+You've used 47 entries,
             4087 wiz_defined-function locations,
-            1105 strings with 17804 characters,
-and the built_in function-call counts, 41190 in all, are:
-= -- 3386
-> -- 1033
-< -- 339
-+ -- 584
-- -- 230
-* -- 2009
-:= -- 6017
-add.period$ -- 109
-call.type$ -- 49
-change.case$ -- 52
-chr.to.int$ -- 723
-cite$ -- 49
-duplicate$ -- 2992
-empty$ -- 3195
-format.name$ -- 228
-if$ -- 9643
+            1096 strings with 17348 characters,
+and the built_in function-call counts, 39372 in all, are:
+= -- 3228
+> -- 991
+< -- 322
++ -- 556
+- -- 217
+* -- 1917
+:= -- 5755
+add.period$ -- 105
+call.type$ -- 47
+change.case$ -- 50
+chr.to.int$ -- 687
+cite$ -- 47
+duplicate$ -- 2863
+empty$ -- 3069
+format.name$ -- 219
+if$ -- 9221
 int.to.chr$ -- 0
-int.to.str$ -- 49
-missing$ -- 530
-newline$ -- 178
-num.names$ -- 49
-pop$ -- 1192
+int.to.str$ -- 47
+missing$ -- 510
+newline$ -- 172
+num.names$ -- 47
+pop$ -- 1151
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 3188
+skip$ -- 3049
 stack$ -- 0
-substring$ -- 1951
-swap$ -- 2506
-text.length$ -- 98
+substring$ -- 1841
+swap$ -- 2389
+text.length$ -- 93
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 49
+type$ -- 47
 warning$ -- 0
-while$ -- 177
-width$ -- 51
-write$ -- 526
+while$ -- 170
+width$ -- 49
+write$ -- 505
