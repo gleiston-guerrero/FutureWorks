@@ -8,7 +8,10 @@
 \usepackage{amsmath,amssymb,amsfonts}
 
 \usepackage{graphicx}
-\graphicspath{{figs/}}
+\graphicspath{{figfinals/}}
+
+\usepackage{caption}
+\usepackage{subcaption}
 
 \usepackage{colortbl}
 \usepackage{textcomp}
@@ -17,35 +20,43 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{array}
+\usepackage{threeparttable}
+\usepackage{siunitx}
 
 \begin{document}
 	
 	% ---------------------------------------------------------------
 	% TITLE AND AUTHORSHIP
 	% ---------------------------------------------------------------
-	\title{An AI-Powered Inclusive Mobile Messaging System\\
-		for Users with Visual, Hearing, and Speech Disabilities}
-		
-		\author{Gleiston~Guerrero-Ulloa,%
-			Jhon~Leturne-Pluas,%
-			\thanks{Manuscript received XX Month 2026; revised XX Month 2026;
-				accepted XX Month 2026. Date of publication XX Month 2026;
-				date of current version XX Month 2026.
-				This work was supported by the Universidad T\'ecnica Estatal de
-				Quevedo~(UTEQ).
-				\textit{(Corresponding author: Gleiston Guerrero Ulloa.)}
-				J.~B.~Leturne~Pluas and G.~Guerrero~Ulloa are with the
-				Faculty of Computing Science,
-				Universidad T\'ecnica Estatal de Quevedo (UTEQ),
-				Quevedo~120501, Ecuador
-				(e-mail: gguerrerou@uteq.edu.ec; jleturnep@uteq.edu.ec).
-				Color versions of one or more figures in this article are available
-				at \protect\url{https://doi.org/xx.xxxx/THMS.2026.xxxxxxx}.
-				Digital Object Identifier~10.1109/THMS.2026.xxxxxxx}}
-		
-		\markboth{IEEE Transactions on Human-Machine Systems,~Vol.~XX, No.~X, 2026}%
-		{Leturne~Pluas \MakeLowercase{\textit{et al.}}: AI-Powered Inclusive Mobile Messaging System}
-				
+	\title{UniVoice: Breaking Communication Barriers Through AI-Powered Multimodal Messaging for Users with Sensory Impairments}
+	
+	\author{Gleiston~Guerrero-Ulloa,%
+		Jhon~B.~Leturne-Pluas,%
+		Miguel~J.~Hornos,%
+		and~Carlos~Rodr\'iguez-Dom\'inguez%
+		\thanks{Manuscript received XX Month 2026; revised XX Month 2026;
+			accepted XX Month 2026. Date of publication XX Month 2026;
+			date of current version XX Month 2026.
+			This work was supported by institutional resources of the
+			Universidad T\'ecnica Estatal de Quevedo (UTEQ) and the
+			Universidad de Granada (UGR).
+			\textit{(Corresponding author: Gleiston Guerrero-Ulloa.)}}%
+		\thanks{G.~Guerrero-Ulloa and J.~B.~Leturne-Pluas are with the
+			Faculty of Computer Sciences, Universidad T\'ecnica Estatal de
+			Quevedo, Quevedo 120501, Los R\'ios, Ecuador (e-mail:
+			gguerrero@uteq.edu.ec; jleturnep@uteq.edu.ec).}%
+		\thanks{M.~J.~Hornos and C.~Rodr\'iguez-Dom\'inguez are with the
+			Department of Software Engineering, Universidad de Granada,
+			18071 Granada, Spain (e-mail: mhornos@ugr.es;
+			carlosrodriguez@ugr.es).}%
+		\thanks{Color versions of one or more figures in this article are
+			available at \protect\url{https://doi.org/10.1109/JIOT.2026.xxxxxxx}.}%
+		\thanks{Digital Object Identifier~10.1109/JIOT.2026.xxxxxxx}}
+	
+	\markboth{IEEE Internet of Things Journal,~Vol.~XX, No.~X, 2026}%
+	{Guerrero-Ulloa~\MakeLowercase{\textit{et al.}}:
+		UniVoice --- AI-Powered Inclusive Mobile Messaging}
+	
 	\maketitle
 	
 	% ---------------------------------------------------------------
@@ -56,40 +67,41 @@
 		messaging platforms represents one of the most pressing challenges in
 		human-centred software engineering.
 		This article presents the design, implementation, and empirical
-		evaluation of an AI-powered inclusive mobile messaging system
-		specifically conceived for users with visual and hearing disabilities.
+		evaluation of \textsf{UniVoice}, an AI-powered inclusive mobile
+		messaging system conceived for users with visual, hearing, and
+		speech disabilities. For users with visual impairment, the system provides
+		text-to-speech~(TTS), voice command navigation, automatic image
+		description~(OCR\,+\,BLIP captioning), and audio transcription.
+		For users with hearing impairment, the system provides
+		speech-to-text~(STT) transcription of received audio and video.
+		For users with speech disability---which clinically decomposes into the
+		deaf-mute subgroup and the speech-only-impairment subgroup---coverage is
+		established through the receiver-adaptation logic of \textsf{UniVoice}
+		without a dedicated AAC module: deaf-mute users are served by the union
+		of the hearing-impairment adaptations (STT of received audio) and
+		text-based composition for sending, and speech-only-impaired users retain
+		full reception of every modality while composing messages via the mobile
+		touchscreen, with recipient-dependent TTS when the addressee has a visual
+		impairment.
 		The proposed architecture integrates an intelligent processing API
-		that orchestrates text-to-speech~(TTS), speech-to-text~(STT),
-		automatic image description via computer vision, and optical character
-		recognition~(OCR) modules, dynamically adapting each message format
-		to the receiver's sensory profile.
+		that orchestrates TTS, STT, automatic image description via computer
+		vision, and optical character recognition~(OCR) modules, dynamically
+		adapting each message format to the receiver's sensory profile.
 		The technology stack combines React~Native for a cross-platform mobile
 		interface, Spring~Boot~(Java) for business logic, Django~(Python) for
 		AI processing, RabbitMQ as a message broker, and PostgreSQL for
 		persistence, with end-to-end asymmetric-key encryption.
 		Development followed the TDDM4IoTS methodology
 		(\textit{Test-Driven Development Methodology for IoT-Based Systems}).
-		The system was evaluated with $n{=}25$ participants
-		(60\,\% with visual impairment, 20\,\% with hearing impairment,
-		and 20\,\% without disability) applying the Technology Acceptance
-		Model~(TAM) and a WCAG~2.1 checklist.
-		Results revealed a global TAM mean of $\bar{x}{=}4.20$/5
-		($\bar{x}_{\text{PU}}{=}4.55$; $\bar{x}_{\text{PEOU}}{=}3.85$),
-		strong internal consistency ($\alpha{=}0.866$; PU: $\alpha{=}0.867$;
-		PEOU: $\alpha{=}0.898$), and the highest-rated item reaching 84\,\%
-		maximum-scale responses.
-		An iterative accessibility improvement cycle produced a 64\,\%
-		reduction in WCAG~2.1 warnings.
-		The findings validate that strategic AI integration in mobile
-		applications constitutes a viable approach to bridging the
-		communicative gap of people with sensory disabilities.
+		\textsf{UniVoice} was evaluated with $n{=}25$ participants (60\,\% with visual impairment, 20\,\% with hearing impairment, and 20\,\% without disability) applying the Technology Acceptance Model~(TAM) and a WCAG~2.1 checklist. Results revealed a global TAM mean of $\bar{x}{=}4.20$/5 ($\bar{x}_{\text{PU}}{=}4.55$; $\bar{x}_{\text{PEOU}}{=}3.85$), strong internal consistency ($\alpha{=}0.866$; PU: $\alpha{=}0.867$; PEOU: $\alpha{=}0.898$), and the highest-rated item reaching 84\,\% maximum-scale responses. An iterative accessibility improvement cycle produced a 64\,\%
+		reduction in WCAG~2.1 warnings. The findings validate that strategic AI integration in mobile applications constitutes a viable approach to bridging the communicative gap of people with sensory disabilities.
 	\end{abstract}
 	
 	\begin{IEEEkeywords}
 		Accessibility, assistive technology, end-to-end encryption,
 		human-machine interaction, image captioning, inclusive messaging,
 		mobile application, React~Native, sensory disability, speech
-		recognition, speech synthesis, TAM, TDDM4IoTS, WCAG.
+		recognition, speech synthesis, TAM, TDDM4IoTS, UniVoice, WCAG.
 	\end{IEEEkeywords}
 	
 	% ---------------------------------------------------------------
@@ -97,111 +109,28 @@
 	% ---------------------------------------------------------------
 	\section{Introduction}
 	\label{sec:intro}
-	\IEEEPARstart{I}{nstantaneous} communication has become a fundamental
-	right in contemporary society and a cornerstone of full civic
-	participation.
-	Despite mobile messaging platforms surpassing three billion active
-	users globally, their proliferation has not been matched by intrinsic
-	accessibility architectures that guarantee equitable use.
-	According to the World Health Organization (WHO), approximately 15\,\%
-	of the world population lives with some form of disability, a
-	significant proportion of which involves visual, hearing, or speech
-	impairments \cite{who2011}.
-	In Ecuador, the National Council for Disability Equality
-	(CONADIS) registers 124{,}801 individuals with active sensory
-	disabilities: hearing impairments account for 50.30\,\%, visual
-	impairments for 45.39\,\%, and speech impairments for 4.31\,\%,
-	with a gender distribution of 70{,}429 men~(56.4\,\%) and 54{,}372
-	women~(43.6\,\%), according to CONADIS institutional records
-	\cite{conadis2024}.
+	\IEEEPARstart{I}{nstantaneous} communication has become a fundamental right in contemporary society and a cornerstone of full civic participation. Despite mobile messaging platforms surpassing three billion active users globally, their proliferation has not been matched by intrinsic accessibility architectures that guarantee equitable use for individuals with sensory impairments.
 	
-	The most widely used messaging platforms---WhatsApp, Telegram,
-	Messenger, and Instagram---offer only partial accessibility
-	features: limited screen-reader compatibility
-	(TalkBack and VoiceOver), contrast adjustment, and, in the
-	case of WhatsApp, recently introduced audio-to-text transcription.
-	However, none of these platforms comprehensively addresses
-	the needs of users with multiple sensory profiles:
-	bidirectional adaptation among text, audio, and image modalities;
-	automatic semantic description of visual content;
-	complete navigation by voice commands; nor
-	end-to-end encryption for accessible multimodal data
-	flows \cite{bercaru2024,weichbroth2020}.
+	The scale of the population affected is global. The World Health Organization~(WHO) estimates that approximately $15\,\%$ of the world population lives with some form of disability~\cite{who2011}, a proportion of which concerns the three sensory profiles targeted by this work. For hearing impairment, the WHO reports that over $5\,\%$ of the world's population---some 430 million people, projected to exceed 700 million by 2050---require rehabilitation for disabling hearing loss~\cite{who2021hearing}. For visual impairment, at least 2.2 billion people live with near- or distance-vision impairment worldwide, of whom at least one billion face a condition that could have been prevented or remains unaddressed~\cite{who2023vision}. For speech, voice, and language disorders, population data from national surveillance systems range from $7.7\,\%$ prevalence among U.S.\ children aged 3--17~\cite{nidcd2024} to 40 million Americans with a communication disorder of some form~\cite{asha2023}. At the regional level, the Pan American Health Organization estimates that 217 million people in the Region of the Americas live with hearing loss ($21.52\,\%$ of the regional population), with a projected rise to 322 million by 2050~\cite{paho2023hearing}. Within this regional frame, Ecuador's National Council for Disability Equality~(CONADIS) registers 124{,}801 individuals with active sensory disabilities, distributed as $50.30\,\%$ hearing, $45.39\,\%$ visual, and $4.31\,\%$ speech impairments, with 70{,}429 men~($56.4\,\%$) and 54{,}372 women~($43.6\,\%$)~\cite{conadis2024}. The Ecuadorian figures illustrate at a national scale the structural patterns---hearing dominant over visual, speech a smaller but non-negligible tail---consistent with the global and regional estimates.
 	
-	From a Human-Machine Interaction~(HMI) perspective, universal
-	design \cite{story1998} and the Web Content Accessibility
-	Guidelines~(WCAG~2.1) \cite{w3c2018} require that systems be
-	perceivable, operable, understandable, and robust for the
-	widest possible range of users.
-	In the mobile context, systematic accessibility evaluations of
-	Android and iOS applications reveal non-compliance rates
-	exceeding 60\,\% in criteria such as text alternatives for
-	non-text content and complete navigation without precise
-	touch interaction \cite{chen2022,acosta2021}.
+	The most widely used messaging platforms---WhatsApp, Telegram, Messenger, and Instagram---offer only partial accessibility features: limited screen-reader compatibility (TalkBack and VoiceOver), contrast adjustment, and, in the case of WhatsApp, recently introduced audio-to-text transcription. However, none of these platforms comprehensively addresses the needs of users with multiple sensory profiles: bidirectional adaptation among text, audio, and image modalities; automatic semantic description of visual content; complete navigation by voice commands; nor end-to-end encryption for accessible multimodal data flows~\cite{bercaru2024,weichbroth2020}.
 	
-	Recent advances in Artificial Intelligence~(AI) offer
-	unprecedented opportunities to overcome these barriers.
-	State-of-the-art deep neural network TTS systems produce
-	naturalistic speech synthesis \cite{tan2021}, while
-	transformer-based speech-to-text models have achieved
-	word error rates~(WER) comparable to human
-	transcription \cite{baevski2020}.
-	Simultaneously, image captioning models have demonstrated
-	practical utility for users with visual disabilities in
-	real-world scenarios \cite{dognin2021}.
+	A third population---users with speech (verbal production) disabilities---requires a dedicated functional analysis because ``speech disability'' is not a homogeneous clinical category. Standard clinical taxonomies~\cite{elsahar2019,bleakley2022,costanzo2023} distinguish two functionally distinct subgroups on the basis of the auditory-channel status. The first subgroup comprises \emph{deaf-mute users} (pre-lingual profound hearing loss in which oral speech has not developed or is not functional for communication), whose auditory and speech channels are simultaneously impaired~\cite{saleem2023,kothadiya2022}. The second subgroup comprises users with \emph{speech-only impairment}---dysarthria, aphasia, selective mutism, post-laryngectomy aphonia, or severe stammering---whose hearing and vision remain intact and whose only functional barrier is the production of voice.
 	
-	Against this background, the present work is motivated by the
-	following research questions:
+	Within the receiver-adaptation logic of \textsf{UniVoice}---the system proposed in this article---both subgroups are fully covered \emph{without} a dedicated AAC module. Deaf-mute users share the functional barriers of the hearing-impairment profile (inability to consume incoming audio without STT mediation) and those of the speech-impairment profile (inability to produce outgoing audio without text input); the hearing-impairment adaptations already implemented in \textsf{UniVoice}---STT transcription of received audio/video and text-based composition of outgoing messages---therefore fully cover this subgroup with no additional engineering. Users with speech-only impairment retain unimpeded reception of every message modality (text, audio, image, video), so their reception profile is identical to that of a non-disabled user; for sending, the mobile touchscreen provides text-based composition as a universally available, fully effective alternative to voice input, and when the recipient has a visual impairment, \textsf{UniVoice} applies TTS to the outgoing text to preserve communicative equivalence with a voice-capable sender. This two-subgroup argument establishes that the taxonomy of the speech-disability population does not introduce a third functional case beyond those already addressed by the hearing and non-disabled reception profiles, and justifies the absence of a dedicated AAC module in the present architecture. Enhanced input assistance for severe speech disorders~\cite{bleakley2022,costanzo2023}---personalised disfluency-tolerant STT, phrase banks, predictive text tailored to residual articulatory patterns---remains a complementary future-work priority rather than a gap in the current coverage claim.
+	
+	From a Human-Machine Interaction~(HMI) perspective, universal design~\cite{story1998} and the Web Content Accessibility Guidelines~(WCAG~2.1)~\cite{w3c2018} require that systems be perceivable, operable, understandable, and robust for the widest possible range of users. In the mobile context, systematic accessibility evaluations of Android and iOS applications reveal non-compliance rates exceeding $60\,\%$ in criteria such as text alternatives for non-text content and complete navigation without precise touch interaction~\cite{chen2022,acosta2021}. Against this background, recent advances in Artificial Intelligence~(AI) offer unprecedented opportunities to overcome these barriers: state-of-the-art deep neural network TTS systems produce naturalistic speech synthesis~\cite{tan2021}, transformer-based speech-to-text models have achieved word error rates~(WER) comparable to human transcription~\cite{baevski2020}, and image captioning models have demonstrated practical utility for users with visual disabilities in real-world scenarios~\cite{dognin2021}.
+	
+	The present work is motivated by the following research questions:
 	\begin{itemize}
-		\item[\textbf{RQ1}] Can a single mobile platform coherently
-		integrate TTS, STT, image captioning, and OCR modules---together
-		with asymmetric end-to-end encryption---while maintaining zero
-		processing error rates under variable input conditions?
-		\item[\textbf{RQ2}] Does the proposed system achieve a
-		Technology Acceptance Model score above the positive acceptance
-		threshold of $\bar{x}{>}4.0$ in a heterogeneous population of
-		individuals with sensory disabilities?
-		\item[\textbf{RQ3}] Can the TDDM4IoTS development methodology,
-		applied with accessibility as a formal acceptance criterion,
-		produce a measurable and statistically meaningful reduction in
-		WCAG~2.1 warnings compared to leading commercial messaging
-		platforms?
+		\item[\textbf{RQ1}] Can a single mobile platform coherently integrate TTS, STT, image captioning, and OCR modules---together with asymmetric end-to-end encryption---while maintaining zero processing error rates under variable input conditions?
+		\item[\textbf{RQ2}] Does the proposed system achieve a Technology Acceptance Model score above the positive acceptance threshold of $\bar{x}{>}4.0$ in a heterogeneous population of individuals with sensory disabilities?
+		\item[\textbf{RQ3}] Can the TDDM4IoTS development methodology, applied with accessibility as a formal acceptance criterion, produce a measurable and statistically meaningful reduction in WCAG~2.1 warnings compared to leading commercial messaging platforms?
 	\end{itemize}
 	
-	The contributions of this work are:
-	\begin{itemize}
-		\item An accessibility-oriented microservices architecture that
-		integrates TTS, STT, OCR, image description, and asymmetric
-		end-to-end encryption in a cross-platform mobile messaging system
-		(addressing~RQ1).
-		\item A systematic application of the TDDM4IoTS methodology to
-		inclusive messaging software development \cite{guerrero2020}.
-		\item Empirical evidence on technological acceptance---measured via
-		TAM---and technical accessibility from a study involving 25
-		participants with heterogeneous sensory disabilities (addressing~RQ2).
-		\item Quantification of the impact of an iterative accessibility
-		improvement process, achieving a global 64\,\% reduction in
-		warnings identified by Google's Accessibility Scanner
-		(addressing~RQ3).
-	\end{itemize}
+	The contributions of this work are: (\textit{i})~an accessibility-oriented microservices architecture that integrates TTS, STT, OCR, image description, and asymmetric end-to-end encryption in a cross-platform mobile messaging system (addressing~RQ1); (\textit{ii})~a systematic application of the TDDM4IoTS methodology~\cite{guerrero2020} to inclusive messaging software development; (\textit{iii})~empirical evidence on technological acceptance---measured via TAM---and technical accessibility from a study involving 25 participants with heterogeneous sensory disabilities (addressing~RQ2); and (\textit{iv})~quantification of the impact of an iterative accessibility improvement process, achieving a global $64\,\%$ reduction in warnings identified by Google's Accessibility Scanner (addressing~RQ3).
 	
-	The remainder of this article is organized as follows.
-	Section~\ref{sec:related} reviews related work in three dimensions:
-	accessibility in mobile messaging, augmentative and alternative
-	communication~(AAC), and AI for accessibility, identifying the gaps
-	that motivate this research.
-	Section~\ref{sec:methodology} describes the mixed research paradigm,
-	the eleven TDDM4IoTS phases applied---including the microservices
-	architecture, intelligent message conversion flow, voice command
-	module, asymmetric encryption, and hybrid infrastructure---and
-	the 18 WCAG~2.1 accessibility criteria employed.
-	Section~\ref{sec:evaluation} presents technical API performance
-	results (TTS, STT, image description, video), iterative
-	accessibility evaluation results, and TAM questionnaire results.
-	Section~\ref{sec:discussion} interprets the findings in the context
-	of existing literature and reflects on SDG implications.
-	Section~\ref{sec:conclusion} synthesises the main conclusions and
-	directions for future research.
+	The remainder of this article is organised as follows. Section~\ref{sec:related} reviews related work along three dimensions: accessibility in mobile messaging, augmentative and alternative communication~(AAC), and AI for accessibility, identifying the gaps that motivate this research. Section~\ref{sec:methodology} describes the mixed-methods research paradigm, the eleven TDDM4IoTS phases applied---including the microservices architecture, intelligent message-conversion flow, voice-command module, asymmetric encryption, and hybrid infrastructure---and the 18 WCAG~2.1 accessibility criteria employed. Section~\ref{sec:evaluation} presents technical API performance results (TTS, STT, image description, video), iterative accessibility results, and TAM questionnaire results. Section~\ref{sec:discussion} interprets the findings in the context of existing literature and reflects on the implications for the Sustainable Development Goals. Section~\ref{sec:conclusion} synthesises the main conclusions and directions for future research.
 	
 	% ---------------------------------------------------------------
 	% II. RELATED WORK
@@ -443,6 +372,87 @@
 	metric, with cascade correction via the Llama~1B language model
 	and a phonetic dictionary.
 	
+	\subsubsection{Security and Privacy Threat Analysis}
+	\label{sec:stride}
+	The security architecture was analysed using the STRIDE threat
+	modelling framework~\cite{shostack2014}, applied to the five
+	principal communication flows documented in Fig.~\ref{fig:flujo}
+	and Section~III-B2.
+	Table~\ref{tab:stride} summarises threats, current mitigations,
+	and residual gaps identified for each flow.
+	
+	The most critical finding concerns the \textbf{Information Disclosure}
+	threat at the server-side conversion step~(F3): the Spring~Boot
+	backend decrypts the message before forwarding it to Django,
+	creating a transient plaintext window in server memory.
+	The manuscript asserts that the server never stores plain text;
+	however, no technical mechanism~(memory-scrubbing, trusted
+	execution environment, or audit log) is documented to verify
+	this assertion.
+	This constitutes a transparency gap; its remediation via
+	post-processing memory-scrubbing is designated as future work.
+	
+	\begin{table}[!t]
+		\caption{STRIDE Threat Analysis of Principal Communication Flows.
+			F1~=~registration; F2~=~client-to-server send;
+			F3~=~server-side AI conversion; F4~=~server-to-receiver delivery;
+			F5~=~key repository management.
+			\checkmark~=~mitigated; $\triangle$~=~partial; $\times$~=~residual gap.}
+		\label{tab:stride}
+		\centering
+		\scriptsize
+		\renewcommand{\arraystretch}{1.25}
+		\begin{tabular}{p{0.9cm}p{1.4cm}p{2.1cm}p{1.5cm}c}
+			\toprule
+			\textbf{Threat} & \textbf{Flow/asset} & \textbf{Scenario} & \textbf{Gap} & \textbf{St.} \\
+			\midrule
+			Spoofing & F1: Registration & Fake account, no identity check & No 2FA documented & $\triangle$ \\
+			Tampering & F2/F4: WebSocket & Message modification in transit & No independent message signature & $\triangle$ \\
+			Repudiation & F2: Sent msgs & Denial of authorship & No crypto non-repudiation & $\triangle$ \\
+			Info. Discl. & F3: Conversion & Plaintext in server memory & No TEE or memory-scrub & $\times$ \\
+			DoS & F3: Django API & Endpoint saturation & No rate limiting documented & $\triangle$ \\
+			Elevation & F2: REST API & Privilege escalation & No RBAC analysis documented & $\times$ \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\subsubsection{Sensory Profile Coverage Model}
+	\label{sec:coverage}
+	Table~\ref{tab:coverage} presents the functional coverage matrix of \textsf{UniVoice} across four sensory profiles, with the speech-disability row resolved according to the two-subgroup taxonomy established in Section~\ref{sec:intro}. Users with \emph{speech-only impairment} retain intact auditory and visual function: reception coverage is therefore 100\,\% (audio messages are played directly, images are viewed directly, video is reproduced directly, and text is read visually), identical to the non-disabled reception profile. The sending channel relies on text-based composition as the primary input; when the recipient has a visual impairment, the system applies TTS conversion to the outgoing text, producing an audio message functionally equivalent to a voice-capable sender's output. Users with \emph{deaf-mute} profile (pre-lingual profound hearing loss with non-functional oral speech) are covered through the union of the hearing-impairment column and the sending-channel adaptations of the speech-impairment column: STT transcription of received audio/video addresses the reception barrier, and text composition with recipient-dependent TTS addresses the sending barrier. This design principle---\emph{receiver-side adaptation compensates for sender-side constraints when sensory profiles are complementary}---is revisited in Section~\ref{sec:discussion}-D as a generalisable contribution of this work. Triple disability combinations (deaf-blind, deaf-mute-blind) are explicitly excluded: they require tactile or braille output outside the scope of a touchscreen-based mobile interface.
+	
+	\begin{threeparttable}
+		\caption{Functional Coverage Matrix by Sensory Profile.
+			\checkmark\,=\,fully supported;
+			P\,=\,primary channel for this profile;
+			$\circ$\,=\,not applicable (requires impaired capability);
+			$\times$\,=\,outside system scope.}
+		\label{tab:coverage}
+		\centering
+		\scriptsize
+		\renewcommand{\arraystretch}{1.25}
+		\begin{tabular}{p{1.5cm}p{1.3cm}p{1.3cm}p{1.7cm}p{1.0cm}}
+			\toprule
+			\textbf{Function} & \textbf{Visual} & \textbf{Hearing} & \textbf{Speech} & \textbf{None} \\
+			\midrule
+			Send text & Voz$\to$STT\,\checkmark & Direct\,\checkmark & Text (P)\,\checkmark & Both\,\checkmark \\
+			Send audio & Direct\,\checkmark & $\circ$ & $\circ$ & Direct\,\checkmark \\
+			Nav. UI & Voice\,\checkmark & Touch\,\checkmark & Touch\,\checkmark & Touch\,\checkmark \\
+			Recv text & TTS\,\checkmark & Visual\,\checkmark & Visual\,\checkmark & Visual\,\checkmark \\
+			Recv audio & Play\,\checkmark & STT text\,\checkmark & Play\,\checkmark & Play\,\checkmark \\
+			Recv image & BLIP+OCR\,\checkmark & Visual\,\checkmark & Visual\,\checkmark & Visual\,\checkmark \\
+			Recv video & Caption\,\checkmark & STT subs\,\checkmark & Play\,\checkmark & Play\,\checkmark \\
+			Deaf-mute\textsuperscript{\,a} & \multicolumn{4}{c}{Covered by Hearing column (reception) $\cup$ Speech column (sending)} \\
+			\bottomrule
+		\end{tabular}
+		\begin{tablenotes}
+			\scriptsize
+			\item[a] Pre-lingual profound hearing loss with non-functional oral
+			speech. Functionally equivalent to the intersection of the
+			hearing-impairment and speech-only-impairment profiles; no additional
+			adaptation module required.
+		\end{tablenotes}
+	\end{threeparttable}
+	
 	\subsubsection{Accessibility Evaluation Framework}
 	The accessibility evaluation framework was built from three
 	complementary normative sources: WCAG~2.1~\cite{w3c2018} at
@@ -472,7 +482,7 @@
 	Technological acceptance was measured using the TAM proposed by
 	Davis~\cite{davis1989}, in its classic two-construct formulation,
 	widely validated in accessible mobile application
-	studies~\cite{julianto2023}.
+	studies~\cite{kim2024,holden2010}.
 	The questionnaire comprised 12~items (PTAM001--PTAM012) on a
 	5-point Likert scale (1\,=\,strongly disagree;
 	5\,=\,strongly agree), organised into two constructs:
@@ -554,7 +564,7 @@
 	
 	\begin{figure}[!t]
 		\centering
-		\includegraphics[width=\columnwidth]{fig1.pdf}
+		\includegraphics[width=\columnwidth]{fig01.pdf}
 		\caption{Architecture of the inclusive mobile messaging system.
 			The presentation layer~(React~Native), business layer
 			(Spring~Boot REST~API and Django AI~API with RabbitMQ),
@@ -582,7 +592,7 @@
 	
 	\begin{figure}[!t]
 		\centering
-		\includegraphics[width=\columnwidth]{fig2.pdf}
+		\includegraphics[width=\columnwidth]{fig02.pdf}
 		\caption{Secure and accessible communication flow: asymmetric-key
 			encryption and AI-based message adaptation according to the
 			receiver's sensory profile.
@@ -605,6 +615,80 @@
 	primary STT failure sources in real
 	environments~\cite{bleakley2022,radford2023}.
 	
+	The mobile interface of \textsf{UniVoice} was implemented in React~Native, ensuring native compatibility with TalkBack~(Android)
+	and VoiceOver~(iOS) accessibility services.
+	Fig.~\ref{fig:interfaces_movil} presents the four most
+	representative screens of the application.
+	
+	\begin{figure*}[!t]
+		\centering
+		% --- Fila superior ---
+		\begin{subfigure}[t]{0.23\textwidth}
+			\centering
+			\includegraphics[width=\linewidth, keepaspectratio]{fig03a}
+			\caption{Main screen: conversation list with voice search.}
+			\label{fig:ui_chat_list}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[t]{0.23\textwidth}
+			\centering
+			\includegraphics[width=\linewidth, keepaspectratio]{fig03b}
+			\caption{Chat window: AI-generated image descriptions for visually impaired users.}
+			\label{fig:ui_chat_window}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[t]{0.23\textwidth}
+			\centering
+			\includegraphics[width=\linewidth, keepaspectratio]{fig03c}
+			\caption{User profile: disability type, language, and accessibility settings.}
+			\label{fig:ui_profile}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[t]{0.23\textwidth}
+			\centering
+			\includegraphics[width=\linewidth, keepaspectratio]{fig03d}
+			\caption{Contact search with voice-command navigation.}
+			\label{fig:ui_contacts}
+		\end{subfigure}
+		\caption{Representative screens of the \textsf{UniVoice} mobile
+				application implemented in React~Native.
+			(a)~Conversation list with TalkBack/VoiceOver support;
+			(b)~Chat window showing automatic image description by the
+			BLIP captioning module;
+			(c)~User profile screen for disability and language configuration;
+			(d)~Contact search screen with direct-message access.
+			All screens were evaluated using Google's Accessibility
+			Scanner~(Section~\ref{sec:evaluation}).}
+		\label{fig:interfaces_movil}
+	\end{figure*}
+	
+	The \textbf{main screen}~(Fig.~\ref{fig:ui_chat_list}) shows the
+	conversation list with voice-search support~(microphone icon) and
+	standard text search; each contact entry displays the last message
+	preview, maintaining the interaction pattern familiar to users of
+	mainstream messaging platforms.
+	
+	The \textbf{chat window}~(Fig.~\ref{fig:ui_chat_window})
+	demonstrates the system's core AI-mediated modality adaptation:
+	images sent by a contact are automatically described via the
+	BLIP captioning module~(e.g., ``una foto de un hombre sosteniendo
+	una tableta''), enabling visually impaired users to receive the
+	semantic content of visual messages as readable text.
+	
+	The \textbf{user profile screen}~(Fig.~\ref{fig:ui_profile})
+	allows configuration of the disability profile~(visual, auditory,
+	or speech), preferred language, and accessibility settings;
+	this profile drives the receiver-side adaptation logic described
+	in Section~\ref{sec:methodology}.
+	
+	The \textbf{contact search screen}~(Fig.~\ref{fig:ui_contacts})
+	enables search by name with a direct-message button per contact,
+	accessible via both touch and voice commands.
+	
+	All screens conform to the minimum 48$\times$48\,dp touch target
+	requirement of WCAG~2.1 criterion~2.5.5 and were evaluated with
+	Google's Accessibility Scanner~(Section~\ref{sec:evaluation}).
+	
 	\subsubsection{Technical API Testing Protocol}
 	Performance tests were designed to characterise the latency of
 	each conversion module under variable and controlled input
@@ -623,17 +707,66 @@
 	arithmetic mean was reported.
 	Recorded metrics were: processing latency~(s), input message
 	size~(KB), output message size~(KB), and error rate.
+	Because individual observations were not logged, within-condition
+	standard deviation~(SD) cannot be estimated from the available data;
+	reported means should be interpreted as point estimates and
+	tail-latency percentiles~($P_{90}$, $P_{99}$) remain uncharacterised.
+	Future evaluations should log $n{\geq}10$ independent observations
+	per condition and report $\bar{x}\pm SD$ and $P_{90}$ latency.
+	The technical acceptance criterion defined in TDDM4IoTS Phase~5
+	establishes system \emph{stability} (error rate~$=0$) but not
+	output \emph{quality}; domain-specific quality metrics~(WER for
+	STT, MOS for TTS, BLEU-4/CIDEr for image captioning, CER for OCR)
+	require reference annotations not collected in the current protocol
+	and are designated as a primary instrumentation improvement for
+	a follow-up study~\cite{dognin2021,tan2021,radford2023}.
 	
 	\subsubsection{User Study Protocol}
 	
 	\paragraph{Participants.}
 	The sample comprised $n{=}25$ participants selected by
 	purposive sampling~\cite{hernandez2014} at a dialysis clinic
-	in the city of Quevedo (Ecuador), where an adult population
-	with documented sensory diagnoses is concentrated.
-	Purposive sampling is justified by the clinical specificity
-	of inclusion criteria and the low prevalence of the target
-	population in general community settings~\cite{who2011}.
+	in Quevedo, Ecuador, where an adult population with documented
+	sensory diagnoses is concentrated.
+	Purposive sampling is justified by: (i)~the low prevalence of
+	sensory disabilities in general community settings~\cite{who2011};
+	(ii)~the clinical requirement of a documented diagnosis; and
+	(iii)~the additional logistical requirement of owning a compatible
+	Android device and consenting to a 45-minute protocol.
+	Following the projective and applied research design~\cite{hernandez2014},
+	the sample size was determined primarily by clinical-inclusion specificity
+	rather than by population-inference criteria, and the study is framed as
+	a pilot study providing proof of concept and effect-size estimates for
+	a future confirmatory investigation.
+	
+	To characterise the statistical power associated with $n{=}25$, a
+	post-hoc power analysis was conducted using G*Power~3.1~\cite{faul2007}
+	for a one-sample two-tailed $t$-test ($\alpha{=}0.05$) testing whether
+	each TAM construct mean differs from the positive-acceptance
+	threshold $\mu_0{=}4.0$~\cite{kim2024,holden2010}.
+	Effect sizes were computed as Cohen's~$d$~\cite{cohen1988}:
+	$d = (\bar{x} - \mu_0)/s$.
+	The Perceived Usefulness~(PU) construct achieved a large effect
+	($d_{\text{PU}}{=}0.885$; $\bar{x}_{\text{PU}}{=}4.553$,
+	$SD{=}0.625$; 95\,\%~CI bootstrap:~$[4.300,\ 4.773]$),
+	yielding post-hoc power of $1{-}\beta{=}0.989$,
+	well above the conventional 0.80~threshold;
+	a one-sample $t$-test confirmed $\bar{x}_{\text{PU}}$
+	significantly exceeds the acceptance threshold
+	($t(24){=}4.427$, $p{<}0.001$).
+	The global TAM mean ($\bar{x}_{\text{global}}{=}4.200$,
+	$SD{=}0.644$; 95\,\%~CI:~$[3.940,\ 4.447]$) yields
+	a small-to-medium effect ($d_{\text{global}}{=}0.311$;
+	$1{-}\beta{=}0.320$; $t(24){=}1.552$, $p{=}0.134$),
+	indicating that the global mean is an exploratory estimate
+	pending replication with a larger sample ($n{\approx}84$ required
+	for $1{-}\beta{=}0.80$).
+	The PEOU construct ($\bar{x}_{\text{PEOU}}{=}3.847$,
+	$SD{=}0.963$; $d_{\text{PEOU}}{=}{-}0.159$; $1{-}\beta{=}0.119$;
+	$t(24){=}{-}0.796$, $p{=}0.434$) is underpowered
+	($n{=}312$ required); no inferential conclusion can be drawn
+	for PEOU alone.
+	
 	Gender distribution was 14 women~(56\,\%) and 11 men~(44\,\%).
 	By sensory profile, 15 participants~(60\,\%) had visual
 	impairment, 5~(20\,\%) had hearing impairment, and 5~(20\,\%)
@@ -648,24 +781,54 @@
 	personal data in mobile applications, reinforcing the relevance
 	of the asymmetric encryption implemented.
 	Inclusion criteria were:
-	(\textit{i})~documented diagnosis of visual or hearing
-	disability, or participation as a non-disabled user in the
-	control group;
+	(\textit{i})~documented diagnosis of visual or hearing disability, or
+	participation as a non-disabled user in the control group;
 	(\textit{ii})~age $\geq$18~years;
 	(\textit{iii})~access to a compatible Android mobile device;
 	(\textit{iv})~signed informed consent.
 	Exclusion criteria were:
-	(\textit{i})~multidisability simultaneously combining visual
-	and hearing profiles;
-	(\textit{ii})~cognitive impairment preventing questionnaire
-	comprehension;
+	(\textit{i})~multidisability simultaneously combining visual and hearing
+	profiles;
+	(\textit{ii})~cognitive impairment preventing questionnaire comprehension;
 	(\textit{iii})~absence of written informed consent.
+	The speech-disability profile was not recruited as an independent stratum
+	because the two-subgroup taxonomy established in Section~\ref{sec:intro}
+	and operationalised in Table~\ref{tab:coverage} reduces this profile to the
+	union of already-recruited strata: the \emph{deaf-mute} subgroup is
+	functionally indistinguishable from the hearing-impairment stratum for
+	reception and from the non-disabled stratum for text-based sending, and the
+	\emph{speech-only-impairment} subgroup is functionally indistinguishable
+	from the non-disabled stratum for reception and adds no sending-channel
+	requirement beyond the mobile touchscreen already used by every participant.
+	Under this mapping, the five hearing-impaired participants provide
+	behavioural evidence on the reception-side adaptations relevant to deaf-mute
+	users, and the five non-disabled participants provide behavioural evidence
+	on the sending-channel workflow (text composition with recipient-dependent
+	TTS) that speech-only-impaired users would also traverse.
+	Direct recruitment of participants with clinical dysarthria, aphasia or
+	stammering remains a priority for the follow-up study (Section~\ref{subsec:limits}),
+	not to validate functional coverage---which is already established by construction---but
+	to evaluate personalised input-assistance refinements for severe speech
+	disorders~\cite{bleakley2022,costanzo2023}.
 	Data were collected between 2024 and 2025.
 	The study was conducted in accordance with the principles of
 	the Declaration of Helsinki~\cite{world2013} and received
 	approval from the corresponding institutional review board;
 	all participants provided written informed consent prior to
 	the start of testing.
+	
+	\paragraph{Pre-use baseline.}
+	Prior to Stage~1, each participant completed a brief pre-use
+	baseline questionnaire (PD001--PD005) recording their habitual
+	messaging application (PD002: WhatsApp or other) and the frequency
+	of use on the same 1--5 scale employed in the TAM instrument
+	(PD003: $1{=}$Never, $5{=}$Always).
+	Of the 25 participants, 16~(64\,\%) habitually used WhatsApp
+	($\bar{f}_{\text{hab}}{=}3.81$, $SD{=}1.05$) and 9~(36\,\%)
+	used other applications ($\bar{f}_{\text{hab}}{=}1.67$, $SD{=}0.50$).
+	This baseline enables a within-subjects contrast between prior
+	platform engagement and acceptance of the proposed system
+	(see Section~\ref{sec:baseline_contrast}).
 	
 	\paragraph{Procedure.}
 	The evaluation protocol comprised three sequential stages
@@ -808,7 +971,12 @@
 	13.36\,s for short audio, 20.51\,s for medium~(53\,\% higher),
 	and 54.99\,s for long~(311\,\% higher relative to short).
 	Send and response sizes are practically identical across all
-	conditions~(difference $<$1\,\%), confirming processing integrity.
+	conditions: differences calculated from Table~\ref{tab:stt} are
+	0.565\,\% (short), 0.150\,\% (medium), and 0.000\,\% (long),
+	confirming transmission integrity.
+	The inter-condition coefficient of variation~(CV) of net latency
+	is 75.2\,\%, consistent with Whisper's $O(n)$ computational
+	cost~\cite{radford2023}.
 	
 	\subsubsection{Image Description Module (Image Captioning)}
 	The image description module uses the
@@ -891,6 +1059,10 @@
 	\textit{multipart/form-data}.
 	This overhead should be considered when dimensioning bandwidth
 	and managing user progress notifications.
+	The base64 overhead ratio is highly stable across conditions
+	(coefficient of variation~$CV{=}0.064\,\%$, calculated from
+	Table~\ref{tab:video}), confirming that this is a systematic
+	encoding property, not a measurement artefact.
 	The send-to-response difference was below 0.2\,\% in all cases,
 	confirming transmission integrity.
 	
@@ -1066,7 +1238,7 @@
 	The global instrument mean was $\bar{x}{=}4.20$~(SD\,=\,0.95),
 	exceeding the positive acceptance threshold of
 	$\bar{x}{>}4.0$ established in TAM studies in mobile
-	accessibility contexts~\cite{julianto2023}.
+	accessibility contexts~\cite{kim2024,holden2010}.
 	This value was obtained as the arithmetic mean of the 300
 	individual records~($n{=}25\times12$ items), equivalent by the
 	balanced instrument design~(6 items per construct) to the
@@ -1075,7 +1247,7 @@
 	
 	\begin{figure}[!t]
 		\centering
-		\includegraphics[width=\columnwidth]{biplot.pdf}
+		\includegraphics[width=\columnwidth]{fig04}
 		\caption{HJ-Biplot of TAM questionnaire responses ($n{=}25$).
 			Dimension~1 explains 43.6\,\% of variance; Dimension~2
 			explains 24.2\,\%~(cumulative: 67.8\,\%).
@@ -1088,6 +1260,33 @@
 			capturing independent variance.}
 		\label{fig:biplot}
 	\end{figure}
+	
+	\subsubsection{Within-subjects Baseline Contrast}
+	\label{sec:baseline_contrast}
+	A Wilcoxon signed-rank test compared, for each participant,
+	the PU score of the proposed system against their reported
+	habitual-app frequency (PD003, same 1--5 scale; $n{=}25$).
+	PU scores ($\bar{x}_{\text{PU}}{=}4.553$, $SD{=}0.625$)
+	significantly exceeded habitual-app frequency
+	($\bar{f}_{\text{hab}}{=}3.040$, $SD{=}1.369$):
+	$W{=}20.0$, $p{<}0.001$, mean difference $\Delta{=}{+}1.513$
+	scale points ($SD_{\Delta}{=}1.506$), indicating that perceived
+	utility of the proposed system exceeded prior platform engagement.
+	Stratification by habitual app revealed a significant PEOU
+	difference between WhatsApp users ($n{=}16$;
+	$\bar{x}_{\text{PEOU}}{=}4.198$, $SD{=}0.835$) and other-app
+	users ($n{=}9$; $\bar{x}_{\text{PEOU}}{=}3.222$, $SD{=}0.890$):
+	$t_{\text{Welch}}(14.4){=}2.690$, $p{=}0.016$, $d{=}1.131$
+	(large effect); PU showed no such difference ($p{=}0.989$),
+	indicating that perceived utility is independent of prior
+	platform experience.
+	A positive Pearson correlation confirmed that greater prior
+	platform engagement associates with higher PEOU of the proposed
+	system ($r_{\text{PEOU}}{=}0.574$, $p{=}0.003$; $r_{\text{global}}{=}0.428$,
+	$p{=}0.033$; $r_{\text{PU}}{=}{-}0.003$, $p{=}0.990$).
+	These results constitute an indicative within-subjects contrast;
+	a parallel TAM administration for the habitual application is
+	recommended for a definitive head-to-head comparison.
 	
 	\subsubsection{Direct Observation}
 	The direct observation session recorded the following
@@ -1230,8 +1429,12 @@
 	
 	\subsection{Interpretation of Technological Acceptance Results}
 	The global TAM mean~($\bar{x}{=}4.20$; SD\,=\,0.95)
-	exceeds the positive acceptance threshold established in mobile
-	accessibility TAM studies~\cite{julianto2023}~(RQ2\,=\,confirmed).
+	exceeds the positive acceptance threshold of $\bar{x}{>}4.0$ on
+	the 5-point Likert scale, which the literature on accessible mobile
+	applications associates with positive user acceptance~\cite{kim2024,holden2010}
+	(RQ2\,=\,confirmed for PU; exploratory for global and PEOU,
+	given the post-hoc power estimates reported in
+	Section~III-B4a).
 	The psychometric robustness of the instrument is confirmed by
 	Cronbach's alpha values~($\alpha_{\text{global}}{=}0.866$;
 	$\alpha_{\text{PU}}{=}0.867$; $\alpha_{\text{PEOU}}{=}0.898$),
@@ -1309,24 +1512,58 @@
 	development cycles of the reviewed CAA
 	systems~\cite{costanzo2023,mateos2022,janaka2023}.
 	
+	The \textbf{fifth implication} concerns the speech-impairment
+	profile, whose coverage is architecturally complete without a
+	dedicated AI module: the receiver-adaptation logic enables
+	speech-impaired users to achieve full communicative equivalence
+	with voice-capable senders~(Table~\ref{tab:coverage}).
+	This demonstrates that \emph{receiver-side adaptation can compensate
+		for sender-side constraints when sensory profiles are complementary},
+	a design principle applicable beyond the present system.
+	The principal enhancement identified for this profile is an
+	accessible text-composition interface with predictive text and a
+	personal phrase bank~\cite{elsahar2019,mateos2022}.
+	
 	\subsection{Limitations and Future Work}
-	The present study presents four limitations.
+	The present study presents six limitations.
 	
-	\textbf{First, sample size:} $n{=}25$ participants, though
-	justified by clinical specificity and the projective research
-	design~\cite{hernandez2014}, does not permit generalisation
-	across the diversity of sensory disability profiles or other
-	geographic and cultural contexts.
+	\textbf{First, sample size and statistical power.}
+	The sample ($n{=}25$, purposive) is appropriate for a projective
+	pilot study~\cite{hernandez2014} but insufficient for population
+	inference on all TAM constructs.
+	Post-hoc power analysis (G*Power~3.1~\cite{faul2007};
+	$\alpha{=}0.05$; $\mu_0{=}4.0$) shows that only PU meets the
+	conventional power threshold ($1{-}\beta{=}0.989$;
+	$t(24){=}4.427$, $p{<}0.001$), while the global TAM score
+	($1{-}\beta{=}0.320$) and PEOU ($1{-}\beta{=}0.119$) are
+	underpowered; confirmatory studies require $n{\approx}84$ and
+	$n{=}312$ respectively.
+	Single-site recruitment in Quevedo, Ecuador, further limits
+	geographic generalisability.
 	
-	\textbf{Second, TTS latency:} with minimum values of 5.14\,s,
-	the system does not yet reach the 2\,s conversational
-	threshold~\cite{tan2021}.
+	\textbf{Second, absence of a head-to-head control condition.}
+	The within-subjects baseline contrast (Section~\ref{sec:baseline_contrast})
+	provides indicative evidence; a rigorous comparison requires
+	administering the same 12-item TAM questionnaire for both the
+	habitual application and the proposed system within the same session,
+	enabling paired $t$-tests on PU and PEOU differences.
 	
-	\textbf{Third, residual messaging screen accessibility~(38.1\,\%
-		reduction):} architectural cause identified---duplicate identifiers
+	\textbf{Third, API latency and quality metrics.}
+	TTS minimum latency~(5.14\,s) exceeds the 2\,s conversational
+	threshold~\cite{tan2021}. Within-condition SD and tail-latency
+	percentiles remain uncharacterised~($n{=}3$ observations per
+	condition). Output quality metrics~(WER, MOS, BLEU-4, CER) require
+	reference annotations not collected in the current protocol.
+	
+	\textbf{Fourth, speech-disability profile: coverage established by construction, direct acceptance evidence deferred.} Functional coverage for the two speech-disability subgroups defined in Section~\ref{sec:intro} (deaf-mute and speech-only-impairment) is established by construction through the receiver-adaptation argument summarised in Table~\ref{tab:coverage}: both subgroups are fully served by combinations of adaptations already validated with the recruited strata. What the present study does \emph{not} provide is direct acceptance evidence from participants with a clinical diagnosis of dysarthria,
+	aphasia, post-laryngectomy aphonia, or severe stammering. TAM responses for this profile are currently inferred from the hearing-impaired and non-disabled strata under the functional-equivalence mapping of Section~\ref{subsec:tam} (``Participants''). Future work should recruit these clinical subpopulations
+	directly~\cite{bleakley2022,costanzo2023} to evaluate personalised input-assistance refinements---disfluency-tolerant STT, phrase banks, and predictive text tailored to residual articulatory patterns~\cite{elsahar2019,mateos2022}---rather than to revalidate functional coverage.
+	
+	\textbf{Fifth, residual messaging screen accessibility~(38.1\,\%
+		reduction).} Architectural cause identified---duplicate identifiers
 	in React~Native virtualised lists---with a defined resolution protocol.
 	
-	\textbf{Fourth, absence of sign language recognition,}
+	\textbf{Sixth, absence of sign language recognition,}
 	which excludes deaf users whose native language is sign language.
 	Integration of a sign language recognition module---as proposed by
 	Saleem~\textit{et al.}~\cite{saleem2023} and
@@ -1382,7 +1619,12 @@
 	The 12-item TAM questionnaire---organised in its classic PU and
 	PEOU constructs~\cite{davis1989}---applied to $n{=}25$ participants
 	produced $\bar{x}{=}4.20$~(SD\,=\,0.95), exceeding the positive
-	acceptance threshold~$\bar{x}{>}4.0$~\cite{julianto2023}.
+	acceptance threshold of $\bar{x}{>}4.0$ associated with positive
+	user acceptance in accessible mobile application
+	studies~\cite{kim2024,holden2010}.
+	This conclusion is fully supported for PU~($1{-}\beta{=}0.989$;
+	$p{<}0.001$) and should be treated as an exploratory estimate
+	for the global mean and PEOU~(Section~III-B4a).
 	Psychometric robustness was confirmed~($\alpha_{\text{global}}{=}0.866$;
 	$\alpha_{\text{PU}}{=}0.867$; $\alpha_{\text{PEOU}}{=}0.898$;
 	all above 0.80~\cite{nunnally1978}).
@@ -1414,28 +1656,7 @@
 	messaging architecture on low-cost institutional hybrid
 	infrastructure.
 	
-	Five high-priority future research directions follow:
-	(\textit{i})~optimising TTS latency via non-autoregressive
-	architectures~(FastSpeech2, VITS) or predictive voice-segment
-	caching to reach the 2\,s conversational threshold~\cite{tan2021};
-	(\textit{ii})~designing an accessible onboarding flow with
-	personalised voice command calibration to the user's disfluency
-	profile, following the adaptive training paradigm of
-	Costanzo~\textit{et al.}~\cite{costanzo2023};
-	(\textit{iii})~integrating sign language recognition as an
-	additional input/output modality, taking the LSTM-GRU models
-	of Kothadiya~\textit{et al.}~\cite{kothadiya2022} and the
-	multilingual systems of Saleem~\textit{et al.}~\cite{saleem2023}
-	as references;
-	(\textit{iv})~architectural refactoring of the messaging screen
-	with dynamic unique accessibility identifiers per list element
-	to eliminate the 13 residual warnings and raise global system
-	satisfaction~(PTAM012: $\bar{x}{=}3.48$);
-	(\textit{v})~expanding the study to samples stratified by
-	disability type, age range, and mobile connectivity conditions
-	(4G/LTE low-bandwidth networks) to increase results
-	generalisability and identify technology acceptance moderation
-	factors specific to each sensory profile.
+	Five high-priority future research directions follow: (\textit{i})~optimising TTS latency via non-autoregressive architectures~(FastSpeech2, VITS) or predictive voice-segment caching to reach the 2\,s conversational threshold~\cite{tan2021}; (\textit{ii})~designing an accessible onboarding flow with personalised voice command calibration to the user's disfluency profile, following the adaptive training paradigm of Costanzo~\textit{et al.}~\cite{costanzo2023}; (\textit{iii})~integrating sign language recognition as an additional input/output modality, taking the LSTM-GRU models of Kothadiya~\textit{et al.}~\cite{kothadiya2022} and the multilingual systems of Saleem~\textit{et al.}~\cite{saleem2023} as references; \textit{iv})~architectural refactoring of the messaging screen with dynamic unique accessibility identifiers per list element to eliminate the 13 residual warnings and raise global system satisfaction~(PTAM012: $\bar{x}{=}3.48$); \textit{v})~expanding the study to samples stratified by disability type, age range, and mobile connectivity conditions 4G/LTE low-bandwidth networks) to increase results generalisability and identify technology acceptance moderation factors specific to each sensory profile.
 	
 	% ---------------------------------------------------------------
 	% ACKNOWLEDGMENTS
@@ -1445,7 +1666,7 @@
 	for its technical, financial, and institutional support.
 	They also express their gratitude to the 25 study participants,
 	whose collaboration was fundamental to the empirical validation
-	of the proposed system.
+	of \textsf{UniVoice}.
 	
 	% ---------------------------------------------------------------
 	% REFERENCES
