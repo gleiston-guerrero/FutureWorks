@@ -1,0 +1,695 @@
+%% =============================================================
+%%  RutAI --- Manuscrito para Pervasive and Mobile Computing
+%%  Versi\'on en espa\~nol, revisi\'on mayor (R1)
+%%  Plantilla Elsevier CAS Single-Column (cas-sc.cls)
+%% =============================================================
+
+%% cas-sc.cls carga hyperref internamente; la opci\'on hypertexnames=false
+%% evita las advertencias "destination with the same identifier".
+%% Debe pasarse ANTES de \documentclass para no provocar "Option clash".
+\PassOptionsToPackage{hypertexnames=false}{hyperref}
+
+\documentclass[a4paper,fleqn]{cas-sc}
+
+%% =============================================================
+%% IMPORTANTE: este archivo debe guardarse con codificaci\'on UTF-8.
+%% Si su editor lo guarda en Windows-1252/Latin-1, pdflatex fallar\'a
+%% con "Invalid UTF-8 byte sequence". El archivo original NO contiene
+%% caracteres no-ASCII: todos los acentos usan notaci\'on \' o \~
+%% =============================================================
+
+% -- Codificaci\'on y fuentes (deben ir primero)
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% -- Idioma
+\usepackage[spanish,es-tabla,es-nolists]{babel}
+
+% -- Bibliograf\'ia (cas-sc 2.4 NO carga natbib autom\'aticamente)
+\usepackage[authoryear,longnamesfirst]{natbib}
+
+% -- Matem\'aticas y utilidades
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric, fit, calc}
+
+% -- URLs y xspace
+\usepackage{url}
+\usepackage{xspace}
+
+% NOTA: hyperref ya lo carga cas-sc internamente; no se vuelve a cargar.
+
+% -- Acr\'onimos (se definen con doble slot: largo la primera vez, corto despu\'es)
+\newcommand{\RUTAI}{RutAI\xspace}
+\newcommand{\GPS}{GPS\xspace}
+\newcommand{\IOT}{IoT\xspace}
+\newcommand{\LBS}{LBS\xspace}
+\newcommand{\POI}{POI\xspace}
+\newcommand{\UCB}{UCB\xspace}
+\newcommand{\MAB}{MAB\xspace}
+\newcommand{\TAM}{TAM\xspace}
+\newcommand{\CBSE}{CBSE\xspace}
+\newcommand{\MVVM}{MVVM\xspace}
+
+\begin{document}
+	\let\WriteBookmarks\relax
+	\def\floatpagepagefraction{1}
+	\def\textpagefraction{.001}
+	
+	% ---------- Encabezados ------------------------------------------
+	\shorttitle{RutAI: alarmas geolocalizadas basadas en IA para movilidad urbana}
+	\shortauthors{A.~Reyes et~al.}
+	
+	% ---------- T\'itulo --------------------------------------------------
+	\title[mode=title]{RutAI: un marco m\'ovil basado en componentes que integra alternancia de rutas con aprendizaje por bandidos, alarmas geolocalizadas y monitoreo colaborativo para una movilidad urbana m\'as segura}
+	
+	\tnotemark[1]
+	
+	\tnotetext[1]{Esta investigaci\'on se llev\'o a cabo en la Facultad de Ciencias de la Computaci\'on de la Universidad T\'ecnica Estatal de Quevedo, en colaboraci\'on con el Departamento de Ingenier\'ia de Software de la Universidad de Granada.}
+	
+	% ---------- Autores ------------------------------------------------
+	% NOTA: los roles CRediT se escriben en ingl\'es (estandar NISO CRediT),
+	% evitando caracteres acentuados que causan errores de codificaci\'on
+	% al ser expandidos por \printcredits en cas-sc.
+	\author[1]{Aar\'on Reyes}[orcid=0000-0000-0000-0000]
+	\ead{aaron.reyes@uteq.edu.ec}
+	\credit{Conceptualization, Software, Methodology, Validation, Writing -- original draft}
+	
+	\author[1]{Gleiston Guerrero-Ulloa}[orcid=0000-0000-0000-0000]
+	\cormark[1]
+	\ead{gguerrero@uteq.edu.ec}
+	\credit{Supervision, Conceptualization, Methodology, Writing -- review and editing}
+	
+	\author[2]{Miguel~J.~Hornos}[orcid=0000-0000-0000-0000]
+	\ead{mhornos@ugr.es}
+	\credit{Formal analysis, Writing -- review and editing, Validation}
+	
+	\author[2]{Carlos Rodr\'iguez-Dom\'inguez}[orcid=0000-0000-0000-0000]
+	\ead{carlosrodriguez@ugr.es}
+	\credit{Methodology, Writing -- review and editing, Validation}
+	
+	\author[1]{Efra\'in D\'iaz-Mac\'ias}[orcid=0000-0000-0000-0000]
+	\ead{ediazm@uteq.edu.ec}
+	\credit{Investigation, Resources, Writing -- review and editing}
+	
+	\affiliation[1]{organization={Facultad de Ciencias de la Computaci\'on, Universidad T\'ecnica Estatal de Quevedo},
+		addressline={Av.~Quito Km.~1 V\'ia a Santo Domingo},
+		city={Quevedo},
+		postcode={120301},
+		state={Los R\'ios},
+		country={Ecuador}}
+	
+	\affiliation[2]{organization={Departamento de Ingenier\'ia de Software, Universidad de Granada},
+		addressline={C.~Periodista Daniel Saucedo Aranda s/n},
+		city={Granada},
+		postcode={18014},
+		country={Espa\~na}}
+	
+	\cortext[1]{Autor para correspondencia.}
+	
+	% ---------- Resumen estructurado (Elsevier) -------------------
+	\begin{abstract}
+		\textbf{Antecedentes:} En ciudades con alta presi\'on de inseguridad, los desplazamientos urbanos cotidianos se vuelven predecibles, los encargos ligados al contexto se olvidan durante el trayecto y los canales para coordinarse con personas de confianza son improvisados. La mayor\'ia de soluciones m\'oviles abordan la recomendaci\'on de rutas, los recordatorios geolocalizados y el seguimiento compartido de forma aislada.
+		\textbf{Objetivo:} Presentar \RUTAI, un marco m\'ovil basado en componentes que integra rutas alternativas aprendidas mediante un bandido \UCB con diversificaci\'on expl\'icita como objetivo, recordatorios geolocalizados con disparadores compuestos de tiempo y espacio, y monitoreo colaborativo en tiempo real con controles de privacidad; y evaluar el sistema con mediciones t\'ecnicas objetivas y con un estudio de aceptaci\'on extendido con el constructo de Seguridad Percibida.
+		\textbf{M\'etodos:} El desarrollo sigui\'o Ingenier\'ia de Software Basada en Componentes (\CBSE) en seis fases, con cumplimiento de ISO/IEC/IEEE 12207:2017 y 29148:2018. El cliente Android emplea Kotlin, Jetpack Compose y el patr\'on Model-View-ViewModel (\MVVM); el backend usa FastAPI, PostgreSQL y Redis sobre WebSocket. La recompensa del bandido se extendi\'o con un t\'ermino de entrop\'ia que promueve la diversificaci\'on. Se midieron el regret emp\'irico frente a tres l\'ineas base, la latencia extremo-a-extremo, el consumo energ\'etico del muestreo GPS adaptativo, la precisi\'on del geofencing y el rendimiento sostenido de WebSocket. La aceptaci\'on se evalu\'o con un cuestionario basado en el Modelo de Aceptaci\'on Tecnol\'ogica (\TAM) ampliado a Seguridad Percibida, con controles de validez discriminante Heterotrait-Monotrait (HTMT) y Fornell-Larcker, y un an\'alisis expl\'icito de amenazas a la validez.
+		\textbf{Resultados:} El bandido \UCB con regularizaci\'on de entrop\'ia alcanza un regret acumulado un $22{,}6\%$ inferior al de $\varepsilon$-greedy y comparable a Thompson sampling, con el doble de entrop\'ia de rutas por usuario (Shannon $H=1{,}38$ bits frente a $0{,}71$ bits de la recomendaci\'on fija ``m\'as r\'apida''). La latencia p95 de REST se situ\'o en $312$~ms y la de WebSocket en $184$~ms; el consumo adicional del muestreo adaptativo fue de $48{,}3$~mAh$/$h frente a $112{,}7$~mAh$/$h del muestreo continuo; la precisi\'on del geofencing fue del $94{,}1\%$ con radio de $100$~m. En la aceptaci\'on, los cinco constructos superaron el umbral $3{,}5$ y el HTMT medio fue $0{,}91$, lo que \emph{no} satisface el criterio de $<0{,}85$ e indica validez discriminante d\'ebil, tal como se discute.
+		\textbf{Conclusiones:} \RUTAI demuestra que la integraci\'on m\'ovil de los tres m\'odulos es t\'ecnicamente viable, promueve la diversificaci\'on medible de rutas y recibe una aceptaci\'on favorable en primer contacto, aunque el tama\~no de muestra ($n=25$) y la validez discriminante requieren replicaci\'on multiciudad con $n\geq 100$ para confirmar la estructura del \TAM extendido.
+	\end{abstract}
+	
+	% ---------- Highlights ---------------------------------------------
+	\begin{highlights}
+		\item \RUTAI integra rutas bandit-\UCB, recordatorios geocercados y seguimiento colaborativo en un marco CBSE.
+		\item La recompensa incorpora un t\'ermino de entrop\'ia que convierte la diversificaci\'on en objetivo expl\'icito.
+		\item Banco de pruebas t\'ecnico: regret, latencia, consumo energ\'etico, precisi\'on y rendimiento.
+		\item Entrop\'ia de Shannon de rutas por usuario duplicada frente a la heur\'istica ``m\'as r\'apida''.
+		\item \TAM extendido con Seguridad Percibida y reporte expl\'icito de HTMT, Fornell-Larcker y amenazas a la validez.
+	\end{highlights}
+	
+	% ---------- Palabras clave -----------------------------------------
+	\begin{keywords}
+		Computaci\'on m\'ovil ubicua \sep Recordatorios geolocalizados \sep
+		Bandido multibrazo \sep Ruteo sensible al contexto \sep
+		Compartici\'on colaborativa de ubicaci\'on \sep Modelo de Aceptaci\'on Tecnol\'ogica
+	\end{keywords}
+	
+	\maketitle
+	
+	% ==================================================================
+	\section{Introducci\'on}\label{sec:intro}
+	% ==================================================================
+	
+	Las ciudades son el escenario en el que transcurre la mayor parte de la actividad humana. Seg\'un el Departamento de Asuntos Econ\'omicos y Sociales de las Naciones Unidas (UN-DESA), la revisi\'on 2025 del World Urbanization Prospects estima que en 2025 el $57\%$ de la poblaci\'on mundial reside en \'areas urbanas y proyecta que esa cifra alcanzar\'a el $68\%$ hacia 2050, con Am\'erica Latina y el Caribe ya por encima del $82\%$ de urbanizaci\'on \citep{undesa2025wup}. A escala individual, las trayectorias humanas son notablemente regulares: el estudio entr\'opico de \citet{song2010predictability} estableci\'o un techo te\'orico de predictibilidad del $93\%$ para trazas derivadas de tel\'efonos m\'oviles, resultado confirmado por la miner\'ia de movilidad a gran escala \citep{cagney2025urban,liu2022route}. La combinaci\'on de urbanizaci\'on densa y patrones de viaje predecibles abre un espacio de investigaci\'on en el que la computaci\'on ubicua y m\'ovil puede aportar mejoras significativas en eficiencia, bienestar y seguridad.
+	
+	Esa misma regularidad se vuelve un pasivo cuando la ciudad carga con alta presi\'on delictiva. El informe 2025 del Banco Mundial documenta que Am\'erica Latina y el Caribe concentran aproximadamente un tercio de los homicidios mundiales pese a albergar menos del $10\%$ de la poblaci\'on \citep{maloney2025worldbank}, cifra corroborada por el an\'alisis macroecon\'omico del Fondo Monetario Internacional \citep{bisca2024violent} y por el Estudio Global sobre Homicidio para la regi\'on de la Oficina de las Naciones Unidas contra la Droga y el Delito (UNODC) \citep{unodc2023gshlac}. En contextos de alta presi\'on, repetir d\'ia a d\'ia la misma ruta vuelve a la persona f\'acilmente perfilable y expone su rutina; en megaciudades muy densas con sistemas de transporte p\'ublico complejos, la misma costumbre limita la capacidad de reaccionar ante incidentes en tiempo real. Estas presiones justifican una familia de servicios m\'oviles ubicuos que (i)~diversifique rutas sin sacrificar conveniencia, (ii)~externalice la memoria para que encargos atados a lugares u horarios no se olviden, y (iii)~permita a personas de confianza coordinarse en tiempo real.
+	
+	\subsection{Motivaci\'on y problema de investigaci\'on}\label{sec:motivation}
+	
+	El problema se comparte en contextos urbanos muy distintos. En la Ciudad de M\'exico, la Encuesta Nacional de Seguridad P\'ublica Urbana (ENSU) del Instituto Nacional de Estad\'istica y Geograf\'ia (INEGI) report\'o en septiembre de 2024 que el $58{,}6\%$ de la poblaci\'on adulta consideraba inseguro vivir en su ciudad, con brechas de g\'enero significativas ($64{,}0\%$ en mujeres frente a $52{,}2\%$ en hombres) \citep{inegi2024ensu}, y la percepci\'on de inseguridad se ha vinculado con modificaciones en los horarios y rutas de viaje cotidiano \citep{maloney2025worldbank}. En Bogot\'a, los reportes oficiales m\'as recientes situ\'an la tasa de hurto en niveles significativamente superiores a los de capitales europeas \citep{bisca2024violent}. En S\~ao Paulo, las encuestas de percepci\'on la ubican entre las ciudades con menor confianza en la seguridad p\'ublica del hemisferio pese a la ca\'ida de la tasa de homicidios \citep{unodc2023gshlac}. En ciudades ecuatorianas medianas como Quevedo, la evidencia local indica que el $96{,}8\%$ de los estudiantes universitarios expresa temor a ser v\'ictima de inseguridad en su rutina diaria \citep{tapia2024inseguridad}. Estas cuatro ciudades difieren en tama\~no y contexto, pero convergen en la misma necesidad: las personas perciben su rutina como demasiado predecible, olvidan encargos atados al contexto durante el trayecto y los canales informales de coordinaci\'on resultan insuficientes para transmitir en tiempo real su ubicaci\'on a familiares y c\'irculos de confianza.
+	
+	Tres cuerpos de evidencia refuerzan la motivaci\'on de una respuesta integrada. Primero, las trayectorias individuales concentran gran parte de su masa en un conjunto peque\~no de ubicaciones preferidas \citep{cagney2025urban,liu2022route,song2010predictability}, por lo que la exploraci\'on de rutas alternativas debe ser promovida activamente por el sistema. Segundo, la evidencia cognitiva muestra que las intenciones atadas a claves contextuales se olvidan sistem\'aticamente a menos que se externalicen como recordatorios sensibles al lugar o al tiempo \citep{rummel2023prospective,ball2025offloading}. Tercero, quienes se desplazan ya improvisan coordinaci\'on en tiempo real usando llamadas y mensajes de texto, pero ese canal ad hoc no es continuo ni confiable; la literatura ha propuesto de manera repetida sustratos en tiempo real con privacidad expl\'icita como alternativa \citep{li2017locsharing,mckenzie2022privyto,shokri2014mobicrowd}. Ninguna de las tres l\'ineas, por s\'i sola, aborda el fen\'omeno completo.
+	
+	La pregunta de investigaci\'on que articula este trabajo es, por tanto: \emph{?`c\'omo pueden combinarse la diversificaci\'on de rutas, los recordatorios sensibles al contexto y la compartici\'on colaborativa de ubicaci\'on en un \'unico marco m\'ovil basado en componentes, de modo que los usuarios lo acepten y que su uso contribuya a la seguridad percibida durante los desplazamientos urbanos?}
+	
+	\subsection{Contribuciones y organizaci\'on del art\'iculo}\label{sec:contrib}
+	
+	Para responder a esa pregunta, el art\'iculo aporta seis contribuciones que se articulan con las deficiencias identificadas en la Secci\'on~\ref{sec:related}:
+	
+	\begin{itemize}
+		\item Una arquitectura unificada basada en componentes (Android + FastAPI) que compone alternancia de rutas, recordatorios geocercados y monitoreo colaborativo bajo los mismos patrones \MVVM y Repository.
+		\item Un mecanismo de personalizaci\'on de rutas basado en un Bandido Multibrazo (\MAB) con pol\'itica de Cota Superior de Confianza (\UCB), reformulado con un t\'ermino de regularizaci\'on por entrop\'ia que convierte la diversificaci\'on en un objetivo expl\'icito de la funci\'on de recompensa.
+		\item Un subsistema de geocercado que soporta condiciones espaciales compuestas y disparadores con ventanas temporales, alineado con los requisitos metodol\'ogicos recientes para investigaci\'on conductual basada en geofencing \citep{shevchenko2024geofencing}.
+		\item Un m\'odulo de monitoreo colaborativo sobre WebSocket con pertenencia consentida al grupo y acuses de recibo/lectura, que reconcilia la protecci\'on de la privacidad con la necesidad de coordinaci\'on en tiempo real \citep{li2017locsharing,mckenzie2022privyto}.
+		\item Un banco de pruebas t\'ecnico reproducible con mediciones objetivas de regret, latencia, consumo energ\'etico, precisi\'on del geofencing y rendimiento sostenido del canal en tiempo real.
+		\item Un estudio emp\'irico de aceptaci\'on con Modelo de Aceptaci\'on Tecnol\'ogica (\TAM) extendido con Seguridad Percibida y con controles expl\'icitos de validez discriminante (HTMT, Fornell-Larcker) y amenazas a la validez.
+	\end{itemize}
+	
+	El resto del art\'iculo se organiza como sigue. La Secci\'on~\ref{sec:related} agrupa el estado del arte por temas comunes y deriva la brecha de investigaci\'on. La Secci\'on~\ref{sec:method} describe los materiales y m\'etodos, incluidas la \CBSE y el plan estad\'istico. La Secci\'on~\ref{sec:results} reporta los resultados t\'ecnicos y la aceptaci\'on. La Secci\'on~\ref{sec:discussion} discute los hallazgos frente a la literatura y expone las amenazas a la validez. La Secci\'on~\ref{sec:conclusion} cierra con conclusiones y trabajo futuro.
+	
+	% ==================================================================
+	\section{Trabajos relacionados}\label{sec:related}
+	% ==================================================================
+	
+	La literatura relacionada abarca tres corrientes complementarias: personalizaci\'on de rutas, recordatorios basados en ubicaci\'on y compartici\'on colaborativa. Las revisamos de modo que los trabajos se comparen entre s\'i, no que se listen, y cerramos consolidando las deficiencias compartidas que motivan \RUTAI. El posicionamiento fino de \RUTAI frente a los principales sistemas se resume en la Tabla~\ref{tab:comparative}.
+	
+	\subsection{Personalizaci\'on de rutas y recomendaci\'on de movilidad inteligente}\label{sec:rw-routes}
+	
+	La primera corriente aplica aprendizaje autom\'atico y aprendizaje en l\'inea a la recomendaci\'on de rutas y transporte multimodal. \citet{yuan2022mlits} ofrecen una revisi\'on que fija la taxonom\'ia para los trabajos posteriores y se\~nalan la escalabilidad y el volumen de datos como los principales cuellos de botella para el despliegue pr\'actico. Dentro de esa taxonom\'ia, el m\'etodo de \citet{guo2021online} puede leerse como representante de la familia \emph{reactiva de corto horizonte}: acopla predicci\'on de tr\'afico con ajuste de ruta y reporta reducciones de tiempo de viaje sobre trazas urbanas. \citet{liu2022multimodal}, en contraste, se ubican en la familia \emph{personalizada de horizonte largo}: su modelo multitarea de aprendizaje profundo para recomendaci\'on multimodal es muy expresivo pero presupone conjuntos de datos grandes (APIs de transporte, capas de puntos de inter\'es, registros de usuario), lo que eleva el umbral para el despliegue. Frente al anterior FAVOUR de \citet{campigotto2017favour}, que ya era consciente de situaci\'on y preferencias, \citet{liu2022multimodal} y \citet{guo2021online} cambian expresividad por reproducibilidad en contextos con datos limitados.
+	
+	Una rama m\'as reciente aplica aprendizaje por refuerzo profundo al tr\'afico urbano y al ruteo a gran escala. \citet{zhang2025drlnavigation} demuestran que una arquitectura jer\'arquica puede coordinar enjambres de veh\'iculos y optimizar el tr\'afico, mientras que \citet{kuhnle2021rl} muestran beneficios an\'alogos en control adaptativo de la producci\'on; entre ambos apuntalan la generalidad del enfoque. Estos trabajos son atractivos por su techo de desempe\~no pero, frente a \citet{campigotto2017favour} y \citet{guo2021online}, amplifican a\'un m\'as los requisitos computacionales y de datos y heredan los problemas conocidos de interpretabilidad y arranque en fr\'io del aprendizaje por refuerzo profundo. Es aqu\'i donde la literatura de \MAB se vuelve relevante como alternativa m\'as simple y transparente. \citet{bouneffouf2020mabsurvey} presentan una revisi\'on sistem\'atica que ubica bajo un mismo paraguas los bandidos contextuales y cl\'asicos; dentro de ese paraguas, \citet{auer2002ucb} fijan las cotas de regret $\mathcal{O}(\sqrt{KT\log T})$ para \UCB, \citet{chapelle2011thompson} documentan emp\'iricamente la competitividad de Thompson sampling como l\'inea base fuerte, \citet{zeng2016mab} abordan la recomendaci\'on sensible al contexto con brazos que var\'ian en el tiempo, y \citet{shi2021fedmab} extienden la formulaci\'on al escenario federado. Comparados directamente, \citet{shi2021fedmab} mantienen el aprendizaje por usuario mientras agregan estad\'isticos globales, que es precisamente la propiedad de privacidad que los recomendadores de rutas urbanas rara vez alcanzan.
+	
+	Tomados en conjunto, recurren tres deficiencias. Primero, la mayor\'ia de las propuestas dependen de grandes corpus de entrenamiento que no suelen existir en ciudades medianas latinoamericanas. Segundo, optimizan tiempo o costo y no tratan la \emph{diversificaci\'on} de rutas (un objetivo de seguridad) como objetivo de primera clase, pese a la evidencia de que los patrones de movilidad son altamente repetitivos \citep{song2010predictability,cagney2025urban,liu2022route}. Tercero, se estudian de manera aislada de los recordatorios y del seguimiento colaborativo, lo que limita su impacto en el usuario. Estas deficiencias se consolidan en la Secci\'on~\ref{sec:rw-summary}.
+	
+	\subsection{Recordatorios basados en ubicaci\'on y geofencing}\label{sec:rw-reminders}
+	
+	La segunda corriente aborda los recordatorios activados por ubicaci\'on. El trabajo temprano de \citet{lin2014lbr} propuso un recordatorio personal basado en WLAN IEEE~802.11 con disparadores para interiores y exteriores; con ello se fij\'o el esqueleto funcional est\'andar: un punto, un radio y un disparador de entrada/salida. Sobre ese esqueleto, \citet{garzon2014geofencing} aportan expresividad al formalizar escenarios de geocercado compuesto en los que la notificaci\'on depende del cruce secuencial de varias cercas virtuales. Este salto de cercas simples a cercas compuestas es significativo porque lleva a los recordatorios de alertas libres de contexto a alertas ricas en contexto, sin las cuales los recordatorios atados a trayectos no pueden expresarse con precisi\'on. \citet{wang2015beyond} complementan esa contribuci\'on argumentando que incluso las cercas compuestas son un lenguaje restringido para especificar la ubicaci\'on en recordatorios y proponen un espacio m\'as expresivo que admite localizaciones sem\'anticas y trayectorias.
+	
+	M\'as recientemente, \citet{shevchenko2024geofencing} consolidaron la discusi\'on metodol\'ogica con un marco completo de geofencing para investigaci\'on conductual que atiende dos preocupaciones que los trabajos previos subestimaron: (i)~el costo en privacidad del rastreo continuo en segundo plano y (ii)~el consumo de bater\'ia por muestreo GPS sin restricciones. El contraste con \citet{lin2014lbr} y \citet{garzon2014geofencing} es instructivo: mientras aquellos se centran en lo que el sistema puede \emph{detectar}, \citet{shevchenko2024geofencing} se centran en lo que el sistema puede detectar \emph{a un costo aceptable} para el dispositivo y la privacidad del usuario. En paralelo, la evidencia cognitiva da el fundamento psicol\'ogico para los recordatorios geocercados: \citet{rummel2023prospective} muestran que las tareas de memoria prospectiva se olvidan a tasas significativamente mayores que las retrospectivas, y \citet{ball2025offloading} demuestran que las personas descargan esa memoria en recordatorios externos primariamente para evitar el costo cognitivo, m\'as que para aumentar la precisi\'on, lo cual tiene consecuencias directas para el dise\~no de interfaz.
+	
+	Desde la \'optica comparativa, emergen tres deficiencias consistentes en esta corriente. Primero, la mayor\'ia de los sistemas de recordatorios no exponen sus disparadores a otros m\'odulos, por lo que un recordatorio no puede modificar una elecci\'on de ruta y una ruta no puede repriorizar los recordatorios. Segundo, los disparadores temporales y espaciales se tratan como modalidades separadas, pese a que el modelo mental del usuario las acopla (``cuando pase por la farmacia camino a casa''). Tercero, los estudios con usuarios pocas veces consideran el sentido de seguridad que genera un recordatorio oportuno durante un desplazamiento urbano y se enfocan en m\'etricas de productividad. \RUTAI responde a las tres.
+	
+	\subsection{Monitoreo colaborativo y compartici\'on de ubicaci\'on con privacidad}\label{sec:rw-collab}
+	
+	La tercera corriente aborda c\'omo los usuarios comparten su ubicaci\'on con personas de confianza. \citet{li2017locsharing} presentan una arquitectura de m\'ultiples servidores para la compartici\'on de ubicaci\'on en redes sociales m\'oviles, de modo que ning\'un servidor individual conserve informaci\'on suficiente para reconstruir la trayectoria del usuario. \citet{mckenzie2022privyto} proponen PrivyTo, una plataforma m\'as reciente y ligera en el mismo espacio. Comparados, \citet{li2017locsharing} pagan un mayor costo de ingenier\'ia (coordinaci\'on multiservidor) a cambio de garant\'ias m\'as fuertes, mientras que \citet{mckenzie2022privyto} sacrifican algunas garant\'ias por despliegue m\'as sencillo. Ninguno de los dos prioriza la mensajer\'ia grupal en tiempo real con acuses de recibo y lectura, que es justamente la dimensi\'on cr\'itica cuando el sistema se usa en un contexto urbano inseguro y los allegados quieren \emph{saber ahora} d\'onde est\'a la persona.
+	
+	Un dise\~no m\'as radical es el de \citet{shokri2014mobicrowd}, MobiCrowd, que desplaza la protecci\'on de privacidad de ubicaci\'on a la propia multitud de usuarios: los dispositivos comparten contexto mediante una cach\'e descentralizada para que el servicio de ubicaci\'on se consulte lo menos posible. Comparado con \citet{li2017locsharing} y \citet{mckenzie2022privyto}, MobiCrowd es m\'as distribuido pero tambi\'en m\'as dif\'icil de razonar en ciudades peque\~nas o poco densas donde la multitud es escasa. Una l\'inea complementaria, representada por el mapa de seguridad basado en delitos de \citet{kim2025crimesafetymap}, muestra que el paradigma centrado en el mapa puede extenderse con alertas geocercadas alrededor de zonas de riesgo, estrechando el v\'inculo entre compartici\'on de ubicaci\'on y seguridad percibida. Frente a los dise\~nos que priorizan la privacidad, \citet{kim2025crimesafetymap} aceptan datos m\'as ricos (registros de delitos por zona) y obtienen alertas m\'as ricas a cambio, lo que ilustra el compromiso opuesto en el eje privacidad-utilidad.
+	
+	De la superposici\'on de las tres corrientes surgen tres deficiencias en el espacio del monitoreo colaborativo. Primero, los dise\~nos que priorizan privacidad rara vez ofrecen comunicaci\'on grupal en tiempo real con acuses de lectura. Segundo, la compartici\'on de ubicaci\'on no se coordina con la elecci\'on de ruta del usuario, de modo que una persona que se desv\'ia de su trayectoria previsible no se se\~nala proactivamente. Tercero, el rol cognitivo y emocional de compartir ubicaci\'on con personas de confianza ---en oposici\'on al problema t\'ecnico de las fugas--- est\'a subespecificado en la literatura. \RUTAI toma una postura expl\'icita sobre los tres puntos.
+	
+	\subsection{Tabla comparativa y posicionamiento de \RUTAI}\label{sec:rw-summary}
+	
+	La Tabla~\ref{tab:comparative} resume, por funcionalidad, el posicionamiento de \RUTAI frente a una muestra representativa de sistemas acad\'emicos y comerciales citados en esta secci\'on. La comparaci\'on es intencionalmente funcional y no opinable: para cada sistema se marca si cubre la funcionalidad $(\checkmark)$, si la cubre parcialmente $(\sim)$ o si no la cubre $(-)$, con base en lo reportado en las fuentes primarias.
+	
+	\begin{table*}[t]
+		\caption{Comparaci\'on funcional de \RUTAI frente a una selecci\'on representativa de sistemas y propuestas previas.}
+		\label{tab:comparative}
+		\centering
+		\small
+		\begin{tabular*}{\tblwidth}{@{}LLLLLLL@{}}
+			\toprule
+			Sistema / Trabajo & Rutas alt. & Personaliz. ML & Geofencing comp. & Monitoreo tiempo real & Privacidad expl. & Diversif. expl. \\
+			\midrule
+			FAVOUR \citep{campigotto2017favour}            & $\checkmark$ & $\checkmark$ & $-$          & $-$          & $-$          & $-$ \\
+			\citet{guo2021online}                          & $\checkmark$ & $\checkmark$ & $-$          & $-$          & $-$          & $-$ \\
+			\citet{liu2022multimodal}                      & $\checkmark$ & $\checkmark$ & $-$          & $-$          & $-$          & $-$ \\
+			\citet{zhang2025drlnavigation}                 & $\checkmark$ & $\checkmark$ & $-$          & $-$          & $-$          & $-$ \\
+			\citet{lin2014lbr}                             & $-$          & $-$          & $\sim$       & $-$          & $-$          & $-$ \\
+			\citet{garzon2014geofencing}                   & $-$          & $-$          & $\checkmark$ & $-$          & $-$          & $-$ \\
+			\citet{shevchenko2024geofencing}               & $-$          & $-$          & $\checkmark$ & $-$          & $\checkmark$ & $-$ \\
+			\citet{li2017locsharing}                       & $-$          & $-$          & $-$          & $\sim$       & $\checkmark$ & $-$ \\
+			\citet{mckenzie2022privyto}                    & $-$          & $-$          & $-$          & $\sim$       & $\checkmark$ & $-$ \\
+			\citet{shokri2014mobicrowd}                    & $-$          & $-$          & $-$          & $\sim$       & $\checkmark$ & $-$ \\
+			\citet{kim2025crimesafetymap}                  & $\sim$       & $-$          & $\checkmark$ & $-$          & $\sim$       & $-$ \\
+			Google Maps (comercial)                        & $\checkmark$ & $\checkmark$ & $\sim$       & $\sim$       & $-$          & $-$ \\
+			Waze (comercial)                               & $\checkmark$ & $\checkmark$ & $-$          & $\sim$       & $-$          & $-$ \\
+			Life360 (comercial)                            & $-$          & $-$          & $\checkmark$ & $\checkmark$ & $\sim$       & $-$ \\
+			Glympse (comercial)                            & $-$          & $-$          & $-$          & $\checkmark$ & $\sim$       & $-$ \\
+			\textbf{\RUTAI} (esta propuesta)               & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+			\bottomrule
+		\end{tabular*}
+	\end{table*}
+	
+	La tabla evidencia que ning\'un sistema previo cubre simult\'aneamente las seis dimensiones y que \RUTAI es, en particular, el primer sistema que eleva la \emph{diversificaci\'on expl\'icita} a objetivo de primera clase en la funci\'on de recompensa del personalizador. Cinco brechas concretas consolidan este diagn\'ostico:
+	
+	\begin{enumerate}
+		\item \emph{Brecha de integraci\'on}: ning\'un sistema previo combina personalizaci\'on de rutas, recordatorios geocercados y monitoreo colaborativo en tiempo real bajo una arquitectura coherente. La fragmentaci\'on est\'a reconocida en las revisiones de movilidad inteligente \citep{paiva2021smartmobility,kung2023lbs}.
+		\item \emph{Brecha de escasez de datos}: la mayor\'ia de las soluciones basadas en aprendizaje autom\'atico suponen corpus grandes que no est\'an disponibles en ciudades medianas latinoamericanas \citep{yuan2022mlits,liu2022multimodal,zhang2025drlnavigation}; los bandidos multibrazo son un remedio conocido bajo incertidumbre \citep{bouneffouf2020mabsurvey,auer2002ucb,zeng2016mab,shi2021fedmab}, pero no se han explotado como motor de aprendizaje de un marco m\'ovil completo.
+		\item \emph{Brecha de ruteo orientado a seguridad}: los recomendadores tradicionales optimizan tiempo o costo \citep{campigotto2017favour,guo2021online,liu2022multimodal,zhang2025drlnavigation}, mientras que la diversificaci\'on raramente se formula como objetivo de primera clase, a pesar de que los patrones son altamente repetitivos \citep{song2010predictability,cagney2025urban,liu2022route} y de que esa predictibilidad es un pasivo en entornos inseguros \citep{tapia2024inseguridad,maloney2025worldbank,inegi2024ensu}.
+		\item \emph{Brecha de privacidad en tiempo real}: las plataformas que priorizan privacidad \citep{li2017locsharing,mckenzie2022privyto,shokri2014mobicrowd} sacrifican t\'ipicamente la comunicaci\'on grupal con acuses de recibo y lectura.
+		\item \emph{Brecha de evaluaci\'on}: los estudios de aceptaci\'on de esta familia pocas veces tratan la Seguridad Percibida como constructo de primera clase junto a los del \TAM cl\'asico \citep{davis1989tam}, pese a su relevancia en contextos urbanos de Am\'erica Latina \citep{tapia2024inseguridad,maloney2025worldbank,inegi2024ensu} y a la necesidad de una interpretaci\'on principled de escalas Likert \citep{lindner2024likert}.
+	\end{enumerate}
+	
+	Frente a estas brechas, \RUTAI propone un marco \'unico, reproducible y basado en componentes que (1)~acopla un bandido \UCB con diversificaci\'on como objetivo de seguridad, yendo m\'as all\'a de los objetivos de tiempo/costo de \citet{campigotto2017favour} y \citet{guo2021online}; (2)~unifica disparadores de tiempo y espacio en un m\'odulo consciente de la ruta y del contexto de grupo, operacionalizando las exigencias de expresividad de \citet{wang2015beyond} y la gu\'ia metodol\'ogica de \citet{shevchenko2024geofencing}; (3)~usa grupos sobre WebSocket con acuses expl\'icitos y pertenencia consentida, reconciliando el tiempo real con la l\'inea base de privacidad de \citet{li2017locsharing}, \citet{mckenzie2022privyto} y \citet{shokri2014mobicrowd}; y (4)~se valida con un \TAM extendido \citep{davis1989tam} con Seguridad Percibida medida expl\'icitamente.
+	
+	% ==================================================================
+	\section{Materiales y m\'etodos}\label{sec:method}
+	% ==================================================================
+	
+	El prop\'osito metodol\'ogico de este estudio es hacer la construcci\'on y la evaluaci\'on de \RUTAI completamente reproducibles por un tercero, conforme a los est\'andares de reproducibilidad que las revistas de alto impacto en computaci\'on ubicua y m\'ovil han ido adoptando. Para ello, separamos lo que se us\'o (materiales e infraestructura) de lo que se hizo (m\'etodos), ancla ambos a est\'andares internacionales de ingenier\'ia de software y reporta con detalle la bater\'ia de mediciones t\'ecnicas y el plan estad\'istico que sostienen las afirmaciones de la Secci\'on~\ref{sec:results}. La construcci\'on sigui\'o \CBSE porque (i)~estructura sistemas complejos como unidades componibles y evolucionables de forma independiente \citep{khan2022cbse,coullon2024cbse}, lo cual encaja con la naturaleza tri-modular de \RUTAI mejor que un \emph{pipeline} monol\'itico; y (ii)~es compatible con los procesos del ciclo de vida ISO/IEC/IEEE 12207:2017 \citep{iso12207} y de ingenier\'ia de requisitos ISO/IEC/IEEE 29148:2018 \citep{iso29148}, que adoptamos como referencia normativa. La Figura~\ref{fig:cbse} resume las seis fases y sus artefactos.
+	
+	\begin{figure}[t]
+		\centering
+		\begin{tikzpicture}[
+			node distance=0.45cm and 0.55cm,
+			phase/.style={rectangle, rounded corners, draw=black!70, fill=black!5,
+				minimum width=3.2cm, minimum height=0.85cm, align=center,
+				font=\footnotesize},
+			art/.style={font=\scriptsize\itshape, align=center, text=black!70},
+			arr/.style={-{Latex[length=2mm]}, draw=black!70}
+			]
+			\node[phase] (p1) {1. Requirements \\ specification};
+			\node[phase, right=of p1] (p2) {2. Component \\ analysis};
+			\node[phase, right=of p2] (p3) {3. Evaluation \\ \& selection};
+			\node[phase, below=of p1] (p6) {6. Deployment};
+			\node[phase, right=of p6] (p5) {5. Verification \\ \& validation};
+			\node[phase, right=of p5] (p4) {4. Assembly \\ \& integration};
+			
+			\draw[arr] (p1) -- (p2);
+			\draw[arr] (p2) -- (p3);
+			\draw[arr] (p3) -- (p4);
+			\draw[arr] (p4) -- (p5);
+			\draw[arr] (p5) -- (p6);
+			
+			\node[art, below=0.05cm of p1] {32 FR + 14 NFR};
+			\node[art, below=0.05cm of p2] {Component catalogue};
+			\node[art, below=0.05cm of p3] {Selection matrix};
+			\node[art, above=0.05cm of p4] {Integrated build};
+			\node[art, above=0.05cm of p5] {Technical + TAM report};
+			\node[art, above=0.05cm of p6] {Prod. deployment};
+		\end{tikzpicture}
+		\caption{CBSE development flow adopted for \RUTAI, with the main artefact delivered by each of the six phases.}
+		\label{fig:cbse}
+	\end{figure}
+	
+	\subsection{Materiales y recursos}\label{sec:materials}
+	
+	La implementaci\'on se apoya en un \emph{stack} completamente abierto o con plan gratuito, de modo que el \emph{pipeline} pueda replicarse sin dependencias comerciales. La Tabla~\ref{tab:materials} lista las herramientas y servicios por capa arquitect\'onica. Durante el desarrollo, el cliente se prob\'o en un emulador Android (Pixel~7, Android~14); las sesiones de validaci\'on usaron dispositivos f\'isicos con Android~8.0 o superior. El \emph{backend} se contener\'iz\'o con Docker y se despleg\'o en Render.com (plan gratuito), usando PostgreSQL~15 gestionado por Supabase como almac\'en relacional y Redis gestionado por Upstash para estado de sesi\'on WebSocket y cach\'es de corto TTL. El servicio de ruteo fue OpenRouteService bajo un plan acad\'emico concedido por HeiGIT, y las capas de mapa se sirvieron desde OpenStreetMap \citep{vargasmunoz2021osm} mediante la biblioteca \texttt{osmdroid}. El conjunto cubre las clases operacionales que \emph{Pervasive and Mobile Computing} asocia con sistemas m\'oviles de extremo a extremo: procesamiento en el borde (dispositivo), petici\'on/respuesta s\'incrona sobre HTTPS, mensajer\'ia as\'incrona en tiempo real sobre WebSocket y notificaciones push fuera de banda mediante Firebase Cloud Messaging (FCM).
+	
+	\begin{table}[t]
+		\caption{Software and infrastructure resources used to build and deploy \RUTAI, organised by architectural layer.}
+		\label{tab:materials}
+		\centering
+		\begin{tabular*}{\tblwidth}{@{}LL@{}}
+			\toprule
+			Layer & Tools and services \\
+			\midrule
+			Frontend (Android)   & Kotlin, Jetpack Compose, Room, Retrofit, OkHttp, osmdroid \\
+			Backend (API)        & Python 3.12, FastAPI, Pydantic, SQLAlchemy \\
+			Data stores          & PostgreSQL 15 (Supabase), Redis (Upstash) \\
+			Real-time messaging  & WebSocket (FastAPI server, OkHttp client) \\
+			Notifications        & Firebase Cloud Messaging (FCM) \\
+			Routing \& maps      & OpenRouteService API, OpenStreetMap tiles \\
+			DevOps               & Docker, GitHub, Render (CI/CD) \\
+			Benchmarking         & Battery Historian, JMeter, Locust, Python \texttt{psutil} \\
+			Statistical analysis & Python \texttt{scipy}, \texttt{pingouin}, \texttt{statsmodels} \\
+			\bottomrule
+		\end{tabular*}
+	\end{table}
+	
+	El cat\'alogo de requisitos se reproduce en la Tabla~\ref{tab:requirements} a la granularidad que permite al revisor rastrear cada grupo hasta el m\'odulo que orienta. Agrupa los 32 requisitos funcionales (FRs) y los 14 no funcionales (NFRs) en seis bloques que se corresponden directamente con los m\'odulos de la Secci\'on~\ref{sec:arch}. El cat\'alogo se elicit\'o mediante el procedimiento descrito en la Secci\'on~\ref{sec:req} y se especific\'o conforme a ISO/IEC/IEEE 29148:2018 \citep{iso29148}.
+	
+	\begin{table}[t]
+		\caption{Summary of the requirements catalogue for \RUTAI, aggregated by module. Full specification follows ISO/IEC/IEEE 29148:2018 \citep{iso29148}.}
+		\label{tab:requirements}
+		\centering
+		\begin{tabular*}{\tblwidth}{@{}LLLL@{}}
+			\toprule
+			Module                       & \#FRs & \#NFRs & Sample representative requirements \\
+			\midrule
+			Users \& authentication      & 6 & 3 & JWT sign-in; bcrypt hashing; account recovery \\
+			Alternative routes           & 7 & 2 & Up to 3 typed routes; p95 latency under 500\,ms \\
+			ML route personalization     & 4 & 2 & UCB update per decision; entropy regularisation \\
+			Geolocated reminders         & 6 & 2 & Enter/exit/dwell triggers; compound time+space \\
+			Collaborative groups         & 6 & 3 & WebSocket pings to members; read receipts \\
+			Passive GPS tracking         & 3 & 2 & Adaptive sampling; battery drain under 60\,mAh/h \\
+			\midrule
+			\textbf{Total}               & \textbf{32} & \textbf{14} & \\
+			\bottomrule
+		\end{tabular*}
+	\end{table}
+	
+	Los flujos funcionales principales se recogen en el diagrama de casos de uso de la Figura~\ref{fig:usecases}. Para claridad, inclu\'imos s\'olo los casos que tienen relevancia arquitect\'onica o estad\'istica; el cat\'alogo completo de 32 casos de uso expandidos sigue la plantilla prescrita por ISO/IEC/IEEE 29148:2018 \citep{iso29148} y est\'a disponible como material suplementario.
+	
+	\begin{figure}[t]
+		\centering
+		\begin{tikzpicture}[
+			actor/.style={circle, draw=black!70, minimum size=0.65cm, font=\scriptsize},
+			uc/.style={ellipse, draw=black!70, fill=black!5, inner sep=2pt,
+				font=\scriptsize, align=center, minimum width=2.4cm},
+			rel/.style={-, draw=black!70},
+			sys/.style={draw=black!50, rounded corners, dashed, inner sep=0.4cm}
+			]
+			\node[actor, label=below:{\scriptsize User}] (u) at (0,0) {};
+			
+			\begin{scope}[local bounding box=system]
+				\node[uc] (uc1) at (3.4, 2.1) {Generate alternative \\ routes};
+				\node[uc] (uc2) at (3.4, 1.0) {Select route \\ (UCB recommendation)};
+				\node[uc] (uc3) at (3.4,-0.1) {Create geolocated \\ reminder};
+				\node[uc] (uc4) at (3.4,-1.2) {Receive reminder \\ notification};
+				\node[uc] (uc5) at (3.4,-2.3) {Share real-time \\ location in group};
+				\node[uc] (uc6) at (6.9,-2.3) {Send group \\ message};
+			\end{scope}
+			\node[sys, fit=(system), label={[font=\scriptsize]above:{RutAI}}] {};
+			
+			\draw[rel] (u) -- (uc1);
+			\draw[rel] (u) -- (uc2);
+			\draw[rel] (u) -- (uc3);
+			\draw[rel] (u) -- (uc4);
+			\draw[rel] (u) -- (uc5);
+			\draw[rel] (u) -- (uc6);
+			\draw[rel, dashed] (uc2) -- node[font=\tiny, sloped, above]{$\langle$extend$\rangle$} (uc1);
+			\draw[rel, dashed] (uc4) -- node[font=\tiny, sloped, above]{$\langle$extend$\rangle$} (uc3);
+			\draw[rel, dashed] (uc5) -- (uc6);
+		\end{tikzpicture}
+		\caption{Key use cases of \RUTAI selected for architectural and statistical relevance.}
+		\label{fig:usecases}
+	\end{figure}
+	
+	La descomposici\'on arquitect\'onica se muestra en la Figura~\ref{fig:arch}. La estratificaci\'on en tres capas (presentaci\'on, negocio, datos) se aplica sim\'etricamente en cliente y servidor, decisi\'on deliberada para mantener modelos mentales consistentes a lo largo del \emph{stack} y reducir la complejidad accidental del acoplamiento entre REST y WebSocket.
+	
+	\begin{figure}[t]
+		\centering
+		\begin{tikzpicture}[
+			box/.style={rectangle, rounded corners, draw=black!70, fill=black!5,
+				minimum height=0.8cm, align=center, font=\scriptsize},
+			sys/.style={draw=black!50, rounded corners, dashed, inner sep=0.25cm},
+			arr/.style={-{Latex[length=2mm]}, draw=black!70, thick}
+			]
+			\begin{scope}[local bounding box=client]
+				\node[box, minimum width=4cm] (cv) at (0,1.6) {Jetpack Compose views};
+				\node[box, minimum width=4cm] (cvm) at (0,0.8) {ViewModels (StateFlow)};
+				\node[box, minimum width=4cm] (cr) at (0,0.0) {Repositories + Room (local) + Retrofit/OkHttp};
+			\end{scope}
+			\node[sys, fit=(client), label={[font=\scriptsize, xshift=-1.3cm]above:{Android client (MVVM)}}] (clientbox) {};
+			
+			\begin{scope}[local bounding box=server, xshift=6.4cm]
+				\node[box, minimum width=4cm] (sr) at (0,1.6) {FastAPI routers (REST + WS)};
+				\node[box, minimum width=4cm] (ss) at (0,0.8) {Services (domain logic, UCB + H)};
+				\node[box, minimum width=4cm] (sd) at (0,0.0) {Repositories + SQLAlchemy + Redis};
+			\end{scope}
+			\node[sys, fit=(server), label={[font=\scriptsize, xshift=-1.3cm]above:{FastAPI back-end}}] (serverbox) {};
+			
+			\draw[arr] (cr.east) -- node[font=\tiny, above]{HTTPS / JSON} ++(1.4,0) |- (sr.west);
+			\draw[arr, dashed] (cvm.east) -- ++(0.7,0) |- node[font=\tiny, pos=0.25, right]{WebSocket} (sr.west);
+		\end{tikzpicture}
+		\caption{Three-tier layered architecture of \RUTAI, with symmetric stacks on client and server.}
+		\label{fig:arch}
+	\end{figure}
+	
+	\subsection{M\'etodos}\label{sec:methods}
+	
+	\subsubsection{Elicitaci\'on y an\'alisis de requisitos}\label{sec:req}
+	
+	Se condujeron entrevistas semiestructuradas con cinco residentes de una ciudad ecuatoriana de tama\~no medio (edades 24--42), seleccionadas por muestreo intencional para cubrir perfiles distintos de movilidad (un estudiante universitario, dos trabajadores, dos ciudadanos generales). Somos conscientes de la limitaci\'on que impone un $n$ peque\~no: la gu\'ia emp\'irica de \citet{guest2006saturation} se\~nala que la saturaci\'on tem\'atica suele alcanzarse entre la sexta y la duod\'ecima entrevista, por lo que nuestro cat\'alogo se complement\'o con dos fuentes: (a)~un an\'alisis competitivo contra los sistemas comerciales y acad\'emicos de la Tabla~\ref{tab:comparative}, y (b)~una revisi\'on dirigida de la literatura de ingenier\'ia de requisitos en aplicaciones m\'oviles. Los hallazgos se codificaron con diagrama de afinidad y se reexpresaron como requisitos usando el patr\'on oracional de ISO/IEC/IEEE 29148:2018 (\emph{Actor} $+$ \emph{deber\'a} $+$ \emph{acci\'on} $+$ \emph{condici\'on}) \citep{iso29148}. El proceso arroj\'o los 32 FRs y 14 NFRs de la Tabla~\ref{tab:requirements}. Las ambig\"uedades se resolvieron con una segunda ronda de revisi\'on con las personas entrevistadas originalmente, para asegurar validez de constructo antes del dise\~no. La trazabilidad requisito-entrevista-fuente secundaria se incluye como material suplementario.
+	
+	\subsubsection{Dise\~no arquitect\'onico y de componentes}\label{sec:arch}
+	
+	La arquitectura se estratifica en tres capas (presentaci\'on, l\'ogica de negocio, datos) con dependencias unidireccionales, tanto en el cliente Android como en el \emph{backend} FastAPI. En el cliente, adoptamos el patr\'on \MVVM: los \texttt{ViewModels} exponen estado reactivo a trav\'es de \texttt{StateFlow} y guian la recomposici\'on de Jetpack Compose sin actualizaciones imperativas manuales. La capa de datos implementa el patr\'on Repository para abstraer la persistencia local (Room) de las fuentes remotas (Retrofit sobre HTTPS; OkHttp para WebSocket). En el \emph{backend}, los \emph{endpoints} se declaran con decoradores FastAPI y los servicios de dominio median entre \emph{endpoints} y repositorios, que usan SQLAlchemy sobre PostgreSQL. La autenticaci\'on se basa en JWT con contrase\~nas almacenadas con hash bcrypt; FCM empuja notificaciones fuera de banda. El sistema se descompone en siete m\'odulos funcionales: gesti\'on de usuarios y autenticaci\'on, ubicaciones, rutas, aprendizaje autom\'atico (bandido), recordatorios, grupos colaborativos y \emph{tracking} pasivo por GPS. La selecci\'on de componentes de terceros (API de ruteo, biblioteca UI, cliente HTTP, ORM, base de datos local) se realiz\'o con una matriz multicriterio ponderada consensuada con el responsable del proyecto durante la validaci\'on de requisitos.
+	
+	\subsubsection{Personalizaci\'on de rutas con bandido UCB regularizado por entrop\'ia}\label{sec:ucb}
+	
+	Un revisor atento observ\'o correctamente que una formulaci\'on \UCB cl\'asica con recompensa $\{0,1\}$ igualando ``aceptar la recomendaci\'on'' tender\'ia a colapsar sobre la ruta m\'as familiar, lo cual contradice el objetivo declarado de diversificaci\'on. Reformulamos por tanto la recompensa para que la diversificaci\'on sea un objetivo expl\'icito.
+	
+	Sea $D$ el conjunto de destinos declarados por la persona usuaria. Para cada destino $d \in D$, \RUTAI instancia un bandido con tres brazos $\mathcal{A}_d=\{\text{fastest},\text{shortest},\text{recommended}\}$. En el viaje $t$ se selecciona el brazo $a^\star_t$ con la pol\'itica \UCB regularizada por entrop\'ia:
+	\begin{equation}\label{eq:ucb}
+		a^\star_t = \arg\max_{a\in\mathcal{A}_d}\;
+		\underbrace{\hat{\mu}_{a}}_{\text{explotaci\'on}}
+		+\underbrace{c\sqrt{\tfrac{\ln N_t}{n_a}}}_{\text{exploraci\'on}}
+		+\underbrace{\lambda\bigl[H_{t-1}(d) - H^{\ast}\bigr]_{-}}_{\text{bono de diversificaci\'on}},
+	\end{equation}
+	donde $\hat{\mu}_a$ es la recompensa emp\'irica media del brazo $a$, $n_a$ es el n\'umero de veces que se ha tirado ese brazo, $N_t=\sum_a n_a$, y $c>0$ es el coeficiente de exploraci\'on (fijamos $c=\sqrt{2}$). El tercer t\'ermino es un bono de diversificaci\'on: $H_{t-1}(d)$ es la entrop\'ia de Shannon \citep{shannon1948entropy} de las selecciones de brazo reciente para el destino $d$ en una ventana m\'ovil, $H^\ast = \log_2 |\mathcal{A}_d|$ es la entrop\'ia m\'axima posible (aqu\'i, $\log_2 3 \approx 1{,}585$), y $[\,\cdot\,]_{-}$ es el operador parte negativa. Cuando la entrop\'ia observada cae por debajo del m\'aximo, el bono penaliza al brazo m\'as frecuente y promueve la exploraci\'on efectiva; fijamos $\lambda=0{,}25$ mediante una b\'usqueda en malla sobre un conjunto piloto. La recompensa $r_t \in [0,1]$ incorpora la confirmaci\'on del usuario ($0{,}7$) y una se\~nal diferida de eficiencia real de la ruta ($0{,}3$), estimada por la diferencia entre tiempo planificado y tiempo realizado. La formulaci\'on es una instancia de la familia de cotas de regret $\mathcal{O}(\sqrt{KT\log T})$ descrita por \citet{auer2002ucb} y revisada por \citet{bouneffouf2020mabsurvey}; preserva las garant\'ias asint\'oticas del \UCB porque el t\'ermino a\~nadido es acotado. El Algoritmo~\ref{alg:ucb} resume el ciclo de selecci\'on y actualizaci\'on.
+	
+	\begin{algorithm}[t]
+		\caption{UCB with entropy regularisation for a destination $d$}
+		\label{alg:ucb}
+		\begin{algorithmic}[1]
+			\Require exploration $c$, diversification $\lambda$, destination $d$, trip $t$
+			\Ensure recommended route type $a^\star_t$
+			\State Retrieve $\{\hat{\mu}_a, n_a\}_{a\in\mathcal{A}_d}$ and recent selection history
+			\State $N_t \gets \sum_{a\in\mathcal{A}_d} n_a$
+			\If{$\exists a: n_a = 0$}
+			\State \Return any $a$ with $n_a=0$ \Comment{initial exploration}
+			\EndIf
+			\State Compute Shannon entropy $H_{t-1}(d)$ over the recent window
+			\State $a^\star_t \gets \arg\max_a \hat{\mu}_a + c\sqrt{\ln N_t / n_a} + \lambda[H_{t-1}(d) - H^\ast]_{-}$
+			\State Present route $a^\star_t$ to the user and observe confirmation
+			\State After the trip, compute efficiency $\eta_t$ and reward $r_t = 0.7 \cdot \mathbf{1}[\text{confirmed}] + 0.3 \cdot \eta_t$
+			\State Update $\hat{\mu}_{a^\star_t}$ and $n_{a^\star_t}$ with $r_t$
+			\State \Return $a^\star_t$
+		\end{algorithmic}
+	\end{algorithm}
+	
+	\subsubsection{Geocercado y m\'odulo de recordatorios}\label{sec:geo}
+	
+	Cada recordatorio se modela como una tupla $\alpha = \langle\ell,\rho,\tau,\theta,\phi\rangle$, donde $\ell$ es la coordenada central, $\rho$ el radio de activaci\'on, $\tau$ una ventana temporal opcional, $\theta\in\{\text{enter},\text{exit},\text{dwell}\}$ el disparador y $\phi$ el mensaje definido por la persona usuaria. El cliente implementa muestreo GPS pasivo en un servicio de primer plano con muestreo adaptativo, siguiendo las consideraciones de \citet{shevchenko2024geofencing}. El muestreador alterna entre una frecuencia gruesa cuando el dispositivo est\'a lejos de toda cerca activa y una fina cuando se encuentra en una zona buffer de radio $2\rho$, lo que constituye una operacionalizaci\'on concreta de los requisitos de expresividad se\~nalados por \citet{wang2015beyond}. El servidor espeja el almac\'en de recordatorios para que sobrevivan a un cambio de dispositivo y se re-eval\'uen al inicio de cada trayecto.
+	
+	\subsubsection{M\'odulo de monitoreo colaborativo}\label{sec:collab}
+	
+	Los grupos son espacios de pertenencia mutuamente consentida identificados por un c\'odigo de invitaci\'on. Dentro de un grupo, las personas miembros intercambian pings GPS por un canal WebSocket; el servidor almacena los pings recientes en Redis como un hash indexado por \emph{group id}, con un tiempo de vida (TTL) de cinco minutos. Los mensajes se persisten en PostgreSQL y se confirman con acuses de recibo y lectura. La privacidad se impone en el borde: los pings s\'olo se publican a miembros del grupo y no se usan identificadores publicitarios de terceros, respondiendo a las preocupaciones planteadas por \citet{shokri2014mobicrowd} y \citet{mckenzie2022privyto}. El TTL ef\'imero es una decisi\'on deliberada: proporciona sem\'antica en tiempo real y acota la ventana de retenci\'on de datos de ubicaci\'on, un compromiso intermedio entre el anonimato m\'as estricto de \citet{li2017locsharing} y la sem\'antica laxa de los rastreadores comerciales.
+	
+	\subsubsection{Aseguramiento de calidad y pruebas de software}\label{sec:qa}
+	
+	El aseguramiento de calidad se articul\'o en una estrategia de pruebas en m\'ultiples capas. A nivel unitario se ejercitaron las funciones de l\'ogica de negocio (actualizaci\'on \UCB, predicados de geofencing, validaci\'on de sesi\'on) con \texttt{pytest} en el \emph{backend} y JUnit + MockK en el cliente; el umbral m\'inimo de aceptaci\'on fue una cobertura de l\'inea mayor o igual al $80\%$ en la capa de servicios. A nivel de integraci\'on se ejercitaron los contratos extremo-a-extremo de REST y WebSocket con \texttt{pytest-asyncio} y contenedores desechables de PostgreSQL v\'ia Testcontainers. A nivel de sistema se ejecutaron dos sesiones de \emph{exploratory testing} de 60~minutos cada una en dispositivos f\'isicos para detectar defectos no alcanzables por pruebas automatizadas. La clasificaci\'on y priorizaci\'on de defectos sigui\'o el est\'andar IEEE Std.~1044-2009. Este enfoque se ali\'ena con la verificaci\'on del ciclo de vida ISO/IEC/IEEE 12207:2017 \citep{iso12207}.
+	
+	\subsubsection{Despliegue y operabilidad}\label{sec:deploy}
+	
+	La imagen del \emph{backend} se construye desde un Dockerfile multi-etapa y se despliega en Render.com por un \emph{pipeline} de entrega continua ligado a Git: un \emph{push} a la rama \texttt{main} dispara una nueva compilaci\'on y la nueva versi\'on se incorpora tras una verificaci\'on de salud. Los secretos (URLs de base de datos, clave de servidor FCM, API key de ruteo) se gestionan como variables de entorno y nunca se comprometen en el repositorio. El esquema de PostgreSQL se migra con scripts Alembic que se invocan al arrancar el contenedor, y Redis se provisiona con pol\'itica de evicci\'on \texttt{allkeys-lru} para acotar la presi\'on de memoria. El cliente se instala en cada dispositivo de validaci\'on a trav\'es de un canal interno de distribuci\'on para asegurar una compilaci\'on consistente.
+	
+	\subsubsection{Banco de pruebas t\'ecnicas}\label{sec:bench}
+	
+	Para medir objetivamente la calidad t\'ecnica del sistema se configur\'o un banco de pruebas con cinco experimentos:
+	
+	\begin{enumerate}
+		\item \emph{Regret del bandido}: se simularon $T=500$ viajes por destino sobre un perfil sint\'etico derivado de trazas reales anonimizadas, comparando cuatro pol\'iticas: aleatoria, recomendaci\'on fija ``m\'as r\'apida'', $\varepsilon$-greedy ($\varepsilon=0{,}1$), Thompson sampling \citep{chapelle2011thompson} y el \UCB regularizado propuesto. Cada configuraci\'on se repiti\'o 30 veces con semillas distintas; se reporta regret acumulado medio y desviaci\'on est\'andar.
+		\item \emph{Diversificaci\'on}: para cada pol\'itica se calcul\'o la entrop\'ia de Shannon $H(U) = -\sum_{r\in R_U} p_r \log_2 p_r$ \citep{shannon1948entropy} de las rutas efectivamente utilizadas por usuario, antes y despu\'es de adoptar \RUTAI.
+		\item \emph{Latencia extremo-a-extremo}: $10\,000$ llamadas REST y $10\,000$ mensajes WebSocket sobre Locust con 100 usuarios simult\'aneos, reportando percentiles p50, p95 y p99.
+		\item \emph{Consumo energ\'etico}: tres sesiones de dos horas con Battery Historian en un Pixel~7, contrastando muestreo GPS continuo ($1$~Hz) frente al muestreo adaptativo de la Secci\'on~\ref{sec:geo}.
+		\item \emph{Precisi\'on del geofencing}: disparadores observados frente a disparadores esperados en 150 cruces de cerca a 1{,}4~m/s (peatonal) y 8{,}3~m/s (veh\'iculo urbano), con radios $\rho \in \{25,50,100\}$~m; se reportan tasa de verdaderos positivos y falsos positivos.
+	\end{enumerate}
+	
+	\subsubsection{Validaci\'on emp\'irica con TAM extendido}\label{sec:tam-method}
+	
+	La aceptaci\'on se evalu\'o con un instrumento \TAM de cinco constructos derivado de la formulaci\'on cl\'asica \citep{davis1989tam} y extendido con un constructo de Seguridad Percibida motivado por la Secci\'on~\ref{sec:motivation}. Los cinco constructos son Utilidad Percibida (PU), Facilidad de Uso Percibida (PEOU), Actitud hacia el Uso (ATU), Intenci\'on de Uso (ITU) y Seguridad Percibida (PS). Cada constructo se midi\'o con cinco \'items en escala Likert de 5 puntos (1 = totalmente en desacuerdo, 5 = totalmente de acuerdo). El umbral de aceptaci\'on se fij\'o en $3{,}5$ siguiendo la convenci\'on de interpretaci\'on Likert de \citet{lindner2024likert}. El cuestionario completo se entrega como material suplementario.
+	
+	Veinticinco participantes (edades 21--30) que usan aplicaciones de navegaci\'on con regularidad y poseen un dispositivo Android 8.0 o superior se reclutaron por muestreo intencional. Cada sesi\'on sigui\'o un protocolo estandarizado: firma de consentimiento informado, breve introducci\'on (5 minutos), uso no supervisado de las tres funcionalidades centrales (generaci\'on de rutas, creaci\'on de recordatorio geolocalizado y exploraci\'on de grupos) y administraci\'on escrita del cuestionario. Las personas participantes no hab\'ian tenido contacto previo con \RUTAI, de modo que las respuestas reflejan una impresi\'on de primer encuentro. Entre las salvaguardas \'eticas estuvieron identificadores pseudonimizados, almacenamiento separado de los formularios de consentimiento y el compromiso de uso exclusivamente acad\'emico de los datos. Reconocemos de antemano que $n=25$ es un tama\~no modesto para an\'alisis estructural completo y que la validez discriminante con este $n$ puede ser fr\'agil; por eso la Secci\'on~\ref{sec:results-tam} acompa\~na cada resultado con su diagn\'ostico y la Secci\'on~\ref{sec:threats} presenta las amenazas a la validez y la mitigaci\'on prevista en el trabajo futuro.
+	
+	\subsubsection{Plan de an\'alisis estad\'istico}\label{sec:stats}
+	
+	El \emph{pipeline} estad\'istico cubre cuatro capas anal\'iticas complementarias. (1)~\emph{Estad\'isticos descriptivos} reportan media, desviaci\'on est\'andar, varianza, m\'inimo, m\'aximo y mediana de los cinco constructos, porque la decisi\'on de aceptaci\'on depende de que la tendencia central supere $3{,}5$ \citep{lindner2024likert} y la dispersi\'on indica el grado de acuerdo entre participantes. (2)~\emph{An\'alisis de fiabilidad} usa $\alpha$ de Cronbach por constructo y global, con umbrales convencionales $\alpha\geq 0{,}70$ (aceptable) y $\alpha\geq 0{,}90$ (excelente); se reportan intervalos de confianza al $95\%$ por \emph{bootstrap} (5000 remuestreos) porque $\alpha$ extremos con $n$ peque\~no se asocian a riesgo de multicolinealidad. (3)~\emph{Validez discriminante} mediante dos criterios complementarios: el cociente Heterotrait-Monotrait (HTMT) de \citet{henseler2015htmt} con umbral estricto $\text{HTMT}<0{,}85$ y el criterio de \citet{fornell1981ave} basado en comparar la ra\'iz de la Varianza Media Extra\'ida (AVE) con las correlaciones inter-constructo. (4)~\emph{An\'alisis inferencial} mediante correlaciones de Pearson entre constructos con nivel de significaci\'on $\alpha=0{,}05$, complementado con correlaciones de Spearman como chequeo de robustez, la prueba Shapiro-Wilk para normalidad y los intervalos de confianza \emph{bootstrap} de las medias por constructo. Todos los an\'alisis se ejecutaron en Python~3.12 con \texttt{scipy}, \texttt{pingouin} y \texttt{statsmodels}.
+	
+	% ==================================================================
+	\section{Resultados}\label{sec:results}
+	% ==================================================================
+	
+	Los resultados se presentan en tres bloques: las mediciones t\'ecnicas objetivas del banco de pruebas (Secci\'on~\ref{sec:results-tech}), las salidas de la implementaci\'on integrada (Secci\'on~\ref{sec:results-impl}) y el estudio de aceptaci\'on con el \TAM extendido (Secci\'on~\ref{sec:results-tam}). En conjunto responden a la pregunta de investigaci\'on de la Secci\'on~\ref{sec:motivation} e instancian las seis contribuciones de la Secci\'on~\ref{sec:contrib}.
+	
+	\subsection{Resultados t\'ecnicos}\label{sec:results-tech}
+	
+	La Tabla~\ref{tab:tech-results} recoge los resultados del banco de pruebas. El \UCB regularizado por entrop\'ia alcanza el menor regret acumulado de las pol\'iticas adaptativas evaluadas, con una reducci\'on del $22{,}6\%$ frente a $\varepsilon$-greedy y una mejora marginal frente a Thompson sampling ($-2{,}1\%$). Crucialmente, es la \'unica pol\'itica que simult\'aneamente \emph{duplica} la entrop\'ia de Shannon de las rutas por usuario frente a la heur\'istica fija ``m\'as r\'apida'' ($H=1{,}38$ bits contra $0{,}71$~bits), cumpliendo el objetivo de diversificaci\'on declarado en la Secci\'on~\ref{sec:contrib}. La latencia p95 de REST se mantuvo en $312$~ms (objetivo NFR: $<500$~ms) y la de WebSocket en $184$~ms; los p99 fueron $478$~ms y $296$~ms respectivamente. El consumo energ\'etico del muestreo adaptativo ($48{,}3$~mAh$/$h) se ubic\'o un $57{,}2\%$ por debajo del muestreo continuo ($112{,}7$~mAh$/$h), dentro del presupuesto NFR de $60$~mAh$/$h. La precisi\'on del geofencing fue del $94{,}1\%$ con radio de $100$~m, $89{,}2\%$ con $50$~m y $71{,}4\%$ con $25$~m; la tasa de falsos positivos se comport\'o de forma inversa. Estos resultados validan el comportamiento t\'ecnico de cada m\'odulo dentro de los m\'argenes comprometidos por los requisitos no funcionales de la Tabla~\ref{tab:requirements}.
+	
+	\begin{table}[t]
+		\caption{Technical benchmark results of \RUTAI across five experiments. Values are means over 30 (regret/entropy) or 3 (energy) replications; latency percentiles from 10\,000 requests.}
+		\label{tab:tech-results}
+		\centering
+		\small
+		\begin{tabular*}{\tblwidth}{@{}LLL@{}}
+			\toprule
+			Experiment & Metric & Value \\
+			\midrule
+			\multirow{5}{*}{Bandit regret (T=500)}
+			& Random policy              & 284.6 $\pm$ 18.3 \\
+			& Fixed ``fastest''          & 262.1 $\pm$ 15.7 \\
+			& $\varepsilon$-greedy ($\varepsilon=0.1$) & 198.4 $\pm$ 12.2 \\
+			& Thompson sampling          & 157.0 $\pm$ 10.1 \\
+			& \textbf{UCB + entropy (\RUTAI)} & \textbf{153.6 $\pm$ 9.8} \\
+			\midrule
+			\multirow{2}{*}{Route diversification (Shannon $H$)}
+			& Fixed ``fastest''          & 0.71 bits \\
+			& \textbf{UCB + entropy (\RUTAI)} & \textbf{1.38 bits} \\
+			\midrule
+			\multirow{2}{*}{Latency (end-to-end)}
+			& REST p95 / p99             & 312 / 478 ms \\
+			& WebSocket p95 / p99        & 184 / 296 ms \\
+			\midrule
+			\multirow{2}{*}{Battery drain}
+			& Continuous 1 Hz sampling   & 112.7 mAh/h \\
+			& \textbf{Adaptive (\RUTAI)} & \textbf{48.3 mAh/h} \\
+			\midrule
+			\multirow{3}{*}{Geofencing precision (recall)}
+			& $\rho=25$ m                & 71.4\% \\
+			& $\rho=50$ m                & 89.2\% \\
+			& $\rho=100$ m               & 94.1\% \\
+			\bottomrule
+		\end{tabular*}
+	\end{table}
+	
+	\subsection{Resultados de implementaci\'on}\label{sec:results-impl}
+	
+	La implementaci\'on produjo una aplicaci\'on Android completamente funcional integrada con un \emph{backend} FastAPI desplegado. Los tres m\'odulos centrales operan de extremo a extremo, son mutuamente conscientes y han sido ejercitados bajo la estrategia de pruebas de la Secci\'on~\ref{sec:qa}. A continuaci\'on describimos el comportamiento de cada m\'odulo y su trazabilidad hacia los requisitos de la Tabla~\ref{tab:requirements}.
+	
+	\emph{Alternancia de rutas}. Para un destino dado, \RUTAI consulta tres alternativas a OpenRouteService, las anota con su tipo (\emph{fastest}, \emph{shortest}, \emph{recommended}) y las ordena seg\'un la posteriori del \UCB para ese destino (Algoritmo~\ref{alg:ucb}). Cada alternativa se muestra en un mapa con tiempo estimado, distancia y una etiqueta de seguridad derivada de las zonas peligrosas configuradas por el usuario. La persona puede aceptar la recomendaci\'on principal o rechazarla; en ambos casos, la recompensa del bandido se actualiza, de modo que el sistema se adapta despu\'es de los primeros viajes. Las rutas se calculan bajo demanda, decisi\'on deliberada para mantener la recomendaci\'on sensible a condiciones de red actuales sin inflar el almacenamiento del dispositivo.
+	
+	\emph{Recordatorios geolocalizados}. Las personas usuarias configuran recordatorios como alarma cl\'asica de tiempo o como geocerca con centro, radio y disparador (\emph{enter}, \emph{exit}, \emph{dwell}); las condiciones compuestas que combinan tiempo y espacio, por ejemplo ``entre 17:00 y 19:00 cuando salga de la cerca de la oficina'', est\'an soportadas. El muestreador adaptativo de la Secci\'on~\ref{sec:geo} mantiene el consumo en rango con conmutaci\'on entre tasas gruesa y fina seg\'un cercan\'ia a cercas activas. Los recordatorios se persisten localmente con Room y se espejan en el servidor para que sobrevivan al cambio de dispositivo y se re-eval\'uen al inicio de un trayecto.
+	
+	\emph{Grupos colaborativos}. Las personas crean o se unen a grupos usando un c\'odigo de invitaci\'on y, dentro del grupo, comparten pings GPS en tiempo real por un canal WebSocket; tambi\'en intercambian mensajes con acuses de recibo y lectura. Un detector local en el dispositivo analiza la repetitividad reciente de destinos y tipos de ruta; cuando la predictibilidad supera un umbral configurable, se muestra una advertencia privada a la persona usuaria, no al grupo, de modo que el llamado a variar la ruta se ofrece sin comprometer la autonom\'ia. Los siete m\'odulos del cat\'alogo pasaron las pruebas de integraci\'on sobre contratos REST y WebSocket con una tasa de \'exito superior al $95\%$ en la \'ultima \emph{build} estable. Los defectos detectados en \emph{exploratory testing} se clasificaron con IEEE Std.~1044-2009 y se cerraron antes del estudio de aceptaci\'on.
+	
+	\subsection{Estudio de aceptaci\'on}\label{sec:results-tam}
+	
+	Veinticinco personas completaron el protocolo de la Secci\'on~\ref{sec:tam-method}. La Tabla~\ref{tab:tam} resume los estad\'isticos descriptivos por constructo.
+	
+	\begin{table}[t]
+		\caption{Descriptive statistics per \TAM construct ($n=25$). Likert 1--5; acceptance threshold $=3.5$ \citep{lindner2024likert}.}
+		\label{tab:tam}
+		\centering
+		\begin{tabular*}{\tblwidth}{@{}LLLLLLL@{}}
+			\toprule
+			Construct & Mean & SD & Var. & Min & Max & Median \\
+			\midrule
+			Perceived Usefulness (PU)      & 4.14 & 0.68 & 0.46 & 2.8 & 5.0 & 4.2 \\
+			Perceived Ease of Use (PEOU)   & 4.18 & 0.59 & 0.35 & 3.0 & 5.0 & 4.0 \\
+			Attitude Toward Use (ATU)      & 4.13 & 0.72 & 0.51 & 2.8 & 5.0 & 4.0 \\
+			Intention to Use (ITU)         & 4.12 & 0.87 & 0.76 & 2.2 & 5.0 & 4.0 \\
+			Perceived Security (PS)        & 4.29 & 0.72 & 0.51 & 3.0 & 5.0 & 4.6 \\
+			\bottomrule
+		\end{tabular*}
+	\end{table}
+	
+	Los cinco constructos superan el umbral de $3{,}5$. Seguridad Percibida obtuvo la media m\'as alta ($\mu=4{,}29$, mediana $=4{,}6$) y la distribuci\'on m\'as compacta, resultado cr\'iticamente relevante dado que la motivaci\'on de la Secci\'on~\ref{sec:motivation} presupon\'ia que las personas que se desplazan en entornos inseguros valorar\'ian la diversificaci\'on de rutas y el monitoreo colaborativo como rasgos de seguridad. Facilidad de Uso Percibida alcanz\'o $\mu=4{,}18$, consistente con el esfuerzo invertido en la interfaz \MVVM y el modelo declarativo de Jetpack Compose; Utilidad Percibida y Actitud hacia el Uso quedaron en niveles muy similares ($\mu=4{,}14$ y $\mu=4{,}13$, respectivamente); Intenci\'on de Uso se situ\'o en $\mu=4{,}12$ con la mayor dispersi\'on ($\sigma=0{,}87$), resultado realista para una medici\'on de primer contacto en la que los participantes reconocen utilidad antes de comprometerse con el uso habitual. La Figura~\ref{fig:tam} sintetiza las medias con intervalos de confianza \emph{bootstrap} del $95\%$.
+	
+	\begin{figure}[t]
+		\centering
+		\begin{tikzpicture}[
+			bar/.style={draw=black!70, fill=black!10},
+			hicol/.style={draw=black!70, fill=black!35},
+			ci/.style={draw=black!70, line width=0.3mm},
+			axis/.style={draw=black!70}
+			]
+			\def\bw{0.7}
+			% idx: 1-5; idx=5 => PS (highlighted)
+			\foreach \idx/\x/\m/\lo/\hival/\lab in {%
+				1/0/4.14/3.87/4.41/PU,
+				2/1.2/4.18/3.95/4.41/PEOU,
+				3/2.4/4.13/3.84/4.42/ATU,
+				4/3.6/4.12/3.78/4.46/ITU,
+				5/4.8/4.29/4.01/4.57/PS}{
+				\ifnum\idx=5
+				\draw[hicol] (\x,0) rectangle ({\x+\bw},\m);
+				\else
+				\draw[bar] (\x,0) rectangle ({\x+\bw},\m);
+				\fi
+				% 95\% CI error bars
+				\draw[ci] ({\x+\bw/2},\lo) -- ({\x+\bw/2},\hival);
+				\draw[ci] ({\x+\bw/2-0.08},\lo) -- ({\x+\bw/2+0.08},\lo);
+				\draw[ci] ({\x+\bw/2-0.08},\hival) -- ({\x+\bw/2+0.08},\hival);
+				\node[font=\scriptsize] at ({\x+\bw/2},{\hival+0.2}) {\m};
+				\node[font=\scriptsize] at ({\x+\bw/2},-0.25) {\lab};
+			}
+			\draw[axis] (-0.2,0) -- (5.8,0);
+			\draw[axis] (-0.2,0) -- (-0.2,5.2);
+			\foreach \y in {1,2,3,4,5}{
+				\draw[axis] (-0.3,\y) -- (-0.2,\y);
+				\node[font=\scriptsize] at (-0.5,\y) {\y};
+			}
+			\draw[dashed, red!70!black, thick] (-0.2,3.5) -- (5.8,3.5);
+			\node[font=\scriptsize, red!70!black, anchor=west] at (4.7,3.75) {Threshold $= 3.5$};
+			\node[font=\scriptsize, rotate=90] at (-1.0,2.6) {Likert mean score (1--5)};
+		\end{tikzpicture}
+		\caption{Per-construct mean scores with 95\% bootstrap confidence intervals ($n=25$, 5000 resamples). PS is highlighted as the highest-scoring construct.}
+		\label{fig:tam}
+	\end{figure}
+	
+	Los coeficientes de fiabilidad por constructo fueron PU $\alpha=0{,}940$, PEOU $\alpha=0{,}935$, ATU $\alpha=0{,}968$, ITU $\alpha=0{,}978$ y PS $\alpha=0{,}964$, con una $\alpha$ de Cronbach global de $0{,}986$. \textbf{Somos conscientes de que un $\alpha$ tan alto, combinado con correlaciones de Pearson superiores a $0{,}94$, es indicativo de multicolinealidad elevada y posible efecto halo}; por ese motivo reportamos tambi\'en los diagn\'osticos de validez discriminante. Las correlaciones de Pearson entre constructos fueron uniformemente altas y estad\'isticamente significativas ($p<0{,}001$). PU correlacion\'o $r=0{,}950$ con ATU, $r=0{,}958$ con ITU y $r=0{,}959$ con PS; ITU correlacion\'o $r=0{,}968$ con ATU. El chequeo de Spearman reporta coeficientes dentro de $0{,}01$ de los de Pearson, lo que sugiere que las relaciones no son artefacto de la forma distribucional. La prueba Shapiro-Wilk rechaz\'o normalidad al nivel $\alpha=0{,}05$ solo para ITU, el constructo con mayor dispersi\'on. Los intervalos de confianza \emph{bootstrap} al $95\%$ confirman que las cinco tendencias centrales se encuentran por encima del umbral de $3{,}5$ con un margen mayor que la amplitud del intervalo.
+	
+	\paragraph{Diagn\'ostico de validez discriminante.} La Tabla~\ref{tab:htmt} reporta los ratios HTMT entre todos los pares de constructos. El HTMT medio fue $0{,}91$, con un m\'aximo de $0{,}97$ (ITU-ATU). \textbf{Este valor \emph{no} cumple el criterio estricto de \citet{henseler2015htmt} ($\text{HTMT}<0{,}85$) en ninguno de los pares}. El criterio de \citet{fornell1981ave} exhibe el mismo patr\'on. La interpretaci\'on adecuada es que, con $n=25$ y una poblaci\'on de primer contacto, los cinco constructos no son emp\'iricamente separables; es decir, los participantes responden con un patr\'on global muy coherente pero no discriminan con precisi\'on entre las dimensiones del \TAM extendido. Interpretamos esto como una limitaci\'on de dise\~no de la evaluaci\'on que se aborda en la Secci\'on~\ref{sec:threats} y en el trabajo futuro.
+	
+	\begin{table}[t]
+		\caption{Heterotrait-Monotrait (HTMT) ratio matrix between the five \TAM constructs. All values exceed the strict 0.85 threshold of \citet{henseler2015htmt}, suggesting weak discriminant validity at $n=25$.}
+		\label{tab:htmt}
+		\centering
+		\small
+		\begin{tabular*}{\tblwidth}{@{}LLLLLL@{}}
+			\toprule
+			& PU   & PEOU & ATU  & ITU  & PS   \\
+			\midrule
+			PU    & --   & 0.89 & 0.95 & 0.96 & 0.96 \\
+			PEOU  &      & --   & 0.88 & 0.85 & 0.86 \\
+			ATU   &      &      & --   & 0.97 & 0.94 \\
+			ITU   &      &      &      & --   & 0.93 \\
+			PS    &      &      &      &      & --   \\
+			\bottomrule
+		\end{tabular*}
+	\end{table}
+	
+	% ==================================================================
+	\section{Discusi\'on}\label{sec:discussion}
+	% ==================================================================
+	
+	Los resultados se discuten frente a cada una de las cinco brechas identificadas en la Secci\'on~\ref{sec:rw-summary}, para despu\'es desarrollar expl\'icitamente las amenazas a la validez del estudio.
+	
+	\emph{Brecha de integraci\'on.} Hasta donde sabemos, y respaldado por la Tabla~\ref{tab:comparative}, \RUTAI es el primer sistema m\'ovil que unifica alternancia de rutas, recordatorios geocercados y monitoreo colaborativo en tiempo real bajo una arquitectura basada en componentes. Las altas correlaciones entre constructos del \TAM ---aunque estad\'isticamente problem\'aticas para la validez discriminante, como discutimos abajo--- apuntan a que la experiencia se percibe como coherente y no como tres aplicaciones flojamente acopladas, en contraste con el paisaje fragmentado documentado por \citet{paiva2021smartmobility} y \citet{kung2023lbs}.
+	
+	\emph{Brecha de escasez de datos.} Mientras que la literatura de aprendizaje autom\'atico en transporte inteligente \citep{yuan2022mlits,liu2022multimodal,zhang2025drlnavigation} demanda grandes conjuntos de datos y ciclos de entrenamiento extensos, \RUTAI emplea un \UCB \citep{bouneffouf2020mabsurvey,auer2002ucb,zeng2016mab} que aprende por destino y por persona, sin arranque en fr\'io m\'as all\'a de la fase inicial de exploraci\'on (l\'ineas 3--4 del Algoritmo~\ref{alg:ucb}). Esta elecci\'on de dise\~no encaja con las condiciones de escasez de datos de ciudades medianas y es compatible con la direcci\'on federada explorada por \citet{shi2021fedmab}. La comparaci\'on directa con Thompson sampling \citep{chapelle2011thompson}, Tabla~\ref{tab:tech-results}, muestra una ventaja marginal a favor de \RUTAI; una diferencia peque\~na pero consistente y alineada con lo que la literatura predice \citep{auer2002ucb,chapelle2011thompson}.
+	
+	\emph{Brecha de ruteo orientado a seguridad.} Los recomendadores tradicionales optimizan tiempo o costo \citep{campigotto2017favour,guo2021online}, mientras que la diversificaci\'on es un objetivo distintivo de seguridad. Una observaci\'on leg\'itima del revisor fue que una recompensa binaria ``aceptar/rechazar la recomendaci\'on'' tender\'ia a colapsar en la ruta m\'as familiar. Por eso incorporamos el t\'ermino de regularizaci\'on por entrop\'ia de la Ecuaci\'on~\ref{eq:ucb}, que convierte expl\'icitamente la diversificaci\'on en objetivo. La medici\'on directa confirma el efecto: la entrop\'ia de Shannon de rutas por usuario casi se duplica ($1{,}38$ bits frente a $0{,}71$ bits). Este resultado cuantitativo sostiene ---por primera vez en esta l\'inea--- el v\'inculo te\'orico entre diversificaci\'on algor\'itmica y Seguridad Percibida ($\mu=4{,}29$), consistente con los hallazgos de mapa de seguridad de \citet{kim2025crimesafetymap} pero obtenidos sin requerir datasets criminol\'ogicos curados.
+	
+	\emph{Brecha de privacidad en tiempo real.} Los grupos sobre WebSocket de \RUTAI atienden un hueco dejado abierto por las plataformas que priorizan privacidad como \citet{mckenzie2022privyto} y \citet{shokri2014mobicrowd}: ofrecen privacidad s\'olida pero carecen de comunicaci\'on grupal en tiempo real con acuses de lectura. El compromiso de \RUTAI es pertenencia con consentimiento expl\'icito, almacenamiento ef\'imero de pings en Redis (TTL de 5 minutos) y ausencia de identificadores publicitarios de terceros, lo que es un punto intermedio pragm\'atico y coherente con la taxonom\'ia de privacidad de \citet{li2017locsharing}.
+	
+	\emph{Brecha de evaluaci\'on.} Extender \TAM con Seguridad Percibida como constructo de primera clase no es una nota metodol\'ogica menor sino una necesidad contextual en ciudades con alta percepci\'on de inseguridad \citep{tapia2024inseguridad,maloney2025worldbank,inegi2024ensu}. La fiabilidad excelente del instrumento y el hecho de que PS presente la distribuci\'on m\'as compacta sugieren que este constructo se percibe de forma muy consistente. Sin embargo, los diagn\'osticos de validez discriminante de la Tabla~\ref{tab:htmt} muestran que, con $n=25$, los cinco constructos no son emp\'iricamente separables (HTMT medio $=0{,}91$), limitaci\'on que tratamos expl\'icitamente a continuaci\'on.
+	
+	\subsection{Amenazas a la validez}\label{sec:threats}
+	
+	Siguiendo el esquema de \citet{wohlin2012experimentation}, evaluamos cuatro clases de amenazas. \emph{Validez de constructo}: la extensi\'on del \TAM cl\'asico con Seguridad Percibida es justificable, pero los ratios HTMT y el $\alpha$ global superior a $0{,}98$ indican que los cinco constructos capturan una variable latente compartida m\'as de lo que discriminan entre s\'i; el efecto halo con $n$ peque\~no es una explicaci\'on plausible. La mitigaci\'on es replicar con $n\geq 100$ y aplicar an\'alisis factorial confirmatorio con PLS-SEM. \emph{Validez interna}: el protocolo de validaci\'on con el investigador presente podr\'ia sesgar las respuestas por deseabilidad social; lo mitigaremos con administraci\'on a distancia y an\'alisis doble ciego en trabajo futuro. \emph{Validez externa}: un $n=25$ en una sola ciudad y en un rango etario acotado (21--30 a\~nos) limita la generalizaci\'on; una replicaci\'on multiciudad con muestreo estratificado est\'a ya planificada. \emph{Validez de conclusi\'on}: la significaci\'on estad\'istica con $n=25$ es fr\'agil; por eso reportamos intervalos \emph{bootstrap} y pruebas no param\'etricas. El hallazgo de que los cinco constructos superan el umbral de $3{,}5$ es robusto, pero las relaciones estructurales finas requieren replicaci\'on para ser interpretadas causalmente. Una limitaci\'on adicional es el sesgo de novedad: la evaluaci\'on es de primer contacto y la Seguridad Percibida puede erosionarse con el uso habitual, raz\'on por la que est\'a previsto un estudio longitudinal.
+	
+	Finalmente, el dise\~no de \RUTAI complementa y, en aspectos espec\'ificos, coincide con la literatura reciente: el geocercado compuesto de \citet{garzon2014geofencing} y las exigencias de expresividad de \citet{wang2015beyond} motivaron nuestro modelo de tuplas; la gu\'ia metodol\'ogica de \citet{shevchenko2024geofencing} fue clave para evitar los problemas de consumo de bater\'ia. Donde la literatura empuja hacia el aprendizaje por refuerzo profundo \citep{zhang2025drlnavigation}, elegimos deliberadamente un bandido interpretable porque la interpretabilidad y la robustez al arranque en fr\'io son cr\'iticos para el despliegue en el contexto estudiado.
+	
+	% ==================================================================
+	\section{Conclusiones y trabajo futuro}\label{sec:conclusion}
+	% ==================================================================
+	
+	\subsection{Conclusiones}\label{sec:conclusions}
+	
+	Este trabajo present\'o \RUTAI, un marco m\'ovil basado en componentes que integra alternancia de rutas con aprendizaje por bandidos, recordatorios geocercados y monitoreo colaborativo en un \'unico sistema ubicuo; lo evalu\'o con un banco de pruebas t\'ecnicas reproducibles y un estudio de aceptaci\'on con un \TAM extendido. Alineando las conclusiones con los objetivos y contribuciones de la Secci\'on~\ref{sec:contrib}:
+	
+	\begin{enumerate}
+		\item \emph{Arquitectura integrada.} El proceso \CBSE deriv\'o en un dise\~no Android + FastAPI modular en el que los tres m\'odulos son independientemente evolucionables pero mutuamente conscientes, confirmando en el escenario ubicuo-m\'ovil las reclamaciones sobre reutilizaci\'on por componentes de \citet{khan2022cbse} y \citet{coullon2024cbse}.
+		\item \emph{Personalizaci\'on por bandido con diversificaci\'on expl\'icita.} La formulaci\'on \UCB con regularizaci\'on por entrop\'ia (Ecuaci\'on~\ref{eq:ucb}) entrega adaptaci\'on por destino sin grandes corpus de entrenamiento y simult\'aneamente \emph{duplica} la entrop\'ia de rutas por usuario, aportando una alternativa desplegable a los recomendadores basados en aprendizaje profundo revisados por \citet{yuan2022mlits} y \citet{liu2022multimodal}, y compatible con extensiones federadas \citep{shi2021fedmab}. Frente a Thompson sampling \citep{chapelle2011thompson} la diferencia es marginal pero consistente, en l\'inea con las garant\'ias te\'oricas de \citet{auer2002ucb}.
+		\item \emph{Geocercado compuesto.} El modelo de recordatorios en tupla y el servicio de muestreo GPS adaptativo soportan disparadores compuestos de tiempo y espacio, extendiendo la expresividad identificada como necesaria por \citet{wang2015beyond} y operacionalizando la gu\'ia metodol\'ogica de \citet{shevchenko2024geofencing}, con un consumo energ\'etico medido un $57{,}2\%$ inferior al del muestreo continuo.
+		\item \emph{Seguimiento en tiempo real consciente de privacidad.} Los grupos sobre WebSocket reconcilian el desider\'atum de privacidad de \citet{li2017locsharing}, \citet{shokri2014mobicrowd} y \citet{mckenzie2022privyto} con la necesidad de comunicaci\'on grupal oportuna, que esos dise\~nos dejan abierta.
+		\item \emph{Banco de pruebas t\'ecnico reproducible.} Por primera vez en esta l\'inea, se reporta simult\'aneamente regret, diversificaci\'on, latencia, consumo energ\'etico y precisi\'on de geofencing bajo un protocolo unificado; todos los NFRs comprometidos en la Tabla~\ref{tab:requirements} se cumplen.
+		\item \emph{Aceptaci\'on de usuario con diagn\'ostico honesto.} Los cinco constructos \TAM superaron el umbral de $3{,}5$; Seguridad Percibida obtuvo la media m\'as alta ($\mu=4{,}29$) y la distribuci\'on m\'as compacta. No obstante, el HTMT medio de $0{,}91$ indica validez discriminante d\'ebil con $n=25$, limitaci\'on que se aborda en el trabajo futuro.
+	\end{enumerate}
+	
+	Donde nuestra evidencia cuestiona la presuposici\'on impl\'icita en parte de la literatura ---de que los recomendadores de rutas \emph{deben} optimizar tiempo o costo---, nuestro resultado de Seguridad Percibida sugiere que la diversificaci\'on es un objetivo igualmente v\'alido cuando la percepci\'on de seguridad importa, coincidente con los estudios emp\'iricos de movilidad de \citet{cagney2025urban} y \citet{liu2022route}.
+	
+	\subsection{Limitaciones y trabajo futuro}\label{sec:future}
+	
+	El trabajo futuro se organiza primero para superar las limitaciones actuales y despu\'es para ampliar funcionalidades:
+	
+	\begin{enumerate}
+		\item \emph{Superar las limitaciones actuales.} (a)~\textbf{Validez discriminante}: replicar el estudio con $n\geq 100$ en tres ciudades distintas y aplicar PLS-SEM para rehabilitar la estructura del \TAM extendido. (b)~\textbf{Ventana de observaci\'on corta}: el estudio actual capt\'o impresiones de primer encuentro; est\'a programado un estudio longitudinal para observar si la Seguridad Percibida se mantiene, aumenta o disminuye con uso habitual, como recomienda \citet{cagney2025urban}. (c)~\textbf{Alcance muestral}: $n=25$ limita la generalizaci\'on; una r\'eplica multiciudad con muestreo estratificado est\'a calendarizada. (d)~\textbf{Prototipo monoplataforma}: s\'olo Android est\'a actualmente soportado; un cliente iOS que reutilice los mismos contratos REST/WebSocket est\'a planeado.
+		\item \emph{Nuevas funcionalidades y aspectos no cubiertos.} (a)~Integraci\'on de \textbf{datos criminol\'ogicos} (densidad de incidencias por zona) para que la recompensa del bandido incorpore seguridad objetiva por zona, extendiendo el dise\~no de \citet{kim2025crimesafetymap}. (b)~\textbf{Canal de reportes generados por la ciudadan\'ia} que realimente el m\'odulo de rutas con incidentes contextuales (tr\'afico, condiciones de la v\'ia), inspirado en los dise\~nos de sensado participativo revisados por \citet{paiva2021smartmobility}. (c)~Exploraci\'on de \textbf{bandidos multibrazo federados} \citep{shi2021fedmab} para aprender a trav\'es de usuarios preservando la privacidad. (d)~Evaluaci\'on de \textbf{pol\'iticas de aprendizaje por refuerzo profundo} \citep{zhang2025drlnavigation} como extensiones opcionales para usuarios avanzados con datos m\'as ricos.
+	\end{enumerate}
+	
+	% ---------- Credit authorship statements --------------------------
+	\printcredits
+	
+	% ---------- Declarations ------------------------------------------
+	\section*{Declaraci\'on de conflicto de intereses}
+	Las personas autoras declaran no tener intereses financieros conocidos ni relaciones personales que pudieran haber influido en el trabajo reportado en este art\'iculo.
+	
+	\section*{Disponibilidad de datos}
+	El c\'odigo fuente de \RUTAI, las respuestas anonimizadas del cuestionario del estudio de aceptaci\'on, el cuestionario completo y la trazabilidad requisitos-entrevistas estar\'an disponibles a solicitud razonable al autor para correspondencia.
+	
+	\section*{Agradecimientos}
+	Las personas autoras agradecen al equipo HeiGIT Smart Mobility de la Universidad de Heidelberg por conceder acceso extendido a la API de OpenRouteService durante el desarrollo, y a las personas participantes del estudio de aceptaci\'on por su tiempo y retroalimentaci\'on.
+	
+	% ---------- Bibliography ------------------------------------------
+	\bibliographystyle{cas-model2-names}
+	\bibliography{rutai-refs}
+	
+\end{document}
