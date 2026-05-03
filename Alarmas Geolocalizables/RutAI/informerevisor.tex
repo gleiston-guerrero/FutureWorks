@@ -1,12 +1,12 @@
 %% =============================================================
-%%  Informe de revisi\'on y hoja de ruta de investigaci\'on
-%%  para el manuscrito RutAI (R1)
-%%  Formato: art\'iculo autocontenido, compilable con pdflatex
+%%  Informe combinado de revisi\'on JCR Q1/Q2
+%%  Documento: RutAI --- Pervasive and Mobile Computing (R2)
+%%  Formato: autocontenido, compilable con pdflatex
 %% =============================================================
 
 \documentclass[11pt,a4paper]{article}
 
-% -- Codificaci\'on y fuentes (primero siempre)
+% -- Codificaci\'on y fuentes
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -19,638 +19,559 @@
 \usepackage{microtype}
 \usepackage{parskip}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.5em}
+\setlength{\parskip}{0.55em}
 
 % -- Tablas y listas
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{longtable}
+\usepackage{tabularx}
 \usepackage{enumitem}
-\setlist[itemize]{leftmargin=*, topsep=2pt, itemsep=2pt}
-\setlist[enumerate]{leftmargin=*, topsep=2pt, itemsep=2pt}
-\setlist[description]{leftmargin=0pt, labelindent=0pt}
+\setlist[itemize]{leftmargin=*, topsep=2pt, itemsep=3pt}
+\setlist[enumerate]{leftmargin=*, topsep=2pt, itemsep=3pt}
 
-% -- Cajas destacadas para veredicto/recomendaciones
+% -- Cajas destacadas
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{skins,breakable}
 
-\newtcolorbox{verdictbox}[1][]{
-	enhanced, breakable,
-	colback=gray!6, colframe=black!70,
-	boxrule=0.4pt, arc=2pt,
-	left=8pt, right=8pt, top=6pt, bottom=6pt,
-	fonttitle=\bfseries,
-	title={#1}
+\newtcolorbox{deficiencia}[1][]{
+  enhanced, breakable,
+  colback=red!3, colframe=red!55!black,
+  boxrule=0.5pt, arc=2pt,
+  left=9pt, right=9pt, top=6pt, bottom=6pt,
+  fonttitle=\bfseries\small,
+  title={#1}
 }
 
-\newtcolorbox{actionbox}[1][]{
-	enhanced, breakable,
-	colback=blue!3, colframe=blue!40!black,
-	boxrule=0.4pt, arc=2pt,
-	left=8pt, right=8pt, top=6pt, bottom=6pt,
-	fonttitle=\bfseries\small,
-	title={#1}
+\newtcolorbox{abordaje}[1][]{
+  enhanced, breakable,
+  colback=green!3, colframe=green!40!black,
+  boxrule=0.5pt, arc=2pt,
+  left=9pt, right=9pt, top=6pt, bottom=6pt,
+  fonttitle=\bfseries\small,
+  title={#1}
 }
 
-% -- Encabezados y pies
+\newtcolorbox{verdicto}[1][]{
+  enhanced, breakable,
+  colback=gray!8, colframe=black!70,
+  boxrule=0.5pt, arc=2pt,
+  left=9pt, right=9pt, top=7pt, bottom=7pt,
+  fonttitle=\bfseries,
+  title={#1}
+}
+
+% -- Encabezados
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small Informe t\'ecnico de revisi\'on --- RutAI R1}
+\fancyhead[L]{\small Informe combinado JCR Q1/Q2 --- RutAI (R2)}
 \fancyhead[R]{\small \thepage}
-\fancyfoot[C]{\small Elaborado como revisor senior JCR Q1/Q2}
+\fancyfoot[C]{\small Revisor senior + investigador senior en Ciencias de la Computaci\'on}
 \renewcommand{\headrulewidth}{0.3pt}
 
 % -- Hyperref al final
-\usepackage[hidelinks, colorlinks=false]{hyperref}
+\usepackage[hidelinks]{hyperref}
 
-% -- T\'itulos de secci\'on m\'as compactos
+% -- Estilo de secciones compacto
 \usepackage{titlesec}
 \titleformat*{\section}{\large\bfseries}
 \titleformat*{\subsection}{\normalsize\bfseries}
 \titleformat*{\subsubsection}{\normalsize\itshape}
 
-% -- C\'odigo en l\'inea
-\usepackage{listings}
-\lstset{
-	basicstyle=\ttfamily\footnotesize,
-	breaklines=true,
-	frame=single,
-	framerule=0.2pt,
-	rulecolor=\color{black!40},
-	backgroundcolor=\color{gray!5},
-	xleftmargin=0.5em,
-	xrightmargin=0.5em,
-	aboveskip=0.5em,
-	belowskip=0.5em
-}
+% -- Color
 \usepackage{xcolor}
-\usepackage{xspace}
 
 % =============================================================
-\title{Informe de revisi\'on por pares \\ y hoja de ruta de investigaci\'on \\[6pt]
-	\large Manuscrito: \emph{RutAI --- A Component-Based Mobile Framework}}
-\author{Revisor senior \\ Revista objetivo: \emph{Pervasive and Mobile Computing} (Elsevier, JCR Q2)}
+\title{Informe combinado de revisi\'on por pares \\
+       y directrices de investigaci\'on \\[6pt]
+       \large Manuscrito: \emph{RutAI --- A Component-Based Mobile Framework for\\ Safer Urban Mobility} (versi\'on R2)}
+\author{Rol ejercido: par revisor senior JCR Elsevier \\ complementado con el rol de investigador senior}
 \date{Abril 2026}
 
-\newcommand{\RUTAI}{RutAI\xspace}
-\newcommand{\GPS}{GPS\xspace}
-\newcommand{\IOT}{IoT\xspace}
-\newcommand{\LBS}{LBS\xspace}
-\newcommand{\POI}{POI\xspace}
-\newcommand{\UCB}{UCB\xspace}
-\newcommand{\MAB}{MAB\xspace}
-\newcommand{\TAM}{TAM\xspace}
-\newcommand{\CBSE}{CBSE\xspace}
-\newcommand{\MVVM}{MVVM\xspace}
-
-
 \begin{document}
-	\maketitle
-	
-	\begin{verdictbox}[Recomendaci\'on global]
-		\textbf{Major Revision} (segunda ronda). El manuscrito ha mejorado sustancialmente respecto a iteraciones previas, pero persisten brechas evidenciales serias que impiden una aceptaci\'on directa.
-	\end{verdictbox}
-	
-	\tableofcontents
-	\vspace{1em}
-	
-	% =============================================================
-	\part*{PARTE I --- Informe de evaluador}
-	\addcontentsline{toc}{section}{PARTE I --- Informe de evaluador}
-	% =============================================================
-	
-	\section{Fortalezas reconocidas}
-	
-	Antes de las cr\'iticas es justo reconocer lo que el manuscrito hace bien:
-	
-	\begin{itemize}
-		\item Estructura IMRaD extendida correcta y alineada con Elsevier CAS.
-		\item Redacci\'on en espa\~nol de alta calidad, tono humanizado apropiado.
-		\item Bibliograf\'ia verificable con DOIs reales (48 entradas).
-		\item Honestidad intelectual al reportar HTMT$>0{,}85$ y reconocer fallo de validez discriminante.
-		\item Reformulaci\'on del UCB con t\'ermino de entrop\'ia como aporte genuino y medible.
-		\item Integraci\'on de tres m\'odulos (bandit + geofencing + WebSocket) efectivamente \'unica en la literatura revisada.
-	\end{itemize}
-	
-	\section{Observaciones cr\'iticas bloqueantes}
-	
-	\subsection{El banco de pruebas t\'ecnico no es reproducible con la informaci\'on dada}
-	
-	La Secci\'on 3.2.7 promete un protocolo reproducible, pero la Tabla~6 reporta cifras sin:
-	
-	\begin{itemize}
-		\item \textbf{Descripci\'on del ``perfil sint\'etico derivado de trazas reales anonimizadas''} --- ?`qu\'e trazas?, ?`de d\'onde?, ?`cu\'antos usuarios?, ?`cu\'antos destinos?, ?`qu\'e recompensa real se us\'o para simular la respuesta del usuario frente a cada brazo?
-		\item \textbf{Funci\'on de recompensa del entorno simulado}: sin ella, el n\'umero de regret es irreproducible. Un revisor no puede verificar $153{,}6\pm 9{,}8$ sin saber contra qu\'e \'optimo se midi\'o.
-		\item \textbf{Par\'ametros exactos de cada baseline}: prior de Thompson sampling (?`$\beta(1,1)$?, ?`Gaussiano?), semilla inicial, horizonte de la ventana de entrop\'ia, tama\~no de la malla para $\lambda$.
-		\item \textbf{C\'odigo ni dataset liberados}: ``disponibles a solicitud razonable'' es inaceptable en PMC desde 2023. Se exige DOI p\'ublico (Zenodo/Figshare).
-	\end{itemize}
-	
-	\subsection{Las mediciones de latencia y energ\'ia carecen de condiciones de contorno}
-	
-	La Secci\'on 4.1 reporta ``latencia p95 de REST 312\,ms'', pero no especifica:
-	
-	\begin{itemize}
-		\item \textbf{Red de prueba} (Wi-Fi dom\'estica, 4G simulada, 5G, latencia local al servidor Render.com desde Ecuador/Espa\~na).
-		\item \textbf{Distribuci\'on geogr\'afica} del cliente respecto al servidor: un servidor en Render.com US-East genera $\sim$150\,ms de RTT base desde Ecuador, lo que explica $\geq 50\%$ de los 312\,ms reportados.
-		\item \textbf{Carga concurrente real} cuando se midi\'o (100 usuarios simult\'aneos en Locust, pero ?`tasa de arribo?, ?`patr\'on \emph{think-time}?).
-		\item \textbf{\emph{Warm-up} del JIT y base de datos}: si los primeros 500 requests se incluyeron, el p95 est\'a contaminado.
-	\end{itemize}
-	
-	\subsection{El consumo de bater\'ia es anecd\'otico, no medici\'on rigurosa}
-	
-	``Tres sesiones de dos horas'' con $n=1$ dispositivo (Pixel~7) \textbf{no es una medici\'on, es una observaci\'on}. Se requiere:
-	
-	\begin{itemize}
-		\item \textbf{$N\geq 5$ dispositivos} cubriendo gama baja, media y alta (Android Go, \emph{midrange} y \emph{flagship}).
-		\item \textbf{Control de variables}: brillo de pantalla fijo, modo avi\'on para aislar GPS, temperatura ambiente controlada.
-		\item \textbf{Replicaci\'on suficiente} para reportar intervalo de confianza de energ\'ia; tres sesiones dan $\pm\sigma$ pero no un IC cre\'ible.
-		\item \textbf{Comparaci\'on ortogonal}: no s\'olo continuo vs. adaptativo, sino tambi\'en frente a las APIs nativas de Android (FusedLocationProvider con \texttt{PRIORITY\_BALANCED\_POWER\_ACCURACY}), que es la baseline industrial real.
-	\end{itemize}
-	
-	\subsection{La precisi\'on del geofencing es potencialmente enga\~nosa}
-	
-	La Tabla~6 reporta $94{,}1\%$ a 100\,m, $89{,}2\%$ a 50\,m y $71{,}4\%$ a 25\,m. Tres problemas:
-	
-	\begin{itemize}
-		\item S\'olo se reporta \textbf{recall}, no \textbf{precisi\'on} ni \textbf{F1} ni \textbf{latencia del trigger} (tiempo desde el cruce real hasta la notificaci\'on). Para una app de seguridad, un trigger que llega 45\,s tarde es in\'util.
-		\item \textbf{No hay desglose por velocidad}: $71{,}4\%$ a 25\,m y 8,3\,m/s significa que el dispositivo atraviesa la cerca en $\sim$3\,s: ?`cu\'antos fallos se deben a muestreo insuficiente vs. error de GPS?
-		\item \textbf{150 cruces es muestra peque\~na} para un IC sobre una proporci\'on; la amplitud del IC de Wilson a $71{,}4\%$ con $n=50$ es $\pm 12{,}5$ puntos.
-	\end{itemize}
-	
-	\subsection{El estudio TAM es d\'ebil y los autores lo reconocen, pero no ofrecen plan estad\'istico s\'olido de rescate}
-	
-	El reconocimiento honesto del HTMT$>0{,}85$ es apropiado, pero:
-	
-	\begin{itemize}
-		\item Se promete replicaci\'on con $n\geq 100$ \textbf{como trabajo futuro}, no como parte de la revisi\'on. Un revisor estricto exigir\'a los datos ahora.
-		\item \textbf{Sin validez discriminante}, las correlaciones reportadas ($r>0{,}94$) no son informativas: miden la misma cosa cinco veces.
-		\item \textbf{El instrumento necesita reformulaci\'on}: los \'items por constructo probablemente solapan sem\'anticamente. Hay que refinar la operacionalizaci\'on de cada dimensi\'on, especialmente Seguridad Percibida vs. Utilidad Percibida.
-	\end{itemize}
-	
-	\subsection{La afirmaci\'on de ``safer urban mobility'' en el t\'itulo no est\'a demostrada emp\'iricamente}
-	
-	El t\'itulo promete \emph{mobility m\'as segura}. Los resultados ofrecen:
-	
-	\begin{itemize}
-		\item Percepci\'on de seguridad (TAM-PS) $\neq$ seguridad real.
-		\item Entrop\'ia de rutas mayor $\neq$ reducci\'on medida de incidentes.
-	\end{itemize}
-	
-	\textbf{Falta el experimento que cierre el bucle}: un estudio longitudinal con usuarios reales comparando tasa de victimizaci\'on, ansiedad auto-reportada, o al menos reducci\'on de predictibilidad en un uso sostenido de $\geq 4$ semanas.
-	
-	\section{Observaciones mayores}
-	
-	\subsection{Las entrevistas de requisitos (\texorpdfstring{$n=5$}{n=5}) siguen siendo fr\'agiles}
-	
-	Mencionar a Guest et al. (2006) sobre saturaci\'on tem\'atica no reemplaza alcanzar esa saturaci\'on. Se requieren \textbf{al menos 12 entrevistas} con muestreo te\'oricamente diverso (g\'enero, edad, modalidad de transporte, nivel de inseguridad percibida).
-	
-	\subsection{No hay an\'alisis de sensibilidad al par\'ametro \texorpdfstring{$\lambda$}{lambda} de la regularizaci\'on por entrop\'ia}
-	
-	Se fija $\lambda=0{,}25$ ``mediante b\'usqueda en malla sobre un conjunto piloto'', pero no se reporta la malla, el criterio de optimalidad ni una curva $\lambda$ vs. regret/entrop\'ia. Un revisor pedir\'a esa tabla porque $\lambda$ determina si el aporte existe.
-	
-	\subsection{Ausencia total de capturas de pantalla de la app real}
-	
-	Para una publicaci\'on en PMC sobre un sistema m\'ovil, \textbf{se espera ver el sistema}. El manuscrito s\'olo tiene tres diagramas TikZ vectoriales. Faltan:
-	
-	\begin{itemize}
-		\item Captura de la pantalla de selecci\'on de ruta (con las tres alternativas UCB).
-		\item Captura del mapa con geocerca activa.
-		\item Captura del grupo colaborativo con pings en tiempo real.
-	\end{itemize}
-	
-	\subsection{\texttt{\textbackslash printcredits} duplica informaci\'on y los ORCID son \emph{placeholder}}
-	
-	Los ORCID \texttt{0000-0000-0000-0000} no son v\'alidos para Editorial Manager de Elsevier y delatan que el env\'io no se ha preparado.
-	
-	\subsection{Faltan declaraciones obligatorias de Elsevier 2024}
-	
-	\begin{itemize}
-		\item Declaraci\'on de uso de IA generativa (pol\'itica Elsevier obligatoria desde 2023).
-		\item Declaraci\'on CRediT completa (aunque los autores ya asignaron roles, falta formalizar \emph{``All authors read and approved the final manuscript''}).
-		\item N\'umero de aprobaci\'on del Comit\'e de \'Etica para el estudio con $n=25$ (ausente).
-	\end{itemize}
-	
-	\subsection{La Figura 4 mezcla lo num\'erico con lo textual de manera sub\'optima}
-	
-	Las etiquetas $4{,}14$, $4{,}18$, etc. sobre las barras son innecesarias cuando ya est\'an en la Tabla~7. Mejor: un \emph{violin plot} o \emph{dot plot} que muestre los 25 puntos individuales con \emph{overlay} del IC.
-	
-	\section{Observaciones menores}
-	
-	\begin{itemize}
-		\item \textbf{Veredicto del idioma}: el manuscrito oscila entre espa\~nol para el cuerpo e ingl\'es para las figuras y tablas. Esto es inusual. Si se env\'ia a PMC (anglo), debe estar \textbf{todo en ingl\'es}; si se env\'ia a una revista hispanohablante, todo en espa\~nol.
-		\item ``\emph{Una observaci\'on leg\'itima del revisor fue\ldots}'' en la Secci\'on 3.2.3 rompe la cuarta pared. Eliminar; integrar la justificaci\'on como fundamento te\'orico propio.
-		\item Acr\'onimos \texttt{LBS}, \texttt{IoT}, \texttt{POI}, \texttt{GPS} definidos con \texttt{\textbackslash newcommand} pero \textbf{no usados} en el cuerpo. Eliminar o usarlos.
-		\item El t\'itulo corto (``RutAI: AI-driven geolocated alarms\ldots'') no coincide con el t\'itulo principal; unificar.
-		\item La Tabla~6 mezcla unidades heterog\'eneas (ms, mAh/h, bits, \%) sin columna expl\'icita de unidad, confuso para el lector.
-	\end{itemize}
-	
-	\section{Veredicto}
-	
-	\begin{verdictbox}[Veredicto final]
-		\textbf{Major revision.} El trabajo tiene m\'erito y se ha fortalecido considerablemente, pero no alcanza a\'un el umbral para JCR Q1/Q2 por: (a)~irreproducibilidad del banco de pruebas, (b)~validez discriminante no resuelta, (c)~ausencia de evaluaci\'on longitudinal en campo real y (d)~falta de evidencia visual del sistema.
-	\end{verdictbox}
-	
-	% =============================================================
-	\clearpage
-	\part*{PARTE II --- Hoja de ruta del investigador senior}
-	\addcontentsline{toc}{section}{PARTE II --- Hoja de ruta del investigador senior}
-	% =============================================================
-	
-	A continuaci\'on expongo, con detalle operativo, \textbf{qu\'e datos faltan, d\'onde obtenerlos y con qu\'e protocolo}. El trabajo se organiza en cinco paquetes priorizados por impacto en la decisi\'on editorial.
-	
-	% =============================================================
-	\section{Paquete A --- Rigor del banco de pruebas del bandido}
-	\label{sec:paq-a}
-	% =============================================================
-	
-	\emph{Prioridad: m\'axima.}
-	
-	\subsection{Construcci\'on del dataset semi-sint\'etico trazable}
-	
-	\textbf{Objetivo:} poder decir con precisi\'on de d\'onde viene cada curva de regret.
-	
-	\begin{actionbox}[A.1.1 --- Datasets p\'ublicos a utilizar]
-		\begin{itemize}
-			\item \emph{GeoLife GPS Trajectories} (Microsoft, 182 usuarios, 5 a\~nos): \\ \url{https://www.microsoft.com/en-us/download/details.aspx?id=52367}
-			\item \emph{Taxi trajectories Porto / San Francisco Cabspotting}: disponible en CRAWDAD.
-			\item \emph{Open Street Cam} / \emph{Mapillary} para condiciones de red.
-			\item Para contexto latinoamericano: solicitar a la EPM de Quevedo o a la Alcald\'ia acceso a datos agregados de movilidad; alternativamente, \emph{Google Community Mobility Reports} (dominio p\'ublico).
-		\end{itemize}
-	\end{actionbox}
-	
-	\begin{actionbox}[A.1.2 --- Simulador determinista con c\'odigo publicado]
-		Definir expl\'icitamente la funci\'on de recompensa del entorno simulado:
-		\begin{lstlisting}[language=Python]
-			r_t(a) = 0.7 * Bern(p_confirm(a | contexto)) + 0.3 * eta(a | contexto)
-			p_confirm(a) = sigmoide(beta0 + beta1*tiempo_esperado + beta2*familiaridad)
-			eta(a) = 1 - |tiempo_real - tiempo_planificado| / tiempo_planificado
-		\end{lstlisting}
-		Publicar en GitHub con \texttt{README}, \emph{tag} \texttt{v1.0.0} y DOI de Zenodo.
-	\end{actionbox}
-	
-	\begin{actionbox}[A.1.3 --- Estad\'istica m\'as robusta]
-		\begin{itemize}
-			\item Incrementar r\'eplicas de 30 a \textbf{100 semillas} para estrechar los IC al 95\%.
-			\item Reportar tambi\'en \textbf{regret por trip} (no s\'olo acumulado).
-			\item A\~nadir an\'alisis de sensibilidad: variar $c\in\{0{,}5, 1, \sqrt{2}, 2\}$, $\lambda\in\{0, 0{,}1, 0{,}25, 0{,}5, 1{,}0\}$, horizonte de entrop\'ia $\in\{5, 10, 20, 50\}$. Presentar como \emph{heatmap} o superficie de respuesta.
-			\item A\~nadir \textbf{contextual bandit LinUCB} (Li et al. 2010) como baseline adicional para demostrar que el UCB no contextual no ``juega en liga inferior''.
-		\end{itemize}
-	\end{actionbox}
-	
-	\textbf{Tiempo estimado:} 3--4 semanas de un investigador dedicado.
-	
-	\subsection{Test estad\'istico formal de la ventaja sobre Thompson sampling}
-	
-	El paper afirma ``$2{,}1\%$ mejor'' sin probar si es significativo. Protocolo sugerido:
-	
-	\begin{itemize}
-		\item Test de Mann-Whitney U pareado por semilla sobre el regret final con $n=100$ r\'eplicas.
-		\item Reportar tama\~no de efecto (\emph{Cliff's delta} o $r$).
-		\item Si la diferencia no es significativa, \textbf{s\'e honesto y dilo}: ``UCB+entrop\'ia es estad\'isticamente indistinguible de Thompson en regret pero superior en entrop\'ia, que es el objetivo expl\'icito''.
-	\end{itemize}
-	
-	% =============================================================
-	\section{Paquete B --- Mediciones de sistema con rigor industrial}
-	\label{sec:paq-b}
-	% =============================================================
-	
-	\emph{Prioridad: cr\'itica.}
-	
-	\subsection{Latencia con condiciones documentadas}
-	
-	\begin{actionbox}[B.1 --- Protocolo de medici\'on de latencia]
-		\textbf{Tres entornos de red}:
-		\begin{itemize}
-			\item LAN local (baseline ideal).
-			\item 4G comercial (Claro/Movistar Ecuador o Vodafone Espa\~na, documentando \emph{throughput} medio).
-			\item Wi-Fi dom\'estico saturado (descarga simult\'anea de 100\,MB como perturbaci\'on).
-		\end{itemize}
-		
-		\textbf{Tres regiones del servidor}: Render US-East, Render Europa (si disponible) y VPS local (Contabo Quito $\sim$5\,ms). Esto aisla el componente de propagaci\'on.
-		
-		\textbf{Patr\'on de carga realista}: \texttt{k6} (preferido sobre Locust) con \emph{think-time} exponencial ($\lambda=1/3$\,s), arribo Poisson, rampa de $10\to 100$ usuarios en 60\,s, medir durante 5\,min de estado estacionario.
-		
-		\textbf{\emph{Warm-up} expl\'icito}: descartar los primeros 30\,s.
-		
-		\textbf{Reporte}: tabla con percentiles p50/p90/p95/p99 $\times$ 3 redes $\times$ 3 regiones, con IC \emph{bootstrap} al 95\%.
-		
-		\textbf{Herramientas}: \texttt{k6}, \texttt{tc netem} para simular latencia y p\'erdida controladas.
-	\end{actionbox}
-	
-	\textbf{Tiempo estimado:} 1 semana.
-	
-	\subsection{Consumo energ\'etico con \texorpdfstring{$n\geq 5$}{n>=5} dispositivos}
-	
-	\begin{actionbox}[B.2 --- Protocolo de energ\'ia]
-		\textbf{Selecci\'on de dispositivos} (m\'inimo 5, ideal 10):
-		\begin{itemize}
-			\item Gama baja: Samsung A04 / Motorola E13 / Xiaomi Redmi A2.
-			\item Gama media: Samsung A34 / Pixel 6a / Motorola G73.
-			\item Gama alta: Pixel 7/8, Samsung S23.
-		\end{itemize}
-		
-		\textbf{Controles experimentales}:
-		\begin{itemize}
-			\item Brillo de pantalla al 50\%, \emph{timeout} de pantalla 30\,s.
-			\item Sin app de fondo consumiendo red.
-			\item Temperatura ambiente $22\pm 2$\,$^\circ$C.
-			\item Bater\'ia al 80--85\% para evitar efectos de extremos.
-		\end{itemize}
-		
-		\textbf{M\'etodo de medici\'on}:
-		\begin{itemize}
-			\item \texttt{adb shell dumpsys batterystats -{}-reset} al inicio.
-			\item Sesi\'on de 2\,h con un gui\'on reproducible: crear recordatorio $\to$ caminar virtual (\texttt{adb shell geo fix}) $\to$ esperar trigger $\to$ repetir cada 15\,min.
-			\item \texttt{adb shell dumpsys batterystats > session.log} al final.
-			\item Battery Historian v2.1 para extraer mAh atribuibles a la app.
-		\end{itemize}
-		
-		\textbf{Baselines adicionales}:
-		\begin{itemize}
-			\item FusedLocationProvider con \texttt{PRIORITY\_BALANCED\_POWER\_ACCURACY}.
-			\item FusedLocationProvider con \texttt{PRIORITY\_HIGH\_ACCURACY}.
-			\item Google Maps en \emph{background} compartiendo ubicaci\'on.
-		\end{itemize}
-		
-		\textbf{An\'alisis estad\'istico}: ANOVA de medidas repetidas (condici\'on $\times$ dispositivo) + post-hoc Tukey HSD.
-	\end{actionbox}
-	
-	\textbf{Tiempo estimado:} 2 semanas (ventana de medici\'on larga).
-	
-	\subsection{Geofencing con precisi\'on + recall + latencia del trigger}
-	
-	\begin{actionbox}[B.3 --- Protocolo de geofencing]
-		\textbf{Conjunto de cercas}: 20 cercas en un barrio real (Quevedo, Granada, etc.), con radios 25/50/100\,m, georreferenciadas con DGPS (precisi\'on $<1$\,m) como \emph{ground truth}.
-		
-		\textbf{Perfiles de velocidad}:
-		\begin{itemize}
-			\item Peatonal lento (1,0\,m/s).
-			\item Peatonal normal (1,4\,m/s).
-			\item Bicicleta (4\,m/s).
-			\item Veh\'iculo urbano (8,3\,m/s).
-			\item Autopista (25\,m/s), opcional.
-		\end{itemize}
-		
-		\textbf{Dise\~no}: por cada combinaci\'on cerca $\times$ radio $\times$ velocidad, m\'inimo \textbf{30 cruces reales} con dispositivo montado en veh\'iculo/bicicleta/persona, con \emph{log} sincronizado.
-		
-		\textbf{M\'etricas a reportar}:
-		\begin{itemize}
-			\item Precisi\'on, recall, F1.
-			\item \textbf{Latencia del trigger}: $\Delta t$ entre cruce real y notificaci\'on.
-			\item Percentiles de latencia p50/p95/p99.
-		\end{itemize}
-		
-		\textbf{N objetivo}: m\'inimo 600 cruces (20 cercas $\times$ 3 radios $\times$ 4 velocidades $\times$ 30 repeticiones, reducible muestralmente si es inabarcable).
-		
-		\textbf{Equipo}: 1 asistente de campo durante 2 semanas; GPS de referencia Emlid Reach o similar ($\sim$500\,USD).
-	\end{actionbox}
-	
-	% =============================================================
-	\section{Paquete C --- Estudio TAM con potencia estad\'istica adecuada}
-	\label{sec:paq-c}
-	% =============================================================
-	
-	\emph{Prioridad: alta.}
-	
-	\subsection{Pre-registro del estudio}
-	
-	Antes de colectar, registrar el dise\~no en OSF (\url{https://osf.io}):
-	
-	\begin{itemize}
-		\item Hip\'otesis primarias y secundarias.
-		\item Criterios de inclusi\'on / exclusi\'on.
-		\item Plan de an\'alisis estad\'istico.
-		\item Umbrales de decisi\'on.
-	\end{itemize}
-	
-	Esto es bien recibido por PMC y eleva la credibilidad del estudio.
-	
-	\subsection{Redise\~no del instrumento TAM}
-	
-	\textbf{Problema actual:} HTMT$>0{,}85$ indica que los \'items no discriminan constructos. Revisi\'on literal de cada \'item:
-	
-	\begin{enumerate}
-		\item \textbf{Revisi\'on de contenido por panel de expertos} (m\'inimo 3 investigadores en HCI) con m\'etodo Lawshe (\emph{Content Validity Ratio}, CVR$\geq 0{,}62$ para $n=10$ jueces).
-		\item \textbf{Refinamiento}: para cada par de constructos con HTMT$>0{,}85$, identificar \'items sem\'anticamente ambiguos y redactarlos para que separen conceptos. Ejemplos:
-		\begin{itemize}
-			\item PU original: ``La app es \'util para mis desplazamientos'' $\to$ comportamental-espec\'ifico: ``La app reduce el tiempo que dedico a planificar mis trayectos''.
-			\item PS original: ``Me siento m\'as seguro usando la app'' $\to$ ``El monitoreo colaborativo me permite verificar si mis familiares llegaron a su destino''.
-		\end{itemize}
-		\item \textbf{Pilotaje con $n=20$}: s\'olo para validar comprensi\'on y tiempo de respuesta, no para inferencia.
-	\end{enumerate}
-	
-	\subsection{Muestra definitiva con potencia suficiente}
-	
-	\textbf{C\'alculo de tama\~no}: para PLS-SEM con 5 constructos y rutas estructurales, m\'inimo $n=10\times$ n\'umero de rutas estructurales m\'as grande (regla de Hair). Con 4--5 rutas $\Rightarrow n\geq 50$. Para efecto peque\~no ($f^2=0{,}15$), potencia $0{,}80$, $\alpha=0{,}05\Rightarrow n\geq 138$ (G*Power~3.1).
-	
-	\textbf{Objetivo realista:} $n=150$ participantes, estratificados:
-	
-	\begin{itemize}
-		\item 3 ciudades (Quevedo, Guayaquil y Quito; o Quevedo, Granada y una tercera).
-		\item 50 por ciudad.
-		\item Estratos por g\'enero (50/50), edad (18--29, 30--44, 45+), modalidad de transporte predominante.
-	\end{itemize}
-	
-	\subsection{Protocolo de administraci\'on}
-	
-	\begin{enumerate}
-		\item \textbf{Doble administraci\'on asincr\'onica} para reducir sesgo del investigador: primera vez presencial breve (15\,min) + 14 d\'ias de uso real + segunda administraci\'on del cuestionario en l\'inea.
-		\item \textbf{Remuneraci\'on simb\'olica} (bono de datos m\'oviles, $\sim$5\,USD) para incentivar retenci\'on; declarar como COI.
-		\item \textbf{Consentimiento escrito} con aprobaci\'on del Comit\'e de \'Etica de la universidad; n\'umero de aprobaci\'on mencionado en el \emph{paper}.
-	\end{enumerate}
-	
-	\subsection{An\'alisis estad\'istico de nuevo nivel}
-	
-	\begin{itemize}
-		\item PLS-SEM con SmartPLS~4 o \texttt{seminr} en R (c\'odigo abierto).
-		\item Reportar: \emph{loadings}, AVE, CR, HTMT, VIF, $f^2$, $Q^2$, coeficientes de ruta con \emph{bootstrap} de 5000 muestras.
-		\item IPMA (\emph{Importance-Performance Map Analysis}) para derivar implicaciones pr\'acticas.
-		\item \textbf{MGA} (\emph{Multi-Group Analysis}) para comparar ciudades y grupos et\'areos.
-	\end{itemize}
-	
-	\textbf{Tiempo estimado del paquete C completo:} 3--4 meses calendario.
-	
-	% =============================================================
-	\section{Paquete D --- Evidencia de campo longitudinal}
-	\label{sec:paq-d}
-	% =============================================================
-	
-	\emph{Prioridad: alta. Sin este paquete, el t\'itulo ``Safer Urban Mobility'' es aspiracional, no emp\'irico.}
-	
-	\subsection{Estudio de campo de 6 semanas}
-	
-	\textbf{Dise\~no:} \emph{within-subjects} con fase de baseline y fase de intervenci\'on.
-	
-	\begin{itemize}
-		\item \textbf{Semanas 1--2 (baseline)}: los participantes usan sus apps habituales (Google Maps, Waze). Se recolectan trazas GPS con consentimiento.
-		\item \textbf{Semanas 3--6 (intervenci\'on)}: los mismos participantes usan \RUTAI{}.
-	\end{itemize}
-	
-	\textbf{Muestra:} $n=50$ (potencia suficiente para test pareado con $d=0{,}5$ a $0{,}80$ de potencia).
-	
-	\subsection{Variables dependientes objetivas}
-	
-	\begin{enumerate}
-		\item \textbf{Entrop\'ia de rutas real (no simulada)}: $H(U)$ calculada sobre las trayectorias GPS reales antes/despu\'es.
-		\item \textbf{Distancia de Levenshtein} entre secuencias de rutas semanales (menor Levenshtein $=$ m\'as repetitiva).
-		\item \textbf{\'Indice de regularidad temporal}: varianza de horarios de salida.
-		\item \textbf{N\'umero de zonas \'unicas visitadas por semana}.
-	\end{enumerate}
-	
-	\subsection{Variables dependientes subjetivas}
-	
-	\begin{enumerate}
-		\item \textbf{State-Trait Anxiety Inventory (STAI)} aplicado semanalmente.
-		\item \textbf{Perceived Stress Scale (PSS-10)}.
-		\item \textbf{TAM} al final.
-		\item \textbf{Diario de incidentes auto-reportados} (acoso, persecuci\'on percibida, robos).
-	\end{enumerate}
-	
-	\subsection{An\'alisis estad\'istico}
-	
-	\begin{itemize}
-		\item \emph{Paired-sample} $t$-test (o Wilcoxon si no es normal) para cada VD.
-		\item ANCOVA controlando por covariables (g\'enero, edad, percepci\'on previa de inseguridad).
-		\item \emph{Multilevel modeling} si el patr\'on var\'ia entre semanas.
-	\end{itemize}
-	
-	\subsection{An\'alisis de seguridad real (si el presupuesto lo permite)}
-	
-	Si se encuentra colaboraci\'on con Polic\'ia Nacional u Observatorio de Seguridad Ciudadana, cruzar geolocalizaciones an\'onimas con \emph{hotspots} delictivos oficiales. M\'etrica: proporci\'on de tiempo en zonas de alto riesgo antes vs. despu\'es.
-	
-	\textbf{Tiempo:} 2 meses de trabajo de campo + 1 mes de an\'alisis.
-	
-	% =============================================================
-	\section{Paquete E --- Materiales suplementarios y reproducibilidad}
-	\label{sec:paq-e}
-	% =============================================================
-	
-	\emph{Prioridad: alta.}
-	
-	\subsection{Repositorio p\'ublico}
-	
-	Estructura recomendada en GitHub:
-	
-	\begin{lstlisting}
-		rutai/
-		android-client/           (codigo Kotlin completo)
-		backend/                  (FastAPI + requirements.txt con versiones fijas)
-		simulator/                (banco de pruebas del bandido)
-		analysis/                 (notebooks de analisis estadistico)
-		data/
-		tam-responses.csv       (anonimizado)
-		technical-benchmark.csv
-		geofencing-crossings.csv
-		figures/                  (codigo para regenerar todas las figuras)
-		docker-compose.yml        (un solo comando para levantar todo)
-		LICENSE                   (MIT o Apache-2.0)
-		CITATION.cff
-		README.md
-	\end{lstlisting}
-	
-	\textbf{DOI permanente:} Zenodo $\to$ \emph{tag} \texttt{v1.0.0} $\to$ DOI incrustado en el \emph{paper}.
-	
-	\subsection{Cuestionario TAM completo en ingl\'es y espa\~nol}
-	
-	PDF con los 25 \'items, su origen bibliogr\'afico, la escala, y la versi\'on traducida con \emph{back-translation} certificada.
-	
-	\subsection{Trazabilidad de requisitos}
-	
-	Matriz completa \emph{requisito $\leftrightarrow$ entrevista $\leftrightarrow$ fuente secundaria} como hoja Excel.
-	
-	\subsection{Capturas de pantalla de la app}
-	
-	M\'inimo cinco: \emph{login}, destinos guardados, selecci\'on de ruta con tres alternativas, mapa con geocerca activa, vista de grupo colaborativo con pings en tiempo real. Presentar en panel figura de $2\times 3$.
-	
-	\subsection{V\'ideo de demostraci\'on}
-	
-	V\'ideo de 3 minutos alojado en Zenodo / YouTube \emph{unlisted} que muestre las tres funcionalidades operando. Muchas revistas de PMC ya aceptan suplementos multimedia.
-	
-	% =============================================================
-	\clearpage
-	\section{Cronograma realista para alcanzar JCR Q1/Q2}
-	% =============================================================
-	
-	\begin{longtable}{@{}p{3.6cm}p{2cm}p{4.5cm}p{3cm}@{}}
-		\toprule
-		\textbf{Paquete} & \textbf{Tiempo} & \textbf{Coste estimado} & \textbf{Prioridad} \\
-		\midrule
-		\endhead
-		
-		A. Banco de pruebas riguroso
-		& 4 sem
-		& Bajo (horas de investigador)
-		& \textbf{Cr\'itica} \\
-		
-		B. Mediciones de sistema
-		& 4 sem
-		& Medio (\textasciitilde 500~USD GPS + 100~USD dispositivos)
-		& \textbf{Cr\'itica} \\
-		
-		C. TAM $n=150$
-		& 3--4 meses
-		& Medio (\textasciitilde 750~USD participantes)
-		& \textbf{Cr\'itica} \\
-		
-		D. Campo longitudinal 6 sem
-		& 2 meses
-		& Alto (\textasciitilde 2500~USD trabajo de campo)
-		& \textbf{Alta} \\
-		
-		E. Reproducibilidad
-		& 2 sem
-		& Bajo
-		& \textbf{Alta} \\
-		
-		\bottomrule
-	\end{longtable}
-	
-	\textbf{Calendario sugerido:}
-	
-	\begin{itemize}
-		\item Empezar paquetes A y B en paralelo durante las primeras 4 semanas.
-		\item Iniciar C al final de la semana 2 (solapamiento).
-		\item Iniciar D al finalizar C.
-		\item Entrega del manuscrito revisado: \textbf{6 meses desde el inicio del plan}.
-	\end{itemize}
-	
-	% =============================================================
-	\section{Estrategia alternativa si los recursos son limitados}
-	% =============================================================
-	
-	Si el equipo no dispone de presupuesto para los paquetes C y D completos, una alternativa viable ser\'ia:
-	
-	\begin{enumerate}
-		\item \textbf{Fortalecer A y B} (mediciones t\'ecnicas) para dar peso al lado ingenier\'ia.
-		\item \textbf{Mantener el TAM como exploratorio} ($n=25$) pero cambiar el \emph{framing}: el manuscrito pasa a ser un \emph{system paper} con mediciones t\'ecnicas s\'olidas $+$ evaluaci\'on cualitativa preliminar.
-		\item \textbf{Redirigir la revista objetivo} a una donde el aspecto t\'ecnico pese m\'as que el humano:
-		\begin{itemize}
-			\item \emph{Future Generation Computer Systems} (Elsevier, Q1, IF~7.5): reforzando el \'angulo de sistemas distribuidos.
-			\item \emph{Journal of Network and Computer Applications} (Elsevier, Q1, IF~7.7): reforzando el \'angulo de arquitectura m\'ovil.
-			\item \emph{Sensors} (MDPI, Q2, IF~3.4): m\'as tolerante con $n$ peque\~no, \emph{open access}.
-			\item \emph{Electronics} (MDPI, Q2, IF~2.6).
-		\end{itemize}
-	\end{enumerate}
-	
-	Esta ruta es m\'as r\'apida (3 meses) pero tiene menor impacto que PMC Q2.
-	
-	% =============================================================
-	\section{Conclusi\'on del investigador senior}
-	% =============================================================
-	
-	\RUTAI{} tiene los ingredientes de un buen \emph{paper} Q2. Lo que le falta no es creatividad ni ambici\'on, sino \textbf{evidencia cuantitativa y reproducibilidad a la altura del est\'andar actual}. Con los paquetes A, B, C y E bien ejecutados, el manuscrito puede aspirar razonablemente a PMC en segunda ronda. Si se a\~nade el paquete D, podr\'ia incluso escalar a revista Q1 (\emph{FGCS} o \emph{Computers \& Security}). Sin esos datos, el riesgo de rechazo en Q2 supera el $60\%$.
-	
-	El orden importa: \textbf{primero A+B (rigurosas pero ejecutables en 4 semanas), despu\'es C en paralelo con E, y D si los recursos lo permiten}. Evitar la tentaci\'on de enviar con los datos actuales y esperar que el revisor sea benevolente; los revisores JCR de 2026 no lo son.
-	
-	\begin{verdictbox}[Recomendaci\'on final al equipo autor]
-		\begin{enumerate}
-			\item No enviar el manuscrito en su estado actual.
-			\item Ejecutar los paquetes A y B en paralelo durante las primeras 4 semanas.
-			\item Dise\~nar y pre-registrar el paquete C mientras A y B se ejecutan.
-			\item Desplegar E (repositorio, capturas, v\'ideo) en la \'ultima semana antes del env\'io.
-			\item Si existe presupuesto, a\~nadir D y apuntar a una revista Q1.
-		\end{enumerate}
-	\end{verdictbox}
-	
+\maketitle
+
+\begin{verdicto}[Recomendaci\'on global]
+\textbf{Major revision.} El manuscrito se ha fortalecido notablemente respecto a iteraciones previas (nueva tabla comparativa de sistemas, bandido UCB regularizado por entrop\'ia, banco de pruebas t\'ecnico, diagn\'ostico HTMT honesto, secci\'on de amenazas a la validez). No obstante, un contraste directo entre el PDF del art\'iculo y la tesis fuente revela que \textbf{varios resultados num\'ericos presentados como empirismo (Tabla 4 de banco t\'ecnico) no aparecen en la tesis de referencia}. Esta asimetr\'ia, unida a debilidades de reproducibilidad, validez discriminante y alineaci\'on con el t\'itulo, impide aceptaci\'on directa.
+\end{verdicto}
+
+\tableofcontents
+\vspace{0.8em}
+
+% =============================================================
+\section{Estructura y alcance del informe}
+% =============================================================
+
+Este informe se construy\'o cruzando tres fuentes: (a)~el PDF compilado \texttt{rutai-pmc-es.pdf}, (b)~el c\'odigo fuente LaTeX \texttt{rutai-pmc-es.tex}, y (c)~el archivo bibliogr\'afico \texttt{rutai-refs.bib}, adem\'as del \texttt{PDF} de la tesis original \texttt{AlarmasGeolocalizadas.pdf}. Para cada punto se presenta:
+
+\begin{itemize}
+  \item Una \textbf{deficiencia u observaci\'on} desde el rol de par revisor JCR.
+  \item Una \textbf{directriz de abordaje} desde el rol de investigador senior, especificando qu\'e modificar en los archivos fuente y qu\'e datos obtener.
+\end{itemize}
+
+Los hallazgos se organizan en tres bloques de severidad decreciente: problemas \emph{bloqueantes}, problemas \emph{mayores}, y problemas \emph{menores/editoriales}. Al final se ofrece un plan consolidado.
+
+% =============================================================
+\section{Problemas bloqueantes}
+% =============================================================
+
+% -------------------------------------------------------------
+\subsection{Coincidencia sospechosa entre ``banco de pruebas t\'ecnicas'' del paper y la tesis fuente}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[B.1 --- Deficiencia]
+La Tabla 4 del PDF reporta cifras muy espec\'ificas: regret acumulado de $153{,}6 \pm 9{,}8$ para UCB+entrop\'ia, entrop\'ia de Shannon $H=1{,}38$ bits, latencias p95 de $312$\,ms y $184$\,ms, consumo de $48{,}3$\,mAh/h, precisi\'on geofencing $94{,}1\%$. Tras examinar el documento fuente de la tesis (\texttt{AlarmasGeolocalizadas.pdf}), \textbf{ninguno de esos cinco experimentos t\'ecnicos figura en la tesis}. La tesis s\'olo contiene: (i)~la evaluaci\'on TAM con los mismos cinco constructos (valores 4{,}14/4{,}18/4{,}13/4{,}12/4{,}29 \emph{id\'enticos} a los del PDF) y (ii)~el $\alpha$ de Cronbach global $0{,}9862$. Esto permite inferir que la secci\'on 4.1 del manuscrito est\'a compuesta de mediciones \emph{no realizadas}. Un editor o revisor de PMC que solicite los logs crudos detectar\'ia esto de inmediato, y supone un riesgo \'etico grave adem\'as de una debilidad cient\'ifica.
+\end{deficiencia}
+
+\begin{abordaje}[B.1 --- Directriz de abordaje]
+\textbf{Prioridad absoluta: ejecutar realmente los experimentos}. Hasta que esos datos existan, la Tabla~4 debe o bien suprimirse y reemplazarse por evidencia existente, o bien completarse con protocolos reproducibles. Pasos concretos:
+
+\begin{enumerate}
+  \item \emph{Simulador del bandido}: implementar en Python 3.12 usando \texttt{numpy}/\texttt{scipy} un entorno sint\'etico con horizonte $T=500$ y $100$ semillas. El c\'odigo debe publicarse en un repositorio con DOI en Zenodo antes del reenv\'io. En el \texttt{.tex} actual, l\'inea 408 del \texttt{rutai-pmc-es.tex}, la descripci\'on del ``perfil sint\'etico derivado de trazas reales anonimizadas'' es demasiado opaca; sustituir por una definici\'on operativa (fuente del dataset, c\'omo se extrae la distribuci\'on de recompensas).
+  \item \emph{Latencia}: instrumentar \texttt{k6} contra el backend en Render, con tres patrones de carga (10/50/100 VUs) y tres regiones geogr\'aficas del cliente. Exportar CSV de percentiles y pasarlo a \texttt{pandas}.
+  \item \emph{Energ\'ia}: Android Battery Historian con al menos 5 dispositivos, protocolo estandarizado de 2 horas.
+  \item \emph{Geofencing}: 20 cercas georreferenciadas con DGPS, m\'inimo 30 cruces por combinaci\'on radio$\times$velocidad.
+  \item \emph{Reescribir la Tabla 4} s\'olo despu\'es de tener los datos reales. Reportar intervalos de confianza al 95\,\% con \emph{bootstrap}, y liberar los CSV anonimizados como suplemento.
+\end{enumerate}
+
+\textbf{Si los experimentos t\'ecnicos no son viables en el cronograma}: reenfocar el manuscrito como estudio TAM con arquitectura descrita, suprimir Secci\'on 4.1 y ajustar t\'itulo, contribuciones y \emph{abstract}. Es mejor publicar con menos pero verificable que con m\'as y falseable.
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{La ecuaci\'on 1 del manuscrito est\'a renderizada con un error tipogr\'afico visible}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[B.2 --- Deficiencia]
+En la p\'agina 9 del PDF, la ecuaci\'on (1) muestra \texttt{arg max\'{a}} (con un acento sobre la a) en lugar de \texttt{arg\,max}. El problema viene del comando \texttt{\textbackslash arg\textbackslash max} del \texttt{.tex}; pero babel-spanish activa los shortcuts \texttt{\textbackslash '} y altera la expansi\'on dentro de entornos matem\'aticos. Un revisor profesional interpretar\'ia esto como descuido editorial. La misma falta aparece en el Algoritmo 1, l\'inea 7 (\texttt{arg max\'{a}}).
+\end{deficiencia}
+
+\begin{abordaje}[B.2 --- Directriz de abordaje]
+Localizar en \texttt{rutai-pmc-es.tex} las l\'ineas 415 y 440 aproximadamente, donde aparece:
+\begin{verbatim}
+a^\star_t = \arg\max_{a\in\mathcal{A}_d}
+\end{verbatim}
+El problema es la interacci\'on de \texttt{babel[spanish]} con el subscript \texttt{\_\{a\textbackslash in\ldots\}}. Dos soluciones robustas:
+
+\begin{enumerate}
+  \item A\~nadir al pre\'ambulo \texttt{\textbackslash spanishoptions\{es-noshorthands\}} o usar \texttt{\textbackslash shorthandoff\{'\}} alrededor de las ecuaciones.
+  \item Redefinir localmente: \texttt{\textbackslash DeclareMathOperator*\{\textbackslash argmax\}\{arg\,max\}} en el pre\'ambulo y sustituir todos los \texttt{\textbackslash arg\textbackslash max} por \texttt{\textbackslash argmax}.
+\end{enumerate}
+
+Recomiendo la opci\'on~2 porque adem\'as produce tipograf\'ia est\'andar para operadores. Aplicar en Ecuaci\'on~1 y Algoritmo~1 l\'inea~7.
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{Validez discriminante insuficiente con \texorpdfstring{$n=25$}{n=25}}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[B.3 --- Deficiencia]
+La Tabla 6 del PDF (HTMT) reporta valores entre 0{,}85 y 0{,}97 con media 0{,}91, ninguno por debajo del umbral 0{,}85 de Henseler et al.~(2015). Los autores lo reconocen honestamente, pero eso no sustituye una validez adecuada. Con $n=25$ y correlaciones Pearson superiores a 0{,}94 entre todos los pares, los constructos \textbf{no miden dimensiones diferenciadas}. PMC no aceptar\'a una estructura TAM que no discrimine sus constructos. La honestidad del reconocimiento es positiva, pero se necesitan datos, no una promesa.
+\end{deficiencia}
+
+\begin{abordaje}[B.3 --- Directriz de abordaje]
+Dos caminos complementarios:
+
+\begin{enumerate}
+  \item \textbf{Ampliar muestra a $n\geq 150$} usando la app ya desplegada en Render.com. El c\'alculo de potencia para PLS-SEM con 5 constructos y 4 rutas estructurales exige $n\geq 138$ (G$^*$Power~3.1, $f^2=0{,}15$, $\alpha=0{,}05$, potencia $0{,}80$). Distribuir en 3 ciudades para fortalecer validez externa.
+  \item \textbf{Refinar el instrumento} antes de la segunda administraci\'on. El c\'odigo fuente del cuestionario est\'a en la tesis (Anexo 5, \emph{Cuestionario TAM}). Problem\'atico: dos o tres \'items de PU solapan sem\'anticamente con ATU; dos \'items de PS solapan con PEOU. Recomiendo:
+  \begin{itemize}
+    \item Panel de expertos (Lawshe CVR) para identificar redundancias.
+    \item Reformular \'items comportamental-espec\'ificos (no actitudinales). Por ejemplo, PS actual ``Me siento m\'as seguro'' $\to$ ``Gracias al monitoreo colaborativo puedo verificar la llegada de mis familiares''.
+  \end{itemize}
+  \item \textbf{Reanalizar con PLS-SEM} usando \texttt{seminr} en R o SmartPLS 4, reportando loadings, AVE, CR, HTMT, $f^2$, $Q^2$ y coeficientes de ruta con bootstrap de 5000 muestras.
+\end{enumerate}
+
+La modificaci\'on concreta en \texttt{rutai-pmc-es.tex} consistir\'ia en expandir la Secci\'on~3.2.9 (\emph{Validaci\'on emp\'irica con TAM extendido}) con los nuevos $n=150$ y Secci\'on~4.3 con los nuevos estad\'isticos.
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{T\'itulo ``mobility m\'as segura'' no soportado por evidencia de seguridad}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[B.4 --- Deficiencia]
+El t\'itulo promete \emph{``movilidad urbana m\'as segura''}, pero los resultados miden: (i)~percepci\'on de seguridad mediante TAM (subjetiva) y (ii)~entrop\'ia de rutas (algor\'itmica, no demostrada en campo). \textbf{No existe} una m\'etrica de seguridad objetiva (tasa de victimizaci\'on, exposici\'on a zonas de riesgo, ansiedad validada). La afirmaci\'on del t\'itulo es aspiracional, no emp\'irica. Un revisor Q1/Q2 lo se\~nalar\'a inmediatamente.
+\end{deficiencia}
+
+\begin{abordaje}[B.4 --- Directriz de abordaje]
+Dos opciones:
+
+\begin{enumerate}
+  \item \textbf{Atenuar el t\'itulo} al alcance realmente demostrado. Sugerencia concreta:\\
+  \emph{``RutAI: A Component-Based Mobile Framework Integrating Bandit-Learned Route Diversification, Geolocated Reminders and Collaborative Monitoring \textbf{for Perceived Safety in Urban Mobility}''}.\\
+  Sustituir en \texttt{rutai-pmc-es.tex} l\'inea 73 aproximadamente.
+  \item \textbf{Levantar la evidencia}: ejecutar un estudio longitudinal de 6 semanas con 50 participantes usando STAI (State-Trait Anxiety Inventory) y PSS-10 semanalmente, m\'as diario de incidentes auto-reportados. A\~nadir Secci\'on~4.4 con esos hallazgos.
+\end{enumerate}
+
+La opci\'on~1 es alcanzable en el ciclo de revisi\'on; la opci\'on~2 alinea con JCR Q1.
+\end{abordaje}
+
+% =============================================================
+\section{Problemas mayores}
+% =============================================================
+
+% -------------------------------------------------------------
+\subsection{Ausencia de capturas de pantalla de la aplicaci\'on real}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[M.1 --- Deficiencia]
+El PDF s\'olo incluye cuatro figuras generadas con TikZ (flujo CBSE, casos de uso, arquitectura, barras TAM). Para un manuscrito que presenta un sistema m\'ovil en PMC, \textbf{esto es insuficiente}. PMC espera evidencia visual de la interfaz. La tesis fuente (\texttt{AlarmasGeolocalizadas.pdf}) contiene \textbf{m\'as de 40 figuras} incluyendo: Figura~19 (interfaz de generaci\'on de rutas), Figura~20 (panel de selecci\'on), Figura~22 (advertencia de seguridad), Figura~25 (selector de ubicaci\'on de geofencing), Figura~34 (chat grupal con indicadores de lectura), Figura~35 (mapa colaborativo en tiempo real). Estas capturas ya existen y no se aprovechan.
+\end{deficiencia}
+
+\begin{abordaje}[M.1 --- Directriz de abordaje]
+Extraer del PDF de la tesis las siguientes figuras (con \texttt{pdftoppm -png -r 150}) y a\~nadirlas al \texttt{.tex}:
+
+\begin{enumerate}
+  \item Figura~19 $\to$ nueva Figura~5: pantalla de tres alternativas de ruta con etiqueta de seguridad.
+  \item Figura~22 $\to$ nueva Figura~6: advertencia de zona peligrosa.
+  \item Figura~25 $\to$ nueva Figura~7: configurador de geocerca.
+  \item Figura~34 $\to$ nueva Figura~8: chat grupal con read receipts.
+  \item Figura~35 $\to$ nueva Figura~9: mapa colaborativo con pings en tiempo real.
+\end{enumerate}
+
+Presentar como panel $2\times 3$ con subcaptions (paquete \texttt{subcaption}). Ubicar en la nueva Secci\'on~4.2.1 \emph{User-facing interfaces}. Esto eleva inmediatamente la percepci\'on de madurez del sistema.
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{Nombres de autores contienen caracteres no-ASCII directos en el fuente}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[M.2 --- Deficiencia]
+El archivo \texttt{rutai-pmc-es.tex} contiene caracteres UTF-8 directos en los nombres de autores (por ejemplo \texttt{Aar\'on}, \texttt{Rodr\'iguez-Dom\'inguez}, \texttt{Efra\'in}). Si bien con \texttt{inputenc[utf8]} funcionan, la plantilla CAS procesa los nombres a trav\'es de macros internas (\texttt{\textbackslash printcredits}, cabeceras, \emph{running heads}) que en algunas instalaciones corrompen la codificaci\'on. Ya se observaron fallos previos en este mismo manuscrito por esta causa.
+\end{deficiencia}
+
+\begin{abordaje}[M.2 --- Directriz de abordaje]
+Reemplazar en el \texttt{.tex} todos los caracteres UTF-8 directos por notaci\'on LaTeX ASCII:
+
+\begin{itemize}
+  \item \texttt{Aar\'on} $\to$ \texttt{Aar\textbackslash 'on}
+  \item \texttt{Rodr\'iguez-Dom\'inguez} $\to$ \texttt{Rodr\textbackslash 'iguez-Dom\textbackslash 'inguez}
+  \item \texttt{Efra\'in D\'iaz-Mac\'ias} $\to$ \texttt{Efra\textbackslash 'in D\textbackslash 'iaz-Mac\textbackslash 'ias}
+  \item \texttt{Espa\~na} $\to$ \texttt{Espa\textbackslash \string ~na}
+\end{itemize}
+
+Verificar con \texttt{grep -nP "[\^{}\textbackslash x00-\textbackslash x7F]" rutai-pmc-es.tex} que no quede ning\'un byte no-ASCII. Esto inmuniza contra problemas de codificaci\'on al cambiar de editor o sistema operativo.
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{ORCID placeholder delata que el env\'io no est\'a listo}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[M.3 --- Deficiencia]
+Los cinco autores aparecen con ORCID \texttt{0000-0000-0000-0000}. Editorial Manager de Elsevier no acepta ORCIDs nulos; adem\'as es se\~nal visible para el editor de que el manuscrito no est\'a preparado para sometimiento.
+\end{deficiencia}
+
+\begin{abordaje}[M.3 --- Directriz de abordaje]
+Cada autor debe registrarse en \url{https://orcid.org} (gratuito). Reemplazar en \texttt{rutai-pmc-es.tex} (l\'ineas 80--95 aproximadamente) los cinco \texttt{\textbackslash author[\ldots]\{...\}[orcid=0000-0000-0000-0000]} por los identificadores reales. Es obligatorio para el autor de correspondencia (Gleiston Guerrero-Ulloa).
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{N\'umero de aprobaci\'on del Comit\'e de \'Etica ausente}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[M.4 --- Deficiencia]
+La Secci\'on 3.2.9 describe un estudio con seres humanos ($n=25$, consentimiento informado) pero \textbf{no cita el n\'umero de aprobaci\'on de un Comit\'e de \'Etica}. Elsevier exige desde 2022 declaraci\'on expl\'icita. La carencia puede detener el env\'io en la revisi\'on administrativa.
+\end{deficiencia}
+
+\begin{abordaje}[M.4 --- Directriz de abordaje]
+Dos escenarios:
+
+\begin{enumerate}
+  \item \emph{Si el estudio fue aprobado} por el Comit\'e de \'Etica de la UTEQ o la Universidad de Granada: a\~nadir al final de la Secci\'on~3.2.9 un p\'arrafo con el n\'umero de acta, fecha de aprobaci\'on y nombre del comit\'e. Tambi\'en incluir declaraci\'on al final del manuscrito: ``\emph{Ethical approval for the study was granted by [nombre del comit\'e] under protocol number [N/A]}''.
+  \item \emph{Si no se aprob\'o formalmente}: el riesgo es material. Como estudio de usabilidad sin datos sensibles algunas instituciones permiten aprobaci\'on retroactiva o exenci\'on documentada (``IRB exemption''). Solicitarla de inmediato.
+\end{enumerate}
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{Reproducibilidad: ``disponible bajo solicitud razonable'' no es aceptable en PMC}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[M.5 --- Deficiencia]
+La secci\'on \emph{Data availability} declara: \emph{``El c\'odigo fuente de RutAI, las respuestas anonimizadas del cuestionario\ldots estar\'an disponibles a solicitud razonable al autor para correspondencia''}. Desde 2023, Elsevier y PMC en particular exigen que los datos est\'en depositados en repositorios p\'ublicos con DOI persistente antes de la aceptaci\'on. La frase usada baja las posibilidades de aceptaci\'on significativamente.
+\end{deficiencia}
+
+\begin{abordaje}[M.5 --- Directriz de abordaje]
+Crear dos dep\'ositos p\'ublicos:
+
+\begin{enumerate}
+  \item \textbf{GitHub} con toda la aplicaci\'on: cliente Android (Kotlin), backend FastAPI, simulador del bandido, notebooks de an\'alisis. Licencia Apache-2.0 o MIT. A\~nadir archivo \texttt{CITATION.cff} y \texttt{README} detallado.
+  \item \textbf{Zenodo} con \emph{tag} \texttt{v1.0.0} que incluya: respuestas TAM anonimizadas (CSV), cuestionario completo en espa\~nol e ingl\'es (PDF), trazabilidad requisitos-entrevistas (XLSX), capturas de pantalla (PNG), logs de benchmarks.
+\end{enumerate}
+
+Sustituir en \texttt{rutai-pmc-es.tex} la secci\'on \emph{Disponibilidad de datos} por:
+\begin{quote}\small
+\emph{El c\'odigo fuente, los datos anonimizados del estudio de aceptaci\'on, el banco de pruebas y los cuestionarios se encuentran p\'ublicamente disponibles en Zenodo con DOI \texttt{10.5281/zenodo.XXXXXXX} y en GitHub en \texttt{https://github.com/...}. El repositorio incluye scripts para reproducir las Figuras~1--4 y las Tablas~4--6.}
+\end{quote}
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{Falta declaraci\'on de uso de IA generativa (pol\'itica Elsevier 2023+)}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[M.6 --- Deficiencia]
+El manuscrito no declara si se us\'o IA generativa en redacci\'on, an\'alisis o c\'odigo. Elsevier exige esta declaraci\'on en todos los env\'ios desde 2023. Su omisi\'on es motivo de rechazo administrativo.
+\end{deficiencia}
+
+\begin{abordaje}[M.6 --- Directriz de abordaje]
+A\~nadir antes de \emph{Declaration of competing interest} una secci\'on nueva:
+
+\begin{quote}\small
+\textbf{Declaration of generative AI in scientific writing}\\
+\emph{During the preparation of this work the author(s) used [nombre de la herramienta, si aplica] in order to [prop\'osito: mejora de redacci\'on en ingl\'es, revisi\'on gramatical, etc.]. After using this tool/service, the author(s) reviewed and edited the content as needed and take(s) full responsibility for the content of the publication.}
+\end{quote}
+
+Si no se us\'o IA generativa, declarar literalmente: \emph{``No generative AI tools were used in the preparation of this manuscript.''}
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{Comentario ``un revisor atento observ\'o\ldots'' rompe la voz narrativa}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[M.7 --- Deficiencia]
+En la Secci\'on~3.2.3 (p\'agina 9 del PDF) aparece: \emph{``Un revisor atento observ\'o correctamente que una formulaci\'on UCB cl\'asica\ldots''}. Esto es un artefacto de una ronda de revisi\'on previa que se qued\'o en el texto. Rompe la voz de autor\'ia, sugiere al editor que el manuscrito no se ha consolidado y expone a los autores: el lector final no deber\'ia enterarse de que hubo comentarios de revisi\'on antes del env\'io.
+\end{deficiencia}
+
+\begin{abordaje}[M.7 --- Directriz de abordaje]
+En \texttt{rutai-pmc-es.tex} (aproximadamente l\'inea 400), reescribir ese p\'arrafo integrando la justificaci\'on como fundamento te\'orico propio. Sugerencia concreta:
+\begin{quote}\small
+\emph{``Una formulaci\'on UCB cl\'asica con recompensa binaria $\{0,1\}$ tender\'ia a colapsar sobre la ruta m\'as familiar, lo cual entra en tensi\'on con el objetivo declarado de diversificaci\'on. Por esta raz\'on, reformulamos la recompensa para que la diversificaci\'on sea un objetivo expl\'icito de la funci\'on objetivo.''}
+\end{quote}
+La misma observaci\'on vale para la Secci\'on~5 \emph{Discusi\'on}, donde aparece otra vez la frase \emph{``una observaci\'on leg\'itima del revisor fue\ldots''}.
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{Sesgo de halo en TAM no cuantificado}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[M.8 --- Deficiencia]
+Los autores mencionan ``efecto halo'' como posible explicaci\'on del HTMT elevado, pero no lo miden. Existe una prueba espec\'ifica: el \emph{Common Method Bias} (CMB) diagn\'osticable con el test de Harman de un \'unico factor, m\'as los criterios de Lindell \& Whitney (2001). Si $>50\%$ de la varianza se explica por un \'unico factor, la sospecha se confirma. Con el $\alpha$ global de $0{,}986$ y correlaciones $r>0{,}94$, el riesgo es evidente.
+\end{deficiencia}
+
+\begin{abordaje}[M.8 --- Directriz de abordaje]
+A\~nadir en \texttt{rutai-pmc-es.tex}, Secci\'on~4.3, un an\'alisis adicional:
+
+\begin{enumerate}
+  \item Ejecutar test de Harman: an\'alisis factorial exploratorio sin rotaci\'on sobre los 25 \'items. Reportar la varianza explicada por el primer factor.
+  \item Complementar con el procedimiento del marcador latente de Lindell \& Whitney si hay \'items disponibles no relacionados te\'oricamente con los constructos.
+  \item Si CMB $>50\%$, reconocer abiertamente y tratar como amenaza de validez de constructo en Secci\'on~5.1.
+\end{enumerate}
+
+C\'odigo en Python con \texttt{factor\_analyzer} o en R con \texttt{psych::principal(rotate="none")}.
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{Par\'ametro \texorpdfstring{$\lambda$}{lambda} sin an\'alisis de sensibilidad}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[M.9 --- Deficiencia]
+La ecuaci\'on (1) incorpora el t\'ermino $\lambda [H_{t-1}(d) - H^*]_-$ como bono de diversificaci\'on, y se fija $\lambda=0{,}25$ ``mediante b\'usqueda en malla sobre un conjunto piloto''. El valor $\lambda$ es la contribuci\'on algor\'itmica m\'as original del paper; sin an\'alisis de sensibilidad \textbf{no se sabe si la aportaci\'on es robusta o un artefacto del valor elegido}. PMC no publicar\'a una reformulaci\'on de UCB sin esa curva.
+\end{deficiencia}
+
+\begin{abordaje}[M.9 --- Directriz de abordaje]
+A\~nadir nueva Figura~5 al manuscrito: superficie de respuesta $\lambda \times c$ sobre dos ejes de decisi\'on:
+
+\begin{itemize}
+  \item Eje X: $\lambda \in \{0, 0{,}05, 0{,}1, 0{,}15, 0{,}25, 0{,}5, 0{,}75, 1{,}0\}$.
+  \item Eje Y: regret acumulado y entrop\'ia de Shannon en gr\'afica dual.
+  \item Complementar con tabla: $\lambda$ vs. regret vs. entrop\'ia vs. tasa de confirmaci\'on de usuario simulada.
+\end{itemize}
+
+Ubicar en la Secci\'on~4.1, subsecci\'on nueva ``\emph{Sensitivity analysis of diversification parameter}''. Esto justifica la elecci\'on de $\lambda=0{,}25$ como punto de Pareto entre regret bajo y entrop\'ia alta.
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{Baselines insuficientes: falta contextual bandit (LinUCB) y Random.}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[M.10 --- Deficiencia]
+La Tabla~4 compara contra cuatro baselines: aleatoria, fija ``m\'as r\'apida'', $\varepsilon$-greedy y Thompson sampling. \textbf{Falta} el contextual bandit LinUCB (Li et al.~2010), que es el baseline m\'as robusto de la literatura reciente y el que un revisor exigir\'a. La revisi\'on de Bouneffouf, Rish \& Aggarwal (2020) citada en el paper recomienda LinUCB como referencia est\'andar.
+\end{deficiencia}
+
+\begin{abordaje}[M.10 --- Directriz de abordaje]
+A\~nadir LinUCB a la tabla de resultados. Implementaci\'on concreta: \texttt{contextualbandits} en Python (pip install), configurar con las mismas semillas de los otros baselines. A\~nadir referencia a la bib:
+
+\begin{verbatim}
+@inproceedings{li2010contextual,
+  author = {Li, Lihong and Chu, Wei and Langford, John and Schapire, Robert E.},
+  title  = {A Contextual-Bandit Approach to Personalized News
+            Article Recommendation},
+  booktitle = {Proceedings of the 19th International Conference on
+               World Wide Web (WWW '10)},
+  pages  = {661--670},
+  year   = {2010},
+  doi    = {10.1145/1772690.1772758}
+}
+\end{verbatim}
+
+Actualizar el \texttt{.bib} (593 l\'ineas actualmente $\to$ 48 entradas). Citar en Secci\'on~2.1 y en Secci\'on~4.1.
+\end{abordaje}
+
+% =============================================================
+\section{Problemas menores y editoriales}
+% =============================================================
+
+% -------------------------------------------------------------
+\subsection{\textit{Running head} no coincide con el t\'itulo}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[m.1 --- Deficiencia]
+El \emph{running head} dice ``\emph{RutAI: alarmas geolocalizadas basadas en IA para movilidad urbana}'' (p\'aginas pares), mientras que el t\'itulo principal es mucho m\'as largo y menciona CBSE, bandidos y monitoreo colaborativo. Esa inconsistencia la captura el sistema de env\'io de Elsevier como inconsistencia editorial.
+\end{deficiencia}
+
+\begin{abordaje}[m.1 --- Directriz de abordaje]
+En \texttt{rutai-pmc-es.tex}, l\'inea 69 aproximadamente:
+\begin{verbatim}
+\shorttitle{RutAI: alarmas geolocalizadas basadas en IA para movilidad urbana}
+\end{verbatim}
+Reemplazar por una versi\'on abreviada y alineada al nuevo t\'itulo principal propuesto en B.4, por ejemplo:
+\begin{verbatim}
+\shorttitle{RutAI: bandit routing, geofenced reminders and collaborative monitoring}
+\end{verbatim}
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{Acr\'onimos definidos y no usados en el texto}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[m.2 --- Deficiencia]
+El pre\'ambulo (l\'ineas 95--103 del \texttt{.tex}) define \texttt{\textbackslash GPS}, \texttt{\textbackslash IOT}, \texttt{\textbackslash LBS}, \texttt{\textbackslash POI}, pero \texttt{GPS} s\'olo aparece en forma literal (no por comando), e \texttt{IoT}, \texttt{LBS}, \texttt{POI} no aparecen en el texto. C\'odigo muerto.
+\end{deficiencia}
+
+\begin{abordaje}[m.2 --- Directriz de abordaje]
+Eliminar los \texttt{\textbackslash newcommand} no utilizados para minimizar el pre\'ambulo. Si se mantienen por coherencia, usarlos consistentemente en el texto.
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{Tabla 4 mezcla unidades heterog\'eneas sin columna ``Unit''}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[m.3 --- Deficiencia]
+La Tabla~4 (p\'agina 11) reporta valores en ms, mAh/h, bits y \% en la misma columna. Un lector apurado pierde el contexto.
+\end{deficiencia}
+
+\begin{abordaje}[m.3 --- Directriz de abordaje]
+Reestructurar la tabla con una tercera columna ``\emph{Unit}'' y agrupar por m\'etrica:
+
+\begin{small}
+\begin{tabular}{@{}llll@{}}
+\toprule
+Experiment & Policy/Setting & Unit & Value \\
+\midrule
+Bandit regret & UCB+entropy & cumulative loss & 153.6 $\pm$ 9.8 \\
+Diversification & UCB+entropy & bits & 1.38 \\
+Latency REST & p95 & ms & 312 \\
+Battery & adaptive & mAh/h & 48.3 \\
+Geofencing & $\rho=100$\,m & \% recall & 94.1 \\
+\bottomrule
+\end{tabular}
+\end{small}
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{Figura 4 (TAM) podr\'ia ser \emph{dot plot} m\'as informativo}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[m.4 --- Deficiencia]
+La Figura~4 muestra barras con IC al 95\,\%. Con $n=25$, un \emph{dot plot} que exhiba los 25 puntos individuales por constructo es m\'as informativo y muestra la distribuci\'on real de respuestas, no s\'olo la media.
+\end{deficiencia}
+
+\begin{abordaje}[m.4 --- Directriz de abordaje]
+Reemplazar la Figura~4 TikZ actual por un gr\'afico generado con \texttt{matplotlib} (export PDF vectorial). Alternativa en TikZ con \texttt{pgfplots}: incluir \texttt{symbolic x coords} y capas de puntos con \emph{jitter} horizontal. Las respuestas TAM est\'an en la tesis fuente (Tabla~25), pueden extraerse y procesarse.
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{Bibliograf\'ia con 48 entradas pero dos referencias cl\'asicas de UCB ausentes}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[m.5 --- Deficiencia]
+El \texttt{.bib} incluye Auer, Cesa-Bianchi \& Fischer (2002) correctamente, pero \textbf{falta} Lai \& Robbins (1985) \emph{``Asymptotically efficient adaptive allocation rules''}, la referencia fundacional de los bandidos multibrazo y tambi\'en Katehakis \& Veinott (1987) para la cota inferior asint\'otica. Son de rigor en revistas top cuando se discute UCB.
+\end{deficiencia}
+
+\begin{abordaje}[m.5 --- Directriz de abordaje]
+A\~nadir al \texttt{rutai-refs.bib}:
+
+\begin{verbatim}
+@article{lairobbins1985,
+  author  = {Lai, T.L. and Robbins, Herbert},
+  title   = {Asymptotically Efficient Adaptive Allocation Rules},
+  journal = {Advances in Applied Mathematics},
+  volume  = {6},
+  number  = {1},
+  pages   = {4--22},
+  year    = {1985},
+  doi     = {10.1016/0196-8858(85)90002-8}
+}
+\end{verbatim}
+
+Citarla en la Secci\'on~2.1 al introducir UCB, como antecedente te\'orico de Auer et al.~(2002).
+\end{abordaje}
+
+% -------------------------------------------------------------
+\subsection{T\'itulos de tablas y figuras en ingl\'es dentro de manuscrito en espa\~nol}
+% -------------------------------------------------------------
+
+\begin{deficiencia}[m.6 --- Deficiencia]
+Las captions de las Tablas~1 a~6 y Figuras~1 a~4 est\'an en ingl\'es (por ejemplo ``\emph{CBSE development flow adopted for RutAI\ldots}''), mientras que todo el cuerpo del texto est\'a en espa\~nol. Esta mezcla deliberada es atipica y complica la lectura. Si el manuscrito se env\'ia a PMC (angl\'ofona), traducir todo al ingl\'es; si se env\'ia a revista hispanohablante, traducir las captions al espa\~nol.
+\end{deficiencia}
+
+\begin{abordaje}[m.6 --- Directriz de abordaje]
+Decisi\'on binaria temprana: si la revista objetivo es PMC u otra revista Elsevier Q1/Q2 angl\'ofona, proceder a una traducci\'on integral al ingl\'es del cuerpo (estimado 400--500\,USD con editor profesional: Scribendi, Editage o AJE). Ventaja colateral: se unifican captions con texto y se elimina esta observaci\'on.
+\end{abordaje}
+
+% =============================================================
+\section{Plan consolidado de respuesta a la revisi\'on}
+% =============================================================
+
+Ordenados por criticidad y viabilidad temporal, los pasos a ejecutar antes del reenv\'io son:
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.6cm}p{7.5cm}p{2.2cm}p{3cm}@{}}
+\toprule
+\textbf{\#} & \textbf{Acci\'on} & \textbf{Severidad} & \textbf{Tiempo estimado} \\
+\midrule
+1  & Ejecutar realmente los 5 experimentos t\'ecnicos (B.1) o suprimir Tabla~4 y redireccionar el \emph{framing} & Bloqueante & 4--6 semanas \\
+2  & Corregir \texttt{\textbackslash argmax} en Ecuaci\'on 1 y Algoritmo 1 (B.2) & Bloqueante & 10 minutos \\
+3  & Atenuar t\'itulo a ``\emph{Perceived Safety}'' o realizar estudio longitudinal (B.4) & Bloqueante & 15 minutos o 8 semanas \\
+4  & Ampliar muestra TAM a $n\geq 150$ y refinar \'items; reanalizar con PLS-SEM (B.3) & Bloqueante & 12 semanas \\
+5  & Incluir $\geq 5$ capturas de pantalla reales extra\'idas de la tesis (M.1) & Mayor & 2 horas \\
+6  & Reemplazar caracteres UTF-8 por \texttt{\textbackslash '} en el \texttt{.tex} (M.2) & Mayor & 30 minutos \\
+7  & Rellenar ORCID reales (M.3) & Mayor & 30 minutos \\
+8  & A\~nadir n\'umero de Comit\'e de \'Etica (M.4) & Mayor & Variable \\
+9  & Depositar c\'odigo y datos en Zenodo+GitHub con DOI (M.5) & Mayor & 1 semana \\
+10 & A\~nadir declaraci\'on de uso de IA generativa (M.6) & Mayor & 5 minutos \\
+11 & Eliminar ``un revisor atento'' y frases que rompen la voz (M.7) & Mayor & 15 minutos \\
+12 & Test de Harman / CMB para cuantificar efecto halo (M.8) & Mayor & 4 horas \\
+13 & An\'alisis de sensibilidad de $\lambda$ con gr\'afica (M.9) & Mayor & 1 semana \\
+14 & A\~nadir baseline LinUCB a la Tabla~4 (M.10) & Mayor & 4 d\'ias \\
+15 & Unificar \emph{running head} con t\'itulo (m.1) & Menor & 2 minutos \\
+16 & Limpiar acr\'onimos no usados (m.2) & Menor & 5 minutos \\
+17 & Restructurar Tabla~4 con columna de unidad (m.3) & Menor & 30 minutos \\
+18 & Sustituir Figura~4 barras por \emph{dot plot} (m.4) & Menor & 2 horas \\
+19 & A\~nadir Lai-Robbins 1985 a la bibliograf\'ia (m.5) & Menor & 10 minutos \\
+20 & Decidir idioma: traducir todo al ingl\'es o todo al espa\~nol (m.6) & Menor & 1 semana \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% =============================================================
+\section{Veredicto final}
+% =============================================================
+
+\begin{verdicto}[Veredicto ejecutivo]
+El manuscrito tiene una idea publicable y un dise\~no coherente. Sin embargo, entre su estado actual y la aceptaci\'on en JCR Q1/Q2 se interpone la ejecuci\'on \emph{real} de los experimentos t\'ecnicos y el refuerzo del estudio TAM. La decisi\'on estrat\'egica crucial es:
+\end{verdicto}
+
+\textbf{Ruta A (aceptaci\'on en Q2/Q1, 6 meses):} ejecutar los \'items 1 a 4 de la Tabla anterior con rigor real, renombrar el t\'itulo, desplegar los materiales suplementarios y reenviar a PMC en versi\'on ampliada. Riesgo controlado, alta probabilidad de aceptaci\'on tras dos rondas.
+
+\textbf{Ruta B (publicaci\'on m\'as r\'apida, Q3/Q4, 2 meses):} abandonar la Secci\'on~4.1 (banco t\'ecnico), atenuar el t\'itulo, completar \'items 5--20 y redirigir a revista con umbral menor (\emph{IEEE Access, Sensors MDPI, Electronics MDPI, Applied Sciences MDPI}). Aceptaci\'on r\'apida pero con menor impacto acad\'emico.
+
+\textbf{Ruta desaconsejada:} enviar el manuscrito en su estado actual a PMC con los datos de la Secci\'on~4.1 tal cual est\'an. La inconsistencia entre el paper y la tesis fuente es detectable, y en caso de quedar en evidencia comprometer\'ia la reputaci\'on cient\'ifica de los autores.
+
+\begin{center}
+\rule{0.4\linewidth}{0.4pt}
+\end{center}
+
+\textbf{Comentario final del investigador senior.} El trabajo de los autores tiene m\'erito genuino: la integraci\'on de bandido + geofencing + monitoreo colaborativo en un marco CBSE es original y \'util. La arquitectura est\'a bien pensada y documentada. Los aspectos honestos (reconocimiento abierto de HTMT $>0{,}85$, amenazas a la validez, $n$ modesto) son intelectualmente recomendables. Con el rigor emp\'irico adecuado sobre los aportes que el manuscrito promete, este trabajo puede ser un buen art\'iculo en PMC. Ejecutar los experimentos reales que la Tabla~4 ya anticipa es el paso que separa ``manuscrito prometedor'' de ``manuscrito aceptado''.
+
 \end{document}
