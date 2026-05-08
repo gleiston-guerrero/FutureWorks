@@ -1,0 +1,4 @@
+﻿Radio_m,Velocidad,Rango_vel_ms,N_cruces,Control_N30,TP,FP,FN,TN,Precision,Prec_IC95,Recall,Rec_IC95,F1,F1_IC95,Fuentes_GT
+50,Vehicular,definir,38,OK,28,4,0,6,0.875,"[0.7193, 0.9503]",1.0,"[0.8794, 1.0]",0.9333,"[0.8571, 0.9851]",no_documentada
+100,Vehicular,definir,54,OK,44,3,0,7,0.9362,"[0.8284, 0.9781]",1.0,"[0.9197, 1.0]",0.967,"[0.9231, 1.0]",no_documentada
+200,Vehicular,definir,47,OK,47,0,0,0,1.0,"[0.9244, 1.0]",1.0,"[0.9244, 1.0]",1.0,"[1.0, 1.0]",no_documentada

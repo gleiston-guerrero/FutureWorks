@@ -1,0 +1,26 @@
+﻿usuario_id,edad_rango,genero,ocupacion,freq_desplazamientos,freq_uso_apps,PU1,PU2,PU3,PU4,PU5,PEOU1,PEOU2,PEOU3,PEOU4,PEOU5,ATU1,ATU2,ATU3,ATU4,ATU5,ITU1,ITU2,ITU3,ITU4,ITU5,PS1,PS2,PS3,PS4,PS5
+U01,18-25,M,Estudiante,Diariamente,Diariamente,5,5,4,5,4,5,4,5,5,4,5,5,5,5,4,5,5,5,4,5,5,5,4,5,5
+U02,26-35,F,Empleado/a,Diariamente,Diariamente,5,4,4,4,4,4,5,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+U03,18-25,F,Estudiante,3-5 veces,Varias veces,4,5,5,4,5,5,4,4,4,4,4,4,4,4,3,4,4,4,4,4,4,4,4,4,4
+U04,36-45,M,Independiente,Diariamente,Diariamente,5,3,4,3,4,4,4,4,5,4,4,5,4,5,4,5,5,4,5,4,5,4,5,4,5
+U05,26-35,F,Empleado/a,Diariamente,Diariamente,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+U06,18-25,M,Estudiante,3-5 veces,Varias veces,3,4,3,4,3,4,3,3,4,3,3,3,3,3,2,3,3,3,3,3,3,3,3,3,3
+U07,26-35,F,Empleado/a,Diariamente,Diariamente,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,5,4,4,4,5,4,4,4
+U08,46-55,M,Empleado/a,Diariamente,Varias veces,4,3,3,3,3,3,4,3,4,3,4,4,3,4,3,4,4,3,4,3,4,3,4,3,4
+U09,18-25,F,Estudiante,1-2 veces,Ocasionalmente,3,4,4,4,4,4,3,3,3,3,3,3,3,2,2,3,3,4,3,3,3,4,3,3,3
+U10,26-35,M,Independiente,Diariamente,Diariamente,5,4,5,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+U11,36-45,F,Empleado/a,3-5 veces,Varias veces,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,5,5,4,4,5,5,4,4,5
+U12,18-25,M,Estudiante,Diariamente,Diariamente,4,5,4,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4
+U13,26-35,F,Empleado/a,Diariamente,Diariamente,5,5,5,4,5,5,5,5,5,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+U14,36-45,M,Independiente,Diariamente,Diariamente,4,4,4,3,4,4,4,4,4,3,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4
+U15,18-25,F,Estudiante,3-5 veces,Varias veces,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+U16,26-35,M,Empleado/a,Diariamente,Diariamente,3,4,4,3,4,4,3,3,3,3,3,3,3,3,3,3,3,4,3,3,3,4,3,3,3
+U17,46-55,F,Empleado/a,3-5 veces,Ocasionalmente,4,3,3,3,3,3,3,3,4,3,3,3,3,3,2,3,4,4,3,3,4,4,3,3,4
+U18,18-25,M,Estudiante,Diariamente,Diariamente,5,5,5,5,5,5,5,5,5,5,5,5,5,5,4,5,5,5,5,5,5,5,5,5,5
+U19,26-35,F,Independiente,Diariamente,Diariamente,4,4,4,4,4,4,4,4,5,4,4,5,4,5,4,5,5,5,5,5,5,5,5,5,5
+U20,36-45,M,Empleado/a,3-5 veces,Varias veces,4,4,4,4,4,4,4,4,4,3,4,4,4,4,3,4,4,4,4,4,4,4,4,4,4
+U21,18-25,F,Estudiante,Diariamente,Diariamente,5,5,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+U22,26-35,M,Empleado/a,Diariamente,Diariamente,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,3,4,4,4,3,4
+U23,18-25,M,Estudiante,1-2 veces,Ocasionalmente,3,4,3,4,3,4,3,3,3,2,3,2,3,2,2,2,3,3,3,3,3,3,3,3,3
+U24,26-35,F,Empleado/a,Diariamente,Diariamente,5,4,5,4,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
+U25,36-45,M,Independiente,Diariamente,Diariamente,4,4,4,4,4,4,4,4,5,4,4,5,4,5,4,5,5,4,5,4,5,4,5,4,5

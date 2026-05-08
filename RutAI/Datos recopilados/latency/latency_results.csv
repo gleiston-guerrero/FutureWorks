@@ -1,0 +1,16 @@
+﻿endpoint_real,endpoint_paper,usuarios_virtuales,p50_ms,p95_ms,p99_ms,avg_ms,sla_p95_ms,sla_ok,threshold_k6
+GET /reminders/listar,GET /recordatorios,10,14270.0,30001.0,30001.0,15191.0,3000,False,FAIL
+GET /reminders/listar,GET /recordatorios,50,30000.0,30001.0,30001.0,21310.0,3000,False,FAIL
+GET /reminders/listar,GET /recordatorios,100,30000.0,30001.0,30001.0,24571.0,3000,False,FAIL
+POST /login/,POST /login/,10,8482.0,18822.0,20368.0,9449.0,60000,True,PASS
+POST /login/,POST /login/,50,23805.0,29958.0,29962.0,19699.0,60000,True,PASS
+POST /login/,POST /login/,100,29955.0,29960.0,29961.0,26816.0,60000,True,PASS
+POST /ml/recomendar-tipo-ruta,POST /rutas/generar,10,824.0,30001.0,30001.0,6565.0,5000,False,FAIL
+POST /ml/recomendar-tipo-ruta,POST /rutas/generar,50,21658.0,30001.0,30001.0,19048.0,5000,False,FAIL
+POST /ml/recomendar-tipo-ruta,POST /rutas/generar,100,30000.0,30001.0,30001.0,22391.0,5000,False,FAIL
+WS connect time,WS /grupo/{id} — connect,10,2811.0,17809.0,18352.0,6410.0,5000,False,FAIL
+WS connect time,WS /grupo/{id} — connect,50,12587.0,20230.0,23610.0,12383.0,5000,False,FAIL
+WS connect time,WS /grupo/{id} — connect,100,12167.0,29429.0,29910.0,13553.0,5000,False,FAIL
+WS first message,WS /grupo/{id} — first msg,10,2807.0,17871.0,18355.0,6286.0,8000,False,FAIL
+WS first message,WS /grupo/{id} — first msg,50,12751.0,20263.0,24123.0,12670.0,8000,False,FAIL
+WS first message,WS /grupo/{id} — first msg,100,12240.0,30047.0,30737.0,13738.0,8000,False,FAIL

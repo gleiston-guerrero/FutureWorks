@@ -1,0 +1,57 @@
+{
+  "title": "RutAI replication package: Geofence accuracy, bandit benchmark, TAM pilot, and deployment characterization in Quevedo, Ecuador",
+  "description": "<p>Companion replication package for the manuscript <em>'Geofence-based Urban Mobility in Latin American Cities: An Empirical Evaluation of RutAI, an Integrated Mobile Application with Reinforcement Learning Route Recommendation'</em>, submitted to <em>Pervasive and Mobile Computing</em> (Elsevier), 2026.</p><p>The package contains all raw data, derived datasets, analysis scripts, and figures necessary to reproduce the empirical results in the paper. Five thematic folders correspond to the five empirical components of the study:</p><ul><li><strong>Geofencing</strong> (n=78 independent crossings at 20 points of interest in Quevedo, Ecuador) — the central contribution. Per-trigger data, GPX ground-truth tracks, and analysis scripts producing precision/recall metrics with Wilson 95% CIs across radii of 50, 100, and 200 m.</li><li><strong>Bandit benchmark</strong> — Reproducible simulation comparing Thompson Sampling against five baseline policies (Random, Greedy, ε-greedy at two values, LinUCB, entropy-regularized UCB1) over 100 seeds and horizon T=500.</li><li><strong>TAM pilot (n=25)</strong> — Anonymized per-participant Likert responses, reported as exploratory complementary evidence with documented limitations on discriminant validity and statistical power.</li><li><strong>Battery characterization</strong> — Battery Historian sessions across 5 Android devices (SDK 31–36) and 3 location-tracking modes, with transparent disclosure of data-quality issues affecting 2 of 15 sessions.</li><li><strong>Latency under load</strong> — k6 load tests at 10, 50, 100 virtual users, with full disclosure of free-tier deployment constraints that censor percentiles at the 30-second timeout.</li></ul><p>The package follows a transparency-first principle: every limitation is documented, every script is reproducible from seeds, and every dataset includes a CODEBOOK.md with variable-level documentation. We argue this kind of honest reporting—including negative results and infrastructure limitations—is itself a contribution to the literature on real-world mobile-system evaluation in resource-limited contexts.</p>",
+  "creators": [
+    {
+      "name": "Reyes Palacios, Luis Aaron",
+      "affiliation": "Universidad Técnica Estatal de Quevedo, Ecuador"
+    },
+    {
+      "name": "Guerrero-Ulloa, Gleiston Cicerón",
+      "affiliation": "Universidad Técnica Estatal de Quevedo, Ecuador",
+      "orcid": "0000-0003-0167-8480"
+    }
+  ],
+  "keywords": [
+    "geofencing",
+    "mobile sensing",
+    "multi-armed bandits",
+    "Thompson Sampling",
+    "technology acceptance model",
+    "TAM",
+    "urban mobility",
+    "Latin America",
+    "Ecuador",
+    "Android",
+    "location-based services",
+    "reproducibility"
+  ],
+  "license": "cc-by-4.0",
+  "upload_type": "dataset",
+  "access_right": "open",
+  "language": "eng",
+  "communities": [
+    {"identifier": "zenodo"}
+  ],
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "TBD-after-acceptance",
+      "resource_type": "publication-article",
+      "scheme": "doi"
+    }
+  ],
+  "subjects": [
+    {
+      "term": "Computer Science — Mobile Computing",
+      "identifier": "https://dewey.info/class/004.165"
+    },
+    {
+      "term": "Geographic Information Systems",
+      "identifier": "https://id.loc.gov/authorities/subjects/sh90001023"
+    }
+  ],
+  "version": "1.0",
+  "publication_date": "2026-05-05",
+  "notes": "The TAM pilot dataset is anonymized; participants signed informed-consent forms held separately by the host institution. The Battery and Latency components include transparent disclosure of data-quality issues and infrastructure constraints in their respective CODEBOOK.md files; users are advised to read these before drawing quantitative conclusions from those components."
+}

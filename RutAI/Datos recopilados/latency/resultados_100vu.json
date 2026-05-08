@@ -1,0 +1,52 @@
+{
+  "nivel_usuarios": 100,
+  "metodologia": "ramping-vus con 3 stages (simula 3 regiones geográficas)",
+  "nota_endpoints": {
+    "POST /ml/recomendar-tipo-ruta": "referenciado en paper como 'POST /rutas/generar'",
+    "GET /reminders/listar": "referenciado en paper como 'GET /recordatorios'"
+  },
+  "endpoints": {
+    "POST /login/": {
+      "p50": "29955 ms",
+      "p95": "29960 ms",
+      "p99": "29961 ms",
+      "avg": "26816 ms",
+      "threshold": "PASS"
+    },
+    "POST /ml/recomendar-tipo-ruta": {
+      "p50": "30000 ms",
+      "p95": "30001 ms",
+      "p99": "30001 ms",
+      "avg": "22391 ms",
+      "threshold": "FAIL"
+    },
+    "GET /reminders/listar": {
+      "p50": "30000 ms",
+      "p95": "30001 ms",
+      "p99": "30001 ms",
+      "avg": "24571 ms",
+      "threshold": "FAIL"
+    },
+    "WS connect time": {
+      "p50": "12167 ms",
+      "p95": "29429 ms",
+      "p99": "29910 ms",
+      "avg": "13553 ms",
+      "threshold": "FAIL"
+    },
+    "WS first message": {
+      "p50": "12240 ms",
+      "p95": "30047 ms",
+      "p99": "30737 ms",
+      "avg": "13738 ms",
+      "threshold": "FAIL"
+    }
+  },
+  "resumen": {
+    "total_peticiones_http": 577,
+    "total_conexiones_ws": 157,
+    "errores_ws": 0,
+    "tasa_errores": "81.3%",
+    "threshold_error_rate": "FAIL"
+  }
+}

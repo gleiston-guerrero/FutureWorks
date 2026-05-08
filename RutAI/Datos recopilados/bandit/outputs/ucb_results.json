@@ -1,0 +1,65 @@
+{
+  "Random": {
+    "final_regret_mean": 66.6455,
+    "final_regret_ci95": 0.4703,
+    "reward_rate_mean": 0.5121,
+    "reward_rate_std": 0.0469,
+    "regret_at_t100": 13.272,
+    "regret_at_t250": 33.241,
+    "regret_at_t500": 66.6455
+  },
+  "Greedy": {
+    "final_regret_mean": 40.7525,
+    "final_regret_ci95": 10.4906,
+    "reward_rate_mean": 0.5668,
+    "reward_rate_std": 0.1154,
+    "regret_at_t100": 8.7405,
+    "regret_at_t250": 20.7525,
+    "regret_at_t500": 40.7525
+  },
+  "ε-greedy (ε=0.1)": {
+    "final_regret_mean": 16.576,
+    "final_regret_ci95": 3.6117,
+    "reward_rate_mean": 0.6251,
+    "reward_rate_std": 0.0578,
+    "regret_at_t100": 6.5235,
+    "regret_at_t250": 11.508,
+    "regret_at_t500": 16.576
+  },
+  "ε-greedy (ε=0.2)": {
+    "final_regret_mean": 19.91,
+    "final_regret_ci95": 2.2563,
+    "reward_rate_mean": 0.6197,
+    "reward_rate_std": 0.048,
+    "regret_at_t100": 6.7585,
+    "regret_at_t250": 12.53,
+    "regret_at_t500": 19.91
+  },
+  "Thompson": {
+    "final_regret_mean": 13.4085,
+    "final_regret_ci95": 1.8855,
+    "reward_rate_mean": 0.638,
+    "reward_rate_std": 0.0499,
+    "regret_at_t100": 6.7755,
+    "regret_at_t250": 10.5885,
+    "regret_at_t500": 13.4085
+  },
+  "LinUCB": {
+    "final_regret_mean": 40.3175,
+    "final_regret_ci95": 1.7538,
+    "reward_rate_mean": 0.5698,
+    "reward_rate_std": 0.0551,
+    "regret_at_t100": 8.571,
+    "regret_at_t250": 20.6205,
+    "regret_at_t500": 40.3175
+  },
+  "UCB + Entropía (RutAI)": {
+    "final_regret_mean": 32.8165,
+    "final_regret_ci95": 1.2682,
+    "reward_rate_mean": 0.5947,
+    "reward_rate_std": 0.0548,
+    "regret_at_t100": 9.348,
+    "regret_at_t250": 19.77,
+    "regret_at_t500": 32.8165
+  }
+}
