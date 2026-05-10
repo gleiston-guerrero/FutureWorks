@@ -1,0 +1,140 @@
+% =============================================================
+%  Tesis Kiddy Quiz - UTEQ
+%  Estructura LaTeX completa con casos de uso en formato 4 columnas
+% =============================================================
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage[spanish,es-tabla]{babel}
+
+\usepackage[a4paper,left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{figuras/}}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+\captionsetup{labelfont=bf,justification=centering}
+\usepackage{enumitem}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\textit{Kiddy Quiz}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\definecolor{headblue}{HTML}{D9E1F2}
+\definecolor{grpgray}{HTML}{F2F2F2}
+\definecolor{utgreen}{HTML}{1F7A3A}
+
+\newcommand{\elaboracion}{\noindent\textbf{Elaboración:} \textit{Autor}\par\bigskip}
+
+\renewcommand{\chaptername}{CAPÍTULO}
+\renewcommand{\contentsname}{TABLA DE CONTENIDO}
+\renewcommand{\listfigurename}{ÍNDICE DE ILUSTRACIONES}
+\renewcommand{\listtablename}{ÍNDICE DE TABLAS}
+\renewcommand{\figurename}{Ilustración}
+\renewcommand{\tablename}{Tabla}
+
+\begin{document}
+
+\pagenumbering{roman}
+
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  {\large \textbf{UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO}}\\[0.5cm]
+  {\large \textbf{FACULTAD DE CIENCIAS DE LA INGENIERÍA}}\\[0.5cm]
+  {\large \textbf{CARRERA DE INGENIERÍA EN SOFTWARE}}\\[2cm]
+
+  {\Large\bfseries Aplicación web inclusiva para el control y evaluación de competencias curriculares en matemáticas para estudiantes de educación básica elemental}\\[2cm]
+
+  \textbf{Proyecto de titulación previo a la obtención del título de:}\\[0.3cm]
+  \textit{Ingeniero en Software}\\[2cm]
+
+  \textbf{Autor:}\\
+  Jeandavid Rodolfo Cabrera Guerra\\[1.5cm]
+
+  \textbf{Director:}\\
+  \textit{[Nombre del Director]}\\[3cm]
+
+  Quevedo - UTEQ ``La María''\\
+  2025
+\end{titlepage}
+
+\chapter*{DECLARACIÓN DE AUTORÍA Y CESIÓN DE DERECHOS}
+\addcontentsline{toc}{chapter}{DECLARACIÓN DE AUTORÍA Y CESIÓN DE DERECHOS}
+\textit{[Contenido de la declaración de autoría.]}
+
+\chapter*{AGRADECIMIENTO}
+\addcontentsline{toc}{chapter}{AGRADECIMIENTO}
+\textit{[Contenido del agradecimiento.]}
+
+\chapter*{DEDICATORIA}
+\addcontentsline{toc}{chapter}{DEDICATORIA}
+\textit{[Contenido de la dedicatoria.]}
+
+\chapter*{RESUMEN}
+\addcontentsline{toc}{chapter}{RESUMEN}
+El presente proyecto tiene como objetivo desarrollar ``Kiddy Quiz'', una aplicación web interactiva orientada a la evaluación y el refuerzo de matemáticas para estudiantes de educación básica elemental. El desarrollo del software se gestionó bajo la metodología ágil de Programación Extrema (XP). La arquitectura del sistema se construyó utilizando Angular para el frontend, NestJS para la lógica del backend y PostgreSQL como motor de base de datos. Como principal innovación, la plataforma integra el uso de interfaces basadas en pictogramas para facilitar la navegación autónoma infantil, así como la implementación de Inteligencia Artificial (Gemini) para proveer retroalimentación motivacional. La validación se realizó a través de la Escala de Usabilidad del Sistema (SUS) y el Modelo de Aceptación Tecnológica (TAM), demostrando una usabilidad ``Excelente''.
+
+\textbf{Palabras claves:} aplicación web, educación básica, matemáticas, pictogramas, inteligencia artificial, usabilidad, Kiddy Quiz.
+
+\chapter*{ABSTRACT}
+\addcontentsline{toc}{chapter}{ABSTRACT}
+\textit{[Translated abstract.]}
+
+\tableofcontents
+\listoftables
+\listoffigures
+
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\chapter*{INTRODUCCIÓN}
+\addcontentsline{toc}{chapter}{INTRODUCCIÓN}
+
+El presente proyecto tiene como objetivo desarrollar Kiddy Quiz, una aplicación web interactiva orientada a la evaluación y el refuerzo de matemáticas para estudiantes de educación básica elemental. La evaluación por competencias se ha posicionado como un pilar fundamental en la transformación educativa contemporánea; sin embargo, en el contexto de la educación básica ecuatoriana, las herramientas tecnológicas existentes han sido diseñadas predominantemente para la educación superior, dejando desatendido el nivel básico elemental.
+
+Por esta razón, se plantea la creación de una aplicación web inclusiva destinada a la realización de evaluaciones por competencias curriculares a estudiantes de primaria, centrada en la disciplina de Matemáticas. La propuesta incluye la segmentación de las evaluaciones por módulos, lo que permite adaptar la dificultad de acuerdo con la estructura de los cursos, así como la integración de una variedad de tipos de preguntas para captar el interés y la participación activa del estudiante. Desde la perspectiva del docente, se subraya la generación de informes individuales detallados para que puedan interpretar y aplicar los resultados en el proceso educativo.
+
+El documento se organiza en cuatro capítulos: el Capítulo I expone el marco contextual del problema, los objetivos y la justificación; el Capítulo II presenta el marco teórico y referencial; el Capítulo III describe la metodología de Programación Extrema (XP) aplicada y los indicadores de evaluación; y el Capítulo IV detalla los resultados obtenidos, incluyendo las historias de usuario, los casos de uso extendidos, la arquitectura del sistema, las pruebas de usabilidad (SUS) y de aceptación tecnológica (TAM).
+
+\chapter{MARCO CONTEXTUAL DEL PROYECTO TECNOLÓGICO}
+\input{cap1_marco_contextual}
+
+\chapter{MARCO TEÓRICO DEL PROYECTO TECNOLÓGICO}
+\input{cap2_marco_teorico}
+
+\chapter{METODOLOGÍA}
+\input{cap3_metodologia}
+
+\chapter{RESULTADOS}
+\input{cap4_resultados}
+
+\appendix
+\chapter*{ANEXOS}
+\addcontentsline{toc}{chapter}{ANEXOS}
+\textit{[Contenido de los anexos.]}
+
+\end{document}

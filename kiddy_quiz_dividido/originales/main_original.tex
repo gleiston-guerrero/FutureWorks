@@ -1,0 +1,168 @@
+% =============================================================
+%  Tesis Kiddy Quiz - UTEQ
+%  Estructura LaTeX completa con casos de uso en formato 4 columnas
+% =============================================================
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage[spanish,es-tabla]{babel}
+
+\usepackage[a4paper,left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage{tikz}
+
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{figuras/}}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+\captionsetup{labelfont=bf,justification=centering}
+\usepackage{enumitem}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\textit{Kiddy Quiz}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\definecolor{headblue}{HTML}{D9E1F2}
+\definecolor{grpgray}{HTML}{F2F2F2}
+\definecolor{utgreen}{HTML}{1F7A3A}
+
+\newcommand{\elaboracion}{\noindent\textbf{Elaboración:} \textit{Autor}\par\bigskip}
+
+\newcommand{\fuenteautor}{\elaboracion}
+
+\renewcommand{\chaptername}{CAPÍTULO}
+\renewcommand{\contentsname}{TABLA DE CONTENIDO}
+\renewcommand{\listfigurename}{ÍNDICE DE ILUSTRACIONES}
+\renewcommand{\listtablename}{ÍNDICE DE TABLAS}
+\renewcommand{\figurename}{Ilustración}
+\renewcommand{\tablename}{Tabla}
+
+\usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
+\addbibresource{referencias.bib}
+
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\normalfont\Huge\bfseries\centering\thispagestyle{empty}\vspace*{\fill}}
+  {\Large CAPÍTULO \thechapter}
+  {2em}
+  {}
+  [\vspace*{\fill}]
+
+\titlespacing*{\chapter}{0pt}{*20}{*15}
+
+
+\begin{document}
+
+\pagenumbering{roman}
+
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  {\large \textbf{UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO}}\\[0.5cm]
+  {\large \textbf{FACULTAD DE CIENCIAS DE LA INGENIERÍA}}\\[0.5cm]
+  {\large \textbf{CARRERA DE INGENIERÍA EN SOFTWARE}}\\[2cm]
+
+  {\Large\bfseries Aplicación web inclusiva para el control y evaluación de competencias curriculares en matemáticas para estudiantes de educación básica elemental}\\[2cm]
+
+  \textbf{Proyecto de titulación previo a la obtención del título de:}\\[0.3cm]
+  \textit{Ingeniero en Software}\\[2cm]
+
+  \textbf{Autor:}\\
+  Jeandavid Rodolfo Cabrera Guerra\\[1.5cm]
+
+  \textbf{Director:}\\
+  \textit{[Nombre del Director]}\\[3cm]
+
+  Quevedo - UTEQ ``La María''\\
+  2025
+\end{titlepage}
+
+\chapter*{DECLARACIÓN DE AUTORÍA Y CESIÓN DE DERECHOS}
+\addcontentsline{toc}{chapter}{DECLARACIÓN DE AUTORÍA Y CESIÓN DE DERECHOS}
+\textit{[Contenido de la declaración de autoría.]}
+
+\chapter*{AGRADECIMIENTO}
+\addcontentsline{toc}{chapter}{AGRADECIMIENTO}
+\textit{[Contenido del agradecimiento.]}
+
+\chapter*{DEDICATORIA}
+\addcontentsline{toc}{chapter}{DEDICATORIA}
+\textit{[Contenido de la dedicatoria.]}
+
+\chapter*{RESUMEN}
+\addcontentsline{toc}{chapter}{RESUMEN}
+El presente proyecto tiene como objetivo desarrollar ``Kiddy Quiz'', una aplicación web interactiva orientada a la evaluación y el refuerzo de matemáticas para estudiantes de educación básica elemental. El desarrollo del software se gestionó bajo la metodología ágil de Programación Extrema (XP). La arquitectura del sistema se construyó utilizando Angular para el frontend, NestJS para la lógica del backend y PostgreSQL como motor de base de datos. Como principal innovación, la plataforma integra el uso de interfaces basadas en pictogramas para facilitar la navegación autónoma infantil, así como la implementación de Inteligencia Artificial (Gemini) para proveer retroalimentación motivacional. La validación se realizó a través de la Escala de Usabilidad del Sistema (SUS) y el Modelo de Aceptación Tecnológica (TAM), demostrando una usabilidad ``Excelente''.
+
+\textbf{Palabras claves:} aplicación web, educación básica, matemáticas, pictogramas, inteligencia artificial, usabilidad, Kiddy Quiz.
+
+\chapter*{ABSTRACT}
+\addcontentsline{toc}{chapter}{ABSTRACT}
+\textit{[Translated abstract.]}
+
+\tableofcontents
+\listoftables
+\listoffigures
+
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+\chapter*{INTRODUCCIÓN}
+\addcontentsline{toc}{chapter}{INTRODUCCIÓN}
+\input{caps/cap_introduccion}
+
+\chapter{MARCO CONTEXTUAL del PROYECTO  TECNOLÓGICO}
+\clearpage
+\input{caps/cap1_marco_contextual}
+
+\chapter{MARCO TEÓRICO DEL PROYECTO TECNOLÓGICO}
+\clearpage
+\input{caps/cap2_marco_teorico}
+
+\chapter{METODOLOGÍA}
+\clearpage
+\input{caps/cap3_metodologia}
+
+\chapter{RESULTADOS}
+\clearpage
+\input{caps/cap4_resultados}
+
+\chapter{CONSLUSIONES Y RECOMENDACIONES}
+\clearpage
+\input{caps/cap5_conclusiones}
+\label{cap:conclusiones}
+
+
+\printbibliography[title={REFERENCIAS BIBLIOGRÁFICAS}]
+\addcontentsline{toc}{chapter}{REFERENCIAS BIBLIOGRÁFICAS}
+
+\appendix
+%\chapter*{ANEXOS}
+\addcontentsline{toc}{chapter}{ANEXOS}
+\input{caps/cap_anexos}
+
+\end{document}

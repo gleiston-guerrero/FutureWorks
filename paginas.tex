@@ -1,0 +1,411 @@
+% =====================================================================
+% PROYECTO TECNOLÓGICO - UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO (UTEQ)
+% Carrera de Software - Facultad de Ciencias de la Ingeniería
+% Autor: Jeandavid Rodolfo Cabrera Guerra
+% Director: Ing. Gleiston Ciceron Guerrero Ulloa, PhD
+% Tema: Aplicación web inclusiva "Kiddy Quiz"
+%
+% Cumple con la "ESTRUCTURA Y FORMATO INSTITUCIONAL DE PRESENTACIÓN
+% DEL PROYECTO TECNOLÓGICO EN LA UNIDAD DE INTEGRACIÓN CURRICULAR"
+%
+% PRIMERAS 10 HOJAS (páginas preliminares: i - x)
+% =====================================================================
+
+\documentclass[12pt,a4paper,oneside]{report}
+
+% ---------- PAQUETES ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla,es-nodecimaldot]{babel}
+\usepackage{mathptmx}              % Times New Roman
+\usepackage[
+    left=3cm,                      % Margen izquierdo 3 cm
+    right=2.5cm,                   % Margen derecho 2.5 cm
+    top=2.5cm,                     % Margen superior 2.5 cm
+    bottom=2.5cm                   % Margen inferior 2.5 cm
+]{geometry}
+\usepackage{setspace}              % Interlineado 1.5
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{hidelinks}
+
+% ---------- INTERLINEADO 1.5 ----------
+\onehalfspacing
+
+% ---------- NUMERACIÓN INFERIOR DERECHA ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ---------- JERARQUIZACIÓN DE TÍTULOS UTEQ ----------
+% Título Capítulo (Nivel 1): MAYÚSCULAS NEGRITA 12 pt, centrado vertical y horizontal,
+% en una sola página, sin numeración impresa.
+% Título Nivel 2 (1.1): negrita 12 pt, alineado izquierda, tipo oración sin punto.
+% Título Nivel 3 (1.1.1): cursiva negrita 12 pt, alineado izquierda, tipo oración sin punto.
+% Título Nivel 4 (1.1.1.1): cursiva negrita 12 pt, alineado izquierda, tipo oración con punto.
+
+\titleformat{\section}{\bfseries\normalsize}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\bfseries\itshape\normalsize}{\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}{\bfseries\itshape\normalsize}{\thesubsubsection.}{0.5em}{}
+
+% ---------- ÍNDICE / TABLA DE CONTENIDO ----------
+\renewcommand{\contentsname}{TABLA DE CONTENIDO}
+\renewcommand{\listtablename}{ÍNDICE DE TABLAS}
+\renewcommand{\listfigurename}{ÍNDICE DE ILUSTRACIONES}
+
+% =====================================================================
+\begin{document}
+
+% =====================================================================
+% HOJA 1 (i) – CUBIERTA Y PORTADA
+% La numeración no se imprime en esta hoja
+% =====================================================================
+\pagenumbering{roman}
+\thispagestyle{empty}
+
+\begin{center}
+    \vspace*{0.5cm}
+    {\bfseries\large UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO}\\[0.4cm]
+    {\bfseries\large FACULTAD DE CIENCIAS DE LA INGENIERÍA}\\[0.4cm]
+    {\bfseries\large CARRERA DE SOFTWARE}\\[2cm]
+
+    \begin{minipage}{0.75\textwidth}
+        \centering
+        \onehalfspacing
+        Trabajo de Integración Curricular previa la obtención del Grado Académico de Ingeniero de Software
+    \end{minipage}\\[1.8cm]
+
+    {\bfseries PROYECTO TECNOLÓGICO:}\\[0.6cm]
+    \begin{minipage}{0.85\textwidth}
+        \centering
+        \bfseries
+        APLICACIÓN WEB INCLUSIVA PARA EL CONTROL Y EVALUACIÓN DE COMPETENCIAS CURRICULARES EN MATEMÁTICAS PARA ESTUDIANTES DE EDUCACIÓN BÁSICA ELEMENTAL.
+    \end{minipage}\\[1.8cm]
+
+    {\bfseries AUTOR:}\\[0.3cm]
+    JEANDAVID RODOLFO CABRERA GUERRA\\[1.2cm]
+
+    {\bfseries DIRECTORA DEL PROYECTO TECNOLÓGICO:}\\[0.3cm]
+    ING. GLEISTON CICERON GUERRERO ULLOA MSc.\\[2cm]
+
+    {\bfseries QUEVEDO -- LOS RÍOS -- ECUADOR}\\[0.4cm]
+    {\bfseries 2026}
+\end{center}
+
+\newpage
+
+% =====================================================================
+% HOJA 2 (ii) – DECLARACIÓN DE AUTORÍA Y CESIÓN DE DERECHOS
+% =====================================================================
+\setcounter{page}{2}
+
+\begin{center}
+    \vspace*{0.5cm}
+    {\bfseries DECLARACIÓN DE AUTORÍA Y CESIÓN DE DERECHOS}
+\end{center}
+\vspace{1cm}
+
+\justifying
+Yo, \textbf{JEANDAVID RODOLFO CABRERA GUERRA}, declaro que la investigación aquí descrita es de mi autoría; que no ha sido previamente presentado para ningún grado o calificación profesional; y, que he consultado las referencias bibliográficas que se incluyen en este documento.
+
+\vspace{0.5cm}
+
+La Universidad Técnica Estatal de Quevedo, puede hacer uso de los derechos correspondientes a este documento, según lo establecido por la Ley de Propiedad Intelectual, por su Reglamento y por la normatividad institucional vigente.
+
+\vspace{4cm}
+
+\begin{center}
+    \rule{8cm}{0.4pt}\\[0.2cm]
+    \textbf{JEANDAVID RODOLFO CABRERA GUERRA}\\
+    \textbf{C.I: 1207928993}
+\end{center}
+
+\newpage
+
+% =====================================================================
+% HOJA 3 (iii) – CERTIFICACIÓN DE CULMINACIÓN DEL PROYECTO TECNOLÓGICO
+% =====================================================================
+\begin{center}
+    \vspace*{0.5cm}
+    {\bfseries CERTIFICACIÓN DE CULMINACIÓN DEL PROYECTO TECNOLÓGICO}
+\end{center}
+\vspace{1cm}
+
+\justifying
+La suscrita, \textbf{Ing. Gleiston Ciceron Guerrero Ulloa, MSc.}, Docente de la Universidad Técnica Estatal de Quevedo, certifica que el estudiante Jeandavid Rodolfo Cabrera Guerra, realizó el Proyecto Tecnológico de grado titulado \textbf{``Aplicación web inclusiva para el control y evaluación de competencias curriculares en matemáticas para estudiantes de educación básica elemental.''}, previo a la obtención del título de \textbf{Ingeniero de Software}, bajo mi dirección, habiendo cumplido con las disposiciones reglamentarias establecidas para el efecto.
+
+\vspace{4cm}
+
+\begin{center}
+    \rule{8cm}{0.4pt}\\[0.2cm]
+    \textbf{Ing. Gleiston Ciceron Guerrero Ulloa, PhD}\\
+    \textbf{DIRECTOR DEL PROYECTO TECNOLÓGICO}
+\end{center}
+
+\newpage
+
+% =====================================================================
+% HOJA 4 (iv) – CERTIFICADO DE PREVENCIÓN DE COINCIDENCIA Y/O PLAGIO
+% =====================================================================
+\begin{center}
+    \vspace*{0.5cm}
+    \begin{minipage}{0.95\textwidth}
+        \centering
+        \textbf{CERTIFICADO DEL REPORTE DE LA HERRAMIENTA DE PREVENCIÓN DE COINCIDENCIA Y/O PLAGIO ACADÉMICO}
+    \end{minipage}
+\end{center}
+\vspace{1cm}
+
+\justifying
+El suscrito, \textbf{Ing. Gleiston Ciceron Guerrero Ulloa, PhD}, mediante el presente cumplo en presentar a usted, el informe del Proyecto Tecnológico titulado \textbf{``Aplicación web inclusiva para el control y evaluación de competencias curriculares en matemáticas para estudiantes de educación básica elemental''} presentado por el estudiante Jeandavid Rodolfo Cabrera Guerra, egresado de la Carrera de Software, que fue revisado bajo mi dirección según resolución del Consejo Directivo de la Facultad de Ciencias de la Ingeniería, que se ha desarrollado de acuerdo al Reglamento de la Unidad de Integración Curricular de la Universidad Técnica Estatal de Quevedo y cumple con el requerimiento de análisis del sistema COMPILATIO el cual avala los niveles de originalidad en un 96\% y similitud 4\%, del trabajo investigativo. Valido este documento para que el estudiante siga con los trámites pertinentes, de acuerdo como lo establece el Reglamento.
+
+\vspace{3cm}
+
+\begin{center}
+    \rule{8cm}{0.4pt}\\[0.2cm]
+    \textbf{Ing. Gleiston Ciceron Guerrero Ulloa, PhD}\\
+    \textbf{DIRECTOR DEL PROYECTO TECNOLÓGICO}
+\end{center}
+
+\newpage
+
+% =====================================================================
+% HOJA 5 (v) – CERTIFICADO DE APROBACIÓN POR TRIBUNAL DE SUSTENTACIÓN
+% =====================================================================
+\begin{center}
+    \vspace*{0.3cm}
+    {\bfseries UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO}\\[0.3cm]
+    {\bfseries FACULTAD DE CIENCIAS DE LA INGENIERÍA}\\[0.3cm]
+    {\bfseries CARRERA DE SOFTWARE}\\[1cm]
+
+    {\bfseries CERTIFICADO DE APROBACIÓN POR TRIBUNAL DE SUSTENTACIÓN}\\[0.5cm]
+    {\bfseries PROYECTO TECNOLÓGICO}\\[0.8cm]
+
+    \textbf{Título:}\\[0.3cm]
+    \begin{minipage}{0.85\textwidth}
+        \centering
+        \itshape
+        ``Aplicación web inclusiva para el control y evaluación de competencias curriculares en matemáticas para estudiantes de educación básica elemental''
+    \end{minipage}
+\end{center}
+
+\vspace{0.6cm}
+\justifying
+Presentado al Consejo Directivo de la Facultad de Ciencias de la Ingeniería como requisito previo a la obtención del título de Ingeniero de Software.
+
+\vspace{0.4cm}
+Aprobado por:
+
+\vspace{1.5cm}
+\begin{center}
+    \rule{8cm}{0.4pt}\\[0.2cm]
+    \textbf{PRESIDENTE DEL TRIBUNAL}\\
+    Ing. Ivan Fredy Jaramillo Chuqui, PhD.
+\end{center}
+
+\vspace{1.2cm}
+\begin{center}
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \rule{6cm}{0.4pt}\\[0.2cm]
+        \textbf{MIEMBRO DEL TRIBUNAL}\\
+        Ing. Jessica Alexandra\\
+        Ponce Ordoñez. MSc.
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.45\textwidth}
+        \centering
+        \rule{6cm}{0.4pt}\\[0.2cm]
+        \textbf{MIEMBRO DEL TRIBUNAL}\\
+        Ing. Diego Fernando\\
+        Intriago Rodríguez, MSc.
+    \end{minipage}
+\end{center}
+
+\vspace{1.5cm}
+\begin{center}
+    QUEVEDO -- LOS RÍOS -- ECUADOR\\[0.3cm]
+    2025
+\end{center}
+
+\newpage
+
+% =====================================================================
+% HOJA 6 (vi) – AGRADECIMIENTO
+% =====================================================================
+\begin{center}
+    \vspace*{0.5cm}
+    {\bfseries AGRADECIMIENTO}
+\end{center}
+\vspace{0.8cm}
+
+\justifying
+Quiero expresar mi más profundo agradecimiento a todas las personas que me han acompañado, guiado y brindado su apoyo incondicional a lo largo de mi formación académica y durante el desarrollo de este proyecto.
+
+A mis padres, por ser mi mayor fuente de inspiración y mi soporte constante. Sin su inagotable esfuerzo, sacrificio y amor, este sueño no habría sido posible. Gracias por creer siempre en mí y por motivarme a superar cada obstáculo con integridad.
+
+A mi hermana, por su infinita paciencia, por las risas compartidas y por hacer que el camino hacia esta meta fuera mucho más llevadero y feliz.
+
+A mi prometida, por su comprensión, aliento y amor durante todo este tiempo. Gracias por estar a mi lado en los momentos de mayor exigencia y por ser una fuente constante de paz, motivación y alegría.
+
+A mi director de proyecto, por su invaluable guía, rigor y paciencia. Gracias por compartir su experiencia, por orientar esta investigación con excelencia y por confiar en mi capacidad para llevar a cabo este trabajo. Su respaldo ha sido un pilar fundamental.
+
+A mis profesores, por su vocación de enseñanza y por haber forjado mi carácter profesional a lo largo de la carrera. Gracias por transmitirme sus conocimientos y por impulsarme a alcanzar la excelencia académica.
+
+A los niños, docentes y profesionales de la educación que participaron con tanto entusiasmo en las pruebas de usabilidad del sistema. Su disposición, sus sonrisas y su retroalimentación le dieron verdadero sentido y propósito a este desarrollo tecnológico.
+
+A mis amigos y compañeros de clase, con quienes compartí este invaluable camino de aprendizaje, retos y triunfos. Gracias por el compañerismo, el apoyo mutuo y por formar parte de una etapa que recordaré con inmenso cariño.
+
+A todas las personas que, de una u otra manera, aportaron su tiempo y conocimiento para la culminación de esta etapa, mi más sincero agradecimiento.
+
+\newpage
+
+% =====================================================================
+% HOJA 7 (vii) – DEDICATORIA (alineada al lado derecho según norma)
+% =====================================================================
+\begin{center}
+    \vspace*{0.5cm}
+    {\bfseries DEDICATORIA}
+\end{center}
+\vspace{1.5cm}
+
+\begin{flushright}
+    \begin{minipage}{0.65\textwidth}
+        \itshape
+        \justifying
+        Dedico este proyecto, desde lo más profundo de mi ser, a mis padres, quienes con su inmenso amor y respaldo infinito han sido la base de toda mi vida. A mi prometida, cuya motivación inagotable me infundió la seguridad necesaria para jamás rendirme. A mi hermana, por brindarme su ternura y ser ese puerto seguro al que siempre puedo acudir. A mis inseparables mascotas, por regalarme paz y felicidad en los días de mayor cansancio. Y, por último, me dedico este gran logro a mí mismo, reconociendo el empeño, la tenacidad y el sacrificio que forjaron este camino. A todos ustedes, mi infinita gratitud por ser el impulso vital que me acompañó hacia esta meta.
+    \end{minipage}
+\end{flushright}
+
+\newpage
+
+% =====================================================================
+% HOJA 8 (viii) – RESUMEN Y PALABRAS CLAVES
+% =====================================================================
+\begin{center}
+    \vspace*{0.5cm}
+    {\bfseries RESUMEN}
+\end{center}
+\vspace{0.8cm}
+
+\justifying
+El presente proyecto tiene como objetivo desarrollar ``Kiddy Quiz'', una aplicación web interactiva orientada a la evaluación y el refuerzo de matemáticas para estudiantes de educación básica elemental. Para la fundamentación y levantamiento de requisitos, se llevó a cabo una investigación de campo que incluyó entrevistas a 5 profesionales de la educación, 2 psicopedagogos, lo cual permitió identificar las barreras cognitivas y de ansiedad presentes en los procesos evaluativos tradicionales. El desarrollo del software se gestionó bajo la metodología ágil de Programación Extrema (XP), asegurando la calidad y robustez del código. La arquitectura del sistema se construyó utilizando Angular para el desarrollo del frontend, NestJS para la lógica del backend y PostgreSQL como motor de base de datos relacional. Como principal innovación, la plataforma integra el uso de interfaces basadas en pictogramas para facilitar la navegación autónoma infantil, así como la implementación de Inteligencia Artificial (Gemini) para proveer retroalimentación motivacional tras cada evaluación. La validación del sistema se realizó a través de la Escala de Usabilidad del Sistema (SUS) y el Modelo de Aceptación Tecnológica (TAM), demostrando una usabilidad en categoría ``Excelente'' y una intención de uso casi unánime por parte de los estudiantes. Además, para garantizar la protección de los datos y el correcto control de roles, se implementaron medidas de seguridad mediante autenticación con tokens JWT. Como resultado, se ha logrado consolidar una herramienta tecnológica inclusiva que optimiza la gestión académica del docente, reduce la frustración del estudiante y representa un aporte significativo en la modernización de la evaluación educativa infantil.
+
+\vspace{0.5cm}
+
+\noindent\textbf{Palabras clave:} aplicación web, educación básica, matemáticas, pictogramas, inteligencia artificial, usabilidad, Kiddy Quiz.
+
+\newpage
+
+% =====================================================================
+% HOJA 9 (ix) – ABSTRACT AND KEYWORDS
+% =====================================================================
+\begin{center}
+    \vspace*{0.5cm}
+    {\bfseries ABSTRACT}
+\end{center}
+\vspace{0.8cm}
+
+\justifying
+\selectlanguage{english}
+The present project aims to develop ``Kiddy Quiz,'' an interactive web application designed for the evaluation and reinforcement of mathematics for elementary school students. For the theoretical foundation and requirements gathering, a field research study was conducted, which included interviews with 5 education professionals and 2 psychopedagogues. This allowed for the identification of cognitive and anxiety barriers present in traditional evaluation processes. The software development was managed under the Extreme Programming (XP) agile methodology, ensuring code quality and robustness. The system architecture was built using Angular for frontend development, NestJS for backend logic, and PostgreSQL as the relational database engine. As a primary innovation, the platform integrates pictogram-based interfaces to facilitate autonomous navigation for children, as well as the implementation of Artificial Intelligence (Gemini) to provide motivational feedback after each evaluation. System validation was carried out using the System Usability Scale (SUS) and the Technology Acceptance Model (TAM), demonstrating an ``Excellent'' usability category and an almost unanimous intention of use by the students. Furthermore, to guarantee data protection and proper role-based access control, security measures were implemented using JWT token authentication. As a result, an inclusive technological tool has been consolidated, optimizing teachers' academic management, reducing student frustration, and representing a significant contribution to the modernization of childhood educational assessment.
+
+\vspace{0.5cm}
+
+\noindent\textbf{Keywords:} web application, elementary education, mathematics, pictograms, artificial intelligence, usability, Kiddy Quiz.
+\selectlanguage{spanish}
+
+\newpage
+
+% =====================================================================
+% HOJA 10 (x) – TABLA DE CONTENIDO
+% =====================================================================
+\begin{center}
+    \vspace*{-0.8cm}
+    {\bfseries TABLA DE CONTENIDO}
+\end{center}
+\vspace{0.1cm}
+
+\begingroup
+\renewcommand{\arraystretch}{0.85}
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\noindent
+\begin{tabularx}{\textwidth}{@{}Xr@{}}
+DECLARACIÓN DE AUTORÍA Y CESIÓN DE DERECHOS \dotfill & ii \\
+CERTIFICACIÓN DE CULMINACIÓN DEL PROYECTO TECNOLÓGICO \dotfill & iii \\
+CERTIFICADO DEL REPORTE DE LA HERRAMIENTA DE PREVENCIÓN DE COINCIDENCIA Y/O PLAGIO ACADÉMICO \dotfill & iv \\
+CERTIFICADO DE APROBACIÓN POR TRIBUNAL DE SUSTENTACIÓN \dotfill & v \\
+AGRADECIMIENTO \dotfill & vi \\
+DEDICATORIA \dotfill & vii \\
+RESUMEN \dotfill & viii \\
+ABSTRACT \dotfill & ix \\
+ÍNDICE DE TABLAS \dotfill & xi \\
+ÍNDICE DE ILUSTRACIONES \dotfill & xii \\
+ÍNDICE DE ANEXOS \dotfill & xiii \\
+CÓDIGO DUBLIN \dotfill & xiv \\
+INTRODUCCIÓN \dotfill & 1 \\
+\textbf{CAPÍTULO I \ \  MARCO CONTEXTUAL DEL PROYECTO TECNOLÓGICO} \dotfill & 3 \\
+\quad 1.1.\ \  Problema de investigación \dotfill & 4 \\
+\quad\quad \textit{1.1.1.\ \  Planteamiento del problema} \dotfill & 4 \\
+\quad\quad \textit{1.1.2.\ \  Formulación del problema} \dotfill & 5 \\
+\quad\quad \textit{1.1.3.\ \  Sistematización del problema} \dotfill & 5 \\
+\quad 1.2.\ \  Objetivos \dotfill & 6 \\
+\quad\quad \textit{1.2.1.\ \  Objetivo General} \dotfill & 6 \\
+\quad\quad \textit{1.2.2.\ \  Objetivos Específicos} \dotfill & 6 \\
+\quad 1.3.\ \  Justificación \dotfill & 6 \\
+\textbf{CAPÍTULO II \ \  MARCO TEÓRICO DEL PROYECTO TECNOLÓGICO} \dotfill & 9 \\
+\quad 2.1.\ \  Marco conceptual \dotfill & 10 \\
+\quad\quad \textit{2.1.1.\ \  Evolución de las evaluaciones educativas} \dotfill & 11 \\
+\quad\quad \textit{2.1.2.\ \  Evaluación por competencias} \dotfill & 12 \\
+\quad\quad \textit{2.1.3.\ \  Evaluación por competencias en matemáticas} \dotfill & 12 \\
+\quad\quad \textit{2.1.4.\ \  Tipos de preguntas en evaluaciones por competencias} \dotfill & 13 \\
+\quad\quad \textit{2.1.5.\ \  Integración de diferentes tipos de preguntas} \dotfill & 14 \\
+\quad\quad \textit{2.1.6.\ \  Uso de elementos multimedia en preguntas educativas} \dotfill & 15 \\
+\quad\quad \textit{2.1.7.\ \  La tecnología educativa} \dotfill & 15 \\
+\quad\quad \textit{2.1.8.\ \  Aplicaciones educativas} \dotfill & 16 \\
+\quad\quad \textit{2.1.9.\ \  Desarrollo de aplicaciones para evaluación educativa} \dotfill & 17 \\
+\quad\quad \textit{2.1.10.\ \  Programación Extrema (XP)} \dotfill & 18 \\
+\quad 2.2.\ \  Marco referencial \dotfill & 20 \\
+\textbf{CAPÍTULO III \ \  METODOLOGÍA} \dotfill & 22 \\
+\quad 3.1.\ \  Marco de fases de desarrollo del proyecto tecnológico \dotfill & 23 \\
+\quad\quad \textit{3.1.1.\ \  Obtención de requisitos} \dotfill & 24 \\
+\quad\quad \textit{3.1.2.\ \  Desarrollo de la aplicación} \dotfill & 26 \\
+\quad\quad \textit{3.1.3.\ \  Pruebas e implementación} \dotfill & 28 \\
+\quad\quad \textit{3.1.4.\ \  Evaluación de la aplicación} \dotfill & 30 \\
+\quad 3.2.\ \  Cronograma \dotfill & 31 \\
+\quad 3.3.\ \  Recursos, presupuesto y financiamiento \dotfill & 32 \\
+\quad 3.4.\ \  Instrumentos para el seguimiento y control \dotfill & 32 \\
+\quad 3.5.\ \  Indicadores de evaluación \dotfill & 34 \\
+\textbf{CAPÍTULO IV \ \  RESULTADOS} \dotfill & 38 \\
+\quad 4.1.\ \  Producto tecnológico desarrollado \dotfill & 39 \\
+\quad\quad \textit{4.1.1.\ \  Obtención de requisitos} \dotfill & 40 \\
+\quad\quad \textit{4.1.2.\ \  Diagrama de casos de uso} \dotfill & 43 \\
+\quad\quad \textit{4.1.3.\ \  Descripción de los casos de uso extendidos} \dotfill & 44 \\
+\quad\quad \textit{4.1.4.\ \  Diagrama de arquitectura} \dotfill & 78 \\
+\quad\quad \textit{4.1.5.\ \  Diagrama de base de datos} \dotfill & 79 \\
+\quad\quad \textit{4.1.6.\ \  Diseño del prototipo} \dotfill & 80 \\
+\quad\quad \textit{4.1.7.\ \  Integración de Gemini AI} \dotfill & 82 \\
+\quad\quad \textit{4.1.8.\ \  Seguridad y autenticación} \dotfill & 83 \\
+\quad 4.2.\ \  Comprobación \dotfill & 85 \\
+\quad\quad \textit{4.2.1.\ \  Cumplimiento de plazos} \dotfill & 85 \\
+\quad\quad \textit{4.2.2.\ \  Nivel de aceptación de usuario} \dotfill & 86 \\
+\quad\quad\quad \textit{4.2.2.1.\ \  Resultados de las evaluaciones de usabilidad (SUS)} \dotfill & 86 \\
+\quad\quad\quad \textit{4.2.2.2.\ \  Resultados del Modelo de Aceptación Tecnológica (TAM)} \dotfill & 88 \\
+ANEXOS \dotfill & 98 \\
+\end{tabularx}
+\endgroup
+
+\end{document}

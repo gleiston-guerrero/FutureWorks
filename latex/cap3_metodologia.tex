@@ -1,0 +1,260 @@
+% =============================================================
+%  CAPÍTULO III — METODOLOGÍA
+% =============================================================
+
+\section{Marco de fases de desarrollo del proyecto tecnológico}
+
+El desarrollo del proyecto se ha dividido en tres etapas principales: la obtención de requisitos, el desarrollo de la aplicación, y las pruebas e implementación. Esta distribución está alineada con la propuesta de Braumer, la cual consiste en la presentación de prototipos o incrementos funcionales para la visualización temprana de las interfaces y la evaluación continua de las funcionalidades a lo largo del proyecto.
+
+Para ejecutar este flujo de trabajo, se aplicaron las prácticas de la Programación Extrema (XP), las cuales han sido adaptadas al contexto específico del proyecto. Al ser un desarrollo individual, las prácticas colaborativas de XP se enfocaron en la autodisciplina y la revisión personal, mientras que la evaluación continua con los expertos se estructuró en ciclos de retroalimentación planificados para ajustarse a su disponibilidad. De esta manera, la obtención de requisitos se gestionó mediante el Juego de Planificación y la creación de Historias de Usuario; el desarrollo de la aplicación se centró en el ciclo de desarrollo dirigido por pruebas (TDD), la refactorización y el diseño simple; y finalmente, las pruebas e implementación se basaron en la integración continua y la entrega de lanzamientos pequeños para la validación del cliente.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig01_metodologia_xp.pdf}
+  \caption{Metodología (XP).}
+  \label{fig:xp}
+\end{figure}
+\elaboracion
+
+\subsection{Obtención de requisitos}
+
+La fase de obtención de requisitos tuvo como objetivo principal comprender de manera integral las necesidades pedagógicas y cognitivas asociadas a la evaluación por competencias en Matemáticas en el nivel de educación básica elemental, superando un enfoque limitado a aspectos exclusivamente técnicos. Para ello, se aplicó el Juego de Planificación o \textit{Planning Game}, una práctica central de la metodología XP, adaptada al contexto académico y a las características del proyecto.
+
+Dado que el desarrollo se realizó de forma individual, la interacción con los usuarios finales se estructuró a través de ciclos de comunicación planificados con expertos en evaluación por competencias, quienes asumieron el rol de cliente en el sitio o \textit{On-site Customer}. Este enfoque permitió establecer un canal de retroalimentación constante y asegurar que los requerimientos del sistema respondieran a necesidades reales del contexto educativo.
+
+\subsubsection*{Análisis Preliminar y Contextual}
+
+Como punto de partida, se llevó a cabo un análisis preliminar orientado a evaluar la viabilidad del proyecto y a delimitar su alcance funcional. En esta etapa se identificó a los expertos que participarían en el proceso de levantamiento de requisitos, conformados por cinco docentes de educación básica elemental con experiencia en evaluación por competencias y dos psicopedagogos vinculados al ámbito universitario.
+
+Durante el desarrollo de las entrevistas, se presentaron las interfaces preliminares del sistema como prototipos funcionales obtenidos de la revisión de aplicaciones existentes como \textit{Kahoot!}, \textit{Quizizz}, \textit{Nearpod}, \textit{Socrative} y \textit{ClassDojo}, lo cual permitió ``amplificar el aprendizaje'', una práctica característica de XP.
+
+\subsubsection*{Definición y Documentación de Historias de Usuario}
+
+A partir de la información recopilada durante el Juego de Planificación, se procedió a la definición y documentación de las historias de usuario, las cuales constituyeron el principal insumo para la planificación del desarrollo del sistema. En total, se elaboraron 27 historias de usuario, redactadas desde una perspectiva centrada principalmente en el rol del docente.
+
+Cada historia de usuario incluyó criterios de aceptación de carácter pedagógico, definidos en conjunto con los expertos. Entre los criterios más relevantes se destacan la necesidad de un diseño intuitivo y visualmente atractivo para los estudiantes, la incorporación de formatos de preguntas variados y la disponibilidad de herramientas que permitan un seguimiento detallado de los resultados de las evaluaciones.
+
+\subsection{Desarrollo de la aplicación}
+
+La fase de desarrollo de la aplicación constituyó el núcleo del proyecto, en la cual se materializaron los requerimientos definidos durante la primera etapa. La presente etapa se ejecutó siguiendo los principios de la metodología XP, priorizando ciclos de desarrollo cortos, la simplicidad en el diseño y la entrega continua de funcionalidades completas y operativas.
+
+Dado que el desarrollo fue realizado de forma individual, la práctica de \textit{Pair Programming} fue adaptada a un enfoque de autoevaluación y revisión crítica del código. Para ello, se destinó tiempo específico a la revisión sistemática de las funcionalidades implementadas y se aplicó la técnica conocida como ``patito de goma'', la cual consiste en explicar en voz alta la lógica del código desarrollado.
+
+\subsubsection*{Generación de Pruebas y Software (Desarrollo Dirigido por Pruebas)}
+
+La implementación del software se realizó aplicando de manera parcial el enfoque de Desarrollo Dirigido por Pruebas (TDD), como una adaptación de la metodología XP. En los módulos críticos del sistema, específicamente en la gestión de clases y en el cálculo de resultados y seguimiento del progreso académico, se siguió el ciclo característico de TDD: inicialmente se definieron pruebas automatizadas que fallaban, posteriormente se implementó el código mínimo necesario para superarlas y, finalmente, se realizaron procesos de refactorización orientados a mejorar la calidad y mantenibilidad del código.
+
+Las pruebas desarrolladas incluyeron pruebas unitarias y de integración, enfocadas principalmente en los servicios y en la validación de la interacción entre el frontend y el backend del sistema. Para su ejecución se empleó el framework Jest, integrado al entorno de desarrollo Visual Studio Code, en un proyecto construido con NestJS para el backend y Angular para el frontend, utilizando Node.js como entorno de ejecución, npm como gestor de dependencias, GitHub como sistema de control de versiones y PostgreSQL como sistema de gestión de base de datos.
+
+\subsubsection*{Refactorización Continua del Código}
+
+La refactorización se aplicó como una práctica constante a lo largo de los ciclos de desarrollo, orientada a mejorar la legibilidad, estructura y mantenibilidad del código sin alterar su comportamiento funcional. Esta actividad permitió reducir la complejidad de los módulos implementados, eliminar duplicación de código y adaptar la arquitectura del sistema a medida que se incorporaban nuevas funcionalidades.
+
+\subsection{Pruebas e implementación}
+
+Posteriormente, en el frontend se priorizó la implementación completa del flujo de desarrollo de la evaluación desde la perspectiva del estudiante, asegurando la coherencia entre las funcionalidades y la experiencia de uso. Cada versión del software correspondió a un incremento funcional asociado a una historia de usuario previamente priorizada, permitiendo contar con versiones operativas susceptibles de ser evaluadas.
+
+\subsubsection*{Evaluación del Entregable}
+
+La evaluación de los entregables se realizó de manera iterativa, considerando tanto pruebas de funcionamiento como pruebas de usabilidad. Las pruebas funcionales se orientaron a verificar el correcto cumplimiento de los requerimientos definidos. Paralelamente, con la participación de cinco docentes de educación básica elemental, se llevaron a cabo pruebas de usabilidad mediante observación directa y la aplicación de instrumentos de evaluación, específicamente el System Usability Scale (SUS) y el Technology Acceptance Model (TAM).
+
+\subsubsection*{Pruebas de Aceptación}
+
+Las pruebas de aceptación constituyeron la etapa final de validación del sistema. La evaluación final permitió contrastar las funcionalidades implementadas con los criterios de aceptación definidos en las historias de usuario. La retroalimentación obtenida durante esta etapa confirmó la pertinencia del enfoque adoptado, destacándose especialmente el diseño intuitivo de la aplicación, la claridad en la presentación de las evaluaciones y la utilidad de las herramientas de seguimiento del progreso académico.
+
+\subsection{Evaluación de la aplicación}
+
+Por su parte, los docentes evaluaron la utilidad de las herramientas de gestión, seguimiento del progreso académico y análisis de resultados. La información recopilada a través de los diferentes instrumentos fue sistematizada para su posterior análisis. A partir de dichos hallazgos, se identificaron fortalezas del sistema, aspectos susceptibles de mejora y oportunidades para su evolución futura.
+
+\section{Cronograma}
+
+Para alcanzar los objetivos del proyecto, se presenta en la Ilustración~\ref{fig:cronograma} un cronograma de 32 semanas que detalla las actividades realizadas a lo largo del proceso de desarrollo de las aplicaciones. Estas abarcan desde el análisis y la estructuración del tema hasta la entrega de la documentación correspondiente al trabajo de integración curricular.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig02_cronograma.pdf}
+  \caption{Cronograma de actividades.}
+  \label{fig:cronograma}
+\end{figure}
+\elaboracion
+
+\section{Recursos, presupuesto y financiamiento}
+
+En la Tabla~\ref{tab:presupuesto} se presenta un presupuesto que cubre los recursos para el desarrollo de Kiddy Quiz. Se detallan los insumos y herramientas utilizadas, incluyendo dispositivos electrónicos, materiales de oficina y servicios en la nube necesarios para el almacenamiento y procesamiento de datos. El costo total se compone de inversiones únicas en hardware y software utilizados en el proyecto.
+
+\begin{table}[H]
+\centering
+\caption{Presupuesto.}
+\label{tab:presupuesto}
+\footnotesize
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{2.6cm}|p{2.6cm}|p{2.4cm}|X|p{1.7cm}|r|}
+\hline
+\rowcolor{headblue}
+Tipo & Categoría & Recurso & Descripción & Fuente & Precio (\$)\\\hline
+Recursos disponibles & Infraestructura & Equipo & Laptop & Personal & 150{,}50 \\\hline
+                     &                 & Equipo & Teléfono móvil & Personal & 45{,}00 \\\hline
+                     &                 & Vehículo & Para el traslado a la entrevista & Personal & 5{,}00 \\\hline
+Recursos necesarios & Tecnologías de desarrollo & Visual Studio Code & Editor de código fuente & Microsoft & 0{,}00 \\\hline
+                    &                          & PostgreSQL & Base de datos de código abierto & Comunidad & 0{,}00 \\\hline
+                    & Recursos humanos & Profesionales en el área educativa & Expertos en evaluación por competencias & Universidad & 0{,}00 \\\hline
+\end{tabularx}
+\end{table}
+\elaboracion
+
+\section{Instrumentos para el seguimiento y control}
+
+El seguimiento y control del proyecto se constituyeron como actividades fundamentales para garantizar el cumplimiento de los objetivos planteados, el uso adecuado de los recursos disponibles y el desarrollo ordenado de las fases definidas en la metodología.
+
+En cuanto a la gestión y seguimiento de tareas, se utilizó Microsoft Excel como herramienta principal de planificación. A través de esta aplicación se estructuró una tabla de control en la que las actividades del proyecto fueron organizadas en tres estados: pendiente, en proceso y completado. Asimismo, se elaboró un diagrama de Gantt y una lista detallada de actividades en Excel, lo que permitió establecer tiempos estimados de inicio y finalización.
+
+El control de versiones del software se llevó a cabo mediante la plataforma GitHub, utilizando un repositorio público que permitió gestionar de forma ordenada los cambios realizados en el código fuente. Durante el desarrollo se emplearon dos ramas de trabajo, debido a que el proyecto fue desarrollado desde dos computadoras con sistemas operativos distintos (Windows y macOS).
+
+Para la gestión de la documentación del proyecto se utilizaron de manera complementaria el almacenamiento local y Google Drive. La comunicación y retroalimentación con los docentes expertos se realizó principalmente de manera presencial y a través de la aplicación WhatsApp. En lo referente al seguimiento técnico y la validación del software, se implementaron pruebas automatizadas utilizando el framework Jest.
+
+\section{Indicadores de evaluación}
+
+Las actividades de verificación y validación se ejecutaron a lo largo de las distintas fases del proyecto, considerando aspectos relacionados con el cumplimiento del cronograma, el alcance funcional, la calidad del sistema, la usabilidad, la aceptación tecnológica, el rendimiento técnico, la seguridad básica y el nivel de innovación educativa incorporado.
+
+\newcommand{\indicadortable}[4]{%
+\begin{table}[H]
+\centering
+\caption{#1.}
+\label{#2}
+\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{3cm}|X|}
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{#3}}\\\hline
+Descripción & #4 \\\hline
+\end{tabularx}
+\end{table}
+}
+
+\begin{table}[H]
+\centering
+\caption{Indicador de cumplimiento de plazos.}
+\label{tab:ind_plazos}
+\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{3.2cm}|X|}
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Cumplimiento de plazos}}\\\hline
+Descripción & Mide la capacidad del proyecto para cumplir con los tiempos establecidos para el desarrollo de las actividades y fases definidas en el cronograma. \\\hline
+Medición & Se estableció un cronograma inicial que fue ajustado durante el desarrollo del proyecto. Se utilizaron diagramas de Gantt y listas de tareas en Microsoft Excel, organizadas en los estados ``Pendiente'', ``En proceso'' y ``Completado''. Se compararon las fechas planificadas con las fechas reales de finalización de las tareas. \\\hline
+Criterios de éxito & Se consideró satisfactorio el cumplimiento del cronograma si al menos el 90\,\% de las tareas fueron completadas dentro de los plazos ajustados, aceptando retrasos leves no críticos. \\\hline
+\end{tabularx}
+\end{table}
+\elaboracion
+
+\begin{table}[H]
+\centering
+\caption{Indicador de cumplimiento del alcance del proyecto.}
+\label{tab:ind_alcance}
+\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{3.2cm}|X|}
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Cumplimiento del alcance}}\\\hline
+Descripción & Evalúa el grado de cumplimiento de los objetivos y requisitos funcionales definidos para el sistema. \\\hline
+Medición & Se verificó la implementación de las 27 historias de usuario definidas durante la fase de análisis. Se realizó una validación funcional de los módulos principales del sistema. \\\hline
+Criterios de éxito & El indicador se considera satisfactorio si todas las historias de usuario fueron implementadas y las funcionalidades principales operan correctamente. \\\hline
+\end{tabularx}
+\end{table}
+\elaboracion
+
+\begin{table}[H]
+\centering
+\caption{Indicador de calidad del producto.}
+\label{tab:ind_calidad}
+\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{3.2cm}|X|}
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Calidad del sistema}}\\\hline
+Descripción & Mide el nivel de calidad del sistema en términos de estabilidad, funcionalidad y ausencia de errores críticos. \\\hline
+Medición & Se realizaron pruebas unitarias, pruebas de integración y pruebas funcionales manuales. Las pruebas se ejecutaron de forma parcial antes de la evaluación con usuarios. \\\hline
+Criterios de éxito & El sistema se considera de calidad adecuada si no presenta errores críticos que afecten su funcionamiento principal. \\\hline
+\end{tabularx}
+\end{table}
+\elaboracion
+
+\begin{table}[H]
+\centering
+\caption{Indicador de usabilidad y satisfacción del usuario.}
+\label{tab:ind_sus}
+\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{3.2cm}|X|}
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Nivel de satisfacción del usuario}}\\\hline
+Descripción & Evalúa la percepción de los usuarios finales sobre la facilidad de uso y la experiencia general del sistema. \\\hline
+Medición & Se aplicó el cuestionario SUS (System Usability Scale) a docentes y estudiantes de educación básica elemental. Se recopiló retroalimentación cualitativa durante las sesiones de evaluación. \\\hline
+Criterios de éxito & El indicador será considerado satisfactorio si la puntuación SUS alcanza o supera el valor de referencia de 68. \\\hline
+\end{tabularx}
+\end{table}
+\elaboracion
+
+\begin{table}[H]
+\centering
+\caption{Indicador de aceptación tecnológica (TAM).}
+\label{tab:ind_tam}
+\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{3.2cm}|X|}
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Aceptación tecnológica}}\\\hline
+Descripción & Mide el nivel de aceptación del sistema por parte de los usuarios, considerando su utilidad y facilidad de uso. \\\hline
+Medición & Se aplicó el modelo TAM evaluando las dimensiones de facilidad de uso percibida, utilidad percibida e intención de uso. \\\hline
+Criterios de éxito & El sistema se considera aceptado si los usuarios manifiestan percepciones positivas en las dimensiones evaluadas. \\\hline
+\end{tabularx}
+\end{table}
+\elaboracion
+
+\begin{table}[H]
+\centering
+\caption{Indicador de rendimiento del sistema.}
+\label{tab:ind_rend}
+\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{3.2cm}|X|}
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Rendimiento técnico}}\\\hline
+Descripción & Evalúa el desempeño técnico del sistema durante su uso, considerando estabilidad y tiempos de respuesta. \\\hline
+Medición & Se evaluó el comportamiento del sistema en condiciones de carga y tiempo de respuesta. \\\hline
+Criterios de éxito & El rendimiento se considera adecuado si el sistema no presenta caídas significativas y mantiene tiempos de respuesta aceptables. \\\hline
+\end{tabularx}
+\end{table}
+\elaboracion
+
+\begin{table}[H]
+\centering
+\caption{Indicador de seguridad básica del sistema.}
+\label{tab:ind_seg}
+\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{3.2cm}|X|}
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Seguridad de acceso}}\\\hline
+Descripción & Mide la efectividad de los mecanismos básicos de seguridad implementados en el sistema. \\\hline
+Medición & Se verificó la existencia de autenticación mediante inicio de sesión. Se validó el control de acceso según roles (docente y estudiante). \\\hline
+Criterios de éxito & El indicador se considera satisfactorio si el acceso al sistema está restringido por roles y no se detectaron vulnerabilidades durante el desarrollo. \\\hline
+\end{tabularx}
+\end{table}
+\elaboracion
+
+\begin{table}[H]
+\centering
+\caption{Indicador de innovación y aporte educativo.}
+\label{tab:ind_innov}
+\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{3.2cm}|X|}
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Innovación educativa}}\\\hline
+Descripción & Evalúa el nivel de innovación introducido por el proyecto en el contexto educativo. \\\hline
+Medición & Se analizó la incorporación de inteligencia artificial para la retroalimentación académica, junto con el uso de pictogramas para facilitar la accesibilidad infantil. \\\hline
+Criterios de éxito & El indicador se considera satisfactorio si el sistema incorpora elementos novedosos respecto a las herramientas existentes para educación básica. \\\hline
+\end{tabularx}
+\end{table}
+\elaboracion

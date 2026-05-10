@@ -1,0 +1,126 @@
+% =============================================================
+%  Tesis Kiddy Quiz - UTEQ
+%  Estructura LaTeX completa con casos de uso en formato 4 columnas
+% =============================================================
+\documentclass[12pt,a4paper]{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage[spanish,es-tabla]{babel}
+
+\usepackage[a4paper,left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage{tikz}
+
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{{figuras/}}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+\captionsetup{labelfont=bf,justification=centering}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-3pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\textit{Kiddy Quiz}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\definecolor{headblue}{HTML}{D9E1F2}
+\definecolor{grpgray}{HTML}{F2F2F2}
+\definecolor{utgreen}{HTML}{1F7A3A}
+
+\newcommand{\elaboracion}{\noindent\textbf{Elaboración:} \textit{Autor}\par\bigskip}
+
+\newcommand{\fuenteautor}{\elaboracion}
+
+\renewcommand{\chaptername}{CAPÍTULO}
+\renewcommand{\contentsname}{TABLA DE CONTENIDO}
+\renewcommand{\listfigurename}{ÍNDICE DE ILUSTRACIONES}
+\renewcommand{\listtablename}{ÍNDICE DE TABLAS}
+\renewcommand{\figurename}{Ilustración}
+\renewcommand{\tablename}{Tabla}
+
+\usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
+\addbibresource{referencias.bib}
+
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\normalfont\Huge\bfseries\centering\thispagestyle{empty}\vspace*{\fill}}
+  {\Large CAPÍTULO \thechapter}
+  {2em}
+  {}
+  [\vspace*{\fill}]
+
+\titlespacing*{\chapter}{0pt}{*20}{*15}
+
+
+\begin{document}
+
+\pagenumbering{roman}
+\input{caps/preliminares}
+
+\tableofcontents
+\listoftables
+\listoffigures
+
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+\chapter*{INTRODUCCIÓN}
+\addcontentsline{toc}{chapter}{INTRODUCCIÓN}
+\input{caps/cap_introduccion}
+
+\chapter{MARCO CONTEXTUAL del PROYECTO  TECNOLÓGICO}
+\clearpage
+\input{caps/cap1_marco_contextual}
+
+\chapter{MARCO TEÓRICO DEL PROYECTO TECNOLÓGICO}
+\clearpage
+\input{caps/cap2_marco_teorico}
+
+\chapter{METODOLOGÍA}
+\clearpage
+\input{caps/cap3_metodologia}
+
+\chapter{RESULTADOS}
+\clearpage
+\input{caps/cap4_resultados}
+
+\chapter{CONSLUSIONES Y RECOMENDACIONES}
+\clearpage
+\input{caps/cap5_conclusiones}
+\label{cap:conclusiones}
+
+
+\printbibliography[title={REFERENCIAS BIBLIOGRÁFICAS}]
+\addcontentsline{toc}{chapter}{REFERENCIAS BIBLIOGRÁFICAS}
+
+\appendix
+%\chapter*{ANEXOS}
+\addcontentsline{toc}{chapter}{ANEXOS}
+\input{caps/cap_anexos}
+
+\end{document}

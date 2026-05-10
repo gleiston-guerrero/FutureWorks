@@ -1,0 +1,1223 @@
+% =============================================================
+% CAPÍTULO IV - RESULTADOS
+% Auto-generado: cap4_resultados.tex
+% =============================================================
+
+\section{Producto tecnológico desarrollado}
+
+\subsection{Obtención de requisitos}
+Luego de realizar las entrevistas y el trabajo de validación continua con el docente especialista para conocer sus opiniones, necesidades operativas y experiencias en la evaluación por competencias, y una vez analizada toda la información recopilada, se definió el alcance del sistema. Esta información fue complementada con los lineamientos pedagógicos extraídos de la revisión bibliográfica para asegurar un enfoque adecuado hacia los estudiantes de educación básica.
+
+Dado que el desarrollo se rigió bajo la metodología ágil de Programación Extrema (XP) \cite{beck2004xp}, la lista de requerimientos del sistema no se estructuró de forma tradicional, sino que se documentó directamente a través de \textbf{29 Historias de Usuario}. A continuación, en la Tabla~\ref{tab:hu} se muestra el listado consolidado de las historias de usuario que conforman el núcleo funcional de la aplicación.
+
+\begin{small}
+\begin{longtable}{|>{\bfseries}p{2.0cm}|p{2.5cm}|p{1.7cm}|p{3.7cm}|p{3.5cm}|}
+\caption{Historias de usuario de la aplicción web Kiddy Quiz.}\label{tab:hu}\\
+\hline\rowcolor{headblue}\multicolumn{5}{|c|}{\textbf{Aplicación web Kiddy Quiz}}\\\hline
+\rowcolor{grpgray}\textbf{ID} & \textbf{Título} & \textbf{Como} & \textbf{Quiero (Acción)} & \textbf{Para (Beneficio)}\\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{5}{|c|}{\textbf{Aplicación web Kiddy Quiz (continuación)}}\\\hline
+\rowcolor{grpgray}\textbf{ID} & \textbf{Título} & \textbf{Como} & \textbf{Quiero (Acción)} & \textbf{Para (Beneficio)}\\\hline
+\endhead
+\hline\endlastfoot
+HU-001.1-F & Inicio de sesión y redirección & Usuario & Iniciar sesión con correo o usuario y contraseña. & Acceder al panel correspondiente según perfil. \\\hline
+HU-001.2-F & Cierre de sesión seguro & Usuario & Cerrar sesión activa mediante un botón. & Proteger la información personal. \\\hline
+HU-002.1-F & Registro unificado & Docente & Crear una cuenta eligiendo rol (Docente/Estudiante). & Acceder sin necesidad de usar correo. \\\hline
+HU-002.2-F & Creación manual de alumnos & Docente & Crear cuentas directamente para mis alumnos. & Facilitar el acceso y la vinculación automática. \\\hline
+HU-003.1-F & Panel de tarjetas (Estudiante) & Estudiante & Ver evaluaciones asignadas en tarjetas visuales. & Identificar rápidamente tema y dificultad. \\\hline
+HU-004.1-F & Ejecución de evaluación & Estudiante & Responder preguntas de forma secuencial. & Completar la prueba en un entorno amigable. \\\hline
+HU-004.2-F & Soporte de control por voz & Estudiante & Activar funciones de voz en la evaluación. & Interactuar de forma sencilla y autónoma. \\\hline
+HU-005.1-F & Feedback motivacional & Estudiante & Ver puntaje, tiempo y gráfico con mensaje de ánimo. & Sentirse motivado a mejorar. \\\hline
+HU-006.1-F & Panel de gestión (Docente) & Docente & Ver mis evaluaciones creadas en tarjetas. & Gestionar contenido y ver visibilidad rápido. \\\hline
+HU-006.2-F & Habilitación rápida (Toggle) & Docente & Activar o desactivar pruebas con un interruptor. & Controlar el acceso de los alumnos al examen. \\\hline
+HU-006.3-F & Estructura base de evaluación & Docente & Definir tema, descripción, dificultad y duración. & Establecer la configuración antes de las preguntas. \\\hline
+HU-06.4-F & Modo lúdico (Gamificado) & Estudiante & Realizar evaluaciones en formato de juego. & Aprender divirtiéndose con recompensas. \\\hline
+HU-06.5-F & Programación temporal & Docente & Definir fechas de inicio y fin para las pruebas. & Planificar el calendario académico. \\\hline
+HU-06.6-F & Control de versiones & Docente & Mantener un historial de modificaciones. & Restaurar versiones en caso de errores. \\\hline
+HU-06.7-F & Evaluaciones diagnósticas & Docente & Marcar pruebas como ``diagnósticas'' iniciales. & Conocer el nivel previo sin afectar el promedio. \\\hline
+HU-007.1-F & Gestión CRUD de preguntas & Docente & Editar, eliminar y reordenar preguntas (Drag\&Drop). & Estructurar el contenido pedagógico de la prueba. \\\hline
+HU-07.2-F & Creación de preguntas & Docente & Especificar enunciado, formato y respuestas. & Asegurar que el sistema califique automáticamente. \\\hline
+HU-07.3-F & Carga multimedia & Docente & Integrar imágenes, GIFs o videos en preguntas. & Brindar apoyo visual a los estudiantes. \\\hline
+HU-07.4-F & Preguntas interactivas & Docente & Configurar formatos como unir columnas o secuencias. & Promover el pensamiento activo en el niño. \\\hline
+HU-08.1-F & Lista de alumnos filtrable & Docente & Ver lista de alumnos por curso y buscador. & Llevar un seguimiento del estado de los alumnos. \\\hline
+HU-08.2-F & Panel de resultados detallados & Docente & Ver promedio global y desglose por evaluación. & Evaluar el progreso individual de manera precisa. \\\hline
+HU-08.3-F & Curva de mejora gráfica & Docente & Ver gráfica de líneas cronológica de puntajes. & Identificar tendencias de aprendizaje del niño. \\\hline
+HU-08.4-F & Exportación a Excel & Docente & Descargar archivo .xlsx de rendimiento. & Mantener respaldos o reportes administrativos. \\\hline
+HU-08.5-F & Áreas fuertes y débiles & Docente & Ver análisis por categorías temáticas. & Planificar refuerzos pedagógicos precisos. \\\hline
+HU-09.1-F & Sugerencias con IA & Usuario & Recibir sugerencias basadas en patrones de error. & Saber qué temas y competencias reforzar. \\\hline
+HU-010.1-F & Modo de lectura accesible & Estudiante & Que el sistema lea enunciados y opciones (TTS). & Ser autónomo sin depender solo de la lectura. \\\hline
+HU-011.1-F & Ayudas contextuales & Estudiante & Acceder a pistas o definiciones junto a la pregunta. & Comprender lenguaje abstracto o símbolos. \\\hline
+HU-012.1-F & Alertas de bajo rendimiento & Docente & Recibir notificaciones por notas bajo el umbral. & Intervenir pedagógicamente a tiempo. \\\hline
+HU-013.1-F & Mapa de competencias & Usuario & Ver mapa visual de competencias alcanzadas. & Tener seguimiento claro del progreso académico. \\\hline
+HU-014.1-F & Ejercicios personalizados & Estudiante & Recibir ejercicios según resultados anteriores. & Reforzar áreas específicas individualmente. \\\hline
+\end{longtable}
+\end{small}
+\elaboracion
+
+En la Tabla~\ref{tab:rnf} se puede visualizar el listado de requerimientos no funcionales que se obtuvo mediante revisión bibliográfica y las entrevistas.
+
+\begin{table}[H]\centering
+\caption{Requerimientos no funcionales de la aplicación web Kiddy Quiz.}\label{tab:rnf}
+\footnotesize\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{1.5cm}|p{4.2cm}|X|p{1.5cm}|}
+\hline\rowcolor{headblue}\textbf{ID} & \textbf{Nombre del requerimiento} & \textbf{Descripción técnica} & \textbf{Prioridad}\\\hline
+RNF-01 & Interfaz accesible e intuitiva & Uso de lenguaje simple, botones grandes y cumplimiento con la norma WCAG 2.1 nivel AA para inclusión. & Alta \\\hline
+RNF-02 & Seguridad y protección de datos & Cifrado de contraseñas, protección contra ataques (XSS, SQL Injection) y cumplimiento de GDPR. & Crítica \\\hline
+RNF-03 & Rendimiento y concurrencia & Tiempo de respuesta < 2 segundos y soporte para al menos 200 usuarios concurrentes simultáneos. & Media \\\hline
+RNF-04 & Mantenibilidad del sistema & Código modular, separación de lógica (NestJS) y presentación (Angular) con control de versiones Git. & Media \\\hline
+RNF-05 & Escalabilidad del sistema & Arquitectura desacoplada preparada para añadir nodos y uso potencial de Docker/Kubernetes. & Media \\\hline
+RNF-06 & Usabilidad para docentes & Panel con accesos rápidos y creación de evaluaciones mediante pasos guiados. & Alta \\\hline
+\end{tabularx}\end{table}
+\elaboracion
+
+\subsection{Diagrama de casos de uso}
+
+En la Figura~\ref{fig:cu} se visualiza el diagrama de casos de uso que
+contempla las funcionalidades centrales del sistema, representando el núcleo operativo de la aplicación web Kiddy Quiz. Este esquema refleja las interacciones principales entre la plataforma y los actores involucrados: el estudiante y el docente, quienes ejecutan acciones fundamentales para el desarrollo de la evaluación por competencias \cite{evans2020cbe}.
+
+El \textbf{estudiante} interactúa con la aplicación principalmente para visualizar las clases a las que pertenece, unirse a nuevas clases mediante un código de acceso y desarrollar las evaluaciones estructuradas por el docente. Además, este perfil le permite consultar los detalles de sus resultados, monitorear su progreso académico general y acceder a las ventanas de refuerzo, donde visualiza la retroalimentación motivacional y de fortalecimiento de competencias generada por la Inteligencia Artificial (Gemini) tras culminar cada prueba \cite{maksimchuk2025genai}.
+
+Por su parte, las interacciones principales del \textbf{docente} consisten en la administración integral del entorno académico. El profesor utiliza el sistema para crear y gestionar clases, administrar el listado de estudiantes y emplear un editor completo para la creación de evaluaciones, gestionando de manera detallada las preguntas y sus respectivas opciones. Adicionalmente, el docente interactúa con los módulos de reportes y analíticas, lo que le permite visualizar reportes detallados del desempeño de cada estudiante para una adecuada toma de decisiones pedagógicas \cite{maskos2025fa,topali2025aied}.
+
+Los casos de uso representados en el diagrama han sido seleccionados por su alta relevancia y su alineación directa con los objetivos del proyecto tecnológico. Constituyen además una herramienta clave para comprender cómo se estructuran, integran y relacionan las diferentes funcionalidades y flujos de trabajo dentro de la aplicación.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=1\textwidth]{fig03_casos_uso.pdf}
+  \caption{Diagrama de casos de uso.}
+  \label{fig:cu}
+\end{figure}
+\fuenteautor
+
+\subsection{Descripción de los casos de uso extendidos}
+
+En el siguiente apartado se especifican los casos de uso derivados de la Figura~\ref{fig:cu}. Para ello, se han seleccionado las interacciones más significativas del sistema, haciendo especial énfasis en las funcionalidades relacionadas con la evaluación de las competencias.
+
+% =====================================================
+% Tabla 12: CU CU-003 - Ver evaluación
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Ver evaluación''.}\label{tab:cu003}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Ver evaluación''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Ver evaluación'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-003 & \textbf{Actores:} Estudiante \\\hline
+\textbf{Objetivo:}        & Permitir que el estudiante visualice de forma organizada y atractiva las pruebas que su docente ha habilitado para su resolución. \\\hline
+\textbf{Resumen:}         & Al ingresar al sistema, el estudiante ve una cuadrícula de tarjetas que representan las evaluaciones activas, permitiéndole identificar temas y niveles de dificultad antes de comenzar. \\\hline
+\textbf{Tipo:}            & Principal \\\hline
+\textbf{Dependencias:}    & \textbf{Invoca a:} CU-004 (Desarrollo de evaluación). \textbf{Depende de:} Base de datos de evaluaciones, Asociación estudiante-docente y Filtros por estado. \\\hline
+\textbf{Precondición:}    & El estudiante debe estar autenticado y vinculado a un docente; debe existir al menos una evaluación en estado «Habilitada». \\\hline
+\textbf{Postcondición:}   & El estudiante visualiza las tarjetas interactivas en pantalla y el sistema queda a la espera de la selección de una prueba. \\\hline
+\textbf{[Importancia]}    & Alta -- Es la interfaz principal de interacción y motivación para el estudiante. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el estudiante inicia sesión exitosamente en la plataforma (CU-001). & \tabularnewline\hline
+     & 2.~El sistema consulta las evaluaciones vinculadas al ID del docente y del estudiante. \tabularnewline\hline
+     & 3.~El sistema filtra únicamente aquellas evaluaciones que tengan el estado «Habilitada». \tabularnewline\hline
+     & 4.~La aplicación renderiza una cuadrícula de tarjetas con imagen, tema, descripción y dificultad. \tabularnewline\hline
+    5.~El estudiante identifica y revisa la información de las tarjetas disponibles. & \tabularnewline\hline
+    6.~El estudiante selecciona una evaluación haciendo clic en la tarjeta deseada. & \tabularnewline\hline
+     & 7.~Este caso de uso termina cuando la aplicación redirige al estudiante a la pantalla de inicio de prueba (CU-004). \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{3.a. Sin evaluaciones disponibles:} si el docente no ha habilitado pruebas, el sistema muestra un mensaje amigable indicando que no hay tareas pendientes. \textbf{4.a. Error de carga multimedia:} si las imágenes de las tarjetas no cargan, el sistema muestra un ícono temático por defecto. \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_ver_eval.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_evaluaciones_estudiante.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & Las tarjetas deben cumplir con altos estándares de contraste y tamaño de fuente (WCAG 2.1). En Angular se utiliza un \textit{pipe} o filtro para organizar dinámicamente las tarjetas por fecha o dificultad. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+% =====================================================
+% Tabla 13: CU CU-004 - Resolver evaluación
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Resolver evaluación''.}\label{tab:cu004}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Resolver evaluación''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Resolver evaluación'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-004 & \textbf{Actores:} Estudiante \\\hline
+\textbf{Objetivo:}        & Proporcionar un entorno interactivo y amigable para que el estudiante responda las preguntas de una evaluación de forma secuencial. \\\hline
+\textbf{Resumen:}         & El estudiante accede a la prueba, lee las instrucciones y responde los ítems uno a uno. El sistema permite navegación asistida, control por voz opcional y guarda el progreso automáticamente. \\\hline
+\textbf{Tipo:}            & Principal \\\hline
+\textbf{Dependencias:}    & \textbf{Invoca a:} CU-005 (Presentación de resultados al finalizar la evaluación). \textbf{Depende de:} Motor de evaluación, Base de datos de preguntas y respuestas. \\\hline
+\textbf{Precondición:}    & El estudiante debe haber seleccionado una evaluación válida y habilitada desde su panel de inicio (CU-003). \\\hline
+\textbf{Postcondición:}   & El sistema captura todas las respuestas y las envía al \textit{backend} para su cálculo y registro definitivo en la base de datos de desempeño. \\\hline
+\textbf{[Importancia]}    & Muy alta -- Es el núcleo funcional para los estudiantes. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el estudiante selecciona una tarjeta de evaluación (CU-003). & \tabularnewline\hline
+     & 2.~La aplicación muestra una pantalla de «Pre-evaluación» con instrucciones claras. \tabularnewline\hline
+    3.~El estudiante hace clic en el botón «Comenzar». & \tabularnewline\hline
+     & 4.~El sistema presenta la primera pregunta con sus respectivas opciones de respuesta. \tabularnewline\hline
+    5.~(Opcional) El estudiante activa el control por voz para escuchar el enunciado. & \tabularnewline\hline
+     & 6.~El sistema sintetiza el texto y reproduce el audio del ítem actual. \tabularnewline\hline
+    7.~El estudiante selecciona una respuesta y hace clic en el botón «Siguiente». & \tabularnewline\hline
+     & 8.~El sistema guarda la respuesta temporalmente y carga el siguiente ítem secuencialmente. \tabularnewline\hline
+    9.~El estudiante repite los pasos 7 y 8 hasta completar todos los ítems de la prueba. & \tabularnewline\hline
+    10.~Al finalizar la última pregunta, el estudiante hace clic en el botón «Finalizar». & \tabularnewline\hline
+     & 11.~Este caso de uso termina cuando el sistema procesa los datos y redirige a la pantalla de resultados (CU-005). \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{4.a. Evaluación con tiempo límite:} el sistema inicia un contador regresivo; si el tiempo se agota, se guarda lo avanzado y se finaliza la prueba automáticamente. \textbf{6.a. Error de reproducción de voz:} si el navegador no soporta el audio, el sistema muestra una alerta sugiriendo continuar con la lectura visual. \textbf{8.a. Desconexión de internet:} el sistema notifica la pérdida de conexión y mantiene las respuestas en caché local hasta que se restablezca el servicio. \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_resolver_eval.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_resolver_eval_pictograma.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & La interfaz debe ser 100\,\% responsiva y optimizada para dispositivos táctiles. El uso de \texttt{window.localStorage} en Angular asegura que el progreso no se pierda ante cierres accidentales de la pestaña del navegador. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+% =====================================================
+% Tabla 14: CU CU-005 - Ver retroalimentación
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Ver retroalimentación''.}\label{tab:cu005}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Ver retroalimentación''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Ver retroalimentación'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-005 & \textbf{Actores:} Estudiante \\\hline
+\textbf{Objetivo:}        & Mostrar al estudiante una retroalimentación inmediata, motivacional y constructiva al finalizar la evaluación, generada por la IA Gemini. \\\hline
+\textbf{Resumen:}         & Tras completar una prueba, el sistema envía las respuestas al servicio de IA, que genera mensajes personalizados de refuerzo según los aciertos y errores del estudiante. \\\hline
+\textbf{Tipo:}            & Principal \\\hline
+\textbf{Dependencias:}    & \textbf{Depende de:} Motor de evaluación (CU-004), API de Gemini AI y Base de datos de competencias. \\\hline
+\textbf{Precondición:}    & El estudiante debe haber finalizado una evaluación con resultados registrados. \\\hline
+\textbf{Postcondición:}   & El estudiante visualiza la retroalimentación y los puntajes obtenidos; la información de progreso queda almacenada para el módulo de seguimiento. \\\hline
+\textbf{[Importancia]}    & Alta -- Refuerza la motivación y la mejora continua del estudiante. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el estudiante finaliza una evaluación (CU-004). & \tabularnewline\hline
+     & 2.~El sistema procesa las respuestas y calcula la calificación global y por competencia. \tabularnewline\hline
+     & 3.~El sistema envía el resumen de desempeño al servicio Gemini AI mediante una petición segura. \tabularnewline\hline
+     & 4.~Gemini AI devuelve un texto motivacional adaptado al perfil de logros y errores. \tabularnewline\hline
+     & 5.~La aplicación muestra una pantalla con la calificación, el detalle por pregunta y el mensaje de refuerzo. \tabularnewline\hline
+    6.~El estudiante revisa los aciertos y errores señalados visualmente con colores e íconos. & \tabularnewline\hline
+    7.~Este caso de uso termina cuando el estudiante presiona «Volver al panel» o cierra la pantalla de retroalimentación. & \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{3.a. Servicio IA no disponible:} si Gemini AI no responde, el sistema muestra un mensaje genérico de felicitación y registra el error para revisión. \textbf{4.a. Latencia alta:} mientras se espera la respuesta de la IA, el sistema muestra una animación amigable de «Cargando refuerzo». \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_ver_retroalimentacion.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_retroalimentacion.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & El \textit{prompt} enviado a Gemini debe filtrarse para evitar exposiciones de datos personales del estudiante. Se recomienda cachear las respuestas frecuentes para reducir costos de API. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+% =====================================================
+% Tabla 15: CU CU-006 - Gestionar panel docente
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Gestionar panel docente''.}\label{tab:cu006}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Gestionar panel docente''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Gestionar panel docente'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-006 & \textbf{Actores:} Docente \\\hline
+\textbf{Objetivo:}        & Proporcionar al docente un panel central que centralice el acceso a las herramientas de gestión de clases, evaluaciones y reportes. \\\hline
+\textbf{Resumen:}         & Al iniciar sesión, el docente accede a un panel con accesos directos a cada módulo, indicadores rápidos y notificaciones del sistema. \\\hline
+\textbf{Tipo:}            & Principal \\\hline
+\textbf{Dependencias:}    & \textbf{Invoca a:} CU-007 (Gestión de clases), CU-008 (Crear examen), CU-012 (Consultar alumnos). \textbf{Depende de:} Servicio de autenticación y Base de datos del docente. \\\hline
+\textbf{Precondición:}    & El docente debe estar autenticado con credenciales válidas y rol asignado. \\\hline
+\textbf{Postcondición:}   & El docente visualiza el panel principal listo para iniciar cualquier acción de gestión académica. \\\hline
+\textbf{[Importancia]}    & Muy alta -- Es el punto de partida de la experiencia del docente. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el docente inicia sesión correctamente en la plataforma. & \tabularnewline\hline
+     & 2.~El sistema valida el rol del usuario y carga el panel de gestión docente. \tabularnewline\hline
+     & 3.~La aplicación consulta las clases, evaluaciones recientes y métricas del docente. \tabularnewline\hline
+     & 4.~El panel muestra tarjetas con accesos rápidos: «Mis clases», «Crear examen», «Reportes», «Estudiantes». \tabularnewline\hline
+    5.~El docente revisa los indicadores y notificaciones desplegados. & \tabularnewline\hline
+    6.~El docente selecciona la herramienta o módulo que desea utilizar. & \tabularnewline\hline
+     & 7.~Este caso de uso termina cuando el sistema redirige al docente al módulo seleccionado. \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{2.a. Sesión expirada:} si el token JWT está vencido, el sistema redirige a la pantalla de inicio de sesión. \textbf{3.a. Sin clases creadas:} el panel muestra un \textit{onboarding} guiado para crear la primera clase. \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_panel_docente.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_panel_control_docente.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & El panel debe optimizarse con \textit{lazy loading} para que su carga inicial sea inferior a 2 segundos, cumpliendo con el RNF-03. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+% =====================================================
+% Tabla 16: CU CU-008 - Crear examen
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Crear examen''.}\label{tab:cu008}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Crear examen''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Crear examen'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-008 & \textbf{Actores:} Docente \\\hline
+\textbf{Objetivo:}        & Permitir al docente registrar una nueva evaluación con sus datos generales antes de configurar las preguntas. \\\hline
+\textbf{Resumen:}         & El docente ingresa los datos generales de la prueba en un formulario; el sistema valida la información y crea el registro de la evaluación en la base de datos en estado inactivo o borrador. \\\hline
+\textbf{Tipo:}            & Principal \\\hline
+\textbf{Dependencias:}    & \textbf{Invoca a:} CU-009 (Gestión de preguntas por evaluación). \textbf{Depende de:} Interfaz de gestión docente y Base de datos de evaluaciones. \\\hline
+\textbf{Precondición:}    & El docente debe haber iniciado sesión exitosamente, contar con los permisos adecuados y encontrarse en su panel de gestión. \\\hline
+\textbf{Postcondición:}   & La nueva evaluación queda registrada en la base de datos vinculada al docente, habilitando la interfaz para comenzar a agregarle preguntas. \\\hline
+\textbf{[Importancia]}    & Muy alta -- Es la funcionalidad base del sistema de evaluación. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el docente selecciona la opción «Crear nueva evaluación». & \tabularnewline\hline
+     & 2.~El sistema muestra el formulario vacío de creación de evaluación. \tabularnewline\hline
+    3.~El docente completa los campos obligatorios: título o tema, nivel de dificultad, descripción y duración (minutos). & \tabularnewline\hline
+    4.~El docente hace clic en el botón «Crear evaluación». & \tabularnewline\hline
+     & 5.~El sistema valida que los campos requeridos no estén vacíos y que la duración sea mayor a cero. \tabularnewline\hline
+     & 6.~El sistema registra la nueva evaluación en la base de datos (PostgreSQL). \tabularnewline\hline
+     & 7.~Este caso de uso termina cuando la aplicación redirige al docente a la interfaz de gestión de preguntas (CU-009). \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{5.a. Campos vacíos:} si el docente deja campos obligatorios vacíos, el sistema resalta los errores en rojo y detiene el proceso de guardado. \textbf{5.b. Duración inválida:} si se ingresa una duración negativa o cero, el sistema solicita ingresar un número válido antes de continuar. \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_crear_examen.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_crear_examen.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & Se recomienda agregar asistencia visual en la interfaz (textos de ejemplo tenues en los campos vacíos o plantillas prediseñadas) para facilitar la carga de datos al docente. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+% =====================================================
+% Tabla 17: CU CU-009 - Organizar preguntas
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Organizar preguntas''.}\label{tab:cu009}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Organizar preguntas''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Organizar preguntas'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-009 & \textbf{Actores:} Docente \\\hline
+\textbf{Objetivo:}        & Permitir al docente gestionar la lista de preguntas asociadas a una evaluación específica mediante funciones de visualización, edición, eliminación y reordenamiento. \\\hline
+\textbf{Resumen:}         & El docente accede al administrador de una prueba para ver y modificar las preguntas existentes. El sistema procesa estas acciones (CRUD y ordenamiento) y actualiza la estructura de la evaluación en la base de datos. \\\hline
+\textbf{Tipo:}            & Principal \\\hline
+\textbf{Dependencias:}    & \textbf{Invoca a:} CU-010 (Creación de preguntas). \textbf{Depende de:} Evaluación previamente creada (CU-008) y base de datos de preguntas. \\\hline
+\textbf{Precondición:}    & El docente debe haber iniciado sesión y debe haber creado previamente al menos una evaluación. \\\hline
+\textbf{Postcondición:}   & La estructura de preguntas de la evaluación queda actualizada según las acciones realizadas por el docente. \\\hline
+\textbf{[Importancia]}    & Alta -- Es esencial para el armado de pruebas significativas. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el docente accede al administrador de una evaluación específica. & \tabularnewline\hline
+     & 2.~El sistema consulta las preguntas asociadas a la evaluación seleccionada. \tabularnewline\hline
+     & 3.~La aplicación despliega la lista ordenada de preguntas con opciones de edición, eliminación y reordenamiento. \tabularnewline\hline
+    4.~El docente puede arrastrar para reordenar, editar el contenido o eliminar una pregunta. & \tabularnewline\hline
+     & 5.~El sistema actualiza la posición o el contenido en la base de datos. \tabularnewline\hline
+    6.~El docente puede invocar la creación de una nueva pregunta (CU-010). & \tabularnewline\hline
+     & 7.~Este caso de uso termina cuando el docente sale del administrador o todas las acciones quedan persistidas correctamente. \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{2.a. Sin preguntas:} si no existen preguntas, el sistema invita al docente a crear la primera. \textbf{5.a. Error de guardado:} si la red falla al actualizar el orden, el sistema reintenta automáticamente y avisa al docente. \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_organizar_preguntas.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_gestionar_opciones.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & El reordenamiento utiliza la librería \textit{Angular CDK Drag\&Drop}. Se persiste un campo \texttt{orden} entero en la tabla de preguntas para mantener la secuencia. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+% =====================================================
+% Tabla 18: CU CU-010 - Configurar contenido
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Configurar contenido''.}\label{tab:cu010}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Configurar contenido''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Configurar contenido'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-010 & \textbf{Actores:} Docente \\\hline
+\textbf{Objetivo:}        & Permitir al docente registrar una nueva pregunta dentro de una evaluación, definiendo su enunciado, opciones, respuesta correcta y configuraciones de visualización. \\\hline
+\textbf{Resumen:}         & El docente accede al editor de preguntas, completa el formulario con el enunciado y las opciones, marca la respuesta correcta y guarda. El sistema valida y persiste la información. \\\hline
+\textbf{Tipo:}            & Principal \\\hline
+\textbf{Dependencias:}    & \textbf{Invoca a:} CU-011 (Adjuntar archivos multimedia). \textbf{Depende de:} CU-009 (Organizar preguntas) y Base de datos de preguntas. \\\hline
+\textbf{Precondición:}    & Debe existir una evaluación seleccionada por el docente y este debe encontrarse en el editor de preguntas. \\\hline
+\textbf{Postcondición:}   & La pregunta queda registrada y vinculada a la evaluación, lista para ser presentada al estudiante. \\\hline
+\textbf{[Importancia]}    & Alta -- Define la calidad pedagógica de las pruebas. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el docente selecciona «Agregar nueva pregunta». & \tabularnewline\hline
+     & 2.~El sistema despliega el editor con campos para enunciado, tipo y opciones. \tabularnewline\hline
+    3.~El docente escribe el enunciado y selecciona el tipo de pregunta (opción única, múltiple, verdadero/falso). & \tabularnewline\hline
+    4.~El docente añade las opciones de respuesta y marca la(s) correcta(s). & \tabularnewline\hline
+    5.~(Opcional) El docente adjunta material multimedia (CU-011). & \tabularnewline\hline
+    6.~El docente hace clic en «Guardar». & \tabularnewline\hline
+     & 7.~El sistema valida que existan al menos dos opciones y una respuesta correcta marcada. \tabularnewline\hline
+     & 8.~Este caso de uso termina cuando el sistema persiste la pregunta y la añade al final de la lista de la evaluación. \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{7.a. Sin respuesta correcta:} el sistema impide guardar y resalta el campo. \textbf{7.b. Enunciado vacío:} el sistema marca el campo como obligatorio y detiene el guardado. \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_configurar_contenido.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_nueva_pregunta.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & El editor utiliza un componente \textit{rich text} ligero para permitir formato básico (negritas, listas) sin complicar al docente. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+% =====================================================
+% Tabla 19: CU CU-011 - Adjuntar archivos multimedia
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Adjuntar archivos multimedia''.}\label{tab:cu011}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Adjuntar archivos multimedia''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Adjuntar archivos multimedia'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-011 & \textbf{Actores:} Docente \\\hline
+\textbf{Objetivo:}        & Permitir al docente adjuntar imágenes, audios o videos a una pregunta para enriquecer la experiencia del estudiante. \\\hline
+\textbf{Resumen:}         & El docente sube un archivo desde su dispositivo; el sistema lo valida, lo almacena en Cloudinary y lo vincula a la pregunta correspondiente. \\\hline
+\textbf{Tipo:}            & Secundario \\\hline
+\textbf{Dependencias:}    & \textbf{Depende de:} CU-010 (Configurar contenido), API de Cloudinary, Base de datos de preguntas. \\\hline
+\textbf{Precondición:}    & Debe existir una pregunta en edición y el docente debe contar con permisos de carga. \\\hline
+\textbf{Postcondición:}   & El archivo multimedia queda almacenado en Cloudinary y referenciado por URL en la pregunta. \\\hline
+\textbf{[Importancia]}    & Media -- Mejora la calidad pedagógica y la accesibilidad. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el docente, en el editor de pregunta, selecciona la opción «Adjuntar multimedia». & \tabularnewline\hline
+     & 2.~El sistema abre un cuadro de diálogo de selección de archivo. \tabularnewline\hline
+    3.~El docente elige una imagen, audio o video desde su dispositivo. & \tabularnewline\hline
+     & 4.~El sistema valida el formato y el tamaño máximo permitido. \tabularnewline\hline
+     & 5.~El sistema sube el archivo a Cloudinary y obtiene la URL pública. \tabularnewline\hline
+     & 6.~La aplicación previsualiza el archivo dentro del editor. \tabularnewline\hline
+    7.~El docente confirma el adjunto. & \tabularnewline\hline
+     & 8.~Este caso de uso termina cuando el sistema vincula la URL del archivo a la pregunta y guarda la referencia. \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{4.a. Formato no permitido:} el sistema notifica al docente y aborta la carga. \textbf{5.a. Error de Cloudinary:} si el servicio externo falla, el sistema muestra un mensaje de reintento. \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_adjuntar_multimedia.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_arasaac_pictogramas.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & Se aplica un límite de 10\,MB por archivo. Las imágenes se optimizan automáticamente con transformaciones de Cloudinary. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+% =====================================================
+% Tabla 20: CU CU-012 - Consultar alumnos
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Consultar alumnos''.}\label{tab:cu012}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Consultar alumnos''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Consultar alumnos'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-012 & \textbf{Actores:} Docente \\\hline
+\textbf{Objetivo:}        & Permitir al docente consultar el listado completo de estudiantes inscritos en sus clases y revisar su información básica. \\\hline
+\textbf{Resumen:}         & El docente accede al módulo de estudiantes, visualiza el listado por clase y puede filtrar, buscar y consultar el detalle de cada alumno. \\\hline
+\textbf{Tipo:}            & Principal \\\hline
+\textbf{Dependencias:}    & \textbf{Invoca a:} CU-013 (Analizar calificaciones). \textbf{Depende de:} CU-007 (Gestión de clases) y Base de datos de estudiantes. \\\hline
+\textbf{Precondición:}    & El docente debe haber iniciado sesión y tener al menos una clase con estudiantes inscritos. \\\hline
+\textbf{Postcondición:}   & El docente visualiza la información actualizada del listado de estudiantes asignados. \\\hline
+\textbf{[Importancia]}    & Alta -- Es la base para la analítica académica. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el docente selecciona el módulo «Mis estudiantes». & \tabularnewline\hline
+     & 2.~El sistema consulta las clases del docente y los estudiantes asociados. \tabularnewline\hline
+     & 3.~La aplicación muestra una tabla con nombre, código, clase y estado de cada estudiante. \tabularnewline\hline
+    4.~El docente puede filtrar por clase o buscar por nombre o código. & \tabularnewline\hline
+     & 5.~El sistema actualiza dinámicamente la tabla según los filtros aplicados. \tabularnewline\hline
+    6.~El docente selecciona un estudiante para ver el detalle (CU-013). & \tabularnewline\hline
+     & 7.~Este caso de uso termina cuando el sistema redirige a la vista de calificaciones del estudiante seleccionado. \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{2.a. Sin estudiantes:} si la clase no tiene inscritos, el sistema sugiere compartir el código de clase para que se unan. \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_consultar_alumnos.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_listado_estudiantes.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & Se utiliza paginación del lado del servidor para clases con más de 50 estudiantes, mejorando el rendimiento. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+% =====================================================
+% Tabla 21: CU CU-013 - Analizar calificaciones
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Analizar calificaciones''.}\label{tab:cu013}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Analizar calificaciones''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Analizar calificaciones'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-013 & \textbf{Actores:} Docente \\\hline
+\textbf{Objetivo:}        & Permitir al docente revisar las calificaciones obtenidas por los estudiantes en cada evaluación y obtener métricas estadísticas. \\\hline
+\textbf{Resumen:}         & El docente accede al detalle de calificaciones de un estudiante o grupo, observa estadísticas generales y puede exportar los reportes. \\\hline
+\textbf{Tipo:}            & Principal \\\hline
+\textbf{Dependencias:}    & \textbf{Invoca a:} CU-014 (Identificar brechas) y CU-015 (Recibir consejos IA). \textbf{Depende de:} CU-004 (Resolver evaluación) y Base de datos de resultados. \\\hline
+\textbf{Precondición:}    & Deben existir evaluaciones resueltas por al menos un estudiante. \\\hline
+\textbf{Postcondición:}   & El docente dispone de información agregada y detallada de las calificaciones para tomar decisiones pedagógicas. \\\hline
+\textbf{[Importancia]}    & Muy alta -- Es la entrada del análisis pedagógico. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el docente selecciona un estudiante o evaluación desde el módulo de analíticas. & \tabularnewline\hline
+     & 2.~El sistema recupera las calificaciones, fechas y porcentajes de aciertos del registro elegido. \tabularnewline\hline
+     & 3.~La aplicación muestra un dashboard con gráficos de barras, promedios y desviaciones. \tabularnewline\hline
+    4.~El docente revisa los indicadores y puede filtrar por evaluación, mes o competencia. & \tabularnewline\hline
+    5.~(Opcional) El docente exporta el reporte en PDF o Excel. & \tabularnewline\hline
+     & 6.~El sistema genera y entrega el archivo solicitado. \tabularnewline\hline
+     & 7.~Este caso de uso termina cuando el docente cierra el dashboard o navega a otro módulo. \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{2.a. Sin datos:} si el estudiante no ha completado evaluaciones, el sistema muestra un estado vacío con sugerencia de asignar pruebas. \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_analizar_calificaciones.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_rendimiento_alertas.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & Las gráficas se renderizan con \textit{Chart.js}. Los reportes en PDF se generan con \textit{Puppeteer} en el backend. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+% =====================================================
+% Tabla 22: CU CU-014 - Identificar brechas de aprendizaje
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Identificar brechas de aprendizaje''.}\label{tab:cu014}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Identificar brechas de aprendizaje''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Identificar brechas de aprendizaje'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-014 & \textbf{Actores:} Docente \\\hline
+\textbf{Objetivo:}        & Detectar automáticamente las áreas o competencias en las que los estudiantes presentan dificultades, basándose en los resultados de las evaluaciones. \\\hline
+\textbf{Resumen:}         & El sistema procesa las respuestas, agrupa los errores por competencia y muestra un mapa visual con las áreas críticas de cada estudiante o grupo. \\\hline
+\textbf{Tipo:}            & Principal \\\hline
+\textbf{Dependencias:}    & \textbf{Depende de:} CU-013 (Analizar calificaciones) y motor de competencias. \\\hline
+\textbf{Precondición:}    & Deben existir resultados consolidados de al menos una evaluación por competencia. \\\hline
+\textbf{Postcondición:}   & El docente visualiza las áreas con menor dominio para focalizar el refuerzo académico. \\\hline
+\textbf{[Importancia]}    & Alta -- Es clave para la atención diferenciada. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el docente selecciona la opción «Identificar brechas». & \tabularnewline\hline
+     & 2.~El sistema consulta las evaluaciones del estudiante o clase seleccionada. \tabularnewline\hline
+     & 3.~El sistema agrupa los errores por competencia curricular. \tabularnewline\hline
+     & 4.~La aplicación calcula el porcentaje de dominio por competencia. \tabularnewline\hline
+     & 5.~El sistema muestra un mapa de calor con las áreas críticas y satisfactorias. \tabularnewline\hline
+    6.~El docente revisa el mapa e identifica las competencias prioritarias para reforzar. & \tabularnewline\hline
+     & 7.~Este caso de uso termina cuando el docente cierra la vista o solicita los consejos de IA (CU-015). \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{2.a. Datos insuficientes:} si la muestra es menor a tres evaluaciones, el sistema advierte que los resultados son indicativos. \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_identificar_brechas.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_rendimiento_alertas.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & Se utiliza una escala cromática verde-amarillo-rojo para facilitar la lectura visual rápida del docente. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+% =====================================================
+% Tabla 23: CU CU-015 - Recibir consejos IA
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Recibir consejos IA''.}\label{tab:cu015}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Recibir consejos IA''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Recibir consejos IA'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-015 & \textbf{Actores:} Docente \\\hline
+\textbf{Objetivo:}        & Generar recomendaciones pedagógicas automáticas mediante Gemini AI, basadas en las brechas detectadas en los estudiantes. \\\hline
+\textbf{Resumen:}         & El docente solicita un análisis con IA; el sistema envía el contexto a Gemini, que devuelve sugerencias didácticas y de refuerzo personalizadas. \\\hline
+\textbf{Tipo:}            & Secundario \\\hline
+\textbf{Dependencias:}    & \textbf{Depende de:} CU-014 (Identificar brechas) y API de Gemini AI. \\\hline
+\textbf{Precondición:}    & Debe existir un análisis de brechas calculado previamente. \\\hline
+\textbf{Postcondición:}   & El docente recibe sugerencias prácticas para aplicar en clase y reforzar competencias. \\\hline
+\textbf{[Importancia]}    & Media -- Es un valor añadido del sistema. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el docente, dentro del análisis de brechas, hace clic en «Recibir consejos IA». & \tabularnewline\hline
+     & 2.~El sistema construye un \textit{prompt} contextualizado con los datos de las brechas detectadas. \tabularnewline\hline
+     & 3.~El sistema envía la petición segura a la API de Gemini. \tabularnewline\hline
+     & 4.~Gemini AI devuelve un listado de recomendaciones pedagógicas adaptadas al perfil del grupo. \tabularnewline\hline
+     & 5.~La aplicación muestra las sugerencias en formato de tarjetas claras y accionables. \tabularnewline\hline
+    6.~El docente revisa las recomendaciones y puede copiarlas o exportarlas. & \tabularnewline\hline
+     & 7.~Este caso de uso termina cuando el docente cierra la vista de consejos. \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{3.a. Servicio IA no disponible:} si Gemini falla, el sistema muestra recomendaciones generales basadas en una base local de buenas prácticas. \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_recibir_consejos_ia.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_comentario_magico_ia.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & Las consultas a Gemini se cachean por 24 horas para reducir costos y mejorar tiempos de respuesta. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+% =====================================================
+% Tabla 24: CU CU-016 - Aplicar gamificación
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Aplicar gamificación''.}\label{tab:cu016}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Aplicar gamificación''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Aplicar gamificación'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-016 & \textbf{Actores:} Estudiante \\\hline
+\textbf{Objetivo:}        & Motivar al estudiante mediante elementos lúdicos como insignias, niveles, puntajes y rankings que recompensan su progreso. \\\hline
+\textbf{Resumen:}         & El sistema otorga puntos y reconocimientos al estudiante al completar evaluaciones, alcanzar metas o superar competencias específicas. \\\hline
+\textbf{Tipo:}            & Secundario \\\hline
+\textbf{Dependencias:}    & \textbf{Depende de:} CU-004 (Resolver evaluación) y Base de datos de progreso. \\\hline
+\textbf{Precondición:}    & El estudiante debe haber completado al menos una evaluación o desafío. \\\hline
+\textbf{Postcondición:}   & El estudiante recibe la recompensa correspondiente y observa su avance en el panel de logros. \\\hline
+\textbf{[Importancia]}    & Media -- Refuerza la motivación y la constancia del estudiante. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el estudiante completa una evaluación o supera una competencia. & \tabularnewline\hline
+     & 2.~El sistema verifica las reglas de gamificación aplicables (puntos, insignias, niveles). \tabularnewline\hline
+     & 3.~El sistema calcula los nuevos puntajes y reconocimientos otorgados. \tabularnewline\hline
+     & 4.~La aplicación despliega una animación celebratoria con la insignia o nivel obtenido. \tabularnewline\hline
+    5.~El estudiante revisa su perfil y observa los logros desbloqueados. & \tabularnewline\hline
+     & 6.~Este caso de uso termina cuando el estudiante cierra el panel de gamificación o continúa navegando. \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{2.a. Sin nuevos logros:} si el desempeño no alcanza los umbrales, el sistema muestra mensajes motivacionales sin otorgar insignias. \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_aplicar_gamificacion.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_mapa_aventuras.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & Las insignias se generan en SVG y se animan con \textit{Lottie} para una experiencia atractiva sin penalizar el rendimiento. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+% =====================================================
+% Tabla 25: CU CU-017 - Ingresar a clase
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Ingresar a clase''.}\label{tab:cu017}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Ingresar a clase''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Ingresar a clase'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-017 & \textbf{Actores:} Estudiante \\\hline
+\textbf{Objetivo:}        & Permitir al estudiante unirse a una clase del docente mediante un código único de acceso. \\\hline
+\textbf{Resumen:}         & El estudiante introduce el código compartido por el docente; el sistema valida y lo inscribe automáticamente en la clase, dándole acceso a sus evaluaciones. \\\hline
+\textbf{Tipo:}            & Principal \\\hline
+\textbf{Dependencias:}    & \textbf{Depende de:} CU-007 (Gestión de clases) y Base de datos de inscripciones. \\\hline
+\textbf{Precondición:}    & El estudiante debe estar autenticado y disponer de un código de clase válido. \\\hline
+\textbf{Postcondición:}   & El estudiante queda inscrito en la clase y la visualiza en su panel principal. \\\hline
+\textbf{[Importancia]}    & Alta -- Es el punto de acceso del estudiante al ecosistema del docente. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el estudiante selecciona la opción «Unirse a una clase». & \tabularnewline\hline
+     & 2.~El sistema muestra un campo para ingresar el código de la clase. \tabularnewline\hline
+    3.~El estudiante introduce el código proporcionado por el docente y confirma. & \tabularnewline\hline
+     & 4.~El sistema valida la existencia del código y verifica que no haya inscripción previa. \tabularnewline\hline
+     & 5.~El sistema registra al estudiante en la clase correspondiente. \tabularnewline\hline
+     & 6.~La aplicación muestra una confirmación con el nombre de la clase. \tabularnewline\hline
+    7.~El estudiante hace clic en «Continuar». & \tabularnewline\hline
+     & 8.~Este caso de uso termina cuando el sistema redirige al panel de clases del estudiante con la nueva clase visible. \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{4.a. Código inválido:} el sistema muestra un mensaje de error y permite reintentar. \textbf{4.b. Inscripción duplicada:} el sistema avisa que ya está inscrito y lo redirige al panel. \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_ingresar_clase.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_ingresar_codigo.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & Los códigos de clase son alfanuméricos de 6 caracteres, generados con baja probabilidad de colisión. Se desactivan tras 30 días de inactividad. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+% =====================================================
+% Tabla 26: CU CU-018 - Ver mapa de competencias
+% =====================================================
+\begingroup
+\setlength{\LTpre}{6pt}\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.20}
+\footnotesize
+\begin{longtable}{|p{4cm}|p{11.2cm}|}
+\caption{Caso de uso ``Ver mapa de competencias''.}\label{tab:cu018}\\
+\hline
+\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Ver mapa de competencias''}} \\\hline
+\endfirsthead
+\hline\rowcolor{headblue}\multicolumn{2}{|c|}{\textbf{Caso de uso ``Ver mapa de competencias'' (continuación)}} \\\hline
+\endhead
+\hline\multicolumn{2}{r}{\footnotesize\itshape continúa $\rightarrow$}\\
+\endfoot
+\hline
+\endlastfoot
+\textbf{Código:} CU-018 & \textbf{Actores:} Estudiante / Docente \\\hline
+\textbf{Objetivo:}        & Presentar de forma visual el estado de las competencias curriculares evaluadas, indicando cuáles están logradas, en proceso o no iniciadas. \\\hline
+\textbf{Resumen:}         & El usuario consulta su mapa de competencias; el sistema procesa el historial de evaluaciones y muestra una matriz visual con el estado de cada competencia, exportable en PDF o Excel. \\\hline
+\textbf{Tipo:}            & Principal \\\hline
+\textbf{Dependencias:}    & \textbf{Invoca a:} CU-015 (Exportación de resultados) para la generación del PDF. \textbf{Depende de:} Motor de resultados y Base de datos de competencias curriculares. \\\hline
+\textbf{Precondición:}    & El estudiante debe haber completado evaluaciones que tengan competencias curriculares vinculadas. El usuario debe estar autenticado. \\\hline
+\textbf{Postcondición:}   & El sistema despliega una lista de competencias por módulo y nivel, indicando el estado de cada una mediante una visualización gráfica. Se habilita la opción de exportar el mapa. \\\hline
+\textbf{[Importancia]}    & Alta -- Refuerza el enfoque por competencias y la toma de decisiones pedagógicas. \\\hline
+\multicolumn{2}{|c|}{\cellcolor{grpgray}\textbf{Flujo normal de eventos}} \\\hline
+\multicolumn{2}{|p{15.2cm}|}{%
+  \begin{tabular}{|p{7.4cm}|p{7.4cm}|}
+    \hline
+    \cellcolor{grpgray}\centering\textbf{Acción del actor} & \cellcolor{grpgray}\centering\textbf{Respuesta del sistema} \tabularnewline\hline
+    1.~Este caso de uso inicia cuando el usuario (docente o estudiante) consulta el progreso académico en la plataforma. & \tabularnewline\hline
+     & 2.~El sistema recupera el historial de evaluaciones del alumno y consulta la base de datos de competencias curriculares. \tabularnewline\hline
+     & 3.~El sistema calcula el estado actual de cada competencia evaluada. \tabularnewline\hline
+     & 4.~El sistema despliega una lista de competencias organizadas por módulo y nivel. \tabularnewline\hline
+     & 5.~La aplicación indica visualmente si la competencia está lograda, en proceso o no iniciada mediante cuadros, íconos y colores. \tabularnewline\hline
+    6.~El usuario selecciona la opción para exportar el mapa de competencias. & \tabularnewline\hline
+     & 7.~Este caso de uso termina cuando el sistema invoca el módulo de exportación (CU-015) y genera el archivo en formato PDF o Excel. \tabularnewline\hline
+  \end{tabular}%
+} \\\hline
+\textbf{Flujo alterno} & \textbf{2.a. Sin datos previos:} si el estudiante no ha realizado ninguna evaluación con competencias vinculadas, el mapa muestra todas las áreas en estado «no iniciada» y sugiere realizar una prueba diagnóstica. \\\hline
+\textbf{Diagrama de secuencia} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{seq_mapa_competencias.pdf}\end{center} \\\hline
+\textbf{Interfaz de usuario} &
+  \begin{center}\includegraphics[width=0.95\linewidth,keepaspectratio]{ui_panel_docente_clases.pdf}\end{center} \\\hline
+\textbf{Comentarios:} & El mapa debe actualizarse en tiempo real tras cada evaluación. Puede usarse como herramienta de comunicación directa con padres o representantes. \\\hline
+\end{longtable}
+\noindent\textbf{Elaboración:} \textit{Autor}
+\endgroup
+\bigskip
+
+
+\subsection{Diagrama de arquitectura}
+
+En la Figura~\ref{fig:arq} se expone la arquitectura implementada en la
+aplicación web Kiddy Quiz. Para su desarrollo, se adoptó un modelo
+\textbf{cliente-servidor} con el propósito de establecer una clara separación de
+responsabilidades entre la interfaz de usuario (\textit{Frontend}) y la lógica
+del sistema (\textit{Backend}) \cite{dyba2008agile}. Esta estructuración facilita
+la administración eficiente de los recursos y contribuye a ofrecer una experiencia
+de usuario altamente optimizada y escalable.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{fig04_arquitectura.pdf}
+  \caption{Diagrama de arquitectura de Kiddy Quiz.}
+  \label{fig:arq}
+\end{figure}
+\fuenteautor
+
+El \textbf{Frontend}, desarrollado mediante el \textit{framework} Angular, gestiona la interacción directa con los usuarios finales (estudiantes y docentes) y controla la presentación de las interfaces gráficas. Este componente se comunica con el servidor a través de peticiones API REST, intercambiando información en formato JSON \cite{dyba2008agile}. Su arquitectura basada en componentes y módulos permite encapsular funcionalidades de forma independiente, favoreciendo la mantenibilidad y la reutilización del código en distintas partes de la interfaz.
+
+El \textbf{Backend}, implementado con NestJS, centraliza la lógica de negocio, la gestión de datos y los protocolos de seguridad y autenticación. Su diseño modular, inspirado en los principios de la arquitectura orientada a objetos y en el patrón de inyección de dependencias, facilita la incorporación de nuevas funcionalidades sin comprometer la estabilidad del sistema \cite{beck2004xp}. A nivel de persistencia, el sistema emplea el motor de base de datos \textbf{PostgreSQL}, garantizando un almacenamiento estructurado, eficiente y escalable, con soporte completo para integridad referencial mediante llaves foráneas \cite{dyba2008agile}.
+
+Adicionalmente, la arquitectura se complementa con la integración de dos servicios externos de alto valor pedagógico y técnico: \textbf{Gemini AI}, utilizado para la generación de retroalimentación académica automatizada y personalizada tras cada evaluación \cite{maksimchuk2025genai,gonzalez2021ai}; y \textbf{Cloudinary}, empleado para el almacenamiento y la gestión optimizada de los recursos multimedia (imágenes, GIFs y videos) vinculados a las preguntas de la plataforma. Esta arquitectura desacoplada responde al requerimiento no funcional RNF-05 de escalabilidad del sistema, preparando la plataforma para su eventual crecimiento en número de usuarios y funcionalidades.
+
+\subsection{Diagrama de base de datos}
+
+El diseño de la capa de persistencia de \textit{Kiddy Quiz} se fundamenta en el modelo relacional propuesto por Codd \cite{codd1970relational}, basado en el uso de relaciones, dependencias funcionales y mecanismos de normalización orientados a preservar la consistencia de los datos. La implementación se desarrolló sobre PostgreSQL~17, seleccionado por su capacidad para gestionar información estructurada, su integración eficiente con entornos Node.js y su robustez para aplicaciones educativas que requieren integridad y concurrencia.
+
+La Figura~\ref{fig:bd} presenta el modelo físico de la base de datos, estructurado en tres dominios funcionales principales. El primero corresponde a la \textit{gestión de identidad y aula}, donde se organizan las entidades relacionadas con docentes, estudiantes y clases. Las relaciones de inscripción entre usuarios y aulas se implementan mediante llaves foráneas, asegurando la integridad referencial y la coherencia de los registros académicos.
+
+El segundo dominio se orienta a la \textit{evaluación y administración del banco de ítems}. En este nivel se articulan las evaluaciones, preguntas y opciones de respuesta, permitiendo reutilizar preguntas en diferentes instrumentos de evaluación sin duplicar contenido. Esta organización favorece la flexibilidad del sistema y facilita la construcción dinámica de evaluaciones adaptadas a distintos contextos pedagógicos.
+
+El tercer dominio corresponde al \textit{registro de desempeño y analítica educativa}. Aquí se almacenan tanto las respuestas individuales generadas en cada intento de evaluación como el progreso acumulado por competencias curriculares. El detalle de resolución conserva información contextual asociada al proceso evaluativo, incluyendo respuestas, tiempos de resolución y calificaciones, mientras que la entidad de progreso consolida longitudinalmente el avance del estudiante. Estos datos alimentan el panel analítico del docente y proporcionan contexto al módulo de inteligencia artificial generativa \cite{gonzalez2021ai}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{fig05_base_datos.pdf}
+  \caption{Diagrama de base de datos de Kiddy Quiz.}
+  \label{fig:bd}
+\end{figure}
+\fuenteautor
+
+La estructura del modelo ha sido optimizada mediante la selección adecuada de tipos de datos y relaciones, con el propósito de garantizar escalabilidad, rendimiento eficiente de consultas y capacidad de evolución ante futuras ampliaciones funcionales. Esta arquitectura responde además al requerimiento no funcional RNF-03 relacionado con rendimiento y concurrencia, asegurando que el sistema mantenga estabilidad operativa incluso en escenarios de uso simultáneo.
+
+Desde la perspectiva pedagógica y analítica, la arquitectura de persistencia sustenta el principio de trazabilidad académica de la plataforma. Cada interacción evaluativa queda registrada junto con su contexto de ejecución, permitiendo construir historiales de aprendizaje detallados y habilitando procesos de analítica formativa. Este enfoque favorece el seguimiento continuo del progreso estudiantil y coincide con investigaciones que identifican el monitoreo permanente del desempeño como un elemento relevante para fortalecer el aprendizaje en educación primaria \cite{faber2017dfa,tirado2025bridge,rodriguez2023personalised}.
+
+\subsection{Diseño del prototipo}
+
+En este apartado se exponen los resultados correspondientes a la fase de diseño visual del sistema. En congruencia con la metodología de Programación Extrema (XP) \cite{beck2004xp}, el diseño no fue estático ni predefinido en su totalidad desde el inicio. Durante la fase de levantamiento de requisitos se emplearon interfaces preliminares como primeros prototipos, los cuales sirvieron como base concreta para recopilar la retroalimentación de los docentes expertos. A partir de dichas observaciones y de las Historias de Usuario consolidadas, se iteró el diseño hasta llegar a las interfaces finales, maquetadas en la herramienta \textbf{Figma}
+\cite{vlachogianni2022sus}.
+
+En la Figura~\ref{fig:proto} se presenta el espacio de trabajo en Figma, donde se diseñaron las interfaces definitivas para los perfiles de estudiante y docente. Aunque la imagen no exhibe la totalidad de las pantallas del sistema, permite apreciar las vistas que conforman el núcleo de la plataforma Kiddy Quiz, garantizando que cada vista plasme de manera funcional, intuitiva y accesible los requerimientos operativos del proyecto tecnológico, en cumplimiento del requerimiento no funcional RNF-01 de interfaz accesible e intuitiva.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig06_prototipo_final.png}
+  \caption{Prototipo final de la aplicación web Kiddy Quiz.}
+  \label{fig:proto}
+\end{figure}
+\fuenteautor
+
+En la Figura~\ref{fig:est} se visualiza el resultado funcional y estético del módulo destinado al \textbf{estudiante}. Las capturas evidencian una navegación simplificada y adaptada a las características de la educación básica elemental: el recorrido visual detalla el acceso al panel de clases, la resolución de evaluaciones matemáticas apoyadas en pictogramas ARASAAC y la presentación del puntaje obtenido. Se resalta también el apartado de retroalimentación, donde se materializa la integración de Gemini~AI para ofrecer un acompañamiento continuo y motivacional al alumno \cite{maksimchuk2025genai,mayer2014multimedia}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig07_modulo_estudiante_eval.pdf}
+  \caption{Módulo de estudiantes --- Evaluación (Kiddy Quiz).}
+  \label{fig:est}
+\end{figure}
+\fuenteautor
+
+Es imperativo destacar que en el desarrollo de las interfaces de Kiddy
+Quiz, la disposición y naturaleza de los elementos visuales responden
+estrictamente a los lineamientos teóricos de accesibilidad expuestos en
+el Capítulo~II. La implementación de botones interactivos en formato de
+tarjetas visuales con pictogramas, el dimensionamiento de las tipografías
+y el uso de paletas de colores de alto contraste no constituyen
+decisiones meramente estéticas o de diseño gráfico. Por el contrario,
+representan decisiones de diseño deliberadas para dar cumplimiento a los
+estándares WCAG~2.1 y al principio de múltiples medios de representación
+del Diseño Universal para el Aprendizaje (DUA)
+\cite{w3c2018wcag,rose2002udl}. Asimismo, la arquitectura de la
+aplicación integra la Inteligencia Artificial de Gemini para la
+generación de retroalimentación y herramientas de síntesis de voz
+(\textit{Text-to-Speech}) no como funciones accesorias, sino como
+mecanismos técnicos esenciales para atender la diversidad cognitiva,
+reduciendo la carga de lectura y garantizando un entorno verdaderamente
+inclusivo \cite{mayer2014multimedia,guillomia2021cognitive,zurita2026arasaac}.
+
+La Figura~\ref{fig:doc} presenta las interfaces funcionales del perfil del \textbf{docente}. Este collage exhibe las herramientas de administración provistas por el sistema: el panel de gestión de clases, el control de estudiantes inscritos y el configurador de evaluaciones con su editor de preguntas. Asimismo, se muestra el módulo de reportes, que consolida los resultados obtenidos por los alumnos y ofrece al docente una visión analítica clara, precisa y en tiempo real para evaluar el desarrollo de las destrezas curriculares \cite{maskos2025fa}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{figuras/fig08_modulo_docente.pdf}
+  \caption{Módulo del docente --- Gestión y analítica (Kiddy Quiz).}
+  \label{fig:doc}
+\end{figure}
+\fuenteautor
+
+\subsection{Integración de Gemini AI}
+
+La integración de inteligencia artificial generativa constituye uno de los principales componentes de innovación tecnológica de \textit{Kiddy Quiz}. Desde la perspectiva pedagógica, esta incorporación se sustenta en la evidencia científica que reconoce el valor de la retroalimentación automatizada y contextualizada para fortalecer los procesos de aprendizaje en educación primaria \cite{zheng2023genai,fokides2025chatgpt,bagdonaite2025ai}.
+
+La implementación se desarrolló mediante el servicio \texttt{gemini.service.ts}, encapsulado en el \textit{backend} basado en NestJS y responsable de gestionar la comunicación con el modelo generativo una vez concluido el proceso de evaluación y calificación. Para este propósito se configuró el modelo \textbf{Gemini~2.5~Flash} de Google, seleccionado por su capacidad para generar respuestas estructuradas en tiempo real y adaptadas al contexto educativo \cite{maksimchuk2025genai}.
+
+La Figura~\ref{fig:gemini} muestra un fragmento representativo del proceso de integración implementado en el sistema. En el bloque de código puede observarse cómo el servicio filtra la información correspondiente al intento de evaluación ---preguntas, respuestas, aciertos y errores--- y posteriormente construye un \textit{prompt} estructurado dirigido al modelo generativo. Asimismo, se evidencia la asignación explícita del rol de asistente académico, estrategia utilizada para orientar el tono, el alcance y el enfoque pedagógico de la respuesta generada. Este mecanismo coincide con las recomendaciones recientes sobre ingeniería de \textit{prompts} en modelos de lenguaje de gran escala \cite{brown2020fewshot,kong2024roleplay}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig09_gemini_ai.pdf}
+  \caption{Extracto de integración de Gemini AI en Kiddy Quiz.}
+  \label{fig:gemini}
+\end{figure}
+\fuenteautor
+
+Las instrucciones definidas dentro del \textit{prompt}, visibles en la Figura~\ref{fig:gemini}, obligan al modelo a generar un reporte en formato Markdown organizado en cinco secciones: \textit{(i)} información general de la participación, \textit{(ii)} resultados detallados por pregunta, \textit{(iii)} fortalezas identificadas, \textit{(iv)} áreas de oportunidad, y \textit{(v)} recomendaciones académicas personalizadas. La utilización de esta estructura evita respuestas genéricas y promueve una retroalimentación específica y diagnóstica, limitación frecuentemente reportada en sistemas generativos que operan sin restricciones estructurales \cite{fokides2025chatgpt}.
+
+Desde el punto de vista arquitectónico, \textit{Kiddy Quiz} mantiene una separación deliberada entre la corrección automática y la generación de retroalimentación pedagógica. La evaluación de respuestas se realiza mediante reglas deterministas implementadas en la lógica de negocio del \textit{backend} antes de invocar al modelo generativo. En consecuencia, Gemini no interviene en la asignación de calificaciones, sino únicamente en la interpretación pedagógica de resultados y en la generación de orientaciones académicas contextualizadas. Esta decisión responde a las recomendaciones sobre uso responsable de IA en educación primaria y reduce los riesgos de inconsistencia asociados a la delegación total de la corrección en modelos generativos \cite{bagdonaite2025ai,fokides2025chatgpt}.
+
+Adicionalmente, la Figura~\ref{fig:gemini} evidencia que toda la comunicación con la API de Gemini se ejecuta desde el \textit{backend}, permitiendo centralizar el control de las peticiones, proteger las credenciales de acceso y fortalecer la trazabilidad y seguridad del sistema. Esta estrategia se encuentra alineada con las directrices recientes sobre el uso seguro de inteligencia artificial en entornos educativos K--12 \cite{topali2025aied}.
+
+Como resultado, el estudiante no recibe únicamente una calificación numérica, sino una retroalimentación formativa, automatizada y contextualizada a su desempeño real. La literatura reciente señala que este tipo de retroalimentación basada en IA produce efectos positivos sobre la motivación, la autorregulación y el fortalecimiento de competencias matemáticas en educación básica \cite{hattie2007feedback,faber2017dfa,rodriguez2023personalised,maksimchuk2025genai}.
+
+\subsubsection{Seguridad y autenticación}
+ 
+Para garantizar la integridad de la información y la privacidad de los
+usuarios, \textit{Kiddy Quiz} implementa un modelo de seguridad basado en
+\textit{JSON Web Tokens} (JWT), gestionado centralmente desde el
+\textit{backend} con el \textit{framework} NestJS. El modelo descansa sobre
+tres mecanismos complementarios: \textit{(i)} autenticación mediante tokens
+firmados criptográficamente, \textit{(ii)} control de acceso basado en roles
+(\textit{Role-Based Access Control}, RBAC), y \textit{(iii)} almacenamiento
+seguro de credenciales mediante \textit{hashing} con bcrypt. La Figura~\ref{fig:jwt} presenta el flujo completo de este esquema.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{fig10_jwt.pdf}
+  \caption{Flujo de autenticación por JWT en Kiddy Quiz.}
+  \label{fig:jwt}
+\end{figure}
+\fuenteautor
+\section{Comprobación}
+
+El proceso se inicia cuando el usuario envía sus credenciales al
+\textit{endpoint} \texttt{POST /api/login}. El \textit{backend} recupera el
+\textit{hash} bcrypt almacenado en la tabla \texttt{usuarios} y delega la
+verificación a la función \texttt{bcrypt.compare()}. Si la verificación
+falla, el servidor responde con \texttt{400 Bad Request}; si tiene éxito,
+genera un token JWT mediante \texttt{jwt.sign()} cuyo \textit{payload}
+contiene el identificador del usuario (\texttt{sub}), su rol
+(\texttt{role}), la marca temporal de emisión (\texttt{iat}) y la marca de
+expiración (\texttt{exp}). El token se firma con el algoritmo HS256
+utilizando un secreto almacenado en variables de entorno, nunca embebido
+en el repositorio de código.
+ 
+En las peticiones subsecuentes a rutas protegidas, el cliente incluye el
+token en el encabezado \texttt{Authorization} bajo el esquema
+\textit{Bearer}. El \textit{backend} intercepta cada petición mediante un
+\textit{guard} de NestJS que extrae el token, verifica su firma
+criptográfica con \texttt{jwt.verify()}, comprueba su vigencia temporal y
+valida además la existencia y el estado activo del usuario referenciado en
+la base de datos. Esta doble verificación —firma criptográfica y validación
+de estado— protege frente a tokens válidos pertenecientes a cuentas
+posteriormente desactivadas, limitación inherente a la autenticación sin
+estado que el esquema básico de JWT no resuelve por sí mismo.
+ 
+Sobre este mecanismo se construye el control de acceso basado en roles. La
+tabla \texttt{usuarios} incluye una columna \texttt{role} con valores
+restringidos al conjunto \{\texttt{estudiante}, \texttt{docente}\}. Cada
+ruta de la API se anota con el decorador personalizado \texttt{@Roles()},
+que el \textit{guard} consulta para autorizar o denegar la operación: un
+estudiante puede consultar sus propias evaluaciones y leer su
+retroalimentación, pero no crear evaluaciones ni acceder a datos de otros
+usuarios; un docente puede gestionar las evaluaciones de sus propias clases,
+pero no las de otros docentes. Esta restricción por propiedad del recurso
+opera como una segunda capa de \textit{guards} que consulta la base de
+datos antes de servir la respuesta.
+ 
+Cuando la verificación falla, el sistema retorna los códigos HTTP
+correspondientes: \texttt{401 Unauthorized} ante token ausente, malformado,
+expirado o con firma inválida; y \texttt{403 Forbidden} cuando el token es
+válido pero el rol o la propiedad del recurso no son suficientes para la
+operación solicitada. Complementariamente, el sistema aplica validación
+estricta de entradas mediante \textit{class-validator}, consultas
+parametrizadas a través de TypeORM para mitigar inyecciones SQL, cabeceras
+de seguridad HTTP configuradas con Helmet
+(\textit{Content-Security-Policy}, \textit{X-Content-Type-Options},
+\textit{Strict-Transport-Security}) y limitación de tasa sobre los
+\textit{endpoints} de autenticación para mitigar ataques de fuerza bruta.
+Este conjunto de medidas asegura que el sistema cumpla con los estándares
+de protección requeridos para una plataforma que procesa datos de menores
+de edad en contextos educativos, aspecto cuya relevancia para la adopción
+de aplicaciones pedagógicas ha sido documentado por Göker et
+al.\ \cite{goker2016usability} en el ámbito del software educativo inclusivo.
+ 
+En esta sección se presenta la validación integral del proyecto tecnológico desarrollado, evidenciando su correcto funcionamiento y evaluando su desempeño en función de los indicadores de evaluación previamente establecidos en la Sección~\ref{sec:indicadores} (Tablas~\ref{tab:ind_plazos} a~\ref{tab:ind_innov}). Estos parámetros fueron definidos para asegurar que Kiddy Quiz cumpla con los requerimientos pedagógicos y técnicos iniciales, permitiendo medir de forma objetiva su calidad, su rendimiento técnico y su nivel de aceptación
+por parte de los usuarios \cite{brooke1996sus,davis1989tam}. De igual manera, se comprueba la culminación exitosa de las fases de desarrollo ágil y el cumplimiento del cronograma de actividades propuesto conforme a los principios de XP \cite{beck2004xp,dyba2008agile}.
+
+\subsection{Cumplimiento de plazos}
+
+En la Tabla~\ref{tab:cumplimiento-plazos} se expone una comparativa detallada entre las fechas establecidas inicialmente en la planificación del proyecto y las fechas efectivas en las que se dio cumplimiento a cada uno de los hitos y entregables de Kiddy Quiz. El análisis de este indicador evidencia que el \textbf{90\,\% de las actividades planificadas fueron completadas dentro de los plazos ajustados}, criterio que fue establecido como umbral de éxito en la Tabla~\ref{tab:ind_plazos} de la Sección~\ref{sec:indicadores}.
+
+\begin{table}[H]
+\centering
+\caption{Cumplimiento de plazos del proyecto.}
+\label{tab:cumplimiento-plazos}
+\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|c|X|c|c|}
+\hline
+\rowcolor{headblue}
+\multicolumn{2}{|c|}{\textbf{CUMPLIMIENTO DE PLAZOS}} &
+\textbf{Fecha de planificación} &
+\textbf{Fecha de cumplimiento} \\ \hline
+
+\multirow{3}{*}{\textbf{Objetivo 1}} &
+Entrevistas &
+\multirow{3}{*}{\makecell{28 de julio de 2025 al \\ 29 de agosto de 2025}} &
+15 de agosto de 2025 \\ \cline{2-2} \cline{4-4}
+& Documentación & & 22 de agosto de 2025 \\ \cline{2-2} \cline{4-4}
+& Descripción de historias de usuario & & 29 de agosto de 2025 \\ \hline
+
+\multirow{17}{*}{\textbf{Objetivo 2}} &
+Mis Clases &
+\multirow{17}{*}{\makecell{1 de septiembre de \\ 2025 al 30 de enero \\ de 2026}} &
+19 de septiembre de 2025 \\ \cline{2-2} \cline{4-4}
+& Unirse a Clase & & 26 de septiembre de 2025 \\ \cline{2-2} \cline{4-4}
+& Evaluación del Estudiante & & 10 de octubre de 2025 \\ \cline{2-2} \cline{4-4}
+& Detalle de Evaluación & & 17 de octubre de 2025 \\ \cline{2-2} \cline{4-4}
+& Vista del Quiz & & 31 de octubre de 2025 \\ \cline{2-2} \cline{4-4}
+& Resultados del Quiz & & 14 de noviembre de 2025 \\ \cline{2-2} \cline{4-4}
+& Progreso del Estudiante & & 28 de noviembre de 2025 \\ \cline{2-2} \cline{4-4}
+& Refuerzo Académico & & 5 de diciembre de 2025 \\ \cline{2-2} \cline{4-4}
+& Retroalimentación / Refuerzo con IA & & 19 de diciembre de 2025 \\ \cline{2-2} \cline{4-4}
+& Clases & & 26 de diciembre de 2025 \\ \cline{2-2} \cline{4-4}
+& Crear Clase y Código de Clase & & 2 de enero de 2026 \\ \cline{2-2} \cline{4-4}
+& Lista de Estudiantes & & 9 de enero de 2026 \\ \cline{2-2} \cline{4-4}
+& Lista de Evaluaciones & & 16 de enero de 2026 \\ \cline{2-2} \cline{4-4}
+& Crear Evaluación / Editor de Evaluación & & 21 de enero de 2026 \\ \cline{2-2} \cline{4-4}
+& Gestión y Lista de Preguntas & & 23 de enero de 2026 \\ \cline{2-2} \cline{4-4}
+& Gestión y Opciones de Pregunta & & 26 de enero de 2026 \\ \cline{2-2} \cline{4-4}
+& Analíticas del Docente & & 28 de enero de 2026 \\ \cline{2-2} \cline{4-4}
+& Reporte Detallado del Estudiante & & 30 de enero de 2026 \\ \hline
+
+\multirow{3}{*}{\textbf{Objetivo 3}} &
+Realización de pruebas docentes &
+\multirow{3}{*}{\makecell{2 de febrero de 2026 al \\ 27 de febrero de 2026}} &
+13 de febrero de 2026 \\ \cline{2-2} \cline{4-4}
+& Realización de pruebas estudiantes & & 20 de febrero de 2026 \\ \cline{2-2} \cline{4-4}
+& Procesamiento de datos & & 27 de febrero de 2026 \\ \hline
+
+\end{tabularx}
+\end{table}
+\elaboracion
+
+Cabe destacar que, debido a la naturaleza iterativa de la Programación Extrema (XP) \cite{beck2004xp}, el cronograma mantuvo un enfoque flexible y adaptativo. Las fechas de finalización de ciertos módulos --- particularmente los relacionados con el módulo de retroalimentación con IA, la integración de gamificación y el módulo de reportes analíticos del docente --- experimentaron ajustes menores con el propósito de incorporar correcciones de usabilidad, refactorizaciones de código y mejoras derivadas de la retroalimentación continua de los docentes expertos. Esta
+flexibilidad no constituye una desviación metodológica sino una característica inherente y documentada del proceso de desarrollo bajo XP, en la que las iteraciones cortas y la retroalimentación frecuente orientan el ajuste progresivo del plan \cite{dyba2008agile,shrivastava2021xpreview}. El conjunto de actividades del proyecto se completó dentro de las 32 semanas estipuladas en el cronograma general, dando cumplimiento al objetivo de desarrollo del sistema en los tiempos definidos.
+
+    \subsection{Nivel de aceptación de usuario}
+
+El análisis del nivel de usabilidad y aceptación tecnológica de la plataforma Kiddy Quiz se llevó a cabo mediante la aplicación de la Escala de Usabilidad del Sistema (SUS) y el Modelo de Aceptación Tecnológica (TAM) \cite{brooke1996sus,davis1989tam}. Estos instrumentos permitieron evaluar de forma objetiva la facilidad de interacción, la utilidad pedagógica percibida y la experiencia general tanto de los estudiantes como de los docentes al utilizar la aplicación web. Los resultados consolidados de ambas pruebas demuestran que el sistema no solo cumple satisfactoriamente con las expectativas de los usuarios, sino que facilita un entorno educativo altamente funcional e intuitivo, en concordancia con los niveles documentados en la literatura especializada para plataformas educativas de alta usabilidad \cite{vlachogianni2022sus}.
+
+\subsubsection{Resultados de las evaluaciones de usabilidad (SUS)}
+
+Para evaluar la usabilidad de la plataforma Kiddy Quiz se aplicó la Escala de Usabilidad del Sistema (SUS) \cite{brooke1996sus}, instrumento con amplia validación empírica en el ámbito de la tecnología educativa \cite{vlachogianni2022sus}. El análisis descriptivo de los datos recopilados, segmentado por los dos grupos de usuarios (docentes, $N=5$, y estudiantes de educación básica elemental, $N=15$), demuestra un nivel de accesibilidad y diseño excepcional, conforme se detalla en la Tabla~\ref{tab:sus}.
+
+El grupo de \textbf{estudiantes} otorgó una calificación promedio de \textbf{87,7 sobre 100}, con una mediana de 87,5, lo que evidencia una interacción sumamente fluida e intuitiva con la interfaz. El valor mínimo registrado en esta muestra fue de 80,0, dato estadístico de vital importancia, ya que confirma que ningún niño experimentó dificultades severas al navegar por los módulos ni al momento de resolver sus evaluaciones. Por su parte, el grupo de \textbf{docentes} registró
+una media de \textbf{81,0} y una mediana de 82,5. Ambos valores superan
+holgadamente el umbral de 68 puntos establecido como mínimo aceptable por la industria del desarrollo de software \cite{brooke1996sus}, y se ubican dentro de la categoría \textbf{``Excelente''} según los rangos de interpretación del SUS documentados por Vlachogianni y Tselios \cite{vlachogianni2022sus}.
+
+\begin{table}[H]
+\centering
+\caption{Resultado del cuestionario SUS -- Kiddy Quiz.}
+\label{tab:sus}
+\footnotesize\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|>{\bfseries}X|c|c|}
+\hline\rowcolor{headblue}\textbf{Métrica estadística} & \textbf{Estudiantes ($N$=15)} & \textbf{Docentes ($N$=5)} \\\hline
+Media               & 87,7 & 81,0 \\\hline
+Mediana             & 87,5 & 82,5 \\\hline
+Desviación estándar & 7,8  & 9,4  \\\hline
+Valor mínimo        & 80,0 & 67,5 \\\hline
+Valor máximo        & 95,0 & 95,0 \\\hline
+\end{tabularx}
+\end{table}
+\fuenteautor
+
+Al profundizar en las dimensiones del instrumento, los ítems orientados a medir la percepción de facilidad, la correcta integración de funciones y la confianza del usuario obtuvieron valoraciones cercanas al máximo. En contraste, las preguntas estructuradas para detectar barreras de usabilidad ---como la complejidad innecesaria, la inconsistencia del sistema o la necesidad de soporte técnico externo--- registraron puntuaciones mínimas. Este comportamiento ratifica que la curva de aprendizaje de Kiddy Quiz es sumamente reducida, logrando que tanto los
+docentes en la gestión académica como los estudiantes en la resolución de
+cuestionarios interactúen en un entorno digital congruente, amigable y libre de frustraciones \cite{vlachogianni2022sus,outhwaite2022apps}.
+
+Con el propósito de ilustrar el posicionamiento de estos resultados frente a los estándares internacionales de usabilidad, la Figura~\ref{fig:sus} despliega un gráfico de barras que contrasta las puntuaciones medias obtenidas por ambos grupos, evidenciando con claridad que los dos perfiles de usuario superan la línea base de 68 puntos.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{fig12_grafico_sus.pdf}
+  \caption{Gráfico de barras SUS -- Kiddy Quiz.}
+  \label{fig:sus}
+\end{figure}
+\fuenteautor
+
+Durante la ejecución de las pruebas de usabilidad en el entorno real,
+se validó el impacto directo de la arquitectura inclusiva de la
+plataforma. Se observó que la interacción de los estudiantes con la
+evaluación fue fluida gracias a la integración de la síntesis de voz y
+las tarjetas visuales de pictogramas \cite{guillomia2021cognitive}.
+Resulta fundamental subrayar que el éxito de esta interacción valida
+empíricamente las decisiones de diseño adoptadas en fases previas. El
+uso de la IA de Gemini para emitir mensajes motivacionales y el apoyo
+auditivo demostraron ser eficaces en la reducción de la ansiedad
+matemática y la frustración \cite{passolunghi2016math,ramirez2018mathanxiety},
+comprobando que estas herramientas ---conceptualizadas bajo el marco
+del DUA y los criterios de accesibilidad \cite{rose2002udl,w3c2018wcag}---
+logran atender exitosamente la diversidad cognitiva del alumnado,
+permitiéndoles completar sus evaluaciones con mayor nivel de autonomía.
+
+\subsubsection{Resultados del Modelo de Aceptación Tecnológica (TAM)}
+
+Para complementar la evaluación de usabilidad, se aplicó el Modelo de Aceptación Tecnológica (TAM) \cite{davis1989tam} con el objetivo de medir empíricamente la viabilidad pedagógica y el nivel de adopción de la plataforma Kiddy Quiz. Este instrumento evalúa tres dimensiones fundamentales: la \textbf{Utilidad Percibida (PU)}, la \textbf{Facilidad de Uso Percibida (PEOU)} y la \textbf{Intención de Uso (IU)}, valoradas mediante una escala de Likert de 1 a 5 \cite{davis1989tam}.
+
+\begin{table}[H]
+\centering
+\caption{Resultados del cuestionario TAM -- Kiddy Quiz.}
+\label{tab:tam}
+\footnotesize\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{|>{\bfseries}p{3.5cm}|p{3.2cm}|c|c|c|X|}
+\hline
+\rowcolor{headblue}
+\textbf{Dimensión TAM} & \textbf{Grupo} & \textbf{Media} & \textbf{Mediana} & \textbf{Desv.} & \textbf{Interpretación} \\\hline
+\multirow{2}{3.5cm}{Utilidad Percibida (PU)}
+  & Docentes ($N$=5)   & 4,45 & --- & 0,33 & Muy alta percepción de utilidad pedagógica. \\\cline{2-6}
+  & Estudiantes ($N$=15) & 4,85 & --- & 0,22 & Percepción de utilidad cercana al máximo absoluto. \\\hline
+\multirow{2}{3.5cm}{Facilidad de Uso Percibida (PEOU)}
+  & Docentes ($N$=5)   & 3,95 & --- & 0,27 & Facilidad de uso alta; requiere mínimo esfuerzo de adaptación. \\\cline{2-6}
+  & Estudiantes ($N$=15) & 4,78 & --- & 0,23 & Interfaz extremadamente intuitiva para el usuario infantil. \\\hline
+\multirow{2}{3.5cm}{Intención de Uso (IU)}
+  & Docentes ($N$=5)   & 4,47 & --- & 0,38 & Fuerte disposición a integrar la herramienta en el aula. \\\cline{2-6}
+  & Estudiantes ($N$=15) & \textbf{4,93} & \textbf{5,0} & \textbf{0,14} & Intención de uso casi unánime y máxima; mín.=4,6. \\\hline
+\end{tabularx}
+\end{table}
+\fuenteautor
+
+El análisis descriptivo de las respuestas, estructurado por tipo de usuario, revela una aceptación excepcional de la herramienta. Al observar los estadísticos de tendencia central de la Tabla~\ref{tab:tam}, se evidencia que los niños perciben una mayor facilidad al navegar por la plataforma (media de 4,78) en comparación con los docentes (media de 3,95). Este contraste valida la eficacia del diseño de interfaz centrado en el usuario infantil: el uso de pictogramas ARASAAC y de elementos visuales simplificados logró que los estudiantes interactuaran con el sistema de forma más natural e intuitiva que los propios adultos \cite{mayer2014multimedia,guillomia2021cognitive}. La baja desviación estándar en las métricas de los estudiantes (oscilando entre 0,14 y 0,23) indica un alto grado de consenso entre los niños, confirmando que la experiencia positiva fue generalizada y no un caso aislado.
+
+El hallazgo más significativo recae en la dimensión de \textbf{Intención de Uso (IU)}: el grupo de estudiantes registró una media de \textbf{4,93} y una mediana perfecta de \textbf{5,0}, con un valor mínimo de 4,6, lo que demuestra que ningún estudiante reportó indiferencia o rechazo hacia el uso continuo de la plataforma. Esta calificación, que roza el límite superior absoluto de la escala, denota un nivel de motivación intrínseca sobresaliente atribuible directamente a la innovación central del proyecto: la integración de retroalimentación generada por IA y los elementos de gamificación, los cuales proveen un entorno de aprendizaje estimulante que incentiva al alumno a continuar utilizando la aplicación
+\cite{maksimchuk2025genai,debrenti2024gbl}.
+
+Para ilustrar visualmente los resultados, la Figura~\ref{fig:tam} presenta un gráfico de brechas (\textit{Dumbbell Plot}) que contrasta las puntuaciones medias de docentes y estudiantes en las tres dimensiones del TAM. La longitud de las líneas conectoras evidencia la diferencia de percepción entre ambos perfiles. La brecha más amplia se presenta en la \textbf{Facilidad de Uso (PEOU)}: los estudiantes (4,78) superan notoriamente a los docentes (3,95), demostrando que la interfaz adaptada cumplió su objetivo de reducir la carga cognitiva en los niños \cite{mayer2014multimedia}. La dimensión de Intención de Uso (IU) en los estudiantes alcanza el punto más alto del esquema (4,93), posicionándose en el límite superior de la escala y reafirmando el potencial de Kiddy Quiz como herramienta de adopción sostenida en el aula \cite{davis1989tam,vlachogianni2022sus}.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.85\textwidth]{fig13_grafico_tam.pdf}
+  \caption{Gráfico de brechas TAM -- Kiddy Quiz.}
+  \label{fig:tam}
+\end{figure}
+\fuenteautor
