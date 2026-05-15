@@ -1,0 +1,492 @@
+% =============================================================================
+% PROYECTO TECNOLÓGICO – UNIDAD DE INTEGRACIÓN CURRICULAR
+% Universidad Técnica Estatal de Quevedo (UTEQ)
+% Facultad de Ciencias de la Ingeniería – Carrera de Software
+%
+% Título: Aplicación web inclusiva para el control y evaluación de competencias
+%         curriculares en matemáticas para estudiantes de educación básica elemental.
+% Autor:  Jeandavid Rodolfo Cabrera Guerra
+% Director: Ing. Gleiston Ciceron Guerrero Ulloa, PhD.
+% Año de sustentación: 2025
+%
+% Compilación recomendada:
+%   pdflatex main
+%   biber main          (o:  bibtex main)
+%   pdflatex main
+%   pdflatex main
+% =============================================================================
+
+\documentclass[12pt,a4paper,oneside]{report}
+
+% ---------- Codificación e idioma ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[main=spanish,english,provide=*]{babel}
+\usepackage{textcomp}
+\usepackage{mathptmx}              % Times New Roman como exige la UTEQ
+\usepackage{helvet}                % Helvetica para sans serif
+
+% ---------- Geometría (márgenes UTEQ) ----------
+% UTEQ: izquierdo 3 cm, superior 2.5 cm, inferior 2.5 cm, derecho 2.5 cm
+\usepackage[a4paper,
+            top=2.5cm, bottom=2.5cm, left=3cm, right=2.5cm,
+            headheight=15pt]{geometry}
+
+% ---------- Interlineado 1.5 ----------
+\usepackage{setspace}
+\onehalfspacing
+
+% ---------- Numeración de páginas (parte inferior derecha) ----------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[R]{\thepage}
+
+% Estilo para páginas con \chapter (LaTeX usa "plain" allí por defecto)
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancyfoot[R]{\thepage}%
+}
+
+% ---------- Paquetes generales ----------
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{tocloft}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{csquotes}
+
+% ---------- Colores institucionales UTEQ ----------
+\definecolor{uteqgreen}{HTML}{1F6E43}
+\definecolor{uteqdark}{HTML}{0F4C2A}
+\definecolor{uteqlight}{HTML}{E8F1EC}
+\definecolor{tabhead}{HTML}{1F6E43}
+\definecolor{tabhead2}{HTML}{D5E8DC}
+
+% ---------- Hipervínculos ----------
+\hypersetup{
+  colorlinks=true,
+  linkcolor=uteqdark,
+  citecolor=uteqdark,
+  urlcolor=uteqgreen,
+  pdftitle={Aplicación web inclusiva para el control y evaluación de competencias curriculares en matemáticas},
+  pdfauthor={Jeandavid Rodolfo Cabrera Guerra},
+  pdfsubject={Proyecto Tecnológico - UTEQ},
+  pdfkeywords={Kiddy Quiz, evaluación por competencias, matemáticas, pictogramas, IA, UTEQ}
+}
+
+% ---------- Bibliografía con BibLaTeX (estilo IEEE) ----------
+\usepackage[backend=biber,
+            style=ieee,
+            sorting=none,
+            citestyle=numeric-comp,
+            urldate=long,
+            language=spanish]{biblatex}
+\addbibresource{referencias.bib}
+
+% ---------- Personalización de jerarquía de títulos (UTEQ) ----------
+% Capítulo: mayúsculas, negrita, tamaño 12, centrado en una sola página.
+% Nivel 2 (1.1): negrita, izquierda, tamaño 12, sin punto final.
+% Nivel 3 (1.1.1): negrita, cursiva, izquierda, tamaño 12, sin punto final.
+% Nivel 4 (1.1.1.1): negrita, cursiva, izquierda, tamaño 12, con punto final.
+
+\titleformat{\chapter}[display]
+  {\centering\bfseries\large}
+  {\MakeUppercase{\chaptertitlename}\ \thechapter}{14pt}
+  {\MakeUppercase}
+\titlespacing*{\chapter}{0pt}{120pt}{40pt}
+
+\titleformat{\section}
+  {\normalfont\fontsize{12}{14}\bfseries}
+  {\thesection.}{0.6em}{}
+\titlespacing*{\section}{0pt}{14pt}{8pt}
+
+\titleformat{\subsection}
+  {\normalfont\fontsize{12}{14}\itshape\bfseries}
+  {\thesubsection.}{0.6em}{}
+\titlespacing*{\subsection}{0pt}{12pt}{6pt}
+
+\titleformat{\subsubsection}
+  {\normalfont\fontsize{12}{14}\itshape\bfseries}
+  {\thesubsubsection.}{0.6em}{}[.]
+\titlespacing*{\subsubsection}{0pt}{10pt}{4pt}
+
+% ---------- Tabla de contenido (UTEQ) ----------
+\renewcommand{\contentsname}{TABLA DE CONTENIDO}
+\renewcommand{\listfigurename}{ÍNDICE DE ILUSTRACIONES}
+\renewcommand{\listtablename}{ÍNDICE DE TABLAS}
+\renewcommand{\bibname}{BIBLIOGRAFÍA}
+
+% Etiqueta "Ilustración" en lugar de "Figura"
+\addto\captionsspanish{\renewcommand{\figurename}{Ilustración}}
+
+% ---------- Estilo de tablas ----------
+\renewcommand{\arraystretch}{1.2}
+\captionsetup{font=small,labelfont={bf,color=uteqdark},textfont=bf,justification=raggedright,singlelinecheck=false}
+\captionsetup[table]{position=above,skip=4pt}
+\captionsetup[figure]{position=above,skip=4pt}
+
+% ---------- Comandos personalizados ----------
+% Encabezado de tabla con color institucional
+\newcommand{\tabhead}[1]{\textbf{\textcolor{white}{#1}}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% "Elaboración: Autor" después de tablas/figuras
+\newcommand{\fuenteautor}{\par\vspace{-4pt}\hspace{0pt}{\footnotesize\textbf{Elaboración:}\ Autor}\par\vspace{6pt}}
+\newcommand{\fuente}[1]{\par\vspace{-4pt}\hspace{0pt}{\footnotesize\textbf{Fuente:}\ #1}\par\vspace{6pt}}
+
+% Capítulo en una sola página (usado para CAPÍTULO I, II, III, IV, V)
+\newcommand{\capitulounipagina}[3]{%
+  \cleardoublepage
+  \thispagestyle{empty}%
+  \vspace*{\fill}
+  \begin{center}
+    {\Large\bfseries CAPÍTULO #1}\\[2.5cm]
+    {\Large\bfseries\MakeUppercase{#2}}\\[1cm]
+    {\large\itshape #3}
+  \end{center}
+  \vspace*{\fill}
+  \clearpage
+}
+
+% =============================================================================
+\begin{document}
+
+% ---------- Numeración romana en preliminares ----------
+\pagenumbering{roman}
+
+% ============================ PORTADA ============================
+\begin{titlepage}
+\thispagestyle{empty}
+\begin{center}
+
+\vspace*{0.5cm}
+
+% Sustituir por el escudo institucional si está disponible
+% \includegraphics[width=3cm]{figuras/escudo_uteq.pdf}\\[0.6cm]
+
+{\Large\bfseries UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO}\\[0.5cm]
+{\Large\bfseries FACULTAD DE CIENCIAS DE LA INGENIERÍA}\\[0.5cm]
+{\Large\bfseries CARRERA DE SOFTWARE}\\[2cm]
+
+\begin{flushright}
+\begin{minipage}{0.65\textwidth}
+\raggedleft
+Trabajo de Integración Curricular previo\\
+a la obtención del Grado Académico de\\
+\textbf{Ingeniero de Software}
+\end{minipage}
+\end{flushright}
+
+\vspace{1.8cm}
+
+{\large\bfseries PROYECTO TECNOLÓGICO}\\[1cm]
+
+{\large\bfseries\itshape ``APLICACIÓN WEB INCLUSIVA PARA EL CONTROL Y EVALUACIÓN DE COMPETENCIAS CURRICULARES EN MATEMÁTICAS PARA ESTUDIANTES DE EDUCACIÓN BÁSICA ELEMENTAL''}\\[2cm]
+
+{\textbf{AUTOR}}\\[0.3cm]
+Jeandavid Rodolfo Cabrera Guerra\\[1.5cm]
+
+{\textbf{DIRECTOR DEL PROYECTO TECNOLÓGICO}}\\[0.3cm]
+Ing.\ Gleiston Ciceron Guerrero Ulloa, PhD.\\[2cm]
+
+QUEVEDO -- LOS RÍOS -- ECUADOR\\[0.4cm]
+2025
+
+\end{center}
+\end{titlepage}
+
+% Página en blanco después de la portada
+\thispagestyle{empty}
+\mbox{}
+\clearpage
+
+\setcounter{page}{2}
+
+% ============================ DECLARACIÓN ============================
+\chapter*{DECLARACIÓN DE AUTORÍA Y CESIÓN DE DERECHOS}
+\addcontentsline{toc}{chapter}{DECLARACIÓN DE AUTORÍA Y CESIÓN DE DERECHOS}
+
+\vspace{1cm}
+
+Yo, \textbf{JEANDAVID RODOLFO CABRERA GUERRA}, declaro que el proyecto tecnológico aquí descrito es de mi autoría; que no ha sido previamente presentado para ningún grado o calificación profesional; y, que se han consultado las referencias bibliográficas que se incluyen en este documento.
+
+La Universidad Técnica Estatal de Quevedo puede hacer uso de los derechos correspondientes a este documento, según lo establecido por la Ley de Propiedad Intelectual, por su Reglamento y por la normatividad institucional vigente.
+
+\vspace{3cm}
+
+\begin{center}
+\rule{8cm}{0.5pt}\\[0.3cm]
+\textbf{JEANDAVID RODOLFO CABRERA GUERRA}\\
+\textbf{C.I.: 1207928993}
+\end{center}
+
+\clearpage
+
+% ============================ CERTIFICACIÓN DEL DIRECTOR ============================
+\chapter*{CERTIFICACIÓN DE CULMINACIÓN DEL PROYECTO TECNOLÓGICO}
+\addcontentsline{toc}{chapter}{CERTIFICACIÓN DE CULMINACIÓN DEL PROYECTO TECNOLÓGICO}
+
+\vspace{1cm}
+
+El suscrito, \textbf{Ing.\ Gleiston Ciceron Guerrero Ulloa, PhD.}, docente de la Universidad Técnica Estatal de Quevedo, certifica que el estudiante \textbf{Jeandavid Rodolfo Cabrera Guerra} realizó el Proyecto Tecnológico de grado titulado \textbf{``Aplicación web inclusiva para el control y evaluación de competencias curriculares en matemáticas para estudiantes de educación básica elemental''}, previo a la obtención del título de \textbf{Ingeniero de Software}, bajo mi dirección, habiendo cumplido con las disposiciones reglamentarias establecidas para el efecto.
+
+\vspace{3.5cm}
+
+\begin{center}
+\rule{8cm}{0.5pt}\\[0.3cm]
+\textbf{Ing.\ Gleiston Ciceron Guerrero Ulloa, PhD.}\\
+\textbf{DIRECTOR DEL PROYECTO TECNOLÓGICO}
+\end{center}
+
+\clearpage
+
+% ============================ CERTIFICADO DE PLAGIO ============================
+\chapter*{CERTIFICADO DEL REPORTE DE LA HERRAMIENTA DE PREVENCIÓN DE COINCIDENCIA Y/O PLAGIO ACADÉMICO}
+\addcontentsline{toc}{chapter}{CERTIFICADO DEL REPORTE DE LA HERRAMIENTA DE PREVENCIÓN DE COINCIDENCIA Y/O PLAGIO ACADÉMICO}
+
+\vspace{0.8cm}
+
+El suscrito, \textbf{Ing.\ Gleiston Ciceron Guerrero Ulloa, PhD.}, mediante el presente cumplo en presentar el informe del Proyecto Tecnológico titulado \textbf{``Aplicación web inclusiva para el control y evaluación de competencias curriculares en matemáticas para estudiantes de educación básica elemental''}, presentado por el estudiante \textbf{Jeandavid Rodolfo Cabrera Guerra}, egresado de la Carrera de Software, que fue revisado bajo mi dirección según resolución del Consejo Directivo de la Facultad de Ciencias de la Ingeniería. El presente proyecto se ha desarrollado de acuerdo al Reglamento de la Unidad de Integración Curricular de la Universidad Técnica Estatal de Quevedo y cumple con el requerimiento de análisis del sistema \textsc{Compilatio}, el cual avala los niveles de originalidad en un \textbf{96\,\%} y similitud \textbf{4\,\%} del trabajo investigativo. Se valida este documento para que el estudiante continúe con los trámites pertinentes, conforme a la reglamentación vigente.
+
+\vspace{2.5cm}
+
+\begin{center}
+\rule{8cm}{0.5pt}\\[0.3cm]
+\textbf{Ing.\ Gleiston Ciceron Guerrero Ulloa, PhD.}\\
+\textbf{DIRECTOR DEL PROYECTO TECNOLÓGICO}
+\end{center}
+
+\vspace{1cm}
+
+\begin{center}
+\fbox{\parbox{10cm}{\centering\vspace{1cm}\textit{(Espacio para captura de pantalla del reporte de similitud emitido por el sistema Compilatio)}\vspace{1cm}}}
+\end{center}
+
+\clearpage
+
+% ============================ TRIBUNAL ============================
+\chapter*{CERTIFICADO DE APROBACIÓN POR TRIBUNAL DE SUSTENTACIÓN}
+\addcontentsline{toc}{chapter}{CERTIFICADO DE APROBACIÓN POR TRIBUNAL DE SUSTENTACIÓN}
+
+\begin{center}
+\textbf{UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO}\\
+\textbf{FACULTAD DE CIENCIAS DE LA INGENIERÍA}\\
+\textbf{CARRERA DE SOFTWARE}\\[1cm]
+
+\textbf{PROYECTO TECNOLÓGICO}\\[0.5cm]
+
+\textit{``Aplicación web inclusiva para el control y evaluación de competencias curriculares en matemáticas para estudiantes de educación básica elemental''}\\[0.8cm]
+\end{center}
+
+Presentado al Consejo Directivo de la Facultad de Ciencias de la Ingeniería como requisito previo a la obtención del título de Ingeniero de Software.
+
+\vspace{0.6cm}
+Aprobado por:
+
+\vspace{2cm}
+
+\begin{center}
+\rule{8cm}{0.5pt}\\
+\textbf{PRESIDENTE DEL TRIBUNAL}\\
+Ing.\ Iván Fredy Jaramillo Chuqui, PhD.
+\end{center}
+
+\vspace{1.8cm}
+
+\noindent\begin{minipage}[t]{0.48\textwidth}
+\centering
+\rule{6cm}{0.5pt}\\
+\textbf{MIEMBRO DEL TRIBUNAL}\\
+Ing.\ Jessica Alexandra\\
+Ponce Ordoñez, MSc.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering
+\rule{6cm}{0.5pt}\\
+\textbf{MIEMBRO DEL TRIBUNAL}\\
+Ing.\ Diego Fernando\\
+Intriago Rodríguez, MSc.
+\end{minipage}
+
+\vspace{2cm}
+
+\begin{center}
+QUEVEDO -- LOS RÍOS -- ECUADOR\\
+2025
+\end{center}
+
+\clearpage
+
+% ============================ AGRADECIMIENTO ============================
+\chapter*{AGRADECIMIENTO}
+\addcontentsline{toc}{chapter}{AGRADECIMIENTO}
+
+\begin{center}
+\begin{minipage}{0.85\textwidth}
+\centering
+
+Quiero expresar mi más profundo agradecimiento a todas las personas que me han acompañado, guiado y brindado su apoyo incondicional a lo largo de mi formación académica y durante el desarrollo de este proyecto.
+
+A mis padres, por ser mi mayor fuente de inspiración y mi soporte constante. Sin su inagotable esfuerzo, sacrificio y amor, este sueño no habría sido posible.
+
+A mi hermana, por su infinita paciencia, por las risas compartidas y por hacer que el camino hacia esta meta fuera mucho más llevadero.
+
+A mi prometida, por su comprensión, aliento y amor durante todo este tiempo. Gracias por ser una fuente constante de paz, motivación y alegría.
+
+A mi director de proyecto, por su invaluable guía, rigor y paciencia. Su respaldo ha sido un pilar fundamental para llevar a cabo este trabajo con excelencia.
+
+A mis profesores, por su vocación de enseñanza y por haber forjado mi carácter profesional a lo largo de la carrera.
+
+A los niños, docentes y profesionales de la educación que participaron con tanto entusiasmo en las pruebas de usabilidad del sistema. Su disposición y retroalimentación dieron verdadero sentido a este desarrollo tecnológico.
+
+A mis amigos y compañeros de clase, con quienes compartí este invaluable camino de aprendizaje, retos y triunfos.
+
+A todas las personas que, de una u otra manera, aportaron su tiempo y conocimiento para la culminación de esta etapa, mi más sincero agradecimiento.
+
+\end{minipage}
+\end{center}
+
+\clearpage
+
+% ============================ DEDICATORIA ============================
+\chapter*{DEDICATORIA}
+\addcontentsline{toc}{chapter}{DEDICATORIA}
+
+\begin{flushright}
+\begin{minipage}{0.65\textwidth}
+\raggedleft
+\itshape
+
+Dedico este proyecto, desde lo más profundo de mi ser, a mis padres, quienes con su inmenso amor y respaldo infinito han sido la base de toda mi vida.
+
+A mi prometida, cuya motivación inagotable me infundió la seguridad necesaria para jamás rendirme.
+
+A mi hermana, por brindarme su ternura y ser ese puerto seguro al que siempre puedo acudir.
+
+A mis inseparables mascotas, por regalarme paz y felicidad en los días de mayor cansancio.
+
+Y, por último, me dedico este gran logro a mí mismo, reconociendo el empeño, la tenacidad y el sacrificio que forjaron este camino.
+
+A todos ustedes, mi infinita gratitud por ser el impulso vital que me acompañó hacia esta meta.
+
+\end{minipage}
+\end{flushright}
+
+\clearpage
+
+% ============================ RESUMEN ============================
+\chapter*{RESUMEN}
+\addcontentsline{toc}{chapter}{RESUMEN}
+
+El presente proyecto tecnológico tuvo como objetivo desarrollar \textbf{Kiddy Quiz}, una aplicación web inclusiva orientada a la evaluación y refuerzo de competencias curriculares en matemáticas para estudiantes de educación básica elemental. La fundamentación y el levantamiento de requisitos se sustentaron en una investigación de campo que incluyó entrevistas a cinco profesionales de la educación y dos psicopedagogos, lo cual permitió identificar las barreras cognitivas y de ansiedad presentes en los procesos evaluativos tradicionales del nivel elemental. El desarrollo del software se gestionó bajo la metodología ágil de Programación Extrema (XP), adaptada al contexto de un desarrollo individual mediante ciclos de retroalimentación con expertos. La arquitectura del sistema se construyó utilizando Angular para el \textit{frontend}, NestJS para la lógica del \textit{backend} y PostgreSQL como motor de base de datos relacional. Como principal innovación, la plataforma integra interfaces basadas en pictogramas para facilitar la navegación autónoma infantil, así como la implementación del modelo de Inteligencia Artificial generativa Gemini para proveer retroalimentación motivacional tras cada evaluación. La validación del sistema se realizó mediante la Escala de Usabilidad del Sistema (SUS) y el Modelo de Aceptación Tecnológica (TAM), demostrando una usabilidad en categoría \textit{Excelente} (media de 87,7 en estudiantes y 81,0 en docentes) y una intención de uso casi unánime por parte de los estudiantes (media de 4,93 sobre 5). Adicionalmente, para garantizar la protección de los datos y el control adecuado de roles, se implementaron medidas de seguridad mediante autenticación con tokens JWT. Como resultado, se ha consolidado una herramienta tecnológica inclusiva que optimiza la gestión académica del docente, reduce la frustración del estudiante y constituye un aporte significativo a la modernización de la evaluación educativa infantil en el contexto ecuatoriano.
+
+\vspace{0.4cm}
+\noindent\textbf{Palabras clave:} aplicación web; educación básica; matemáticas; pictogramas; inteligencia artificial; usabilidad; Kiddy Quiz.
+
+\clearpage
+
+% ============================ ABSTRACT ============================
+\chapter*{ABSTRACT}
+\addcontentsline{toc}{chapter}{ABSTRACT}
+
+\selectlanguage{english}
+The present technological project aimed to develop \textbf{Kiddy Quiz}, an inclusive web application designed for the evaluation and reinforcement of curricular competencies in mathematics for elementary basic education students. The theoretical foundation and requirements gathering were based on a field research study that included interviews with five education professionals and two psychopedagogues. This process enabled the identification of the cognitive and anxiety-related barriers that pervade traditional assessment practices at the elementary level. Software development was managed under the agile Extreme Programming (XP) methodology, adapted to the context of individual development through feedback cycles with experts. The system architecture was built using Angular for the frontend, NestJS for backend logic, and PostgreSQL as the relational database engine. As a primary innovation, the platform integrates pictogram-based interfaces to facilitate autonomous navigation for children, as well as the implementation of the Gemini generative Artificial Intelligence model to provide motivational feedback after each assessment. System validation was carried out using the System Usability Scale (SUS) and the Technology Acceptance Model (TAM), demonstrating an \textit{Excellent} usability rating (mean of 87.7 in students and 81.0 in teachers) and an almost unanimous intention of use among students (mean of 4.93 out of 5). Furthermore, to guarantee data protection and proper role-based access control, security measures were implemented using JWT token authentication. As a result, an inclusive technological tool has been consolidated, optimizing teachers' academic management, reducing student frustration, and constituting a significant contribution to the modernization of elementary educational assessment in the Ecuadorian context.
+
+\vspace{0.4cm}
+\noindent\textbf{Keywords:} web application; elementary education; mathematics; pictograms; artificial intelligence; usability; Kiddy Quiz.
+\selectlanguage{spanish}
+
+\clearpage
+
+% ============================ TABLA DE CONTENIDO ============================
+\tableofcontents
+\clearpage
+
+\listoftables
+\clearpage
+
+\listoffigures
+\clearpage
+
+% Índice de anexos
+\chapter*{ÍNDICE DE ANEXOS}
+\addcontentsline{toc}{chapter}{ÍNDICE DE ANEXOS}
+\noindent
+\textbf{Anexo A.} Guion de entrevista a docentes y psicopedagogos\dotfill 99\\[2pt]
+\textbf{Anexo B.} Cuestionario SUS aplicado en castellano\dotfill 100\\[2pt]
+\textbf{Anexo C.} Cuestionario TAM aplicado en castellano\dotfill 101\\[2pt]
+\textbf{Anexo D.} Diagrama completo de casos de uso del sistema\dotfill 102\\[2pt]
+\textbf{Anexo E.} Manual de usuario de la aplicación Kiddy Quiz\dotfill 103
+\clearpage
+
+% ============================ CÓDIGO DUBLIN ============================
+\chapter*{CÓDIGO DUBLIN}
+\addcontentsline{toc}{chapter}{CÓDIGO DUBLIN}
+
+\begin{small}
+\begin{tabularx}{\textwidth}{|>{\columncolor{tabhead2}\bfseries\raggedright\arraybackslash}p{3.2cm}|X|}
+\hline
+Título: & Aplicación web inclusiva para el control y evaluación de competencias curriculares en matemáticas para estudiantes de educación básica elemental\\
+\hline
+Autor: & Cabrera Guerra Jeandavid Rodolfo\\
+\hline
+Palabras clave: & Aplicación web; Educación básica; Matemáticas; Pictogramas; Inteligencia artificial; Usabilidad\\
+\hline
+Fecha de publicación: & 2025\\
+\hline
+Editorial: & Quevedo -- UTEQ -- 2025\\
+\hline
+Resumen: & El presente proyecto tecnológico desarrolla \textit{Kiddy Quiz}, una aplicación web inclusiva orientada a la evaluación de competencias curriculares en matemáticas para estudiantes de educación básica elemental. La plataforma integra pictogramas para una navegación autónoma infantil y un módulo de retroalimentación basado en Inteligencia Artificial generativa (Gemini). El desarrollo se gestionó bajo la metodología XP, con Angular en el \textit{frontend}, NestJS en el \textit{backend} y PostgreSQL como base de datos. La validación mediante SUS y TAM evidenció una usabilidad en categoría ``Excelente'' y una alta intención de uso, consolidando un aporte significativo para la modernización de la evaluación educativa infantil. \\
+\hline
+Abstract: & \selectlanguage{english} This technological project develops \textit{Kiddy Quiz}, an inclusive web application aimed at the evaluation of curricular competencies in mathematics for elementary basic education students. The platform integrates pictograms for autonomous child navigation and a feedback module based on generative Artificial Intelligence (Gemini). Development was managed under the XP methodology, using Angular for the frontend, NestJS for the backend, and PostgreSQL as the database. Validation through SUS and TAM evidenced an ``Excellent'' usability rating and a high intention of use, consolidating a significant contribution to the modernization of childhood educational assessment.\selectlanguage{spanish}\\
+\hline
+Descripción: & 110 páginas; dimensiones 29\,$\times$\,21\,cm $+$ CD-ROM\\
+\hline
+URI: & (En blanco hasta que se disponga del repositorio)\\
+\hline
+\end{tabularx}
+\end{small}
+
+\clearpage
+
+% =============================================================================
+% A partir de aquí: numeración arábiga
+% =============================================================================
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+% Incluir cuerpo del documento
+\input{cap_introduccion}
+\input{cap1_marco_contextual}
+\input{cap2_marco_teorico}
+\input{cap3_metodologia}
+\input{cap4_resultados}
+\input{cap5_conclusiones}
+
+% ============================ BIBLIOGRAFÍA ============================
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{BIBLIOGRAFÍA}
+\printbibliography[title={BIBLIOGRAFÍA}]
+
+% ============================ ANEXOS ============================
+\input{cap_anexos}
+
+\end{document}
