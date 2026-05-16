@@ -1,0 +1,80 @@
+% =============================================================================
+% CAPÍTULO I - MARCO CONTEXTUAL DEL PROYECTO TECNOLÓGICO
+% =============================================================================
+
+% Página de inicio del capítulo (centrada, en una sola página, sin numeración impresa)
+\cleardoublepage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+{\Large\bfseries CAPÍTULO I}\\[2.5cm]
+{\Large\bfseries MARCO CONTEXTUAL DEL PROYECTO TECNOLÓGICO}
+\end{center}
+\vspace*{\fill}
+\clearpage
+
+% Forzar a que el contenido comience desde \chapter sin un nuevo título de capítulo
+% Se utiliza \chapter* invisible para que la numeración del TOC funcione correctamente.
+\chapter*{}
+\addcontentsline{toc}{chapter}{CAPÍTULO I -- MARCO CONTEXTUAL DEL PROYECTO TECNOLÓGICO}
+\setcounter{chapter}{1}
+\setcounter{section}{0}
+\renewcommand{\thesection}{1.\arabic{section}}
+\renewcommand{\thesubsection}{1.\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{1.\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+
+\vspace{-3cm}
+
+\section{Problema de investigación}
+
+\subsection{Planteamiento del problema}
+
+Es innegable la creciente importancia de implementar evaluaciones por competencias curriculares en el contexto educativo \cite{ref02_tobon}. En un mundo cada vez más orientado hacia el desarrollo de habilidades, estas evaluaciones se posicionan como elementos fundamentales para medir con precisión las destrezas de los estudiantes en relación con los objetivos y contenidos del plan de estudios \cite{ref01_evalcompetencias,ref12_zabalza}.
+
+Las evaluaciones por competencias se presentan como herramientas esenciales que van más allá de evaluar conocimientos teóricos, ya que abordan la capacidad práctica y la aplicación efectiva de conceptos \cite{ref13_biggs}. Este enfoque integral no solo proporciona una evaluación más precisa del rendimiento estudiantil, sino que también contribuye a preparar a los estudiantes con las habilidades necesarias para enfrentar los retos del entorno educativo actual y futuro.
+
+La implementación efectiva y generalizada de las evaluaciones por competencia presenta desafíos significativos. Aunque la tecnología ha avanzado, la integración de estas evaluaciones en las prácticas educativas sigue siendo limitada \cite{ref14_anderson,ref15_villardon}. La falta de plataformas especializadas y adaptadas a las necesidades específicas de la evaluación por competencias dificulta su aplicación amplia y eficiente. Asimismo, la diversidad de áreas curriculares y la variabilidad en los estilos de aprendizaje de los estudiantes plantean la necesidad de una solución integral que pueda adaptarse a distintos contextos educativos \cite{ref01_evalcompetencias,ref16_jonassen}. La escasez de herramientas que permitan aplicar evaluaciones por competencias de manera personalizada y detallada, junto con la falta de recursos que faciliten la interpretación y el análisis de los resultados por parte de los docentes, constituyen obstáculos adicionales \cite{ref17_hattie}.
+
+\textbf{Diagnóstico.} En la actualidad, el proceso de evaluación en la educación básica elemental, específicamente en el área de matemáticas, se ve limitado por métodos tradicionales que priorizan la memorización por encima del desempeño. Se observa que los docentes carecen de herramientas tecnológicas diseñadas específicamente para medir competencias curriculares de forma individualizada. Esta situación genera una brecha entre lo que el estudiante \textit{sabe} teóricamente y lo que puede \textit{hacer} en contextos prácticos. Adicionalmente, la falta de plataformas que centralicen y analicen los resultados de manera detallada impide que el profesorado realice retroalimentaciones oportunas, lo que deja a los estudiantes con vacíos de aprendizaje que no son detectados a tiempo. En el contexto ecuatoriano, los resultados de pruebas internacionales como PISA-D \cite{ref35_pisa} han evidenciado de forma persistente bajos niveles de competencia matemática en el nivel básico, lo cual refuerza la necesidad de instrumentos evaluativos formativos que permitan al docente identificar tempranamente las áreas de refuerzo.
+
+\textbf{Pronóstico.} De no implementarse soluciones tecnológicas que faciliten la evaluación por competencias, persistirá la desconexión entre el currículo académico y las habilidades reales de los estudiantes. Esto resultará en un bajo rendimiento en pruebas estandarizadas y en una desmotivación creciente frente al aprendizaje de las matemáticas. A largo plazo, la falta de una medición precisa de las destrezas individuales fomentará la exclusión educativa, dado que el sistema no será capaz de adaptarse a los diferentes ritmos y estilos de aprendizaje, limitando así la preparación de los estudiantes para los retos académicos y profesionales del futuro.
+
+\subsection{Formulación del problema}
+
+¿Cómo superar los desafíos relacionados con la evaluación de competencias curriculares en matemáticas, asegurando precisión, inclusión y adaptabilidad a las necesidades individuales de los estudiantes de educación básica elemental?
+
+\subsection{Sistematización del problema}
+
+A partir de la formulación anterior se desprenden las siguientes preguntas directrices:
+
+\begin{itemize}[leftmargin=*]
+\item ¿Qué necesidades individuales y criterios deben considerarse en el diseño de una herramienta que permita una medición precisa y eficaz de las competencias de los estudiantes de educación básica elemental?
+\item ¿Qué elementos deben utilizarse en la formulación de las preguntas del proceso evaluativo para asegurar una evaluación integral de las competencias matemáticas?
+\item ¿Qué factores deben considerarse en los procesos de evaluación por competencias para garantizar su efectividad en contextos educativos reales del nivel básico elemental ecuatoriano?
+\end{itemize}
+
+\section{Objetivos}
+
+\subsection{Objetivo General}
+
+Desarrollar una aplicación web inclusiva para superar los desafíos relacionados con la evaluación de competencias curriculares en matemáticas, asegurando precisión, inclusión y adaptabilidad a las necesidades individuales de los estudiantes de educación básica elemental, mediante el uso de pictogramas y retroalimentación basada en inteligencia artificial.
+
+\subsection{Objetivos Específicos}
+
+\begin{itemize}[leftmargin=*]
+\item Identificar las necesidades de los estudiantes y las limitaciones que enfrentan los docentes en la evaluación por competencias, mediante entrevistas a profesionales educativos, con el fin de establecer los requisitos funcionales y pedagógicos para el diseño de la aplicación.
+\item Diseñar la estructura y funcionalidades de una aplicación web que integre múltiples tipos de preguntas, ajustes de dificultad basados en el currículo, validación de respuestas y elementos de accesibilidad como pictogramas, con el fin de atender las necesidades individuales de los estudiantes en la evaluación por competencias.
+\item Validar la funcionalidad de la aplicación en entornos educativos reales, observando su desempeño durante la administración de evaluaciones por competencias y recopilando percepciones de docentes y estudiantes mediante los instrumentos SUS y TAM, para orientar mejoras que fortalezcan su aplicación en el contexto escolar.
+\end{itemize}
+
+\section{Justificación}
+
+La evaluación por competencias se ha posicionado como un pilar fundamental en la transformación educativa contemporánea, desplazando el interés desde la mera memorización de contenidos hacia la capacidad de movilizar conocimientos en situaciones prácticas \cite{ref01_evalcompetencias,ref33_cano}. Sin embargo, en el contexto de la educación básica ecuatoriana existe una brecha significativa entre estos postulados teóricos y la realidad del aula. Las herramientas actuales, como SCALA \cite{ref21_scala_universidad} o CAT \cite{ref10_cat}, están diseñadas predominantemente para la educación superior, lo que deja desatendido el nivel básico elemental. Este vacío instrumental impide que las instituciones educativas locales implementen modelos evaluativos modernos, perpetuando prácticas tradicionales que no logran medir con fidelidad el desarrollo de destrezas críticas en asignaturas fundamentales como las matemáticas. El currículo nacional vigente \cite{ref29_curriculo_ec} establece dominios y destrezas específicas que requieren instrumentos capaces de operacionalizar la evaluación de manera adaptativa y formativa.
+
+Desde una perspectiva práctica, el desarrollo del proyecto Kiddy Quiz responde a la necesidad urgente de dotar a los docentes de un instrumento funcional y especializado que automatice y optimice el proceso evaluativo. La utilidad de la aplicación propuesta radica en su capacidad para ofrecer reportes detallados y personalizados sobre el desempeño del estudiante, lo cual resulta inviable de forma manual para un profesor con numerosos alumnos. Al centrarse específicamente en la educación básica, la herramienta incorpora lógicas de evaluación adaptadas a la madurez cognitiva de los niños, lo que permite identificar no solamente la respuesta final, sino también las áreas específicas en las que el estudiante requiere refuerzo, convirtiendo así a la evaluación en un verdadero insumo para la mejora pedagógica y no en un mero trámite administrativo \cite{ref27_blackwiliam}.
+
+En cuanto a su relevancia social, el proyecto se alinea con los principios de equidad e inclusión educativa, beneficiando directamente a una población estudiantil diversa que con frecuencia se ve marginada por formatos de evaluación rígidos. La incorporación de elementos de accesibilidad visual, como el uso de pictogramas y una interfaz amigable, busca democratizar el acceso a la evaluación, permitiendo que estudiantes con distintos estilos de aprendizaje puedan demostrar sus competencias en igualdad de condiciones \cite{ref42_cabero,ref48_nielsen}. Asimismo, los docentes se constituyen en beneficiarios directos al ver reducida su carga operativa en la calificación, lo que les permite redirigir su tiempo y esfuerzo hacia el acompañamiento personalizado de los estudiantes más vulnerables, impactando positivamente en la calidad educativa de la comunidad.
+
+La viabilidad técnica de la propuesta se sustenta en la construcción de una arquitectura de software robusta, modular y escalable, basada en estándares modernos de desarrollo web como Angular para el \textit{frontend} y NestJS para el \textit{backend}. Esta elección tecnológica no es arbitraria: el uso de herramientas de código abierto y la gestión de datos mediante PostgreSQL garantizan que la solución sea sostenible económicamente y fácil de desplegar en instituciones con infraestructuras tecnológicas heterogéneas. A diferencia de soluciones propietarias costosas, este enfoque asegura que el sistema pueda evolucionar y adaptarse a futuros requerimientos sin incurrir en deudas técnicas significativas, lo que se traduce en una larga vida útil del producto tecnológico \cite{ref49_angular,ref51_postgresql}.
+
+Finalmente, la rigurosidad del proceso de desarrollo se garantiza mediante la adopción de la metodología ágil Programación Extrema (XP). A diferencia de los modelos en cascada o de las metodologías orientadas al hardware, XP resulta idónea para este contexto educativo debido a su enfoque en la simplicidad, la retroalimentación constante y la entrega de valor iterativa. Dado que las necesidades pedagógicas pueden ser dinámicas, XP permite validar continuamente las funcionalidades --como los tipos de preguntas y la visualización de reportes-- directamente con los usuarios finales, asegurando que el software resultante no sea solo un ejercicio de programación, sino una solución validada que responde fielmente a los problemas reales detectados en la fase de diagnóstico \cite{ref53_beck}.

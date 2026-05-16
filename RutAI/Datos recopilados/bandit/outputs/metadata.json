@@ -1,0 +1,30 @@
+{
+  "experiment": "UCB + Entropía vs baselines",
+  "version": "2",
+  "horizon": 500,
+  "n_seeds": 100,
+  "seed_base": 42,
+  "arms": [
+    "fastest",
+    "shortest",
+    "recommended"
+  ],
+  "reward_probs": {
+    "fastest": 0.4,
+    "shortest": 0.5,
+    "recommended": 0.65
+  },
+  "optimal_arm": "recommended",
+  "algorithms": [
+    "Random",
+    "Greedy",
+    "ε-greedy (ε=0.1)",
+    "ε-greedy (ε=0.2)",
+    "Thompson",
+    "LinUCB",
+    "UCB + Entropía (RutAI)"
+  ],
+  "ci_method": "Bootstrap 95% (1000 iter) sobre curva completa",
+  "reward_rate_method": "Últimas 100 iteraciones de la misma traza de simulación",
+  "linucb_context": "Sintético: hora∈[0,1], laboral∈{0,1}, distancia∈[0,1] — reproducible por semilla"
+}

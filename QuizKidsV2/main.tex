@@ -1,0 +1,182 @@
+% =============================================================
+%  Tesis Kiddy Quiz - UTEQ
+%  Estructura LaTeX completa con casos de uso en formato 4 columnas
+% =============================================================
+\documentclass[12pt,a4paper]{report}
+
+\usepackage{amssymb}        % para $\checkmark$
+\usepackage{makecell}
+%\usepackage[table]{xcolor}
+\usepackage{array}
+
+\usepackage{float}
+\usepackage{rotating}       % para sidewaystable
+
+\renewcommand\theadfont{\bfseries\footnotesize}
+\renewcommand\theadalign{cc}
+
+\usepackage{ragged2e}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage[provide=*,spanish]{babel}
+
+\usepackage[a4paper,left=3cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+% Sangría tipo tesis:
+%   - Primer párrafo tras un título/sección: SIN sangría
+%   - Párrafos siguientes: CON sangría
+%   - Con espacio vertical entre párrafos
+\usepackage[skip=0.5em, indent=1.27cm]{parskip}
+
+\usepackage{longtable}
+%\usepackage{array}
+\usepackage{tabularx}
+\usepackage{colortbl}
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows.meta, positioning, calc, patterns}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{fancyvrb}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage[table]{xcolor}
+
+\definecolor{headblue}{RGB}{220,235,250}
+\definecolor{kqgreen}{RGB}{220,245,220}
+
+\renewcommand\theadfont{\bfseries\footnotesize}
+\renewcommand\theadalign{cc}
+
+
+\usepackage{graphicx}
+\graphicspath{{figuras/}}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+\captionsetup{labelfont=bf,justification=centering}
+\usepackage{enumitem}
+\usepackage{csquotes}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+\definecolor{headblue}{HTML}{D9E1F2}
+\definecolor{grpgray}{HTML}{F2F2F2}
+\definecolor{utgreen}{HTML}{1F7A3A}
+\definecolor{headblue}{RGB}{220,235,250}
+\definecolor{kqgreen}{RGB}{220,245,220}
+
+\newcommand{\elaboracion}{\noindent\textbf{Elaboración:} \textit{Autor}\par\bigskip}
+
+\newcommand{\fuenteautor}{\elaboracion}
+
+\renewcommand{\chaptername}{CAPÍTULO}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+
+%\usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
+%\AtBeginDocument{\providecommand{\DeclareBibliographyStringMacro}{}}
+%\addbibresource{referencias.bib}
+
+\usepackage[backend=biber,style=numeric-comp,sorting=none]{biblatex}
+\addbibresource{referencias.bib}
+
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\normalfont\Huge\bfseries\centering\vspace*{\fill}}
+  {\Large CAPÍTULO \thechapter}
+  {2em}
+  {}
+  [\vspace*{\fill}]
+
+\titlespacing*{\chapter}{0pt}{*20}{*15}
+
+% Forzar que NO haya sangría en el primer párrafo tras \chapter, \section, etc.
+% Debe ir DESPUÉS de cargar titlesec y parskip para que no sea sobrescrito.
+\makeatletter
+\renewcommand{\@afterindentfalse}{\let\if@afterindent\iffalse}
+\@afterindentfalse
+\makeatother
+
+\usepackage{fancyvrb}
+
+\begin{document}
+% Sobrescribir los nombres en español que define babel.
+% Debe ir DENTRO de \begin{document} para que babel ya los haya seteado.
+\addto\captionsspanish{%
+  \renewcommand{\contentsname}{TABLA DE CONTENIDO}%
+  \renewcommand{\listfigurename}{ÍNDICE DE FIGURAS}%
+  \renewcommand{\listtablename}{ÍNDICE DE TABLAS}%
+}
+\renewcommand{\contentsname}{TABLA DE CONTENIDO}
+\renewcommand{\listfigurename}{ÍNDICE DE FIGURAS}
+\renewcommand{\listtablename}{ÍNDICE DE TABLAS}
+
+\pagenumbering{roman}
+\input{caps/preliminares}
+
+% Para las listas (índice general, índice de tablas, índice de figuras)
+% usamos un formato de título normal, NO centrado al medio de la página.
+\begingroup
+  \titleformat{\chapter}[block]
+    {\normalfont\Large\bfseries\centering}
+    {}{0pt}{}
+  \titlespacing*{\chapter}{0pt}{0pt}{1em}
+  \tableofcontents
+  \listoftables
+  \listoffigures
+\endgroup
+
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+
+\chapter*{INTRODUCCIÓN}
+\addcontentsline{toc}{chapter}{INTRODUCCIÓN}
+\input{caps/cap_introduccion}
+
+\chapter{MARCO CONTEXTUAL del PROYECTO  TECNOLÓGICO}
+\clearpage
+\input{caps/cap1_marco_contextual}
+
+\chapter{MARCO TEÓRICO DEL PROYECTO TECNOLÓGICO}
+\clearpage
+\input{caps/cap2_marco_teorico}
+
+\chapter{METODOLOGÍA}
+\clearpage
+\input{caps/cap3_metodologia}
+
+\chapter{RESULTADOS}
+\clearpage
+\input{caps/cap4_resultados}
+
+\chapter{CONSLUSIONES Y RECOMENDACIONES}
+\clearpage
+\input{caps/cap5_conclusiones}
+\label{cap:conclusiones}
+
+\chapter*{REFERENCIAS BIBLIOGRÁFICAS}
+\clearpage
+\printbibliography
+\addcontentsline{toc}{chapter}{REFERENCIAS BIBLIOGRÁFICAS}
+
+\appendix
+%\chapter*{ANEXOS}
+\addcontentsline{toc}{chapter}{ANEXOS}
+\input{caps/cap_anexos}
+
+\end{document}

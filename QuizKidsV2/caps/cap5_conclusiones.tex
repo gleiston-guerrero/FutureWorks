@@ -1,0 +1,237 @@
+% =============================================================================
+% CAPÍTULO V — CONCLUSIONES
+% Proyecto: Kiddy Quiz — UTEQ
+% Autor: Jeandavid Cabrera Guerra
+% =============================================================================
+
+% ─── PÁRRAFO DE APERTURA DEL CAPÍTULO ────────────────────────────────────────
+\noindent
+El presente capítulo sintetiza los hallazgos derivados del desarrollo y la
+validación empírica de la aplicación web \textit{Kiddy Quiz}. Se presentan,
+en primer lugar, las conclusiones del proceso de investigación y desarrollo;
+a continuación, los resultados se discuten en contraste con la literatura
+previa y se exponen las contribuciones del estudio; seguidamente se reconocen
+las limitaciones del trabajo; y, finalmente, se delinean las líneas de
+investigación y desarrollo futuro.
+
+% =============================================================================
+\section{Conclusiones}
+\label{sec:conclusiones}
+% =============================================================================
+
+La aplicación de entrevistas semiestructuradas a cinco docentes de educación
+básica elemental y a dos psicopedagogos permitió consolidar un cuerpo de
+requisitos funcionales y pedagógicos que sustentó la totalidad de la fase de
+diseño. De este proceso emergieron veintisiete historias de usuario y seis
+requerimientos no funcionales, los cuales reflejan con precisión tanto las
+barreras cognitivas reportadas por los profesionales ---particularmente la
+lectoescritura emergente y la ansiedad matemática--- como las limitaciones
+operativas que enfrentan los docentes al gestionar evaluaciones diferenciadas
+en aulas numerosas. El proceso de levantamiento de requisitos se ancló
+deliberadamente en la realidad de la educación básica elemental ecuatoriana y
+en el Currículo Priorizado con Énfasis en Competencias del Ministerio de
+Educación~\cite{mineduc2021curriculo}, garantizando que la solución respondiera
+a necesidades verificadas y no a supuestos teóricos.
+
+A partir de dichos requisitos, se diseñó y desarrolló un sistema funcional
+construido sobre una arquitectura cliente-servidor ---Angular, NestJS y
+PostgreSQL--- y desplegado en producción. La plataforma implementa siete tipos
+de preguntas integrables en una misma evaluación, incorpora pictogramas de la
+base ARASAAC como soporte cognitivo visual, integra retroalimentación
+motivacional generada por el modelo Gemini~2.5~Flash y articula mecanismos de
+gamificación basados en niveles e insignias. La adopción de la metodología
+Extreme Programming~\cite{beck2004xp,dyba2008agile} permitió incorporar los
+ajustes derivados de la retroalimentación continua de los expertos a lo largo
+de las treinta y dos semanas del cronograma, ratificando la pertinencia del
+enfoque ágil para el desarrollo de software educativo con usuarios de
+necesidades específicas.
+
+La validación del sistema, efectuada mediante la Escala de Usabilidad del
+Sistema (SUS)~\cite{brooke1996sus} y el Modelo de Aceptación Tecnológica
+(TAM)~\cite{davis1989tam} con una muestra de quince estudiantes de educación
+básica elemental y cinco docentes en ejercicio, arrojó resultados que superan
+los umbrales de referencia en ambas dimensiones. La puntuación media SUS
+alcanzó $87{,}7$ puntos en el grupo de estudiantes ($\sigma=7{,}8$;
+mín.~$=80{,}0$) y $81{,}0$ en el grupo de docentes ($\sigma=9{,}4$), ubicando
+al sistema en la categoría \textbf{``Excelente''} según los rangos
+interpretativos de Vlachogianni y Tselios~\cite{vlachogianni2022sus}. En
+cuanto a la aceptación tecnológica, la dimensión de Intención de Uso registró
+una media de $4{,}93/5{,}0$ entre los estudiantes (mediana~$=5{,}0$;
+mín.~$=4{,}6$), lo que indica una disposición prácticamente unánime hacia el
+uso continuo de la plataforma. La brecha más pronunciada entre perfiles se
+observó en la Facilidad de Uso Percibida, donde los estudiantes ($M=4{,}78$)
+superaron a los docentes ($M=3{,}95$), confirmando que el diseño centrado en el
+usuario infantil ---con pictogramas ARASAAC y tipografías de gran tamaño---
+redujo eficazmente las barreras cognitivas de los niños sin comprometer la
+funcionalidad requerida por el docente.
+
+En definitiva, el conjunto de la evidencia recopilada demuestra que es posible
+articular, en una única plataforma desplegable, los componentes que la
+literatura reciente identifica como prioritarios para la evaluación por
+competencias en la infancia: accesibilidad cognitiva, diversidad evaluativa,
+retroalimentación inteligente y motivación intrínseca. \textit{Kiddy Quiz}
+aborda simultáneamente las cuatro brechas identificadas en el estado del arte:
+el nivel educativo objetivo, la diversidad y creación interna de evaluaciones,
+la incorporación de retroalimentación generativa con inteligencia artificial y
+la articulación de mecanismos de gamificación con accesibilidad cognitiva
+mediante pictogramas, acreditando en términos funcionales, técnicos y empíricos
+que la tecnología puede constituirse en un puente real hacia la equidad
+evaluativa en la educación básica elemental ecuatoriana.
+
+% =============================================================================
+\section{Discusión}
+\label{sec:discusion}
+% =============================================================================
+
+Los resultados del levantamiento de requisitos son coherentes con la evidencia
+documentada por Outhwaite~\cite{outhwaite2022apps} y por Topali
+et~al.~\cite{topali2025aied}, quienes sostienen que los entornos digitales para
+la educación básica deben priorizar interfaces visualmente adaptadas y
+mecanismos de soporte que reduzcan la carga cognitiva de los usuarios
+infantiles. A diferencia de plataformas como Snappet~\cite{faber2017dfa}, el
+modelo adaptativo de Yuhana et~al.~\cite{yuhana2024adaptive} o
+MathAIde~\cite{rodrigues2025mathaide}, cuyos requisitos fueron derivados de
+contextos y currícula externos al Ecuador, el diseño de Kiddy Quiz partió de un
+diagnóstico situado en el sistema educativo ecuatoriano, lo que diferencia su
+pertinencia pedagógica de la de los antecedentes internacionales revisados.
+
+La combinación funcional implementada supera en cobertura a las seis
+herramientas representativas del estado del arte analizadas en el
+Capítulo~II. La revisión sistemática evidenció que ninguna de ellas
+---Snappet~\cite{faber2017dfa,molenaar2016snappet}, el modelo de Yuhana
+et~al.~\cite{yuhana2024adaptive}, MathAIde~\cite{rodrigues2025mathaide},
+\textit{Class Optimization Master}~\cite{zheng2023genai},
+MLAD~\cite{mohseni2025mlad} y PictoAndes~\cite{carriontoro2025pictoandes}---
+integra simultáneamente la creación docente interna de evaluaciones, la
+diversidad de tipos de pregunta, el soporte pictográfico mediante ARASAAC, la
+retroalimentación generativa con inteligencia artificial y la gamificación, ni
+ha sido validada con SUS y TAM en muestras de estudiantes y docentes de
+educación básica elemental latinoamericana.
+
+La puntuación SUS de $87{,}7$ obtenida por el grupo infantil supera la media de
+$M=76{,}18$ reportada por Vlachogianni y Tselios~\cite{vlachogianni2022sus}
+para sistemas educativos digitales, lo que sugiere que las decisiones de diseño
+centradas en pictogramas y simplicidad visual redujeron la carga cognitiva de
+los usuarios infantiles en consonancia con los principios de la Teoría Cognitiva
+del Aprendizaje Multimedia de Mayer y Moreno~\cite{mayer2003multimedia}. La
+brecha registrada en la Facilidad de Uso Percibida entre estudiantes y docentes
+no constituye una disfunción del sistema, sino la confirmación empírica de que
+la interfaz cumplió su propósito de adaptación al perfil infantil.
+
+La elevada puntuación en Intención de Uso es atribuible a la combinación de
+retroalimentación motivacional con elementos lúdicos: mecanismos cuya
+efectividad la literatura previa había documentado de manera
+independiente~\cite{topali2025aied,mousavinasab2018its,kiili2018}, pero que en
+el presente trabajo se integran y validan empíricamente de forma conjunta en un
+único instrumento orientado a la educación básica elemental.
+
+\subsection{Contribuciones del estudio}
+\label{sec:contribuciones}
+
+\subsubsection*{Contribución teórica}
+
+El estudio contribuye al cuerpo de literatura sobre tecnología educativa en
+tres dimensiones. En primer lugar, extiende la evidencia sobre el uso de
+pictogramas como soporte cognitivo ---documentada predominantemente en contextos
+clínicos y de comunicación aumentativa~\cite{paolieri2018arasaac}--- al ámbito
+de la evaluación curricular automatizada en matemáticas para la educación
+básica. En segundo lugar, aporta evidencia empírica sobre la viabilidad de
+integrar modelos generativos de lenguaje en la retroalimentación formativa
+dirigida a niños, dimensión escasamente explorada en la literatura sobre
+AIEd K-12~\cite{topali2025aied,mousavinasab2018its}. En tercer lugar,
+proporciona datos de validación TAM y SUS con población infantil,
+complementando la base empírica revisada por Vlachogianni y
+Tselios~\cite{vlachogianni2022sus}, concentrada mayormente en usuarios
+adolescentes y adultos.
+
+\subsubsection*{Contribución práctica}
+
+El proyecto entrega un artefacto tecnológico funcional, desplegado y validado,
+disponible para instituciones educativas ecuatorianas. La plataforma automatiza
+tareas de gestión evaluativa que manualmente resultan inviables para un docente
+con numerosos estudiantes ---especialmente la generación de reportes
+individualizados, la detección de brechas de aprendizaje por competencia y la
+entrega de retroalimentación motivacional inmediata---, respondiendo
+directamente a las necesidades manifestadas en la fase de levantamiento de
+requisitos y alineándose con los lineamientos del Currículo Priorizado con
+Énfasis en Competencias~\cite{mineduc2021curriculo}.
+
+% =============================================================================
+\section{Limitaciones del estudio}
+\label{sec:limitaciones}
+% =============================================================================
+
+La interpretación de los resultados debe considerar las limitaciones inherentes
+al alcance del proyecto.
+
+La validación empírica se realizó con una muestra intencional de tamaño
+reducido ($N=15$ estudiantes y $N=5$ docentes), seleccionada por accesibilidad
+y disposición a participar. Este tamaño es coherente con los estándares mínimos
+recomendados para evaluaciones SUS~\cite{bangor2008sus} y con la práctica
+habitual en estudios piloto de tecnología educativa, pero no permite realizar
+inferencias estadísticas robustas hacia la población general. La generalización
+de los hallazgos requiere replicación en muestras mayores, idealmente con
+diseños cuasi-experimentales que incorporen grupo control.
+
+El período de exposición de los usuarios al sistema fue acotado. Los efectos
+de novedad documentados en la literatura~\cite{vlachogianni2022sus} podrían
+haber influido en la elevada puntuación de Intención de Uso. Estudios
+longitudinales serán necesarios para confirmar la sostenibilidad de la
+aceptación a lo largo del tiempo y el impacto efectivo en los aprendizajes.
+
+La evaluación se circunscribió a la asignatura de matemáticas y al nivel de
+educación básica elemental. La extensión a otras asignaturas curriculares y a
+otros niveles educativos constituyen extrapolaciones no validadas en el presente
+trabajo.
+
+Aunque la integración de Gemini~2.5~Flash demostró ser técnicamente viable, no
+se evaluó de manera sistemática la calidad pedagógica de la retroalimentación
+generada ni los posibles sesgos del modelo, dimensiones que la literatura
+reciente sobre AIEd identifica como áreas críticas~\cite{topali2025aied}.
+
+Finalmente, el desarrollo se ejecutó de manera individual, lo que implicó
+adaptar las prácticas colaborativas de XP ---como la programación en pares---
+hacia mecanismos de autodisciplina y revisión personal, una limitación que el
+propio Beck~\cite{beck2004xp} reconoce como un escenario que reduce
+parcialmente las garantías de calidad asociadas a la metodología.
+
+% =============================================================================
+\section{Trabajo futuro}
+\label{sec:trabajo-futuro}
+% =============================================================================
+
+Las limitaciones identificadas y los hallazgos del estudio sugieren cinco
+líneas prioritarias de investigación y desarrollo:
+
+\begin{enumerate}
+    \item \textbf{Estudios cuasi-experimentales longitudinales.} Diseñar
+    estudios con grupo control, aleatorización por aula y mediciones repetidas
+    durante al menos un período académico completo, con el propósito de
+    cuantificar el efecto de \textit{Kiddy Quiz} sobre indicadores de
+    aprendizaje matemático y sobre la disminución de la ansiedad evaluativa,
+    controlando el efecto novedad.
+
+    \item \textbf{Extensión curricular y multiidioma.} Adaptar la plataforma a
+    otras asignaturas del currículo priorizado~\cite{mineduc2021curriculo}
+    ---particularmente lengua y ciencias naturales--- y habilitar
+    configuraciones multilingües para contextos plurinacionales como el
+    ecuatoriano, incorporando lenguas originarias.
+
+    \item \textbf{Auditoría pedagógica de la retroalimentación generativa.}
+    Desarrollar un protocolo de evaluación sistemática de la retroalimentación
+    producida por Gemini~2.5~Flash, considerando dimensiones como pertinencia
+    pedagógica, ausencia de sesgos, adecuación al nivel cognitivo del estudiante
+    y consistencia entre evaluaciones.
+
+    \item \textbf{Personalización adaptativa basada en analítica de
+    aprendizaje.} Integrar capacidades de aprendizaje adaptativo que ajusten
+    dinámicamente la dificultad y el tipo de pregunta en función del desempeño
+    individual del estudiante, en línea con las propuestas de sistemas
+    tutoriales inteligentes~\cite{mousavinasab2018its}.
+
+    \item \textbf{Validación con estudiantes con necesidades educativas
+    específicas.} Profundizar el componente de accesibilidad mediante
+    evaluación con estudiantes con discapacidad intelectual leve, dislexia o
+    trastorno del espectro autista, en colaboración con equipos
+    interdisciplinarios de psicopedagogía y educación especial.
+\end{enumerate}

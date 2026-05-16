@@ -1,0 +1,74 @@
+% =============================================================================
+% CAPÍTULO V - CONCLUSIONES Y RECOMENDACIONES
+% =============================================================================
+
+\cleardoublepage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+{\Large\bfseries CAPÍTULO V}\\[2.5cm]
+{\Large\bfseries CONCLUSIONES Y RECOMENDACIONES}
+\end{center}
+\vspace*{\fill}
+\clearpage
+
+\chapter*{}
+\addcontentsline{toc}{chapter}{CAPÍTULO V -- CONCLUSIONES Y RECOMENDACIONES}
+\setcounter{chapter}{5}
+\setcounter{section}{0}
+\renewcommand{\thesection}{5.\arabic{section}}
+\renewcommand{\thesubsection}{5.\arabic{section}.\arabic{subsection}}
+
+\vspace{-3cm}
+
+\section{Conclusiones}
+
+El presente proyecto tecnológico permitió desarrollar y validar empíricamente la aplicación web inclusiva Kiddy Quiz, orientada al control y evaluación de competencias curriculares en matemáticas para estudiantes de educación básica elemental. A continuación se sintetizan las conclusiones más relevantes, organizadas en correspondencia con los objetivos específicos planteados al inicio del estudio.
+
+\textbf{Sobre el levantamiento de requisitos.} La identificación de las necesidades de los estudiantes y de las limitaciones que enfrentan los docentes en la evaluación por competencias se logró mediante entrevistas a cinco docentes y dos psicopedagogos, lo cual permitió consolidar veintinueve historias de usuario y seis requerimientos no funcionales que configuran el núcleo funcional y pedagógico de la aplicación. Las entrevistas revelaron tres barreras críticas hasta entonces no documentadas con suficiente especificidad para el contexto ecuatoriano: la ausencia de instrumentos digitales adaptados al nivel cognitivo infantil, la sobrecarga operativa que la calificación manual impone al docente y la limitación de los formatos tradicionales para detectar áreas específicas de refuerzo.
+
+\textbf{Sobre el diseño y desarrollo de la solución.} El diseño de la estructura y funcionalidades de la aplicación se materializó en un sistema cliente-servidor robusto, modular y escalable, construido con Angular en el \textit{frontend}, NestJS en el \textit{backend} y PostgreSQL como motor de base de datos. La integración del modelo Gemini 1.5 Flash de Google para la generación de retroalimentación motivacional, sumada al uso sistemático de pictogramas como apoyo visual de los enunciados, conforma el aporte tecnológico diferenciador del proyecto frente a herramientas como SCALA, CAT y SECAT, que están orientadas a la educación superior. La aplicación de la metodología ágil de Programación Extrema, adaptada al contexto de un desarrollo individual, permitió entregar el producto en treinta y dos semanas con un cumplimiento promedio de plazos del 96,6\,\%.
+
+\textbf{Sobre la validación de la funcionalidad.} La validación de la aplicación en entornos educativos reales, realizada con quince estudiantes y cinco docentes, evidenció una usabilidad en categoría \textit{Excelente} (SUS de 87,7 en estudiantes y 81,0 en docentes) y una aceptación tecnológica sobresaliente, particularmente notable en la dimensión de Intención de Uso entre los estudiantes (media de 4,93 sobre 5). Estos resultados validan empíricamente las dos hipótesis implícitas del proyecto: que un diseño basado en pictogramas reduce significativamente la carga cognitiva infantil, y que la retroalimentación generada por IA incrementa el \textit{engagement} del estudiante respecto a las evaluaciones tradicionales.
+
+\textbf{Conclusión general.} Kiddy Quiz constituye una herramienta tecnológica viable, validada y diferenciadora que aborda una brecha instrumental significativa en la educación básica elemental ecuatoriana. Su arquitectura abierta, su sostenibilidad económica y la solidez empírica de sus resultados permiten afirmar que el proyecto cumple los objetivos planteados y aporta significativamente a la modernización de la evaluación educativa infantil.
+
+\section{Recomendaciones}
+
+A partir del análisis de los resultados y de las limitaciones identificadas durante el desarrollo, se formulan las siguientes recomendaciones:
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Sobre la implementación institucional.} Se recomienda complementar el despliegue de la herramienta con instancias breves de capacitación docente, dado que la brecha observada en la Facilidad de Uso Percibida entre docentes y estudiantes evidencia una curva de aprendizaje todavía perfectible para el profesorado. Talleres prácticos de dos horas, focalizados en la creación de evaluaciones y la lectura de los reportes analíticos, podrían cerrar esta brecha.
+
+\item \textbf{Sobre el sistema de retroalimentación.} Es recomendable monitorizar continuamente la calidad de los mensajes generados por Gemini AI mediante un mecanismo de moderación que filtre respuestas inadecuadas para el público infantil, así como mantener una versión local de \textit{prompts} institucionalmente aprobados que aseguren la consistencia pedagógica de la retroalimentación.
+
+\item \textbf{Sobre la accesibilidad.} Se sugiere ampliar el cumplimiento de la norma WCAG~2.1 al nivel AAA en futuras iteraciones, así como integrar lectura por síntesis de voz (TTS) nativa multinavegador y soporte para dispositivos asistivos, atendiendo de manera más completa a estudiantes con discapacidades específicas.
+
+\item \textbf{Sobre la escala.} Para soportar escenarios de mayor concurrencia (más de 200 usuarios simultáneos), se recomienda contenerizar la aplicación con Docker y orquestar el despliegue con Kubernetes, manteniendo la base PostgreSQL en una instancia gestionada con réplicas de lectura.
+
+\item \textbf{Sobre el banco de preguntas.} Se aconseja construir colaborativamente, con el Ministerio de Educación o redes de docentes, un banco abierto de preguntas curricularmente alineado al currículo nacional ecuatoriano, lo que potenciaría el alcance social de la plataforma.
+\end{itemize}
+
+\section{Limitaciones del estudio}
+
+El presente estudio reconoce las siguientes limitaciones, las cuales acotan el alcance de las conclusiones:
+
+\begin{itemize}[leftmargin=*]
+\item El tamaño muestral utilizado en la fase de validación (N=15 estudiantes y N=5 docentes) es adecuado para una validación inicial siguiendo los lineamientos clásicos de Nielsen, pero limita la generalización estadística de los hallazgos. Estudios subsiguientes con muestras mayores y aleatorización por institución serían deseables.
+\item La validación no se desarrolló en el contexto natural de un aula durante un período académico completo, sino mediante sesiones controladas. La exposición prolongada al sistema podría revelar dimensiones de usabilidad y aceptación adicionales no captadas en este estudio.
+\item La evaluación de la calidad de la retroalimentación generada por Gemini AI se realizó cualitativamente; un estudio cuantitativo del impacto real de dicha retroalimentación sobre el aprendizaje a mediano plazo queda pendiente.
+\item La aplicación se limitó al área de matemáticas y al subnivel elemental. Su extrapolación a otras áreas curriculares y subniveles requiere ajustes específicos.
+\end{itemize}
+
+\section{Trabajo futuro}
+
+Como continuación natural del proyecto, se identifican las siguientes líneas de trabajo futuro:
+
+\begin{itemize}[leftmargin=*]
+\item \textbf{Estudio longitudinal.} Realizar una validación longitudinal en el contexto de una institución educativa durante al menos un período académico, midiendo el impacto del uso sostenido de Kiddy Quiz sobre los aprendizajes y la motivación.
+\item \textbf{Adaptatividad inteligente.} Incorporar un motor de evaluación adaptativa que ajuste dinámicamente la dificultad de las preguntas en función del rendimiento histórico del estudiante, alineado con las propuestas de la \textit{Item Response Theory}.
+\item \textbf{Extensión a otras áreas.} Expandir el sistema a otras áreas curriculares (lengua, ciencias naturales, estudios sociales) preservando la filosofía de pictogramas y feedback con IA.
+\item \textbf{Aplicación móvil nativa.} Desarrollar una versión nativa para tabletas Android e iOS, dado que estos dispositivos predominan en el contexto educativo infantil.
+\item \textbf{Análisis de aprendizaje.} Construir un módulo de \textit{Learning Analytics} que sintetice información agregada anónima con fines de investigación educativa, en coordinación con instituciones académicas.
+\item \textbf{Internacionalización.} Adaptar la aplicación a otros idiomas y currículos latinoamericanos, evaluando la transferibilidad de los hallazgos a contextos similares al ecuatoriano.
+\end{itemize}

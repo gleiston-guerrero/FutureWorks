@@ -1,0 +1,410 @@
+% ============================================================
+\documentclass[12pt,a4paper,oneside]{report}
+
+% ---- Codificación y lengua ----
+\usepackage[spanish,es-tabla]{babel}
+
+% ---- Tipografía (LuaLaTeX — Times New Roman real) ----
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{microtype}
+
+% ---- Geometría de página ----
+% UTEQ: izq 3 cm | sup 2.5 cm | inf 2.5 cm | der 2.5 cm
+\usepackage[
+top    = 2.5cm,
+bottom = 2.5cm,
+left   = 3cm,
+right  = 2.5cm,
+headheight = 0pt,
+headsep    = 0pt,
+footskip   = 1.2cm,
+]{geometry}
+
+% ---- Interlineado y párrafos ----
+% UTEQ: interlineado 1.5 + doble espacio después de cada punto aparte
+\usepackage{setspace}
+\onehalfspacing
+\setlength{\parskip}{\baselineskip}   % doble espacio entre párrafos (= 1 línea extra sobre el 1.5)
+\setlength{\parindent}{0pt}
+
+% ---- Gráficos ----
+\usepackage{graphicx}
+\usepackage{float}
+
+% ---- Captions ----
+\usepackage{caption}
+\DeclareCaptionFormat{twoline}{\raggedright\textbf{#1#2}\par#3\par}
+\captionsetup{
+	format          = twoline,
+	labelsep        = period,
+	singlelinecheck = false,
+	justification   = raggedright,
+	font            = normalsize,
+	skip            = 4pt,
+}
+\captionsetup[figure]{position=top}
+\captionsetup[longtable]{position=top}
+
+% ---- Numeración secuencial global (sin prefijo de capítulo) ----
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\counterwithout{equation}{chapter}
+
+% ---- Pie de tabla ----
+\newcommand{\tblnote}{%
+	\vspace{-18pt}%
+	\small\noindent\textbf{Fuente:} Investigación\\\quad\textbf{Elaborado por:} Autora%
+	\vspace{12pt}%
+}
+
+% ---- TikZ y pgfplots ----
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes.geometric,arrows.meta,calc,babel}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{polar}
+
+% ---- Tablas ----
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage[table]{xcolor}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{4pt}
+
+% ---- Matemáticas ----
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% ---- Hipervínculos ----
+\usepackage[
+colorlinks  = true,
+linkcolor   = black,
+citecolor   = black,
+urlcolor    = blue,
+bookmarks   = true,
+bookmarksopen = true,
+]{hyperref}
+
+% ---- Bibliografía ----
+\usepackage[numbers,sort&compress]{natbib}
+\bibliographystyle{IEEEtran}
+
+% ---- Encabezado/pie de página ----
+% UTEQ: número en la parte inferior derecha; sin número impreso en portada
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}                              % limpia todo
+\fancyfoot[R]{\small\thepage}          % número inferior derecho
+\renewcommand{\headrulewidth}{0pt}     % sin línea de encabezado
+\renewcommand{\footrulewidth}{0pt}
+
+% Estilo para páginas de capítulo (plain) — también inferior derecho
+\fancypagestyle{plain}{%
+	\fancyhf{}
+	\fancyfoot[R]{\small\thepage}
+	\renewcommand{\headrulewidth}{0pt}
+}
+
+% ---- Títulos de secciones ----
+\usepackage{titlesec}
+\titleformat{\chapter}[block]
+{\normalfont\large\bfseries\centering}{}{0pt}{\MakeUppercase}
+\titlespacing*{\chapter}{0pt}{12pt}{12pt}
+\titleformat{\section}[block]
+{\normalfont\normalsize\bfseries}{\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{10pt}{6pt}
+\titleformat{\subsection}[block]
+{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{8pt}{4pt}
+\titleformat{\subsubsection}[block]
+{\normalfont\normalsize\bfseries}{}{0pt}{}
+\titlespacing*{\subsubsection}{0pt}{6pt}{2pt}
+
+% ---- Notas al pie ----
+% UTEQ: Times New Roman 8 pt; no usar para referencias bibliográficas
+\usepackage[hang,flushmargin]{footmisc}
+\renewcommand{\footnotesize}{\fontsize{8pt}{10pt}\selectfont}
+
+% ---- Listas ----
+\usepackage{enumitem}
+\setlist[itemize]{leftmargin=1.5cm,itemsep=2pt,parsep=0pt}
+\setlist[enumerate]{leftmargin=1.5cm,itemsep=2pt,parsep=0pt}
+
+% ---- Utilidades ----
+\usepackage{rotating}
+\usepackage{pdflscape}
+\usepackage{url}
+\usepackage{acronym}
+
+% ---- Colores del proyecto ----
+\definecolor{headblue}{RGB}{185,130,38}
+\definecolor{grpgray}{RGB}{232,222,205}
+\definecolor{barblue}{RGB}{70,130,180}
+\definecolor{meanred}{RGB}{180,40,40}
+\definecolor{threshgold}{RGB}{200,140,0}
+\definecolor{gridgray}{RGB}{210,210,210}
+\definecolor{hYellow}{RGB}{255,230,100}
+\definecolor{hBlue}{RGB}{173,216,230}
+\definecolor{aGreen}{RGB}{204,230,180}
+\definecolor{barC}{RGB}{240,160,120}
+\definecolor{grayBorder}{RGB}{160,160,160}
+
+% ---- Macro para nombres de funciones en tablas ----
+\newcommand{\fn}[1]{{\small\ttfamily\expandafter\fnbreak#1\_\relax}}
+\def\fnbreak#1\_#2\relax{%
+	#1\ifx\relax#2\relax\else\_\linebreak[0]\fnbreak#2\relax\fi}
+
+% ---- Metadatos PDF ----
+\hypersetup{
+	pdftitle   = {Aplicación móvil con inteligencia artificial generativa
+		para crear planes de ejercicios físicos personalizados para niños},
+	pdfauthor  = {Chica Valfre, Valeska Sofia},
+	pdfsubject = {Proyecto Tecnológico — Ingeniería de Software — UTEQ 2026},
+	pdfkeywords= {inteligencia artificial generativa, actividad física infantil,
+		aplicación móvil, FitKids, TDDM4IoTS},
+}
+
+%------ Separador de capítulo (página propia) ------
+\newcommand{\capituloseparador}[2]{%
+	\clearpage
+	\thispagestyle{empty}
+	\vspace*{\fill}
+	\begin{center}
+		{\large\bfseries CAPÍTULO #1}\\[1cm]
+		{\large\bfseries #2}
+	\end{center}
+	\vspace*{\fill}
+	\clearpage
+	\thispagestyle{fancy}
+	\refstepcounter{chapter}%
+	\addcontentsline{toc}{chapter}{CAPÍTULO #1. #2}%
+	\setcounter{section}{0}%
+	\setcounter{figure}{0}%
+	\setcounter{table}{0}%
+}
+
+% ============================================================
+\begin{document}
+	% ============================================================
+	
+	% ---- Portada ----
+	\begin{titlepage}
+		\begin{center}
+			\vspace{1cm}
+			\includegraphics[width=5cm]{images/image3.jpeg}\\[0.75cm]
+			{\large\bfseries UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO}\\[0.1cm]
+			{\normalsize \textbf{FACULTAD DE CIENCIAS DE LA COMPUTACIÓN}}\\[0.1cm]
+			{\normalsize \textbf{CARRERA DE SOFTWARE}}\\[1.5cm]
+			
+			\begin{flushright}
+				\begin{minipage}{0.35\textwidth}
+					Trabajo de Integración Curricular previa la obtención del
+					Grado Académico de Ingeniera de Software.
+				\end{minipage}
+			\end{flushright}
+			\vspace{0.75cm}
+			\textbf{PROYECTO TECNOLÓGICO:}\\[0.5cm]
+			{``APLICACIÓN MÓVIL CON INTELIGENCIA ARTIFICIAL GENERATIVA PARA CREAR PLANES DE EJERCICIOS FÍSICOS PERSONALIZADOS PARA NIÑOS''}\\[1cm]
+			
+			\textbf{AUTORA:}
+			
+			CHICA VALFRE VALESKA SOFIA \\[1cm]
+			
+			\textbf{DIRECTOR DEL PROYECTO TECNOLÓGICO:}
+				
+			ING. GLEISTON CICERÓN GUERRERO ULLOA, PhD. \\
+			[1.5cm]
+			
+			{\normalsize QUEVEDO — LOS RÍOS — ECUADOR}\\[0.3cm]
+			{\normalsize 2026}
+		\end{center}
+	\end{titlepage}
+	
+	% ============================================================
+	% PÁGINAS PRELIMINARES
+	% ============================================================
+	\pagenumbering{roman}
+	\setcounter{page}{2}
+	
+	\begin{center}
+		\includegraphics[width=5cm]{images/image3.jpeg}\\[0.8cm]
+		{\large\bfseries DECLARACIÓN DE AUTORÍA Y CESIÓN DE DERECHOS}\\[1.5cm]
+	\end{center}
+	\addcontentsline{toc}{chapter}{Declaración de autoría y cesión de derechos}
+		Yo, Valeska Sofia Chica Valfre, declaro que la investigación aquí descrita es de mi autoría; que no ha sido previamente presentada para ningún grado o calificación profesional; y que he consultado las referencias bibliográficas que se incluyen en este documento.
+		
+		La Universidad Técnica Estatal de Quevedo puede hacer uso de los derechos correspondientes a este documento, según lo establecido por la Ley de Propiedad Intelectual, por su Reglamento y por la normatividad institucional vigente.
+		\vspace{2cm}
+		\begin{center}
+			\rule{8cm}{0.5pt}\\
+			Valeska Sofia Chica Valfre\\
+			C.I: 1250328067
+		\end{center}
+		\clearpage
+		
+	\begin{center}
+		\includegraphics[width=5cm]{images/image3.jpeg}\\[0.8cm]
+		{\large\bfseries INFORME FAVORABLE DEL DIRECTOR SOBRE LA CULMINACIÓN DEL TRABAJO DE INTEGRACIÓN CURRICULAR}\\[1.5cm]
+	\end{center}
+	\addcontentsline{toc}{chapter}{Informe favorable del director del trabajo de integración curricular}
+		El suscrito, Gleiston Cicerón Guerrero Ulloa, Docente de la Universidad Técnica Estatal de Quevedo, certifica que la estudiante Valeska Sofia Chica Valfre realizó el Proyecto Tecnológico titulado ``Aplicación móvil con inteligencia artificial generativa para crear planes de ejercicios físicos personalizados para niños'', bajo mi tutoría, y que el mismo reúne los requisitos para ser defendido ante el tribunal que se designe para el efecto.
+		\vspace{2cm}
+		\begin{center}
+			\rule{8cm}{0.5pt}\\
+			Ing. Gleiston Cicerón Guerrero Ulloa, PhD.\\
+			DIRECTOR DEL PROYECTO TECNOLÓGICO
+		\end{center}
+		\clearpage
+		
+	\begin{center}
+		\includegraphics[width=5cm]{images/image3.jpeg}\\[0.8cm]
+		{\large\bfseries CERTIFICADO DEL REPORTE DE LA HERRAMIENTA DE PREVENCIÓN DE COINCIDENCIA Y/O PLAGIO ACADÉMICO}\\[1.5cm]
+	\end{center}
+	\addcontentsline{toc}{chapter}{Certificado de prevención de coincidencia y/o plagio}
+		El suscrito, Gleiston Cicerón Guerrero Ulloa, mediante el presente cumple en presentar el informe del Proyecto Tecnológico titulado ``Aplicación móvil con inteligencia artificial generativa para crear planes de ejercicios físicos personalizados para niños'', elaborado por la egresada Valeska Sofia Chica Valfre, el cual presenta un porcentaje de similitud determinado por la herramienta de detección de coincidencias Turnitin.
+		\vspace{2cm}
+		\begin{center}
+			\rule{8cm}{0.5pt}\\
+			Ing. Gleiston Cicerón Guerrero Ulloa, PhD.\\
+			DIRECTOR DEL PROYECTO TECNOLÓGICO
+		\end{center}
+		\clearpage
+		
+	\begin{center}
+		\includegraphics[width=5cm]{images/image3.jpeg}\\[0.25cm]
+	\end{center}
+	\addcontentsline{toc}{chapter}{Certificado de aprobación por tribunal de sustentación}
+	\begin{center}
+		\vspace{-0.25cm}
+		\textbf{UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO}\\
+		\textbf{FACULTAD DE CIENCIAS DE LA COMPUTACIÓN}\\
+		\textbf{CARRERA DE INGENIERÍA EN SOFTWARE}
+		\\[0.75cm]
+		\textbf{PROYECTO TECNOLÓGICO}
+		\\[0.75cm]
+		\textbf{TÍTULO:}
+		
+		{``Aplicación móvil con inteligencia artificial generativa
+			para crear planes de ejercicios físicos personalizados para niños''}\\[0.25cm]
+		{\normalsize Presentado al Consejo Directivo de la Facultad de Ciencias de la
+			Computación como requisito previo a la obtención del título de Ingeniera de Software.}\\[0.25cm]
+		{\normalsize Aprobado por:}\\[1.1cm]
+		\rule{8cm}{0.5pt}\\
+		{\normalsize PRESIDENTE DEL TRIBUNAL}\\
+		{\normalsize Ing. Cristian Gabriel Zambrano Vega, PhD.}\\[1.1cm]
+		\begin{tabular}{cc}
+			\rule{6cm}{0.5pt} & \rule{6cm}{0.5pt} \\
+			MIEMBRO DEL TRIBUNAL & MIEMBRO DEL TRIBUNAL \\
+			Ing. Ariosto Eugenio Vicuña Pino, MSc. & Ing. Alex Rosendo Fiallos Barrionuevo, MSc.
+		\end{tabular}\\[1cm]
+		{\normalsize QUEVEDO — LOS RÍOS — ECUADOR}\\[0.3cm]
+		{\normalsize 2026}
+	\end{center}
+	\clearpage
+		
+	\chapter*{AGRADECIMIENTO}
+		A Dios, por darme fortaleza, sabiduría y constancia para culminar esta etapa importante de mi vida académica. Su guía me permitió afrontar cada desafío y mantenerme firme en el cumplimiento de este objetivo.
+		
+		Expreso mi más profundo agradecimiento a mi madre y a mi padre, quienes con su esfuerzo, sacrificio y apoyo incondicional me brindaron la oportunidad de alcanzar esta meta profesional. Gracias por sus valores, por su amor y por creer en mí en cada momento del camino.
+		
+		A mis hermanos, por acompañarme y brindarme ánimo en los momentos de mayor dificultad, convirtiéndose en un apoyo importante durante el desarrollo de este proyecto.
+		
+		A mi segunda madre, por su cariño, comprensión y respaldo incondicional, siendo una persona fundamental en mi crecimiento personal y académico.
+		
+		A mis amigos, por su apoyo, compañía y palabras de motivación durante este proceso, especialmente en los momentos de mayor presión y esfuerzo.
+		
+		Asimismo, agradezco a toda mi familia, quienes de una u otra manera estuvieron presentes brindándome apoyo y confianza para continuar adelante hasta culminar este trabajo de titulación. También expreso mi gratitud a mis docentes, quienes compartieron sus conocimientos, experiencias y orientaciones académicas, contribuyendo significativamente a mi formación profesional y al desarrollo de este proyecto tecnológico.
+		\clearpage
+		
+	\chapter*{DEDICATORIA}
+		Dedico este proyecto, en primer lugar, a mis padres, por su amor, esfuerzo y sacrificio incondicional a lo largo de toda mi vida. Gracias por ser mi mayor ejemplo de perseverancia y por brindarme siempre las herramientas necesarias para alcanzar mis sueños.
+		
+		A mis hermanos, por acompañarme en este camino y brindarme ánimo en los momentos más difíciles, recordándome siempre la importancia de seguir adelante. A mi segunda madre, por su cariño, comprensión y apoyo constante, siendo una persona fundamental en mi vida personal y académica.
+		
+		A mis amigos y familiares, quienes estuvieron presentes con palabras de aliento y motivación durante el desarrollo de este trabajo, aportando de distintas maneras para que este logro fuera posible. Dedico también este proyecto a todas las personas que confiaron en mí y me impulsaron a continuar luchando por mis sueños y objetivos profesionales.
+		\clearpage
+		
+	\chapter*{RESUMEN}
+		El sedentarismo infantil constituye una problemática global que compromete el desarrollo físico, emocional y social de los niños, reconocida por organismos internacionales de salud como uno de los principales desafíos para el bienestar infantil en la actualidad.
+		
+		Frente a esta problemática, se desarrolló FitKids, una aplicación móvil basada en inteligencia artificial generativa orientada a la creación de planes de ejercicios físicos personalizados para niños de 6 a 11 años. El sistema integra un motor de generación de rutinas mediante el modelo generativo Gemini de Google, complementado con un proceso de revisión y aprobación realizado por especialistas en actividad física infantil. Asimismo, incorpora una interfaz lúdica dirigida al niño y un módulo de supervisión parental con recordatorios y notificaciones configurables para el seguimiento de las rutinas.
+		
+		La construcción del sistema se realizó mediante la metodología TDDM4IoTS, desarrollada por Guerrero-Ulloa et al., la cual integra desarrollo guiado por pruebas, ingeniería dirigida por modelos y principios ágiles. La investigación se desarrolló bajo un enfoque aplicado y descriptivo, utilizando revisión bibliográfica y entrevistas dirigidas a especialistas y padres de familia para identificar las necesidades funcionales y no funcionales del sistema.
+		
+		La evaluación de FitKids se llevó a cabo con la participación de 15 niños de entre 6 y 11 años y 15 padres o tutores. Los resultados obtenidos evidenciaron un puntaje SUS de 81,17, correspondiente a la categoría ``excelente'' dentro de la escala normativa global de usabilidad~\cite{Bangor2008}. El modelo TAM registró valores promedio de 4,37 en utilidad percibida y 4,25 en facilidad de uso, ambos superiores al umbral de alta aceptación tecnológica~\cite{Venkatesh2003}. La tasa de adherencia observada y la validación profesional del contenido generado por IA respaldan la viabilidad de FitKids como una herramienta tecnológica para promover hábitos saludables y la actividad física en la infancia. Estos resultados confirman que la IA generativa, cuando se integra con validación profesional obligatoria y supervisión parental, constituye un enfoque técnicamente viable y contextualmente apropiado para producir contenido de ejercicio seguro y personalizado para niños en entornos domésticos.
+		
+		Los resultados confirman la viabilidad técnica y la aceptación inicial del sistema como herramienta de apoyo para la promoción de hábitos activos en la infancia.
+		
+		\vspace{0.5cm}
+		\noindent\textbf{Palabras clave:} inteligencia artificial generativa, actividad física infantil, aplicación móvil, personalización de ejercicios, sedentarismo infantil.
+		\clearpage
+		
+	\chapter*{ABSTRACT}
+		Childhood sedentary behavior is a growing global problem that affects the physical, emotional, and social development of children, recognized by international health organizations as one of the main challenges to child well-being today.
+		
+		In response to this problem, FitKids was developed: a mobile application based on generative artificial intelligence aimed at creating personalized physical exercise plans for children aged 6 to 11 years. The system integrates a routine generation engine using Google's Gemini generative model, complemented by a review and approval process carried out by specialists in childhood physical activity. It also incorporates a playful interface designed for the child and a parental supervision module with configurable reminders and notifications for routine monitoring.
+		
+		The system was built using the TDDM4IoTS methodology, developed by Guerrero-Ulloa et al., which integrates test-driven development, model-driven engineering, and agile principles. The research was conducted under an applied and descriptive approach, using literature review and interviews with specialists and parents to identify the functional and non-functional requirements of the system.
+		
+		FitKids was evaluated with 15 children aged 6 to 11 years and 15 parents or guardians over a four-week period. Results showed a System Usability Scale (SUS) score of 81.17, classified as ``excellent'' according to the normative global usability scale~\cite{Bangor2008}. The Technology Acceptance Model (TAM) recorded mean scores of 4.37 for perceived usefulness and 4.25 for ease of use, both exceeding the high technological acceptance threshold~\cite{Venkatesh2003}. The observed adherence rate and the professional validation of AI-generated content support the viability of FitKids as a technological tool for promoting healthy habits and physical activity in childhood. These results confirm that generative AI, when integrated with mandatory professional validation and parental supervision, constitutes a technically viable and contextually appropriate approach for producing safe, personalized exercise content for children in home settings.
+		
+		
+		\vspace{0.5cm}
+		\noindent\textbf{Keywords:} generative artificial intelligence, childhood physical activity, mobile application, personalized exercise plans, childhood sedentary behavior.
+		\clearpage
+		
+	\chapter*{CÓDIGO DUBLÍN}
+		\begin{table}[H]
+			\centering
+			\caption{Metadatos Dublin Core del proyecto FitKids}
+			\begin{tabular}{|p{4.5cm}|p{9.5cm}|}
+				\hline
+				\textbf{Campo} & \textbf{Contenido}\\
+				\hline
+				Título      & Aplicación móvil con inteligencia artificial generativa para crear planes de ejercicios físicos personalizados para niños\\\hline
+				Creador     & Chica Valfre, Valeska Sofia\\\hline
+				Tema        & Inteligencia artificial generativa; actividad física infantil; sedentarismo; aplicación móvil; personalización de ejercicios\\\hline
+				Descripción & Desarrollo de FitKids, aplicación móvil basada en el modelo generativo Gemini que genera rutinas de ejercicio personalizadas para niños de 6 a 11 años, con validación de especialistas y supervisión parental. Evaluada con SUS\,=\,81,17, TAM-UP\,=\,4,37 y TAM-FU\,=\,4,25 sobre una muestra de 15 niños y 15 padres durante cuatro semanas.\\\hline
+				Editor      & Universidad Técnica Estatal de Quevedo, Facultad de Ciencias de la Computación\\\hline
+				Colaborador & Guerrero Ulloa, Gleiston Cicerón (Director)\\\hline
+				Fecha       & 2026\\\hline
+				Tipo        & Texto — Proyecto Tecnológico de Titulación\\\hline
+				Formato     & application/pdf\\\hline
+				Idioma      & es (Español)\\\hline
+				Cobertura   & Quevedo, Los Ríos, Ecuador\\\hline
+				Derechos    & Universidad Técnica Estatal de Quevedo\\
+				\hline
+			\end{tabular}
+		\end{table}
+	\clearpage
+	
+	% ---- Índices ----
+	\tableofcontents\clearpage
+	\listoftables\clearpage
+	\listoffigures\clearpage
+	
+	% ============================================================
+	% CUERPO PRINCIPAL
+	% ============================================================
+	\pagenumbering{arabic}
+	\setcounter{page}{1}
+	\input{body_chapters}
+	
+	% ============================================================
+	% BIBLIOGRAFÍA
+	% ============================================================
+	\clearpage
+	\addcontentsline{toc}{chapter}{Bibliografía}
+	\bibliography{referencias}
+	
+	% ============================================================
+	% ANEXOS
+	% ============================================================
+	\input{anexos}
+	
+\end{document}
