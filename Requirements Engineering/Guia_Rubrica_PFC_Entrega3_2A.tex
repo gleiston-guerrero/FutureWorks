@@ -1,0 +1,659 @@
+% =====================================================================
+%  GUIA Y RUBRICA -- PROYECTO FIN DE CURSO -- ENTREGA 3 (2A)
+%  ERS/SRS Completo + Diseno Experimental para Publicacion
+%  Ingenieria de Requerimientos [20303] -- UTEQ -- 2026-2027 PPA
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage[a4paper, top=3.1cm, bottom=2.4cm, left=2cm, right=2cm, headheight=62pt, headsep=10pt]{geometry}
+\usepackage[table]{xcolor}
+\definecolor{uteqgreen}{HTML}{1D6B36}
+\definecolor{uteqgold}{HTML}{D4A017}
+\definecolor{uteqblue}{HTML}{1A5276}
+\definecolor{teal1}{HTML}{0E7C7B}
+\definecolor{rowgray}{HTML}{F0F0F0}
+\definecolor{secdark}{HTML}{1A3A6B}
+\definecolor{purpleimpact}{HTML}{6A1B9A}
+
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false, pdftitle={Guia y Rubrica PFC Entrega 3 (2A) ISR-401 UTEQ}}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\setlist{leftmargin=1.5em, topsep=2pt, itemsep=1pt}
+
+% ---- Encabezado / pie ------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[C]{\includegraphics[width=\textwidth]{logoband.png}}
+\fancyfoot[L]{\raisebox{-2pt}{\includegraphics[width=0.86\textwidth]{footband.png}}}
+\fancyfoot[R]{\footnotesize Página \thepage\ / \pageref{LastPage}}
+
+% ---- Banda de seccion (verde) ---------------------------------------
+\newcounter{secc}
+\newcommand{\secband}[1]{%
+    \stepcounter{secc}\par\vspace{9pt}\noindent
+    {\setlength{\fboxsep}{0pt}%
+        \colorbox{uteqgold}{\parbox[c][20pt][c]{0.05\textwidth}{\centering\textbf{\color{white}\small \arabic{secc}}}}%
+        \colorbox{uteqgreen}{\parbox[c][20pt][c]{0.95\textwidth}{\hspace{8pt}\textbf{\color{white}\small #1}}}%
+    }\par\vspace{5pt}}
+\newcommand{\submark}[1]{\par\vspace{4pt}\noindent
+    {\color{uteqgreen}\rule[-1pt]{3.5pt}{12pt}}\hspace{6pt}\textbf{\color{uteqgreen}#1}\par\vspace{2pt}}
+
+% ---- Insignias de entrega -------------------------------------------
+\newcommand{\bB}{{\setlength{\fboxsep}{1.5pt}\colorbox{uteqgold}{\scriptsize\bfseries\color{white}1B}}}
+\newcommand{\bA}{{\setlength{\fboxsep}{1.5pt}\colorbox{teal1}{\scriptsize\bfseries\color{white}NUEVO EN 2A}}}
+\newcommand{\bP}{{\setlength{\fboxsep}{1.5pt}\colorbox{purpleimpact}{\scriptsize\bfseries\color{white}PUBLICACION}}}
+
+% ---- Cajas -----------------------------------------------------------
+\newtcolorbox{notabox}[1][]{colback=uteqgreen!6,colframe=uteqgreen,boxrule=0.8pt,arc=2pt,
+    left=7pt,right=7pt,top=5pt,bottom=5pt,fonttitle=\bfseries\color{white},coltitle=white,colbacktitle=uteqgreen,#1}
+\newtcolorbox{alertbox}[1][]{colback=red!4,colframe=red!60!black,boxrule=0.8pt,arc=2pt,
+    left=7pt,right=7pt,top=5pt,bottom=5pt,fonttitle=\bfseries\color{white},coltitle=white,colbacktitle=red!60!black,#1}
+\newtcolorbox{evidbox}[1][]{colback=teal1!7,colframe=teal1,boxrule=0.8pt,arc=2pt,
+    left=7pt,right=7pt,top=5pt,bottom=5pt,fonttitle=\bfseries\color{white},coltitle=white,colbacktitle=teal1,#1}
+\newtcolorbox{pubbox}[1][]{colback=purpleimpact!5,colframe=purpleimpact,boxrule=0.8pt,arc=2pt,
+    left=7pt,right=7pt,top=5pt,bottom=5pt,fonttitle=\bfseries\color{white},coltitle=white,colbacktitle=purpleimpact,#1}
+
+\newcommand{\hh}[1]{\cellcolor{uteqgreen}\textbf{\color{white}\small #1}}
+\newcommand{\hg}[1]{\cellcolor{rowgray}\textbf{\color{uteqgreen}\small #1}}
+
+\begin{document}
+
+% =====================================================================
+%  PORTADA
+% =====================================================================
+\begin{center}
+    {\large\bfseries\color{secdark}FACULTAD DE CIENCIAS DE LA COMPUTACIÓN}\\[2pt]
+    {\small\color{secdark}GUÍA Y RÚBRICA DE EVALUACIÓN --- PROYECTO FIN DE CURSO}\\[4pt]
+    \textcolor{uteqgold}{\rule{0.7\textwidth}{1.4pt}}\\[8pt]
+    {\LARGE\bfseries\color{uteqgreen}ENTREGA 3 (2A): ESPECIFICACIÓN DE REQUISITOS}\\[2pt]
+    {\LARGE\bfseries\color{uteqgreen}COMPLETA + COMPONENTE EMPÍRICO}\\[6pt]
+    {\normalsize\bfseries\color{purpleimpact}Preparación de datos para publicación de alto impacto}\\[6pt]
+\end{center}
+
+\begin{notabox}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries\color{uteqgreen}}L{0.26\linewidth} X@{}}
+Asignatura: & Ingeniería de Requerimientos [20303] · 4to Nivel\\
+Carrera: & Software (Rediseño) --- Universidad Técnica Estatal de Quevedo (UTEQ)\\
+Estándar base: & Norma internacional ISO/IEC/IEEE 29148:2018 --- Ingeniería de sistemas y de software: procesos del ciclo de vida y ingeniería de requisitos\footnote{En inglés: \emph{Systems and software engineering --- Life cycle processes --- Requirements engineering}.} \cite{ieee29148_2018} y norma ISO/IEC 25010:2023 --- Modelo de calidad del producto\footnote{En inglés: \emph{Systems and software Quality Requirements and Evaluation (SQuaRE) --- Product quality model}.} \cite{iso25010_2023}.\\
+Marco teórico: & Pohl (2010) \cite{pohl2010} · Guía al Cuerpo de Conocimiento de la Ingeniería de Software\footnote{En inglés: \emph{Guide to the Software Engineering Body of Knowledge}, SWEBOK.} versión 4.0 \cite{swebok_v4}.\\
+Modalidad: & Grupal (3--4 integrantes) · sistema de software \textbf{real}\\
+Repositorio: & GitHub obligatorio · conjunto de datos abierto con Identificador de Objeto Digital\footnote{En inglés: \emph{Digital Object Identifier}, DOI, identificador persistente que apunta de forma unívoca a un recurso digital y su descripción en línea.} (DOI) en Zenodo o en el Marco de Ciencia Abierta\footnote{En inglés: \emph{Open Science Framework}, OSF, plataforma pública de la Center for Open Science para el registro previo de protocolos y el depósito de materiales de investigación (\url{https://osf.io}).} (OSF)\\
+Entregable: & Documento de Especificación de Requisitos de Software\footnote{En inglés: \emph{Software Requirements Specification}, SRS. En español se usa la sigla ERS por \emph{Especificación de Requisitos de Software}. En esta guía se usa la notación combinada ERS/SRS para conservar ambas convenciones.} (ERS/SRS) completo en formato PDF + protocolo experimental + conjunto de datos FAIR\footnote{Acrónimo en inglés de \emph{Findable, Accessible, Interoperable, Reusable}: localizable, accesible, interoperable y reutilizable \cite{wilkinson2016fair}.}\\
+Semana: & 13 del Período Académico Ordinario (PPA) 2026--2027 (Primera entrega del segundo parcial)\\
+Corte: & Domingo 27 de septiembre de 2026, 23:59 (fecha del último commit válido)\\
+\end{tabularx}
+\end{notabox}
+
+\begin{alertbox}[title=Advertencia global sobre la generación de texto sin evidencia empírica]
+En toda esta entrega y en la Entrega 4, ningún fragmento del ERS/SRS, del protocolo experimental ni del manuscrito paralelo puede ser el resultado de una generación por un Modelo Grande de Lenguaje\footnote{En inglés: \emph{Large Language Model}, LLM, sistema entrenado sobre grandes corpus textuales que produce texto siguiendo patrones estadísticos aprendidos, capaz de producir enunciados fluidos pero no necesariamente ciertos ni verificables sin datos primarios.} (LLM) sin respaldo empírico verificable. Cada afirmación no trivial debe estar sostenida por una evidencia dentro del repositorio (una entrevista grabada, una respuesta de cuestionario, una observación fotografiada, un documento de la organización) o por una referencia bibliográfica revisada por pares que se compruebe en \texttt{referencias.bib}. La generación de requisitos, historias de usuario, resultados o interpretaciones sin este respaldo es considerada fabricación académica, dispara el gatekeeper G4 y anula la parte del entregable donde se detecte. El uso de LLM como asistente de redacción o de traducción es aceptable si y solo si las afirmaciones sustantivas están ancladas a evidencia primaria.
+\end{alertbox}
+
+% =====================================================================
+%  SECCION 1: CONTEXTO
+% =====================================================================
+\secband{Propósito de la Entrega 3 (2A) y visión hacia la publicación}
+
+Esta guía orienta la elaboración de la Tercera Entrega del Proyecto Fin de Curso, que constituye la primera entrega del Segundo Parcial de la asignatura Ingeniería de Requerimientos.
+La Entrega 3 (2A) toma como línea base la mejor Entrega 2 (1B) del corte anterior --- el proyecto \emph{MundiPets: Sistema para adopción y cruza responsable de mascotas} (Paralelo 4to ``B'', calificación 9,85/10) --- y eleva el estándar de exigencia de todos los equipos hacia dos objetivos simultáneos: (i) consolidar un ERS/SRS completo, verificable y validado con evidencia real de campo, y (ii) generar el instrumental empírico que permitirá que la Entrega 4 (2B/Defensa) produzca los datos suficientes para una publicación de alto impacto en el área de Ingeniería de Requerimientos, alineada con los temas activos de investigación en Inteligencia Artificial Generativa\footnote{En inglés: \emph{Generative AI}, GenAI. Se refiere a familias de modelos --- típicamente LLM --- capaces de producir texto, código, imágenes u otros artefactos digitales.} (IAG) aplicada a la Ingeniería de Requerimientos \cite{cheng2026genai,arora2024llm4re,vogelsang2024llm} y en explicabilidad como Requisito No Funcional\footnote{En inglés: \emph{Non-Functional Requirement}, NFR. En español también se usa el equivalente RNF.} (RNF) \cite{chazette2020nfr,chazette2021exploring,chazette2022explainable}.
+
+\begin{notabox}[title=Línea base tomada de la mejor Entrega 2 (1B) --- proyecto MundiPets]
+Del análisis forense de la Entrega 2 (1B) del equipo MundiPets se identifican los siguientes elementos que constituyen el estándar mínimo esperado para todos los equipos en esta Entrega 3 (2A):
+\begin{itemize}
+    \item Cinco (5) consentimientos informados firmados en papel con cédula manuscrita, contacto y fecha, escaneados como imagen y verificables visualmente en el repositorio.
+    \item Seis (6) videos reales de entrevistas con codec H.264, con duración total superior a los 70 minutos de contenido, alojados como archivos MP4 dentro del repositorio.
+    \item Cinco (5) audios reales de entrevistas con duración total superior a los 50 minutos.
+    \item Cuestionario aplicado a por lo menos tres perfiles de usuario con respuestas exportadas en PDF y XLSX.
+    \item Cuatro (4) mockups formales trazados a requisitos funcionales verificables como archivos PNG.
+    \item Diecisiete (17) requisitos funcionales con los ocho atributos exigidos por la plantilla, ocho (8) requisitos no funcionales cuantificados según ISO/IEC 25010, cinco (5) restricciones de diseño y trece (13) casos de uso.
+    \item Matriz de trazabilidad completa que vincula cada evidencia (EV-\emph{XX}) con requisitos (RF/RNF/RD) y casos de uso (CU-\emph{XX}).
+\end{itemize}
+\end{notabox}
+
+\begin{pubbox}[title=Objetivo terminal (Entrega 4): publicación de alto impacto]
+Al terminar el semestre, cada equipo debe haber producido: (i) un manuscrito con formato Springer LNCS o IEEE listo para envío a la conferencia \textbf{REFSQ 2027} o al journal \textit{Requirements Engineering} (Springer, Q1); (ii) un dataset con licencia CC BY 4.0 depositado en Zenodo con DOI asignado, siguiendo los principios FAIR \cite{wilkinson2016fair}; (iii) el material de replicación (protocolos, guiones, cuestionarios, prompts, transcripciones anonimizadas) publicado en un repositorio archivado (OSF).
+\end{pubbox}
+
+% =====================================================================
+%  SECCION 2: PREREQUISITOS
+% =====================================================================
+\secband{Prerequisitos --- estado esperado al inicio de la Entrega 3 (2A)}
+
+\submark{2.1 Documental (heredado de la Entrega 2 (1B))}
+El equipo debe partir del ERS/SRS parcial con todas las observaciones docentes de la Entrega 2 (1B) resueltas.
+Las evidencias multimedia deben residir físicamente en el repositorio; los enlaces externos (Google Drive, YouTube, Figma) valen la mitad y en esta entrega serán rebajados a cero si persisten sin mirror local.
+
+\submark{2.2 Ético-legal}
+Cada participante entrevistado, encuestado u observado en esta ronda debe firmar un nuevo consentimiento informado, redactado en cumplimiento de la Ley Orgánica de Protección de Datos Personales del Ecuador \cite{ley_datos_ecuador_2021}, y debe declarar autorización explícita para el eventual uso de sus datos anonimizados en publicaciones científicas revisadas por pares.
+
+\submark{2.3 Instrumental}
+Debe existir un cuaderno de trabajo (Excel u OpenRefine) con la codificación temática de las entrevistas de la Entrega 2 (1B), preparado para incorporar las nuevas entrevistas y encuestas de esta entrega.
+
+% =====================================================================
+%  SECCION 3: CONTENIDO EXIGIDO
+% =====================================================================
+\secband{Contenido exigido en el documento ERS/SRS completo}
+
+\submark{3.1 Sección 1 --- Introducción \bB}
+Contiene propósito, alcance, glosario de términos, referencias bibliográficas (mínimo 25 fuentes primarias, al menos 10 de los últimos tres años, indexadas en Scopus o en Web of Science) y visión general del documento.
+
+\submark{3.2 Sección 2 --- Descripción general \bB}
+Perspectiva del producto y límite del sistema (diagrama de contexto), clases y características de usuarios, mapa de interesados o partes interesadas (\emph{stakeholders}) con matriz poder/interés, entorno operativo, suposiciones y dependencias, modelado organizacional i* con Diagrama de Dependencia Estratégica (SD, del inglés \emph{Strategic Dependency}) y Diagrama de Razón Estratégica (SR, del inglés \emph{Strategic Rationale}).
+
+\submark{3.3 Sección 3 --- Requisitos específicos completos \bA}
+En esta entrega los requisitos se \emph{completan} y \emph{refinan}, incorporando lo siguiente respecto a la Entrega 2 (1B):
+\begin{itemize}
+    \item \textbf{Mínimo 25 Requisitos Funcionales (RF)} con los ocho atributos completos, incluida la referencia explícita al Identificador de Evidencia (EV-\emph{XX}) que respalda cada RF.
+    \item \textbf{Mínimo 15 Requisitos No Funcionales (RNF)} cuantificados según las nueve características de calidad de ISO/IEC 25010:2023 (adecuación funcional, eficiencia de desempeño, compatibilidad, interacción de usuario, fiabilidad, seguridad, mantenibilidad, portabilidad y flexibilidad) \cite{iso25010_2023}.
+    \item \textbf{Requisito de explicabilidad} obligatorio para todo componente basado en Inteligencia Artificial (IA) o Aprendizaje Automático\footnote{En inglés: \emph{Machine Learning}, ML, subcampo de la IA centrado en modelos que aprenden patrones a partir de datos.} (AA) del sistema, tratado como RNF según la taxonomía de \cite{chazette2020nfr} y operacionalizado con el marco de calidad propuesto por \cite{chazette2021exploring,chazette2022explainable}.
+    \item \textbf{Requisitos legales} explícitos, mapeados a la Ley Orgánica de Protección de Datos Personales del Ecuador \cite{ley_datos_ecuador_2021}, con la trazabilidad Ley-Artículo $\rightarrow$ RF/RNF.
+    \item \textbf{Historias de usuario} redactadas en formato Connextra\footnote{Plantilla estándar creada por la consultora Connextra en el año 2001 y difundida por Mike Cohn (2004): ``Como \emph{$\langle$rol$\rangle$}, quiero \emph{$\langle$funcionalidad$\rangle$}, para \emph{$\langle$beneficio esperado$\rangle$}''.} para cada RF de prioridad \emph{Debe tener} (\emph{Must have}, en la técnica MoSCoW), con criterios INVEST\footnote{Acrónimo en inglés propuesto por Bill Wake (2003) para caracterizar buenas historias de usuario: \emph{Independent, Negotiable, Valuable, Estimable, Small, Testable} (Independiente, Negociable, Valiosa, Estimable, Pequeña, Verificable).} verificados y con escenarios de aceptación redactados en Gherkin\footnote{Lenguaje textual estructurado usado por el Desarrollo Guiado por el Comportamiento (BDD, del inglés \emph{Behavior-Driven Development}). Un escenario tiene la forma ``Dado (\emph{Given}) un contexto, cuando (\emph{When}) ocurre un evento, entonces (\emph{Then}) se espera un resultado''.} (Dado-Cuando-Entonces).
+    \item \textbf{Prototipos de interfaz de alta fidelidad} (\emph{mockups}) de todas las pantallas de prioridad \emph{Debe tener}, incrustados en el cuerpo del documento y como archivos SVG o PNG en el repositorio, trazados a los RF que soportan.
+\end{itemize}
+
+\submark{3.4 Sección 4 --- Modelado del sistema con Lenguaje Unificado de Modelado (UML) completo \bA}
+El modelado del sistema utiliza el Lenguaje Unificado de Modelado\footnote{En inglés: \emph{Unified Modeling Language}, UML, estándar de la Object Management Group (OMG) para la especificación gráfica de sistemas de software.} (UML). Se exige el diagrama general de Casos de Uso (CU), la especificación textual de todos los CU asociados a RF \emph{Debe tener} (mínimo 10 CU detallados), el diagrama de clases refinado con atributos y operaciones, los diagramas de secuencia para los CU \emph{Debe tener}, los diagramas de actividad para los flujos principales, el diagrama de estados para las entidades con ciclo de vida no trivial, el diagrama de componentes y el diagrama de despliegue.
+
+\submark{3.5 Sección 5 --- Priorización y trazabilidad extendida \bA}
+Priorización combinada MoSCoW\footnote{Acrónimo en inglés atribuido a Dai Clegg (1994) para clasificar la prioridad de los requisitos en \emph{Must have, Should have, Could have, Won't have} (Debe tener, Debería tener, Podría tener, No tendrá).} $+$ modelo de Kano\footnote{Modelo propuesto por Noriaki Kano (1984) que clasifica las características de un producto en \emph{básicas, de desempeño, de deleite, indiferentes} o \emph{de rechazo}, según su relación con la satisfacción del cliente.} $+$ análisis de valor de negocio con el método del Trabajo Ponderado Más Corto Primero\footnote{En inglés: \emph{Weighted Shortest Job First}, WSJF, técnica del Marco Ágil Escalado (SAFe) para priorizar por relación costo-de-retraso sobre duración estimada.} (WSJF).
+Matriz de trazabilidad extendida que enlace: Ley $\rightarrow$ Objetivo $\rightarrow$ Interesado $\rightarrow$ Identificador de Evidencia (EV) $\rightarrow$ RF/RNF/Restricción de Diseño (RD) $\rightarrow$ CU $\rightarrow$ Historia de Usuario (HU) $\rightarrow$ Criterio de Aceptación (CA) $\rightarrow$ Componente $\rightarrow$ Mockup.
+El total mínimo de la matriz es 40 filas.
+
+\submark{3.6 Sección 6 --- Producto Mínimo Viable (MVP) funcional \bA}
+Repositorio Git separado, público, con el código fuente del Producto Mínimo Viable\footnote{En inglés: \emph{Minimum Viable Product}, MVP, versión del producto con el conjunto mínimo de funcionalidades que permite validar hipótesis de valor con usuarios reales (concepto popularizado por Eric Ries, 2011).} (MVP) que cubra al menos el 60\,\% de los RF \emph{Debe tener}; archivo \texttt{README.md} con instrucciones de despliegue local; captura de pantalla o vídeo corto (menor o igual a 3 minutos) del recorrido funcional.
+
+% =====================================================================
+%  SECCION 4: TRABAJO DE CAMPO EXTENDIDO
+% =====================================================================
+\secband{Trabajo de campo extendido --- segunda ronda con stakeholders}
+
+En esta entrega, los equipos ejecutan una segunda ronda de elicitación y agregan la ronda de validación de requisitos con los mismos stakeholders y con nuevos participantes.
+Las evidencias mínimas exigidas dentro del repositorio son:
+
+\begin{longtable}{@{}L{0.32\linewidth} L{0.32\linewidth} L{0.30\linewidth}@{}}
+    \hh{Tipo de evidencia} & \hh{Cantidad mínima} & \hh{Formato y ubicación}\\
+    \endfirsthead
+    \hh{Tipo de evidencia} & \hh{Cantidad mínima} & \hh{Formato y ubicación}\\
+    \endhead
+    Consentimientos firmados & \(\geq 16\) participantes distintos, con avance a \(\geq 24\) para el cierre en la Entrega 4 (2B) & JPG/PNG/PDF; \texttt{02\_Evidencias/Consentimientos/}\\
+    Videos reales de entrevistas & \(\geq 16\) archivos, con duración media individual \(\geq 15\) minutos y duración total \(\geq 240\) minutos & MP4 H.264; \texttt{02\_Evidencias/Video/}\\
+    Audios reales de entrevistas & \(\geq 16\) archivos, redundantes con los videos & MP3/WAV; \texttt{02\_Evidencias/Audio/}\\
+    Fotografías fechadas del entorno & \(\geq 20\) fotos con diversidad de contexto & JPG/PNG con nombre \texttt{YYYY-MM-DD\_\emph{descripcion}.jpg}\\
+    Fotografías de la aplicación del cuestionario & \(\geq 5\) fotos & JPG/PNG; \texttt{02\_Evidencias/Cuestionario/Fotos\_Aplicacion/}\\
+    Respuestas del cuestionario & \(n \geq 60\) respuestas por perfil dominante, o justificación con cálculo de potencia estadística (Cohen $d=0{,}5$, $\alpha=0{,}05$, $1-\beta=0{,}80$) \cite{molleri2020checklist} & CSV/XLSX exportado; \texttt{02\_Evidencias/Cuestionario/Respuestas/}\\
+    Documentos originales de la organización cliente & \(\geq 5\) documentos de tipos distintos (por ejemplo: formulario, reporte, factura, hoja de proceso, política interna) & PDF; \texttt{02\_Evidencias/Documentos\_Organizacion/}\\
+    Ronda de validación (walkthrough) con partes interesadas & \(\geq 6\) sesiones grabadas con acta firmada (3 sesiones con usuarios técnicos $+$ 3 sesiones con usuarios no técnicos) & MP4 $+$ PDF de acta firmada\\
+    Codificación temática de transcripciones y curva de saturación & Tabla completa $+$ figura de la curva de saturación (códigos nuevos por entrevista) siguiendo \cite{hennink2017saturation} & CSV $+$ PNG/PDF; \texttt{02\_Evidencias/Codificacion\_Tematica/}\\
+\end{longtable}
+
+\begin{notabox}[title=Justificación empírica de los mínimos ---  alineación con las revistas JCR de Ingeniería de Requerimientos]
+Los mínimos exigidos en esta entrega no son arbitrarios. Están calibrados con las exigencias reales de las revistas indexadas del área, en especial \textit{Requirements Engineering} (Springer, Q1, factor de impacto 3,63 en 2024), \textit{Information and Software Technology} (Elsevier, Q1) y \textit{Empirical Software Engineering} (Springer, Q1). En particular:
+\begin{itemize}
+    \item El mínimo de 16 entrevistas (con crecimiento a 24) corresponde al punto empírico de saturación de significado documentado por Hennink, Kaiser y Marconi \cite{hennink2017saturation} y a los estudios multi-sitio de Hagaman y Wutich \cite{hagaman2017metathemes} que consolidan la propuesta seminal de Guest, Bunce y Johnson \cite{guest2006interviews}.
+    \item El mínimo de 60 respuestas por perfil dominante en el cuestionario deriva del cálculo estándar de tamaño muestral con potencia estadística $1-\beta = 0{,}80$ y tamaño de efecto medio de Cohen ($d = 0{,}5$), acorde a la lista de verificación de encuestas evaluada empíricamente por Molléri, Petersen y Mendes \cite{molleri2020checklist}. Se aceptan valores menores si el equipo aporta el cálculo de potencia explícito para su diseño particular.
+    \item Los mínimos de documentos y validación walkthrough operativizan la triangulación mínima recomendada por Runeson y Höst \cite{runeson2009guidelines} para estudios de caso en ingeniería de software.
+    \item El reporte de la curva de saturación es un requisito editorial usual en las revistas del área (\cite{hennink2017saturation,mendez2017naming}); su ausencia motiva rechazo de escritorio en revisión.
+    \item Los equipos que no logren alcanzar estos mínimos en la Entrega 3 (2A) podrán completarlos hasta la Entrega 4 (2B). Sin embargo, en la Entrega 3 debe demostrarse al menos el 50\% del mínimo (por ejemplo, 8 entrevistas de las 16 mínimas) para conservar el objetivo de envío a revista JCR; por debajo de ese umbral el equipo deberá redirigir el manuscrito hacia la modalidad Posters \& Tools de REFSQ 2027 o similar.
+\end{itemize}
+\end{notabox}
+
+\begin{alertbox}[title=Regla estricta de evidencias --- vigente desde esta entrega]
+Se mantiene y refuerza la regla del corte anterior:
+\begin{itemize}
+    \item Toda evidencia declarada en el ERS y \textbf{ausente} del repositorio o \textbf{no verificable} dentro del mismo se calificará con \textbf{CERO} en el sub-criterio correspondiente. La regla del 50\% aplicada en la Entrega 2 (1B) ya no se aplica.
+    \item Todo archivo cuyo contenido no corresponda al tipo declarado (por ejemplo, un archivo \texttt{.mp3} de 54 bytes que en realidad es un archivo de texto ASCII, o un archivo \texttt{.jpg} en blanco) se considerará \textbf{evidencia falsificada} y disparará el gatekeeper G4, con nota mínima 2,50/10.
+    \item Toda entrevista declarada debe tener audio o video real; toda encuesta declarada debe tener fotografía de la aplicación y respuestas exportadas; toda observación declarada debe tener fotografías fechadas del entorno físico.
+\end{itemize}
+\end{alertbox}
+
+% =====================================================================
+%  SECCION 5: COMPONENTE EMPIRICO
+% =====================================================================
+\secband{Componente empírico del proyecto --- diseño del estudio}
+
+Esta sección constituye el núcleo diferencial de la Entrega 3 (2A) y proyecta directamente los datos que se recogerán y analizarán en la Entrega 4 (2B/Defensa) para el manuscrito paralelo.
+Se entiende por \emph{componente empírico} un estudio pequeño, planificado, con datos primarios que ustedes mismos recogen y analizan, siguiendo las guías consensuadas de la comunidad de investigación empírica en ingeniería de software \cite{jedlitschka2008reporting,runeson2009guidelines,wohlin2012experimentation}.
+Al final de este componente, ustedes deben poder responder con datos --- no con opiniones --- una pregunta de investigación concreta relacionada con el proceso o el producto de su Ingeniería de Requerimientos.
+
+Como ustedes son novatos en investigación empírica, esta sección explica en detalle qué elegir, cómo hacerlo paso a paso y cómo saber si el resultado es sólido.
+Se ofrecen tres enfoques posibles; cada equipo elige uno y solo uno.
+El enfoque elegido debe declararse al docente antes del final de la semana 10 y debe registrarse formalmente en el OSF antes de comenzar a recolectar datos \cite{nosek2018preregistration}.
+
+\submark{5.1 Enfoque 1 --- Comparar la calidad de los requisitos que ustedes elicitaron con los que produce un LLM}
+En este enfoque, ustedes toman como punto de partida las transcripciones de las entrevistas y la descripción del dominio ya elaboradas en la Entrega 2 (1B).
+Luego, entregan el mismo material fuente a un LLM (por ejemplo GPT-4o, Claude 3.5 Sonnet o Llama 3.1 70B) con una consigna clara y le piden que produzca su propio conjunto de RF a partir de esa fuente, sin conocer el conjunto que ustedes ya elaboraron.
+Finalmente, tres personas expertas independientes (por ejemplo, tres estudiantes de otro paralelo o tres docentes del área) evalúan a ciegas ambos conjuntos con la misma rúbrica.
+
+Los pasos concretos que ustedes deben ejecutar son los siguientes.
+Primero, seleccionar el material fuente único (por ejemplo, la transcripción completa de la entrevista al Interesado clínico Alfa) y anonimizarla.
+Segundo, ejecutar el LLM con la consigna exacta ``\emph{A partir del siguiente material fuente, redacta requisitos funcionales del sistema descrito, con los ocho atributos de la plantilla del sílabo}'', registrando la consigna completa, el modelo, la temperatura, el valor top-p, la semilla y la fecha y hora de la consulta.
+Tercero, obtener el conjunto de RF producidos por el LLM (Conjunto A) y aparearlo con el conjunto de RF elicitados por el equipo humano (Conjunto B), donde cada conjunto debe tener un tamaño mínimo de 50 requisitos individuales para permitir análisis estadístico apareado según las prácticas del mapeo sistemático de \cite{montgomery2022requirements}, sin que las personas evaluadoras sepan cuál es cuál.
+Cuarto, elaborar una rúbrica en la que cada RF se puntúe de 1 a 5 en cinco dimensiones: completitud, ausencia de ambigüedad, verificabilidad, corrección respecto de la fuente y consistencia interna.
+Quinto, contratar el juicio de por lo menos tres personas evaluadoras independientes (cinco es el número recomendado para las revistas del área) y medir el acuerdo entre ellas mediante el coeficiente $\kappa$ de Cohen \cite{cohen1960kappa} para cada par y el coeficiente $\kappa$ de Fleiss \cite{fleiss1971kappa} para el conjunto completo.
+Sexto, comparar la puntuación media de ambos conjuntos con una prueba estadística apropiada (prueba de la $t$ para muestras apareadas si los datos son normales, o prueba de Wilcoxon si no lo son) y reportar el tamaño del efecto (Cohen $d$ o Cliff $\delta$), acompañado del cálculo de potencia estadística previo al experimento (fijando $\alpha = 0{,}05$ y potencia $1-\beta = 0{,}80$) según las guías consensuadas de encuestas y experimentos en ingeniería de software \cite{molleri2020checklist}.
+Séptimo, redactar un análisis honesto de amenazas a la validez interna, externa, de constructo y de conclusión, siguiendo la clasificación de \cite{wohlin2012experimentation}.
+
+La pregunta de investigación que este enfoque responde es: \emph{¿En qué dimensiones de calidad los RF elicitados por un equipo humano difieren de los generados por un LLM a partir del mismo material fuente?}
+La contribución al conocimiento es una evidencia empírica adicional que complementa el mapa sistemático de \cite{cheng2026genai} y las guías de \cite{vogelsang2024llm}.
+
+\submark{5.2 Enfoque 2 --- Detectar automáticamente ambigüedad y \emph{malos olores} en los requisitos}
+En este enfoque, ustedes toman el conjunto de RF que elicitaron para su sistema y lo pasan por un detector automático de ambigüedad y de \emph{malos olores} (\emph{smells}) en requisitos.
+Un \emph{mal olor} es un patrón textual conocido que sugiere que el requisito está mal redactado, por ejemplo el uso de cuantificadores vagos como ``rápido'' o ``fácil de usar'', o el uso de conjunciones que ocultan dos requisitos en uno.
+Paralelamente, tres personas expertas leen los mismos RF y marcan los que consideran ambiguos.
+Finalmente, ustedes comparan el resultado del detector con el juicio consensuado de las tres personas.
+
+Los pasos concretos que ustedes deben ejecutar son los siguientes.
+Primero, seleccionar el detector: puede ser una herramienta ya existente (por ejemplo la herramienta \texttt{smella} de Ferrari et al.) o un pequeño programa en Python que ustedes escriben con expresiones regulares para detectar cuantificadores vagos, conjunciones múltiples y voz pasiva.
+Segundo, ejecutar el detector sobre un mínimo de 50 RF y clasificar cada uno como ``ambiguo'' o ``no ambiguo''.
+Tercero, entregar los RF a un mínimo de tres personas expertas (cinco recomendado) y pedirles la misma clasificación, sin que vean la salida del detector.
+Cuarto, calcular precisión, exhaustividad (\emph{recall}) y medida F1 del detector tomando como referencia el consenso experto.
+Quinto, calcular el acuerdo inter-evaluador $\kappa$ de Cohen \cite{cohen1960kappa} entre pares de expertos y $\kappa$ de Fleiss \cite{fleiss1971kappa} entre los tres o más.
+Sexto, discutir los desacuerdos: para cada RF donde los expertos y el detector no coinciden, redactar una breve nota que explique la razón del desacuerdo y qué se aprende.
+
+La pregunta de investigación que este enfoque responde es: \emph{¿Con qué precisión un detector automático replica el juicio de personas expertas al identificar RF ambiguos en un conjunto de tamaño moderado?}
+La contribución al conocimiento es una réplica pequeña de los estudios de \cite{ferrari2018detecting,fischbach2023automatic} en un dominio concreto (el de su sistema) y con un conjunto que ustedes mismos han producido.
+
+\submark{5.3 Enfoque 3 --- Elicitar y validar requisitos de explicabilidad para el componente de IA del sistema}
+En este enfoque, ustedes toman el componente del sistema que utiliza IA o AA (por ejemplo, un módulo de recomendación, de diagnóstico asistido o de análisis de imágenes) y trabajan específicamente los requisitos de explicabilidad, es decir, aquello que el sistema debe explicar sobre sus propias decisiones a cada tipo de usuario.
+Se aplica el marco de calidad de \cite{chazette2021exploring} y el proceso de análisis a evaluación de \cite{chazette2022explainable}.
+
+Los pasos concretos que ustedes deben ejecutar son los siguientes.
+Primero, identificar todos los componentes basados en IA o AA del sistema y, para cada uno, listar las decisiones automáticas que produce.
+Segundo, para cada decisión automática, aplicar el marco de \cite{chazette2020nfr}: identificar qué usuarios afectados requieren explicación, qué tipo de explicación necesita cada uno (por ejemplo, una explicación causal, una explicación por contraste o una explicación por ejemplos) y en qué momento la necesita.
+Tercero, redactar cada requisito de explicabilidad como un RNF con métrica y valor objetivo (por ejemplo: ``el sistema debe presentar la explicación de la recomendación en menos de 2 segundos y con no más de 60 palabras, y la persona usuaria debe reportar comprenderla con una calificación media $\geq 4/5$ en una escala Likert de 1 a 5'').
+Cuarto, realizar dos rondas de validación con un mínimo de seis participantes por ronda (tres usuarios técnicos y tres usuarios no técnicos), replicando el tamaño de muestra utilizado por \cite{chazette2022explainable} en el estudio que sustenta el marco de referencia.
+Quinto, medir la cobertura del marco (proporción de dimensiones del marco cubiertas por al menos un requisito), la satisfacción percibida y el acuerdo inter-evaluador entre las dos rondas.
+
+La pregunta de investigación que este enfoque responde es: \emph{¿Qué tipos de explicaciones son percibidas como necesarias por los diferentes tipos de usuarios del sistema con IA, y cómo se pueden operacionalizar como RNF verificables?}
+La contribución al conocimiento es un caso adicional de aplicación del marco de explicabilidad en un dominio real ecuatoriano, que enriquece el corpus de casos discutido por \cite{chazette2022explainable}.
+
+\begin{notabox}[title=Elementos comunes a los tres enfoques que deben incluirse en el protocolo experimental]
+Independientemente del enfoque elegido, todo equipo debe publicar dentro del repositorio, en la carpeta \texttt{06\_Experimento/}, el protocolo experimental completo con los siguientes contenidos:
+\begin{itemize}
+    \item Preguntas de investigación (RQ1, RQ2, RQ3) redactadas siguiendo el marco PICOC (Población\footnote{Población afectada o participante en el estudio.}, Intervención, Comparación, Resultado, Contexto), útil para orientar tanto experimentos como estudios de caso \cite{kitchenham2007guidelines}.
+    \item Hipótesis nulas y alternativas, cuando el enfoque implique una comparación cuantitativa (enfoques 1 y 2).
+    \item Variables independientes, dependientes y de control.
+    \item Instrumentos: guiones, cuestionarios, rúbricas de evaluación experta, consignas exactas usadas con el LLM (con temperatura, top-p y semilla registrados para replicabilidad).
+    \item Consentimientos éticos para el uso académico de los datos en la publicación.
+    \item Plan de análisis estadístico (prueba de normalidad Shapiro-Wilk, prueba de hipótesis paramétrica o no paramétrica según corresponda, tamaño del efecto Cohen $d$ o Cliff $\delta$, corrección por comparaciones múltiples cuando aplique).
+    \item Registro previo del protocolo en el OSF (\url{https://osf.io}) con fecha anterior a la ejecución del experimento, siguiendo la revolución del pre-registro documentada por \cite{nosek2018preregistration}.
+\end{itemize}
+\end{notabox}
+
+\begin{alertbox}[title=Advertencia específica para el componente empírico]
+Un componente empírico no es una simulación mental ni una redacción hipotética. Todas las tablas, figuras y afirmaciones del apartado de resultados deben provenir de datos primarios recogidos por ustedes en el trabajo de campo o en el experimento controlado. Si el docente detecta que un resultado numérico ha sido inventado, extrapolado sin datos o generado por un LLM sin la evidencia primaria correspondiente, se dispara el gatekeeper G4, se anula el criterio C9 de la rúbrica y el equipo queda inhabilitado para el manuscrito paralelo.
+\end{alertbox}
+
+% =====================================================================
+%  SECCION 6: PREPARACION DE PUBLICACION
+% =====================================================================
+\secband{Preparación de la publicación --- puente hacia la Entrega 4}
+
+\submark{6.1 Dataset abierto con licencia CC BY 4.0}
+El equipo debe preparar un paquete de datos que se depositará en Zenodo (\url{https://zenodo.org}) al momento del envío del manuscrito, siguiendo los principios FAIR \cite{wilkinson2016fair}.
+El paquete debe contener: transcripciones anonimizadas de las entrevistas en formato JSON estructurado, respuestas del cuestionario en CSV, RF/RNF etiquetados en formato JSON, la matriz de trazabilidad en CSV, los prompts y respuestas de los LLM (si aplica la Línea A o B), scripts de análisis en R o Python, y un README con el diccionario de datos.
+
+\submark{6.2 Estructura del manuscrito (a producir en la Entrega 4)}
+Sección de introducción con problema, motivación y contribuciones enumeradas; sección de trabajo relacionado que cubra al menos los tres últimos años; sección de metodología con el protocolo experimental; sección de resultados con tablas y figuras cuantitativas; sección de discusión que incluya threats to validity siguiendo la clasificación de \cite{wohlin2012experimentation}; sección de conclusiones y trabajo futuro; sección de disponibilidad de datos con el DOI de Zenodo.
+
+\submark{6.3 Objetivos de envío para la Entrega 4}
+\begin{itemize}
+    \item Objetivo primario: envío a REFSQ 2027 (deadline estimado octubre 2026 para Research Papers, enero 2027 para Posters \& Tools o Education \& Training). El sitio oficial es \url{https://2026.refsq.org/} (\emph{consultar la edición 2027 cuando esté disponible}).
+    \item Objetivo alternativo: envío al journal \textit{Requirements Engineering} de Springer Nature (Q1, factor de impacto histórico $>2$), especialmente pertinente para las Líneas B y C.
+    \item Objetivo mínimo: preparación de un poster para el track \emph{Posters \& Tools} de REFSQ o de un tool paper de 4 páginas.
+\end{itemize}
+
+% =====================================================================
+%  SECCION 7: MANUSCRITO PARALELO
+% =====================================================================
+\secband{Manuscrito paralelo --- cómo escribirlo paso a paso}
+
+El manuscrito de publicación no se escribe al final ni de un tirón: se construye \emph{en paralelo} con la Entrega 3 (2A) y la Entrega 4 (2B/Defensa), de modo que cuando llegue la última semana del semestre ya esté listo para el envío.
+En la Entrega 3 (2A) se producen las secciones de introducción, trabajo relacionado y metodología; en la Entrega 4 (2B) se completan las secciones de resultados, discusión, amenazas a la validez y conclusiones.
+Este esquema paralelo es la práctica habitual en la comunidad de investigación empírica en ingeniería de software y sigue las guías de reporte de \cite{jedlitschka2008reporting,runeson2009guidelines,wohlin2012experimentation}.
+Como ustedes son novatos en escritura científica, esta sección detalla qué debe contener cada parte del manuscrito, cómo empezarla y con qué evidencia sustentarla.
+
+\submark{7.1 Alineación de la escritura con las entregas del Proyecto Fin de Curso (PFC)}
+En la semana 11, cuando se registra el protocolo experimental en el OSF, se abre el archivo del manuscrito y se escriben las secciones que ya se pueden escribir sin resultados: título, filiación, resumen preliminar, introducción, trabajo relacionado y metodología.
+En la semana 13, junto con la entrega del ERS/SRS completo, se entrega la versión 1.0 del manuscrito con esas tres secciones cerradas.
+En la semana 15, cuando ya se dispone de datos analizados, se agregan las secciones de resultados, discusión, amenazas a la validez y conclusiones.
+En la semana 17, con la Entrega 4 (2B), se entrega la versión 2.0 del manuscrito, lista para el envío externo.
+
+\submark{7.2 Título, autoría, filiación, resumen y palabras clave}
+El título debe ser conciso (10--15 palabras), específico, y contener las palabras clave del enfoque: por ejemplo ``Un estudio comparado de la calidad de requisitos elicitados por analistas humanos y por un modelo grande de lenguaje en un sistema de gestión veterinaria''.
+Se declara la autoría de los integrantes en el orden acordado (analista líder primero, docente supervisor al final), con las filiaciones de la Universidad Técnica Estatal de Quevedo y el correo institucional de cada integrante.
+El resumen tiene entre 200 y 250 palabras y sigue la estructura Contexto, Objetivo, Método, Resultados, Conclusiones.
+Se aportan de tres a cinco palabras clave alineadas con el vocabulario del comité del programa: por ejemplo \emph{Ingeniería de Requerimientos, Estudio empírico, Modelos Grandes de Lenguaje, Calidad de requisitos}.
+
+\submark{7.3 Introducción}
+La introducción tiene cuatro párrafos con propósito bien delimitado y NO es un ensayo genérico sobre ingeniería de software.
+El primer párrafo sitúa el problema en un caso concreto y real (el sistema del equipo), presenta el dominio (por ejemplo, la gestión veterinaria) y explica en dos frases por qué es importante estudiar la Ingeniería de Requerimientos en ese contexto.
+El segundo párrafo describe la brecha de conocimiento (\emph{gap}) usando referencias primarias de los últimos tres años: por ejemplo, la revisión sistemática de \cite{cheng2026genai} indica que la fase de gestión de requisitos recibe atención insuficiente, o la guía de \cite{vogelsang2024llm} sugiere directrices para el uso de LLM que aún no han sido validadas en el contexto latinoamericano.
+El tercer párrafo enuncia las contribuciones concretas del trabajo, en formato enumerado (mínimo dos y máximo cuatro contribuciones), donde cada contribución es una afirmación que ustedes pueden sustentar con la evidencia recogida.
+El cuarto párrafo presenta las preguntas de investigación (RQ1, RQ2) y describe brevemente la organización del resto del manuscrito.
+
+\submark{7.4 Trabajo relacionado --- búsqueda sistemática abreviada}
+Esta sección demuestra que ustedes conocen el estado del arte cercano al problema.
+No es una revisión sistemática de literatura completa, pero sigue el esquema abreviado de \cite{kitchenham2007guidelines}: una cadena de búsqueda documentada, criterios de inclusión y exclusión, número de estudios encontrados, número de estudios revisados, y un cuadro comparativo con los 10 a 15 trabajos más cercanos al suyo.
+
+Los pasos concretos que ustedes deben ejecutar son los siguientes.
+Primero, definir la cadena de búsqueda en tres términos clave, por ejemplo: (``requirements engineering'' OR ``requisitos de software'') AND (``large language model'' OR ``ChatGPT'' OR ``Claude'') AND (``elicitation'' OR ``quality'').
+Segundo, ejecutar la cadena en al menos dos bases de datos: Scopus y Google Scholar, limitando el período a los últimos tres años.
+Tercero, aplicar los criterios de inclusión (estudios revisados por pares, con datos empíricos, publicados en conferencias o revistas de Ingeniería de Requerimientos) y de exclusión (\emph{editoriales}, presentaciones breves de menos de 4 páginas, estudios sin datos).
+Cuarto, elaborar el cuadro comparativo con columnas: Referencia, Año, Tipo de estudio, Población, Intervención, Resultados principales y Diferencia con nuestro trabajo.
+Quinto, cerrar la sección con un párrafo que explique el nicho concreto que ocupa su estudio: qué agrega su trabajo que los estudios existentes no han hecho.
+
+\submark{7.5 Metodología}
+En esta sección ustedes describen con precisión suficiente qué hicieron, cómo lo hicieron y con qué instrumentos, de manera que otra persona pueda replicar el estudio a partir del texto y del paquete de datos publicado en Zenodo.
+Se sigue la plantilla de reporte de experimentos de \cite{jedlitschka2008reporting} para los enfoques 1 y 2, y las directrices de estudio de caso de \cite{runeson2009guidelines} para el enfoque 3.
+
+Los siete pasos concretos que deben quedar documentados son los siguientes.
+Primero, la pregunta de investigación en el formato PICOC.
+Segundo, las hipótesis (para los enfoques 1 y 2) o proposiciones del estudio de caso (para el enfoque 3).
+Tercero, las variables independientes, dependientes y de control.
+Cuarto, el diseño experimental: cuasi-experimento apareado, estudio de caso simple, o estudio de caso múltiple.
+Quinto, los participantes y el reclutamiento, con criterios de inclusión y exclusión y el proceso de consentimiento informado con base en la Ley Orgánica de Protección de Datos Personales del Ecuador \cite{ley_datos_ecuador_2021}.
+Sexto, los instrumentos: guiones de entrevista, cuestionarios, rúbricas de evaluación, consignas de LLM (con temperatura, top-p, semilla y modelo exacto).
+Séptimo, el plan de análisis estadístico: pruebas de normalidad, pruebas paramétricas o no paramétricas, tamaño del efecto y correcciones por comparaciones múltiples.
+
+\submark{7.6 Resultados (se completa en la Entrega 4)}
+Esta sección presenta los datos analizados sin interpretarlos, es decir, sin decir todavía qué significan.
+Se organiza por pregunta de investigación: primero se responde RQ1 con las tablas y figuras que le corresponden, luego RQ2 con las suyas.
+Todas las tablas y figuras deben producirse con los scripts de análisis versionados en \texttt{06\_Experimento/scripts\_analisis/}; no se aceptan tablas producidas manualmente ni cifras sueltas sin script que las genere.
+Cada afirmación numérica del texto debe llevar entre paréntesis la información estadística mínima: el valor del estadístico ($t$, $U$, $\chi^2$), los grados de libertad, el valor $p$ y el tamaño del efecto.
+
+\submark{7.7 Discusión (se completa en la Entrega 4)}
+Aquí ustedes interpretan lo encontrado, siempre dentro de los límites de sus datos.
+Se ordena en tres subapartados: (i) implicaciones para la investigación, (ii) implicaciones para la práctica y (iii) hallazgos sorprendentes o contraintuitivos.
+Se debe evitar la sobregeneralización: si el estudio se hizo con 20 requisitos de un sistema veterinario ecuatoriano, la conclusión no puede ser ``los LLM son mejores que los humanos'' en general.
+La regla de escritura es: cada afirmación de la discusión debe poder rastrearse a un dato concreto de la sección de resultados o a una referencia bibliográfica.
+
+\submark{7.8 Amenazas a la validez (se completa en la Entrega 4)}
+Se organizan en las cuatro categorías establecidas por \cite{wohlin2012experimentation}: validez interna (relaciones causa-efecto internas), validez externa (generalización), validez de constructo (¿medimos lo que queríamos medir?) y validez de conclusión (¿es correcto el análisis estadístico?).
+Para cada amenaza identificada, se describe la mitigación aplicada y se reconoce la limitación remanente.
+
+\submark{7.9 Conclusiones y trabajo futuro}
+Un párrafo por RQ que sintetice la respuesta obtenida.
+Un párrafo con las contribuciones consolidadas (reafirmando lo prometido en la introducción, ya con la evidencia detrás).
+Un párrafo con al menos tres líneas concretas de trabajo futuro que otras personas puedan retomar a partir de los datos publicados.
+
+\submark{7.10 Referencias y disponibilidad de datos}
+La lista de referencias se gestiona íntegramente en \texttt{referencias.bib} con verificación cruzada de cada entrada (autor, título, revista o conferencia, año, DOI).
+Al final del manuscrito se incluye una sección corta titulada \emph{Disponibilidad de datos y materiales} con el DOI del paquete depositado en Zenodo, el enlace al registro OSF del protocolo y la licencia CC BY 4.0 del dataset, siguiendo los principios de citación de software de \cite{smith2016force11} y los principios FAIR \cite{wilkinson2016fair}.
+
+\submark{7.11 Plantillas, herramientas y objetivos de envío}
+El manuscrito se redacta en LaTeX usando la plantilla oficial de la conferencia o revista objetivo: Springer LNCS para REFSQ, Springer para el journal \textit{Requirements Engineering}, IEEE conference proceedings para la conferencia IEEE International Requirements Engineering Conference (RE).
+La extensión típica es de 15 a 20 páginas para un artículo largo y de 6 a 8 páginas para un poster o un artículo de herramientas.
+Las tres opciones de envío recomendadas para la Entrega 4 son: (i) Research Papers de REFSQ 2027 (envío estimado en octubre de 2026), (ii) journal \textit{Requirements Engineering} de Springer (envío continuo), (iii) track \emph{Posters \& Tools} de REFSQ 2027 (envío estimado en enero de 2027), este último recomendado para primer envío de estudiantes de pregrado.
+
+\begin{alertbox}[title=Advertencia específica para la redacción del manuscrito]
+La sección de resultados y la sección de discusión NO pueden escribirse antes de que existan los datos analizados. Redactar resultados hipotéticos ``para completar la estructura'' o hacer que un LLM invente cifras para llenar las tablas es fabricación de evidencia y descalifica el manuscrito. La secuencia estricta es: registrar el protocolo en OSF $\rightarrow$ ejecutar el experimento $\rightarrow$ analizar los datos con los scripts versionados $\rightarrow$ recién ahí redactar los resultados. El uso de un LLM para pulir la redacción de un párrafo cuyo contenido ustedes ya escribieron con base en datos es aceptable; el uso de un LLM para \emph{producir} resultados o discusiones sin datos primarios no lo es.
+\end{alertbox}
+
+% =====================================================================
+%  SECCION 8: INSUMOS OBLIGATORIOS EN EL REPOSITORIO
+% =====================================================================
+\secband{Insumos obligatorios que se deben subir al repositorio para la evaluación}
+
+Todo lo que el docente debe evaluar tiene que estar dentro del repositorio GitHub del equipo, correctamente nombrado, versionado y accesible al momento del corte.
+Las secciones anteriores describen \emph{qué} debe producir el equipo; esta sección normaliza \emph{cómo, con qué formato y en qué ubicación} debe reposar cada artefacto para que la evaluación sea reproducible y para que los datos se puedan reutilizar en la Entrega 4 con las prácticas FAIR \cite{wilkinson2016fair}, los principios de citación de software \cite{smith2016force11} y el registro previo del protocolo experimental \cite{nosek2018preregistration}.
+
+\submark{7.1 Estructura de carpetas obligatoria}
+La raíz del repositorio debe reflejar exactamente la siguiente jerarquía; cualquier variación (nombres de carpetas por integrante, carpetas vacías con solo \texttt{.gitkeep} o niveles adicionales sin justificación) será penalizada en la rúbrica.
+Los nombres de carpetas y de archivos usan ASCII sin acentos, sin espacios, y separan palabras con guion bajo.
+
+\begin{evidbox}[title=Árbol de carpetas obligatorio de la Entrega 3 (2A)]
+\begingroup
+    \small\ttfamily
+    \begin{tabbing}
+        MMMM\=MMMM\=MMMM\=MMMM\=MMMM\=\kill
+        Nombre\_Proyecto\_ISR401/\\
+        \>README.md\\
+        \>LICENSE\\
+        \>CITATION.cff\\
+        \>CHANGELOG.md\\
+        \>.gitignore\\
+        \>checksums.sha256\\
+        \>01\_ERS/\\
+        \>\>ERS\_SRS\_2A\_v1.0.pdf\\
+        \>\>ERS\_SRS\_2A\_v1.0.tex\\
+        \>\>referencias.bib\\
+        \>02\_Evidencias/\\
+        \>\>Consentimientos/\\
+        \>\>Video/\\
+        \>\>Audio/\\
+        \>\>Fotos\_Entorno/\\
+        \>\>Cuestionario/\\
+        \>\>\>Fotos\_Aplicacion/\\
+        \>\>\>Respuestas/\\
+        \>\>Documentos\_Organizacion/\\
+        \>\>Validacion\_Walkthrough/\\
+        \>\>Codificacion\_Tematica/\\
+        \>03\_Modelado/\\
+        \>\>Diagramas\_UML/\\
+        \>\>Mockups/\\
+        \>04\_Trazabilidad/\\
+        \>\>matriz\_trazabilidad.csv\\
+        \>\>priorizacion\_moscow\_kano.csv\\
+        \>05\_MVP/\\
+        \>\>README.md\\
+        \>\>video\_demo.mp4\\
+        \>06\_Experimento/\\
+        \>\>protocolo.pdf\\
+        \>\>osf\_registration.pdf\\
+        \>\>instrumentos/\\
+        \>\>prompts\_llm/\\
+        \>\>resultados/\\
+        \>\>scripts\_analisis/\\
+        \>07\_Publicacion/\\
+        \>\>manuscrito\_borrador.pdf\\
+        \>\>dataset\_zenodo/
+    \end{tabbing}
+\endgroup
+\end{evidbox}
+
+\submark{7.2 Archivos raíz obligatorios}
+Cinco archivos deben existir en la raíz del repositorio y estar completos antes del corte, cada uno con propósito bien definido.
+
+\begin{longtable}{@{}L{0.22\linewidth} L{0.72\linewidth}@{}}
+    \hh{Archivo} & \hh{Contenido mínimo obligatorio}\\
+    \endfirsthead
+    \hh{Archivo} & \hh{Contenido mínimo obligatorio}\\
+    \endhead
+    \texttt{README.md} & Nombre del sistema, integrantes con roles, resumen del dominio, enlace al ERS PDF, enlace al MVP, enlace al registro OSF, enlace al depósito Zenodo (si ya está listo), instrucciones para reproducir el análisis experimental, tabla de contenidos del repositorio.\\
+    \texttt{LICENSE} & Licencia MIT o Apache-2.0 para el código del MVP; licencia Creative Commons CC BY 4.0 para los datos y el documento. Debe indicarse claramente el alcance de cada una.\\
+    \texttt{CITATION.cff} & Archivo YAML en formato Citation File Format v1.2.0 \cite{druskat2021cff}, con \texttt{cff-version}, \texttt{message}, \texttt{authors} (con ORCID de cada integrante), \texttt{title}, \texttt{version}, \texttt{date-released} y \texttt{doi} (una vez publicado en Zenodo). Su presencia habilita el botón \emph{Cite this repository} de GitHub.\\
+    \texttt{CHANGELOG.md} & Historial de versiones desde la Entrega 1A hasta la fecha del corte, con las adiciones, cambios y correcciones más relevantes por versión, siguiendo Keep a Changelog.\\
+    \texttt{checksums.sha256} & Hash SHA-256 de todos los archivos multimedia del repositorio; generado con \texttt{sha256sum} y verificable con \texttt{sha256sum -c}. Sirve para detectar sustituciones posteriores al corte.\\
+\end{longtable}
+
+\submark{7.3 Insumo 1 --- Documento ERS/SRS completo (\texttt{01\_ERS/})}
+Documento PDF unificado, generado exclusivamente desde LaTeX, con el archivo fuente \texttt{.tex}, el \texttt{referencias.bib} y las imágenes vectoriales asociadas, todo dentro de la misma carpeta.
+No se aceptan documentos en Word ni entregables fragmentados por integrante; el corte anterior mostró que la estructura fragmentada dificulta la evaluación y penaliza la nota.
+El PDF debe llevar numeración de página, historial de versiones y firma electrónica del analista líder.
+
+\submark{7.4 Insumo 2 --- Evidencias del trabajo de campo (\texttt{02\_Evidencias/})}
+Cada archivo multimedia debe respetar la convención \texttt{YYYY-MM-DD\_TipoParticipante\_NombreApellido\_Tecnica.ext}, por ejemplo \texttt{2026-09-05\_Veterinario\_JuanPerez\_Entrevista.mp4}.
+
+\begin{longtable}{@{}L{0.28\linewidth} L{0.20\linewidth} L{0.44\linewidth}@{}}
+    \hh{Subcarpeta} & \hh{Formato} & \hh{Requisitos técnicos mínimos}\\
+    \endfirsthead
+    \hh{Subcarpeta} & \hh{Formato} & \hh{Requisitos técnicos mínimos}\\
+    \endhead
+    \texttt{Consentimientos/} & JPG o PDF & Escaneo legible ($\geq 200$ dpi) del formulario firmado a mano, con cédula, contacto, rol y fecha manuscritos. Un archivo por participante distinto.\\
+    \texttt{Video/} & MP4 H.264 & Códec verificado con \texttt{ffprobe}, resolución mínima 720p, audio incorporado. Un archivo por entrevista. Duración total del bloque $\geq 90$ minutos.\\
+    \texttt{Audio/} & MP3 o WAV & Redundancia del video para transcripción. Bitrate $\geq 96$ kbps. Un archivo por entrevista.\\
+    \texttt{Fotos\_Entorno/} & JPG o PNG & Metadatos EXIF preservados cuando sea posible. Contenido del sitio del cliente (no capturas de pantalla ni fotos de stock). $\geq 15$ archivos.\\
+    \texttt{Cuestionario/Fotos\_Aplicacion/} & JPG o PNG & Fotografías del respondiente aplicando el cuestionario. $\geq 5$ archivos.\\
+    \texttt{Cuestionario/Respuestas/} & CSV, XLSX & Exportación directa de Google Forms, Microsoft Forms o LimeSurvey. Debe incluir columnas de marca temporal y las respuestas literales.\\
+    \texttt{Documentos\_Organizacion/} & PDF & Documentos internos originales del cliente (formularios, reportes, hojas de proceso). Anonimizados. $\geq 3$ archivos.\\
+    \texttt{Validacion\_Walkthrough/} & MP4 $+$ PDF & Grabación de cada sesión de validación más el acta firmada. $\geq 3$ sesiones.\\
+    \texttt{Codificacion\_Tematica/} & CSV & Tabla con columnas Fragmento, Código, Categoría, Requisito derivado, ID de evidencia, Analista codificador. Cobertura del 100\% de las transcripciones.\\
+\end{longtable}
+
+\submark{7.5 Insumo 3 --- Modelado UML y mockups (\texttt{03\_Modelado/})}
+Cada diagrama UML se sube por triplicado: archivo fuente editable en formato XMI, PlantUML o Enterprise Architect (\texttt{.qea}); exportación en PNG con resolución mínima 300 dpi; exportación en SVG cuando la herramienta lo permita.
+Los mockups se suben en Figma con enlace vigente al proyecto \emph{y} como archivos PNG dentro del repositorio; los enlaces por sí solos ya no se aceptan como evidencia en esta entrega.
+Cada mockup debe tener un identificador (MU-01, MU-02, \ldots) y una tabla en el ERS que trace el mockup a los RF que soporta.
+
+\submark{7.6 Insumo 4 --- Prototipo funcional MVP (\texttt{05\_MVP/})}
+Si el MVP es voluminoso, se aloja en un repositorio Git separado y se enlaza desde \texttt{05\_MVP/README.md}, agregando el submódulo Git correspondiente para asegurar la trazabilidad del commit específico evaluado.
+El repositorio del MVP debe contener: el código fuente organizado por módulos, instrucciones de despliegue local (\texttt{docker compose up} o equivalente), la cobertura de RF Must marcada explícitamente en el README, y el video de demostración de duración menor o igual a 3 minutos en \texttt{05\_MVP/video\_demo.mp4}.
+
+\submark{7.7 Insumo 5 --- Componente experimental (\texttt{06\_Experimento/})}
+La subcarpeta contiene todo el material que permite reproducir el estudio empírico y sustenta el registro previo del protocolo \cite{nosek2018preregistration}.
+
+\begin{longtable}{@{}L{0.28\linewidth} L{0.68\linewidth}@{}}
+    \hh{Archivo o subcarpeta} & \hh{Contenido mínimo}\\
+    \endfirsthead
+    \hh{Archivo o subcarpeta} & \hh{Contenido mínimo}\\
+    \endhead
+    \texttt{protocolo.pdf} & Preguntas de investigación (RQ) en formato PICOC, hipótesis, variables, población, tamaño muestral estimado, plan de análisis estadístico completo.\\
+    \texttt{osf\_registration.pdf} & Comprobante de registro previo en \url{https://osf.io} con URL persistente y \emph{time stamp} anterior a la ejecución del experimento.\\
+    \texttt{instrumentos/} & Guiones de entrevista v2.0, cuestionario v2.0, rúbrica de evaluación experta, plantilla de consentimiento actualizado.\\
+    \texttt{prompts\_llm/} & Solo para las Líneas A y B: archivo Markdown por experimento con el prompt exacto, la temperatura, top-p, top-k, semilla, modelo (por ejemplo \texttt{gpt-4o-2024-08-06} o \texttt{claude-3-5-sonnet-20241022}), fecha y hora de la consulta.\\
+    \texttt{resultados/} & Datos crudos en CSV, datos procesados en CSV, tablas de resultados en CSV o XLSX, figuras en PNG y en formato vectorial.\\
+    \texttt{scripts\_analisis/} & Scripts de análisis en R o Python que reproducen exactamente las tablas y figuras del manuscrito a partir de los datos crudos.\\
+\end{longtable}
+
+\submark{7.8 Insumo 6 --- Trazabilidad y priorización (\texttt{04\_Trazabilidad/})}
+Los dos artefactos de trazabilidad se suben como CSV para que el docente pueda ordenar, filtrar y contrastar automáticamente.
+El archivo \texttt{matriz\_trazabilidad.csv} tiene por columnas: ID, Ley, Artículo, Objetivo, Stakeholder, ID-EV, ID-RF, Tipo (RF/RNF/RD), ID-CU, ID-HU (historia de usuario), ID-CA (criterio de aceptación), ID-Componente, ID-Mockup.
+El archivo \texttt{priorizacion\_moscow\_kano.csv} tiene por columnas: ID-RF, MoSCoW, Kano, Valor de negocio (WSJF), Justificación breve.
+
+\submark{7.9 Insumo 7 --- Paquete Zenodo (\texttt{07\_Publicacion/dataset\_zenodo/})}
+Preparar el paquete que se depositará en Zenodo al momento del envío del manuscrito, con la estructura siguiente: transcripciones anonimizadas de entrevistas en JSON estructurado, respuestas del cuestionario en CSV, corpus etiquetado de RF/RNF en JSON, la matriz de trazabilidad en CSV, los prompts y respuestas de los LLM (Líneas A y B), los scripts de análisis, y un \texttt{README\_dataset.md} con el diccionario de datos y las instrucciones de citación siguiendo los principios de \cite{smith2016force11}.
+
+\submark{7.10 Checklist de aceptación --- verificación docente antes del corte}
+El equipo debe autocertificar el estado del repositorio con la siguiente lista, que también será utilizada por el docente para el filtro preliminar de gatekeepers.
+
+\begin{longtable}{@{}p{0.06\linewidth} p{0.86\linewidth}@{}}
+    \hh{\phantom{X}} & \hh{Ítem verificable}\\
+    \endfirsthead
+    \hh{\phantom{X}} & \hh{Ítem verificable}\\
+    \endhead
+    $\square$ & La estructura de carpetas coincide exactamente con la del árbol de la Sección 7.1.\\
+    $\square$ & Existen los cinco archivos raíz obligatorios (\texttt{README.md}, \texttt{LICENSE}, \texttt{CITATION.cff}, \texttt{CHANGELOG.md}, \texttt{checksums.sha256}).\\
+    $\square$ & El PDF del ERS/SRS está unificado, numerado, con historial de versiones y con el enlace del repositorio en la portada.\\
+    $\square$ & Todos los archivos multimedia siguen la nomenclatura \texttt{YYYY-MM-DD\_Tipo\_Nombre\_Tecnica.ext}.\\
+    $\square$ & Cada archivo declarado como audio o video pasa \texttt{ffprobe} sin error y muestra duración mayor a cero (no hay archivos de 2 ó 54 bytes que sean texto ASCII).\\
+    $\square$ & Cada consentimiento firmado es una imagen o PDF con firma manuscrita visible y cédula legible.\\
+    $\square$ & El cuestionario tiene fotografías de aplicación real y respuestas exportadas con $n \geq 30$.\\
+    $\square$ & El protocolo experimental está registrado en OSF con URL persistente y fecha anterior a la ejecución del experimento.\\
+    $\square$ & Los prompts de los LLM (si aplica) incluyen modelo, temperatura, top-p y semilla registrados.\\
+    $\square$ & Los scripts de análisis reproducen las tablas y figuras del manuscrito a partir de los datos crudos.\\
+    $\square$ & El hash SHA-256 de cada archivo multimedia consta en \texttt{checksums.sha256} y coincide con el resultado de \texttt{sha256sum} en el momento del corte.\\
+    $\square$ & La matriz de trazabilidad en CSV tiene al menos 40 filas y todas las columnas obligatorias.\\
+    $\square$ & Todas las evidencias declaradas en el ERS existen realmente dentro del repositorio y son verificables.\\
+\end{longtable}
+
+\begin{alertbox}[title=Regla operativa de la Sección 7 --- síntesis]
+El principio operativo es: \emph{nada declarado en el ERS puede quedar solo declarado}. Toda técnica de elicitación mencionada requiere sus evidencias correspondientes; toda evidencia debe reposar dentro del repositorio; todo archivo debe pasar la verificación técnica de su tipo declarado. La ausencia o falsificación de cualquiera de los insumos de esta sección se penaliza directamente en la rúbrica.
+\end{alertbox}
+
+% =====================================================================
+%  SECCION 9: RUBRICA
+% =====================================================================
+\secband{Rúbrica de evaluación de la Entrega 3 (2A) --- 10 puntos}
+
+La rúbrica utiliza cuatro niveles: Excelente (N4 $=$ 100\%), Satisfactorio (N3 $=$ 75\%), En desarrollo (N2 $=$ 50\%), Insuficiente (N1 $=$ 25\%), Ausente (N0 $=$ 0\%).
+La calificación por criterio se obtiene como $\text{Puntos} = \sum \left( \text{Nivel} \times \text{Peso} / 4 \right) \times \text{Escala}$.
+
+\begin{landscape}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{@{}p{0.05\linewidth} p{0.20\linewidth} p{0.35\linewidth} p{0.06\linewidth} p{0.22\linewidth}@{}}
+    \hh{ID} & \hh{Criterio} & \hh{Qué se evalúa} & \hh{Peso} & \hh{Notas de la evidencia}\\
+    \endfirsthead
+    \hh{ID} & \hh{Criterio} & \hh{Qué se evalúa} & \hh{Peso} & \hh{Notas de la evidencia}\\
+    \endhead
+    C1 & Contexto y stakeholders & Diagrama de contexto, mapa de stakeholders con matriz poder/interés, i* SD/SR & 1,00 & Diagramas verificables en el repo\\
+    C2 & Requisitos funcionales & $\geq 25$ RF con 8 atributos, historias Connextra, criterios Gherkin, EVs verificables & 1,50 & Sin evidencia $=$ 0\\
+    C3 & Requisitos no funcionales & $\geq 15$ RNF cuantificados sobre 9 características ISO/IEC 25010, con explicabilidad & 1,00 & Sin métrica cuantificada $=$ 0\\
+    C4 & Requisitos legales & Ley Orgánica de Protección de Datos Personales del Ecuador mapeada Artículo $\rightarrow$ RF/RNF & 0,50 & Sin mapeo $=$ 0\\
+    C5 & Modelado UML completo & CU general $+$ $\geq 10$ CU detallados $+$ clases refinado $+$ secuencia $+$ actividad $+$ estados $+$ componentes $+$ despliegue & 1,50 & Cada diagrama faltante penaliza\\
+    C6 & Priorización y trazabilidad & MoSCoW $+$ Kano $+$ valor negocio; matriz $\geq 40$ filas & 0,75 & Trazabilidad extendida Ley$\rightarrow$Mockup\\
+    C7 & Trabajo de campo extendido & Segunda ronda: $\geq 8$ consentimientos, $\geq 6$ videos, $\geq 6$ audios, $\geq 15$ fotos, cuestionario $n \geq 30$, docs organización $\geq 3$, validación walkthrough $\geq 3$ sesiones & 1,50 & Evidencia falsificada $\Rightarrow$ G4\\
+    C8 & Prototipo funcional (MVP) & Repositorio separado; cobertura $\geq 60\%$ RF Must; video de demostración & 0,75 & Sin código ejecutable $=$ 0\\
+    C9 & Protocolo experimental & Registro OSF anterior a la ejecución; PICOC; hipótesis; instrumentos completos; plan de análisis estadístico & 1,00 & Sin registro previo $=$ mitad\\
+    C10 & Preparación de publicación & Dataset FAIR listo; README con diccionario; scripts de análisis; borrador de manuscrito con estructura completa & 0,50 & Aporta al puntaje de la Entrega 4\\
+\end{longtable}
+\end{landscape}
+
+\submark{7.1 Gatekeepers de la Entrega 3 (2A)}
+\begin{itemize}
+    \item \textbf{G1}: Entrega dentro del plazo con enlace verificable a repositorio GitHub. Fuera de plazo $\Rightarrow$ nota máxima 2,50/10.
+    \item \textbf{G2}: Documento ERS/SRS completo, unificado en un único PDF numerado; secciones parciales dispersas en Word $\Rightarrow$ nota máxima 4,00/10.
+    \item \textbf{G3}: Sistema de software \emph{real} con cliente identificable y protocolo ético con nuevos consentimientos firmados. Falta $\Rightarrow$ 2,50/10.
+    \item \textbf{G4}: Evidencia audiovisual real de la segunda ronda de campo dentro del repositorio; archivos falsificados o vacíos $\Rightarrow$ 2,50/10.
+    \item \textbf{G5}: Cumplimiento de los mínimos cuantificados: 25 RF, 15 RNF, 10 CU detallados, 40 filas de trazabilidad, 30 respuestas de cuestionario. Falta $\Rightarrow$ nota máxima 4,00/10.
+    \item \textbf{G6}: Protocolo experimental registrado en OSF con fecha anterior a la ejecución del experimento. Falta $\Rightarrow$ el sub-criterio C9 vale la mitad.
+    \item \textbf{G7}: Todo componente basado en IA/ML del sistema tiene tratamiento de explicabilidad como NFR según \cite{chazette2020nfr,chazette2021exploring}. Falta $\Rightarrow$ el sub-criterio C3 vale la mitad.
+\end{itemize}
+
+% =====================================================================
+%  SECCION 10: CRONOGRAMA
+% =====================================================================
+\secband{Cronograma sugerido y entregables intermedios}
+
+\begin{longtable}{@{}p{0.08\linewidth} p{0.28\linewidth} p{0.55\linewidth}@{}}
+    \hh{Semana} & \hh{Hito} & \hh{Entregable esperado}\\
+    \endfirsthead
+    \hh{Semana} & \hh{Hito} & \hh{Entregable esperado}\\
+    \endhead
+    11 & Diseño experimental y registro OSF & Protocolo experimental completo registrado en OSF (\url{https://osf.io}) con fecha anterior al inicio de la recolección de datos.\\
+    12 & Ejecución del experimento y segunda ronda de campo & Al menos 4 de las 8 entrevistas nuevas grabadas; borrador del cuestionario ampliado desplegado en Google Forms o LimeSurvey; ronda piloto de validación con un stakeholder.\\
+    13 & Consolidación del ERS/SRS completo y del MVP & PDF unificado del ERS/SRS completo entregado; MVP con cobertura $\geq 60\%$ RF Must; dataset preliminar en la carpeta \texttt{/Experimento/}.\\
+    14 & Análisis de datos y borrador de manuscrito & Análisis estadístico completo con figuras y tablas listas; borrador del manuscrito con introducción, metodología y resultados.\\
+    15 & Retroalimentación cruzada y refinamiento & Revisión por pares entre equipos del paralelo; incorporación de observaciones docentes.\\
+    16 & Depósito en Zenodo y ensayo de defensa & Dataset con DOI de Zenodo; presentación de ensayo con feedback docente.\\
+    17 & Entrega 4 (2B) y defensa final & Manuscrito completo listo para envío a REFSQ 2027 o journal RE de Springer; defensa oral de 20 minutos.\\
+\end{longtable}
+
+% =====================================================================
+%  SECCION 11: LECTURAS OBLIGATORIAS
+% =====================================================================
+\secband{Lecturas obligatorias para la Entrega 3 (2A)}
+
+Cada integrante del equipo debe haber leído y aportar al análisis de al menos las siguientes lecturas obligatorias antes de iniciar el diseño experimental:
+
+\begin{itemize}
+    \item Cheng \emph{et al.} (2026) --- revisión sistemática de literatura sobre GenAI para RE, publicada en \textit{Software: Practice and Experience} \cite{cheng2026genai}.
+    \item Vogelsang y Fischbach (2024) --- guía sistemática de uso de LLM para tareas de PLN en RE \cite{vogelsang2024llm}.
+    \item Chazette y Schneider (2020) --- la explicabilidad como requisito no funcional \cite{chazette2020nfr}.
+    \item Wohlin \emph{et al.} (2012), capítulos 8--11 --- diseño de experimentos y análisis estadístico en ingeniería de software \cite{wohlin2012experimentation}.
+    \item Runeson y Höst (2009) --- guía para conducir y reportar estudios de caso en ingeniería de software \cite{runeson2009guidelines}.
+    \item Wilkinson \emph{et al.} (2016) --- principios FAIR para gestión de datos científicos \cite{wilkinson2016fair}.
+\end{itemize}
+
+% =====================================================================
+%  BIBLIOGRAFIA
+% =====================================================================
+\secband{Referencias bibliográficas de esta guía}
+
+\bibliographystyle{ieeetr}
+\bibliography{referencias}
+
+\end{document}

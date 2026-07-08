@@ -1,0 +1,618 @@
+% =====================================================================
+%  GUIA Y RUBRICA -- PROYECTO FIN DE CURSO -- ENTREGA 4 (2B / DEFENSA)
+%  Manuscrito JCR + Dataset FAIR + Defensa Final
+%  Ingenieria de Requerimientos [20303] -- UTEQ -- 2026-2027 PPA
+% =====================================================================
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage[a4paper, top=3.1cm, bottom=2.4cm, left=2cm, right=2cm, headheight=62pt, headsep=10pt]{geometry}
+\usepackage[table]{xcolor}
+\definecolor{uteqgreen}{HTML}{1D6B36}
+\definecolor{uteqgold}{HTML}{D4A017}
+\definecolor{uteqblue}{HTML}{1A5276}
+\definecolor{teal1}{HTML}{0E7C7B}
+\definecolor{rowgray}{HTML}{F0F0F0}
+\definecolor{secdark}{HTML}{1A3A6B}
+\definecolor{purpleimpact}{HTML}{6A1B9A}
+\definecolor{crimsonfin}{HTML}{8B0000}
+
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false, pdftitle={Guia y Rubrica PFC Entrega 4 (2B / Defensa) ISR-401 UTEQ}}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\setlist{leftmargin=1.5em, topsep=2pt, itemsep=1pt}
+
+% ---- Encabezado / pie ------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyhead[C]{\includegraphics[width=\textwidth]{logoband.png}}
+\fancyfoot[L]{\raisebox{-2pt}{\includegraphics[width=0.86\textwidth]{footband.png}}}
+\fancyfoot[R]{\footnotesize Página \thepage\ / \pageref{LastPage}}
+
+% ---- Banda de seccion (verde) ---------------------------------------
+\newcounter{secc}
+\newcommand{\secband}[1]{%
+    \stepcounter{secc}\par\vspace{9pt}\noindent
+    {\setlength{\fboxsep}{0pt}%
+        \colorbox{uteqgold}{\parbox[c][20pt][c]{0.05\textwidth}{\centering\textbf{\color{white}\small \arabic{secc}}}}%
+        \colorbox{uteqgreen}{\parbox[c][20pt][c]{0.95\textwidth}{\hspace{8pt}\textbf{\color{white}\small #1}}}%
+    }\par\vspace{5pt}}
+\newcommand{\submark}[1]{\par\vspace{4pt}\noindent
+    {\color{uteqgreen}\rule[-1pt]{3.5pt}{12pt}}\hspace{6pt}\textbf{\color{uteqgreen}#1}\par\vspace{2pt}}
+
+% ---- Insignias de entrega -------------------------------------------
+\newcommand{\bB}{{\setlength{\fboxsep}{1.5pt}\colorbox{uteqgold}{\scriptsize\bfseries\color{white}1B}}}
+\newcommand{\bA}{{\setlength{\fboxsep}{1.5pt}\colorbox{teal1}{\scriptsize\bfseries\color{white}2A}}}
+\newcommand{\bF}{{\setlength{\fboxsep}{1.5pt}\colorbox{crimsonfin}{\scriptsize\bfseries\color{white}NUEVO EN 2B}}}
+\newcommand{\bP}{{\setlength{\fboxsep}{1.5pt}\colorbox{purpleimpact}{\scriptsize\bfseries\color{white}PUBLICACION}}}
+
+% ---- Cajas -----------------------------------------------------------
+\newtcolorbox{notabox}[1][]{colback=uteqgreen!6,colframe=uteqgreen,boxrule=0.8pt,arc=2pt,
+    left=7pt,right=7pt,top=5pt,bottom=5pt,fonttitle=\bfseries\color{white},coltitle=white,colbacktitle=uteqgreen,#1}
+\newtcolorbox{alertbox}[1][]{colback=red!4,colframe=red!60!black,boxrule=0.8pt,arc=2pt,
+    left=7pt,right=7pt,top=5pt,bottom=5pt,fonttitle=\bfseries\color{white},coltitle=white,colbacktitle=red!60!black,#1}
+\newtcolorbox{evidbox}[1][]{colback=teal1!7,colframe=teal1,boxrule=0.8pt,arc=2pt,
+    left=7pt,right=7pt,top=5pt,bottom=5pt,fonttitle=\bfseries\color{white},coltitle=white,colbacktitle=teal1,#1}
+\newtcolorbox{pubbox}[1][]{colback=purpleimpact!5,colframe=purpleimpact,boxrule=0.8pt,arc=2pt,
+    left=7pt,right=7pt,top=5pt,bottom=5pt,fonttitle=\bfseries\color{white},coltitle=white,colbacktitle=purpleimpact,#1}
+\newtcolorbox{finbox}[1][]{colback=crimsonfin!5,colframe=crimsonfin,boxrule=0.8pt,arc=2pt,
+    left=7pt,right=7pt,top=5pt,bottom=5pt,fonttitle=\bfseries\color{white},coltitle=white,colbacktitle=crimsonfin,#1}
+
+\newcommand{\hh}[1]{\cellcolor{uteqgreen}\textbf{\color{white}\small #1}}
+\newcommand{\hg}[1]{\cellcolor{rowgray}\textbf{\color{uteqgreen}\small #1}}
+
+\begin{document}
+
+% =====================================================================
+%  PORTADA
+% =====================================================================
+\begin{center}
+    {\large\bfseries\color{secdark}FACULTAD DE CIENCIAS DE LA COMPUTACIÓN}\\[2pt]
+    {\small\color{secdark}GUÍA Y RÚBRICA DE EVALUACIÓN --- PROYECTO FIN DE CURSO}\\[4pt]
+    \textcolor{uteqgold}{\rule{0.7\textwidth}{1.4pt}}\\[8pt]
+    {\LARGE\bfseries\color{crimsonfin}ENTREGA 4 (2B / DEFENSA FINAL):}\\[2pt]
+    {\LARGE\bfseries\color{crimsonfin}MANUSCRITO PARA REVISTA JCR}\\[6pt]
+    {\normalsize\bfseries\color{purpleimpact}Un manuscrito por equipo · Depósito FAIR con DOI · Defensa oral}\\[6pt]
+\end{center}
+
+\begin{notabox}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries\color{uteqgreen}}L{0.26\linewidth} X@{}}
+    Asignatura: & Ingeniería de Requerimientos [20303] · 4to Nivel\\
+    Carrera: & Software (Rediseño) --- Universidad Técnica Estatal de Quevedo (UTEQ)\\
+    Estándar base: & Norma internacional ISO/IEC/IEEE 29148:2018 --- Ingeniería de sistemas y de software: procesos del ciclo de vida y ingeniería de requisitos\footnote{En inglés: \emph{Systems and software engineering --- Life cycle processes --- Requirements engineering}.} \cite{ieee29148_2018} y norma ISO/IEC 25010:2023 --- Modelo de calidad del producto\footnote{En inglés: \emph{Systems and software Quality Requirements and Evaluation (SQuaRE) --- Product quality model}.} \cite{iso25010_2023}.\\
+    Marco teórico: & Pohl (2010) \cite{pohl2010} · Guía al Cuerpo de Conocimiento de la Ingeniería de Software\footnote{En inglés: \emph{Guide to the Software Engineering Body of Knowledge}, SWEBOK.} versión 4.0 \cite{swebok_v4} · Fundamento para investigación empírica en ingeniería de software \cite{wohlin2012experimentation,runeson2009guidelines,jedlitschka2008reporting}.\\
+    Modalidad: & Grupal (3--4 integrantes) · sistema de software \textbf{real} con cliente identificable\\
+    Repositorio: & GitHub obligatorio · Registro OSF del protocolo · Depósito Zenodo con Identificador de Objeto Digital\footnote{En inglés: \emph{Digital Object Identifier}, DOI.} (DOI)\\
+    Entregable: & Manuscrito final en formato de la revista objetivo (PDF $+$ fuente LaTeX) $+$ paquete de replicación FAIR $+$ defensa oral\\
+    Semana: & 17 del Período Académico Ordinario (PPA) 2026--2027 (Segunda entrega del segundo parcial y defensa final)\\
+    Corte: & Domingo 15 de noviembre de 2026, 23:59 (fecha del último commit válido)\\
+    Defensa: & Semanas 17 (calendario acordado con la docencia; presentación oral de 25 minutos $+$ 10 minutos de preguntas)\\
+\end{tabularx}
+\end{notabox}
+
+\begin{finbox}[title=Objetivo de esta entrega en una sola frase]
+    Cada equipo debe entregar \textbf{un manuscrito distinto} listo para envío a una revista JCR de ingeniería de requisitos o a una conferencia \emph{ranking A} del área, acompañado del paquete de replicación FAIR con DOI de Zenodo y del protocolo registrado en el Marco de Ciencia Abierta\footnote{En inglés: \emph{Open Science Framework}, OSF, plataforma pública de la Center for Open Science para el registro previo de protocolos y el depósito de materiales de investigación (\url{https://osf.io}).} (OSF), y defender oralmente el trabajo ante el tribunal docente.
+\end{finbox}
+
+\begin{alertbox}[title=Advertencia global sobre la integridad del manuscrito]
+    En esta entrega terminal, todo dato, tabla, figura, cita y afirmación del manuscrito debe estar respaldado por evidencia primaria dentro del repositorio, por una entrada bibliográfica revisada por pares verificada en \texttt{referencias.bib} o por una salida reproducible de los scripts de análisis versionados en \texttt{06\_Experimento/scripts\_analisis/}.
+    Toda cifra o resultado que no pueda regenerarse ejecutando los scripts sobre los datos crudos publicados en Zenodo se considera fabricación y anula el envío del manuscrito.
+    El uso de un Modelo Grande de Lenguaje\footnote{En inglés: \emph{Large Language Model}, LLM.} (LLM) para pulir la redacción de párrafos cuyo contenido ustedes ya escribieron con base en datos empíricos es aceptable y debe declararse en la sección de agradecimientos siguiendo las directrices de \cite{elsevier_ai_2023,springer_ai_2023}; el uso de un LLM para \emph{producir} resultados, cifras, tablas o conclusiones no lo es.
+\end{alertbox}
+
+% =====================================================================
+%  SECCION 1: CONTEXTO
+% =====================================================================
+\secband{Propósito de la Entrega 4 (2B / Defensa) y cierre del ciclo}
+
+La Entrega 4 (2B) es la última entrega del Proyecto Fin de Curso (PFC) y constituye la Segunda Entrega del Segundo Parcial y el momento de la Defensa Final oral.
+En esta entrega cada equipo \emph{cierra} el ciclo abierto en la Entrega 1A: la Especificación de Requisitos de Software\footnote{En inglés: \emph{Software Requirements Specification}, SRS. En español se usa la sigla ERS por \emph{Especificación de Requisitos de Software}. En esta guía se usa la notación combinada ERS/SRS para conservar ambas convenciones.} (ERS/SRS) queda en versión definitiva; el estudio empírico registrado en el OSF en la Entrega 3 (2A) queda ejecutado, analizado y reportado; el paquete de datos abierto queda depositado en Zenodo con DOI persistente; y el manuscrito paralelo queda listo, con envío efectivo o con el envío programado para las semanas inmediatamente siguientes al cierre del semestre.
+
+\begin{notabox}[title=Continuidad narrativa con las tres entregas anteriores]
+    Entrega 1A (Semana 4) --- planificación y elicitación inicial con identificación del sistema real.\newline
+    Entrega 2 (1B) (Semana 10) --- ERS/SRS parcial con primera ronda de trabajo de campo.\newline
+    Entrega 3 (2A) (Semana 13) --- ERS/SRS completo, segunda ronda de campo y protocolo experimental registrado en OSF; borrador del manuscrito con introducción, trabajo relacionado y metodología.\newline
+    \textbf{Entrega 4 (2B / Defensa) (Semana 17)} --- ejecución completa del experimento; análisis final; manuscrito completo listo para envío a revista Journal Citation Reports\footnote{En inglés: \emph{Journal Citation Reports}, JCR, informe anual publicado por Clarivate Analytics que asigna el Factor de Impacto (JIF, del inglés \emph{Journal Impact Factor}) a las revistas indexadas en el \emph{Science Citation Index Expanded} (SCIE) y en el \emph{Social Sciences Citation Index} (SSCI).} (JCR) o conferencia \emph{ranking A} del área; paquete FAIR depositado; defensa oral.
+\end{notabox}
+
+\begin{pubbox}[title=Revistas JCR y conferencias objetivo verificadas al momento del corte]
+    Cada equipo elige una y sólo una revista objetivo primaria y hasta dos alternativas.
+    Las opciones válidas para esta cohorte, con datos verificados con fecha del 2 de julio de 2026, son las siguientes.
+    \textbf{Requirements Engineering} (Springer London, ISSN 0947-3602, 1432-010X; Factor de Impacto Journal Citation Reports 2024 igual a 3,3; cuartil Q2 en la categoría \emph{Computer Science, Software Engineering}, posición 64 de 131; tiempo mediano hasta la primera decisión editorial de 5 días según los datos oficiales de junio de 2026) \cite{req_eng_journal_2025}.
+    \textbf{Information and Software Technology} (Elsevier, ISSN 0950-5849; JIF 2024 igual a 4,3; cuartil Q1) \cite{ist_journal_2025}.
+    \textbf{Empirical Software Engineering} (Springer, ISSN 1382-3256; Q1) \cite{ese_journal_2025}.
+    \textbf{Journal of Systems and Software} (Elsevier, ISSN 0164-1212; Q1) \cite{jss_journal_2025}.
+    Como conferencias \emph{ranking A/A*} del área CORE (\emph{Computing Research and Education}) se aceptan REFSQ 2027 (\emph{Requirements Engineering: Foundation for Software Quality}, Basel, Suiza, 12--15 de abril de 2027; \emph{deadline} del track Research: envío de resumen jueves 5 de noviembre de 2026, envío del artículo jueves 12 de noviembre de 2026, notificación jueves 14 de enero de 2027, versión final jueves 4 de febrero de 2027; \emph{deadline} del track \emph{Posters \& Tools}: envío jueves 4 de febrero de 2027, notificación jueves 25 de febrero de 2027) \cite{refsq2027_dates} y la IEEE International Requirements Engineering Conference 2027 (RE 2027).
+\end{pubbox}
+
+\begin{alertbox}[title=Regla decisiva sobre la revista objetivo]
+    La revista o conferencia objetivo debe elegirse antes del inicio de la semana 14 y quedar registrada por correo institucional al docente responsable.
+    A partir de la elección, el manuscrito se prepara exclusivamente en la plantilla oficial de esa revista o conferencia; los envíos con plantilla incorrecta o con formato \emph{genérico} (sin plantilla oficial) son rechazados de escritorio en las revistas del área y aquí serán penalizados en el criterio de rúbrica correspondiente.
+\end{alertbox}
+
+% =====================================================================
+%  SECCION 2: PREREQUISITOS
+% =====================================================================
+\secband{Prerequisitos --- estado esperado al inicio de la Entrega 4 (2B)}
+
+\submark{2.1 Documentales heredados de la Entrega 3 (2A)}
+El equipo debe partir del ERS/SRS completo con todas las observaciones docentes de la Entrega 3 (2A) resueltas, del protocolo experimental registrado en el OSF con \emph{time stamp} anterior al inicio de la recolección de datos \cite{nosek2018preregistration}, y del borrador del manuscrito con las secciones de introducción, trabajo relacionado y metodología cerradas.
+
+\submark{2.2 Empíricos}
+Debe existir al menos el 50\,\% de los datos primarios necesarios ya recogidos y en proceso de análisis: al menos 12 de las 16 entrevistas objetivo transcritas, al menos 30 de las 60 respuestas de cuestionario capturadas por perfil dominante, y la codificación temática abierta iniciada según Hennink, Kaiser y Marconi \cite{hennink2017saturation}.
+
+\submark{2.3 Ético-legal}
+Cada participante que se incorpore en esta ronda terminal debe firmar un nuevo consentimiento informado, redactado en cumplimiento de la Ley Orgánica de Protección de Datos Personales del Ecuador \cite{ley_datos_ecuador_2021}, con autorización explícita para el eventual uso de sus datos anonimizados en publicaciones científicas revisadas por pares.
+Los datos publicados en Zenodo deben estar anonimizados según los principios de minimización y seudonimización descritos por la propia Ley y por las guías de investigación cualitativa reproducible \cite{molleri2020checklist,wilkinson2016fair}.
+
+\submark{2.4 Instrumentales}
+Debe existir el paquete de análisis versionado en \texttt{06\_Experimento/scripts\_analisis/} con al menos las funciones de importación de datos, limpieza básica y estadísticos descriptivos operativas y con \texttt{README} de instrucciones de ejecución reproducible.
+
+% =====================================================================
+%  SECCION 3: TRABAJO DE CAMPO TERMINAL
+% =====================================================================
+\secband{Trabajo de campo terminal --- cierre de la recolección de datos primarios \bF}
+
+En esta entrega los equipos completan la recolección de datos hasta alcanzar los mínimos empíricos comprometidos con la revista objetivo.
+La segunda ronda extendida iniciada en la Entrega 3 (2A) se cierra con la tercera ronda de campo, orientada específicamente a llenar los vacíos detectados en la codificación temática abierta y a alcanzar el punto de saturación de significado documentado por \cite{hennink2017saturation}.
+
+\begin{longtable}{@{}L{0.32\linewidth} L{0.32\linewidth} L{0.30\linewidth}@{}}
+    \hh{Tipo de evidencia} & \hh{Cantidad mínima terminal} & \hh{Formato y ubicación}\\
+    \endfirsthead
+    \hh{Tipo de evidencia} & \hh{Cantidad mínima terminal} & \hh{Formato y ubicación}\\
+    \endhead
+    Consentimientos firmados & \(\geq 24\) participantes distintos, con al menos 3 perfiles bien representados & JPG/PNG/PDF; \texttt{02\_Evidencias/Consentimientos/}\\
+    Videos reales de entrevistas & \(\geq 24\) archivos, con duración total \(\geq 360\) minutos & MP4 H.264; \texttt{02\_Evidencias/Video/}\\
+    Audios reales de entrevistas & \(\geq 24\) archivos, redundantes con los videos & MP3/WAV; \texttt{02\_Evidencias/Audio/}\\
+    Transcripciones anonimizadas & Una por entrevista, en Markdown o JSON estructurado, con seudónimos que sustituyan nombres propios & MD o JSON; \texttt{02\_Evidencias/Transcripciones/}\\
+    Codificación temática cerrada y curva de saturación & Tabla completa $+$ figura de la curva de saturación con inflexión visible (códigos nuevos por entrevista tendiendo a cero) & CSV $+$ PNG/PDF; \texttt{02\_Evidencias/Codificacion\_Tematica/}\\
+    Respuestas del cuestionario & \(n \geq 60\) respuestas por perfil dominante, o justificación con cálculo de potencia estadística (Cohen $d=0{,}5$, $\alpha=0{,}05$, $1-\beta=0{,}80$) siguiendo \cite{molleri2020checklist} & CSV/XLSX exportado; \texttt{02\_Evidencias/Cuestionario/Respuestas/}\\
+    Documentos originales de la organización cliente & \(\geq 5\) documentos de tipos distintos & PDF; \texttt{02\_Evidencias/Documentos\_Organizacion/}\\
+    Sesiones de validación cerradas \emph{(walkthrough)} & \(\geq 6\) sesiones grabadas con acta firmada, 3 con usuarios técnicos $+$ 3 con usuarios no técnicos & MP4 $+$ PDF de acta firmada\\
+    Sesión final de miembro-verificación \emph{(member checking)} & 1 sesión con al menos 3 participantes previos del estudio confirmando la interpretación de los resultados \cite{birt2016member} & MP4 $+$ PDF de acta\\
+\end{longtable}
+
+\begin{notabox}[title=Sobre el punto de saturación y su reporte editorial]
+    La curva de saturación es un requisito editorial habitual en las revistas del área \cite{hennink2017saturation,mendez2017naming}: se reporta como una gráfica con la entrevista en el eje horizontal y el número acumulado de códigos nuevos en el vertical.
+    Se considera saturado un estudio cuando, en las últimas tres entrevistas, el promedio de códigos nuevos por entrevista es menor o igual al 5\,\% del total acumulado.
+    Se acepta como alternativa la información power calculation asociada al enfoque cuantitativo (encuestas o experimentos), calculando el tamaño muestral con Cohen $d=0{,}5$, $\alpha=0{,}05$ y potencia $1-\beta=0{,}80$ por medio del paquete \texttt{pwr} de R \cite{cohen1988statpwr,champely2020pwr}.
+\end{notabox}
+
+\begin{alertbox}[title=Regla estricta de evidencias --- terminal]
+    En esta entrega terminal, cualquier evidencia declarada en el ERS o en el manuscrito y \textbf{ausente} del repositorio o \textbf{no verificable} anula el sub-criterio correspondiente y activa el gatekeeper G4 si el patrón se repite en más de dos casos.
+    Todo archivo cuyo contenido no corresponda al tipo declarado (\texttt{.mp3} de 54 bytes ASCII, \texttt{.jpg} en blanco, \texttt{.mp4} con imagen anime en lugar de una entrevista real) se considera evidencia falsificada, dispara el gatekeeper G4 con nota máxima 2,50/10 y descalifica automáticamente el manuscrito para el envío.
+\end{alertbox}
+
+% =====================================================================
+%  SECCION 4: ANALISIS FINAL DE DATOS
+% =====================================================================
+\secband{Análisis final de datos --- del dato crudo al hallazgo publicable \bF}
+
+Esta sección detalla el análisis empírico terminal, según el enfoque elegido y registrado en el OSF en la Entrega 3 (2A).
+Todo análisis se ejecuta con \emph{scripts} versionados en R o Python que reproducen exactamente cada tabla y cada figura del manuscrito.
+No se aceptan tablas producidas manualmente en hojas de cálculo ni figuras \emph{pegadas} sin \emph{script} que las genere \cite{sandve2013reproducible,peng2011reproducible}.
+
+\submark{4.1 Análisis del Enfoque 1 --- Calidad de RF elicitados por humanos y por LLM}
+El análisis apareado compara la calidad, medida en cinco dimensiones (completitud, ausencia de ambigüedad, verificabilidad, corrección respecto de la fuente y consistencia interna), de dos conjuntos de Requisitos Funcionales (RF): el elicitado por el equipo humano y el generado por el LLM a partir de las mismas transcripciones de entrevistas anonimizadas.
+El acuerdo entre las personas evaluadoras se cuantifica con el coeficiente $\kappa$ de Cohen \cite{cohen1960kappa} para cada par y con el coeficiente $\kappa$ de Fleiss \cite{fleiss1971kappa} para el conjunto de tres o más.
+La comparación de medias por dimensión utiliza la prueba de la $t$ para muestras apareadas si Shapiro-Wilk no rechaza normalidad y la prueba de Wilcoxon de rangos con signo en caso contrario, con corrección de Holm-Bonferroni por comparaciones múltiples según \cite{holm1979correction}.
+El tamaño del efecto se reporta con la $d$ de Cohen o la $\delta$ de Cliff según sea paramétrico o no paramétrico, con intervalos de confianza al 95\,\% construidos por \emph{bootstrap} de 10.000 réplicas \cite{efron1994bootstrap}.
+
+\submark{4.2 Análisis del Enfoque 2 --- Detección automática de ambigüedad y \emph{malos olores}}
+Se comparan las etiquetas producidas por el detector automático contra el consenso de tres o más personas expertas usando precisión, exhaustividad (\emph{recall}) y medida $F_1$, con matriz de confusión reportada íntegramente.
+El acuerdo inter-evaluador se cuantifica con $\kappa$ de Cohen entre pares y $\kappa$ de Fleiss para el consenso completo.
+Para cada desacuerdo entre detector y consenso experto se redacta una breve nota interpretativa que se agrega como material suplementario en el paquete Zenodo \cite{ferrari2018detecting,fischbach2023automatic}.
+Las curvas ROC (\emph{Receiver Operating Characteristic}, característica operativa del receptor) se generan variando el umbral de decisión del detector cuando este produzca puntuaciones continuas.
+
+\submark{4.3 Análisis del Enfoque 3 --- Explicabilidad como Requisito No Funcional}
+Se reporta la cobertura del marco de \cite{chazette2021exploring} como la proporción de dimensiones cubiertas por al menos un Requisito No Funcional\footnote{En inglés: \emph{Non-Functional Requirement}, NFR. En español se usa el equivalente RNF.} (RNF) verificable, la satisfacción percibida como puntuación media Likert por dimensión con intervalos de confianza al 95\,\%, y el acuerdo entre las dos rondas de validación con el coeficiente $\kappa$ de Fleiss.
+Las diferencias de percepción entre usuarios técnicos y no técnicos se examinan con la prueba U de Mann-Whitney y se reportan con la magnitud del efecto $r$ derivada del estadístico, según la operacionalización de \cite{chazette2022explainable}.
+
+\submark{4.4 Elementos comunes obligatorios a los tres enfoques}
+Todo análisis, sea cual sea el enfoque, incluye: pruebas de supuestos (Shapiro-Wilk para normalidad, Levene para homogeneidad de varianzas), estadísticos descriptivos completos por grupo (mediana, media, desviación estándar, mínimo, máximo, intervalo intercuartílico), pruebas de hipótesis con nombre exacto y estadístico calculado, valor $p$ con al menos tres decimales, tamaño del efecto e intervalo de confianza al 95\,\%.
+El plan de análisis registrado previamente en el OSF se contrasta con el análisis efectivamente ejecutado; toda desviación se reporta explícitamente en la sección de metodología del manuscrito, siguiendo la práctica de reporte transparente de \cite{simmons2011false,nosek2018preregistration}.
+
+\begin{alertbox}[title=Advertencia específica sobre p-hacking y \emph{HARKing}]
+    La formulación de hipótesis después de conocer los resultados (\emph{HARKing}, del inglés \emph{Hypothesizing After the Results are Known}) \cite{kerr1998harking} y el ejecutar múltiples análisis hasta encontrar uno significativo (\emph{p-hacking}) \cite{simmons2011false} son consideradas prácticas indebidas y son detectadas automáticamente por muchos editores del área.
+    El registro previo en OSF, exigido desde la Entrega 3 (2A), es la protección contra estas prácticas; en esta entrega terminal, el análisis reportado en el manuscrito debe coincidir con el registrado o justificar explícitamente cada desviación.
+\end{alertbox}
+% =====================================================================
+%  SECCION 5: MANUSCRITO FINAL
+% =====================================================================
+\secband{Manuscrito final para revista JCR --- estructura y contenido \bF}
+
+El manuscrito paralelo iniciado en la Entrega 3 (2A) se cierra en esta entrega.
+Las secciones de introducción, trabajo relacionado y metodología, ya escritas, se refinan con las observaciones docentes; las secciones de resultados, discusión, amenazas a la validez y conclusiones se producen con los datos ya analizados.
+Se ofrece a continuación la estructura obligatoria del manuscrito, adaptada a los criterios editoriales de las revistas JCR del área \cite{req_eng_journal_2025,ist_journal_2025,ese_journal_2025,jss_journal_2025}.
+
+\submark{5.1 Título, autoría, filiación, resumen estructurado y palabras clave}
+El título final debe ser específico, contener el enfoque, el dominio del sistema y el diseño del estudio, y tener una extensión de 10 a 15 palabras.
+Ejemplo válido: \emph{An empirical comparison of human-elicited versus LLM-generated functional requirements in a real-world veterinary management system: a paired-analyst study in Ecuador}.
+La autoría se declara en el orden acordado y con las filiaciones y correos institucionales correctos; se incluye el identificador ORCID (\emph{Open Researcher and Contributor Identifier}, identificador digital abierto para personas investigadoras \cite{orcid_wiki}) de cada integrante y del docente supervisor.
+El resumen estructurado sigue el patrón \emph{Contexto -- Objetivo -- Método -- Resultados -- Conclusiones} y tiene entre 200 y 250 palabras.
+Se declaran de tres a cinco palabras clave alineadas con el vocabulario controlado de la revista objetivo (por ejemplo, para Requirements Engineering journal: \emph{Requirements elicitation, Large Language Models, Empirical study, Requirements quality, Latin America}).
+
+\submark{5.2 Introducción}
+La introducción cerrada tiene cuatro párrafos con propósito bien delimitado.
+El primer párrafo sitúa el problema en un caso concreto y real (el sistema del equipo) y explica en dos frases por qué es importante estudiar la Ingeniería de Requerimientos en ese contexto, utilizando la evidencia del dominio recogida en las Entregas 1A a 2A.
+El segundo párrafo describe la brecha de conocimiento (\emph{gap}) con referencias primarias de los últimos tres años, con la revisión sistemática de \cite{cheng2026genai} para el Enfoque 1 y 2, o la revisión mapa sistemático de \cite{chazette2022explainable} para el Enfoque 3.
+El tercer párrafo enuncia dos a cuatro contribuciones específicas del trabajo, cada una atada a una evidencia concreta que aparecerá en la sección de resultados.
+El cuarto párrafo presenta las preguntas de investigación (RQ1, RQ2) y anticipa brevemente los principales hallazgos, sin darles todavía la interpretación completa.
+
+\submark{5.3 Trabajo relacionado con búsqueda sistemática cerrada}
+La revisión abreviada iniciada en la Entrega 3 (2A) se cierra ampliando el cuadro comparativo a los 10 a 15 trabajos más cercanos.
+Se sigue el esquema abreviado de Kitchenham y Charters \cite{kitchenham2007guidelines}: cadena de búsqueda documentada, criterios de inclusión y exclusión, número de estudios encontrados, número de estudios revisados y un cuadro comparativo con columnas Referencia, Año, Tipo de estudio, Población, Intervención, Resultados principales y Diferencia con nuestro trabajo.
+El párrafo de cierre debe identificar con claridad el \emph{nicho} concreto que ocupa el estudio: qué agrega este trabajo que los estudios existentes no han hecho.
+
+\submark{5.4 Metodología}
+La metodología se refina con el nivel de detalle suficiente para replicar el estudio a partir del texto y del paquete Zenodo, siguiendo la plantilla de reporte de experimentos de \cite{jedlitschka2008reporting} para los Enfoques 1 y 2, y las directrices de estudio de caso de \cite{runeson2009guidelines} para el Enfoque 3.
+La sección tiene subapartados fijos: preguntas de investigación en formato PICOC (Población, Intervención, Comparación, Resultado, Contexto), hipótesis o proposiciones, variables independientes-dependientes-de control, diseño experimental (cuasi-experimento apareado, estudio de caso simple o múltiple), participantes y reclutamiento con criterios de inclusión y exclusión y proceso de consentimiento con base en la Ley Orgánica de Protección de Datos Personales del Ecuador \cite{ley_datos_ecuador_2021}, instrumentos con guiones y cuestionarios completos en el material suplementario, plan de análisis estadístico con las pruebas y umbrales exactos, y desviaciones respecto del protocolo pre-registrado en OSF.
+
+\submark{5.5 Resultados}
+Los resultados se organizan por pregunta de investigación: primero RQ1 con las tablas y figuras que le corresponden, luego RQ2 con las suyas.
+Cada tabla y cada figura se produce con los \emph{scripts} de \texttt{06\_Experimento/scripts\_analisis/} y se referencia en el texto por número.
+Cada afirmación numérica lleva entre paréntesis la información estadística mínima obligatoria: el nombre del estadístico ($t$, $U$, $\chi^2$), su valor numérico, los grados de libertad, el valor $p$ y el tamaño del efecto con su intervalo de confianza al 95\,\%.
+No se aceptan cifras sueltas sin \emph{script} que las genere ni tablas con cifras redondeadas a criterio; toda cifra se reporta con al menos tres decimales cuando corresponda.
+
+\submark{5.6 Discusión}
+La discusión se ordena en tres subapartados: implicaciones para la investigación, implicaciones para la práctica y hallazgos sorprendentes o contraintuitivos.
+Cada afirmación de esta sección debe poder rastrearse a un dato concreto de la sección de resultados o a una referencia bibliográfica.
+Se debe evitar toda sobregeneralización: si el estudio se hizo con 25 requisitos de un sistema veterinario ecuatoriano, la conclusión no puede ser \emph{los LLM superan a los humanos} en general; la conclusión debe restringirse al alcance del estudio y proponer explícitamente las extensiones que otras personas podrán ejecutar a partir del \emph{dataset} publicado.
+Se recomienda incluir un pequeño subapartado de \emph{lecciones aprendidas} de una parrafo, dirigido a otros equipos de investigación empírica en pregrado, siguiendo el ejemplo pedagógico de \cite{fernandez2017naming}.
+
+\submark{5.7 Amenazas a la validez}
+Se organizan en las cuatro categorías establecidas por \cite{wohlin2012experimentation}: validez interna, validez externa, validez de constructo y validez de conclusión.
+Para cada amenaza identificada se describe la mitigación aplicada y se reconoce la limitación remanente.
+Se recomienda incluir al menos dos amenazas por categoría, para evitar el reporte incompleto que motiva rechazo de escritorio en las revistas del área \cite{siegmund2015views}.
+
+\submark{5.8 Conclusiones y trabajo futuro}
+Un párrafo por RQ que sintetice la respuesta obtenida con los datos.
+Un párrafo con las contribuciones consolidadas, reafirmando lo prometido en la introducción con la evidencia detrás.
+Un párrafo con al menos tres líneas concretas de trabajo futuro que otras personas puedan retomar a partir de los datos publicados en Zenodo.
+
+\submark{5.9 Disponibilidad de datos y materiales, uso de IA y agradecimientos}
+Se incluye una sección corta con el título \emph{Data and materials availability} con el DOI persistente del paquete depositado en Zenodo, el enlace al registro OSF del protocolo y la licencia \emph{Creative Commons Attribution 4.0 International}\footnote{Licencia \emph{Creative Commons} versión 4.0 que permite la reutilización con atribución y con vínculo a la licencia; abreviada CC BY 4.0.} (CC BY 4.0) del \emph{dataset}, siguiendo los principios de citación de software de Force11 \cite{smith2016force11} y los principios FAIR (\emph{Findable, Accessible, Interoperable, Reusable}: localizable, accesible, interoperable y reutilizable) \cite{wilkinson2016fair}.
+Se agrega la sección \emph{Use of AI-assisted technologies} declarando modelo, versión, temperatura y uso concreto del LLM en la redacción, según las políticas editoriales vigentes de Elsevier \cite{elsevier_ai_2023} y de Springer Nature \cite{springer_ai_2023}.
+La sección de agradecimientos incluye a las personas entrevistadas por nombre solo si su consentimiento lo permite; en caso contrario se agradece \emph{genéricamente} indicando el rol (por ejemplo, \emph{seis profesionales veterinarios del cantón Quevedo, Provincia de Los Ríos}).
+
+\submark{5.10 Referencias}
+La lista de referencias se gestiona íntegramente en \texttt{referencias.bib} con al menos 40 entradas y con verificación cruzada de cada entrada (autor, título, revista o conferencia, año y DOI cuando exista).
+El estilo bibliográfico se ajusta al de la revista objetivo (Springer LNCS para REFSQ, Springer para el journal RE, Elsevier para IST y ESE); no se aceptan mezclas de estilos ni entradas incompletas.
+Se verifica que ninguna referencia esté inventada (\emph{hallucinated references}), fenómeno frecuente cuando se utiliza un LLM para redactar; para ello se verifica cada DOI antes del envío.
+
+\submark{5.11 Plantillas y objetivos de envío verificados}
+El manuscrito se redacta en LaTeX usando la plantilla oficial de la revista o conferencia objetivo.
+Para el journal Requirements Engineering de Springer se utiliza la plantilla \texttt{sn-jnl.cls} (Springer Nature LaTeX template); para Information and Software Technology se utiliza \texttt{elsarticle.cls} de Elsevier; para REFSQ 2027 se utiliza la plantilla Springer LNCS (\texttt{llncs.cls}) con una extensión de 15 páginas incluidas las referencias para el track Research y de 8 páginas para el track Research Previews.
+Las tres opciones de envío recomendadas para esta cohorte son, por orden de accesibilidad para estudiantes de pregrado: \emph{Posters \& Tools} de REFSQ 2027 con envío el jueves 4 de febrero de 2027 (opción más accesible, primer envío recomendado); Research Previews de REFSQ 2027 con envío el jueves 12 de noviembre de 2026 (opción de mayor exigencia pero factible); y envío al journal Requirements Engineering de Springer, continuo (opción con más recorrido pero con retorno editorial más lento).
+
+\begin{alertbox}[title=Advertencia específica sobre integridad del manuscrito]
+    La sección de resultados y la sección de discusión NO pueden escribirse antes de que existan los datos analizados.
+    Redactar resultados hipotéticos \emph{para completar la estructura} o hacer que un LLM invente cifras para llenar las tablas es fabricación de evidencia y descalifica el manuscrito.
+    Toda referencia debe existir realmente en la base de datos que se cita (Scopus, Web of Science, IEEE Xplore, ACM Digital Library, Google Scholar) y su DOI debe resolver a la publicación citada; las referencias inventadas por un LLM son detectadas por los editores de las revistas del área con verificaciones automatizadas y su presencia motiva rechazo de escritorio.
+\end{alertbox}
+% =====================================================================
+%  SECCION 6: ADAPTACION TEMATICA POR EQUIPO
+% =====================================================================
+\secband{Adaptación temática --- un manuscrito por proyecto \bF}
+
+Esta sección orienta la elección del ángulo específico del manuscrito para cada proyecto activo de esta cohorte, de modo que \emph{cada tema del PFC produzca un manuscrito distinto} y no se produzcan solapamientos innecesarios entre equipos.
+Para cada proyecto se ofrece: el dominio del sistema (con la abreviatura interna que ya se ha usado en el semestre); la pregunta de investigación principal sugerida; el enfoque metodológico recomendado; los perfiles de participantes que definen los estratos muestrales; y las palabras clave alineadas con el vocabulario editorial de la revista objetivo.
+Cada equipo puede modificar la pregunta principal, pero debe declarar la modificación por escrito y justificar por qué mantiene el compromiso con el mínimo empírico.
+
+\begin{longtable}{@{}p{0.09\linewidth} p{0.20\linewidth} p{0.31\linewidth} p{0.12\linewidth} p{0.20\linewidth}@{}}
+    \hh{Equipo} & \hh{Dominio del sistema} & \hh{Pregunta de investigación sugerida} & \hh{Enfoque} & \hh{Palabras clave para revista}\\
+    \endfirsthead
+    \hh{Equipo} & \hh{Dominio del sistema} & \hh{Pregunta de investigación sugerida} & \hh{Enfoque} & \hh{Palabras clave para revista}\\
+    \endhead
+    MundiPets & Adopción y cruza responsable de mascotas (marketplace social ecuatoriano) & ¿En qué dimensiones de calidad de RF los analistas humanos y un LLM difieren cuando trabajan sobre entrevistas anonimizadas del mismo dominio veterinario social? & Enfoque 1 (LLM vs humano) & \emph{Requirements elicitation, Large Language Models, Empirical study, Animal welfare, Marketplace platform}\\
+    AHMRV (SIMPA) & Gestión agroindustrial de la palma africana en la Provincia de Los Ríos & ¿Qué proporción de RF elicitados en dominios agroindustriales tropicales latinoamericanos son detectados como ambiguos por un detector automático versus por analistas expertos? & Enfoque 2 (detección ambigüedad) & \emph{Requirements ambiguity, Agroindustrial systems, Palm oil, Empirical study, Latin America}\\
+    ACERS (SGA) & Trazabilidad de producción de verde y cacao & ¿Qué requisitos legales de la Ley Orgánica de Protección de Datos y de trazabilidad agroindustrial no quedan cubiertos por los RF elicitados con métodos convencionales, y cómo el enfoque \emph{legal-first} de \cite{amaral2020legal} extiende esa cobertura? & Enfoque 2 (\emph{legal-first}) & \emph{Legal requirements, Traceability, Cacao industry, Data protection law, Requirements coverage}\\
+    SGCV-IA & Gestión clínica veterinaria con módulo de IA para diagnóstico asistido & ¿Qué requisitos de explicabilidad, operacionalizados como RNF verificables, resultan necesarios y suficientes para los distintos perfiles de usuarios de un sistema clínico veterinario con IA? & Enfoque 3 (explicabilidad) & \emph{Explainability, Non-functional requirements, AI-assisted diagnosis, Veterinary informatics, User studies}\\
+    AQUAGUEST & Gestión de camaronera industrial en la costa ecuatoriana & ¿Cómo se comparan los conjuntos de RF elicitados con entrevistas semi-estructuradas y con Design Thinking en un dominio industrial acuícola tropical, en cuanto a cobertura de escenarios operativos críticos? & Enfoque 1 (variante técnica de elicitación) & \emph{Requirements elicitation techniques, Design Thinking, Aquaculture, Empirical study, Case study}\\
+    FabroGym & Gestión de un gimnasio local con recomendación de rutinas & ¿Qué requisitos de explicabilidad emergen para los distintos perfiles de usuarios de un sistema de recomendación de rutinas basado en aprendizaje automático, y cómo se validan con miembros del propio gimnasio? & Enfoque 3 (explicabilidad) & \emph{Explainability, Fitness recommendation, Personalization, Non-functional requirements, Field study}\\
+    PFC\_IR (SIGCM) & Sistema Integral de Gestión de Centro Médico Ambulatorio & ¿Qué requisitos derivados de la Ley Orgánica de Protección de Datos y de los estándares HL7 no quedan cubiertos por los RF elicitados con métodos convencionales en un sistema clínico ecuatoriano ambulatorio? & Enfoque 2 (\emph{legal-first}) & \emph{Legal requirements, Health information systems, Data protection, HL7, Empirical study}\\
+    Terapia Física (SICST) & Control y Seguimiento de Sesiones de Terapia Física & ¿Cómo se comparan la calidad y la trazabilidad de los RF elicitados a partir de entrevistas con fisioterapeutas versus los generados por un LLM a partir de las mismas transcripciones anonimizadas? & Enfoque 1 (LLM vs humano) & \emph{Requirements elicitation, Physiotherapy informatics, Large Language Models, Empirical study, Patient tracking}\\
+    Marketplace UTEQ (NVVZ) & Marketplace estudiantil universitario & ¿Qué requisitos no funcionales sobre confianza y seguridad quedan omitidos por los analistas humanos y son o no capturados por un LLM al trabajar sobre entrevistas de estudiantes universitarios en un contexto latinoamericano? & Enfoque 1 (LLM vs humano) & \emph{Trust requirements, Student marketplace, Large Language Models, University informatics, Empirical study}\\
+    Aulas IoT (AOPSS) & Gestión inteligente de aulas universitarias con IoT y aprendizaje automático & ¿Qué tipos de explicaciones requiere el personal docente y administrativo del sistema inteligente de aulas para intervenir en las decisiones automatizadas del sistema con confianza? & Enfoque 3 (explicabilidad) & \emph{Explainability, Smart classrooms, Internet of Things, Higher education, User studies}\\
+    Biblioteca Inteligente (ACCG) & Sistema Inteligente de Gestión de Biblioteca Universitaria con recomendación & ¿En qué medida un LLM puede replicar la elicitación de RF de un sistema bibliotecario a partir de documentos y transcripciones anonimizadas, comparado con analistas humanos expertos? & Enfoque 1 (LLM vs humano) & \emph{Requirements elicitation, Library informatics, Large Language Models, Recommender systems, Empirical study}\\
+    Movilidad Colaborativa (CHNV) & Sistema de movilidad colaborativa universitaria & ¿Cómo se comparan los conjuntos de RF elicitados con entrevistas semi-estructuradas y con Design Thinking para un servicio de movilidad estudiantil, en términos de cobertura de escenarios operativos? & Enfoque 1 (variante técnica de elicitación) & \emph{Requirements elicitation techniques, Ride-sharing, Design Thinking, University informatics, Case study}\\
+\end{longtable}
+
+\begin{notabox}[title=Regla de no solapamiento y de adaptación]
+    Cada equipo debe producir un manuscrito con \emph{título}, \emph{contribuciones} y \emph{dataset} distintos, aunque compartan enfoque metodológico.
+    Dos equipos que hayan elegido el Enfoque 1 (LLM vs humano) trabajan sobre \emph{dominios} distintos y sobre \emph{materiales fuente} distintos, por lo que sus contribuciones son diferenciables.
+    Dos equipos que hayan elegido el Enfoque 3 (explicabilidad) trabajan sobre \emph{tipos de componente IA} distintos (diagnóstico veterinario vs recomendación de rutinas de gimnasio vs aulas inteligentes), y por eso también producen contribuciones diferenciables.
+\end{notabox}
+
+\begin{pubbox}[title=Compromiso adicional para los equipos con mejor calificación acumulada]
+    Los tres equipos con mejor calificación acumulada al cierre de la Entrega 3 (2A) tendrán la opción --- no la obligación --- de escalar el objetivo de envío desde \emph{Posters \& Tools} de REFSQ 2027 hacia el track Research Previews (envío el jueves 12 de noviembre de 2026, 8 páginas incluidas las referencias) o hacia el journal Requirements Engineering de Springer (envío continuo, 25 a 30 páginas), con acompañamiento docente durante la preparación del envío.
+    Esta oportunidad no es evaluada en esta entrega, pero constituye un valor añadido para la trayectoria profesional del equipo y suele traducirse en cartas de recomendación fuertes para posgrado y para becas.
+\end{pubbox}
+% =====================================================================
+%  SECCION 7: DEPOSITO FAIR FINAL
+% =====================================================================
+\secband{Depósito FAIR final --- Zenodo, OSF y GitHub archivado \bF}
+
+Los datos y materiales del proyecto se depositan en tres plataformas complementarias, siguiendo las guías FAIR \cite{wilkinson2016fair} y la política de ciencia abierta habitual en las revistas del área.
+
+\submark{7.1 Depósito en Zenodo con DOI persistente}
+El paquete Zenodo se produce a partir de la carpeta \texttt{07\_Publicacion/dataset\_zenodo/} del repositorio y se sube al servicio Zenodo (\url{https://zenodo.org}) con las siguientes especificaciones fijas: título con la fórmula \emph{Replication package for \{título del manuscrito\}}, autoría con ORCID de cada integrante, licencia CC BY 4.0 para los datos, licencia MIT o Apache-2.0 para el código, palabras clave iguales a las de las revistas objetivo, comunidad \emph{Requirements Engineering} cuando exista, y descripción con enlace al manuscrito y al registro OSF.
+El DOI asignado se copia al archivo \texttt{CITATION.cff} y al \emph{README} del repositorio.
+
+\submark{7.2 Contenido mínimo del paquete Zenodo}
+El paquete tiene, como mínimo, los siguientes elementos: transcripciones anonimizadas de entrevistas en formato Markdown o JSON estructurado; respuestas del cuestionario en CSV con marca temporal y con seudónimos que sustituyan cualquier identificador directo; corpus etiquetado de RF/RNF en JSON con el esquema documentado; matriz de trazabilidad en CSV; \emph{prompts} y respuestas de los LLM (Enfoques 1 y 2) con modelo exacto, temperatura, top-p, semilla y fecha y hora de la consulta; \emph{scripts} de análisis en R o Python que reproducen exactamente las tablas y figuras del manuscrito; \emph{README\_dataset.md} con el diccionario de datos y las instrucciones de citación siguiendo los principios de \cite{smith2016force11}; archivo \texttt{ANONYMIZATION.md} que documenta el procedimiento de seudonimización y anonimización aplicado; archivo \texttt{ETHICS.md} que resume el proceso de consentimiento informado y los principios de la Ley Orgánica de Protección de Datos Personales del Ecuador \cite{ley_datos_ecuador_2021}.
+
+\submark{7.3 Registro OSF actualizado}
+El registro OSF creado en la Entrega 3 (2A) se \emph{actualiza} con las desviaciones del protocolo respecto de lo pre-registrado.
+Cada desviación se documenta en la sección \emph{Deviations from pre-registration} del OSF, con la razón, el momento en el que se detectó y la mitigación aplicada.
+Esta actualización no invalida el registro previo; al contrario, es la práctica que las revistas del área esperan del uso maduro del pre-registro \cite{nosek2018preregistration}.
+
+\submark{7.4 Archivado del repositorio GitHub en Software Heritage}
+El repositorio GitHub se archiva en el servicio Software Heritage (\url{https://archive.softwareheritage.org}) por medio del botón \emph{Save code now}, generando el identificador SWHID (\emph{Software Heritage Identifier}, identificador persistente para código fuente \cite{dicosmo2020swhid}).
+El SWHID se copia al archivo \texttt{CITATION.cff} y al \emph{README} del repositorio.
+Se recomienda leer las guías rápidas de archivado de \cite{dicosmo2018swh} y de citación de software de \cite{smith2016force11}.
+
+\submark{7.5 Autoevaluación FAIR con la lista F-UJI o FAIR Data Maturity}
+Antes del corte final, el equipo ejecuta una autoevaluación FAIR con la herramienta F-UJI (\url{https://www.f-uji.net/}) o con el modelo de madurez FAIR Data Maturity de la Research Data Alliance \cite{rda2020fair}, y sube el reporte a la raíz del repositorio como \texttt{fair\_assessment.pdf}.
+Se acepta como aprobado un puntaje agregado igual o superior al 60\,\% de los indicadores.
+% =====================================================================
+%  SECCION 8: DEFENSA ORAL
+% =====================================================================
+\secband{Defensa oral --- presentación técnica final \bF}
+
+La defensa oral es el acto de cierre del PFC y se lleva a cabo en la semana 17, con calendario acordado por la docencia.
+Cada equipo dispone de 25 minutos para la presentación y 10 minutos para las preguntas del tribunal.
+La presentación se hace con diapositivas propias, en español, y se apoya en una demostración en vivo del prototipo funcional cuando sea posible.
+
+\submark{8.1 Estructura obligatoria de la presentación}
+La presentación tiene la siguiente estructura temporal, orientadora y flexible: 3 minutos para el problema y las contribuciones, 3 minutos para el sistema y sus stakeholders, 4 minutos para la metodología del componente empírico, 6 minutos para los resultados con las tablas y figuras del manuscrito, 4 minutos para la discusión y las amenazas a la validez, 3 minutos para las conclusiones y el trabajo futuro, y 2 minutos para la demostración corta del prototipo.
+La distribución de tiempo se cumple con un cronómetro visible en las diapositivas; excederse en más de dos minutos penaliza en el criterio C10 de la rúbrica.
+
+\submark{8.2 Roles y participación equitativa}
+Los tres a cuatro integrantes deben participar en la presentación con al menos cuatro minutos de tiempo hablado cada uno; la ausencia de participación de algún integrante penaliza en el criterio C10.
+El tribunal formula preguntas a integrantes específicos y evalúa la capacidad individual de responder por las decisiones metodológicas y por los datos.
+
+\submark{8.3 Materiales de presentación}
+Se depositan en \texttt{08\_Defensa/} del repositorio los siguientes materiales: presentación en PDF (obligatorio) y en formato editable (recomendado); guion de la presentación con los tiempos por diapositiva; video de la defensa grabada localmente; folleto de una hoja (formato Letter, A4 opcional) con el resumen estructurado y los resultados principales, listo para entregar al tribunal impreso.
+
+\submark{8.4 Preparación de la demostración}
+La demostración corta del prototipo debe cubrir dos escenarios de la matriz de trazabilidad, previamente identificados por el equipo, y debe ejecutarse en un entorno estable (idealmente en un despliegue Docker con \texttt{docker compose up}).
+Si la demostración depende de credenciales, se usan credenciales de demostración documentadas en \texttt{05\_MVP/README.md}; nunca se usan credenciales reales de personas del cliente durante la defensa.
+
+\begin{alertbox}[title=Advertencia sobre la defensa]
+    La defensa se puede reprobar si el tribunal detecta que integrantes del equipo no pueden explicar decisiones básicas del proyecto, si la demostración del prototipo falla completamente, o si se detectan resultados en las diapositivas que no aparecen ni en el manuscrito ni en los \emph{scripts} de análisis, en cuyo caso se aplica la regla de fabricación de evidencia del gatekeeper G4.
+\end{alertbox}
+
+% =====================================================================
+%  SECCION 9: INSUMOS OBLIGATORIOS EN EL REPOSITORIO
+% =====================================================================
+\secband{Insumos obligatorios en el repositorio para la evaluación}
+
+Todo lo que el docente y el tribunal deben evaluar tiene que estar dentro del repositorio GitHub del equipo, correctamente nombrado, versionado y accesible al momento del corte.
+La estructura extiende la ya normada en la Entrega 3 (2A) para incorporar la carpeta de defensa y las evidencias del análisis terminal.
+
+\submark{9.1 Estructura de carpetas obligatoria en la Entrega 4 (2B)}
+\begin{evidbox}[title=Árbol de carpetas obligatorio de la Entrega 4 (2B / Defensa)]
+    \begingroup
+        \small\ttfamily
+        \begin{tabbing}
+            MMMM\=MMMM\=MMMM\=MMMM\=MMMM\=\kill
+            Nombre\_Proyecto\_ISR401/\\
+            \>README.md\\
+            \>LICENSE\\
+            \>CITATION.cff\\
+            \>CHANGELOG.md\\
+            \>.gitignore\\
+            \>checksums.sha256\\
+            \>fair\_assessment.pdf\\
+            \>01\_ERS/\\
+            \>\>ERS\_SRS\_2B\_v2.0.pdf\\
+            \>\>ERS\_SRS\_2B\_v2.0.tex\\
+            \>\>referencias.bib\\
+            \>02\_Evidencias/\\
+            \>\>Consentimientos/\\
+            \>\>Video/\\
+            \>\>Audio/\\
+            \>\>Transcripciones/\\
+            \>\>Fotos\_Entorno/\\
+            \>\>Cuestionario/\\
+            \>\>\>Fotos\_Aplicacion/\\
+            \>\>\>Respuestas/\\
+            \>\>Documentos\_Organizacion/\\
+            \>\>Validacion\_Walkthrough/\\
+            \>\>Member\_Checking/\\
+            \>\>Codificacion\_Tematica/\\
+            \>03\_Modelado/\\
+            \>04\_Trazabilidad/\\
+            \>05\_MVP/\\
+            \>06\_Experimento/\\
+            \>\>protocolo.pdf\\
+            \>\>osf\_registration.pdf\\
+            \>\>osf\_deviations.pdf\\
+            \>\>instrumentos/\\
+            \>\>prompts\_llm/\\
+            \>\>datos\_crudos/\\
+            \>\>datos\_procesados/\\
+            \>\>resultados/\\
+            \>\>scripts\_analisis/\\
+            \>07\_Publicacion/\\
+            \>\>manuscrito\_final.pdf\\
+            \>\>manuscrito\_final.tex\\
+            \>\>referencias.bib\\
+            \>\>figuras/\\
+            \>\>tablas/\\
+            \>\>dataset\_zenodo/\\
+            \>\>\>ANONYMIZATION.md\\
+            \>\>\>ETHICS.md\\
+            \>\>\>README\_dataset.md\\
+            \>08\_Defensa/\\
+            \>\>presentacion.pdf\\
+            \>\>presentacion.pptx\\
+            \>\>guion.pdf\\
+            \>\>video\_defensa.mp4\\
+            \>\>folleto\_una\_hoja.pdf
+        \end{tabbing}
+    \endgroup
+\end{evidbox}
+
+\submark{9.2 Archivos raíz obligatorios --- ampliados para Entrega 4 (2B)}
+\begin{longtable}{@{}L{0.24\linewidth} L{0.70\linewidth}@{}}
+    \hh{Archivo} & \hh{Contenido mínimo obligatorio}\\
+    \endfirsthead
+    \hh{Archivo} & \hh{Contenido mínimo obligatorio}\\
+    \endhead
+    \texttt{README.md} & Nombre del sistema, integrantes con roles y ORCID, resumen del dominio, enlace al ERS PDF v2.0, enlace al manuscrito final, enlace al DOI del paquete Zenodo, enlace al registro OSF (con las desviaciones), enlace al SWHID de Software Heritage, cita recomendada, instrucciones para reproducir el análisis experimental.\\
+    \texttt{LICENSE} & Licencia MIT o Apache-2.0 para el código del MVP; CC BY 4.0 para los datos y el documento; scope explícito de cada licencia.\\
+    \texttt{CITATION.cff} & Archivo YAML v1.2.0 \cite{druskat2021cff} con \texttt{authors} (con ORCID), \texttt{title}, \texttt{version 2.0}, \texttt{date-released}, \texttt{doi} de Zenodo, \texttt{identifiers} con el SWHID. Su presencia habilita el botón \emph{Cite this repository} de GitHub.\\
+    \texttt{CHANGELOG.md} & Historial de versiones desde la Entrega 1A hasta la Entrega 4 (2B), con las adiciones, cambios y correcciones por versión, siguiendo Keep a Changelog.\\
+    \texttt{checksums.sha256} & Hash SHA-256 de todos los archivos multimedia y del paquete Zenodo; generado con \texttt{sha256sum} y verificable con \texttt{sha256sum -c}.\\
+    \texttt{fair\_assessment.pdf} & Reporte de autoevaluación FAIR con F-UJI o con el modelo Research Data Alliance \cite{rda2020fair}. Puntaje agregado esperado $\geq 60\%$.\\
+\end{longtable}
+
+\submark{9.3 Checklist de aceptación de la Entrega 4 (2B)}
+\begin{longtable}{@{}p{0.05\linewidth} p{0.87\linewidth}@{}}
+    \hh{\phantom{X}} & \hh{Ítem verificable}\\
+    \endfirsthead
+    \hh{\phantom{X}} & \hh{Ítem verificable}\\
+    \endhead
+    $\square$ & La estructura de carpetas coincide exactamente con la del árbol de la Sección 9.1.\\
+    $\square$ & Existen los seis archivos raíz obligatorios, incluido \texttt{fair\_assessment.pdf}.\\
+    $\square$ & El PDF del ERS/SRS v2.0 está unificado, numerado, con historial de versiones y con enlace al DOI de Zenodo en la portada.\\
+    $\square$ & Todos los archivos multimedia siguen la nomenclatura \texttt{YYYY-MM-DD\_Tipo\_Nombre\_Tecnica.ext}.\\
+    $\square$ & Cada archivo declarado como audio o video pasa \texttt{ffprobe} sin error y muestra duración mayor a cero.\\
+    $\square$ & Cada consentimiento firmado es una imagen o PDF con firma manuscrita visible y cédula legible.\\
+    $\square$ & El paquete Zenodo tiene DOI persistente y aparece en el \texttt{CITATION.cff} y en el \texttt{README.md}.\\
+    $\square$ & El repositorio GitHub tiene SWHID asignado por Software Heritage y aparece en \texttt{CITATION.cff}.\\
+    $\square$ & El registro OSF está actualizado con la sección de desviaciones respecto del protocolo.\\
+    $\square$ & Los \emph{scripts} de análisis reproducen exactamente las tablas y figuras del manuscrito a partir de los datos crudos ejecutando \texttt{make all} o \texttt{Rscript run\_all.R}.\\
+    $\square$ & La curva de saturación de la codificación temática está en la carpeta correspondiente y presenta inflexión visible (Enfoques 1 y 3) o se justifica con \emph{power calculation} explícito (Enfoques 1 y 2).\\
+    $\square$ & Todas las evidencias declaradas en el ERS y en el manuscrito existen realmente dentro del repositorio o del paquete Zenodo y son verificables.\\
+    $\square$ & El manuscrito está en la plantilla oficial de la revista o conferencia objetivo, con la extensión requerida, y sin referencias inventadas.\\
+    $\square$ & La autoevaluación FAIR alcanza al menos 60\,\% de los indicadores.\\
+\end{longtable}
+% =====================================================================
+%  SECCION 10: RUBRICA
+% =====================================================================
+\secband{Rúbrica de evaluación de la Entrega 4 (2B / Defensa) --- 10 puntos}
+
+La rúbrica utiliza cinco niveles: Excelente (N4 $=$ 100\,\%), Satisfactorio (N3 $=$ 75\,\%), En desarrollo (N2 $=$ 50\,\%), Insuficiente (N1 $=$ 25\,\%), Ausente (N0 $=$ 0\,\%).
+La calificación por criterio se obtiene como $\text{Puntos} = \sum \left( \text{Nivel} \times \text{Peso} / 4 \right) \times \text{Escala}$.
+Los pesos suman $10{,}00$ y se reparten en tres bloques: cierre del ERS/SRS y del sistema, componente empírico y publicación, y defensa oral.
+
+\begin{landscape}
+    \renewcommand{\arraystretch}{1.15}
+    \begin{longtable}{@{}p{0.05\linewidth} p{0.20\linewidth} p{0.35\linewidth} p{0.06\linewidth} p{0.22\linewidth}@{}}
+        \hh{ID} & \hh{Criterio} & \hh{Qué se evalúa} & \hh{Peso} & \hh{Notas de la evidencia}\\
+        \endfirsthead
+        \hh{ID} & \hh{Criterio} & \hh{Qué se evalúa} & \hh{Peso} & \hh{Notas de la evidencia}\\
+        \endhead
+        \multicolumn{5}{@{}l}{\hg{Bloque A --- Cierre del ERS/SRS y del sistema (3,00 puntos)}}\\
+        C1 & ERS/SRS v2.0 completo y coherente & PDF unificado con las observaciones docentes de 2A resueltas; sin secciones \emph{pendientes}; sin fragmentos por integrante & 1,00 & Sin unificación $=$ 0\\
+        C2 & Modelado UML y trazabilidad terminales & Diagramas UML consistentes con el código del MVP; matriz de trazabilidad con al menos 60 filas cerradas & 0,75 & Trazabilidad Ley$\rightarrow$Mockup completa\\
+        C3 & Prototipo funcional (MVP) & Cobertura $\geq 80\%$ de RF \emph{Must have}, despliegue con \texttt{docker compose up} o equivalente, video de demostración corto & 0,75 & Sin ejecutable $=$ 0\\
+        C4 & Trabajo de campo terminal y consentimientos & $\geq 24$ consentimientos, $\geq 24$ videos, $\geq 24$ audios, cuestionario $n \geq 60$ por perfil o \emph{power calc}, sesión de \emph{member checking} & 0,50 & Evidencia falsificada $\Rightarrow$ G4\\
+        \multicolumn{5}{@{}l}{\hg{Bloque B --- Componente empírico y publicación (5,00 puntos)}}\\
+        C5 & Análisis empírico ejecutado y reproducible & \emph{Scripts} en R o Python que reproducen tablas y figuras del manuscrito; pruebas de supuestos y de hipótesis con tamaño de efecto e intervalos de confianza & 1,00 & Sin reproducibilidad $=$ 0\\
+        C6 & Curva de saturación o cálculo de potencia estadística & Curva con inflexión visible (Enfoques 1 y 3) o \emph{power calculation} explícito (Enfoques 1 y 2) & 0,50 & Ausencia motivaría rechazo editorial\\
+        C7 & Manuscrito completo con plantilla oficial & Manuscrito en la plantilla de la revista o conferencia objetivo, extensión y estilo correctos, resumen estructurado, RQ en PICOC & 1,50 & Plantilla incorrecta $\Rightarrow$ mitad\\
+        C8 & Referencias verificadas y sin fabricación & Al menos 40 entradas verificadas con DOI resolviendo a la publicación real; sin referencias inventadas & 0,50 & Referencias inventadas $=$ 0\\
+        C9 & Depósito FAIR (Zenodo $+$ OSF $+$ SWH) & DOI de Zenodo presente en el \emph{CITATION.cff}; registro OSF con desviaciones; SWHID de Software Heritage; puntaje F-UJI $\geq 60\%$ & 1,00 & Falta $\Rightarrow$ 0 por ítem\\
+        C10 & Amenazas a la validez y transparencia & Amenazas por las cuatro categorías de \cite{wohlin2012experimentation}, con mitigación; declaración del uso de IA-LLM en agradecimientos & 0,50 & Reporte incompleto $=$ mitad\\
+        \multicolumn{5}{@{}l}{\hg{Bloque C --- Defensa oral (2,00 puntos)}}\\
+        C11 & Estructura y tiempo de la defensa & Cumplimiento de la estructura temporal, cronómetro visible, transiciones limpias & 0,50 & Excederse 2 min $=$ mitad\\
+        C12 & Dominio técnico y respuestas al tribunal & Capacidad de responder decisiones metodológicas y de datos; participación equitativa de todos los integrantes & 1,00 & Silencio individual $=$ mitad\\
+        C13 & Demostración del prototipo & Ejecución en vivo de dos escenarios; entorno estable; sin credenciales reales & 0,50 & Falla total $=$ 0\\
+    \end{longtable}
+\end{landscape}
+
+\submark{10.1 Gatekeepers de la Entrega 4 (2B / Defensa)}
+\begin{itemize}
+    \item \textbf{G1}: Entrega dentro del plazo con enlace verificable al repositorio GitHub. Fuera de plazo $\Rightarrow$ nota máxima 2,50/10.
+    \item \textbf{G2}: Manuscrito completo, en la plantilla oficial de la revista o conferencia objetivo, en un único PDF con fuente LaTeX en el repositorio. Ausencia o plantilla \emph{genérica} $\Rightarrow$ nota máxima 4,00/10.
+    \item \textbf{G3}: Depósito Zenodo con DOI persistente y \emph{CITATION.cff} actualizado con el DOI. Ausencia $\Rightarrow$ el criterio C9 vale cero.
+    \item \textbf{G4}: Evidencia audiovisual real, \emph{scripts} de análisis reproducibles y referencias verificables. Cualquier evidencia falsificada, cifra no reproducible o referencia inventada $\Rightarrow$ nota máxima 2,50/10 y descalificación del envío del manuscrito.
+    \item \textbf{G5}: Cumplimiento de los mínimos empíricos terminales: 24 entrevistas, 60 respuestas por perfil o \emph{power calculation}, curva de saturación con inflexión o \emph{power calc}. Falta $\Rightarrow$ nota máxima 4,00/10.
+    \item \textbf{G6}: Actualización del registro OSF con desviaciones respecto del protocolo. Falta $\Rightarrow$ el criterio C9 vale la mitad.
+    \item \textbf{G7}: Defensa oral efectivamente realizada por todos los integrantes; ausencia injustificada de un integrante en la defensa $\Rightarrow$ nota individual máxima 4,00/10 para el ausente.
+\end{itemize}
+
+\begin{alertbox}[title=Regla operativa de la rúbrica --- síntesis]
+    Los gatekeepers actúan de manera independiente y su activación no se acumula.
+    El principio es que la Entrega 4 (2B) es la puerta que abre la publicación efectiva del trabajo; un manuscrito con fabricación de evidencia, o con referencias inventadas, o con datos no reproducibles, no puede pasar esa puerta.
+    Cuando el docente detecte cualquiera de esos tres patrones, aplicará el gatekeeper G4 y el equipo no será autorizado a enviar el manuscrito bajo la filiación institucional de la UTEQ.
+\end{alertbox}
+% =====================================================================
+%  SECCION 11: CRONOGRAMA
+% =====================================================================
+\secband{Cronograma de las semanas 14 a 17 y entregables intermedios}
+
+\begin{longtable}{@{}p{0.08\linewidth} p{0.28\linewidth} p{0.55\linewidth}@{}}
+    \hh{Semana} & \hh{Hito} & \hh{Entregable esperado}\\
+    \endfirsthead
+    \hh{Semana} & \hh{Hito} & \hh{Entregable esperado}\\
+    \endhead
+    14 & Elección de la revista y refinamiento metodológico & Declaración escrita de la revista o conferencia objetivo enviada al docente; incorporación de las observaciones docentes de la Entrega 3 (2A) al ERS y al manuscrito.\\
+    14 & Cierre de la recolección de datos & Al menos 20 de las 24 entrevistas transcritas; codificación temática avanzada; cuestionario aplicado a $n \geq 45$ por perfil dominante.\\
+    15 & Análisis empírico completo y borrador de resultados & \emph{Scripts} de análisis versionados producen todas las tablas y figuras; borrador de la sección de resultados incorporado al manuscrito.\\
+    15 & Miembro-verificación \emph{(member checking)} & Sesión con al menos 3 participantes previos confirmando la interpretación de los resultados; acta firmada en el repositorio.\\
+    16 & Cierre del manuscrito y depósito Zenodo & Manuscrito con secciones de discusión, amenazas a la validez y conclusiones cerradas; DOI de Zenodo obtenido; SWHID de Software Heritage obtenido; \texttt{CITATION.cff} actualizado.\\
+    16 & Autoevaluación FAIR y \emph{simulacro} de defensa & Reporte F-UJI en el repositorio con puntaje $\geq 60\%$; simulacro de defensa con retroalimentación docente por pares; folleto de una hoja listo.\\
+    17 & Entrega 4 (2B) y defensa final & Corte al domingo 15 de noviembre de 2026, 23:59; defensas orales en calendario acordado; retroalimentación individual y consolidación del portafolio del equipo.\\
+\end{longtable}
+
+\submark{11.1 Puentes con REFSQ 2027 y con el journal Requirements Engineering}
+Los equipos que opten por Research Previews de REFSQ 2027 disponen de la ventana de envío jueves 12 de noviembre de 2026, exactamente antes del cierre docente del semestre; se recomienda coordinar el envío con el docente para que la retroalimentación previa se aproveche íntegramente.
+Los equipos que opten por \emph{Posters \& Tools} de REFSQ 2027 disponen de la ventana de envío jueves 4 de febrero de 2027, ya fuera del semestre, por lo que se recomienda establecer un calendario de acompañamiento docente de tres a cinco reuniones distribuidas entre diciembre de 2026 y enero de 2027.
+Los equipos que opten por envío directo al journal Requirements Engineering de Springer disponen de la ventana continua, con tiempo mediano hasta la primera decisión editorial de 5 días según los datos oficiales de junio de 2026 \cite{req_eng_journal_2025}, por lo que el envío puede hacerse en las semanas 17 o 18 sin urgencia y esperar respuesta antes del inicio del ciclo siguiente.
+
+% =====================================================================
+%  SECCION 12: LECTURAS OBLIGATORIAS
+% =====================================================================
+\secband{Lecturas obligatorias para la Entrega 4 (2B / Defensa)}
+
+Cada integrante del equipo debe haber leído y aportar al análisis de al menos las siguientes lecturas obligatorias antes de escribir la sección de discusión y de conclusiones del manuscrito:
+\begin{itemize}
+    \item Wohlin \emph{et al.} (2012), capítulos 8 a 12 --- diseño de experimentos, análisis estadístico y amenazas a la validez en ingeniería de software \cite{wohlin2012experimentation}.
+    \item Runeson y Höst (2009) --- guía para conducir y reportar estudios de caso en ingeniería de software \cite{runeson2009guidelines}.
+    \item Jedlitschka, Ciolkowski y Pfahl (2008) --- plantilla de reporte de experimentos en ingeniería de software empírica \cite{jedlitschka2008reporting}.
+    \item Hennink, Kaiser y Marconi (2017) --- saturación de significado en investigación cualitativa por entrevista \cite{hennink2017saturation}.
+    \item Molléri, Petersen y Mendes (2020) --- lista de verificación para estudios de encuesta en ingeniería de software \cite{molleri2020checklist}.
+    \item Nosek \emph{et al.} (2018) --- pre-registro como práctica de investigación reproducible \cite{nosek2018preregistration}.
+    \item Wilkinson \emph{et al.} (2016) --- principios FAIR para gestión de datos científicos \cite{wilkinson2016fair}.
+    \item Cheng \emph{et al.} (2026) --- revisión sistemática sobre IA generativa para ingeniería de requerimientos \cite{cheng2026genai}, para los equipos que trabajan Enfoques 1 y 2.
+    \item Chazette y Schneider (2020) y Chazette \emph{et al.} (2022) --- la explicabilidad como requisito no funcional \cite{chazette2020nfr,chazette2022explainable}, para los equipos que trabajan el Enfoque 3.
+    \item Amaral, Torre y Sabetzadeh (2020) --- requisitos legales en RE \cite{amaral2020legal}, para los equipos que abordan cumplimiento normativo (SGA / SIGCM).
+\end{itemize}
+
+% =====================================================================
+%  SECCION 13: BIBLIOGRAFIA
+% =====================================================================
+\secband{Referencias bibliográficas de esta guía}
+
+\bibliographystyle{ieeetr}
+\bibliography{referencias}
+
+\end{document}
