@@ -1,0 +1,13 @@
+# NOTE: This is a placeholder template. The actual open-ended responses
+# (12 guardians x 8 questions), after redaction of personally identifying
+# details, must be inserted here by the study team before public release.
+# See ethics/data-management-plan.md for the redaction protocol.
+participant_id,question_number,question_text,response_text
+G01,1,"[question 1 text]",
+G01,2,"[question 2 text]",
+G01,3,"[question 3 text]",
+G01,4,"[question 4 text]",
+G01,5,"[question 5 text]",
+G01,6,"[question 6 text]",
+G01,7,"[question 7 text]",
+G01,8,"[question 8 text]",

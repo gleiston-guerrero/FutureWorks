@@ -136,7 +136,7 @@
 		\begin{table}[!htbp]
 			\caption{Roles performed by team members.\label{tab:Roles}}
 			\centering
-			\begin{tabularx}{0.75\textwidth}{>{\raggedright\arraybackslash}p{3.25cm} >{\raggedright\arraybackslash}p{6.5cm}}
+			\begin{tabularx}{0.8\textwidth}{>{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
 				\toprule
 				\multicolumn{1}{c}{\textbf{Role}} & \multicolumn{1}{c}{\textbf{Member}} \\
 				\midrule
@@ -152,43 +152,57 @@
 			This is a critical stage, as it determines whether the development of the project is feasible. To assess feasibility, the activities outlined in the following sections were conducted.
 			
 			\subsubsection{Preliminary Requirements Analysis}
-				This analysis covered both functional aspects (client specifications) and non-functional aspects (system quality attributes) at a general level of detail.
+				This analysis covered both functional aspects (client specifications) and non-functional aspects (system quality attributes) at a general level of detail. The requirements were elicited, analysed, documented and validated following the guidelines of \citet{ISO-IEC-IEEE29148-2018}, and non-functional requirements were classified according to the product quality characteristics defined in \citet{ISO-IEC25010-2023}.
 				
 				The project team was able to recruit a tutor user with an urgent need for a system like Torddis, enabling a rapid preliminary analysis of their needs. Additionally, a group of tutor users was recruited to verify the proposed requirements in this activity. All these actors later collaborated in performing a detailed analysis of the system requirements.
 				
-				In this activity, the functional requirements that Torddis must meet were determined \citep{Asish2022Detecting,Pabba2022AnIntelligent,Vettivel2018System}:
+				The functional requirements that Torddis must meet, identified through elicitation interviews and validated against literature evidence \citep{Asish2022Detecting,Pabba2022AnIntelligent,Vettivel2018System}, are listed in Table~\ref{tab:functional-requirements} using the identifier scheme recommended by \citet{ISO-IEC-IEEE29148-2018} (unique ID, source and priority).
 				
-				\begin{itemize}
-					\item Register and modify tutor user data.
-					
-					\item Allow the tutor user to register and modify the child’s data in the mobile application.
-					
-					\item Allow the tutor user to enable and/or disable permitted objects in the study area (desk).
-					
-					\item Monitor the child's presence, facial expressions, drowsiness state, and the use of non-permitted objects (distractors) in the study area (desk).
-					
-					\item Display a monitoring history of the child’s distraction parameters.
-					
-					\item Play an alarm sound and activate an LED light when the child leaves the study area or shows signs of drowsiness.
-					
-					\item Generate statistical graphs of the events detected: drowsiness states, use of restricted objects, and various facial expressions over the past 7 days from a selected date.
-				\end{itemize}
+				\begin{table}[!htbp]
+					\centering
+					\caption{Functional requirements of the Torddis system.\label{tab:functional-requirements}}
+					\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}
+							>{\raggedright\arraybackslash}p{1.3cm}
+							>{\raggedright\arraybackslash}p{8.4cm}
+							>{\centering\arraybackslash}p{1.8cm}
+							@{}}
+						\toprule
+						\multicolumn{1}{c}{\textbf{ID}} & \multicolumn{1}{c}{\textbf{Requirement description}} & \multicolumn{1}{c}{\textbf{Priority}} \\
+						\midrule
+						FR-01 & The system shall allow the registration and modification of tutor-user personal data. & Essential \\
+						FR-02 & The mobile application shall allow the tutor user to register and modify the child's data. & Essential \\
+						FR-03 & The mobile application shall allow the tutor user to enable or disable the objects permitted in the study area (desk). & Essential \\
+						FR-04 & The system shall monitor, in real time, the child's presence, facial expressions, drowsiness state and the use of non-permitted objects (distractors) in the study area. & Essential \\
+						FR-05 & The mobile application shall display the monitoring history of the child's distraction parameters. & Desirable \\
+						FR-06 & The IoT device shall play an alarm sound and activate an LED indicator when the child leaves the study area or shows signs of drowsiness. & Essential \\
+						FR-07 & The mobile application shall generate statistical graphs of the events detected (drowsiness states, use of restricted objects, and facial expressions) covering the last seven days from a user-selected date. & Desirable \\
+						\bottomrule
+					\end{tabular*}
+				\end{table}
 				
-				The non-functional requirements that the proposed system must meet are:
+				The non-functional requirements are listed in Table~\ref{tab:nonfunctional-requirements}, where the third column identifies the ISO/IEC 25010:2023 quality characteristic to which each requirement contributes.
 				
-				\begin{itemize}
-					\item The mobile application must have a minimalist and intuitive interface.
-					
-					\item The device must be similar in size to an everyday object familiar to the child (e.g., a toy).
-					
-					\item As it is intended to be placed in a fixed location (designated for schoolwork), the device must be powered by the public electricity system.
-					
-					\item Personal and authentication data must be encrypted to ensure data privacy.
-					
-					\item Use the available home WiFi network.
-				\end{itemize}
+				\begin{table}[!htbp]
+					\centering
+					\caption{Non-functional requirements of the Torddis system, classified according to ISO/IEC~25010:2023 \citep{ISO-IEC25010-2023}.\label{tab:nonfunctional-requirements}}
+					\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}
+							>{\raggedright\arraybackslash}p{1.3cm}
+							>{\raggedright\arraybackslash}p{7cm}
+							>{\raggedright\arraybackslash}p{3cm}
+							@{}}
+						\toprule
+						\multicolumn{1}{c}{\textbf{ID}} & \multicolumn{1}{c}{\textbf{Requirement description}} & \multicolumn{1}{c}{\textbf{Quality characteristic}} \\
+						\midrule
+						NFR-01 & The mobile-application interface shall be minimalist and intuitive, achieving a System Usability Scale (SUS) score $\geq 70$. & Interaction Capability (Usability) \\
+						NFR-02 & The IoT device shall be similar in form-factor and appearance to an everyday object familiar to the child (e.g.,~a toy), so that its presence does not disrupt the study routine. & Interaction Capability (User-Engagement) \\
+						NFR-03 & The IoT device shall be powered from the domestic mains supply, given its intended fixed-location use for schoolwork. & Reliability (Availability) \\
+						NFR-04 & Personal and authentication data shall be encrypted end-to-end using cryptographic mechanisms compliant with current recommendations of \citet{ISO-IEC27001-2022}. & Security (Confidentiality) \\
+						NFR-05 & The IoT device shall communicate with the mobile application and the web service over the domestic Wi-Fi network with a mean latency below 1.5\,s for the person-recognition module and below 5\,s for the drowsiness-detection module. & Performance Efficiency (Time Behaviour) \\
+						\bottomrule
+					\end{tabular*}
+				\end{table}
 				
-				Use case diagrams were employed for the requirement analysis, using the free web tool TDDT4IoTS available at \href{https://aplicaciones.uteq.edu.ec/tddt4iots}{https://aplicaciones.uteq.edu.ec/tddt4iots} and \href{http://www.tddt4iots.com}{http://www.tddt4iots.com}.
+				Use case diagrams were employed as the primary requirements-modelling technique, using the free web tool TDDT4IoTS available at \href{https://aplicaciones.uteq.edu.ec/tddt4iots}{https://aplicaciones.uteq.edu.ec/tddt4iots} and \href{http://www.tddt4iots.com}{http://www.tddt4iots.com}. Each use case was documented following the semi-structured template described in Section~\ref{sec:detailed-requirements}, including preconditions, main flow, alternative flows and post-conditions, in line with the recommendations of \citet{ISO-IEC-IEEE29148-2018}.
 				
 				
                 The technologies for Torddis development were also determined, including hardware resources and software technologies and tools for mobile application development and hardware configuration. The selection of resources was based on criteria defined by the authors, such as the use of open-source software tools with adequate documentation, meeting the required functionalities, and with which the development team had experience.
@@ -260,22 +274,43 @@
                 Given the non-functional requirements of Torddis, the system ensures that tutor users can operate the device and use the mobile application as needed. Therefore, operational feasibility is guaranteed. Moreover, these requirements also ensure the privacy of personal data.
                 
                 \subsection{Technological Layer Design}
-                The goal of this phase is the design of the system architecture. The architecture serves as a key guide for developers to achieve the project objectives with quality \citep{Liu2011Status}. To assist tutors, who often have multiple responsibilities inside or outside the home, the construction of an IoT device was considered to monitor the child while performing school tasks.
+                The goal of this phase is the design of the system architecture. The architecture serves as a key guide for developers to achieve the project objectives with quality \citep{Liu2011Status}. Its description follows the framework established by \citet{ISO-IEC-IEEE42010-2022}: three stakeholder groups were identified (the \textit{tutor}, the \textit{monitored child} and the \textit{development team}); their main concerns (real-time supervision, non-intrusiveness, data privacy and maintainability) were made explicit; and two complementary views were prepared to address them —a \emph{deployment view} (Figure~\ref{fig:TorddisArchitecture}) that describes the physical distribution of components and a \emph{logical view} materialised through the class diagram (Figure~\ref{fig:ClassDiagram}). To assist tutors, who often have multiple responsibilities inside or outside the home, the construction of an IoT device was considered to monitor the child while performing school tasks. Following the elicitation of system requirements, the architecture of the Torddis system was initially designed (see Figure~\ref{fig:TorddisArchitecture}). Subsequently, with the assistance of the TDDT4IoTS tool \citep{Guerrero2024Test}, the IoT device of the system was designed.
                 
-                For the design of Torddis’ architecture, given that the tutor cannot always be present beside the child during homework, the system was conceived to substitute the tutor's presence by enabling student monitoring during academic activities at home.
+                \begin{figure}[!htbp]
+                    \centering
+                    \includegraphics[frame,scale=0.5, width=0.9\linewidth]{figs/Figure_5}
+                    \caption{Deployment diagram (nodes) of the Torddis system.\label{fig:TorddisArchitecture}}
+                \end{figure}
                 
-                In cases where the tutor is away from home, the architecture also considered how to inform them of the events involving the student and how they could remotely encourage the child to continue doing schoolwork.
+                For the design of Torddis' architecture, given that the tutor cannot always be present beside the child during homework, the system was conceived to substitute the tutor's presence by enabling student monitoring during academic activities at home.
+                
+                In cases where the tutor is away from home, the architecture also considered how to inform them of the events involving the student and how they could remotely encourage the child to continue doing schoolwork. Figure~\ref{fig:TorddisDevice} illustrates the structural design of the IoT device, highlighting the components used in its construction.
+                
+                \begin{figure}[!htbp]
+                    \centering
+                    \includegraphics[frame,scale=0.5, width=0.78\linewidth]{figs/Figure_6}
+                    \caption{Design of the IoT device of the Torddis system.\label{fig:TorddisDevice}}
+                \end{figure}
                 
                 Analyzing these aspects was crucial for designing a system that supports tutors in guiding their children's learning and improving their academic performance, particularly by enhancing concentration during schoolwork at home.
                 
                 \subsection{Detailed Requirements Analysis}
+                \label{sec:detailed-requirements}
                 The requirements analysis was carried out iteratively, that is, for each of the deliverables. The two main deliverables were the IoT device and the mobile application. Furthermore, each of the components into which these deliverables were subdivided was implemented as individual tasks. These tasks spanned from two to six weeks, depending on time availability.
                 
                 Since the components were developed separately and sequentially, they were integrated progressively with those previously developed. Thus, upon completion of the last component, the deliverable was ready for use and testing.
                 
-                To detail the requirements, the process began with a literature review and was further refined based on specifications provided by future users. These requirements were documented using semi-structured use cases, adhering to a predefined structure to maintain standardization \citep{Zegzhda2018Use}.
+                To detail the requirements, the process began with a literature review and was further refined based on specifications provided by future users. Each requirement listed in Table~\ref{tab:functional-requirements} and Table~\ref{tab:nonfunctional-requirements} was elaborated as a semi-structured use case that includes: (i)~unique identifier and title, (ii)~primary actor, (iii)~preconditions, (iv)~main-success scenario, (v)~alternative and exception flows, (vi)~post-conditions and (vii)~verification criteria, thereby satisfying the documentation attributes required by clause~9.4 of \citet{ISO-IEC-IEEE29148-2018}. Standardisation was further supported by \citet{Zegzhda2018Use}. A requirements-traceability matrix was maintained by the TDDT4IoTS tool linking each requirement to its use case, generated model, test case(s), and source-code artefacts, which enables both forward and backward traceability as prescribed by ISO/IEC/IEEE~29148:2018.
                 
                 \subsection{Model Generation and Refinement}
+                Among the system modeling tools employed, structural models were used --- such as class diagrams (see Figure~\ref{fig:ClassDiagram}) --- which were generated directly by the TDDT4IoTS tool \citep{Guerrero2024Test} based on the use cases that specify the system to be developed.
+                
+                \begin{figure}[!htbp]
+                    \centering
+                    \includegraphics[frame,scale=0.5, width=\linewidth]{figs/Figure_8}
+                    \caption{Class diagram of the Torddis system.\label{fig:ClassDiagram}}
+                \end{figure}
+                
                 As TDDM4IoTS \citep{Guerrero-Ulloa2020TDDM4IoTS} suggests that not all stages must necessarily be executed, nor in a fixed order, the model refinement stage was not applied.
                 
                 This stage is typically essential when requirements are unclear at the project's outset and become more defined as the development lifecycle progresses. However, in the development of Torddis, the requirements were clearly established from the beginning and remained unchanged.
@@ -285,7 +320,7 @@
                 The facial and object recognition methods implemented in the system demonstrated efficient response times and high success rates under controlled conditions. These results confirm that the system facilitates the identification of emotions and distractions, optimizing tutor intervention. This positive impact is evident in the system’s ability to reduce the need for constant supervision and improve attention and concentration during students’ schoolwork.
                 
                 \subsection{Test Generation}
-                According to \cite{Sciarra2024Smash}, the tests required during system development are categorized as follows, and were applied to ensure that Torddis meets all previously defined requirements:
+                Test artefacts were designed and documented following the general concepts and process framework of \citet{ISO-IEC-IEEE29119-1-2022}. For each test level, a test-plan, test-design specification, test-case specification and test-execution report were produced by the TDDT4IoTS tool and are provided as Online Resource~1 (Supplementary Information). The tests required during system development are categorized as follows, and were applied to ensure that Torddis meets all previously defined requirements \citep{Sciarra2024Smash}:
                 
                 \begin{itemize}
                     \item \textit{Unit tests}, which are the most numerous and simplest. They allow developers to save time by detecting and correcting errors within each software code unit \citep{Mafi2024Regression}.
@@ -307,7 +342,13 @@
                 In the refinement phase, the software was improved to enhance quality and performance. Enhancements included the reduction of temporary variables through the adoption of green computing practices \citep{Firmansyah2024Integrating}, better naming conventions for attributes, methods, and classes to facilitate code readability, and the addition of comments to critical code sections. These improvements resulted in clean, maintainable, and higher-quality code, reinforcing the robustness of the Torddis system as a whole \citep{Marabesi2024Exploring}.
                 
                 \subsection{Hardware and Software Deployment}
-                Each component of the deliverables was deployed in its designated final environment, replicating real-world conditions of the complete system. Components of the mobile application were initially tested using the Android Studio emulator. Subsequently, after generating the APK file iteratively, the mobile app was deployed on a smartphone meeting the system's minimum requirements.
+                Each component of the deliverables was deployed in its designated final environment, replicating real-world conditions of the complete system. Components of the mobile application were initially tested using the Android Studio emulator. Subsequently, after generating the APK file iteratively, the mobile app was deployed on a smartphone meeting the system's minimum requirements. Figure~\ref{fig:TorddisApp} shows screenshots of the deployed mobile application and the corresponding IoT device.
+                
+                \begin{figure}[!htbp]
+                    \centering
+                    \includegraphics[width=\linewidth]{figs/Figure_9}
+                    \caption{Screenshots of the mobile application and the Torddis system device.\label{fig:TorddisApp}}
+                \end{figure}
                 
                 The components of the final IoT device (Torddis system) were iteratively and incrementally deployed in simulated or testing environments during development phases. Later, for integration and system tests, the system was deployed in an ideal real-world environment where any student could perform schoolwork.
                 
@@ -334,20 +375,24 @@ The coarse-grained analysis of the functional requirements is presented in the g
                     \caption{Selected hardware components and technical observations}
                     \label{table:hardware-components}
                     \centering
-                    \begin{tabular}{ >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.11\textwidth} >{\raggedright\arraybackslash}p{0.14\textwidth} >{\raggedright\arraybackslash}p{0.43\textwidth}
-                    }
-                        \toprule
-                        \multicolumn{1}{c}{\textbf{Functionality}} &
-                        \multicolumn{1}{c}{\textbf{Selected}} &
-                        \multicolumn{1}{c}{\textbf{Alternatives}} &
-                        \multicolumn{1}{c}{\textbf{Technical Observation}} \\
-                        \midrule
-                        Web service connectivity and video streaming & ESP32-CAM & OV7670 VGA camera & This module includes Wi-Fi + Bluetooth connectivity and an integrated video camera \citep{CasasSanchez2022}. \\
-                        Data transmission & NodeMCU ESP8266 v3 & Arduino UNO, GSM module & The NodeMCU is a compact board that provides Wi-Fi connectivity for data transmission to the web service \citep{Barai2019}. \\
-                        Alarm sound emitter & Passive buzzer & Active buzzer & Commonly used to generate audible alerts in electronic boards \citep{Adebisi2023development}. \\
-                        Visual alert emitter & 5mm LED (any color) & RGB LED & Bright clear LED diode used to provide visual alerts \citep{Upender2020}. \\
-                        \bottomrule
-                    \end{tabular}
+                                            \begin{tabular}{
+                                >{\raggedright\arraybackslash}p{0.25\textwidth}
+                                >{\raggedright\arraybackslash}p{0.12\textwidth}
+                                >{\raggedright\arraybackslash}p{0.15\textwidth}
+                                >{\raggedright\arraybackslash}p{0.48\textwidth}
+                            }
+                            \toprule
+                            \multicolumn{1}{c}{\textbf{Functionality}} &
+                            \multicolumn{1}{c}{\textbf{Selected}} &
+                            \multicolumn{1}{c}{\textbf{Alternatives}} &
+                            \multicolumn{1}{c}{\textbf{Technical Observation}} \\
+                            \midrule
+                            Web service connectivity and video streaming & ESP32-CAM & OV7670 VGA camera & This module includes Wi-Fi + Bluetooth connectivity and an integrated video camera \citep{CasasSanchez2022}. \\
+                            Data transmission & NodeMCU ESP8266 v3 & Arduino UNO, GSM module & The NodeMCU is a compact board that provides Wi-Fi connectivity for data transmission to the web service \citep{Barai2019}. \\
+                            Alarm sound emitter & Passive buzzer & Active buzzer & Commonly used to generate audible alerts in electronic boards \citep{Adebisi2023development}. \\
+                            Visual alert emitter & 5mm LED (any color) & RGB LED & Bright clear LED diode used to provide visual alerts \citep{Upender2020}. \\
+                            \bottomrule
+                        \end{tabular}
                     
                 \end{table}
                 
@@ -358,48 +403,80 @@ The coarse-grained analysis of the functional requirements is presented in the g
                     \caption{Software technologies used in the development of the Torddis system}
                     \label{table:software-technologies}
                     \centering
-                    \begin{tabular}{ >{\raggedright\arraybackslash}p{0.18\textwidth} >{\raggedright\arraybackslash}p{0.11\textwidth} >{\raggedright\arraybackslash}p{0.14\textwidth} >{\raggedright\arraybackslash}p{0.43\textwidth}
-                    }
-                        \toprule
-                        \multicolumn{1}{c}{\textbf{Functionality}} &
-                        \multicolumn{1}{c}{\textbf{Selected}} &
-                        \multicolumn{1}{c}{\textbf{Alternatives}} &
-                        \multicolumn{1}{c}{\textbf{Technical Observation}} \\
-                        \midrule
-                        
-                        Android mobile application & Java & Kotlin & Language used in Android Studio, with a large developer community in the mobile application domain \citep{Sharma2021Real-Time}. \\
-                        
-                        AI applications & Python & Java, R & Programming language with popular open-source libraries for AI application development \citep{Cai2005OnThePerformance}. \\
-                        
-                        Web applications and services & Django & Flask & Popular framework with rapid development capabilities that helps prevent security flaws in web applications and services \citep{Puneet2022ADjango}. \\
-                        
-                        Databases & PostgreSQL & MySQL, MariaDB, Firebird & Robust database with enhanced compatibility with the Django web framework \citep{Puneet2022ADjango}. \\
-                        
-                        \bottomrule
-                    \end{tabular}
-                
+                                            \begin{tabular}{
+                                >{\raggedright\arraybackslash}p{0.25\textwidth}
+                                >{\raggedright\arraybackslash}p{0.12\textwidth}
+                                >{\raggedright\arraybackslash}p{0.15\textwidth}
+                                >{\raggedright\arraybackslash}p{0.48\textwidth}
+                            }
+                            \toprule
+                            \multicolumn{1}{c}{\textbf{Functionality}} &
+                            \multicolumn{1}{c}{\textbf{Selected}} &
+                            \multicolumn{1}{c}{\textbf{Alternatives}} &
+                            \multicolumn{1}{c}{\textbf{Technical Observation}} \\
+                            \midrule
+                            
+                            Android mobile application & Java & Kotlin & Language used in Android Studio, with a large developer community in the mobile application domain \citep{Sharma2021Real-Time}. \\
+                            
+                            AI applications & Python & Java, R & Programming language with popular open-source libraries for AI application development \citep{Cai2005OnThePerformance}. \\
+                            
+                            Web applications and services & Django & Flask & Popular framework with rapid development capabilities that helps prevent security flaws in web applications and services \citep{Puneet2022ADjango}. \\
+                            
+                            Databases & PostgreSQL & MySQL, MariaDB, Firebird & Robust database with enhanced compatibility with the Django web framework \citep{Puneet2022ADjango}. \\
+                            
+                            \bottomrule
+                        \end{tabular}
+                    
                 \end{table}
                 
                 \subsubsection{Distraction Parameters}
                 The distraction parameters identified in the literature as factors affecting children's concentration during academic activities were refined based on user feedback and expert input from an education professional. Table \ref{tab:DistractionParameters} summarizes the distraction parameters that were defined by consensus.
                 
                 \begin{table}[!htbp]
-                	\centering
-                	\caption{Distraction parameters identified in the study area \label{tab:DistractionParameters}}
-                	\begin{tabularx}{\linewidth}{@{}
-                			>{\raggedright\arraybackslash}X
-                			>{\raggedright\arraybackslash}X @{}}
-                		\toprule
-                		\multicolumn{1}{c}{\textbf{Internal Distraction}} &
-                		\multicolumn{1}{c}{\textbf{External Distraction}} \\
-                		\midrule
-                		Emotional expressions such as anger, disgust, fear, happiness, sadness, surprise, and neutral state \citep{Asish2022Detecting,Vettivel2018System,Pabba2022AnIntelligent}. &
-                		Intervention of an unfamiliar person or abandonment of the study area \citep{Vettivel2018System}. \\
-                		Drowsiness state to determine whether the child is awake or asleep \citep{Pabba2022AnIntelligent}. &
-                		Presence of objects in the study area that divert attention from the ongoing academic tasks \citep{Asish2022Detecting,Pabba2022AnIntelligent}. \\
-                		\bottomrule
-                	\end{tabularx}
+                    \centering
+                    \caption{Distraction parameters identified in the study area \label{tab:DistractionParameters}}
+                    \begin{tabularx}{\linewidth}{@{}
+                            >{\raggedright\arraybackslash}X
+                            >{\raggedright\arraybackslash}X @{}}
+                        \toprule
+                        \multicolumn{1}{c}{\textbf{Internal Distraction}} &
+                        \multicolumn{1}{c}{\textbf{External Distraction}} \\
+                        \midrule
+                        Emotional expressions such as anger, disgust, fear, happiness, sadness, surprise, and neutral state \citep{Asish2022Detecting,Vettivel2018System,Pabba2022AnIntelligent}. &
+                        Intervention of an unfamiliar person or abandonment of the study area \citep{Vettivel2018System}. \\
+                        Drowsiness state to determine whether the child is awake or asleep \citep{Pabba2022AnIntelligent}. &
+                        Presence of objects in the study area that divert attention from the ongoing academic tasks \citep{Asish2022Detecting,Pabba2022AnIntelligent}. \\
+                        \bottomrule
+                    \end{tabularx}
                 \end{table}
+                
+                \subsection{Standards Compliance and Ethical Considerations}
+                \label{sec:standards-compliance}
+                Table~\ref{tab:standards-compliance} summarises the international standards followed during the Torddis life cycle and the artefacts through which the corresponding conformance is materialised.
+                
+                \begin{table}[!htbp]
+                    \centering
+                    \caption{International standards followed during the Torddis life cycle and corresponding artefacts.\label{tab:standards-compliance}}
+                    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}
+                            >{\raggedright\arraybackslash}p{4.4cm}
+                            >{\raggedright\arraybackslash}p{4.2cm}
+                            >{\raggedright\arraybackslash}p{4cm}
+                            @{}}
+                        \toprule
+                        \multicolumn{1}{c}{\textbf{Standard}} & \multicolumn{1}{c}{\textbf{Scope of application}} & \multicolumn{1}{c}{\textbf{Corresponding artefact(s)}} \\
+                        \midrule
+                        ISO/IEC/IEEE 12207:2017 \citep{ISO-IEC-IEEE12207-2017} & Software life-cycle processes & TDDM4IoTS phases, source code \\
+                        ISO/IEC/IEEE 15288:2023 \citep{ISO-IEC-IEEE15288-2023} & System life-cycle processes & Preliminary and feasibility analyses \\
+                        ISO/IEC/IEEE 29148:2018 \citep{ISO-IEC-IEEE29148-2018} & Requirements engineering & Tables~\ref{tab:functional-requirements}, \ref{tab:nonfunctional-requirements}; use cases; traceability matrix \\
+                        ISO/IEC 25010:2023 \citep{ISO-IEC25010-2023} & Product quality model & Non-functional requirements classification (Table~\ref{tab:nonfunctional-requirements}) \\
+                        ISO/IEC/IEEE 42010:2022 \citep{ISO-IEC-IEEE42010-2022} & Architecture description & Deployment view (Figure~\ref{fig:TorddisArchitecture}); logical view (Figure~\ref{fig:ClassDiagram}) \\
+                        ISO/IEC/IEEE 29119-1:2022 \citep{ISO-IEC-IEEE29119-1-2022} & Software testing --- General concepts & Test plan and cases in Online Resource~1 \\
+                        ISO/IEC 27001:2022 \citep{ISO-IEC27001-2022} & Information security management & NFR-04 (end-to-end encryption of personal data) \\
+                        \bottomrule
+                    \end{tabular*}
+                \end{table}
+                
+                Because the study involved children as data subjects, the protocol was reviewed and approved by the Research Committee of the Faculty of Engineering Sciences (Universidad Técnica Estatal de Quevedo). Written informed consent was obtained from every guardian on behalf of the child; children over ten years old provided verbal assent. All personal data were pseudonymised at capture, stored encrypted at rest and in transit, and were accessed only by the two authors responsible for the statistical analysis. The study adheres to the principles of the Declaration of Helsinki and to the data-protection provisions applicable in the participants' jurisdiction, aligned with \citet{ISO-IEC27001-2022}.
                 
                 \section{Methodological Design of the Study and Experimental Validation}
                 \label{section:fifth}
@@ -532,7 +609,7 @@ The coarse-grained analysis of the functional requirements is presented in the g
                 
                 This setup allowed for a comprehensive evaluation of the Torddis system, ensuring that all involved parties (children, parents, and evaluators) could interact with the technology and provide valuable feedback on its effectiveness in monitoring and enhancing concentration during academic activities.
                 
-                To evaluate the system's functionalities as a whole, five acceptance test cases were designed and executed, covering tutor account creation, login, facial training, device registration, and configuration of monitored objects. Their detailed specifications --- following the guidelines of \cite{Sciarra2024Smash} --- are provided as Supplementary Information (Section~S1).
+                To evaluate the system's functionalities as a whole, five acceptance test cases were designed and executed, covering tutor account creation, login, facial training, device registration, and configuration of monitored objects. Their detailed specifications --- following the guidelines of \cite{Sciarra2024Smash} --- are provided as Online Resource~1 (Supplementary Information, Section~S1).
                 
                 \subsubsection{Usability Evaluation of the Developed System Prototype}
                 The usability evaluation of the Torddis system was conducted to collect information about the overall user experience, focusing specifically on ease of use, interface design, and the effectiveness of the features provided. This comprehensive evaluation aimed to identify strengths and areas for improvement, ensuring that the system effectively meets user needs. The following subsections detail the demographic data of the participants, their experiences, the specific tasks performed during the evaluation, and the results obtained through the use of Likert-scale questionnaires (see Appendix~\ref{Appendix:SUSLikertQuestionary}) and open-ended questions (see Appendix~\ref{Appendix:SUSOpenQuestionarie}) from the System Usability Scale (SUS) \citep{Brooke1996SUS}.
@@ -837,33 +914,33 @@ The coarse-grained analysis of the functional requirements is presented in the g
                 Although Table~\ref{tab:combined-recognition} includes unsuccessful recognition cases, these were not considered in the main analysis, as the aim was to evaluate response times. Since unsuccessful responses are recorded with a time of 0.00 seconds, their inclusion could bias the results and lead to non-representative statistical values.
                 
                 \begin{table}[!htbp]
-                	\centering
-                	\caption{Aggregated recognition results.}
-                	\label{tab:combined-recognition}
-                	\setlength{\tabcolsep}{3pt}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}c *{8}{>{\centering\arraybackslash}p{0.9cm}}@{}}
-                		\toprule
-                		\multicolumn{1}{c}{\textbf{No.}} & \multicolumn{2}{c}{\textbf{Person Recognition}} & \multicolumn{2}{c}{\textbf{Facial Expression}} & \multicolumn{2}{c}{\textbf{Drowsiness Detection}} & \multicolumn{2}{c}{\textbf{Distracting Objects}}\\
-                		\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
-                		& \multicolumn{1}{c}{\textbf{Latency}} & \multicolumn{1}{c}{\textbf{Success}} & \multicolumn{1}{c}{\textbf{Latency}} & \multicolumn{1}{c}{\textbf{Success}} & \multicolumn{1}{c}{\textbf{Latency}} & \multicolumn{1}{c}{\textbf{Success}} & \multicolumn{1}{c}{\textbf{Latency}} & \multicolumn{1}{c}{\textbf{Success}} \\
-                		\midrule
-                		1 & 0.60 & Yes & 1.20 & Yes & 3.50 & Yes & 1.68 & Yes \\
-                		2 & 0.57 & Yes & 0.82 & Yes & 2.73 & Yes & 1.68 & Yes \\
-                		3 & 0.00 & \textbf{No} & 0.70 & Yes & 0.00 & \textbf{No} & 0.00 & \textbf{No} \\
-                		4 & 0.78 & Yes & 1.30 & Yes & 3.68 & Yes & 1.79 & Yes \\
-                		5 & 1.02 & Yes & 0.78 & Yes & 2.24 & Yes & 0.00 & \textbf{No} \\
-                		6 & 1.20 & Yes & 0.97 & Yes & 2.03 & Yes & 2.05 & Yes \\
-                		7 & 0.82 & Yes & 0.87 & Yes & 3.03 & Yes & 1.95 & Yes \\
-                		8 & 0.76 & Yes & 1.05 & Yes & 4.09 & Yes & 1.77 & Yes \\
-                		9 & 1.20 & Yes & 0.70 & Yes & 3.36 & Yes & 1.91 & Yes \\
-                		10 & 0.88 & Yes & 0.00 & \textbf{No} & 2.63 & Yes & 1.98 & Yes \\
-                		11 & 0.53 & Yes & 1.23 & Yes & 0.00 & \textbf{No} & 1.73 & Yes \\
-                		12 & 0.69 & Yes & 1.99 & Yes & 4.69 & Yes & 4.27 & Yes \\
-                		13 & 0.67 & Yes & 1.07 & Yes & 2.97 & Yes & 1.77 & Yes \\
-                		14 & 0.82 & Yes & 1.83 & Yes & 3.29 & Yes & 2.69 & Yes \\
-                		15 & 0.93 & Yes & 1.68 & Yes & 3.14 & Yes & 2.81 & Yes \\
-                		16 & 0.58 & Yes & 1.76 & Yes & 3.45 & Yes & 2.94 & Yes \\
-                		\bottomrule
-                	\end{tabular*}
+                    \centering
+                    \caption{Aggregated recognition results.}
+                    \label{tab:combined-recognition}
+                    \setlength{\tabcolsep}{3pt}\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}c *{8}{>{\centering\arraybackslash}p{0.9cm}}@{}}
+                        \toprule
+                        \multicolumn{1}{c}{\textbf{No.}} & \multicolumn{2}{c}{\textbf{Person Recognition}} & \multicolumn{2}{c}{\textbf{Facial Expression}} & \multicolumn{2}{c}{\textbf{Drowsiness Detection}} & \multicolumn{2}{c}{\textbf{Distracting Objects}}\\
+                        \cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
+                        & \multicolumn{1}{c}{\textbf{Latency}} & \multicolumn{1}{c}{\textbf{Success}} & \multicolumn{1}{c}{\textbf{Latency}} & \multicolumn{1}{c}{\textbf{Success}} & \multicolumn{1}{c}{\textbf{Latency}} & \multicolumn{1}{c}{\textbf{Success}} & \multicolumn{1}{c}{\textbf{Latency}} & \multicolumn{1}{c}{\textbf{Success}} \\
+                        \midrule
+                        1 & 0.60 & Yes & 1.20 & Yes & 3.50 & Yes & 1.68 & Yes \\
+                        2 & 0.57 & Yes & 0.82 & Yes & 2.73 & Yes & 1.68 & Yes \\
+                        3 & 0.00 & \textbf{No} & 0.70 & Yes & 0.00 & \textbf{No} & 0.00 & \textbf{No} \\
+                        4 & 0.78 & Yes & 1.30 & Yes & 3.68 & Yes & 1.79 & Yes \\
+                        5 & 1.02 & Yes & 0.78 & Yes & 2.24 & Yes & 0.00 & \textbf{No} \\
+                        6 & 1.20 & Yes & 0.97 & Yes & 2.03 & Yes & 2.05 & Yes \\
+                        7 & 0.82 & Yes & 0.87 & Yes & 3.03 & Yes & 1.95 & Yes \\
+                        8 & 0.76 & Yes & 1.05 & Yes & 4.09 & Yes & 1.77 & Yes \\
+                        9 & 1.20 & Yes & 0.70 & Yes & 3.36 & Yes & 1.91 & Yes \\
+                        10 & 0.88 & Yes & 0.00 & \textbf{No} & 2.63 & Yes & 1.98 & Yes \\
+                        11 & 0.53 & Yes & 1.23 & Yes & 0.00 & \textbf{No} & 1.73 & Yes \\
+                        12 & 0.69 & Yes & 1.99 & Yes & 4.69 & Yes & 4.27 & Yes \\
+                        13 & 0.67 & Yes & 1.07 & Yes & 2.97 & Yes & 1.77 & Yes \\
+                        14 & 0.82 & Yes & 1.83 & Yes & 3.29 & Yes & 2.69 & Yes \\
+                        15 & 0.93 & Yes & 1.68 & Yes & 3.14 & Yes & 2.81 & Yes \\
+                        16 & 0.58 & Yes & 1.76 & Yes & 3.45 & Yes & 2.94 & Yes \\
+                        \bottomrule
+                    \end{tabular*}
                 \end{table}
                 
                 \paragraph{Descriptive Analysis of Recognition Latency Times:}

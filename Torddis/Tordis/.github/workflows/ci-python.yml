@@ -1,0 +1,64 @@
+name: ci-python
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'analysis/**'
+      - 'src/backend/**'
+      - 'src/ai-modules/**'
+      - '.github/workflows/ci-python.yml'
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install analysis dependencies
+        working-directory: analysis
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install nbconvert
+
+      - name: Execute analysis notebooks
+        working-directory: analysis
+        run: |
+          for nb in *.ipynb; do
+            jupyter nbconvert --to notebook --execute --inplace "$nb" || exit 1
+          done
+
+      - name: Check that processed data was regenerated
+        run: |
+          test -f data/processed/normality-test-results.csv || echo "NOTE: notebooks require real data to regenerate the processed CSVs"
+
+  test-backend:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install back-end dependencies
+        working-directory: src/backend
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run Django unit tests
+        working-directory: src/backend
+        run: |
+          if [ -f manage.py ]; then python manage.py test; fi

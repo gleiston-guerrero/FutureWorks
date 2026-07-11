@@ -1,0 +1,13 @@
+requirement_id,requirement_title,use_case_id,test_case_id,code_module,verification_status
+FR-01,Register/modify tutor user,UC-01,TC-AC-01,src/mobile-app/app/src/main/java/com/torddis/auth/,PASS
+FR-02,Register/modify child data,UC-02,TC-AC-04,src/mobile-app/app/src/main/java/com/torddis/child/,PASS
+FR-03,Configure allowed objects,UC-03,TC-AC-05,src/mobile-app/app/src/main/java/com/torddis/config/,PASS
+FR-04,Real-time distraction monitoring,UC-04,TC-SY-01,src/ai-modules/,PASS
+FR-05,Distraction history,UC-05,TC-AC-02,src/mobile-app/app/src/main/java/com/torddis/history/,PASS
+FR-06,Alarm and LED alerts,UC-06,TC-SY-02,src/iot-device/esp8266-nodemcu/,PASS
+FR-07,Statistical event graphs,UC-07,TC-AC-03,src/mobile-app/app/src/main/java/com/torddis/stats/,PASS
+NFR-01,Minimalist and intuitive interface,-,TC-US-01,src/mobile-app/app/src/main/res/,PASS (SUS=81.46)
+NFR-02,Non-intrusive form-factor,-,TC-US-02,src/iot-device/enclosure/,PASS (mean=4.42/5)
+NFR-03,Mains-powered operation,-,TC-EN-01,src/iot-device/,PASS
+NFR-04,End-to-end data encryption,-,TC-SE-01,src/backend/torddis/security/,PASS
+NFR-05,Recognition latency,-,TC-PE-01,src/ai-modules/,PASS (Person=0.803s / Drowsiness=3.202s)

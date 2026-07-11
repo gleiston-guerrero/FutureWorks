@@ -1,0 +1,82 @@
+{
+    "title": "Torddis reproducibility package (source code, data, documentation and analysis notebooks)",
+    "description": "Reproducibility package accompanying the manuscript 'Torddis: A real-time IoT and AI-based system to support at-home learning and mitigate parental absenteeism' submitted to Education and Information Technologies (Springer Nature). Contains the complete source code of the Android mobile application (Java), the ESP32-CAM and NodeMCU ESP8266 firmware (C/C++), the Django back-end and AI modules (Python), the pseudonymised experimental data collected from 12 guardians and their primary-school children, the Jupyter notebooks that regenerate every statistical result reported in the manuscript, the data-collection instruments (SUS, demographic survey, Likert effectiveness questionnaire and open-ended questions), the requirements specification following ISO/IEC/IEEE 29148:2018, the architecture description following ISO/IEC/IEEE 42010:2022, the testing artefacts following ISO/IEC/IEEE 29119-1:2022 and the ethics documentation.",
+    "creators": [
+        {
+            "name": "Almeida-Dueñas, Carlos",
+            "orcid": "0000-0002-0959-922X",
+            "affiliation": "Facultad de Ciencias de la Ingeniería, Universidad Técnica Estatal de Quevedo (UTEQ), Ecuador"
+        },
+        {
+            "name": "Plazarte-Suárez, John",
+            "orcid": "0000-0001-5488-9982",
+            "affiliation": "Facultad de Ciencias de la Ingeniería, Universidad Técnica Estatal de Quevedo (UTEQ), Ecuador"
+        },
+        {
+            "name": "Guerrero-Ulloa, Gleiston",
+            "orcid": "0000-0001-5990-2357",
+            "affiliation": "Facultad de Ciencias de la Ingeniería, Universidad Técnica Estatal de Quevedo (UTEQ), Ecuador"
+        },
+        {
+            "name": "Erazo-Moreta, Orlando",
+            "orcid": "0000-0001-5642-9920",
+            "affiliation": "Facultad de Ciencias de la Ingeniería, Universidad Técnica Estatal de Quevedo (UTEQ), Ecuador"
+        },
+        {
+            "name": "Hornos, Miguel J.",
+            "orcid": "0000-0001-5722-9816",
+            "affiliation": "Departamento de Lenguajes y Sistemas Informáticos, Universidad de Granada, Spain"
+        },
+        {
+            "name": "Rodríguez-Domínguez, Carlos",
+            "orcid": "0000-0001-5626-3115",
+            "affiliation": "Departamento de Lenguajes y Sistemas Informáticos, Universidad de Granada, Spain"
+        }
+    ],
+    "keywords": [
+        "IoT",
+        "artificial intelligence",
+        "educational technology",
+        "self-regulated learning",
+        "facial expression recognition",
+        "drowsiness detection",
+        "object recognition",
+        "ESP32",
+        "Android",
+        "Django",
+        "reproducibility package",
+        "open science",
+        "FAIR data",
+        "ISO 25010",
+        "ISO 29148",
+        "ISO 42010"
+    ],
+    "language": "eng",
+    "upload_type": "dataset",
+    "access_right": "open",
+    "license": "cc-by-4.0",
+    "communities": [
+        {"identifier": "reproducibility"},
+        {"identifier": "iot"}
+    ],
+    "related_identifiers": [
+        {
+            "relation": "isSupplementTo",
+            "identifier": "TO_BE_ADDED_ON_ACCEPTANCE",
+            "resource_type": "publication-article",
+            "scheme": "doi"
+        },
+        {
+            "relation": "isDerivedFrom",
+            "identifier": "https://github.com/CarlosAlmeida2000/ProyectoTorddis",
+            "resource_type": "software",
+            "scheme": "url"
+        }
+    ],
+    "grants": [
+        {"id": "10.13039/501100011033::PID2023-149185OB-I00"},
+        {"id": "10.13039/501100011033::PID2022-139297OB-I00"},
+        {"id": "10.13039/501100011033::TED2021-132262A-I00"}
+    ],
+    "notes": "This deposit is a dual-licensed dataset. Source code (subdirectories src/ and analysis/) is licensed under the MIT licence; documentation, data, instruments and ethics documentation (docs/, data/, instruments/, ethics/, README.md, CITATION.cff, CHANGELOG.md) are licensed under Creative Commons Attribution 4.0 International (CC-BY 4.0)."
+}

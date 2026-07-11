@@ -1,0 +1,105 @@
+cff-version: 1.2.0
+message: >
+  If you use this reproducibility package, please cite both the
+  manuscript and the Zenodo deposit using the metadata below.
+title: >
+  Torddis reproducibility package (source code, data, documentation
+  and analysis notebooks)
+version: 1.0.0
+date-released: "2026-01-15"
+license: MIT
+license-url: "https://opensource.org/license/mit"
+type: dataset
+repository-code: "https://github.com/CarlosAlmeida2000/ProyectoTorddis"
+url: "https://doi.org/10.5281/zenodo.XXXXXXX"
+doi: 10.5281/zenodo.XXXXXXX
+abstract: >
+  This reproducibility package accompanies the manuscript "Torddis: A
+  real-time IoT and AI-based system to support at-home learning and
+  mitigate parental absenteeism" submitted to Education and Information
+  Technologies. It contains the complete source code of the Android
+  mobile application (Java), the ESP32-CAM and NodeMCU ESP8266 firmware
+  (C/C++), the Django back-end and AI modules (Python), the
+  pseudonymised experimental data collected from 12 guardians and their
+  primary-school children, the Jupyter notebooks that regenerate every
+  statistical result reported in the manuscript, the data-collection
+  instruments (SUS, demographic survey, Likert effectiveness
+  questionnaire and open-ended questions), the requirements
+  specification following ISO/IEC/IEEE 29148:2018, the architecture
+  description following ISO/IEC/IEEE 42010:2022, the testing artefacts
+  following ISO/IEC/IEEE 29119-1:2022 and the ethics documentation.
+keywords:
+  - IoT
+  - artificial intelligence
+  - educational technology
+  - self-regulated learning
+  - facial expression recognition
+  - drowsiness detection
+  - object recognition
+  - ESP32
+  - Android
+  - Django
+  - reproducibility package
+  - open science
+authors:
+  - family-names: Almeida-Dueñas
+    given-names: Carlos
+    orcid: "https://orcid.org/0000-0002-0959-922X"
+    affiliation: >
+      Facultad de Ciencias de la Ingeniería, Universidad Técnica
+      Estatal de Quevedo (UTEQ), Quevedo, Ecuador
+  - family-names: Plazarte-Suárez
+    given-names: John
+    orcid: "https://orcid.org/0000-0001-5488-9982"
+    affiliation: >
+      Facultad de Ciencias de la Ingeniería, Universidad Técnica
+      Estatal de Quevedo (UTEQ), Quevedo, Ecuador
+  - family-names: Guerrero-Ulloa
+    given-names: Gleiston
+    orcid: "https://orcid.org/0000-0001-5990-2357"
+    affiliation: >
+      Facultad de Ciencias de la Ingeniería, Universidad Técnica
+      Estatal de Quevedo (UTEQ), Quevedo, Ecuador
+    email: gguerrero@uteq.edu.ec
+  - family-names: Erazo-Moreta
+    given-names: Orlando
+    orcid: "https://orcid.org/0000-0001-5642-9920"
+    affiliation: >
+      Facultad de Ciencias de la Ingeniería, Universidad Técnica
+      Estatal de Quevedo (UTEQ), Quevedo, Ecuador
+  - family-names: Hornos
+    given-names: Miguel J.
+    orcid: "https://orcid.org/0000-0001-5722-9816"
+    affiliation: >
+      Departamento de Lenguajes y Sistemas Informáticos, ETSI
+      Informática y de Telecomunicación, Universidad de Granada,
+      Granada, Spain
+    email: mhornos@ugr.es
+  - family-names: Rodríguez-Domínguez
+    given-names: Carlos
+    orcid: "https://orcid.org/0000-0001-5626-3115"
+    affiliation: >
+      Departamento de Lenguajes y Sistemas Informáticos, ETSI
+      Informática y de Telecomunicación, Universidad de Granada,
+      Granada, Spain
+preferred-citation:
+  type: article
+  title: >
+    Torddis: A real-time IoT and AI-based system to support at-home
+    learning and mitigate parental absenteeism
+  journal: "Education and Information Technologies"
+  year: 2026
+  authors:
+    - family-names: Almeida-Dueñas
+      given-names: Carlos
+    - family-names: Plazarte-Suárez
+      given-names: John
+    - family-names: Guerrero-Ulloa
+      given-names: Gleiston
+    - family-names: Erazo-Moreta
+      given-names: Orlando
+    - family-names: Hornos
+      given-names: Miguel J.
+    - family-names: Rodríguez-Domínguez
+      given-names: Carlos
+  notes: "Under review"

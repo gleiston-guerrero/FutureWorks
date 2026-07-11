@@ -1,0 +1,18 @@
+# NOTE: This is a placeholder template. The actual per-participant SUS
+# responses (12 guardians x 10 items) that produced the aggregate mean
+# SUS score of 81.46 reported in the manuscript must be inserted here
+# by the study team before public release. Values are integers on the
+# 1-5 Likert scale (see data-dictionary.md for the exact items).
+participant_id,sus_1,sus_2,sus_3,sus_4,sus_5,sus_6,sus_7,sus_8,sus_9,sus_10
+G01,,,,,,,,,,
+G02,,,,,,,,,,
+G03,,,,,,,,,,
+G04,,,,,,,,,,
+G05,,,,,,,,,,
+G06,,,,,,,,,,
+G07,,,,,,,,,,
+G08,,,,,,,,,,
+G09,,,,,,,,,,
+G10,,,,,,,,,,
+G11,,,,,,,,,,
+G12,,,,,,,,,,

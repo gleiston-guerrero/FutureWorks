@@ -1,0 +1,18 @@
+# NOTE: This is a placeholder template. The actual per-participant responses
+# (12 guardians x demographic + 7 effectiveness Likert items) that produced
+# the descriptive statistics reported in Table 9 of the manuscript must be
+# inserted here by the study team before public release. Coding scheme is
+# documented in data-dictionary.md.
+participant_id,tutor_age,tutor_gender,tutor_education,residence_area,occupation,internet_type,supervision_time,student_age,statement_1,statement_2,statement_3,statement_4,statement_5,statement_6,statement_7
+G01,,,,,,,,,,,,,,,
+G02,,,,,,,,,,,,,,,
+G03,,,,,,,,,,,,,,,
+G04,,,,,,,,,,,,,,,
+G05,,,,,,,,,,,,,,,
+G06,,,,,,,,,,,,,,,
+G07,,,,,,,,,,,,,,,
+G08,,,,,,,,,,,,,,,
+G09,,,,,,,,,,,,,,,
+G10,,,,,,,,,,,,,,,
+G11,,,,,,,,,,,,,,,
+G12,,,,,,,,,,,,,,,
