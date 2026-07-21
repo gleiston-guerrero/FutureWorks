@@ -4,40 +4,39 @@
 %% Journal: Education and Information Technologies (EAIT)
 %% ISSN: 1360-2357 (print), 1573-7608 (online)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% APA Reference Style (EAIT uses APA 7)
+\documentclass[pdflatex,sn-apa]{sn-jnl}
 
-\documentclass[pdflatex,sn-apa]{sn-jnl}% APA Reference Style (EAIT uses APA 7)
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage[title]{appendix}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage{manyfoot}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{placeins}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{subcaption}
+\usepackage[export]{adjustbox}
+\usepackage{url}
 
-%%%% Standard Packages
-\usepackage[T1]{fontenc}%
-\usepackage[utf8]{inputenc}%
-\usepackage{graphicx}%
-\usepackage{multirow}%
-\usepackage{amsmath,amssymb,amsfonts}%
-\usepackage{amsthm}%
-\usepackage{mathrsfs}%
-\usepackage[title]{appendix}%
-\usepackage{xcolor}%
-\usepackage{textcomp}%
-\usepackage{manyfoot}%
-\usepackage{booktabs}%
-\usepackage{algorithm}%
-\usepackage{algorithmicx}%
-\usepackage{algpseudocode}%
-\usepackage{listings}%
-\usepackage{placeins}% For \FloatBarrier to control float placement
-\usepackage{array}% For >{...} column-type prefixes and \extrarowheight
-\usepackage{tabularx}%
-\usepackage{pgfplots}%
-\usepackage{tikz}%
-\usepackage{subcaption}%
-\usepackage[export]{adjustbox}%
-\usepackage{url}%
+\pgfplotsset{compat=1.18}
+\graphicspath{{figs/}}
 
-\pgfplotsset{compat=1.18}%
-\graphicspath{{figs/}}%
 
-%% Extra row height to prevent header text from touching table rules
-%% (Springer's toprule/midrule use zero baseline space by default)
 \setlength{\extrarowheight}{2pt}%
 
 %% Local helper macros used in the tables of the original manuscript
@@ -118,7 +117,7 @@
 %% EAIT/Springer Nature requirements.)
 %%=========================================================================%%
 
-\input{tordis-eait-body}
+\input{tordis-eait-final}
 
 %%=========================================================================%%
 %% Statements and Declarations (mandatory for EAIT)
