@@ -1,0 +1,202 @@
+% =====================================================================
+%  MEMORANDO TECNICO DE ASPECTOS ETICOS --- Proyecto EAES
+%  Documento de apoyo para la revision del Comite de Etica
+%  Compilacion: pdflatex memorando_aspectos_eticos.tex
+% =====================================================================
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage{mathptmx}
+\usepackage[scaled=0.90]{helvet}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage[
+	a4paper,
+	left=2.6cm,
+	right=2.6cm,
+	top=2.2cm,
+	bottom=2.0cm,
+	headheight=14pt,
+	footskip=1.0cm
+]{geometry}
+
+\definecolor{azulinstitucional}{RGB}{20,60,110}
+\definecolor{grisclaro}{RGB}{243,245,248}
+\definecolor{grismedio}{RGB}{120,130,140}
+
+\titleformat{\section}
+	{\normalfont\sffamily\normalsize\bfseries\color{azulinstitucional}}
+	{\thesection.}{0.6em}{}
+\titlespacing*{\section}{0pt}{9pt}{3pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily\color{grismedio}Memorando t\'ecnico de aspectos \'eticos --- Proyecto EAES}
+\fancyhead[R]{\footnotesize\sffamily\color{grismedio}P\'ag. \thepage\ de \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.35}
+\setlist{itemsep=3pt,topsep=3pt,parsep=0pt}
+
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newsavebox{\cajaguardada}
+\newenvironment{recuadro}
+	{\begin{lrbox}{\cajaguardada}\begin{minipage}{\dimexpr\textwidth-2\fboxsep\relax}\vspace{4pt}\small}
+	{\vspace{4pt}\end{minipage}\end{lrbox}\par\vspace{4pt}\noindent\colorbox{grisclaro}{\usebox{\cajaguardada}}\par\vspace{6pt}}
+
+\newcommand{\campo}[1]{\rule{#1}{0.4pt}}
+
+\begin{document}
+
+% =====================================================================
+\begin{center}
+	{\sffamily\small\color{grismedio} UNIVERSIDAD T\'ECNICA ESTATAL DE QUEVEDO\par}
+	{\sffamily\small\color{grismedio} FACULTAD DE CIENCIAS DE LA COMPUTACI\'ON --- CARRERA DE SOFTWARE\par}
+	\vspace{8pt}
+	{\sffamily\large\bfseries\color{azulinstitucional} MEMORANDO T\'ECNICO DE ASPECTOS \'ETICOS\par}
+	\vspace{3pt}
+	{\sffamily\small\textbf{Proyecto EAES} --- Escritura Acad\'emica y Aprendizaje en Educaci\'on Superior\par}
+	\vspace{2pt}
+	{\footnotesize\itshape Documento de apoyo para la revisi\'on del Comit\'e de \'Etica de Investigaci\'on\par}
+\end{center}
+
+\vspace{4pt}
+\hrule
+\vspace{6pt}
+
+\section{Datos generales del proyecto}
+
+\begin{tabular}{@{}L{5.0cm}@{}L{10.4cm}@{}}
+	\textbf{\small Denominaci\'on:} & Escritura acad\'emica y herramientas digitales de apoyo: estudio multic\'entrico sobre procesos de elaboraci\'on de textos y aprendizaje en educaci\'on superior \\
+	\textbf{\small Investigador principal:} & Ing. Gleiston Cicer\'on Guerrero Ulloa, PhD. \\
+	\textbf{\small Unidad ejecutora:} & Facultad de Ciencias de la Computaci\'on --- Carrera de Software \\
+	\textbf{\small Dise\~no:} & Experimental aleatorizado, tres grupos, medidas repetidas \\
+	\textbf{\small Participantes previstos:} & Alrededor de 225 estudiantes \\
+	\textbf{\small Duraci\'on de la participaci\'on:} & Tres sesiones de dos horas y una sesi\'on de cuarenta minutos \\
+	\textbf{\small \'Ambito de ejecuci\'on:} & Carreras del campus central ``Manuel Haz \'Alvarez'' y del campus ``La Mar\'ia'' de la UTEQ, m\'as las universidades nacionales y extranjeras que se incorporen mediante convenio \\
+	\textbf{\small Nivel de riesgo estimado:} & M\'inimo \\
+\end{tabular}
+
+\section{Poblaci\'on participante y procedimiento de reclutamiento}
+
+Participan estudiantes de tercer nivel matriculados en las asignaturas involucradas, pertenecientes a distintas carreras distribuidas entre ambos campus de la Universidad. El reclutamiento se realiza mediante invitaci\'on abierta presentada en el aula por una persona distinta del docente titular de la asignatura, con el fin de evitar cualquier percepci\'on de presi\'on jer\'arquica derivada de la relaci\'on docente-estudiante.
+
+No se prev\'e la participaci\'on de menores de edad. En caso de identificarse alg\'un participante menor de dieciocho a\~nos, se requerir\'a el consentimiento de su representante legal adem\'as de su propio asentimiento, mediante los formatos correspondientes.
+
+Cada universidad que se incorpore al estudio obtendr\'a la aprobaci\'on de su propio comit\'e de \'etica antes de iniciar el reclutamiento en su sede, y aplicar\'a el protocolo, los instrumentos y el procedimiento de consentimiento sin modificaci\'on alguna.
+
+\section{Proceso de consentimiento informado}
+
+Cada participante recibe el documento de consentimiento con anterioridad a la primera sesi\'on, dispone de tiempo para leerlo y formular preguntas, y conserva un ejemplar firmado. El documento se emite por duplicado y detalla el objeto del estudio, las actividades previstas, los datos que se recogen, el tratamiento que reciben, el car\'acter voluntario de la participaci\'on y el derecho de retiro.
+
+El consentimiento contempla una autorizaci\'on \textbf{diferenciada y opcional} para que el equipo solicite a las autoridades universitarias el promedio acad\'emico del participante. Quien no otorgue esa autorizaci\'on puede participar igualmente en el estudio, en cuyo caso la conformaci\'on de los grupos se realiza \'unicamente con base en el texto de referencia inicial. Esta separaci\'on evita que la cesi\'on de un dato acad\'emico se convierta en condici\'on para participar.
+
+\section{Voluntariedad y ausencia de coerci\'on}
+
+La participaci\'on es voluntaria y puede interrumpirse en cualquier momento sin necesidad de justificaci\'on y sin consecuencia alguna.
+
+El estudio se encuentra \textbf{completamente desacoplado de la evaluaci\'on acad\'emica}: los textos elaborados no forman parte de la calificaci\'on de ninguna asignatura, y ni la participaci\'on, ni el desempe\~no dentro del estudio, ni el grupo asignado por sorteo inciden en la nota del estudiante. El reconocimiento por participar es equivalente para todos, con independencia del grupo asignado y del resultado obtenido. Estas condiciones se declaran por escrito en el consentimiento y se reiteran verbalmente al inicio de cada sesi\'on.
+
+\section{Informaci\'on parcial sobre las hip\'otesis y plan de informaci\'on final}
+
+\begin{recuadro}
+El equipo investigador somete expresamente a consideraci\'on del Comit\'e el aspecto que se detalla en esta secci\'on, por tratarse del \'unico elemento del dise\~no que se aparta de la informaci\'on plena previa.
+\end{recuadro}
+
+La informaci\'on entregada a los participantes describe el objeto del estudio de manera ver\'idica pero general: se les comunica que la investigaci\'on examina c\'omo se elaboran textos acad\'emicos y qu\'e factores inciden en el aprendizaje, y que las condiciones y herramientas de trabajo de cada sesi\'on se asignan al azar. No se les anticipa, en cambio, la hip\'otesis espec\'ifica que el estudio contrasta ni la direcci\'on del efecto esperado.
+
+La raz\'on es metodol\'ogica. Si los participantes conocieran de antemano la direcci\'on de la hip\'otesis, algunos modificar\'ian su conducta para confirmarla y otros para desmentirla, y ese sesgo de expectativa invalidar\'ia los resultados, con lo cual el esfuerzo solicitado a los estudiantes carecer\'ia de utilidad. Debe subrayarse que se trata de una \textbf{reserva de informaci\'on y no de una comunicaci\'on falsa}: ning\'un enunciado presentado a los participantes es inexacto, y no se les induce a creer nada distinto de lo que efectivamente ocurre.
+
+Como contrapartida, el equipo asume tres compromisos verificables:
+
+\begin{enumerate}[label=\textbf{\alph*)},leftmargin=1.0cm]
+	\item Realizar, al concluir la recolecci\'on de datos, una \textbf{sesi\'on de informaci\'on final} en la que se explique el prop\'osito completo del estudio y se comuniquen los resultados obtenidos.
+	\item Ofrecer a cada participante, una vez conocido ese prop\'osito, la \textbf{posibilidad de retirar sus datos} del an\'alisis sin necesidad de justificaci\'on.
+	\item Extender a todos los grupos por igual la formaci\'on complementaria en escritura acad\'emica y uso responsable de herramientas digitales de apoyo.
+\end{enumerate}
+
+\section{Riesgos previsibles y medidas de mitigaci\'on}
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\begin{tabular}{L{6.5cm} L{8.2cm}}
+		\toprule
+		\textbf{Riesgo identificado} & \textbf{Medida adoptada} \\
+		\midrule
+		Percepci\'on de que la participaci\'on incide en la calificaci\'on & Desacople expl\'icito, declarado por escrito en el consentimiento y reiterado verbalmente al inicio de cada sesi\'on \\
+		Presi\'on derivada de la relaci\'on docente-estudiante & La invitaci\'on la presenta una persona distinta del docente titular; el docente no conoce qui\'en acept\'o participar \\
+		Incomodidad ante la evaluaci\'on de los textos & Evaluaci\'on an\'onima y codificada; los revisores desconocen identidad, instituci\'on, campus, carrera y grupo \\
+		Fatiga por la duraci\'on de las sesiones & Sesiones de dos horas con pausa intermedia; los cuestionarios no superan los cinco minutos \\
+		Desventaja formativa del grupo de control & Al finalizar, todos los grupos reciben la misma formaci\'on complementaria \\
+		Exposici\'on de datos personales & Codificaci\'on inmediata, cifrado y custodia separada de la tabla de identidades \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+El estudio no contempla intervenciones f\'isicas, cl\'inicas ni psicol\'ogicas, no aborda temas sensibles y no recoge datos de categor\'ias especialmente protegidas. El nivel de riesgo se estima \textbf{m\'inimo}, comparable al de las actividades acad\'emicas ordinarias que los participantes realizan de forma habitual.
+
+\section{Beneficios}
+
+Los participantes reciben formaci\'on en escritura acad\'emica antes de iniciar, retroalimentaci\'on sobre su desempe\~no al concluir y acceso a los resultados del estudio. Para la instituci\'on, la investigaci\'on aporta evidencia propia para orientar sus pol\'iticas sobre el uso de herramientas digitales en la formaci\'on universitaria, en lugar de adoptar criterios importados de otros contextos.
+
+\section{Tratamiento y protecci\'on de los datos}
+
+A cada participante se le asigna un c\'odigo desde el inicio, y desde ese momento toda la informaci\'on del estudio se maneja \'unicamente mediante ese c\'odigo. La tabla que vincula c\'odigos con identidades se conserva cifrada, en soporte separado del resto de la informaci\'on, bajo la custodia de una persona ajena al equipo evaluador, y se destruye al cerrar la recolecci\'on.
+
+Los plazos de conservaci\'on y el procedimiento de destrucci\'on constan en el compromiso de confidencialidad suscrito por el investigador principal y por el responsable de custodia, documento que se adjunta. El intercambio de informaci\'on entre campus e instituciones participantes se realiza exclusivamente en formato codificado. Los datos publicados no permitir\'an identificar a ning\'un participante.
+
+\section{Solicitud de informaci\'on acad\'emica institucional}
+
+La solicitud del promedio acumulado se tramitar\'a ante las autoridades competentes de cada universidad, \'unicamente respecto de los participantes que lo hayan autorizado por escrito, y bajo un procedimiento que evita la circulaci\'on de datos identificables: el equipo entrega el listado con los c\'odigos previamente asignados y solicita como respuesta \'unicamente la correspondencia entre c\'odigo y promedio, sin nombres ni n\'umeros de documento.
+
+\section{Equidad entre los grupos}
+
+La asignaci\'on a los grupos se realiza por sorteo estratificado dentro de cada combinaci\'on de instituci\'on, campus y carrera, de modo que ning\'un participante es seleccionado o excluido por criterios subjetivos y ninguna carrera o campus queda asociado a una condici\'on determinada.
+
+Ninguna de las condiciones experimentales implica privaci\'on de contenidos formativos: todos los participantes trabajan los mismos temas, con el mismo material, en el mismo tiempo y bajo las mismas condiciones de supervisi\'on, y todos reciben la misma gu\'ia de escritura acad\'emica antes de comenzar.
+
+\section{Conflicto de intereses y financiamiento}
+
+El investigador principal declara no tener conflicto de intereses de naturaleza financiera, comercial ni personal en relaci\'on con los resultados del estudio. El proyecto no recibe financiamiento de proveedores de herramientas tecnol\'ogicas ni de entidades con inter\'es comercial en sus conclusiones.
+
+\vspace{2pt}
+\begin{tabular}{@{}L{5.0cm}@{}L{10.4cm}@{}}
+	\textbf{\small Fuente de financiamiento:} & \campo{10.2cm} \\
+\end{tabular}
+
+\section{Difusi\'on de resultados}
+
+Los resultados se difundir\'an mediante publicaci\'on en revista cient\'ifica indexada y presentaci\'on a la comunidad universitaria, siempre de forma agregada. Se depositar\'an en repositorio p\'ublico los datos anonimizados y los materiales del estudio, con fines de verificaci\'on y reproducibilidad, previa eliminaci\'on de toda informaci\'on identificable. El protocolo se registrar\'a p\'ublicamente antes de iniciar la recolecci\'on de datos.
+
+\section{Declaraci\'on final}
+
+Declaro que la informaci\'on contenida en este memorando es veraz, que el estudio se ejecutar\'a conforme al protocolo presentado y a las observaciones que el Comit\'e formule, y que cualquier modificaci\'on sustantiva ser\'a sometida previamente a su aprobaci\'on mediante la enmienda correspondiente. Asimismo, declaro que no se iniciar\'a ninguna actividad de reclutamiento ni de recolecci\'on de datos hasta contar con el dictamen favorable.
+
+\vspace{28pt}
+\campo{7.6cm}
+
+\textbf{Ing. Gleiston Cicer\'on Guerrero Ulloa, PhD.}
+
+{\small Investigador principal --- Proyecto EAES}
+
+{\small Facultad de Ciencias de la Computaci\'on --- Universidad T\'ecnica Estatal de Quevedo}
+
+\vspace{10pt}
+Lugar y fecha: \campo{6.0cm}
+
+\end{document}

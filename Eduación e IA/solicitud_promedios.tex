@@ -1,0 +1,281 @@
+% =====================================================================
+%  SOLICITUD DE REPORTE DE PROMEDIOS ACADEMICOS --- Proyecto EAES
+%  Dirigida al Vicerrectorado Academico de la UTEQ
+%  Compilacion: pdflatex solicitud_promedios.tex
+% =====================================================================
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage{mathptmx}
+\usepackage[scaled=0.90]{helvet}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage[
+	a4paper,
+	left=2.6cm,
+	right=2.6cm,
+	top=2.2cm,
+	bottom=2.0cm,
+	headheight=14pt,
+	footskip=1.0cm
+]{geometry}
+
+\definecolor{azulinstitucional}{RGB}{20,60,110}
+\definecolor{grisclaro}{RGB}{243,245,248}
+\definecolor{grismedio}{RGB}{120,130,140}
+
+\titleformat{\section}
+	{\normalfont\sffamily\normalsize\bfseries\color{azulinstitucional}}
+	{\thesection.}{0.6em}{}
+\titlespacing*{\section}{0pt}{9pt}{3pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily\color{grismedio}Solicitud de reporte de promedios acad\'emicos --- Proyecto EAES}
+\fancyhead[R]{\footnotesize\sffamily\color{grismedio}P\'ag. \thepage\ de \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.35}
+\setlist{itemsep=3pt,topsep=3pt,parsep=0pt}
+
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\Centering\arraybackslash}p{#1}}
+
+\newsavebox{\cajaguardada}
+\newenvironment{recuadro}
+	{\begin{lrbox}{\cajaguardada}\begin{minipage}{\dimexpr\textwidth-2\fboxsep\relax}\vspace{4pt}\small}
+	{\vspace{4pt}\end{minipage}\end{lrbox}\par\vspace{4pt}\noindent\colorbox{grisclaro}{\usebox{\cajaguardada}}\par\vspace{6pt}}
+
+\newcommand{\campo}[1]{\rule{#1}{0.4pt}}
+
+\begin{document}
+
+% =====================================================================
+%  OFICIO
+% =====================================================================
+\begin{center}
+	{\sffamily\small\color{grismedio} UNIVERSIDAD T\'ECNICA ESTATAL DE QUEVEDO\par}
+	{\sffamily\small\color{grismedio} FACULTAD DE CIENCIAS DE LA COMPUTACI\'ON --- CARRERA DE SOFTWARE\par}
+\end{center}
+
+\vspace{6pt}
+\hrule
+\vspace{10pt}
+
+\begin{flushright}
+	\textbf{Oficio Nro.} \campo{3.6cm}-2026-GGU-FCC-UTEQ
+
+	Quevedo, \campo{4.6cm}
+\end{flushright}
+
+\vspace{6pt}
+\textbf{Se\~nor}
+
+\textbf{Dr. Eduardo D\'iaz Ocampo, PhD.}
+
+\textbf{VICERRECTOR ACAD\'EMICO}
+
+\textbf{Universidad T\'ecnica Estatal de Quevedo}
+
+En su despacho.---
+
+\vspace{8pt}
+\textbf{Asunto:} Solicitud de reporte de promedios acad\'emicos de estudiantes participantes en el Proyecto EAES, para la conformaci\'on equilibrada de grupos de investigaci\'on.
+
+\vspace{8pt}
+De mi consideraci\'on:
+
+Reciba un cordial saludo. En mi calidad de investigador principal del proyecto \textbf{«Escritura acad\'emica y herramientas digitales de apoyo: estudio multic\'entrico sobre procesos de elaboraci\'on de textos y aprendizaje en educaci\'on superior» (Proyecto EAES)}, adscrito a la Facultad de Ciencias de la Computaci\'on, me dirijo a usted para formular la solicitud que a continuaci\'on expongo.
+
+\section{Antecedente}
+
+El Proyecto EAES cuenta con el dictamen favorable del Comit\'e de \'Etica de Investigaci\'on institucional, emitido mediante \campo{5.0cm}, de fecha \campo{3.0cm}. El estudio se ejecuta con estudiantes de distintas carreras del campus central ``Manuel Haz \'Alvarez'' y del campus ``La Mar\'ia'', y contempla la incorporaci\'on de universidades nacionales y extranjeras mediante convenio.
+
+\section{Fundamento de la solicitud}
+
+El dise\~no del estudio exige distribuir a los participantes en tres grupos de trabajo que sean comparables entre s\'i. Para que esa distribuci\'on sea equitativa y no favorezca sistem\'aticamente a ning\'un grupo, se requiere conocer el rendimiento acad\'emico previo de cada participante y emplearlo como criterio de equilibrio en el sorteo.
+
+La ausencia de este equilibrio comprometer\'ia la validez de los resultados: si un grupo quedara integrado, por efecto del azar, mayoritariamente por estudiantes de mayor rendimiento previo, cualquier diferencia observada al final del estudio ser\'ia atribuible a esa composici\'on inicial y no a las condiciones que la investigaci\'on examina.
+
+\section{Lo que se solicita}
+
+Solicito a usted, de la manera m\'as comedida, se sirva autorizar y disponer a la unidad competente la entrega del \textbf{promedio acumulado hasta el per\'iodo acad\'emico inmediato anterior} de los estudiantes que constan en el Anexo~1 del presente oficio, quienes han otorgado consentimiento informado por escrito autorizando \textbf{de forma expresa y diferenciada} esta solicitud.
+
+\begin{recuadro}
+Se solicita \textbf{\'unicamente} el promedio acumulado. No se requiere el detalle de calificaciones por asignatura, el r\'ecord acad\'emico completo, ni ning\'un otro dato del expediente estudiantil.
+\end{recuadro}
+
+\section{Procedimiento propuesto para la protecci\'on de datos}
+
+A fin de resguardar la protecci\'on de los datos personales conforme a la normativa vigente y a la normativa interna de la Universidad, propongo que la entrega se realice bajo el siguiente procedimiento:
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=1.0cm]
+	\item El Anexo~1 contiene el listado de participantes con una columna de \textbf{c\'odigo previamente asignado} por el equipo investigador.
+	\item La unidad competente incorpora el promedio correspondiente a cada estudiante y devuelve \'unicamente la tabla del Anexo~2, con las columnas \textbf{c\'odigo} y \textbf{promedio acumulado}, sin nombres ni n\'umeros de documento.
+	\item La entrega se realiza por el canal institucional que esa unidad determine, en formato de hoja de c\'alculo.
+\end{enumerate}
+
+De este modo, el archivo que circula y que queda en poder del equipo investigador no contiene informaci\'on que permita identificar a persona alguna. La correspondencia entre c\'odigo e identidad permanece \'unicamente bajo custodia del responsable designado en el compromiso de confidencialidad que se adjunta.
+
+\section{Compromisos del equipo investigador}
+
+\begin{enumerate}[label=\textbf{\alph*)},leftmargin=1.0cm]
+	\item Utilizar los datos exclusivamente para la conformaci\'on equilibrada de los grupos de trabajo y para los an\'alisis previstos en el protocolo aprobado.
+	\item No emplearlos para evaluaci\'on acad\'emica, selecci\'on de estudiantes ni ninguna otra finalidad distinta de la declarada.
+	\item Custodiarlos de forma cifrada y destruirlos conforme a los plazos establecidos en el compromiso de confidencialidad suscrito.
+	\item No comunicarlos ni transferirlos a terceros ajenos al equipo investigador; el intercambio con las instituciones participantes se realiza \'unicamente en formato codificado.
+	\item Dejar constancia de que la participaci\'on de los estudiantes es voluntaria y no incide de modo alguno en sus calificaciones.
+\end{enumerate}
+
+\section{Documentaci\'on que se adjunta}
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=1.0cm]
+	\item Anexo~1: listado codificado de estudiantes participantes que otorgaron autorizaci\'on expresa.
+	\item Anexo~2: formato solicitado para la entrega de la informaci\'on.
+	\item Copia del dictamen favorable del Comit\'e de \'Etica de Investigaci\'on.
+	\item Consentimientos informados suscritos por los estudiantes del Anexo~1.
+	\item Compromiso de confidencialidad y destrucci\'on de datos, suscrito por el investigador principal y por el responsable de custodia.
+	\item Resumen ejecutivo del protocolo de investigaci\'on.
+\end{enumerate}
+
+Por la favorable atenci\'on que se sirva dar al presente, anticipo mi sincero agradecimiento y me suscribo.
+
+\vspace{14pt}
+Atentamente,
+
+\vspace{26pt}
+\campo{7.6cm}
+
+\textbf{Ing. Gleiston Cicer\'on Guerrero Ulloa, PhD.}
+
+{\small Docente investigador --- Facultad de Ciencias de la Computaci\'on}
+
+{\small Investigador principal del Proyecto EAES}
+
+{\small Correo institucional: \campo{5.0cm}}
+
+\vspace{8pt}
+{\footnotesize \textit{Copia:} Secretar\'ia General \textbullet\ Unidad de Registro Acad\'emico \textbullet\ Decanato de la Facultad de Ciencias de la Computaci\'on \textbullet\ Archivo.}
+
+\clearpage
+
+% =====================================================================
+%  ANEXO 1
+% =====================================================================
+\begin{center}
+	{\sffamily\normalsize\bfseries\color{azulinstitucional} ANEXO 1 --- LISTADO CODIFICADO DE ESTUDIANTES PARTICIPANTES\par}
+	\vspace{2pt}
+	{\footnotesize\itshape Estudiantes que otorgaron autorizaci\'on expresa en el consentimiento informado\par}
+\end{center}
+
+\vspace{6pt}
+\hrule
+\vspace{8pt}
+
+\begin{tabular}{@{}L{4.4cm}@{}L{10.6cm}@{}}
+	\textbf{\small Proyecto:} & Proyecto EAES \\
+	\textbf{\small Per\'iodo acad\'emico:} & \campo{10.4cm} \\
+	\textbf{\small Total de participantes:} & \campo{10.4cm} \\
+	\textbf{\small Fecha de elaboraci\'on:} & \campo{10.4cm} \\
+\end{tabular}
+
+\vspace{8pt}
+
+\begin{table}[htbp]
+	\centering
+	\footnotesize
+	\begin{tabular}{C{0.9cm} C{1.9cm} L{3.4cm} L{2.5cm} C{1.9cm} L{2.6cm}}
+		\toprule
+		\textbf{N.\textsuperscript{o}} & \textbf{C\'odigo} & \textbf{Apellidos y nombres} & \textbf{C\'edula / ID} & \textbf{Campus} & \textbf{Carrera y nivel} \\
+		\midrule
+		1 & & & & & \\
+		2 & & & & & \\
+		3 & & & & & \\
+		4 & & & & & \\
+		5 & & & & & \\
+		6 & & & & & \\
+		7 & & & & & \\
+		8 & & & & & \\
+		9 & & & & & \\
+		10 & & & & & \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+{\footnotesize El listado completo se adjunta en formato digital. Se hace constar que cada estudiante incluido en este anexo suscribi\'o el consentimiento informado marcando expresamente la casilla de autorizaci\'on para la consulta de su promedio acumulado, y que dichos consentimientos se adjuntan a la presente solicitud.}
+
+\vspace{20pt}
+\campo{7.6cm}
+
+\textbf{Ing. Gleiston Cicer\'on Guerrero Ulloa, PhD.}
+
+{\small Investigador principal --- Proyecto EAES}
+
+\clearpage
+
+% =====================================================================
+%  ANEXO 2
+% =====================================================================
+\begin{center}
+	{\sffamily\normalsize\bfseries\color{azulinstitucional} ANEXO 2 --- FORMATO SOLICITADO PARA LA ENTREGA DE LA INFORMACI\'ON\par}
+\end{center}
+
+\vspace{6pt}
+\hrule
+\vspace{8pt}
+
+Se solicita que la unidad competente devuelva la informaci\'on \'unicamente con las dos columnas que se detallan a continuaci\'on, en formato de hoja de c\'alculo. \textbf{No se requiere que la respuesta incluya nombres, apellidos ni n\'umeros de documento}, dado que el equipo investigador ya dispone de la correspondencia entre c\'odigo e identidad bajo custodia reservada.
+
+\vspace{8pt}
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\begin{tabular}{C{5.0cm} C{5.0cm}}
+		\toprule
+		\textbf{C\'odigo} & \textbf{Promedio acumulado} \\
+		\midrule
+		EAES-001 & \\
+		EAES-002 & \\
+		EAES-003 & \\
+		\ldots & \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\vspace{6pt}
+\textbf{Precisiones sobre el dato solicitado}
+
+\begin{itemize}[leftmargin=1.0cm]
+	\item \textbf{Definici\'on:} promedio acumulado de la carrera hasta el cierre del per\'iodo acad\'emico inmediato anterior.
+	\item \textbf{Escala:} la que emplee habitualmente el sistema acad\'emico institucional, indic\'andola en la primera fila del archivo.
+	\item \textbf{Casos sin promedio:} si alg\'un estudiante no registra promedio por tratarse de su primer per\'iodo, cons\'ignese la leyenda ``sin registro'' en lugar del valor.
+	\item \textbf{Canal de entrega:} el que la unidad determine, preferentemente correo institucional con archivo protegido o repositorio interno de la Universidad.
+\end{itemize}
+
+\vspace{16pt}
+\begin{recuadro}
+\textbf{Constancia de recepci\'on.} El equipo investigador dejar\'a constancia escrita de la recepci\'on del archivo, con indicaci\'on de fecha, hora, n\'umero de registros recibidos y persona que efect\'ua la entrega, documento que se incorporar\'a al archivo del proyecto y quedar\'a a disposici\'on del Comit\'e de \'Etica.
+\end{recuadro}
+
+\vspace{24pt}
+\begin{tabular}{@{}L{7.4cm}@{}L{0.6cm}@{}L{7.4cm}@{}}
+	\campo{7.0cm} & & \campo{7.0cm} \\
+	{\small\textbf{Entregado por}} & & {\small\textbf{Recibido por}} \\
+	{\footnotesize Nombre, cargo y fecha} & & {\footnotesize Investigador principal --- fecha} \\
+\end{tabular}
+
+\end{document}

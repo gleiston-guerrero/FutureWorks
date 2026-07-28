@@ -1,0 +1,775 @@
+% =====================================================================
+%  GUIA PRACTICA PARA ESCRIBIR UN ENSAYO ACADEMICO
+%  Material del estudiante --- entrega comun a todos los grupos
+%
+%  Compilacion:  pdflatex -> bibtex -> pdflatex -> pdflatex
+%  Archivo principal: guia_ensayo.tex
+%  Bibliografia:      referencias.bib
+% =====================================================================
+
+\documentclass[12pt,a4paper,openany]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage{mathptmx}
+\usepackage[scaled=0.90]{helvet}
+\usepackage{courier}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+
+\usepackage[
+	a4paper,
+	inner=3.0cm,
+	outer=2.5cm,
+	top=2.8cm,
+	bottom=2.8cm,
+	headheight=15pt
+]{geometry}
+
+\definecolor{azulinstitucional}{RGB}{20,60,110}
+\definecolor{verdeejemplo}{RGB}{28,95,70}
+\definecolor{rojoerror}{RGB}{150,40,40}
+\definecolor{grisclaro}{RGB}{243,245,248}
+\definecolor{grismedio}{RGB}{120,130,140}
+\definecolor{cremaejemplo}{RGB}{249,246,239}
+
+\usepackage[
+	colorlinks=true,
+	linkcolor=azulinstitucional,
+	citecolor=azulinstitucional,
+	urlcolor=azulinstitucional,
+	pdftitle={Guia practica para escribir un ensayo academico},
+	pdfauthor={Universidad Tecnica Estatal de Quevedo}
+]{hyperref}
+
+\bibliographystyle{apalike}
+\setcitestyle{authoryear,round}
+
+\titleformat{\chapter}[display]
+	{\normalfont\sffamily\Large\bfseries\color{azulinstitucional}}
+	{\MakeUppercase{\chaptertitlename}\ \thechapter}
+	{10pt}
+	{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{28pt}
+
+\titleformat{\section}
+	{\normalfont\sffamily\large\bfseries\color{azulinstitucional}}
+	{\thesection}{0.8em}{}
+
+\titleformat{\subsection}
+	{\normalfont\sffamily\normalsize\bfseries}
+	{\thesubsection}{0.8em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily\color{grismedio}Gu\'ia pr\'actica para escribir un ensayo acad\'emico}
+\fancyhead[R]{\footnotesize\sffamily\color{grismedio}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\captionsetup{font=small,labelfont={bf,sf},labelsep=period}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.25}
+\setlist{itemsep=2pt,topsep=4pt,parsep=0pt}
+
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\Centering\arraybackslash}p{#1}}
+
+% ---------------------------------------------------------------------
+%  Cajas de ejemplo y de advertencia
+% ---------------------------------------------------------------------
+\newsavebox{\cajaguardada}
+
+\newenvironment{ejemplo}[1]
+	{\begin{lrbox}{\cajaguardada}\begin{minipage}{\dimexpr\textwidth-2\fboxsep\relax}\vspace{4pt}\textcolor{verdeejemplo}{\textbf{\sffamily\small #1}}\par\vspace{3pt}\small}
+	{\vspace{4pt}\end{minipage}\end{lrbox}\par\vspace{4pt}\noindent\colorbox{cremaejemplo}{\usebox{\cajaguardada}}\par\vspace{8pt}}
+
+\newenvironment{aviso}[1]
+	{\begin{lrbox}{\cajaguardada}\begin{minipage}{\dimexpr\textwidth-2\fboxsep\relax}\vspace{4pt}\textbf{\sffamily\small #1}\par\vspace{3pt}\small}
+	{\vspace{4pt}\end{minipage}\end{lrbox}\par\vspace{4pt}\noindent\colorbox{grisclaro}{\usebox{\cajaguardada}}\par\vspace{8pt}}
+
+\newcommand{\mal}{\textcolor{rojoerror}{\textbf{\sffamily\small As\'i no:}}\ }
+\newcommand{\bien}{\textcolor{verdeejemplo}{\textbf{\sffamily\small As\'i s\'i:}}\ }
+
+\begin{document}
+
+% =====================================================================
+\begin{titlepage}
+	\centering
+	\vspace*{1.5cm}
+	{\sffamily\large\color{grismedio} UNIVERSIDAD T\'ECNICA ESTATAL DE QUEVEDO\par}
+	{\sffamily\normalsize\color{grismedio} Facultad de Ciencias de la Computaci\'on --- Carrera de Software\par}
+	\vspace{2.5cm}
+	{\sffamily\Large\bfseries\color{azulinstitucional} MATERIAL DEL ESTUDIANTE\par}
+	\vspace{1.0cm}
+	\rule{\textwidth}{1.2pt}
+	\vspace{0.8cm}
+	{\sffamily\LARGE\bfseries Gu\'ia pr\'actica para escribir un ensayo acad\'emico\par}
+	\vspace{0.5cm}
+	{\sffamily\large Paso a paso, con ejemplos sobre un mismo tema de principio a fin\par}
+	\vspace{0.8cm}
+	\rule{\textwidth}{1.2pt}
+	\vfill
+	{\normalsize\color{grismedio} Quevedo, Ecuador\par}
+	\vspace{1.5cm}
+\end{titlepage}
+
+\pagenumbering{roman}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+% =====================================================================
+\chapter{C\'omo usar esta gu\'ia}
+% =====================================================================
+
+Esta gu\'ia est\'a escrita para quien nunca ha elaborado un ensayo acad\'emico. No supone conocimientos previos de metodolog\'ia ni de redacci\'on cient\'ifica.
+
+\section{Un solo tema de ejemplo, de principio a fin}
+
+Todos los ejemplos de esta gu\'ia giran alrededor del mismo tema, deliberadamente sencillo y conocido por cualquiera:
+
+\begin{aviso}{Tema de ejemplo que se usa en toda la gu\'ia}
+\textbf{El uso del tel\'efono m\'ovil en el aula de clase.}
+\end{aviso}
+
+La raz\'on de mantener un \'unico tema es pr\'actica: al avanzar por los cap\'itulos ver\'a c\'omo un mismo ensayo se va construyendo pieza por pieza, desde la primera idea hasta el texto terminado que aparece completo en el Anexo~\ref{anx:modelo}. As\'i podr\'a comparar cada explicaci\'on con su resultado concreto.
+
+Cada vez que la gu\'ia explique dos o tres maneras distintas de resolver algo, encontrar\'a dos o tres ejemplos de esas maneras, siempre sobre este mismo tema, para que la comparaci\'on sea directa.
+
+\section{Advertencia sobre las citas de los ejemplos}
+
+\begin{aviso}{Importante}
+Las citas que aparecen en los ejemplos de esta gu\'ia est\'an escritas como \textbf{(Autor, a\~no)} porque son \textbf{ilustrativas}: sirven para mostrarle d\'onde va la cita y c\'omo se integra en la oraci\'on, no para que las copie. En su ensayo, cada cita debe corresponder a una fuente real, que usted haya le\'ido y que cualquiera pueda encontrar y verificar. Una referencia inventada, o copiada sin comprobar, invalida el trabajo completo.
+\end{aviso}
+
+\section{Recorrido recomendado}
+
+Lea los cap\'itulos 2 a 4 antes de empezar a escribir. Escriba con el cap\'itulo 5 abierto al lado. Al terminar, revise su texto con la lista de verificaci\'on del cap\'itulo 8. Los anexos contienen plantillas que puede imprimir y llenar.
+
+% =====================================================================
+\chapter{Qu\'e es un ensayo acad\'emico}
+% =====================================================================
+
+\section{Definici\'on en una frase}
+
+Un ensayo acad\'emico es un texto en el que usted \textbf{defiende una posici\'on propia sobre un asunto discutible, apoy\'andose en evidencia que otros pueden verificar}.
+
+Los tres elementos de esa frase son igual de importantes. Si no hay posici\'on propia, no es un ensayo. Si el asunto no admite discusi\'on, no hay nada que defender. Y si la posici\'on no se apoya en evidencia verificable, es una opini\'on, no un trabajo acad\'emico.
+
+\section{Qu\'e no es un ensayo}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Confusiones frecuentes al escribir el primer ensayo.}
+	\label{tab:noesensayo}
+	\small
+	\begin{tabular}{L{4.0cm} L{9.8cm}}
+		\toprule
+		\textbf{No es\ldots} & \textbf{Por qu\'e} \\
+		\midrule
+		Un resumen & Un resumen reproduce lo que otros dijeron. Un ensayo usa lo que otros dijeron para sostener lo que usted afirma. \\
+		Una opini\'on suelta & Una opini\'on se enuncia; una tesis se defiende con razones y evidencia. \\
+		Una recopilaci\'on de citas & Las citas son el apoyo del argumento, no el argumento. \\
+		Un informe descriptivo & Un informe responde ``qu\'e ocurre''. Un ensayo responde ``qu\'e sostengo yo sobre esto y por qu\'e''. \\
+		Una lista de ventajas y desventajas & Enumerar los dos lados no es tomar posici\'on. El ensayo exige llegar a una conclusi\'on razonada. \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Las tres partes y para qu\'e sirve cada una}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Estructura b\'asica de un ensayo de 1200 a 1500 palabras.}
+	\label{tab:estructura}
+	\small
+	\begin{tabular}{L{3.0cm} C{2.4cm} L{8.4cm}}
+		\toprule
+		\textbf{Parte} & \textbf{Extensi\'on} & \textbf{Funci\'on} \\
+		\midrule
+		Introducci\'on & 10--15\% & Situar el asunto, delimitarlo, enunciar la tesis y anticipar el recorrido \\
+		Desarrollo & 70--80\% & Sostener la tesis con argumentos, evidencia y discusi\'on de objeciones \\
+		Conclusi\'on & 10--15\% & Cerrar el razonamiento y mostrar qu\'e se sigue de lo defendido \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+En un ensayo de 1300 palabras, esto equivale aproximadamente a 170 palabras de introducci\'on, unas 980 de desarrollo repartidas en cinco o seis p\'arrafos, y 150 de conclusi\'on.
+
+% =====================================================================
+\chapter{Antes de escribir: seis pasos previos}
+% =====================================================================
+
+Escribir sin estos seis pasos es la causa m\'as frecuente de ensayos que se desarman a mitad de camino. Dedicarles cuarenta minutos ahorra tres horas despu\'es.
+
+\section{Paso 1. Entender exactamente qu\'e se le pide}
+
+Lea la consigna y subraye tres cosas: el \textbf{verbo} (analice, compare, discuta, eval\'ue), la \textbf{extensi\'on} y las \textbf{fuentes} que debe utilizar. Cada verbo pide algo distinto.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Qu\'e pide cada verbo de la consigna.}
+	\label{tab:verbos}
+	\small
+	\begin{tabular}{L{2.6cm} L{11.2cm}}
+		\toprule
+		\textbf{Verbo} & \textbf{Lo que se espera} \\
+		\midrule
+		Analice & Descomponer el asunto en sus partes y examinar c\'omo se relacionan \\
+		Compare & Establecer semejanzas y diferencias bajo criterios expl\'icitos \\
+		Discuta & Presentar posiciones enfrentadas y tomar partido de forma razonada \\
+		Eval\'ue & Emitir un juicio fundamentado seg\'un criterios que usted declara \\
+		Argumente & Defender una posici\'on frente a alternativas posibles \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Paso 2. Delimitar el tema}
+
+Un tema amplio produce un ensayo superficial. Delimitar significa recortarlo hasta que pueda tratarse con profundidad en la extensi\'on disponible. Hay tres formas de recortar, y aqu\'i van las tres aplicadas al mismo tema de partida.
+
+\begin{aviso}{Tema demasiado amplio}
+La tecnolog\'ia en la educaci\'on.
+\end{aviso}
+
+\begin{ejemplo}{Forma 1: recortar por poblaci\'on --- ¿qui\'enes?}
+El uso del tel\'efono m\'ovil en el aula \textbf{entre estudiantes universitarios de primer a\~no}.
+\end{ejemplo}
+
+\begin{ejemplo}{Forma 2: recortar por aspecto --- ¿qu\'e faceta exactamente?}
+El efecto del tel\'efono m\'ovil en el aula \textbf{sobre la atenci\'on sostenida durante la clase}.
+\end{ejemplo}
+
+\begin{ejemplo}{Forma 3: recortar por contexto o per\'iodo --- ¿d\'onde y cu\'ando?}
+El uso del tel\'efono m\'ovil \textbf{en aulas universitarias ecuatorianas, desde el retorno a la presencialidad}.
+\end{ejemplo}
+
+Las tres son v\'alidas. Puede incluso combinar dos, y en general conviene hacerlo: ``el efecto del tel\'efono m\'ovil sobre la atenci\'on en clase entre estudiantes universitarios de primer a\~no'' es un tema mucho m\'as manejable que cualquiera de los tres por separado.
+
+\section{Paso 3. Convertir el tema en una pregunta}
+
+Un tema no se puede responder; una pregunta s\'i. Formule la pregunta que su ensayo va a contestar, y as\'egurese de que admita m\'as de una respuesta razonable.
+
+\begin{ejemplo}{Pregunta que gu\'ia el ensayo}
+¿Es preferible prohibir por completo el tel\'efono m\'ovil en clase, o regular su uso?
+\end{ejemplo}
+
+Compruebe que la pregunta sea discutible. ``¿Los estudiantes usan tel\'efono m\'ovil en clase?'' no sirve: se responde con un s\'i y no hay nada que argumentar.
+
+\section{Paso 4. Leer las fuentes y tomar notas \'utiles}
+
+Lea con un prop\'osito: buscar respuestas a su pregunta, no ``informaci\'on sobre el tema''. Por cada fuente, llene una ficha como la del Anexo~\ref{anx:ficha}. Anote siempre, en el momento de leer, los datos completos de la fuente. Reconstruirlos despu\'es es la principal causa de referencias err\'oneas.
+
+Distinga en sus notas tres cosas y marque cada una: lo que la fuente \textbf{dice}, lo que usted \textbf{piensa} de eso, y las \textbf{palabras textuales} que quiz\'a quiera citar. Si no las separa al tomar notas, terminar\'a copiando sin darse cuenta.
+
+\section{Paso 5. Formular la tesis}
+
+La tesis es la afirmaci\'on que su ensayo defiende. Es la oraci\'on m\'as importante del texto. Debe ser \textbf{expl\'icita} (est\'a escrita, no se sobreentiende), \textbf{delimitada} (no abarca todo) y \textbf{discutible} (alguien razonable podr\'ia estar en desacuerdo).
+
+Vea la misma idea en tres niveles de elaboraci\'on:
+
+\begin{ejemplo}{Versi\'on 1 --- todav\'ia no es una tesis}
+\mal ``En este ensayo hablar\'e sobre el uso del tel\'efono m\'ovil en el aula.''
+
+Esto anuncia un tema, pero no afirma nada. Nadie puede estar en desacuerdo con ello.
+\end{ejemplo}
+
+\begin{ejemplo}{Versi\'on 2 --- es una opini\'on, no una tesis defendible}
+\mal ``El tel\'efono m\'ovil es malo para el aprendizaje.''
+
+Afirma algo, pero de forma absoluta y sin matiz. No indica bajo qu\'e condiciones ni frente a qu\'e alternativa, de modo que no puede defenderse con precisi\'on.
+\end{ejemplo}
+
+\begin{ejemplo}{Versi\'on 3 --- tesis defendible}
+\bien ``Prohibir por completo el tel\'efono m\'ovil en el aula reduce las distracciones de manera inmediata, pero no ense\~na al estudiante a regular su propio uso; por eso un modelo de uso pautado resulta m\'as eficaz que la prohibici\'on total.''
+
+Afirma algo concreto, reconoce lo que la posici\'on contraria tiene de cierto, y se compromete con una conclusi\'on que puede sostenerse o rebatirse.
+\end{ejemplo}
+
+\begin{aviso}{Prueba r\'apida de su tesis}
+Escriba la oraci\'on contraria a su tesis. Si la oraci\'on contraria suena absurda, su tesis no es discutible y hay que reformularla. Si suena como algo que alguien razonable podr\'ia defender, va por buen camino.
+\end{aviso}
+
+\section{Paso 6. Hacer el esquema antes de redactar}
+
+El esquema es una lista de las ideas rectoras de cada p\'arrafo, en orden. Debe caber en media p\'agina. Su utilidad es que permite detectar problemas de estructura cuando corregirlos cuesta cinco minutos, y no cuando ya escribi\'o mil palabras.
+
+\begin{ejemplo}{Esquema del ensayo de ejemplo}
+\textbf{Introducci\'on.} Contexto, delimitaci\'on, tesis y anticipaci\'on del recorrido.
+
+\textbf{P\'arrafo 1.} La prohibici\'on total s\'i produce un efecto inmediato sobre la atenci\'on en clase.
+
+\textbf{P\'arrafo 2.} Pero ese efecto desaparece fuera del aula, donde nadie prohibe nada.
+
+\textbf{P\'arrafo 3.} La autorregulaci\'on se aprende us\'andola, no evit\'andola; el aula es el lugar id\'oneo para practicarla.
+
+\textbf{P\'arrafo 4.} Objeci\'on: regular exige m\'as trabajo docente que prohibir. Respuesta.
+
+\textbf{P\'arrafo 5.} C\'omo ser\'ia en la pr\'actica un modelo de uso pautado.
+
+\textbf{Conclusi\'on.} S\'intesis del razonamiento e implicaci\'on para la pr\'actica docente.
+\end{ejemplo}
+
+% =====================================================================
+\chapter{La introducci\'on}
+% =====================================================================
+
+\section{Las cuatro cosas que debe hacer}
+
+Una introducci\'on eficaz ejecuta cuatro movimientos, en este orden:
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=1.2cm]
+	\item \textbf{Contexto:} sit\'ua al lector en el asunto.
+	\item \textbf{Delimitaci\'on:} estrecha el foco hasta el aspecto preciso que tratar\'a.
+	\item \textbf{Tesis:} enuncia lo que usted defiende.
+	\item \textbf{Anticipaci\'on:} adelanta en una oraci\'on c\'omo lo defender\'a.
+\end{enumerate}
+
+\section{Tres maneras de abrir el contexto}
+
+El contexto es la puerta de entrada. Hay tres maneras habituales de construirlo, y aqu\'i van las tres escritas sobre el mismo tema, para que compare el efecto de cada una.
+
+\begin{ejemplo}{Manera 1: abrir con un dato}
+``Seg\'un datos recientes, la mayor\'ia de estudiantes universitarios consulta su tel\'efono m\'ovil varias veces durante una misma clase (Autor, a\~no). La cifra resulta menos llamativa que la discusi\'on que ha abierto entre docentes.''
+\end{ejemplo}
+
+\begin{ejemplo}{Manera 2: abrir con una escena cotidiana}
+``El docente explica un concepto complejo. En la tercera fila, una pantalla se ilumina; dos filas m\'as atr\'as, otra. La escena se repite en pr\'acticamente cualquier aula universitaria y ha convertido al tel\'efono m\'ovil en el objeto m\'as discutido de la ense\~nanza superior.''
+\end{ejemplo}
+
+\begin{ejemplo}{Manera 3: abrir con la controversia}
+``Para algunos docentes, el tel\'efono m\'ovil es el principal enemigo de la concentraci\'on en clase; para otros, es la herramienta de consulta m\'as disponible que un estudiante ha tenido nunca. Ambas posiciones se apoyan en observaciones reales, y esa es precisamente la dificultad del asunto.''
+\end{ejemplo}
+
+Las tres funcionan. La primera transmite rigor; la segunda genera cercan\'ia; la tercera instala el debate desde la primera l\'inea. Elija seg\'un el tono del ensayo, pero \textbf{no las acumule}: una introducci\'on abre de una sola manera.
+
+\section{Los otros tres movimientos}
+
+\begin{ejemplo}{Delimitaci\'on}
+``Este ensayo se ocupa espec\'ificamente de la atenci\'on durante la clase presencial en estudiantes universitarios de primer a\~no, y deja fuera el uso del dispositivo con fines de accesibilidad.''
+\end{ejemplo}
+
+\begin{ejemplo}{Tesis}
+``Sostengo que prohibir por completo el tel\'efono m\'ovil reduce las distracciones de manera inmediata, pero no ense\~na al estudiante a regular su propio uso; por eso un modelo de uso pautado resulta m\'as eficaz que la prohibici\'on total.''
+\end{ejemplo}
+
+\begin{ejemplo}{Anticipaci\'on del recorrido}
+``Para sostenerlo examino primero la evidencia sobre el efecto inmediato de la prohibici\'on, muestro despu\'es por qu\'e ese efecto no se transfiere fuera del aula, atiendo la principal objeci\'on pr\'actica y describo, por \'ultimo, c\'omo ser\'ia un modelo de uso pautado.''
+\end{ejemplo}
+
+\section{Errores frecuentes en la introducci\'on}
+
+\begin{ejemplo}{Empezar demasiado lejos}
+\mal ``Desde el origen de la humanidad, el ser humano ha buscado comunicarse\ldots''
+
+\bien ``El tel\'efono m\'ovil se ha convertido en el objeto m\'as discutido del aula universitaria.''
+
+Empiece en el asunto, no en la prehistoria. El lector no necesita un recorrido hist\'orico para entender de qu\'e habla usted.
+\end{ejemplo}
+
+\begin{ejemplo}{Anunciar en lugar de afirmar}
+\mal ``A continuaci\'on se analizar\'an las ventajas y desventajas del tel\'efono m\'ovil en el aula.''
+
+\bien ``Un modelo de uso pautado resulta m\'as eficaz que la prohibici\'on total.''
+
+La introducci\'on no describe lo que el texto har\'a: dice lo que el texto sostiene.
+\end{ejemplo}
+
+% =====================================================================
+\chapter{El desarrollo}
+% =====================================================================
+
+\section{El p\'arrafo es la unidad de trabajo}
+
+Un p\'arrafo defiende \textbf{una sola} idea. Si contiene dos, sep\'arelo en dos. Un p\'arrafo bien construido tiene cuatro movimientos.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Los cuatro movimientos de un p\'arrafo argumentativo.}
+	\label{tab:parrafo}
+	\small
+	\begin{tabular}{C{1.0cm} L{3.4cm} L{9.4cm}}
+		\toprule
+		\textbf{} & \textbf{Movimiento} & \textbf{Funci\'on} \\
+		\midrule
+		1 & Afirmaci\'on & Enuncia la idea que el p\'arrafo defiende. Va al inicio. \\
+		2 & Evidencia & Aporta el dato, el estudio o la cita que la respalda. \\
+		3 & Explicaci\'on & Muestra c\'omo esa evidencia sostiene la afirmaci\'on. Es el movimiento que m\'as se olvida y el m\'as importante. \\
+		4 & Enlace & Conecta con la tesis general o con el p\'arrafo siguiente. \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\begin{ejemplo}{P\'arrafo completo con sus cuatro movimientos se\~nalados}
+\textbf{[Afirmaci\'on]} La prohibici\'on total del tel\'efono m\'ovil s\'i produce un efecto inmediato sobre la atenci\'on en clase. \textbf{[Evidencia]} Autor (a\~no) compar\'o aulas con y sin restricci\'on y encontr\'o que en las primeras los estudiantes registraban menos interrupciones durante la exposici\'on. \textbf{[Explicaci\'on]} El resultado es esperable: al retirar el dispositivo se elimina la fuente de interrupci\'on m\'as accesible, y la atenci\'on deja de competir con notificaciones. \textbf{[Enlace]} Ahora bien, que la medida funcione mientras se aplica no dice nada sobre lo que ocurre cuando deja de aplicarse, y es ah\'i donde aparece su l\'imite.
+\end{ejemplo}
+
+\begin{aviso}{El error m\'as comun del primer ensayo}
+Colocar la cita y pasar al siguiente p\'arrafo, sin explicarla. Una cita nunca habla sola: el lector no tiene por qu\'e deducir por qu\'e usted la trajo. Si borra el movimiento de explicaci\'on, el p\'arrafo deja de argumentar y pasa a enumerar.
+\end{aviso}
+
+\section{Tres maneras de integrar la evidencia}
+
+Existen tres formas de traer al texto lo que dice una fuente. Aqu\'i est\'an las tres aplicadas a una misma idea, para que vea la diferencia.
+
+\begin{ejemplo}{Manera 1: cita textual --- palabras exactas entre comillas}
+Autor (a\~no) lo formula sin rodeos: ``la restricci\'on produce obediencia, no criterio'' (p.~112).
+
+\textbf{Cu\'ando usarla:} solo cuando la formulaci\'on exacta importa, porque es especialmente precisa o porque va a discutirla. Una cita textual por p\'agina es un buen l\'imite.
+\end{ejemplo}
+
+\begin{ejemplo}{Manera 2: par\'afrasis --- la misma idea con sus palabras}
+Autor (a\~no) sostiene que las medidas restrictivas consiguen que el estudiante cumpla la norma, pero no que desarrolle un criterio propio sobre cu\'ando usar el dispositivo.
+
+\textbf{Cu\'ando usarla:} casi siempre. Parafrasear demuestra que entendi\'o la fuente, cosa que copiar no demuestra. Note que se cambia el vocabulario \emph{y} la estructura de la oraci\'on, no solo alguna palabra.
+\end{ejemplo}
+
+\begin{ejemplo}{Manera 3: resumen --- varias fuentes condensadas}
+Distintos trabajos coinciden en que las medidas restrictivas mejoran el cumplimiento inmediato de la norma sin producir cambios duraderos en el comportamiento del estudiante (Autor, a\~no; Autor, a\~no; Autor, a\~no).
+
+\textbf{Cu\'ando usarla:} para establecer que existe acuerdo entre varios autores sin detenerse en cada uno.
+\end{ejemplo}
+
+\section{Tres maneras de tratar el contraargumento}
+
+Un ensayo que ignora las objeciones es d\'ebil, porque el lector las piensa aunque usted no las escriba. Atenderlas fortalece su posici\'on. Hay tres maneras de hacerlo, y aqu\'i van las tres sobre la misma objeci\'on.
+
+\begin{aviso}{Objeci\'on que se va a tratar en los tres ejemplos}
+Regular el uso del tel\'efono m\'ovil exige del docente m\'as trabajo y m\'as vigilancia que simplemente prohibirlo.
+\end{aviso}
+
+\begin{ejemplo}{Manera 1: concesi\'on --- reconocer y luego limitar}
+``Es cierto que un modelo de uso pautado exige del docente m\'as planificaci\'on que una prohibici\'on general, y ese costo no debe minimizarse. Sin embargo, se trata de un costo que se paga una sola vez, al dise\~nar la pauta, mientras que la vigilancia de una prohibici\'on se paga en cada clase.''
+\end{ejemplo}
+
+\begin{ejemplo}{Manera 2: refutaci\'on --- mostrar el error del razonamiento}
+``Se ha sostenido que regular resulta m\'as costoso que prohibir. Ese razonamiento supone que la prohibici\'on se cumple sola, lo que no ocurre: mantenerla obliga a una supervisi\'on constante que rara vez se contabiliza como esfuerzo docente.''
+\end{ejemplo}
+
+\begin{ejemplo}{Manera 3: reformulaci\'on --- aceptar el diagn\'ostico y rechazar la soluci\'on}
+``Quienes defienden la prohibici\'on aciertan en el diagn\'ostico: la carga de gestionar el aula es real y ya es excesiva. El desacuerdo no est\'a en el problema sino en la salida, porque prohibir no reduce esa carga, solo la desplaza de la planificaci\'on a la vigilancia.''
+\end{ejemplo}
+
+\section{Conectores que se\~nalan lo que usted est\'a haciendo}
+
+Los conectores no decoran: indican al lector qu\'e operaci\'on l\'ogica viene a continuaci\'on.
+
+\begin{table}[htbp]
+	\centering
+	\caption{Conectores seg\'un la operaci\'on que anuncian.}
+	\label{tab:conectores}
+	\small
+	\begin{tabular}{L{3.4cm} L{10.4cm}}
+		\toprule
+		\textbf{Operaci\'on} & \textbf{Conectores} \\
+		\midrule
+		A\~nadir & adem\'as, asimismo, a ello se suma, por otra parte \\
+		Contrastar & sin embargo, no obstante, en cambio, ahora bien \\
+		Causa & porque, dado que, puesto que, en la medida en que \\
+		Consecuencia & por lo tanto, en consecuencia, de ah\'i que, de modo que \\
+		Ejemplificar & por ejemplo, en concreto, as\'i, tal es el caso de \\
+		Conceder & es cierto que, si bien, aunque, ciertamente \\
+		Concluir & en definitiva, en suma, todo lo anterior indica que \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+% =====================================================================
+\chapter{La conclusi\'on}
+% =====================================================================
+
+\section{Qu\'e debe y qu\'e no debe hacer}
+
+La conclusi\'on cierra el razonamiento. No repite la introducci\'on con otras palabras, no introduce evidencia nueva y no se disculpa por lo que el ensayo no hizo.
+
+Debe hacer tres cosas: recordar la tesis \emph{ya demostrada} (no anunciada), sintetizar el camino que la sostuvo, y mostrar qu\'e se sigue de todo ello.
+
+\section{Tres maneras de cerrar}
+
+Aqu\'i van tres cierres posibles para el mismo ensayo.
+
+\begin{ejemplo}{Manera 1: cerrar con la implicaci\'on pr\'actica}
+``Si el objetivo de la ense\~nanza universitaria es formar profesionales capaces de decidir por s\'i mismos, la pregunta pertinente no es c\'omo impedir que el estudiante mire su tel\'efono, sino c\'omo ense\~narle a decidir cu\'ando mirarlo. Un modelo de uso pautado convierte el aula en el lugar donde esa decisi\'on se practica bajo gu\'ia.''
+\end{ejemplo}
+
+\begin{ejemplo}{Manera 2: cerrar con lo que queda por resolver}
+``Queda pendiente determinar durante cu\'anto tiempo persiste la capacidad de autorregulaci\'on adquirida bajo un modelo pautado, y si se transfiere a contextos sin supervisi\'on. Mientras esa evidencia no exista, la elecci\'on entre prohibir y regular seguir\'a apoy\'andose m\'as en criterios formativos que en datos concluyentes.''
+\end{ejemplo}
+
+\begin{ejemplo}{Manera 3: cerrar volviendo a la imagen del inicio}
+``La pantalla que se ilumina en la tercera fila seguir\'a ilumin\'andose, dentro y fuera del aula. La diferencia est\'a en si el estudiante habr\'a aprendido, o no, a decidir cu\'ando conviene mirarla.''
+\end{ejemplo}
+
+La tercera manera exige haber abierto con una escena; si su introducci\'on comenz\'o con un dato, use la primera o la segunda.
+
+% =====================================================================
+\chapter{Citas, referencias e integridad}
+% =====================================================================
+
+\section{Por qu\'e se cita}
+
+Se cita por tres razones: para que el lector pueda comprobar lo que usted afirma, para reconocer el trabajo de quien produjo esa idea, y para mostrar que su posici\'on dialoga con lo que ya se ha dicho. No citar no es un descuido de formato: es presentar como propio el trabajo de otro.
+
+\section{C\'omo se cita dentro del texto}
+
+En estilo APA, la cita dentro del texto lleva apellido y a\~no. Existen dos ubicaciones posibles y ambas son correctas.
+
+\begin{ejemplo}{Forma 1: el autor forma parte de la oraci\'on}
+Autor (a\~no) demostr\'o que la restricci\'on mejora el cumplimiento sin modificar el criterio del estudiante.
+\end{ejemplo}
+
+\begin{ejemplo}{Forma 2: el autor va al final, entre par\'entesis}
+La restricci\'on mejora el cumplimiento sin modificar el criterio del estudiante (Autor, a\~no).
+\end{ejemplo}
+
+Cuando cite palabras exactas, a\~nada la p\'agina: (Autor, a\~no, p.~112).
+
+\section{C\'omo se escribe la referencia completa}
+
+Al final del ensayo, cada fuente citada aparece con todos sus datos. Este es el formato para un art\'iculo de revista, con un ejemplo real que usted puede verificar:
+
+\begin{ejemplo}{Estructura y ejemplo verificable}
+\textbf{Estructura:} Apellido, Inicial. (A\~no). T\'itulo del art\'iculo. \emph{Nombre de la revista}, \emph{volumen}(n\'umero), p\'aginas. https://doi.org/\ldots
+
+\vspace{4pt}
+\textbf{Ejemplo real:} Risko, E. F., \& Gilbert, S. J. (2016). Cognitive offloading. \emph{Trends in Cognitive Sciences}, \emph{20}(9), 676--688. https://doi.org/10.1016/j.tics.2016.07.002
+\end{ejemplo}
+
+\section{C\'omo comprobar que una referencia existe}
+
+Este paso no es opcional. Antes de entregar, verifique cada referencia as\'i: escriba en el navegador \texttt{https://doi.org/} seguido del identificador de la fuente. Si la p\'agina que se abre corresponde al art\'iculo con el mismo t\'itulo, los mismos autores y el mismo a\~no, la referencia es correcta. Si no se abre nada, o abre un art\'iculo distinto, la referencia est\'a mal y debe corregirla o eliminarla.
+
+\begin{aviso}{Referencias que parecen reales y no lo son}
+Es posible encontrar referencias con formato impecable, autores plausibles y revistas existentes que, sin embargo, no corresponden a ning\'un art\'iculo real, o mezclan datos de dos art\'iculos distintos. La \'unica defensa es comprobar una por una. Una referencia que no se puede verificar debe salir del ensayo, por convincente que parezca.
+\end{aviso}
+
+\section{Qu\'e es plagio y c\'omo evitarlo}
+
+Plagio es presentar como propio el trabajo, las ideas o las palabras de otra persona. Ocurre tanto al copiar sin comillas como al parafrasear mal, es decir, al cambiar solo algunas palabras conservando la estructura del original.
+
+\begin{ejemplo}{Texto original de la fuente}
+``La restricci\'on produce obediencia, no criterio, porque el estudiante cumple la norma sin haber decidido nada.''
+\end{ejemplo}
+
+\begin{ejemplo}{Par\'afrasis incorrecta --- esto es plagio}
+\mal La prohibici\'on genera obediencia, no criterio, ya que el alumno acata la regla sin haber decidido nada.
+
+Se cambiaron algunas palabras, pero la estructura y la secuencia son las mismas. Aunque se a\~nada la cita, sigue siendo una apropiaci\'on de la formulaci\'on ajena.
+\end{ejemplo}
+
+\begin{ejemplo}{Par\'afrasis correcta}
+\bien Autor (a\~no) distingue entre cumplir una norma y comprender su raz\'on: cuando la conducta se sostiene \'unicamente en la restricci\'on externa, el estudiante nunca llega a ejercer un juicio propio sobre el asunto.
+
+Cambian el vocabulario, el orden de las ideas y la construcci\'on de la oraci\'on. La idea se atribuye expresamente a su autor.
+\end{ejemplo}
+
+% =====================================================================
+\chapter{Revisar antes de entregar}
+% =====================================================================
+
+\section{Revise en tres pasadas, no en una}
+
+Revisar todo a la vez no funciona, porque cada tipo de problema se detecta con una mirada distinta. Haga tres pasadas separadas.
+
+\begin{enumerate}[label=\textbf{Pasada \arabic*.},leftmargin=2.0cm]
+	\item \textbf{Estructura.} Lea solo la primera oraci\'on de cada p\'arrafo, seguidas. Deber\'ian formar un razonamiento comprensible por s\'i solo. Si no lo forman, el problema es de organizaci\'on y hay que resolverlo antes de tocar la redacci\'on.
+	\item \textbf{Argumento.} P\'arrafo por p\'arrafo, pregunte: ¿esta afirmaci\'on tiene evidencia? ¿esa evidencia est\'a explicada? Marque todo p\'arrafo donde falte uno de los dos.
+	\item \textbf{Superficie.} Ortograf\'ia, puntuaci\'on, concordancia, formato de las citas y verificaci\'on de cada referencia.
+\end{enumerate}
+
+\begin{aviso}{Dos t\'ecnicas que funcionan}
+Deje reposar el texto al menos unas horas antes de la \'ultima revisi\'on: los errores propios se vuelven invisibles cuando se acaba de escribir. Y lea el ensayo en voz alta: la lectura oral detecta oraciones enredadas que la vista salta sin notarlas. Revisar de este modo es tambi\'en una forma de comprobar cu\'anto entendi\'o realmente, y no solo cu\'anto escribi\'o \citep{bjork2013self}.
+\end{aviso}
+
+\section{Lista de verificaci\'on final}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Marque cada casilla antes de entregar.}
+	\label{tab:checklist}
+	\small
+	\begin{tabular}{C{1.2cm} L{12.6cm}}
+		\toprule
+		\textbf{} & \textbf{Verificaci\'on} \\
+		\midrule
+		\fbox{\phantom{x}} & La tesis est\'a escrita expl\'icitamente en la introducci\'on, en una oraci\'on identificable \\
+		\fbox{\phantom{x}} & Cada p\'arrafo defiende una sola idea y la enuncia al inicio \\
+		\fbox{\phantom{x}} & Cada afirmaci\'on no evidente tiene evidencia que la respalda \\
+		\fbox{\phantom{x}} & Cada evidencia va seguida de una explicaci\'on propia \\
+		\fbox{\phantom{x}} & El ensayo trata al menos una objeci\'on a su posici\'on \\
+		\fbox{\phantom{x}} & La conclusi\'on no introduce informaci\'on nueva \\
+		\fbox{\phantom{x}} & Todas las fuentes citadas en el texto aparecen en las referencias, y viceversa \\
+		\fbox{\phantom{x}} & Verifiqu\'e uno por uno que los identificadores de las referencias abren el art\'iculo correcto \\
+		\fbox{\phantom{x}} & No hay ning\'un fragmento copiado sin comillas y sin atribuci\'on \\
+		\fbox{\phantom{x}} & La extensi\'on est\'a dentro del rango solicitado \\
+		\fbox{\phantom{x}} & Le\'i el texto completo en voz alta \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\section{Errores m\'as frecuentes y c\'omo se corrigen}
+
+\begin{table}[htbp]
+	\centering
+	\caption{Diagn\'ostico r\'apido de problemas habituales.}
+	\label{tab:errores}
+	\small
+	\begin{tabular}{L{5.2cm} L{8.6cm}}
+		\toprule
+		\textbf{S\'intoma} & \textbf{Correcci\'on} \\
+		\midrule
+		El ensayo parece un resumen & Falta tesis. Escr\'ibala y reorganice los p\'arrafos para que la sostengan. \\
+		Los p\'arrafos no se conectan & Falta el movimiento de enlace al cierre de cada p\'arrafo. \\
+		Hay muchas citas y poca voz propia & Reduzca las citas textuales y a\~nada explicaci\'on despu\'es de cada una. \\
+		El texto afirma sin respaldo & Localice cada afirmaci\'on discutible y a\'ada evidencia o suav\'icela. \\
+		La conclusi\'on repite la introducci\'on & Sustit\'uyala por una implicaci\'on o por lo que queda pendiente. \\
+		Las oraciones son muy largas & Divida en el primer conector. Una idea por oraci\'on. \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+% =====================================================================
+\appendix
+\renewcommand{\chaptername}{Anexo}
+% =====================================================================
+
+\chapter{Ficha de lectura}
+\label{anx:ficha}
+
+Complete una ficha por cada fuente, en el momento de leerla.
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\begin{tabular}{L{4.4cm} L{9.4cm}}
+		\toprule
+		\textbf{Campo} & \textbf{Contenido} \\
+		\midrule
+		Autores & \\
+		A\~no & \\
+		T\'itulo del art\'iculo & \\
+		Revista, volumen, n\'umero & \\
+		P\'aginas & \\
+		Identificador (DOI) & \\
+		¿Verifiqu\'e que abre? & S\'i \fbox{\phantom{x}} \quad No \fbox{\phantom{x}} \\
+		\midrule
+		Idea principal (con mis palabras) & \\
+		& \\
+		\midrule
+		Cita textual que quiz\'a use, con p\'agina & \\
+		& \\
+		\midrule
+		Qu\'e pienso yo de esto & \\
+		& \\
+		\midrule
+		¿A qu\'e p\'arrafo de mi ensayo sirve? & \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+% ---------------------------------------------------------------------
+\chapter{Plantilla de esquema}
+\label{anx:esquema}
+
+\textbf{Pregunta que responde mi ensayo:} \rule{9.2cm}{0.4pt}
+
+\vspace{10pt}
+\textbf{Mi tesis (una sola oraci\'on):}
+
+\vspace{4pt}
+\rule{\textwidth}{0.4pt}
+
+\vspace{6pt}
+\rule{\textwidth}{0.4pt}
+
+\vspace{12pt}
+\textbf{Ideas rectoras, una por p\'arrafo:}
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\begin{tabular}{C{1.6cm} L{7.4cm} L{4.4cm}}
+		\toprule
+		\textbf{P\'arrafo} & \textbf{Idea que defiende} & \textbf{Fuente que la apoya} \\
+		\midrule
+		1 & & \\
+		2 & & \\
+		3 & & \\
+		4 (objeci\'on) & & \\
+		5 & & \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\textbf{C\'omo cierro:} \fbox{\phantom{x}} Implicaci\'on pr\'actica \quad \fbox{\phantom{x}} Lo que queda pendiente \quad \fbox{\phantom{x}} Retorno a la imagen inicial
+
+% ---------------------------------------------------------------------
+\chapter{Ensayo modelo comentado}
+\label{anx:modelo}
+
+Este es el ensayo que se fue construyendo a lo largo de la gu\'ia, ahora completo. Entre corchetes y en gris se se\~nala qu\'e hace cada parte. Las citas son ilustrativas.
+
+\vspace{10pt}
+\begin{center}
+	{\sffamily\large\bfseries Prohibir o ense\~nar a decidir: el tel\'efono m\'ovil en el aula universitaria}
+\end{center}
+
+\vspace{8pt}
+\textcolor{grismedio}{\small\textbf{[Contexto]}} El docente explica un concepto complejo. En la tercera fila, una pantalla se ilumina; dos filas m\'as atr\'as, otra. La escena se repite en pr\'acticamente cualquier aula universitaria y ha convertido al tel\'efono m\'ovil en el objeto m\'as discutido de la ense\~nanza superior. \textcolor{grismedio}{\small\textbf{[Delimitaci\'on]}} Este ensayo se ocupa de un aspecto preciso de esa discusi\'on: la atenci\'on durante la clase presencial en estudiantes universitarios de primer a\~no. \textcolor{grismedio}{\small\textbf{[Tesis]}} Sostengo que prohibir por completo el dispositivo reduce las distracciones de manera inmediata, pero no ense\~na al estudiante a regular su propio uso; por eso un modelo de uso pautado resulta m\'as eficaz que la prohibici\'on total. \textcolor{grismedio}{\small\textbf{[Anticipaci\'on]}} Para sostenerlo examino primero la evidencia sobre el efecto inmediato de la prohibici\'on, muestro despu\'es por qu\'e ese efecto no se transfiere fuera del aula, atiendo la principal objeci\'on pr\'actica y describo, por \'ultimo, c\'omo ser\'ia un modelo de uso pautado.
+
+\textcolor{grismedio}{\small\textbf{[P\'arrafo 1: afirmaci\'on, evidencia, explicaci\'on, enlace]}} La prohibici\'on total s\'i produce un efecto inmediato sobre la atenci\'on. Autor (a\~no) compar\'o aulas con y sin restricci\'on y encontr\'o menos interrupciones durante la exposici\'on en las primeras. El resultado es esperable: al retirar el dispositivo se elimina la fuente de interrupci\'on m\'as accesible, y la atenci\'on deja de competir con notificaciones. Ahora bien, que la medida funcione mientras se aplica no dice nada sobre lo que ocurre cuando deja de aplicarse.
+
+\textcolor{grismedio}{\small\textbf{[P\'arrafo 2: el l\'imite del efecto]}} Y lo que ocurre fuera del aula importa m\'as, porque es donde el estudiante pasa la mayor parte de su tiempo de estudio. Autor (a\~no) sostiene que las medidas restrictivas consiguen que el estudiante cumpla la norma, pero no que desarrolle un criterio propio sobre cu\'ando usar el dispositivo. La distinci\'on es decisiva: una conducta sostenida \'unicamente por una restricci\'on externa desaparece con ella. Si la finalidad formativa es que el estudiante gestione su atenci\'on de manera aut\'onoma, la prohibici\'on no contribuye a ese objetivo.
+
+\textcolor{grismedio}{\small\textbf{[P\'arrafo 3: el argumento positivo]}} La autorregulaci\'on, en cambio, se aprende ejerci\'endola. Nadie desarrolla criterio sobre cu\'ando conviene consultar una pantalla en un entorno donde consultarla es imposible, del mismo modo que nadie aprende a administrar su tiempo en un r\'egimen donde cada minuto est\'a dictado. El aula, con la presencia del docente, es precisamente el entorno m\'as favorable para practicar esa decisi\'on: hay una tarea concreta, un prop\'osito expl\'icito y alguien que puede se\~nalar cu\'ando la decisi\'on fue desacertada.
+
+\textcolor{grismedio}{\small\textbf{[P\'arrafo 4: objeci\'on y respuesta]}} Es cierto que un modelo de uso pautado exige del docente m\'as planificaci\'on que una prohibici\'on general, y ese costo no debe minimizarse. Sin embargo, se trata de un costo que se paga una sola vez, al dise\~nar la pauta, mientras que la vigilancia de una prohibici\'on se paga en cada clase. La comparaci\'on habitual entre ambas opciones suele omitir ese segundo costo, y al omitirlo hace parecer gratuita una medida que no lo es.
+
+\textcolor{grismedio}{\small\textbf{[P\'arrafo 5: concreci\'on pr\'actica]}} En la pr\'actica, un modelo pautado consiste en declarar al inicio de la clase en qu\'e momentos el dispositivo forma parte de la actividad y en cu\'ales no, y en explicar por qu\'e. Un bloque de consulta de quince minutos para contrastar una afirmaci\'on del docente cumple ambas funciones: aprovecha la herramienta y, al delimitarla, hace visible la decisi\'on de usarla o no. Lo determinante no es la regla concreta sino que la decisi\'on se vuelva expl\'icita.
+
+\textcolor{grismedio}{\small\textbf{[Conclusi\'on: s\'intesis e implicaci\'on]}} Prohibir resuelve el s\'intoma m\'as visible y deja intacto el problema de fondo. Si el objetivo de la ense\~nanza universitaria es formar profesionales capaces de decidir por s\'i mismos, la pregunta pertinente no es c\'omo impedir que el estudiante mire su tel\'efono, sino c\'omo ense\~narle a decidir cu\'ando mirarlo. Un modelo de uso pautado convierte el aula en el lugar donde esa decisi\'on se practica bajo gu\'ia, y esa es una diferencia que la prohibici\'on, por eficaz que resulte mientras dura, no puede ofrecer.
+
+\vspace{10pt}
+\textcolor{grismedio}{\small\textbf{[Referencias --- en su ensayo, todas reales y verificadas]}}
+
+% ---------------------------------------------------------------------
+\chapter{Criterios con los que se evaluar\'a su ensayo}
+\label{anx:rubrica}
+
+Conocer los criterios antes de escribir le permite revisar su propio trabajo con la misma mirada del evaluador.
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\begin{tabular}{C{1.2cm} L{7.6cm} C{1.8cm} L{2.8cm}}
+		\toprule
+		\textbf{C\'od.} & \textbf{Criterio} & \textbf{Peso} & \textbf{D\'onde se ve} \\
+		\midrule
+		C1 & Calidad de la tesis y de la argumentaci\'on & 25 & Cap. 3 y 5 \\
+		C2 & Uso e integraci\'on de la evidencia & 25 & Cap. 5 y 7 \\
+		C3 & Precisi\'on conceptual y dominio del contenido & 25 & Cap. 3 \\
+		C4 & Estructura, coherencia y claridad & 15 & Cap. 4, 5 y 6 \\
+		C5 & Originalidad y voz propia & 10 & Cap. 5 y 7 \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Cada criterio se punt\'ua de 0 a 4. Para obtener el nivel m\'aximo en argumentaci\'on no basta con tener tesis: hay que anticipar objeciones y responderlas. Para obtenerlo en uso de la evidencia no basta con citar: las fuentes deben dialogar entre s\'i y sostener efectivamente lo que usted afirma. Y para obtenerlo en originalidad, el texto debe aportar una perspectiva o una articulaci\'on que no provenga directamente de las fuentes.
+
+% =====================================================================
+\bibliography{referencias}
+\addcontentsline{toc}{chapter}{Referencias}
+
+\end{document}

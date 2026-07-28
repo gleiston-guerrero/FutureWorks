@@ -1,0 +1,1220 @@
+% =====================================================================
+%  PROTOCOLO DE INVESTIGACION
+%  Descarga cognitiva con inteligencia artificial generativa en la
+%  escritura academica: calidad del texto, retencion del aprendizaje
+%  y detectabilidad experta
+%
+%  Compilacion:  pdflatex -> bibtex -> pdflatex -> pdflatex
+%  Archivo principal: protocolo_iagen.tex
+%  Bibliografia:      referencias.bib
+% =====================================================================
+
+\documentclass[12pt,a4paper,openany]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage{mathptmx}
+\usepackage[scaled=0.90]{helvet}
+\usepackage{courier}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+
+\usepackage[
+a4paper,
+inner=3.0cm,
+outer=2.5cm,
+top=2.8cm,
+bottom=2.8cm,
+headheight=15pt
+]{geometry}
+
+\usepackage[
+colorlinks=true,
+linkcolor=azulinstitucional,
+citecolor=azulinstitucional,
+urlcolor=azulinstitucional,
+pdftitle={Protocolo de investigacion: descarga cognitiva con IA generativa en la escritura academica},
+pdfauthor={Gleiston Ciceron Guerrero Ulloa}
+]{hyperref}
+
+% ---------------------------------------------------------------------
+%  Identidad visual sobria y legible
+% ---------------------------------------------------------------------
+\definecolor{azulinstitucional}{RGB}{20,60,110}
+\definecolor{grisclaro}{RGB}{242,244,247}
+\definecolor{grismedio}{RGB}{120,130,140}
+
+\bibliographystyle{apalike}
+\setcitestyle{authoryear,round}
+
+\titleformat{\chapter}[display]
+{\normalfont\sffamily\Large\bfseries\color{azulinstitucional}}
+{\MakeUppercase{\chaptertitlename}\ \thechapter}
+{10pt}
+{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{28pt}
+
+\titleformat{\section}
+{\normalfont\sffamily\large\bfseries\color{azulinstitucional}}
+{\thesection}{0.8em}{}
+
+\titleformat{\subsection}
+{\normalfont\sffamily\normalsize\bfseries}
+{\thesubsection}{0.8em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily\color{grismedio}Protocolo de investigaci\'on --- IA generativa y escritura acad\'emica}
+\fancyhead[R]{\footnotesize\sffamily\color{grismedio}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\captionsetup{font=small,labelfont={bf,sf},labelsep=period}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.25}
+\setlist{itemsep=2pt,topsep=4pt,parsep=0pt}
+
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\Centering\arraybackslash}p{#1}}
+
+% ---------------------------------------------------------------------
+%  Entorno para cajas de definicion en lenguaje llano
+% ---------------------------------------------------------------------
+\newsavebox{\cajaguardada}
+\newenvironment{cajaterminos}[1]
+{\begin{lrbox}{\cajaguardada}\begin{minipage}{\dimexpr\textwidth-2\fboxsep\relax}\vspace{3pt}\textbf{\sffamily\small #1}\par\vspace{3pt}\small}
+        {\vspace{3pt}\end{minipage}\end{lrbox}\par\vspace{4pt}\noindent\colorbox{grisclaro}{\usebox{\cajaguardada}}\par\vspace{8pt}}
+
+\newcommand{\casilla}{\fbox{\rule{0pt}{7pt}\rule{7pt}{0pt}}}
+
+\begin{document}
+    
+    % =====================================================================
+    %  PORTADA
+    % =====================================================================
+    \begin{titlepage}
+        \centering
+        \vspace*{1.5cm}
+        {\sffamily\large\color{grismedio} UNIVERSIDAD T\'ECNICA ESTATAL DE QUEVEDO\par}
+        {\sffamily\normalsize\color{grismedio} Facultad de Ciencias de la Computaci\'on --- Carrera de Software\par}
+        \vspace{2.2cm}
+        {\sffamily\Large\bfseries\color{azulinstitucional} PROTOCOLO DE INVESTIGACI\'ON\par}
+        \vspace{1.0cm}
+        \rule{\textwidth}{1.2pt}
+        \vspace{0.8cm}
+        {\sffamily\LARGE\bfseries Descarga cognitiva con inteligencia artificial generativa en la escritura acad\'emica\par}
+        \vspace{0.5cm}
+        {\sffamily\large Calidad del texto, retenci\'on del aprendizaje y detectabilidad experta: un estudio aleatorizado multi-sitio\par}
+        \vspace{0.8cm}
+        \rule{\textwidth}{1.2pt}
+        \vfill
+        {\sffamily\normalsize\textbf{Investigador principal}\par}
+        {\normalsize Ing. Gleiston Cicer\'on Guerrero Ulloa, PhD.\par}
+        \vspace{0.6cm}
+        {\sffamily\normalsize\textbf{Versi\'on del protocolo}\par}
+        {\normalsize Versi\'on 1.0 --- documento previo al registro y a la recolecci\'on de datos\par}
+        \vspace{0.6cm}
+        {\normalsize\color{grismedio} Quevedo, Ecuador\par}
+        \vspace{1.0cm}
+    \end{titlepage}
+    
+    \pagenumbering{roman}
+    \tableofcontents
+    \clearpage
+    \pagenumbering{arabic}
+    
+    % =====================================================================
+    \chapter{Presentaci\'on del protocolo}
+    % =====================================================================
+    
+    \section{Qu\'e problema aborda este estudio}
+    
+    La incorporaci\'on de la inteligencia artificial generativa a la escritura acad\'emica plantea una pregunta que las encuestas de percepci\'on no pueden responder: cuando un estudiante delega en una herramienta generativa la elaboraci\'on de un texto, obtiene un producto de mejor apariencia, pero ¿conserva el conocimiento que habr\'ia construido al escribirlo por su cuenta? La distinci\'on importa porque el rendimiento inmediato y el aprendizaje duradero no son la misma cosa, y las condiciones que mejoran el primero con frecuencia deterioran el segundo \citep{bjork2013self}.
+    
+    Este protocolo describe un experimento dise\~nado para responder esa pregunta con evidencia causal, no correlacional. El estudio compara el desempe\~no de estudiantes universitarios que escriben con asistencia de inteligencia artificial generativa frente a quienes escriben sin ella, mide lo que retienen semanas despu\'es, registra el esfuerzo mental que invirtieron, contrasta la confianza que declaran con su desempe\~no real y, finalmente, somete todos los textos al juicio ciego de revisores con experiencia editorial en revistas indexadas.
+    
+    \section{Tres aportaciones que este dise\~no permite reclamar}
+    
+    \textbf{Primera: evidencia causal sobre retenci\'on, no sobre percepci\'on.} La literatura acumula estudios de aceptaci\'on y de satisfacci\'on, y las s\'intesis disponibles se\~nalan que la asistencia generativa mejora el desempe\~no inmediato y reduce el esfuerzo mental percibido \citep{deng2024chatgpt}. Lo que a\'un falta es determinar qu\'e ocurre cuando la herramienta se retira. El presente dise\~no incorpora un grupo de control que nunca utiliza la herramienta, lo que hace posible aislar ese efecto.
+    
+    \textbf{Segunda: la brecha entre confianza y competencia.} El estudio mide, para cada estudiante y en cada sesi\'on, la calificaci\'on que anticipa y la que realmente obtiene. Esa diferencia permite cuantificar si la fluidez del texto producido con asistencia genera una sensaci\'on de dominio que los resultados no respaldan.
+    
+    \textbf{Tercera: la capacidad real de detecci\'on de revisores expertos.} Como el equipo investigador conoce con certeza qu\'e textos se produjeron con asistencia generativa y cu\'ales no, es posible calcular con precisi\'on cu\'antos aciertos y cu\'antos errores comete un revisor experimentado al emitir ese juicio. La evidencia disponible sugiere que la combinaci\'on de juicio acad\'emico y software detector dista de ser fiable \citep{perkins2024detection}, y este estudio aporta una medici\'on rigurosa con verdad de base conocida.
+    
+    \section{C\'omo leer este documento}
+    
+    El cap\'itulo~\ref{cap:marco} presenta el marco te\'orico y enuncia las hip\'otesis una por una. El cap\'itulo~\ref{cap:diseno} detalla la estructura experimental y los procedimientos de asignaci\'on, contrabalanceo y administraci\'on. El cap\'itulo~\ref{cap:variables} define cada variable y remite al anexo con el instrumento correspondiente, listo para aplicar. El cap\'itulo~\ref{cap:analisis} especifica el plan de an\'alisis, y el cap\'itulo~\ref{cap:potencia} el c\'alculo del tama\~no muestral. Los cap\'itulos finales cubren \'etica, ciencia abierta, cronograma, limitaciones y estrategia de publicaci\'on. Los anexos contienen todos los formularios en formato aplicable.
+    
+    Cada t\'ermino t\'ecnico se introduce primero en lenguaje llano y se acompa\~na del nombre especializado entre par\'entesis, seguido del procedimiento concreto con el que se obtiene.
+    
+    % =====================================================================
+    \chapter{Marco te\'orico e hip\'otesis}
+    \label{cap:marco}
+    % =====================================================================
+    
+    \section{Cuatro mecanismos que explican lo que esperamos observar}
+    
+    \subsection{Delegar el trabajo mental a una herramienta externa (descarga cognitiva)}
+    
+    Las personas reducen sistem\'aticamente la carga de una tarea trasladando parte del procesamiento a recursos externos: una libreta, una calculadora, un buscador o, ahora, un modelo generativo \citep{risko2016cognitive}. La descarga cognitiva es adaptativa y con frecuencia deseable, pero tiene un costo caracter\'istico: aquello que se delega tiende a no quedar codificado en la memoria de quien delega. Este es el mecanismo central del estudio y explica por qu\'e esperamos disociaci\'on entre calidad del producto y retenci\'on del contenido.
+    
+    \subsection{Lo que cuesta m\'as se aprende mejor (dificultades deseables)}
+    
+    Determinadas condiciones vuelven el aprendizaje m\'as lento y trabajoso en el momento y, precisamente por ello, producen mejor retenci\'on y mejor transferencia a largo plazo \citep{bjork2013self}. La asistencia generativa elimina buena parte de esas dificultades: suprime la b\'usqueda del argumento, la formulaci\'on tentativa y la reescritura. La predicci\'on que se deriva es directa: mejor desempe\~no inmediato, peor desempe\~no diferido.
+    
+    \subsection{Producir es recordar (efecto de generaci\'on)}
+    
+    La informaci\'on que una persona produce por s\'i misma se recuerda mejor que la informaci\'on equivalente que simplemente lee \citep{slamecka1978generation}. Escribir un argumento propio deja huella en la memoria; revisar un argumento ya redactado por un tercero, mucho menos. Este mecanismo justifica que la variable dependiente no sea solo el texto entregado, sino tambi\'en el conocimiento evaluado semanas despu\'es sin acceso a materiales.
+    
+    \subsection{Confundir facilidad con dominio (ilusiones metacognitivas de fluidez)}
+    
+    Cuando una tarea se experimenta como f\'acil y fluida, las personas interpretan esa fluidez como evidencia de haber aprendido, y ajustan a la baja el esfuerzo posterior \citep{bjork2013self}. Un texto generativo produce prosa pulida sin fricci\'on aparente, de modo que cabe esperar una sobreestimaci\'on sistem\'atica del propio desempe\~no. Esta es la base de la medida de calibraci\'on descrita en la secci\'on~\ref{sec:calibracion}.
+    
+    \section{Preguntas de investigaci\'on}
+    
+    \begin{description}[leftmargin=2.2cm,style=nextline,font=\bfseries\sffamily]
+        \item[PI1.] ¿Difiere la calidad de un texto acad\'emico producido con asistencia de inteligencia artificial generativa respecto de uno producido sin ella, cuando ambos se juzgan a ciegas con la misma r\'ubrica?
+        \item[PI2.] ¿Se deteriora el desempe\~no aut\'onomo posterior de quienes escribieron previamente con asistencia generativa, cuando deben producir un texto sin ninguna herramienta de IA?
+        \item[PI3.] ¿Se traduce el uso previo de asistencia generativa en menor retenci\'on y menor transferencia del contenido trabajado, evaluadas semanas despu\'es?
+        \item[PI4.] ¿Modifica la asistencia generativa el esfuerzo mental invertido y la precisi\'on con la que el estudiante juzga su propio desempe\~no?
+        \item[PI5.] ¿Con qu\'e exactitud identifican revisores con experiencia editorial los textos producidos con asistencia generativa, y a qu\'e costo en acusaciones err\'oneas?
+    \end{description}
+    
+    \section{Hip\'otesis}
+    
+    Cada hip\'otesis se enuncia con direcci\'on expl\'icita, se asocia a una variable operacionalizada y se contrasta con una prueba definida de antemano. Se registran antes de recolectar cualquier dato, siguiendo la l\'ogica de separaci\'on entre predicci\'on y an\'alisis exploratorio \citep{nosek2018preregistration}.
+    
+    \begin{description}[leftmargin=1.4cm,style=nextline,font=\bfseries\sffamily]
+        \item[H1.] En las sesiones con herramienta disponible, los textos producidos con asistencia generativa obtendr\'an puntuaciones de calidad iguales o superiores a los producidos sin ella. Si la diferencia no resulta significativa, se aplicar\'a una prueba de equivalencia para sostener que ambas condiciones producen calidad comparable, y no meramente que no se hall\'o diferencia.
+        \item[H2.] En la sesi\'on final, realizada por todos los participantes sin ninguna herramienta de IA, el grupo con uso sostenido previo obtendr\'a puntuaciones de calidad inferiores al grupo de control que nunca utiliz\'o la herramienta.
+        \item[H3.] En la prueba diferida a libro cerrado, el grupo con uso sostenido previo obtendr\'a menor puntuaci\'on que el grupo de control, tanto en preguntas de recuerdo como, con mayor magnitud, en preguntas de transferencia.
+        \item[H4.] El esfuerzo mental reportado ser\'a menor en las sesiones realizadas con asistencia generativa que en las realizadas sin ella.
+        \item[H5.] La sobreestimaci\'on del propio desempe\~no ser\'a mayor en las sesiones realizadas con asistencia generativa, medida como diferencia con signo entre calificaci\'on anticipada y obtenida.
+        \item[H6.] La relaci\'on entre la condici\'on experimental y el desempe\~no diferido estar\'a mediada por el esfuerzo mental invertido durante las sesiones de producci\'on: a menor esfuerzo invertido, menor retenci\'on posterior.
+        \item[H7.] El grupo con exposici\'on intermedia a la herramienta obtendr\'a resultados de retenci\'on situados entre el grupo de uso sostenido y el grupo de control, configurando un patr\'on de dosis y respuesta.
+        \item[H8.] Los revisores expertos discriminar\'an los textos asistidos por encima del azar, pero su exactitud global quedar\'a por debajo del umbral exigible para fundamentar decisiones sancionatorias, y la proporci\'on de textos humanos err\'oneamente se\~nalados no ser\'a despreciable.
+        \item[H9.] La proporci\'on de referencias bibliogr\'aficas no verificables ser\'a mayor en los textos producidos con asistencia generativa.
+    \end{description}
+    
+    % =====================================================================
+    \chapter{Dise\~no experimental}
+    \label{cap:diseno}
+    % =====================================================================
+    
+    \section{Tipo de dise\~no}
+    
+    El estudio es un experimento aleatorizado con tres grupos y medidas repetidas (dise\~no mixto: el factor grupo var\'ia entre participantes y el factor sesi\'on var\'ia dentro de cada participante). La asignaci\'on de cada estudiante a su grupo se realiza por sorteo, lo que permite atribuir causalmente las diferencias observadas a la condici\'on experimental y no a caracter\'isticas previas de los participantes.
+    
+    En la literatura metodol\'ogica cada grupo de un experimento se denomina \emph{brazo}. En este documento se emplea la palabra \emph{grupo} por claridad, y se se\~nala aqu\'i la equivalencia para facilitar la lectura de la bibliograf\'ia especializada.
+    
+    \section{Los tres grupos}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Estructura de los tres grupos a lo largo de las tres sesiones de producci\'on.}
+        \label{tab:grupos}
+        \small
+        \begin{tabular}{L{3.4cm} C{2.7cm} C{2.7cm} C{2.7cm}}
+            \toprule
+            \textbf{Grupo} & \textbf{Sesi\'on 1} & \textbf{Sesi\'on 2} & \textbf{Sesi\'on 3} \\
+            \midrule
+            A --- Uso sostenido & Con IAGen & Con IAGen & Sin IA \\
+            B --- Control puro  & Sin IA    & Sin IA    & Sin IA \\
+            C --- Alternado     & Con IAGen & Sin IA    & Sin IA \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    El grupo B es el elemento que confiere validez al estudio. Sin un grupo que nunca utilice la herramienta, en la sesi\'on final todos los participantes compartir\'ian la misma historia de exposici\'on y la comparaci\'on quedar\'ia vac\'ia: solo podr\'ia contrastarse el orden de las condiciones, no su presencia o ausencia. Con el grupo B, la comparaci\'on A frente a B en la sesi\'on 3 constituye la prueba causal principal de la hip\'otesis H2, y el grupo C aporta el t\'ermino intermedio que permite examinar si el efecto crece con la dosis de exposici\'on.
+    
+    \section{Participantes y criterios de elegibilidad}
+    
+    Participan estudiantes de tercer nivel de carreras de computaci\'on y de \'areas afines. Se incluye a quienes est\'en matriculados en las asignaturas participantes, otorguen consentimiento informado y asistan a la sesi\'on de l\'inea base. Se excluye a quienes no completen al menos dos de las tres sesiones de producci\'on, y se registra como abandono a quienes no se presenten a la prueba diferida, sin eliminar sus datos previos del an\'alisis.
+    
+    \section{Procedimiento de asignaci\'on aleatoria equilibrada}
+    \label{sec:asignacion}
+    
+    La asignaci\'on aleatoria estratificada consiste en sortear a cada estudiante hacia un grupo, uno por uno, garantizando que los tres grupos queden equilibrados en aquellas caracter\'isticas que podr\'ian influir en el resultado. El procedimiento es el siguiente:
+    
+    \begin{enumerate}[label=\textbf{Paso \arabic*.},leftmargin=1.9cm]
+        \item Dos semanas antes de la primera sesi\'on, todos los participantes redactan en clase un texto argumentativo breve de 500 palabras sobre un tema com\'un, sin acceso a ninguna herramienta. Ese texto se califica con la r\'ubrica del Anexo~\ref{anx:rubrica} y constituye la \textbf{calificaci\'on de partida} (l\'inea base).
+        \item Se registra tambi\'en el promedio acumulado del estudiante y su nivel de uso previo de herramientas generativas, recogido con la ficha del Anexo~\ref{anx:linea}. El promedio acumulado se solicita a las autoridades de cada instituci\'on \'unicamente respecto de los participantes que lo hayan autorizado de forma expresa en el consentimiento informado; para quienes no otorguen esa autorizaci\'on, la estratificaci\'on se realiza solo con la calificaci\'on de partida, sin que ello afecte su participaci\'on en el estudio.
+        \item Se ordena a los participantes seg\'un una puntuaci\'on combinada de calificaci\'on de partida y promedio acumulado, y se los divide en tres bloques de igual tama\~no: tercio superior, intermedio e inferior. Cada bloque constituye un \textbf{estrato}.
+        \item Dentro de cada estrato se sortea la asignaci\'on a los grupos A, B y C mediante una semilla aleatoria fija y documentada, generada con el programa estad\'istico R. La semilla se declara en el registro previo del estudio, de modo que la asignaci\'on sea reproducible por terceros.
+        \item Una persona ajena al equipo de aplicaci\'on custodia la tabla de asignaci\'on y entrega a cada aplicador \'unicamente la lista de la sesi\'on que le corresponde administrar.
+    \end{enumerate}
+    
+    Este procedimiento evita que un grupo quede accidentalmente compuesto por los mejores escritores, que es la primera objeci\'on que un revisor plantea ante un experimento educativo.
+    
+    \section{Condiciones de administraci\'on}
+    
+    Todos los participantes reciben el material de trabajo \textbf{el mismo d\'ia de la sesi\'on}, en el momento de iniciarla. No existe entrega anticipada para ning\'un grupo. Esta decisi\'on es deliberada y responde a un requisito de validez interna: si un grupo dispusiera del material con anticipaci\'on y otro no, el tiempo de preparaci\'on quedar\'ia mezclado con la herramienta utilizada, y ante cualquier diferencia observada ser\'ia imposible determinar cu\'al de las dos causas la produjo. Al igualar el acceso al material, la \'unica diferencia sistem\'atica entre grupos es la herramienta, que es exactamente lo que el estudio pretende evaluar.
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Condiciones id\'enticas para todos los grupos en cada sesi\'on de producci\'on.}
+        \label{tab:condiciones}
+        \small
+        \begin{tabular}{L{5.0cm} L{8.5cm}}
+            \toprule
+            \textbf{Elemento} & \textbf{Especificaci\'on} \\
+            \midrule
+            Entrega del material & El mismo d\'ia, al inicio de la sesi\'on, para los tres grupos \\
+            Lugar & Laboratorio de c\'omputo supervisado, con grupos en salas separadas \\
+            Duraci\'on & 120 minutos de reloj, id\'enticos para todos \\
+            Material de referencia & El mismo conjunto de art\'iculos cient\'ificos para todos los grupos \\
+            Producto solicitado & Ensayo argumentativo de 1200 a 1500 palabras, con referencias \\
+            Condici\'on sin IA & Procesador de texto sin conexi\'on, sin acceso a servicios de IA \\
+            Condici\'on con IAGen & Acceso a una herramienta generativa designada, con registro obligatorio de la conversaci\'on completa \\
+            Control de contaminaci\'on & Dispositivos institucionales, navegaci\'on restringida por perfil y declaraci\'on de honor firmada \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \section{Rotaci\'on de los temas entre grupos}
+    
+    Cada sesi\'on trabaja un tema distinto. Si todos los grupos abordaran los temas en el mismo orden, la dificultad propia de cada tema quedar\'ia confundida con el momento de la sesi\'on, y una ca\'ida en la sesi\'on 3 podr\'ia deberse tanto a la ausencia de la herramienta como a que ese tema era simplemente m\'as dif\'icil. El contrabalanceo mediante \textbf{cuadrado latino} resuelve ese problema: se construye una tabla en la que cada tema aparece exactamente una vez en cada sesi\'on y una vez en cada grupo.
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Rotaci\'on de temas en cuadrado latino. Cada tema ocupa una sola vez cada posici\'on temporal y cada grupo.}
+        \label{tab:cuadrado}
+        \small
+        \begin{tabular}{L{3.4cm} C{2.7cm} C{2.7cm} C{2.7cm}}
+            \toprule
+            \textbf{Grupo} & \textbf{Sesi\'on 1} & \textbf{Sesi\'on 2} & \textbf{Sesi\'on 3} \\
+            \midrule
+            A & Tema X & Tema Y & Tema Z \\
+            B & Tema Y & Tema Z & Tema X \\
+            C & Tema Z & Tema X & Tema Y \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \section{Verificaci\'on previa de la dificultad de los temas}
+    
+    Antes de fijar los tres temas definitivos se ejecuta un estudio piloto de dificultad con el siguiente procedimiento: se seleccionan seis temas candidatos del \'ambito disciplinar; ocho docentes del \'area califican cada uno de 1 a 10 en dificultad conceptual, disponibilidad de fuentes en acceso abierto y familiaridad esperada del estudiantado; un grupo reducido de estudiantes que no participar\'a en el experimento redacta un esquema breve sobre dos temas al azar, y se cronometra el tiempo empleado. Se retienen los tres temas cuyas puntuaciones medias resulten m\'as pr\'oximas entre s\'i, y la tabla completa de puntuaciones se reporta en el art\'iculo como evidencia de equiparaci\'on.
+    
+    \section{Unidad de an\'alisis}
+    
+    La unidad de an\'alisis es el \textbf{estudiante}, no el equipo. Cada participante entrega un texto individual en cada sesi\'on y responde individualmente todos los instrumentos. Esta decisi\'on es determinante para la viabilidad estad\'istica: si el producto fuera colectivo, con doce equipos el n\'umero real de casos ser\'ia doce y el estudio carecer\'ia de capacidad para detectar cualquier efecto, por grande que fuese.
+    
+    \section{Estructura del estudio: campus, carreras e instituciones}
+    
+    El estudio se despliega en tres niveles anidados que conviene distinguir con precisi\'on, porque cumplen funciones metodol\'ogicas distintas y no son intercambiables entre s\'i.
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Niveles de la estructura del estudio y funci\'on de cada uno.}
+        \label{tab:niveles}
+        \small
+        \begin{tabular}{L{3.0cm} L{4.8cm} L{6.4cm}}
+            \toprule
+            \textbf{Nivel} & \textbf{Contenido previsto} & \textbf{Funci\'on metodol\'ogica} \\
+            \midrule
+            Instituci\'on & UTEQ y las universidades nacionales y extranjeras que se incorporen mediante convenio & Sustenta la generalizaci\'on de los hallazgos m\'as all\'a de una sola instituci\'on \\
+            Campus & Campus central ``Manuel Haz \'Alvarez'' y campus ``La Mar\'ia'' & Aporta variaci\'on de contexto dentro de una misma instituci\'on; act\'ua como factor de bloqueo \\
+            Carrera & Carreras participantes en cada campus & Aporta variaci\'on disciplinar; act\'ua como factor de bloqueo y de agrupamiento \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \subsection{Campus y carreras dentro de la UTEQ}
+    
+    En la Universidad T\'ecnica Estatal de Quevedo el estudio se ejecuta con estudiantes de distintas carreras distribuidas entre el campus central ``Manuel Haz \'Alvarez'' y el campus ``La Mar\'ia''. Esta distribuci\'on aporta variaci\'on real de contexto formativo y disciplinar, y permite comprobar si el efecto observado se mantiene en poblaciones estudiantiles con perfiles distintos.
+    
+    Conviene, no obstante, precisar el alcance de esa variaci\'on. Dos campus de una misma universidad comparten normativa acad\'emica, calendario, plantilla docente en buena parte y criterios de admisi\'on, de modo que \textbf{no constituyen dos instituciones a efectos de replicaci\'on}. El campus y la carrera fortalecen la validez interna del estudio, porque permiten verificar que el efecto no depende de un contexto particular, pero no sustituyen la incorporaci\'on de instituciones externas, que es lo que sostiene el argumento de generalizaci\'on ante una revista de primer nivel. El protocolo trata ambos elementos como complementarios y no como alternativos.
+    
+    \subsection{Incorporaci\'on de instituciones externas}
+    
+    Se gestionar\'a la colaboraci\'on de otras universidades, nacionales y extranjeras, mediante convenio espec\'ifico. Cada instituci\'on que se incorpore aplica el protocolo, la r\'ubrica, los temas, la gu\'ia del estudiante y el cronograma sin modificaci\'on alguna, obtiene la aprobaci\'on de su propio comit\'e de \'etica y designa un coordinador responsable de la fidelidad de la aplicaci\'on. La incorporaci\'on de al menos una instituci\'on extranjera es especialmente valiosa, porque a\~nade variaci\'on de sistema educativo y de contexto ling\"u\'istico-acad\'emico, y convierte los hallazgos en evidencia transcultural.
+    
+    \subsection{Distribuci\'on de los participantes}
+    \label{sec:distribucion}
+    
+    Cada instituci\'on, cada campus y cada carrera aportan estudiantes a los tres grupos. El sorteo descrito en la secci\'on~\ref{sec:asignacion} se ejecuta \textbf{dentro de cada combinaci\'on de instituci\'on, campus y carrera}: en cada una de esas unidades se ordena a sus propios participantes por calificaci\'on de partida, se los divide en tercios y dentro de cada tercio se los asigna al azar a los grupos A, B y C.
+    
+    Esta decisi\'on no es organizativa sino metodol\'ogica. Si una carrera constituyera \'integramente un grupo y otra carrera el grupo restante, la disciplina y la condici\'on experimental quedar\'ian completamente superpuestas, y ante cualquier diferencia observada resultar\'ia imposible determinar si la produjo la herramienta o el hecho de tratarse de poblaciones con formaci\'on distinta. Lo mismo ocurrir\'ia si un campus o una instituci\'on coincidieran con un grupo. El dise\~no quedar\'ia irremediablemente invalidado.
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Reparto de participantes seg\'un el n\'umero de instituciones, para la meta de reclutamiento de 225 participantes.}
+        \label{tab:sedes}
+        \small
+        \begin{tabular}{C{2.8cm} C{3.4cm} C{3.2cm} C{3.2cm}}
+            \toprule
+            \textbf{Instituciones} & \textbf{Por grupo en cada una} & \textbf{Total por instituci\'on} & \textbf{Total del estudio} \\
+            \midrule
+            2 & 38 & 114 & 228 \\
+            3 & 25 & 75  & 225 \\
+            4 & 19 & 57  & 228 \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    El reparto no exige simetr\'ia perfecta. Una instituci\'on puede aportar 90 participantes y otra 130, y una carrera m\'as estudiantes que otra, sin comprometer el an\'alisis, siempre que dentro de cada unidad los tres grupos queden equilibrados en tama\~no y en calificaci\'on de partida. Lo que debe protegerse es el balance interno de cada unidad, no la igualdad entre unidades.
+    
+    Como criterio operativo, ninguna combinaci\'on de campus y carrera deber\'ia aportar menos de nueve participantes, es decir tres por grupo, ya que por debajo de esa cifra el bloqueo pierde sentido y la unidad solo a\~nade ruido. Cuando una carrera no alcance ese m\'inimo, se agrupar\'a con otra af\'in del mismo campus, y esa agrupaci\'on se declarar\'a en el registro previo antes de recolectar datos.
+    
+    Los tama\~nos finalmente alcanzados por instituci\'on, campus, carrera y grupo se reportan en el art\'iculo, junto con la comparaci\'on de las caracter\'isticas de l\'inea base entre grupos.
+    
+    % =====================================================================
+    \chapter{Variables e instrumentos}
+    \label{cap:variables}
+    % =====================================================================
+    
+    \section{Mapa general de variables}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Variables del estudio, instrumento asociado y momento de medici\'on.}
+        \label{tab:variables}
+        \footnotesize
+        \begin{tabular}{L{3.6cm} L{2.0cm} L{4.3cm} L{3.4cm}}
+            \toprule
+            \textbf{Variable} & \textbf{Tipo} & \textbf{Instrumento} & \textbf{Momento} \\
+            \midrule
+            Condici\'on experimental & Independiente & Asignaci\'on aleatoria estratificada & Previo a la sesi\'on 1 \\
+            Calidad del manuscrito & Principal & R\'ubrica anal\'itica (Anexo~\ref{anx:rubrica}) & Cada sesi\'on \\
+            Recomendaci\'on editorial & Principal & Formulario del revisor (Anexo~\ref{anx:revisor}) & Cada sesi\'on \\
+            Retenci\'on y transferencia & Principal & Prueba diferida (Anexo~\ref{anx:prueba}) & 2--4 semanas despu\'es \\
+            Esfuerzo mental & Secundaria & Escala de Paas (Anexo~\ref{anx:paas}) & Fin de cada sesi\'on \\
+            Carga de trabajo percibida & Secundaria & NASA-TLX (Anexo~\ref{anx:tlx}) & Fin de cada sesi\'on \\
+            Calibraci\'on metacognitiva & Secundaria & Ficha de predicci\'on (Anexo~\ref{anx:calibracion}) & Antes de entregar \\
+            Integridad referencial & Secundaria & Plantilla de verificaci\'on (Anexo~\ref{anx:referencias}) & Posterior a cada sesi\'on \\
+            Datos de proceso y prompts & Secundaria & Registro de proceso (Anexo~\ref{anx:proceso}) & Durante cada sesi\'on \\
+            Detecci\'on experta & Subestudio & Formulario del revisor (Anexo~\ref{anx:revisor}) & Fase de evaluaci\'on \\
+            Calificaci\'on de partida & Covariable & R\'ubrica anal\'itica & L\'inea base \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \section{Calidad del manuscrito}
+    
+    La calidad se eval\'ua con una \textbf{r\'ubrica anal\'itica}, es decir, una r\'ubrica que puntua por separado cada criterio en lugar de emitir una impresi\'on global \'unica. El Anexo~\ref{anx:rubrica} contiene la r\'ubrica completa con sus descriptores de nivel, lista para aplicar.
+    
+    El procedimiento de evaluaci\'on es doblemente ciego: cada texto se anonimiza, se le elimina cualquier marca de autor\'ia, se le asigna un c\'odigo alfanum\'erico y se distribuye en orden aleatorio, de modo que el revisor desconoce tanto la identidad del estudiante como el grupo y la sesi\'on de procedencia. Cada texto es evaluado por un m\'inimo de tres revisores con experiencia acreditada como pares evaluadores en revistas indexadas. Antes de iniciar, los revisores participan en una sesi\'on de calibraci\'on de dos horas en la que puntuan cinco textos de entrenamiento, discuten discrepancias y acuerdan la interpretaci\'on de los descriptores.
+    
+    \section{Acuerdo entre evaluadores}
+    
+    Dado que varias personas califican los mismos textos, es obligatorio demostrar que sus juicios son consistentes y no producto del azar. Se emplean dos \'indices complementarios.
+    
+    \begin{cajaterminos}{Concordancia en puntuaciones num\'ericas (coeficiente de correlaci\'on intraclase, ICC)}
+        El ICC es un valor entre 0 y 1 que expresa qu\'e proporci\'on de la variaci\'on observada en las puntuaciones corresponde a diferencias reales entre los textos y no a diferencias entre los criterios de los evaluadores. Se calcula con la funci\'on \texttt{ICC} del paquete \texttt{psych} de R, especificando modelo de efectos aleatorios de dos v\'ias y definici\'on de acuerdo absoluto. Se reporta la forma exacta empleada junto con su intervalo de confianza. Valores superiores a 0{,}75 indican fiabilidad buena y superiores a 0{,}90 fiabilidad excelente \citep{koo2016guideline}.
+    \end{cajaterminos}
+    
+    \begin{cajaterminos}{Concordancia en juicios categ\'oricos (alfa de Krippendorff)}
+        Cuando la respuesta no es un n\'umero sino una etiqueta --- por ejemplo, si el revisor considera que el texto fue producido con asistencia generativa o sin ella --- el \'indice apropiado es el alfa de Krippendorff, que admite cualquier n\'umero de evaluadores, cualquier nivel de medici\'on y la presencia de datos faltantes. Se calcula con el paquete \texttt{irr} de R. Valores iguales o superiores a 0{,}80 permiten sostener conclusiones firmes, y 0{,}67 constituye el m\'inimo tolerable \citep{hayes2007answering}.
+    \end{cajaterminos}
+    
+    \section{Retenci\'on y transferencia}
+    
+    La retenci\'on se mide de dos formas complementarias. La primera es el desempe\~no en la sesi\'on 3, realizada sin ninguna herramienta de IA. La segunda es una \textbf{prueba diferida} aplicada entre dos y cuatro semanas despu\'es de la \'ultima sesi\'on, a libro cerrado y sin dispositivos, sobre los contenidos trabajados en las sesiones 1 y 2.
+    
+    La prueba incluye dos bloques deliberadamente distintos. El bloque de recuerdo pregunta por contenidos tratados de forma directa. El bloque de \textbf{transferencia} plantea situaciones nuevas que exigen aplicar lo aprendido a un caso no visto: es en este bloque donde el efecto de la descarga cognitiva deber\'ia manifestarse con mayor magnitud, porque transferir requiere haber construido el conocimiento y no solo haberlo tramitado. La estructura completa figura en el Anexo~\ref{anx:prueba}.
+    
+    \section{Esfuerzo mental y carga de trabajo}
+    
+    El esfuerzo mental invertido se mide con la escala de Paas, un instrumento de un solo \'item y nueve niveles que interroga directamente por el esfuerzo mental dedicado a la tarea reci\'en concluida \citep{paas1992training}. Su brevedad es una virtud: se responde en menos de un minuto y admite aplicaci\'on repetida sin fatigar al participante. El instrumento figura en el Anexo~\ref{anx:paas}.
+    
+    De forma complementaria se aplica el NASA-TLX, un cuestionario de seis dimensiones que descompone la carga de trabajo en exigencia mental, exigencia f\'isica, presi\'on temporal, rendimiento percibido, esfuerzo y frustraci\'on \citep{hart1988development}. El Anexo~\ref{anx:tlx} contiene las seis escalas y el procedimiento de ponderaci\'on por comparaciones pareadas. Ambos instrumentos se aplican inmediatamente al finalizar cada sesi\'on, antes de que el participante abandone el laboratorio.
+    
+    \section{Calibraci\'on metacognitiva}
+    \label{sec:calibracion}
+    
+    La calibraci\'on metacognitiva es la correspondencia entre lo que una persona cree que ha logrado y lo que efectivamente logr\'o. Justo antes de entregar su texto, cada participante anota en una ficha la calificaci\'on que espera obtener sobre 100 y su nivel de seguridad en esa estimaci\'on. El instrumento figura en el Anexo~\ref{anx:calibracion}.
+    
+    A partir de esos datos se calculan dos indicadores. El \textbf{sesgo} es el promedio de la diferencia con signo entre la calificaci\'on anticipada y la obtenida: un valor positivo indica sobreestimaci\'on sistem\'atica y un valor negativo, subestimaci\'on. La \textbf{precisi\'on absoluta} es el promedio de esa misma diferencia sin considerar el signo, y expresa cu\'an afinado es el juicio del estudiante con independencia de la direcci\'on del error. Formalmente:
+    
+    \begin{equation}
+        \text{Sesgo} = \frac{1}{n}\sum_{i=1}^{n}\left(P_i - R_i\right)
+        \qquad\qquad
+        \text{Precisi\'on absoluta} = \frac{1}{n}\sum_{i=1}^{n}\left|P_i - R_i\right|
+    \end{equation}
+    
+    donde $P_i$ es la calificaci\'on predicha y $R_i$ la calificaci\'on real del participante $i$. La predicci\'on te\'orica es que la asistencia generativa elevar\'a el sesgo sin mejorar la retenci\'on, produciendo estudiantes m\'as confiados y no m\'as competentes.
+    
+    \section{Integridad de las referencias citadas}
+    
+    Se verifica cada referencia de cada texto entregado con la plantilla del Anexo~\ref{anx:referencias}. Dos asistentes, trabajando de forma independiente y ciega a la condici\'on, comprueban que el identificador digital resuelva correctamente y que autores, t\'itulo, revista, a\~no, volumen y p\'aginas se correspondan entre s\'i y con la obra real. Se calculan dos indicadores por texto: la proporci\'on de referencias plenamente verificables y la \textbf{tasa de alucinaci\'on}, entendida como la proporci\'on de referencias inexistentes o con campos fabricados. Este indicador es enteramente objetivo y de alto inter\'es editorial.
+    
+    \section{Datos de proceso}
+    
+    Se registran el tiempo efectivo dedicado a la tarea, el historial de versiones del documento y, en la condici\'on con asistencia, la transcripci\'on \'integra de la conversaci\'on con la herramienta. El Anexo~\ref{anx:proceso} especifica el formato de entrega. Estos datos permiten distinguir entre distintos modos de uso de la herramienta, desde la delegaci\'on completa hasta el uso como interlocutor cr\'itico, y habilitan an\'alisis posteriores sobre estrategias de interacci\'on.
+    
+    \section{Subestudio de detecci\'on experta}
+    
+    Cada revisor, adem\'as de calificar la calidad, emite un juicio dicot\'omico sobre si el texto fue producido con asistencia generativa y declara su nivel de seguridad en una escala de 0 a 100. Como el equipo investigador conoce la condici\'on real de cada texto --- lo que en metodolog\'ia se denomina \textbf{verdad de base} --- es posible contrastar cada juicio con la realidad y construir la tabla de aciertos y errores que se presenta a continuaci\'on.
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Tabla de contingencia que ordena los juicios del revisor frente a la condici\'on real del texto.}
+        \label{tab:contingencia}
+        \small
+        \begin{tabular}{L{4.2cm} C{4.4cm} C{4.4cm}}
+            \toprule
+            & \textbf{Texto realmente asistido} & \textbf{Texto realmente sin IA} \\
+            \midrule
+            El revisor dice ``con IA''  & Verdadero positivo (VP) & Falso positivo (FP) \\
+            El revisor dice ``sin IA''  & Falso negativo (FN)     & Verdadero negativo (VN) \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \subsection{Sensibilidad y especificidad}
+    
+    La \textbf{sensibilidad} es la proporci\'on de textos realmente asistidos que el revisor identific\'o como tales; responde a la pregunta de cu\'antos casos reales se detectaron. La \textbf{especificidad} es la proporci\'on de textos realmente escritos sin IA que el revisor dej\'o pasar correctamente; responde a cu\'antos estudiantes inocentes no fueron se\~nalados. Se calculan as\'i:
+    
+    \begin{equation}
+        \text{Sensibilidad} = \frac{VP}{VP + FN}
+        \qquad\qquad
+        \text{Especificidad} = \frac{VN}{VN + FP}
+    \end{equation}
+    
+    Ambas se reportan con intervalos de confianza del 95\%. En un contexto disciplinario, la especificidad tiene mayor peso \'etico que la sensibilidad: se\~nalar err\'oneamente a un estudiante honesto es un error m\'as grave que dejar pasar un caso.
+    
+    \subsection{Discriminaci\'on y criterio de decisi\'on}
+    
+    Sensibilidad y especificidad dependen conjuntamente de dos cosas distintas que conviene separar: cu\'anto distingue realmente el revisor, y cu\'an dispuesto est\'a a acusar. La teor\'ia de detecci\'on de se\~nales separa ambos componentes.
+    
+    El \'indice $d'$ (que se lee ``de prima'') mide la capacidad genuina de distinguir entre los dos tipos de texto, con independencia de la disposici\'on a acusar. Un valor pr\'oximo a cero significa que el revisor est\'a esencialmente adivinando; valores superiores a 1 indican discriminaci\'on real. El \'indice de criterio, $c$, mide esa disposici\'on: un valor negativo describe a un revisor propenso a acusar y uno positivo a un revisor indulgente. Dos revisores pueden discriminar igual de bien y aun as\'i uno acusar al doble de estudiantes que el otro. Ambos se calculan a partir de las tasas de aciertos y falsas alarmas:
+    
+    \begin{align}
+        d' &= z(\text{Sensibilidad}) - z(\text{tasa de falsos positivos}) \\[2pt]
+        c  &= -\tfrac{1}{2}\left[z(\text{Sensibilidad}) + z(\text{tasa de falsos positivos})\right]
+    \end{align}
+    
+    donde $z(\cdot)$ es la funci\'on inversa de la distribuci\'on normal est\'andar.
+    
+    \subsection{Curva ROC y \'area bajo la curva (AUC)}
+    
+    Los revisores no emiten solo un juicio dicot\'omico: declaran adem\'as cu\'an seguros est\'an. Esa informaci\'on adicional permite construir una medida de exactitud global que no depende del umbral que cada revisor haya elegido.
+    
+    \begin{cajaterminos}{Qu\'e es una curva ROC}
+        La sigla ROC corresponde a \emph{receiver operating characteristic}, ``caracter\'istica operativa del receptor'', denominaci\'on heredada de los operadores de radar de la Segunda Guerra Mundial, que deb\'ian decidir si una se\~nal en pantalla correspond\'ia a un avi\'on o a ruido. La curva se construye recorriendo todos los umbrales posibles de seguridad: para cada umbral se calcula qu\'e proporci\'on de textos asistidos ser\'ia detectada y qu\'e proporci\'on de textos humanos ser\'ia acusada err\'oneamente, y se representa el primer valor frente al segundo. El resultado es una curva que describe el comportamiento del revisor bajo cualquier grado de severidad, en lugar de un \'unico punto.
+    \end{cajaterminos}
+    
+    \begin{cajaterminos}{Qu\'e es el AUC}
+        El AUC (\emph{area under the curve}, ``\'area bajo la curva'') es el \'area que queda bajo esa curva y resume la exactitud global en un solo n\'umero entre 0{,}5 y 1. Tiene una interpretaci\'on probabil\'istica directa y muy intuitiva: es la probabilidad de que, tomados al azar un texto asistido y un texto humano, el revisor otorgue mayor sospecha al texto asistido \citep{hanley1982meaning}. Un AUC de 0{,}5 equivale exactamente a lanzar una moneda; 1{,}0 representa discriminaci\'on perfecta. Se calcula con el paquete \texttt{pROC} de R a partir de las puntuaciones de seguridad, y se reporta con su intervalo de confianza.
+    \end{cajaterminos}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Criterios de interpretaci\'on del AUC adoptados en este estudio.}
+        \label{tab:auc}
+        \small
+        \begin{tabular}{C{3.2cm} L{10.3cm}}
+            \toprule
+            \textbf{Valor de AUC} & \textbf{Lectura} \\
+            \midrule
+            0{,}50 -- 0{,}60 & Indistinguible del azar \\
+            0{,}60 -- 0{,}70 & Discriminaci\'on d\'ebil, insuficiente para cualquier decisi\'on \\
+            0{,}70 -- 0{,}80 & Discriminaci\'on moderada, admisible solo como indicio \\
+            0{,}80 -- 0{,}90 & Discriminaci\'on buena \\
+            0{,}90 -- 1{,}00 & Discriminaci\'on excelente \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    Los mismos textos se procesan adicionalmente con al menos dos detectores autom\'aticos disponibles, calculando para ellos los mismos indicadores. La comparaci\'on entre juicio humano experto y detecci\'on autom\'atica, ambos contrastados contra la misma verdad de base, constituye una contribuci\'on directamente relevante para las pol\'iticas institucionales de integridad acad\'emica.
+    
+    % =====================================================================
+    \chapter{Plan de an\'alisis estad\'istico}
+    \label{cap:analisis}
+    % =====================================================================
+    
+    \section{Preparaci\'on de los datos}
+    
+    Antes de cualquier contraste se depura la base: se verifican rangos admisibles, se documentan y conservan los valores at\'ipicos sin eliminarlos salvo error de registro comprobado, y se examina el patr\'on de datos faltantes. El c\'odigo de depuraci\'on y an\'alisis se versiona en un repositorio p\'ublico junto con los datos anonimizados.
+    
+    \section{Modelo principal}
+    
+    El an\'alisis central emplea \textbf{modelos mixtos}, tambi\'en llamados multinivel, que son una extensi\'on de la regresi\'on capaz de reconocer que los datos est\'an anidados: cada estudiante produce tres textos, cada tema posee su propia dificultad y cada revisor su propia severidad. El modelo separa esas fuentes de variaci\'on en lugar de confundirlas con el efecto de la condici\'on experimental. La especificaci\'on, en la notaci\'on del paquete \texttt{lme4} de R, es la siguiente:
+    
+    \begin{quote}
+        \ttfamily\small
+        calidad \textasciitilde{} grupo * sesion + institucion + campus \\
+        \hspace*{1.2em} + calificacion\_base + (1|estudiante) + (1|tema) \\
+        \hspace*{1.2em} + (1|revisor) + (1|carrera)
+    \end{quote}
+    
+    Los t\'erminos entre par\'entesis son los \textbf{efectos aleatorios}: instruyen al modelo para que ajuste por el hecho de que un revisor determinado califica m\'as duro, un tema determinado resulta m\'as dif\'icil y cada estudiante parte de un nivel propio. Los valores $p$ se obtienen mediante aproximaci\'on de Satterthwaite con el paquete \texttt{lmerTest}.
+    
+    La instituci\'on y el campus se incorporan como \textbf{efectos fijos} y no como efectos aleatorios. La raz\'on es t\'ecnica: la estimaci\'on fiable de la varianza de un efecto aleatorio requiere del orden de cinco o m\'as agrupaciones, y este estudio contempla dos o tres. Con ese n\'umero, tratar la sede como efecto aleatorio producir\'ia estimaciones inestables y errores t\'ipicos poco confiables. Si el estudio llegara a ampliarse a cinco o m\'as instituciones, la especificaci\'on se revisar\'ia para incorporarlas como efecto aleatorio, y ese cambio quedar\'ia declarado en una enmienda al registro previo. La carrera, en cambio, s\'i se modela como efecto aleatorio siempre que participen cinco o m\'as; con menos de cinco se incorpora tambi\'en como efecto fijo. El criterio aplicado se declara en el registro previo una vez conocido el n\'umero definitivo de carreras participantes.
+    
+    Se estima adem\'as un modelo complementario que incluye las interacciones entre grupo e instituci\'on, entre grupo y campus, y entre grupo y carrera. Su prop\'osito no es contrastar una hip\'otesis principal, sino verificar que el efecto de la condici\'on experimental se reproduce en los distintos contextos institucionales. La ausencia de interacci\'on significativa constituye evidencia de replicaci\'on y es precisamente el argumento que sostiene la relevancia del estudio m\'as all\'a de una sola instituci\'on.
+    
+    \section{Contraste principal de retenci\'on}
+    
+    La hip\'otesis H2 se contrasta con un \textbf{an\'alisis de covarianza} (ANCOVA) sobre las puntuaciones de la sesi\'on 3, comparando los grupos y descontando la calificaci\'on de partida de cada estudiante. De este modo, lo que se compara es el desempe\~no ajustado por el nivel previo, y no diferencias heredadas de la composici\'on de los grupos. Se reporta la diferencia de medias ajustadas con su intervalo de confianza del 95\% y el tama\~no del efecto correspondiente.
+    
+    \section{Pruebas de equivalencia}
+    
+    Las pruebas estad\'isticas convencionales pueden rechazar la ausencia de efecto, pero no pueden afirmar que dos condiciones sean equivalentes. Cuando la calidad inmediata no difiera significativamente entre condiciones, se aplicar\'a el procedimiento de dos pruebas unilaterales (TOST) para sostener la equivalencia de manera positiva \citep{lakens2018equivalence}. El procedimiento exige declarar de antemano cu\'al es la diferencia m\'inima que se considerar\'ia relevante en la pr\'actica; este estudio la fija en 5 puntos sobre 100 de la r\'ubrica, magnitud que corresponde aproximadamente a un nivel de diferencia en un criterio. El c\'alculo se realiza con el paquete \texttt{TOSTER} de R.
+    
+    Este contraste es estrat\'egicamente importante. Demostrar que la calidad es estad\'isticamente equivalente y que, a pesar de ello, la retenci\'on cae, constituye un resultado mucho m\'as robusto y m\'as dif\'icil de refutar que una simple diferencia de medias.
+    
+    \section{An\'alisis de mediaci\'on}
+    
+    La hip\'otesis H6 se examina mediante un modelo de mediaci\'on multinivel en el que el esfuerzo mental reportado act\'ua como variable intermedia entre la condici\'on experimental y el desempe\~no diferido. Se estima con el paquete \texttt{mediation} de R, con 5000 remuestreos bootstrap para los intervalos de confianza del efecto indirecto.
+    
+    \section{An\'alisis del subestudio de detecci\'on}
+    
+    Se calculan sensibilidad, especificidad, $d'$, criterio $c$ y AUC por revisor y de forma agregada, con intervalos de confianza del 95\%. La probabilidad de que un texto sea se\~nalado se modela mediante regresi\'on log\'istica mixta con efectos aleatorios por revisor y por texto, incluyendo como predictores la condici\'on real, la calidad del texto y la experiencia editorial del revisor. Se contrasta formalmente la exactitud del juicio humano frente a la de los detectores autom\'aticos.
+    
+    \section{Tama\~nos de efecto y presentaci\'on de resultados}
+    
+    Todo contraste se acompa\~na del tama\~no del efecto con intervalo de confianza del 95\%. No se reportar\'an conclusiones basadas \'unicamente en la significaci\'on estad\'istica. Los resultados exploratorios se etiquetan expl\'icitamente como tales y se distinguen de los contrastes preespecificados.
+    
+    \section{Datos faltantes}
+    
+    Los modelos mixtos utilizan toda la informaci\'on disponible sin exigir casos completos. Para las variables con datos faltantes se aplicar\'a imputaci\'on m\'ultiple por ecuaciones encadenadas con el paquete \texttt{mice}, generando veinte conjuntos imputados, y se reportar\'a un an\'alisis de sensibilidad comparando los resultados con y sin imputaci\'on.
+    
+    \section{Programas}
+    
+    El an\'alisis se ejecuta en R con los paquetes \texttt{lme4}, \texttt{lmerTest}, \texttt{emmeans}, \texttt{psych}, \texttt{irr}, \texttt{pROC}, \texttt{TOSTER}, \texttt{mediation} y \texttt{mice}. El c\'alculo de potencia se realiza con G*Power \citep{faul2007gpower}.
+    
+    % =====================================================================
+    \chapter{Tama\~no muestral y potencia}
+    \label{cap:potencia}
+    % =====================================================================
+    
+    \section{Qu\'e significa el tama\~no del efecto}
+    
+    La \textbf{$d$ de Cohen} expresa la magnitud de una diferencia en unidades comparables entre estudios: se obtiene dividiendo la diferencia entre las medias de dos grupos por la desviaci\'on t\'ipica combinada de ambos. Por convenci\'on, 0{,}20 corresponde a un efecto peque\~no, 0{,}50 a uno mediano y 0{,}80 a uno grande. Fijar el objetivo en $d = 0{,}50$ significa dise\~nar el estudio para poder detectar una diferencia de magnitud mediana, que es la m\'inima con relevancia educativa pr\'actica en este \'ambito.
+    
+    \section{Procedimiento de c\'alculo}
+    
+    El c\'alculo se ejecuta en G*Power con los siguientes par\'ametros: familia de pruebas $t$; prueba de diferencia de medias entre dos grupos independientes; an\'alisis a priori; contraste bilateral; $d = 0{,}50$; nivel de significaci\'on $\alpha = 0{,}05$; potencia $1-\beta = 0{,}80$; razón de asignaci\'on igual a 1. El programa devuelve 64 participantes por grupo.
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Escenarios de potencia para el contraste principal entre dos grupos.}
+        \label{tab:potencia}
+        \small
+        \begin{tabular}{C{2.6cm} C{2.6cm} C{2.6cm} C{3.4cm}}
+            \toprule
+            \textbf{$d$ objetivo} & \textbf{Potencia} & \textbf{$n$ por grupo} & \textbf{$N$ total (3 grupos)} \\
+            \midrule
+            0{,}40 & 0{,}80 & 99 & 297 \\
+            0{,}50 & 0{,}80 & 64 & 192 \\
+            0{,}50 & 0{,}90 & 86 & 258 \\
+            0{,}60 & 0{,}80 & 45 & 135 \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \section{Meta de reclutamiento}
+    
+    Adoptando $d = 0{,}50$ con potencia de 0{,}80 y previendo una p\'erdida del 15\% entre la primera sesi\'on y la prueba diferida, la meta de reclutamiento se fija en \textbf{225 participantes} distribuidos entre las sedes, con un m\'inimo aceptable de 180. Alcanzar esa cifra exige la participaci\'on de varias carreras de ambos campus y probablemente de m\'as de una cohorte, adem\'as de las instituciones externas que se incorporen. Conviene se\~nalar que el dise\~no de medidas repetidas y la inclusi\'on de la calificaci\'on de partida como covariable incrementan la potencia efectiva por encima de la estimaci\'on conservadora de la tabla anterior.
+    
+    % =====================================================================
+    \chapter{\'Etica, ciencia abierta y gesti\'on de datos}
+    % =====================================================================
+    
+    \section{Aprobaci\'on \'etica y consentimiento}
+    
+    El protocolo se somete a la aprobaci\'on del comit\'e de \'etica institucional de cada universidad participante antes de iniciar el reclutamiento. Todos los participantes firman el consentimiento informado del Anexo~\ref{anx:consentimiento}, que explica los objetivos, los procedimientos, el car\'acter voluntario de la participaci\'on y el derecho a retirarse en cualquier momento sin consecuencia alguna. Dicho documento incorpora una autorizaci\'on diferenciada y opcional para que el equipo solicite a las autoridades universitarias el promedio acad\'emico del participante, de modo que quien no desee otorgarla pueda participar igualmente en el estudio.
+    
+    \section{Separaci\'on respecto de la calificaci\'on del curso}
+    
+    El experimento se desacopla por completo de la evaluaci\'on acad\'emica real. Ning\'un estudiante ve afectada su nota por el grupo que le correspondi\'o en el sorteo. Los participantes reciben un reconocimiento equivalente por su participaci\'on, con independencia de su desempe\~no y de su condici\'on. Al concluir el estudio se realiza una sesi\'on informativa en la que se explica el prop\'osito, se comunican los resultados agregados y se ofrece a todos los grupos formaci\'on en uso cr\'itico de herramientas generativas.
+    
+    \section{Protecci\'on de datos}
+    
+    Los textos se anonimizan antes de la evaluaci\'on mediante c\'odigos alfanum\'ericos. La tabla que vincula c\'odigos con identidades se custodia por separado, cifrada, bajo responsabilidad de una persona ajena al equipo evaluador, y se destruye al cerrar el estudio. Los datos publicados no contienen informaci\'on que permita identificar a ning\'un participante.
+    
+    \section{Registro previo del estudio}
+    
+    El protocolo se registra en el Open Science Framework antes de recolectar el primer dato. El registro previo consiste en depositar p\'ublicamente hip\'otesis, dise\~no, instrumentos y plan de an\'alisis en un documento con marca temporal certificada, lo que permite distinguir con nitidez entre lo que se predijo y lo que se descubri\'o despu\'es \citep{nosek2018preregistration}. El procedimiento operativo es el siguiente: se crea el proyecto en la plataforma, se completa una plantilla de registro, se adjunta este documento y los anexos, y se congela el registro, que puede mantenerse en acceso restringido hasta la publicaci\'on. El enlace se declara en la carta de presentaci\'on del manuscrito.
+    
+    \section{Materiales abiertos}
+    
+    Al publicar se depositan en un repositorio p\'ublico los datos anonimizados, la r\'ubrica, los instrumentos, el c\'odigo de an\'alisis y las transcripciones de las conversaciones con la herramienta generativa, previa eliminaci\'on de cualquier dato identificable.
+    
+    % =====================================================================
+    \chapter{Cronograma y viabilidad}
+    % =====================================================================
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Cronograma de ejecuci\'on por fases.}
+        \label{tab:cronograma}
+        \small
+        \begin{tabular}{C{1.6cm} L{7.2cm} L{5.0cm}}
+            \toprule
+            \textbf{Mes} & \textbf{Actividad} & \textbf{Producto} \\
+            \midrule
+            1 & Pilotaje de temas y ajuste de la r\'ubrica & Informe de equiparaci\'on de temas \\
+            1--2 & Aprobaci\'on \'etica y registro previo & Dictamen y registro con marca temporal \\
+            2 & Sesi\'on de l\'inea base y asignaci\'on aleatoria & Tabla de asignaci\'on custodiada \\
+            3--4 & Sesiones 1, 2 y 3 de producci\'on & Corpus de textos codificados \\
+            5 & Prueba diferida & Base de retenci\'on y transferencia \\
+            5--6 & Calibraci\'on y evaluaci\'on por revisores & Puntuaciones y juicios de detecci\'on \\
+            6 & Verificaci\'on de referencias & Indicadores de integridad referencial \\
+            7 & An\'alisis estad\'istico & Resultados y figuras \\
+            8--9 & Redacci\'on y env\'io del manuscrito & Manuscrito y materiales abiertos \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    La partida de costo m\'as significativa es la remuneraci\'on de los revisores externos. Con tres revisores por texto y un corpus estimado en torno a 675 textos, el volumen de evaluaci\'on exige un panel de al menos doce revisores y una planificaci\'on cuidadosa de la carga individual, que no deber\'ia superar los sesenta textos por persona para preservar la calidad del juicio.
+    
+    % =====================================================================
+    \chapter{Limitaciones y estrategia de publicaci\'on}
+    % =====================================================================
+    
+    \section{Limitaciones anticipadas y c\'omo se abordan}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Limitaciones previstas y decisiones de dise\~no que las atenuan.}
+        \label{tab:limitaciones}
+        \small
+        \begin{tabular}{L{6.4cm} L{7.6cm}}
+            \toprule
+            \textbf{Limitaci\'on} & \textbf{Tratamiento} \\
+            \midrule
+            Contaminaci\'on entre grupos & Salas separadas, dispositivos institucionales con perfil restringido y declaraci\'on de honor \\
+            Efecto de novedad de la herramienta & Registro del uso previo declarado en la l\'inea base e inclusi\'on como covariable \\
+            Generalizaci\'on limitada a la escritura argumentativa & Se declara expl\'icitamente el alcance y se propone replicaci\'on en otros g\'eneros \\
+            Evoluci\'on r\'apida de los modelos generativos & Se documentan versi\'on exacta y fecha de acceso de la herramienta empleada \\
+            Motivaci\'on diferencial por desacople de la nota & Reconocimiento equivalente para todos y verificaci\'on del esfuerzo mediante datos de proceso \\
+            Ventana de la prueba diferida & Se fija y se preregistra el intervalo exacto, id\'entico para todos los grupos \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \section{Ajuste al perfil editorial}
+    
+    El manuscrito derivado de este protocolo se orienta a una revista de primer nivel en tecnolog\'ia educativa. Tres rasgos del dise\~no atienden de forma directa los criterios editoriales habituales en ese \'ambito. En primer lugar, el objeto de estudio es un mecanismo cognitivo de alcance general y no la evaluaci\'on de una herramienta concreta en un curso particular. En segundo lugar, la estructura multi-sitio y multidisciplinar sustenta la relevancia m\'as all\'a de una sola instituci\'on. En tercer lugar, el registro previo, los materiales abiertos y el reporte de tama\~nos de efecto con intervalos de confianza responden a los est\'andares metodol\'ogicos que hoy se exigen.
+    
+    La redacci\'on del manuscrito debe hacer expl\'icita, ya desde la introducci\'on, la relevancia para la comunidad educativa amplia, y evitar toda formulaci\'on que presente el trabajo como un estudio de caso institucional.
+    
+    % =====================================================================
+    \appendix
+    \renewcommand{\chaptername}{Anexo}
+    % =====================================================================
+    
+    \chapter{Consentimiento informado}
+    \label{anx:consentimiento}
+    
+    Este documento se emite por duplicado: un ejemplar para el participante y otro para el archivo del proyecto. Se entrega con anterioridad a la primera sesi\'on, de modo que el participante disponga de tiempo para leerlo y formular preguntas.
+    
+    \begin{center}
+        {\sffamily\normalsize\bfseries\color{azulinstitucional} CONSENTIMIENTO INFORMADO PARA PARTICIPANTES\par}
+        \vspace{2pt}
+        {\sffamily\small\textbf{Proyecto EAES} --- Escritura Acad\'emica y Aprendizaje en Educaci\'on Superior\par}
+    \end{center}
+    
+    \vspace{4pt}
+    \hrule
+    \vspace{6pt}
+    
+    \section*{1. Datos de identificaci\'on del participante}
+    \addcontentsline{toc}{section}{1. Datos de identificaci\'on del participante}
+    
+    \begin{tabular}{@{}L{4.0cm}@{}L{9.8cm}@{}}
+        \textbf{\small Universidad:} & \rule{9.6cm}{0.4pt} \\
+        \textbf{\small Campus:} & \rule{9.6cm}{0.4pt} \\
+        \textbf{\small Carrera:} & \rule{9.6cm}{0.4pt} \\
+        \textbf{\small A\~no o nivel:} & \rule{9.6cm}{0.4pt} \\
+        \textbf{\small Apellidos:} & \rule{9.6cm}{0.4pt} \\
+        \textbf{\small Nombres:} & \rule{9.6cm}{0.4pt} \\
+        \textbf{\small C\'edula / pasaporte / DNI / ID:} & \rule{9.6cm}{0.4pt} \\
+        \textbf{\small Correo institucional:} & \rule{9.6cm}{0.4pt} \\
+    \end{tabular}
+    
+    \section*{2. En qu\'e consiste este estudio}
+    \addcontentsline{toc}{section}{2. En qu\'e consiste este estudio}
+    
+    El Proyecto EAES estudia c\'omo los estudiantes universitarios elaboran textos acad\'emicos y qu\'e factores influyen en lo que aprenden durante ese proceso. La investigaci\'on se desarrolla simult\'aneamente en varias carreras y universidades, y es conducida por docentes investigadores de las instituciones participantes.
+    
+    \section*{3. Qu\'e implica su participaci\'on}
+    \addcontentsline{toc}{section}{3. Qu\'e implica su participaci\'on}
+    
+    \begin{itemize}[leftmargin=1.0cm]
+        \item Asistir\'a a \textbf{tres sesiones de trabajo de dos horas} cada una, en laboratorio supervisado, en las que redactar\'a un ensayo a partir de material entregado el mismo d\'ia.
+        \item Asistir\'a a una \textbf{sesi\'on posterior de evaluaci\'on de aproximadamente cuarenta minutos}, entre dos y cuatro semanas despu\'es de la \'ultima sesi\'on de trabajo.
+        \item Responder\'a \textbf{cuestionarios breves} sobre el esfuerzo que le demand\'o cada tarea, que no toman m\'as de cinco minutos.
+        \item Las \textbf{condiciones y herramientas de trabajo de cada sesi\'on se asignan al azar}. Usted no elige el grupo que le corresponde ni las herramientas de las que dispondr\'a en cada sesi\'on.
+    \end{itemize}
+    
+    \section*{4. Qu\'e datos se recogen}
+    \addcontentsline{toc}{section}{4. Qu\'e datos se recogen}
+    
+    Los textos que usted produzca, sus respuestas a los cuestionarios, el registro del tiempo dedicado a cada tarea, el historial de versiones de su documento, su rendimiento acad\'emico previo y, en las sesiones en que disponga de alguna herramienta digital de apoyo, el registro de su interacci\'on con ella. No se recogen im\'agenes, grabaciones de audio ni datos ajenos a la actividad acad\'emica descrita.
+    
+    \section*{5. Autorizaci\'on para solicitar su rendimiento acad\'emico previo}
+    \addcontentsline{toc}{section}{5. Autorizaci\'on para solicitar su rendimiento acad\'emico previo}
+    
+    Para conformar grupos de trabajo comparables entre s\'i, el equipo investigador necesita distribuir a los participantes de manera equilibrada seg\'un su rendimiento acad\'emico previo. Con ese \'unico fin se solicitar\'a a las autoridades de su universidad su \textbf{promedio acumulado} hasta el per\'iodo acad\'emico inmediato anterior.
+    
+    \vspace{4pt}
+    \fbox{\phantom{x}}\ \ \textbf{Autorizo} que el equipo investigador solicite a las autoridades de mi universidad mi promedio acumulado, exclusivamente para la conformaci\'on equilibrada de los grupos de trabajo de este estudio.
+    
+    \vspace{4pt}
+    \fbox{\phantom{x}}\ \ \textbf{No autorizo} esta solicitud. \textit{(Puede igualmente participar en el estudio; en ese caso la asignaci\'on a los grupos se realizar\'a \'unicamente con base en el texto de referencia inicial.)}
+    
+    \section*{6. Efecto sobre sus calificaciones}
+    \addcontentsline{toc}{section}{6. Efecto sobre sus calificaciones}
+    
+    \textbf{Ninguno.} Su participaci\'on, su desempe\~no dentro del estudio y el grupo que le corresponda por sorteo no afectan de ning\'un modo su calificaci\'on en ninguna asignatura. Los textos que elabore en este estudio no forman parte de la evaluaci\'on de su curso.
+    
+    \section*{7. Confidencialidad y protecci\'on de sus datos}
+    \addcontentsline{toc}{section}{7. Confidencialidad y protecci\'on de sus datos}
+    
+    A cada participante se le asigna un c\'odigo. Desde ese momento, toda la informaci\'on del estudio se maneja \'unicamente mediante ese c\'odigo. Quienes eval\'uen sus textos desconocer\'an su identidad, su universidad, su campus, su carrera y el grupo al que usted pertenece.
+    
+    La tabla que vincula c\'odigos con identidades se custodia cifrada, bajo responsabilidad de una persona ajena al equipo evaluador, y se destruye al concluir el estudio. Los datos que se publiquen no permitir\'an identificar a ning\'un participante. Sus datos no se utilizar\'an para ninguna finalidad distinta de la descrita en este documento, ni se transferir\'an a terceros ajenos al equipo investigador.
+    
+    \section*{8. Car\'acter voluntario y derecho de retiro}
+    \addcontentsline{toc}{section}{8. Car\'acter voluntario y derecho de retiro}
+    
+    Su participaci\'on es enteramente voluntaria. Puede negarse a participar o retirarse en cualquier momento, sin necesidad de explicar el motivo y sin consecuencia alguna de tipo acad\'emico o de otra naturaleza. Si decide retirarse, puede solicitar adem\'as la eliminaci\'on de los datos que hubiera aportado hasta ese momento.
+    
+    \section*{9. Riesgos, beneficios e informaci\'on final}
+    \addcontentsline{toc}{section}{9. Riesgos, beneficios e informaci\'on final}
+    
+    El estudio no implica riesgos previsibles para usted. Al concluir la investigaci\'on se realizar\'a una \textbf{sesi\'on informativa} en la que se explicar\'a en detalle el prop\'osito completo del estudio, se comunicar\'an los resultados obtenidos y se ofrecer\'a a todos los participantes, sin distinci\'on de grupo, formaci\'on sobre escritura acad\'emica y uso responsable de herramientas digitales de apoyo. Una vez conocido ese prop\'osito, usted podr\'a solicitar el retiro de sus datos.
+    
+    \section*{10. A qui\'en dirigirse}
+    \addcontentsline{toc}{section}{10. A qui\'en dirigirse}
+    
+    \begin{tabular}{@{}L{4.8cm}@{}L{9.0cm}@{}}
+        \textbf{\small Investigador principal:} & Gleiston Cicerón Guerrero Ulloa \\
+        \textbf{\small Correo de contacto:} & gguerrero@uteq.edu.ec \\
+        \textbf{\small Comit\'e de \'etica / tr\'amite:} & \rule{8.8cm}{0.4pt} \\
+    \end{tabular}
+    
+    \section*{11. Declaraci\'on del participante}
+    \addcontentsline{toc}{section}{11. Declaraci\'on del participante}
+    
+    He le\'ido este documento en su totalidad, he tenido la oportunidad de formular preguntas y estas han sido respondidas de forma satisfactoria. Comprendo en qu\'e consiste el estudio, qu\'e datos se recogen, con qu\'e finalidad se utilizan y que puedo retirarme en cualquier momento sin consecuencia alguna. Recibo un ejemplar firmado de este documento.
+    
+    \vspace{4pt}
+    \fbox{\phantom{x}}\ \ \textbf{Acepto participar} en el Proyecto EAES en los t\'erminos descritos en este documento.
+    
+    \vspace{20pt}
+    \begin{tabular}{@{}L{6.6cm}@{}L{0.6cm}@{}L{6.6cm}@{}}
+        \rule{6.2cm}{0.4pt} & & \rule{6.2cm}{0.4pt} \\
+        {\small Firma del participante} & & {\small Fecha (d\'ia / mes / a\~no)} \\
+    \end{tabular}
+    
+    \vspace{16pt}
+    \begin{tabular}{@{}L{6.6cm}@{}L{0.6cm}@{}L{6.6cm}@{}}
+        \rule{6.2cm}{0.4pt} & & \rule{6.2cm}{0.4pt} \\
+        {\small Firma del investigador o persona responsable} & & {\small Fecha (d\'ia / mes / a\~no)} \\
+    \end{tabular}
+    
+    % ---------------------------------------------------------------------
+    \chapter{R\'ubrica anal\'itica de calidad del manuscrito}
+    \label{anx:rubrica}
+    
+    Cada criterio se punt\'ua de 0 a 4. La puntuaci\'on total sobre 100 se obtiene aplicando los pesos de la tabla~\ref{tab:pesos} mediante la f\'ormula $\text{Total} = \sum_{j} \left( \frac{\text{nivel}_j}{4} \times \text{peso}_j \right)$.
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Criterios y pesos de la r\'ubrica.}
+        \label{tab:pesos}
+        \small
+        \begin{tabular}{C{1.4cm} L{9.0cm} C{2.4cm}}
+            \toprule
+            \textbf{C\'odigo} & \textbf{Criterio} & \textbf{Peso} \\
+            \midrule
+            C1 & Calidad de la tesis y de la argumentaci\'on & 25 \\
+            C2 & Uso e integraci\'on de la evidencia & 25 \\
+            C3 & Precisi\'on conceptual y dominio del contenido & 25 \\
+            C4 & Estructura, coherencia y claridad expositiva & 15 \\
+            C5 & Originalidad y voz propia & 10 \\
+            \midrule
+            \multicolumn{2}{r}{\textbf{Total}} & \textbf{100} \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \section*{C1. Calidad de la tesis y de la argumentaci\'on}
+    \addcontentsline{toc}{section}{C1. Calidad de la tesis y de la argumentaci\'on}
+    
+    \begin{longtable}{C{1.2cm} L{12.6cm}}
+        \toprule
+        \textbf{Nivel} & \textbf{Descriptor} \\
+        \midrule
+        \endhead
+        4 & La tesis es expl\'icita, delimitada y discutible. La argumentaci\'on progresa de forma encadenada, anticipa objeciones relevantes y las responde con razones. \\
+        3 & La tesis es clara y la argumentaci\'on es s\'olida, aunque no considera objeciones o las trata de manera superficial. \\
+        2 & Hay una tesis identificable, pero la argumentaci\'on es enumerativa m\'as que encadenada y algunos pasos quedan sin justificar. \\
+        1 & La tesis es vaga o se confunde con el tema. El texto describe en lugar de argumentar. \\
+        0 & No hay tesis reconocible ni estructura argumentativa. \\
+        \bottomrule
+    \end{longtable}
+    
+    \section*{C2. Uso e integraci\'on de la evidencia}
+    \addcontentsline{toc}{section}{C2. Uso e integraci\'on de la evidencia}
+    
+    \begin{longtable}{C{1.2cm} L{12.6cm}}
+        \toprule
+        \textbf{Nivel} & \textbf{Descriptor} \\
+        \midrule
+        \endhead
+        4 & Las fuentes se integran al servicio del argumento, se contrastan entre s\'i y se citan con precisi\'on. Se distingue con claridad lo aportado por las fuentes de lo aportado por el autor. \\
+        3 & Las fuentes son pertinentes y est\'an bien citadas, pero se yuxtaponen m\'as que dialogar entre s\'i. \\
+        2 & Se citan fuentes de forma ornamental, sin que sostengan realmente las afirmaciones. \\
+        1 & Las citas son escasas, imprecisas o no corresponden a lo afirmado. \\
+        0 & No hay evidencia citada, o las referencias no existen. \\
+        \bottomrule
+    \end{longtable}
+    
+    \section*{C3. Precisi\'on conceptual y dominio del contenido}
+    \addcontentsline{toc}{section}{C3. Precisi\'on conceptual y dominio del contenido}
+    
+    \begin{longtable}{C{1.2cm} L{12.6cm}}
+        \toprule
+        \textbf{Nivel} & \textbf{Descriptor} \\
+        \midrule
+        \endhead
+        4 & Los conceptos se emplean con exactitud t\'ecnica, se definen cuando corresponde y se establecen relaciones correctas entre ellos. No hay errores conceptuales. \\
+        3 & El manejo conceptual es correcto, con imprecisiones menores que no comprometen el argumento. \\
+        2 & Se emplean los t\'erminos adecuados, pero con definiciones imprecisas o relaciones mal establecidas. \\
+        1 & Hay errores conceptuales que afectan partes sustantivas del texto. \\
+        0 & El contenido es err\'oneo o ajeno al tema solicitado. \\
+        \bottomrule
+    \end{longtable}
+    
+    \section*{C4. Estructura, coherencia y claridad expositiva}
+    \addcontentsline{toc}{section}{C4. Estructura, coherencia y claridad expositiva}
+    
+    \begin{longtable}{C{1.2cm} L{12.6cm}}
+        \toprule
+        \textbf{Nivel} & \textbf{Descriptor} \\
+        \midrule
+        \endhead
+        4 & La organizaci\'on responde a la l\'ogica del argumento. Las transiciones son expl\'icitas y la redacci\'on es precisa y econ\'omica. \\
+        3 & El texto est\'a bien organizado y se lee con fluidez, con alguna secci\'on desproporcionada. \\
+        2 & La organizaci\'on es convencional pero rutinaria, y hay pasajes redundantes. \\
+        1 & La secuencia es confusa y obliga a releer para seguir el hilo. \\
+        0 & No hay organizaci\'on discernible. \\
+        \bottomrule
+    \end{longtable}
+    
+    \section*{C5. Originalidad y voz propia}
+    \addcontentsline{toc}{section}{C5. Originalidad y voz propia}
+    
+    \begin{longtable}{C{1.2cm} L{12.6cm}}
+        \toprule
+        \textbf{Nivel} & \textbf{Descriptor} \\
+        \midrule
+        \endhead
+        4 & El texto aporta una perspectiva, un ejemplo o una articulaci\'on propia que no proviene directamente de las fuentes, con una voz reconocible. \\
+        3 & Hay elaboraci\'on personal, aunque el enfoque sigue de cerca el de las fuentes. \\
+        2 & El texto reorganiza correctamente material ajeno sin aportar elaboraci\'on propia. \\
+        1 & El texto es una par\'afrasis extendida de las fuentes. \\
+        0 & No hay elaboraci\'on propia alguna. \\
+        \bottomrule
+    \end{longtable}
+    
+    % ---------------------------------------------------------------------
+    \chapter{Formulario del revisor}
+    \label{anx:revisor}
+    
+    \textbf{C\'odigo del texto:} \rule{3.5cm}{0.4pt} \quad \textbf{C\'odigo del revisor:} \rule{3cm}{0.4pt} \quad \textbf{Fecha:} \rule{2.5cm}{0.4pt}
+    
+    \section*{Secci\'on 1. Puntuaci\'on por criterio}
+    \addcontentsline{toc}{section}{Secci\'on 1. Puntuaci\'on por criterio}
+    
+    \begin{table}[htbp]
+        \centering
+        \small
+        \begin{tabular}{L{7.2cm} C{3.0cm} L{3.4cm}}
+            \toprule
+            \textbf{Criterio} & \textbf{Nivel (0--4)} & \textbf{Observaci\'on} \\
+            \midrule
+            C1. Tesis y argumentaci\'on & \rule{2.2cm}{0.4pt} & \rule{3.0cm}{0.4pt} \\
+            C2. Uso de la evidencia & \rule{2.2cm}{0.4pt} & \rule{3.0cm}{0.4pt} \\
+            C3. Precisi\'on conceptual & \rule{2.2cm}{0.4pt} & \rule{3.0cm}{0.4pt} \\
+            C4. Estructura y claridad & \rule{2.2cm}{0.4pt} & \rule{3.0cm}{0.4pt} \\
+            C5. Originalidad y voz propia & \rule{2.2cm}{0.4pt} & \rule{3.0cm}{0.4pt} \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \section*{Secci\'on 2. Recomendaci\'on editorial simulada}
+    \addcontentsline{toc}{section}{Secci\'on 2. Recomendaci\'on editorial simulada}
+    
+    Si este texto llegara a su escritorio como manuscrito sometido a una revista, ¿qu\'e recomendar\'ia?
+    
+    \begin{enumerate}[label=\fbox{\phantom{x}}\ \arabic*.,leftmargin=1.6cm]
+        \item Rechazar
+        \item Revisi\'on mayor
+        \item Revisi\'on menor
+        \item Aceptar
+    \end{enumerate}
+    
+    \section*{Secci\'on 3. Juicio sobre el origen del texto}
+    \addcontentsline{toc}{section}{Secci\'on 3. Juicio sobre el origen del texto}
+    
+    3.1. ¿Considera que este texto fue elaborado con asistencia de inteligencia artificial generativa?
+    
+    \vspace{4pt}
+    \fbox{\phantom{x}}\ S\'i \qquad\qquad \fbox{\phantom{x}}\ No
+    
+    \vspace{8pt}
+    3.2. Indique su nivel de seguridad en ese juicio, de 0 (ninguna seguridad) a 100 (certeza absoluta): \rule{2.5cm}{0.4pt}
+    
+    \vspace{8pt}
+    3.3. Se\~nale los indicios en los que bas\'o su juicio (puede marcar varios):
+    
+    \begin{itemize}[label=\fbox{\phantom{x}},leftmargin=1.4cm]
+        \item Uniformidad excesiva del registro y del ritmo de las oraciones
+        \item Ausencia de errores menores propios de la escritura humana
+        \item Generalidad en los ejemplos o falta de anclaje concreto
+        \item Estructura excesivamente sim\'etrica entre secciones
+        \item Referencias que no logr\'e verificar
+        \item Vocabulario at\'ipico para el nivel formativo esperado
+        \item Otro: \rule{6cm}{0.4pt}
+    \end{itemize}
+    
+    \vspace{8pt}
+    3.4. Tiempo empleado en la evaluaci\'on de este texto: \rule{2.5cm}{0.4pt} minutos
+    
+    % ---------------------------------------------------------------------
+    \chapter{Ficha de predicci\'on de calificaci\'on}
+    \label{anx:calibracion}
+    
+    Esta ficha se completa \textbf{antes} de entregar el texto y no influye en ninguna calificaci\'on.
+    
+    \vspace{6pt}
+    \textbf{C\'odigo del participante:} \rule{3.5cm}{0.4pt} \quad \textbf{Sesi\'on:} \rule{1.5cm}{0.4pt} \quad \textbf{Fecha:} \rule{2.5cm}{0.4pt}
+    
+    \vspace{10pt}
+    1. ¿Qu\'e calificaci\'on cree que obtendr\'a este texto, en una escala de 0 a 100? \rule{2.5cm}{0.4pt}
+    
+    \vspace{8pt}
+    2. ¿Cu\'anta seguridad tiene en esa estimaci\'on, de 0 a 100? \rule{2.5cm}{0.4pt}
+    
+    \vspace{8pt}
+    3. ¿Cu\'anto cree que recordar\'a de este contenido dentro de un mes?
+    
+    \vspace{4pt}
+    \fbox{\phantom{x}}\ Muy poco \quad \fbox{\phantom{x}}\ Poco \quad \fbox{\phantom{x}}\ Algo \quad \fbox{\phantom{x}}\ Bastante \quad \fbox{\phantom{x}}\ Mucho
+    
+    \vspace{8pt}
+    4. Si tuviera que explicar oralmente este contenido sin consultar el texto, ¿con qu\'e facilidad cree que podr\'ia hacerlo, de 0 a 100? \rule{2.5cm}{0.4pt}
+    
+    % ---------------------------------------------------------------------
+    \chapter{Escala de esfuerzo mental}
+    \label{anx:paas}
+    
+    Se aplica inmediatamente al finalizar cada sesi\'on, antes de que el participante abandone el laboratorio. Adaptaci\'on al espa\~nol del instrumento de un solo \'item propuesto por \citet{paas1992training}.
+    
+    \vspace{10pt}
+    \textbf{C\'odigo del participante:} \rule{3.5cm}{0.4pt} \quad \textbf{Sesi\'on:} \rule{1.5cm}{0.4pt}
+    
+    \vspace{10pt}
+    \textbf{Instrucci\'on:} En la tarea que acaba de realizar, invert\'i un esfuerzo mental de:
+    
+    \vspace{10pt}
+    \begin{table}[htbp]
+        \centering
+        \small
+        \begin{tabular}{C{1.1cm} L{11.5cm}}
+            \toprule
+            \textbf{Nivel} & \textbf{Descripci\'on} \\
+            \midrule
+            1 & Esfuerzo mental extremadamente bajo \\
+            2 & Esfuerzo mental muy bajo \\
+            3 & Esfuerzo mental bajo \\
+            4 & Esfuerzo mental algo bajo \\
+            5 & Esfuerzo mental ni alto ni bajo \\
+            6 & Esfuerzo mental algo alto \\
+            7 & Esfuerzo mental alto \\
+            8 & Esfuerzo mental muy alto \\
+            9 & Esfuerzo mental extremadamente alto \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    Marque un solo nivel: \rule{2.0cm}{0.4pt}
+    
+    % ---------------------------------------------------------------------
+    \chapter{Cuestionario de carga de trabajo NASA-TLX}
+    \label{anx:tlx}
+    
+    Adaptaci\'on al espa\~nol del instrumento de \citet{hart1988development}. Cada dimensi\'on se punt\'ua sobre una escala de 0 a 100, en incrementos de 5.
+    
+    \begin{table}[htbp]
+        \centering
+        \small
+        \begin{tabular}{L{3.4cm} L{7.6cm} C{2.6cm}}
+            \toprule
+            \textbf{Dimensi\'on} & \textbf{Pregunta} & \textbf{Puntuaci\'on} \\
+            \midrule
+            Exigencia mental & ¿Cu\'anta actividad mental requiri\'o la tarea (pensar, decidir, buscar, recordar)? & \rule{2.2cm}{0.4pt} \\
+            Exigencia f\'isica & ¿Cu\'anta actividad f\'isica requiri\'o la tarea? & \rule{2.2cm}{0.4pt} \\
+            Presi\'on temporal & ¿Cu\'anta presi\'on de tiempo sinti\'o durante la tarea? & \rule{2.2cm}{0.4pt} \\
+            Rendimiento & ¿Cu\'an satisfecho est\'a con su desempe\~no? (0 = perfecto; 100 = fracaso) & \rule{2.2cm}{0.4pt} \\
+            Esfuerzo & ¿Cu\'anto tuvo que esforzarse para alcanzar su nivel de desempe\~no? & \rule{2.2cm}{0.4pt} \\
+            Frustraci\'on & ¿Cu\'an inseguro, desanimado, irritado o estresado se sinti\'o? & \rule{2.2cm}{0.4pt} \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \textbf{Ponderaci\'on.} Tras responder las seis escalas, el participante recibe quince tarjetas con todas las parejas posibles de dimensiones y en cada una se\~nala cu\'al contribuy\'o m\'as a la carga de la tarea. El n\'umero de veces que se elige cada dimensi\'on constituye su peso, y el \'indice global se obtiene como la media ponderada de las seis puntuaciones. Si el tiempo de aplicaci\'on resultara cr\'itico, se admite la variante no ponderada, que promedia las seis dimensiones sin comparaciones pareadas; la decisi\'on se declara en el registro previo.
+    
+    % ---------------------------------------------------------------------
+    \chapter{Estructura de la prueba diferida}
+    \label{anx:prueba}
+    
+    Se aplica entre dos y cuatro semanas despu\'es de la \'ultima sesi\'on de producci\'on, en formato presencial, a libro cerrado, sin dispositivos y con una duraci\'on de cuarenta minutos. Cubre los contenidos de las sesiones 1 y 2, no los de la sesi\'on 3.
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Composici\'on de la prueba diferida.}
+        \label{tab:prueba}
+        \small
+        \begin{tabular}{L{3.6cm} C{1.6cm} C{1.8cm} L{6.4cm}}
+            \toprule
+            \textbf{Bloque} & \textbf{\'Items} & \textbf{Puntos} & \textbf{Naturaleza de las preguntas} \\
+            \midrule
+            Reconocimiento & 10 & 20 & Opci\'on m\'ultiple sobre hechos y definiciones tratados \\
+            Recuerdo libre & 4 & 20 & Respuesta breve sin claves de recuperaci\'on \\
+            Comprensi\'on & 3 & 24 & Explicar con palabras propias una relaci\'on entre conceptos \\
+            Transferencia & 3 & 36 & Aplicar lo aprendido a un caso nuevo no tratado en las sesiones \\
+            \midrule
+            \multicolumn{2}{r}{\textbf{Total}} & \textbf{100} & \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    Los \'items de transferencia concentran el mayor peso porque es en ellos donde el mecanismo de descarga cognitiva deber\'ia manifestarse con mayor claridad: aplicar conocimiento a una situaci\'on nueva exige haberlo construido, no haberlo tramitado. Las respuestas abiertas se califican con una gu\'ia de correcci\'on cerrada, por dos correctores independientes y ciegos a la condici\'on, y se reporta el ICC correspondiente.
+    
+    % ---------------------------------------------------------------------
+    \chapter{Plantilla de verificaci\'on de referencias}
+    \label{anx:referencias}
+    
+    Se completa una fila por cada referencia de cada texto entregado. Dos asistentes verifican de forma independiente y ciega a la condici\'on; las discrepancias se resuelven por consenso con un tercer verificador.
+    
+    \begin{table}[htbp]
+        \centering
+        \footnotesize
+        \begin{tabular}{C{0.8cm} L{4.2cm} C{1.6cm} C{1.7cm} C{1.9cm} C{2.1cm}}
+            \toprule
+            \textbf{N.\textsuperscript{o}} & \textbf{Referencia tal como aparece} & \textbf{DOI resuelve} & \textbf{Autores coinciden} & \textbf{Revista y a\~no coinciden} & \textbf{Clasificaci\'on} \\
+            \midrule
+            1 & & S\'i / No & S\'i / No & S\'i / No & \\
+            2 & & S\'i / No & S\'i / No & S\'i / No & \\
+            3 & & S\'i / No & S\'i / No & S\'i / No & \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \textbf{Clasificaci\'on de cada referencia.} \emph{Verificada}: todos los campos correctos y coherentes entre s\'i. \emph{Imprecisa}: la obra existe, pero uno o m\'as campos son err\'oneos. \emph{Inexistente}: no se localiza la obra en ninguna base indexada. \emph{Atribuci\'on err\'onea}: la obra existe pero no sostiene la afirmaci\'on a la que se asocia.
+    
+    \textbf{Indicadores derivados.} Proporci\'on de referencias verificadas sobre el total; tasa de alucinaci\'on, entendida como la proporci\'on de referencias inexistentes; y tasa de atribuci\'on err\'onea. Los tres se calculan por texto y se analizan como variables dependientes.
+    
+    % ---------------------------------------------------------------------
+    \chapter{Registro de proceso y de interacci\'on con la herramienta}
+    \label{anx:proceso}
+    
+    Al finalizar cada sesi\'on, cada participante entrega los siguientes elementos en una carpeta identificada con su c\'odigo.
+    
+    \begin{table}[htbp]
+        \centering
+        \small
+        \begin{tabular}{L{4.6cm} L{9.4cm}}
+            \toprule
+            \textbf{Elemento} & \textbf{Especificaci\'on} \\
+            \midrule
+            Texto final & Archivo en formato PDF y en formato editable \\
+            Historial de versiones & Exportaci\'on del historial del procesador de texto empleado \\
+            Tiempo en tarea & Registro autom\'atico de inicio, pausas y cierre de la sesi\'on \\
+            Transcripci\'on de la interacci\'on & Solo en condici\'on con herramienta: exportaci\'on \'integra de la conversaci\'on, sin edici\'on \\
+            Declaraci\'on de uso & Descripci\'on breve, en no m\'as de cinco l\'ineas, de c\'omo utiliz\'o la herramienta \\
+            Herramienta y versi\'on & Nombre exacto del servicio, versi\'on del modelo y fecha de acceso \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    Las transcripciones se codifican posteriormente seg\'un el modo de uso predominante: delegaci\'on completa de la redacci\'on, generaci\'on de borrador seguida de reescritura sustantiva, uso como interlocutor para clarificar conceptos, o uso limitado a correcci\'on de estilo. Esta codificaci\'on se realiza por dos codificadores independientes y su acuerdo se reporta mediante el alfa de Krippendorff.
+    
+    % ---------------------------------------------------------------------
+    \chapter{Ficha de l\'inea base}
+    \label{anx:linea}
+    
+    \textbf{C\'odigo del participante:} \rule{3.0cm}{0.4pt} \quad \textbf{Sede:} \rule{2.4cm}{0.4pt} \quad \textbf{Fecha:} \rule{2.2cm}{0.4pt}
+    
+    \vspace{8pt}
+    1. Nivel y carrera que cursa: \rule{8cm}{0.4pt}
+    
+    \vspace{6pt}
+    2. Promedio acumulado: \rule{2.5cm}{0.4pt}
+    
+    \vspace{6pt}
+    3. ¿Con qu\'e frecuencia ha utilizado herramientas de inteligencia artificial generativa para tareas acad\'emicas durante el \'ultimo semestre?
+    
+    \vspace{4pt}
+    \fbox{\phantom{x}}\ Nunca \quad \fbox{\phantom{x}}\ Alguna vez \quad \fbox{\phantom{x}}\ Mensualmente \quad \fbox{\phantom{x}}\ Semanalmente \quad \fbox{\phantom{x}}\ A diario
+    
+    \vspace{8pt}
+    4. Indique las herramientas que ha utilizado: \rule{8cm}{0.4pt}
+    
+    \vspace{6pt}
+    5. ¿Ha recibido formaci\'on formal sobre uso de estas herramientas? \quad \fbox{\phantom{x}}\ S\'i \quad \fbox{\phantom{x}}\ No
+    
+    \vspace{6pt}
+    6. ¿Cu\'antos trabajos escritos de m\'as de mil palabras ha elaborado en su formaci\'on universitaria? \rule{2.5cm}{0.4pt}
+    
+    \vspace{10pt}
+    \textbf{Texto de partida.} A continuaci\'on dispone de cuarenta minutos para redactar un texto argumentativo de aproximadamente 500 palabras sobre el tema entregado, sin acceso a ninguna herramienta digital de asistencia. Este texto se emplea \'unicamente para equilibrar los grupos y no forma parte de su calificaci\'on.
+    
+    % ---------------------------------------------------------------------
+    \chapter{Gui\'on de administraci\'on de la sesi\'on}
+    \label{anx:guion}
+    
+    Este gui\'on garantiza que las sesiones se apliquen de forma id\'entica en todos los campus, carreras e instituciones participantes. El aplicador marca cada paso a medida que lo ejecuta y firma al cierre.
+    
+    \begin{table}[htbp]
+        \centering
+        \small
+        \begin{tabular}{C{1.4cm} L{10.4cm} C{2.4cm}}
+            \toprule
+            \textbf{Minuto} & \textbf{Acci\'on del aplicador} & \textbf{Verificado} \\
+            \midrule
+            0--5 & Verificar asistencia contra la lista de la sesi\'on y asignar puestos & \fbox{\phantom{x}} \\
+            5--10 & Comprobar el perfil del equipo seg\'un la condici\'on de la sala & \fbox{\phantom{x}} \\
+            10--15 & Leer en voz alta las instrucciones est\'andar y recoger la declaraci\'on de honor & \fbox{\phantom{x}} \\
+            15 & Entregar el material del tema y los art\'iculos de referencia & \fbox{\phantom{x}} \\
+            15--135 & Supervisar la producci\'on; registrar cualquier incidencia & \fbox{\phantom{x}} \\
+            135--140 & Entregar la ficha de predicci\'on de calificaci\'on y recogerla & \fbox{\phantom{x}} \\
+            140--145 & Recibir textos, historiales y transcripciones & \fbox{\phantom{x}} \\
+            145--155 & Aplicar la escala de esfuerzo mental y el NASA-TLX & \fbox{\phantom{x}} \\
+            155--160 & Cerrar la sesi\'on, sellar la carpeta y firmar el acta & \fbox{\phantom{x}} \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \textbf{Instrucciones est\'andar que se leen en voz alta.} ``Dispone de dos horas para elaborar un ensayo argumentativo de entre mil doscientas y mil quinientas palabras sobre el tema que acaba de recibir, apoy\'andose en los art\'iculos entregados. Debe incluir referencias. En esta sala, [dispone / no dispone] de una herramienta de inteligencia artificial generativa; [debe exportar la conversaci\'on completa al finalizar / no est\'a permitido el uso de ning\'un servicio de inteligencia artificial]. Su trabajo en esta sesi\'on no afecta de ninguna manera su calificaci\'on en la asignatura. Si tiene dudas sobre el procedimiento, lev\'ante la mano.''
+    
+    \textbf{Incidencias.} Cualquier interrupci\'on, fallo t\'ecnico o abandono se anota en el acta con hora exacta y se reporta al coordinador de la instituci\'on el mismo d\'ia.
+    
+    % =====================================================================
+    \bibliography{referenciasprotocolo}
+    \addcontentsline{toc}{chapter}{Referencias}
+    
+\end{document}
