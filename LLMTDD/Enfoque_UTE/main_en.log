@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.23)  29 JUL 2026 03:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.8.23)  29 JUL 2026 02:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**main.tex
-(./main.tex
+**main_en.tex
+(./main_en.tex
 LaTeX2e <2022-06-01> patch level 5
 L3 programming layer <2022-08-05>
 (c:/texlive/2022/texmf-dist/tex/latex/ieeetran/IEEEtran.cls
@@ -826,30 +826,30 @@ File: l3backend-pdftex.def 2022-08-05 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count329
 \l__pdf_internal_box=\box69
 )
-(./main.aux
+(./main_en.aux
 LaTeX Info: Redefining \. on input line 29.
 LaTeX Info: Redefining \% on input line 29.
 )
-\openout1 = `main.aux'.
+\openout1 = `main_en.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 185.
-LaTeX Font Info:    ... okay on input line 185.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 184.
+LaTeX Font Info:    ... okay on input line 184.
 
 -- Lines per column: 56 (approximate, difference = 0.11122pt).
 *geometry* driver: auto-detecting
@@ -908,24 +908,24 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 185.
+Package hyperref Info: Link coloring OFF on input line 184.
 
-(./main.out) (./main.out)
+(./main_en.out) (./main_en.out)
 \@outlinefile=\write4
-\openout4 = `main.out'.
+\openout4 = `main_en.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 185.
-Package microtype Info: Applying patch `item' on input line 185.
-Package microtype Info: Applying patch `toc' on input line 185.
-Package microtype Info: Applying patch `eqnum' on input line 185.
-Package microtype Info: Applying patch `footnote' on input line 185.
+LaTeX Info: Redefining \microtypecontext on input line 184.
+Package microtype Info: Applying patch `item' on input line 184.
+Package microtype Info: Applying patch `toc' on input line 184.
+Package microtype Info: Applying patch `eqnum' on input line 184.
+Package microtype Info: Applying patch `footnote' on input line 184.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 185.
+LaTeX Info: Redefining \showhyphens on input line 184.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -933,13 +933,13 @@ Package microtype Info: No adjustment of character kerning.
 (c:/texlive/2022/texmf-dist/tex/latex/microtype/mt-ptm.cfg
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 )
-** ATTENTION: Overriding command lockouts (line 187).
-LaTeX Font Info:    Calculating math sizes for size <11> on input line 193.
+** ATTENTION: Overriding command lockouts (line 186).
+LaTeX Font Info:    Calculating math sizes for size <11> on input line 192.
 (c:/texlive/2022/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 193
+LaTeX Font Info:    Trying to load font information for U+msa on input line 192
 .
 
 (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -948,7 +948,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (c:/texlive/2022/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 193
+LaTeX Font Info:    Trying to load font information for U+msb on input line 192
 .
 
 (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -957,13 +957,13 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (c:/texlive/2022/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Underfull \hbox (badness 10000) in paragraph at lines 193--193
-[][][]\T1/ptm/m/it/8 (+20) Autor de correspondencia: \T1/ptm/m/n/8 (+20) C. Rod
-ríguez-Domínguez (correo:
+Underfull \hbox (badness 10000) in paragraph at lines 192--192
+[][][]\T1/ptm/m/it/8 (+20) Corresponding author: \T1/ptm/m/n/8 (+20) C. Rodrígu
+ez-Domínguez (e-mail:
  []
 
 LaTeX Font Info:    Trying to load font information for T1+pcr on input line 19
-6.
+5.
 (c:/texlive/2022/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
@@ -972,15 +972,26 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \hbox (badness 2961) in paragraph at lines 199--201
+Underfull \hbox (badness 2961) in paragraph at lines 198--200
 \T1/ptm/b/n/9 (+20) artificial intelligence; large language models; Test-Driven
 
  []
 
+LaTeX Info: Redefining \. on input line 202.
+LaTeX Info: Redefining \% on input line 202.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
 (Font)              Font shape `T1/pcr/m/sl' tried instead on input line 204.
-LaTeX Info: Redefining \. on input line 211.
-LaTeX Info: Redefining \% on input line 211.
+
+Underfull \hbox (badness 3492) in paragraph at lines 224--225
+[]\T1/ptm/m/n/10 (+20) This burden explains a well-documented tension in
+ []
+
+
+Overfull \hbox (1.77876pt too wide) in paragraph at lines 226--227
+\T1/ptm/m/n/10 (-20) functionality on schedule, and that the early maintenance 
+phase---
+ []
+
 <enfoque_ute_logo.png, id=99, 150.5625pt x 179.16937pt>
 File: enfoque_ute_logo.png Graphic file (type png)
 <use enfoque_ute_logo.png>
@@ -990,45 +1001,43 @@ Package pdftex.def Info: enfoque_ute_logo.png  used on input line 227.
 
 
  <./enfoque_ute_logo.png>]
-Underfull \hbox (badness 2368) in paragraph at lines 230--231
-\T1/ptm/m/n/9 (+20) comenzado a incorporar inteligencia artificial (IA) generat
-iva
- []
-
-
-Underfull \hbox (badness 1968) in paragraph at lines 259--260
-[]|\T1/ptm/m/n/9 (+20) ¾Qué características deben tener los formularios y
+Underfull \hbox (badness 5756) in paragraph at lines 242--243
+\T1/ptm/m/n/10 (+20) a Systematic Literature Review (SLR) following the
  []
 
 [2]
-Underfull \hbox (badness 3219) in paragraph at lines 280--281
-[]|\T1/ptm/m/n/9 (+20) Sistemas de software, aplicaciones web y
+Underfull \hbox (badness 10000) in paragraph at lines 261--262
+[]|\T1/ptm/m/n/9 (+20) What existing CASE tools implement these
+ []
+
+
+Underfull \hbox (badness 1803) in paragraph at lines 269--270
+[]\T1/ptm/m/n/10 (+20) The search strategy was structured with the PICOC
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 280--280
+[]|\T1/ptm/m/n/9 (+20) Population
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 281--281
-[]|\T1/ptm/m/n/9 (+20) Intervención
+[]|\T1/ptm/m/n/9 (+20) Intervention
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 282--282
-[]|\T1/ptm/m/n/9 (+20) Comparación
+[]|\T1/ptm/m/n/9 (+20) Comparison
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 282--283
-[]|\T1/ptm/m/n/9 (+20) Enfoques tradicionales frente
+Underfull \hbox (badness 2809) in paragraph at lines 289--290
+\T1/ptm/m/n/10 (+20) search strings specific to each type of specification---
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 283--283
-[]|\T1/ptm/m/n/9 (+20) Resultados
- []
-
-
-Underfull \hbox (badness 3260) in paragraph at lines 289--290
-\T1/ptm/m/n/9 (+20) esperados (estandarización de la especificación y generació
-n
+Underfull \hbox (badness 10000) in paragraph at lines 300--300
+[]|\T1/ptm/m/n/8 (+20) Functional
  []
 
 
@@ -1067,79 +1076,117 @@ Underfull \hbox (badness 10000) in paragraph at lines 304--305
 ria" OR "INVEST" OR
  []
 
-<./figures//fig_prisma.png, id=173, 355.92975pt x 423.14085pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 309--310
+[]\T1/ptm/m/n/10 (+20) As Table []III[]
+ []
+
+
+Overfull \hbox (1.93895pt too wide) in paragraph at lines 348--349
+\T1/ptm/m/n/10 (-20) books, and doctoral theses (IC7)---while excluding non-art
+icles---
+ []
+
+
+Overfull \hbox (0.89983pt too wide) in paragraph at lines 348--349
+\T1/ptm/m/n/10 (-20) secondary studies---reviews, surveys, and systematic mappi
+ngs---
+ []
+
+<./figures//fig_prisma.png, id=170, 355.92975pt x 423.14085pt>
 File: ./figures//fig_prisma.png Graphic file (type png)
 <use ./figures//fig_prisma.png>
 Package pdftex.def Info: ./figures//fig_prisma.png  used on input line 352.
 (pdftex.def)             Requested size: 253.30672pt x 301.14233pt.
-[3 <./figures//fig_prisma.png>]
+[3]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Warning: Text page 4 contains only floats.
-
-<./figures//fig_years.png, id=192, 258.9675pt x 186.9384pt>
+ [4 <./figures//fig_prisma.png>]
+<./figures//fig_years.png, id=198, 258.9675pt x 186.9384pt>
 File: ./figures//fig_years.png Graphic file (type png)
 <use ./figures//fig_years.png>
 Package pdftex.def Info: ./figures//fig_years.png  used on input line 429.
 (pdftex.def)             Requested size: 253.30672pt x 182.86179pt.
-[4]
-Underfull \vbox (badness 2376) has occurred while \output is active []
-
-
-Underfull \vbox (badness 7397) has occurred while \output is active []
-
- [5 <./figures//fig_years.png>]
-Underfull \hbox (badness 1783) in paragraph at lines 473--474
-\T1/ptm/m/n/9 (+20) plantillas descritas por los estudios incluidos se identifi
-caron
+ [5]
+Underfull \hbox (badness 4569) in paragraph at lines 475--476
+[]\T1/ptm/m/it/10 (+20) RQ3 (relationship with test generation). \T1/ptm/m/n/10
+ (+20) Techniques
  []
 
 
-Underfull \hbox (badness 1769) in paragraph at lines 477--478
-\T1/ptm/m/n/9 (+20) de especificaciones estructuradas de requisitos ---por ejem
-plo,
+Underfull \hbox (badness 1448) in paragraph at lines 475--476
+\T1/ptm/m/n/10 (+20) that exploit structured or formalized input predominate:
  []
 
-[6]
-Underfull \hbox (badness 2932) in paragraph at lines 530--531
-[]\T1/ptm/m/n/9 (+20) El desarrollo de TDDMachine se organizó en seis fases
+[6 <./figures//fig_years.png>]
+Underfull \hbox (badness 2142) in paragraph at lines 482--483
+[]\T1/ptm/m/n/10 (+20) To position the contribution against a broad set of
+ []
+
+
+Underfull \hbox (badness 2529) in paragraph at lines 530--531
+\T1/ptm/m/n/10 (+20) requirements analysis, specification, architectural design
+,
+ []
+
+
+Underfull \hbox (badness 1824) in paragraph at lines 530--531
+\T1/ptm/m/n/10 (+20) module implementation, verification and validation, and
  []
 
 [7]
-<./figures//fig_arquitectura.png, id=750, 216.0873pt x 300.8841pt>
+Underfull \hbox (badness 10000) in paragraph at lines 537--538
+\T1/ptm/m/n/10 (+20) organized
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+<./figures//fig_arquitectura.png, id=749, 216.0873pt x 300.8841pt>
 File: ./figures//fig_arquitectura.png Graphic file (type png)
 <use ./figures//fig_arquitectura.png>
 Package pdftex.def Info: ./figures//fig_arquitectura.png  used on input line 54
 1.
 (pdftex.def)             Requested size: 253.30672pt x 352.72162pt.
 
-Underfull \hbox (badness 1521) in paragraph at lines 548--549
-[]\T1/ptm/m/n/9 (+20) En cuanto a la estructura del script generado, el servici
-o
+Underfull \hbox (badness 5490) in paragraph at lines 548--549
+[]\T1/ptm/m/n/10 (+20) As for the structure of the generated script, the
  []
 
 
-Underfull \hbox (badness 2050) in paragraph at lines 548--549
-\T1/ptm/m/n/9 (+20) para la preparación y el desmontaje del entorno de prueba
+Underfull \hbox (badness 2027) in paragraph at lines 548--549
+\T1/ptm/m/n/10 (+20) for setting up and tearing down the test environment
  []
 
-[8 <./figures//fig_arquitectura.png>]
-Underfull \hbox (badness 2229) in paragraph at lines 566--567
-\T1/ptm/m/n/9 (+20) capturadas. La Tabla []IX[] resume los resultados por tipo 
-de
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8]
+Underfull \vbox (badness 6575) has occurred while \output is active []
+
+
+Overfull \hbox (13.63483pt too wide) in paragraph at lines 597--609
+ [][] 
  []
 
-<./figures//fig_sus_tam.png, id=768, 493.845pt x 191.5155pt>
+[9 <./figures//fig_arquitectura.png>]
+<./figures//fig_sus_tam.png, id=773, 493.845pt x 191.5155pt>
 File: ./figures//fig_sus_tam.png Graphic file (type png)
 <use ./figures//fig_sus_tam.png>
 Package pdftex.def Info: ./figures//fig_sus_tam.png  used on input line 615.
 (pdftex.def)             Requested size: 253.30672pt x 98.23268pt.
-<./figures//fig_gradient.png, id=775, 258.7266pt x 186.4566pt>
+<./figures//fig_gradient.png, id=780, 258.7266pt x 186.4566pt>
 File: ./figures//fig_gradient.png Graphic file (type png)
 <use ./figures//fig_gradient.png>
 Package pdftex.def Info: ./figures//fig_gradient.png  used on input line 651.
 (pdftex.def)             Requested size: 253.30672pt x 182.55551pt.
-[9 <./figures//fig_sus_tam.png>] [10 <./figures//fig_gradient.png>] (./main.bbl
-[11]
+
+Underfull \hbox (badness 3679) in paragraph at lines 658--659
+[]\T1/ptm/m/n/10 (+20) Beyond the rubric scores, execution feasibility was
+ []
+
+[10 <./figures//fig_sus_tam.png> <./figures//fig_gradient.png>] [11]
+(./main_en.bbl [12]
 Underfull \hbox (badness 1571) in paragraph at lines 237--242
 \T1/ptm/m/n/8 (+20) to automated acceptance tests with the rsl language,'' in \
 T1/ptm/m/it/8 (+20) 14th
@@ -1150,7 +1197,7 @@ Underfull \hbox (badness 7704) in paragraph at lines 319--322
 []\T1/ptm/m/n/8 (+20) W. Jang and R. Young Chul Kim, ``Automatic test case
  []
 
-[12]
+[13]
 Underfull \hbox (badness 1783) in paragraph at lines 492--498
 \T1/ptm/m/n/8 (+20) ``Constructing test cases using natural language processing
 ,'' in
@@ -1167,7 +1214,7 @@ Underfull \hbox (badness 3354) in paragraph at lines 565--571
 \T1/ptm/m/it/8 (+20) Working Conference on Human-Centered Software Engineering
  []
 
-[13]
+[14]
 Underfull \hbox (badness 2680) in paragraph at lines 667--671
 []\T1/ptm/m/n/8 (+20) A. Fathima, K. Indulekha, and Shweta, ``Automated detecti
 on
@@ -1185,41 +1232,41 @@ Underfull \hbox (badness 1490) in paragraph at lines 789--795
 l,
  []
 
-[14]
+[15]
 Underfull \hbox (badness 3240) in paragraph at lines 869--875
 \T1/ptm/m/it/8 (+20) (MODELSWARD)9th International Conference on Model-Driven
  []
 
-) [15
+) [16
 
-] (./main.aux
+] (./main_en.aux
 LaTeX Info: Redefining \. on input line 29.
 LaTeX Info: Redefining \% on input line 29.
 )
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F39781FCFF23AD184278AEF6470C70B5;3587.
+Package rerunfilecheck Info: File `main_en.out' has not changed.
+(rerunfilecheck)             Checksum: 5C143E10CB2A7910658FEECB9831893D;3257.
  ) 
 Here is how much of TeX's memory you used:
- 27097 strings out of 477678
- 497349 string characters out of 5833467
- 862080 words of memory out of 5000000
- 44641 multiletter control sequences out of 15000+600000
- 641750 words of font info for 540 fonts, out of 8000000 for 9000
+ 27083 strings out of 477678
+ 497205 string characters out of 5833467
+ 853307 words of memory out of 5000000
+ 44625 multiletter control sequences out of 15000+600000
+ 641448 words of font info for 547 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,16n,94p,5225b,814s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,16n,94p,5115b,814s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {c:/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2022/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2022/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmsy9.pfb><c:/texlive/2022/texmf-dist/fonts/type1/urw/courier
-/ucrb8a.pfb><c:/texlive/2022/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/
-texlive/2022/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb><c:/texlive/2022/te
-xmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2022/texmf-dist/fonts/typ
-e1/urw/times/utmbi8a.pfb><c:/texlive/2022/texmf-dist/fonts/type1/urw/times/utmr
-8a.pfb><c:/texlive/2022/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on main.pdf (15 pages, 621530 bytes).
+ts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmsy8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/urw/courie
+r/ucrb8a.pfb><c:/texlive/2022/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:
+/texlive/2022/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb><c:/texlive/2022/t
+exmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2022/texmf-dist/fonts/ty
+pe1/urw/times/utmbi8a.pfb><c:/texlive/2022/texmf-dist/fonts/type1/urw/times/utm
+r8a.pfb><c:/texlive/2022/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main_en.pdf (16 pages, 617402 bytes).
 PDF statistics:
- 931 PDF objects out of 1000 (max. 8388607)
- 863 compressed objects within 9 object streams
- 188 named destinations out of 1000 (max. 500000)
- 85179 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 935 PDF objects out of 1000 (max. 8388607)
+ 866 compressed objects within 9 object streams
+ 189 named destinations out of 1000 (max. 500000)
+ 84155 words of extra memory for PDF output out of 89155 (max. 10000000)
 
