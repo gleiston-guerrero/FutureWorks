@@ -1,0 +1,182 @@
+% =====================================================================
+%  CONSENTIMIENTO INFORMADO --- Proyecto EAES
+%  Documento para impresion y firma por parte del estudiante
+%  Compilacion: pdflatex consentimiento_informado.tex
+% =====================================================================
+
+\documentclass[10.5pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage{mathptmx}
+\usepackage[scaled=0.90]{helvet}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage[
+	a4paper,
+	left=2.4cm,
+	right=2.4cm,
+	top=1.9cm,
+	bottom=1.9cm,
+	headheight=14pt,
+	footskip=1.0cm
+]{geometry}
+
+\definecolor{azulinstitucional}{RGB}{20,60,110}
+\definecolor{grisclaro}{RGB}{243,245,248}
+\definecolor{grismedio}{RGB}{120,130,140}
+
+\titleformat{\section}
+	{\normalfont\sffamily\normalsize\bfseries\color{azulinstitucional}}
+	{\thesection.}{0.6em}{}
+\titlespacing*{\section}{0pt}{7pt}{3pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily\color{grismedio}Consentimiento informado --- Proyecto EAES}
+\fancyhead[R]{\footnotesize\sffamily\color{grismedio}P\'ag. \thepage\ de \pageref{LastPage}}
+\fancyfoot[C]{\scriptsize\sffamily\color{grismedio}Este documento se emite por duplicado: un ejemplar para el participante y otro para el archivo del proyecto.}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setlength{\parskip}{3.5pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.45}
+\setlist{itemsep=2pt,topsep=3pt,parsep=0pt}
+
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newsavebox{\cajaguardada}
+\newenvironment{recuadro}
+	{\begin{lrbox}{\cajaguardada}\begin{minipage}{\dimexpr\textwidth-2\fboxsep\relax}\vspace{4pt}\small}
+	{\vspace{4pt}\end{minipage}\end{lrbox}\par\vspace{4pt}\noindent\colorbox{grisclaro}{\usebox{\cajaguardada}}\par\vspace{6pt}}
+
+\newcommand{\casilla}{\fbox{\rule{0pt}{7pt}\rule{7pt}{0pt}}}
+\newcommand{\campo}[1]{\rule{#1}{0.4pt}}
+
+\begin{document}
+
+% =====================================================================
+%  ENCABEZADO
+% =====================================================================
+\begin{center}
+	{\sffamily\small\color{grismedio} UNIVERSIDAD T\'ECNICA ESTATAL DE QUEVEDO --- FACULTAD DE CIENCIAS DE LA COMPUTACI\'ON\par}
+	\vspace{6pt}
+	{\sffamily\large\bfseries\color{azulinstitucional} CONSENTIMIENTO INFORMADO PARA PARTICIPANTES\par}
+	\vspace{4pt}
+	{\sffamily\small\textbf{Proyecto EAES} --- Escritura Acad\'emica y Aprendizaje en Educaci\'on Superior\par}
+	\vspace{2pt}
+	{\footnotesize\itshape Estudio multic\'entrico sobre procesos de elaboraci\'on de textos y aprendizaje en educaci\'on superior\par}
+\end{center}
+
+\vspace{4pt}
+\hrule
+\vspace{8pt}
+
+% =====================================================================
+\section{Datos de identificaci\'on del participante}
+
+\begin{tabular}{@{}L{3.8cm}@{}L{12.4cm}@{}}
+	\textbf{\small Universidad:} & \campo{12.2cm} \\
+	\textbf{\small Carrera:} & \campo{12.2cm} \\
+	\textbf{\small A\~no o nivel:} & \campo{12.2cm} \\
+	\textbf{\small Apellidos:} & \campo{12.2cm} \\
+	\textbf{\small Nombres:} & \campo{12.2cm} \\
+	\textbf{\small C\'edula / pasaporte / DNI / ID:} & \campo{12.2cm} \\
+	\textbf{\small Correo institucional:} & \campo{12.2cm} \\
+\end{tabular}
+
+% =====================================================================
+\section{En qu\'e consiste este estudio}
+
+El Proyecto EAES estudia c\'omo los estudiantes universitarios elaboran textos acad\'emicos y qu\'e factores influyen en lo que aprenden durante ese proceso. La investigaci\'on se desarrolla simult\'aneamente en varias universidades y es conducida por docentes investigadores de las instituciones participantes.
+
+% =====================================================================
+\section{Qu\'e implica su participaci\'on}
+
+\begin{itemize}[leftmargin=1.1cm]
+	\item Asistir\'a a \textbf{tres sesiones de trabajo de dos horas} cada una, en laboratorio supervisado, en las que redactar\'a un ensayo a partir de material entregado el mismo d\'ia.
+	\item Asistir\'a a una \textbf{sesi\'on posterior de evaluaci\'on de aproximadamente cuarenta minutos}, entre dos y cuatro semanas despu\'es de la \'ultima sesi\'on de trabajo.
+	\item Responder\'a \textbf{cuestionarios breves} sobre el esfuerzo que le demand\'o cada tarea, que no toman m\'as de cinco minutos.
+	\item Las \textbf{condiciones y herramientas de trabajo de cada sesi\'on se asignan al azar}. Usted no elige el grupo que le corresponde ni las herramientas de las que dispondr\'a en cada sesi\'on.
+\end{itemize}
+
+% =====================================================================
+\section{Qu\'e datos se recogen}
+
+Los textos que usted produzca, sus respuestas a los cuestionarios, el registro del tiempo dedicado a cada tarea, el historial de versiones de su documento, su rendimiento acad\'emico previo y, en las sesiones en que disponga de alguna herramienta digital de apoyo, el registro de su interacci\'on con ella. No se recogen im\'agenes, grabaciones de audio ni datos ajenos a la actividad acad\'emica descrita.
+
+% =====================================================================
+\section{Autorizaci\'on para solicitar su rendimiento acad\'emico previo}
+
+Para conformar grupos de trabajo comparables entre s\'i, el equipo investigador necesita distribuir a los participantes de manera equilibrada seg\'un su rendimiento acad\'emico previo. Con ese \'unico fin se solicitar\'a a las autoridades de su universidad su \textbf{promedio acumulado} hasta el per\'iodo acad\'emico inmediato anterior.
+
+\begin{recuadro}
+\casilla\ \ \textbf{Autorizo} que el equipo investigador solicite a las autoridades de mi universidad mi promedio acumulado, exclusivamente para la conformaci\'on equilibrada de los grupos de trabajo de este estudio.
+
+\vspace{5pt}
+\casilla\ \ \textbf{No autorizo} esta solicitud. \textit{(Puede igualmente participar en el estudio; en ese caso la asignaci\'on a los grupos se realizar\'a \'unicamente con base en el texto de referencia inicial.)}
+\end{recuadro}
+
+% =====================================================================
+\section{Efecto sobre sus calificaciones}
+
+\textbf{Ninguno.} Su participaci\'on, su desempe\~no dentro del estudio y el grupo que le corresponda por sorteo no afectan de ning\'un modo su calificaci\'on en ninguna asignatura. Los textos que elabore en este estudio no forman parte de la evaluaci\'on de su curso.
+
+% =====================================================================
+\section{Confidencialidad y protecci\'on de sus datos}
+
+A cada participante se le asigna un c\'odigo. Desde ese momento, toda la informaci\'on del estudio se maneja \'unicamente mediante ese c\'odigo. Quienes eval\'uen sus textos desconocer\'an su identidad, su universidad y el grupo al que usted pertenece.
+
+La tabla que vincula c\'odigos con identidades se custodia cifrada, bajo responsabilidad de una persona ajena al equipo evaluador, y se destruye al concluir el estudio. Los datos que se publiquen no permitir\'an identificar a ning\'un participante. Sus datos no se utilizar\'an para ninguna finalidad distinta de la descrita en este documento, ni se transferir\'an a terceros ajenos al equipo investigador.
+
+% =====================================================================
+\section{Car\'acter voluntario y derecho de retiro}
+
+Su participaci\'on es enteramente voluntaria. Puede negarse a participar o retirarse en cualquier momento, sin necesidad de explicar el motivo y sin consecuencia alguna de tipo acad\'emico o de otra naturaleza. Si decide retirarse, puede solicitar adem\'as la eliminaci\'on de los datos que hubiera aportado hasta ese momento.
+
+% =====================================================================
+\section{Riesgos, beneficios e informaci\'on final}
+
+El estudio no implica riesgos previsibles para usted. Al concluir la investigaci\'on se realizar\'a una \textbf{sesi\'on informativa} en la que se explicar\'a en detalle el prop\'osito completo del estudio, se comunicar\'an los resultados obtenidos y se ofrecer\'a a todos los participantes, sin distinci\'on de grupo, formaci\'on sobre escritura acad\'emica y uso responsable de herramientas digitales de apoyo.
+
+% =====================================================================
+\section{A qui\'en dirigirse}
+
+\begin{tabular}{@{}L{4.8cm}@{}L{11.4cm}@{}}
+	\textbf{\small Investigador principal:} & Gleiston Cicerón Guerrero Ulloa \\
+	\textbf{\small Correo de contacto:} & gguerrero@uteq.edu.ec \\
+	\textbf{\small Comit\'e de \'etica / trámite:} & Solicitud hecha al Señor Vicerrector Académico \\
+\end{tabular}
+
+% =====================================================================
+\section{Declaraci\'on del participante}
+
+He le\'ido este documento en su totalidad, he tenido la oportunidad de formular preguntas y estas han sido respondidas de forma satisfactoria. Comprendo en qu\'e consiste el estudio, qu\'e datos se recogen, con qu\'e finalidad se utilizan y que puedo retirarme en cualquier momento sin consecuencia alguna. Recibo un ejemplar firmado de este documento.
+
+\vspace{4pt}
+\begin{recuadro}
+\casilla\ \ \textbf{Acepto participar} en el Proyecto EAES en los t\'erminos descritos en este documento.
+\end{recuadro}
+
+\vspace{14pt}
+\begin{tabular}{@{}L{7.6cm}@{}L{2.0cm}@{}L{6.6cm}@{}}
+	\campo{7.2cm} & & \campo{6.2cm} \\
+	{\small Firma del participante} & & {\small Fecha (d\'ia / mes / a\~no)} \\
+\end{tabular}
+
+\vspace{12pt}
+\begin{tabular}{@{}L{7.6cm}@{}L{2.0cm}@{}L{6.6cm}@{}}
+	\campo{7.2cm} & & \campo{6.2cm} \\
+	{\small Firma del investigador o persona responsable} & & {\small Fecha (d\'ia / mes / a\~no)} \\
+\end{tabular}
+
+\end{document}

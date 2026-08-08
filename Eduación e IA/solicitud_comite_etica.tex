@@ -1,0 +1,157 @@
+% =====================================================================
+%  SOLICITUD DE APROBACION ETICA --- Proyecto EAES
+%  Dirigida al Vicerrectorado Academico de la UTEQ
+%  Compilacion: pdflatex solicitud_comite_etica.tex
+% =====================================================================
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage{mathptmx}
+\usepackage[scaled=0.90]{helvet}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage[
+	a4paper,
+	left=2.6cm,
+	right=2.6cm,
+	top=2.2cm,
+	bottom=2.0cm,
+	headheight=14pt,
+	footskip=1.0cm
+]{geometry}
+
+\definecolor{azulinstitucional}{RGB}{20,60,110}
+\definecolor{grisclaro}{RGB}{243,245,248}
+\definecolor{grismedio}{RGB}{120,130,140}
+
+\titleformat{\section}
+	{\normalfont\sffamily\normalsize\bfseries\color{azulinstitucional}}
+	{\thesection.}{0.6em}{}
+\titlespacing*{\section}{0pt}{9pt}{3pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily\color{grismedio}Solicitud de aprobaci\'on \'etica --- Proyecto EAES}
+\fancyhead[R]{\footnotesize\sffamily\color{grismedio}P\'ag. \thepage\ de \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.35}
+\setlist{itemsep=3pt,topsep=3pt,parsep=0pt}
+
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\newsavebox{\cajaguardada}
+\newenvironment{recuadro}
+	{\begin{lrbox}{\cajaguardada}\begin{minipage}{\dimexpr\textwidth-2\fboxsep\relax}\vspace{4pt}\small}
+	{\vspace{4pt}\end{minipage}\end{lrbox}\par\vspace{4pt}\noindent\colorbox{grisclaro}{\usebox{\cajaguardada}}\par\vspace{6pt}}
+
+\newcommand{\campo}[1]{\rule{#1}{0.4pt}}
+
+\begin{document}
+
+% =====================================================================
+%  OFICIO
+% =====================================================================
+\begin{center}
+	{\sffamily\small\color{grismedio} UNIVERSIDAD T\'ECNICA ESTATAL DE QUEVEDO\par}
+	{\sffamily\small\color{grismedio} FACULTAD DE CIENCIAS DE LA COMPUTACI\'ON --- CARRERA DE SOFTWARE\par}
+\end{center}
+
+\vspace{6pt}
+\hrule
+\vspace{10pt}
+
+\begin{flushright}
+	\textbf{Oficio Nro.} \campo{3.6cm}-2026-GGU-FCC-UTEQ
+
+	Quevedo, \campo{4.6cm}
+\end{flushright}
+
+\vspace{6pt}
+\textbf{Se\~nor}
+
+\textbf{Dr. Eduardo D\'iaz Ocampo, PhD.}
+
+\textbf{VICERRECTOR ACAD\'EMICO}
+
+\textbf{Universidad T\'ecnica Estatal de Quevedo}
+
+En su despacho.---
+
+\vspace{8pt}
+\textbf{Asunto:} Solicitud de revisi\'on y aprobaci\'on \'etica del proyecto de investigaci\'on EAES ante el Comit\'e de \'Etica de Investigaci\'on institucional.
+
+\vspace{8pt}
+De mi consideraci\'on:
+
+Reciba un cordial saludo. En mi calidad de docente investigador de la Facultad de Ciencias de la Computaci\'on e investigador principal del proyecto que a continuaci\'on se detalla, me dirijo a usted para solicitar, de la manera m\'as comedida, que se sirva disponer su remisi\'on al Comit\'e de \'Etica de Investigaci\'on de la Universidad, a fin de que se realice la revisi\'on correspondiente y, de considerarlo pertinente, se emita el dictamen de aprobaci\'on.
+
+\begin{recuadro}
+\textbf{Denominaci\'on del proyecto:} Escritura acad\'emica y herramientas digitales de apoyo: estudio multic\'entrico sobre procesos de elaboraci\'on de textos y aprendizaje en educaci\'on superior \textbf{(Proyecto EAES)}.
+
+\vspace{4pt}
+\textbf{Investigador principal:} Ing. Gleiston Cicer\'on Guerrero Ulloa, PhD.
+
+\vspace{4pt}
+\textbf{Unidad ejecutora:} Facultad de Ciencias de la Computaci\'on --- Carrera de Software.
+
+\vspace{4pt}
+\textbf{Tipo de estudio:} Experimental, con participantes humanos, aleatorizado, de car\'acter multic\'entrico.
+
+\vspace{4pt}
+\textbf{Poblaci\'on participante:} Estudiantes de tercer nivel de carreras de computaci\'on y \'areas afines.
+\end{recuadro}
+
+El estudio examina c\'omo los estudiantes universitarios elaboran textos acad\'emicos y qu\'e factores inciden en su aprendizaje durante ese proceso. Comprende tres sesiones de escritura en laboratorio supervisado, una prueba posterior de conocimientos y la evaluaci\'on ciega de los textos producidos por parte de revisores externos con experiencia editorial.
+
+Dado que la investigaci\'on involucra participantes humanos, requiere el tratamiento de datos personales y acad\'emicos, y contempla la asignaci\'on aleatoria de los participantes a distintas condiciones de trabajo, considero indispensable contar con el pronunciamiento del Comit\'e de \'Etica antes de iniciar cualquier actividad de reclutamiento o recolecci\'on de informaci\'on.
+
+Se acompa\~na a este oficio el \textbf{memorando t\'ecnico de aspectos \'eticos}, documento elaborado para facilitar la revisi\'on por parte del Comit\'e, en el que se detallan el proceso de consentimiento informado, los riesgos previsibles y sus medidas de mitigaci\'on, el tratamiento y la protecci\'on de los datos, y las razones por las cuales una parte de la informaci\'on sobre las hip\'otesis del estudio se comunicar\'a a los participantes \'unicamente al concluir la investigaci\'on.
+
+\vspace{4pt}
+\textbf{Documentaci\'on que se adjunta:}
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=1.0cm]
+	\item Memorando t\'ecnico de aspectos \'eticos.
+	\item Protocolo completo de investigaci\'on.
+	\item Modelo de consentimiento informado para participantes.
+	\item Gu\'ia de escritura acad\'emica que se entregar\'a por igual a todos los participantes.
+	\item Compromiso de confidencialidad y destrucci\'on de datos, suscrito por el investigador principal y por el responsable de custodia designado.
+	\item Hoja de vida acad\'emica del investigador principal.
+\end{enumerate}
+
+\textbf{Declaro expresamente} que no se iniciar\'a el reclutamiento de participantes, la aplicaci\'on de instrumentos ni la solicitud de informaci\'on acad\'emica institucional hasta contar con el dictamen favorable del Comit\'e de \'Etica, y que cualquier modificaci\'on sustantiva del protocolo ser\'a sometida previamente a su conocimiento mediante la enmienda correspondiente.
+
+Por la favorable atenci\'on que se sirva dar al presente, anticipo mi sincero agradecimiento y me suscribo.
+
+\vspace{16pt}
+Atentamente,
+
+\vspace{28pt}
+\campo{7.6cm}
+
+\textbf{Ing. Gleiston Cicer\'on Guerrero Ulloa, PhD.}
+
+{\small Docente investigador --- Facultad de Ciencias de la Computaci\'on}
+
+{\small Investigador principal del Proyecto EAES}
+
+{\small Correo institucional: \campo{5.0cm}}
+
+\vspace{10pt}
+{\footnotesize \textit{Copia:} Decanato de la Facultad de Ciencias de la Computaci\'on \textbullet\ Direcci\'on de Investigaci\'on \textbullet\ Archivo.}
+
+\end{document}

@@ -1,0 +1,705 @@
+%% ============================================================================
+%% Manuscrito TDDMachine — plantilla no oficial Enfoque UTE (formato IEEE, 2026).
+%% Cuerpo compuesto en español con resumen bilingüe.
+%%
+%% Compilación (Windows, MiKTeX/TeX Live):
+%%   pdflatex main.tex
+%%   bibtex   main
+%%   pdflatex main.tex
+%%   pdflatex main.tex
+%% ============================================================================
+
+\documentclass[10pt,journal,twoside,letterpaper]{IEEEtran}
+
+%% ============================================================================
+%% >>>>>>>>>>>>>>>>  CAMPOS POR COMPLETAR ANTES DEL ENVÍO  <<<<<<<<<<<<<<<<<<<<
+%% Reemplaza el TEXTO ENTRE LLAVES de cada macro por el dato real. No toques
+%% nada más: estos valores se insertan automáticamente en el cuerpo del
+%% artículo (Metodología y declaración de disponibilidad de código).
+%% ----------------------------------------------------------------------------
+\newcommand{\llmversion}{claude-3-5-sonnet-XX}          % <-- versión exacta del modelo, p. ej.: claude-3-5-sonnet-20241022
+\newcommand{\llmtemperatura}{YY}                        % <-- temperatura usada, p. ej.: 0,2
+\newcommand{\llmmaxtokens}{ZZ}                          % <-- límite de tokens de salida, p. ej.: 4096
+\newcommand{\llmperiodo}{WW}                            % <-- periodo de acceso a la API, p. ej.: marzo--abril de 2025
+\newcommand{\repourl}{https://github.com/USUARIO/tddmachine}  % <-- URL real del repositorio público
+%% ============================================================================
+
+%% ------------------ Codificación e idiomas ------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%% Idioma principal "english" (va en ÚLTIMO lugar): garantiza etiquetas
+%% estructurales IEEE en inglés y marcadores PDF (hyperref) estables con
+%% caracteres acentuados. El cuerpo se compone en español y activa las reglas
+%% de partición de palabras del español mediante \selectlanguage al inicio del
+%% cuerpo; el resumen y las palabras clave en español se proveen con los
+%% entornos personalizados \resumen y \palabrasclave.
+\usepackage[spanish,english]{babel}
+\shorthandoff{.<>}
+
+%% ------------------ Geometría (US Letter, estilo IEEE de dos columnas) -------
+%% Márgenes equilibrados y separación de columnas estrecha (0.25in) al estilo
+%% IEEE Transactions, para columnas más anchas y una justificación más limpia.
+\usepackage[
+letterpaper,
+top=0.75in,
+bottom=0.95in,
+left=0.62in,
+right=0.62in,
+columnsep=0.25in,
+headsep=12pt,
+headheight=14pt,
+footskip=28pt
+]{geometry}
+
+%% ------------------ Paquetes de contenido ------------------
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cite}
+\usepackage{orcidlink}
+\usepackage[protrusion=true,expansion=true]{microtype} % justificación más limpia
+
+%% Etiquetas estructurales en inglés (estilo IEEE de Enfoque UTE), aunque el
+%% idioma principal del cuerpo sea el español. Se aplica al iniciar el documento
+%% para prevalecer sobre las definiciones de babel-spanish.
+\AtBeginDocument{%
+    \renewcommand{\abstractname}{Abstract}%
+    \renewcommand{\figurename}{Fig.}%
+    \renewcommand{\tablename}{TABLE}%
+    \renewcommand{\refname}{References}%
+    \renewcommand{\bibname}{References}%
+}
+
+%% ------------------ Ajustes de figuras y tablas ------------------
+\graphicspath{{./figures/}{./}}
+\renewcommand{\arraystretch}{1.2}
+
+%% Colocación de flotantes lo más cerca posible de su primera referencia,
+%% respetando el estilo IEEE de Enfoque UTE (flotantes al inicio/pie de columna,
+%% nunca intercalados en el texto). flafter impide que un flotante aparezca antes
+%% de citarse; stfloats habilita el pie de página para flotantes de doble columna.
+\usepackage{flafter}
+\usepackage{stfloats}
+\setcounter{topnumber}{4}
+\setcounter{bottomnumber}{3}
+\setcounter{totalnumber}{6}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.7}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.72}
+\renewcommand{\dbltopfraction}{0.95}
+\renewcommand{\dblfloatpagefraction}{0.72}
+\setlength{\floatsep}{8pt plus 2pt minus 4pt}
+\setlength{\textfloatsep}{10pt plus 2pt minus 5pt}
+\setlength{\dbltextfloatsep}{10pt plus 2pt minus 5pt}
+
+%% ------------------ Logo institucional (primera página) ------------------
+\usepackage{fancyhdr}
+%% El logo se coloca en la cabecera de la portada como una caja de ALTURA CERO
+%% (\smash), de modo que NO reserve espacio y no empuje el cuerpo hacia abajo;
+%% así el margen inferior de la portada coincide con el del resto del documento.
+\fancypagestyle{enfoqueutefirstpage}{%
+    \fancyhf{}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+    \fancyhead[C]{%
+        \smash{\raisebox{-0.35in}{\includegraphics[width=1.9in]{enfoque_ute_logo.png}}}%
+    }
+    \setlength{\headheight}{14pt}
+}
+
+%% ------------------ Bloques de resumen y palabras clave en español ------------------
+\newenvironment{resumen}{%
+    \vspace{0.3em}
+    \noindent\normalfont\small\itshape\textbf{Resumen}\hspace{0.5em}\textmd{---}\hspace{0.3em}%
+    \ignorespaces
+}{%
+    \par\vspace{0.3em}%
+}
+\newcommand{\palabrasclave}[1]{%
+    \vspace{0.2em}
+    \noindent\small\textit{Palabras Clave}~---~#1
+    \par\vspace{0.4em}
+}
+\newcommand{\seccionfunding}[1]{%
+    \vspace{0.6em}
+    \noindent\textsc{Funding}
+    \par\vspace{0.2em}
+    \small #1
+    \par
+}
+\newcommand{\seccionconflicto}[1]{%
+    \vspace{0.6em}
+    \noindent\textsc{Conflict of Interest}
+    \par\vspace{0.2em}
+    \small #1
+    \par
+}
+\newcommand{\seccioniadeclaracion}[1]{%
+    \vspace{0.6em}
+    \noindent\textsc{Artificial Intelligence Statement}
+    \par\vspace{0.2em}
+    \small #1
+    \par
+}
+\newcommand{\seccionetica}[1]{%
+    \vspace{0.6em}
+    \noindent\textsc{Ethics and Informed Consent}
+    \par\vspace{0.2em}
+    \small #1
+    \par
+}
+\newcommand{\secciondatos}[1]{%
+    \vspace{0.6em}
+    \noindent\textsc{Data and Code Availability}
+    \par\vspace{0.2em}
+    \small #1
+    \par
+}
+
+%% ============================================================================
+%% METADATOS DEL ARTÍCULO
+%% ============================================================================
+\author{%
+    Gleiston~Guerrero-Ulloa\textsuperscript{1,2}~\orcidlink{0000-0001-5990-2357},
+    Kerly~M.~Triana-Arrieta\textsuperscript{1},
+    Efraín~Díaz-Macías\textsuperscript{1}~\orcidlink{0000-0003-4087-029X},
+    Carlos~Rodríguez-Domínguez\textsuperscript{2,3}~\orcidlink{0000-0001-5626-3115},
+    and~Miguel~J.~Hornos\textsuperscript{2}~\orcidlink{0000-0001-5722-9816}%
+    \thanks{\textsuperscript{1}Facultad de Ciencias de la Computación, Universidad Técnica Estatal de Quevedo (UTEQ), Quevedo 120501, Los Ríos, Ecuador. \textsuperscript{2}Departamento de Ingeniería del Software, Universidad de Granada, 18071 Granada, España. \textsuperscript{3}Centro de Investigación de Tecnologías de la Información y Comunicación (CITIC), Universidad de Granada, 18071 Granada, España.}%
+    \thanks{\emph{Autor de correspondencia:} C. Rodríguez-Domínguez (correo: carlosrodriguez@ugr.es).}%
+}
+
+\markboth{Enfoque UTE (manuscrito en revisión), 2026}%
+{Guerrero-Ulloa \MakeLowercase{\textit{et~al.}}: Generación del estado inicial de pruebas TDD mediante LLM}
+
+%% ============================================================================
+%% CUERPO DEL ARTÍCULO
+%% ============================================================================
+\begin{document}
+    
+    \IEEEoverridecommandlockouts
+    \pretolerance=10000
+    
+    \title{TDDMachine: generación de pruebas mediante un modelo de lenguaje de gran escala para la fase inicial (Red) de \textit{Test-Driven Development (TDD)} a partir de especificaciones estructuradas}
+    
+    \maketitle
+    \thispagestyle{enfoqueutefirstpage}
+    
+    \begin{abstract}
+        The manual creation of test cases remains a laborious, repetitive and error-prone activity, and empirical evidence shows that developers test far less than they believe, treating testing as a low-value chore; yet Test-Driven Development (TDD), in which tests are written before production code, is associated with 40--90\% lower defect density at the cost of only a modest increase in initial development effort. This paper presents TDDMachine, a Computer-Aided Software Engineering (CASE) tool that automates the generation of the initial test state (the \emph{Red} stage of the TDD cycle) from structured specifications (functional requirements, use cases and user stories) using the Claude 3.5 Sonnet large language model (LLM). The requirements were derived from a systematic literature review of 109 primary studies; the technology stack (React~18, Django~4.2, PostgreSQL~15, Docker) was chosen through weighted multi-criteria evaluation; and generated \texttt{pytest} scripts are syntactically validated through Python Abstract Syntax Tree analysis. The tool was evaluated with 25~participants using the System Usability Scale (SUS) and the Technology Acceptance Model (TAM), and with 10~experts who assessed test quality through a structured rubric. TDDMachine produced valid scripts in 91.4\% of attempts, reached a mean expert-rated quality of 4.08/5.0, obtained a SUS score of 74.46/100 (``Good''), and exceeded the technology-acceptance threshold in all four TAM constructs. The results provide empirical evidence that structured, LLM-assisted generation of the TDD initial state is both feasible and well accepted.
+    \end{abstract}
+    
+    \begin{IEEEkeywords}
+        CASE tool; automated test generation; generative artificial intelligence; large language models; Test-Driven Development; pytest; software quality assurance; requirements engineering.
+    \end{IEEEkeywords}
+    
+    \begin{resumen}
+        La creación manual de casos de prueba sigue siendo una tarea laboriosa, repetitiva y propensa a errores, y la evidencia empírica muestra que los desarrolladores prueban mucho menos de lo que creen, percibiendo la escritura de pruebas como una carga de bajo valor; sin embargo, el Desarrollo Guiado por Pruebas (TDD), en el que las pruebas se escriben antes que el código de producción, se asocia con una reducción de la densidad de defectos del 40--90\,\% a cambio de un incremento moderado del esfuerzo inicial. Este artículo presenta TDDMachine, una herramienta CASE que automatiza la generación del estado inicial de las pruebas (la etapa \emph{Red} del ciclo TDD) a partir de especificaciones estructuradas (requisitos funcionales, casos de uso e historias de usuario) mediante el modelo de lenguaje de gran escala (LLM) Claude 3.5 Sonnet. Los requisitos se derivaron de una revisión sistemática de 109 estudios primarios; la pila tecnológica (React~18, Django~4.2, PostgreSQL~15, Docker) se seleccionó mediante evaluación multicriterio ponderada; y los scripts \texttt{pytest} generados se validan sintácticamente mediante análisis del árbol sintáctico abstracto de Python. La herramienta se evaluó con 25 participantes mediante los instrumentos SUS y TAM, y con 10 expertos que valoraron la calidad de las pruebas mediante una rúbrica estructurada. TDDMachine produjo scripts válidos en el 91,4\,\% de los intentos, alcanzó una calidad media evaluada por expertos de 4,08/5,0, obtuvo un puntaje SUS de 74,46/100 (``Bueno'') y superó el umbral de aceptación tecnológica en los cuatro constructos TAM. Los resultados aportan evidencia empírica de que la generación estructurada del estado inicial TDD asistida por LLM es viable y bien aceptada.
+    \end{resumen}
+    
+    \palabrasclave{herramienta CASE; generación automática de pruebas; inteligencia artificial generativa; modelos de lenguaje de gran escala; Desarrollo Guiado por Pruebas; pytest; aseguramiento de calidad; ingeniería de requisitos.}
+    
+    %% A partir de aquí el CUERPO usa la partición de palabras del español.
+    %% Se reafirman las etiquetas IEEE en inglés tras el cambio de idioma.
+    \selectlanguage{spanish}
+    \shorthandoff{.<>"}
+    \renewcommand{\figurename}{Fig.}
+    \renewcommand{\tablename}{TABLE}
+    \renewcommand{\refname}{References}
+    \renewcommand{\bibname}{References}
+    
+    %% ------------------------------------------------------------------------
+    \section{Introducción}
+    \label{sec:introduccion}
+    
+    \IEEEPARstart{L}{as} pruebas de software constituyen una actividad transversal del ciclo de vida del desarrollo, responsable de verificar la funcionalidad, la estabilidad y la confiabilidad del código antes de su puesta en producción; sin embargo, su elaboración manual continúa siendo una tarea costosa y propensa a errores, sobre todo en entornos ágiles donde los ciclos de entrega son cortos y los requisitos cambian con frecuencia \cite{lukasczyk2023empirical,wang2024survey}.
+    
+    Esta carga explica una tensión bien documentada en la práctica profesional: aunque las pruebas son reconocidas como esenciales, los desarrolladores tienden a percibirlas como una actividad tediosa y de bajo valor inmediato, que compite con la escritura de funcionalidad. Los estudios de campo lo confirman: el de Beller et~al., basado en la instrumentación del entorno de desarrollo de miles de programadores, demostró que estos dedican a las pruebas mucho menos tiempo del que ellos mismos estiman, y que una fracción considerable de sesiones de desarrollo transcurre sin ejecutar una sola prueba \cite{beller2015test}. En la misma línea, la encuesta de Straubinger y Fraser reporta que una proporción significativa de desarrolladores considera la escritura de pruebas como una labor poco atractiva y la posterga sistemáticamente frente a otras tareas \cite{straubinger2023survey}.
+    
+    La evidencia sobre resultados de proyecto, no obstante, apunta en sentido contrario cuando las pruebas se anticipan al código. El Desarrollo Guiado por Pruebas (\emph{Test-Driven Development}, TDD) invierte el orden tradicional de codificación: primero se escribe una prueba que falla porque el código aún no existe (etapa \emph{Red}), luego se implementa el código mínimo para que la prueba pase (etapa \emph{Green}) y, por último, se refactoriza conservando las pruebas en verde (etapa \emph{Refactor}) \cite{beck2003tdd}. El estudio industrial de Nagappan et~al. en cuatro equipos de Microsoft e IBM documentó que la densidad de defectos previa a la liberación disminuyó entre un 40\,\% y un 90\,\% respecto de proyectos comparables que no aplicaron TDD, a cambio de un incremento del tiempo inicial de desarrollo de apenas 15\,\% a 35\,\% \cite{nagappan2008tdd}. El metaanálisis de Rafique y Mišić confirma una mejora significativa de la calidad externa asociada al TDD, y el experimento controlado de Erdogmus et~al. sobre el enfoque \emph{test-first} evidenció ganancias de productividad atribuibles a la anticipación de las pruebas \cite{rafique2013meta,erdogmus2005testfirst}. Estos resultados indican que un software construido a partir de sus pruebas tiene mayor probabilidad de cumplir las funcionalidades comprometidas dentro de los plazos previstos, y que la fase inicial de explotación (la corrección de defectos detectados tras la entrega) tiende a ser más reducida que cuando las pruebas se escriben después del código.
+    
+    El momento del ciclo de vida en que se escriben las pruebas es, por tanto, determinante. En el enfoque tradicional \emph{test-last}, las pruebas se redactan una vez implementada la funcionalidad, con lo que actúan como verificación a posteriori y heredan las decisiones de diseño ya tomadas; en el enfoque \emph{test-first} que promueve el TDD, en cambio, las pruebas se escriben antes del código de producción y operan como especificación ejecutable que guía el diseño \cite{beck2003tdd,erdogmus2005testfirst}. La ingeniería de requisitos ofrece un punto de partida natural para esta anticipación: cuando los requisitos funcionales, casos de uso e historias de usuario se documentan de forma estructurada conforme a estándares como ISO/IEC/IEEE~29148, sus criterios de aceptación son directamente transformables en condiciones de prueba verificables \cite{iso29148}. El reto práctico es que redactar esas pruebas iniciales desde requisitos, y hacerlo antes de escribir código, exige un esfuerzo cognitivo y una experiencia en \emph{testing} de los que muchos equipos carecen, lo que limita la adopción del TDD pese a sus beneficios demostrados \cite{ghafari2020inconclusive}.
+    
+    Ante retos de esta naturaleza, la ingeniería de software ha comenzado a incorporar inteligencia artificial (IA) generativa para automatizar tareas tradicionalmente manuales. Las revisiones sistemáticas más recientes documentan que los modelos de lenguaje de gran escala (\emph{Large Language Models}, LLM) se aplican con métricas de éxito medibles a lo largo de numerosos procesos del ciclo de vida (generación y compleción de código, resumen y traducción de programas, reparación de defectos y elicitación de requisitos, entre otros), y no solo a la fase de pruebas \cite{hou2024llm4se,carleton2024genai}. Esta tendencia se refleja también en la producción regional: en \emph{Enfoque UTE} se han publicado revisiones y estudios que reportan la aplicación de técnicas de aprendizaje automático y profundo a problemas de ingeniería con indicadores cuantitativos de desempeño, desde la clasificación mediante redes neuronales artificiales \cite{molina2024ann} hasta el ajuste automático de ancho de banda en redes inalámbricas \cite{carrillo2025ai} o la integración de la Internet de las Cosas y la inteligencia artificial en la agricultura \cite{basurto2026iotai}. En el ámbito específico del \emph{testing}, los LLM han mostrado capacidad para interpretar especificaciones en lenguaje natural y sintetizar casos de prueba estructurados y ejecutables, con tasas de éxito reportadas que varían según la calidad de la especificación de entrada \cite{wang2024survey,yang2024evaluation,rehan2025harnessing,bhatia2024unit,korraprolu2025testcase,takerngsaksiri2025pytester}.
+    
+    Las herramientas basadas en IA para generación de pruebas presentan, sin embargo, ventajas y limitaciones que conviene contrastar con la propuesta de este trabajo. \emph{ChatUniTest} \cite{chen2024chatunitest}, \emph{TestSpark} \cite{sapozhnikov2024testspark} y \emph{Pynguin} \cite{lukasczyk2022pynguin} generan pruebas unitarias de forma eficaz, pero lo hacen a partir del código fuente preexistente, por lo que operan de forma natural en un esquema \emph{test-last} y se integran en los entornos de desarrollo; \emph{Pytester} \cite{takerngsaksiri2025pytester} sí traduce descripciones textuales a casos de prueba, aunque sin gestión estructurada de requisitos ni control del estado del ciclo. La ventaja de estas herramientas es su madurez y su cobertura, y su principal limitación, de cara al TDD, es que presuponen la existencia del código que la metodología precisamente propone escribir después de la prueba. La propuesta de este trabajo, denominada TDDMachine, se sitúa deliberadamente en una fase previa del ciclo: es una herramienta CASE (\emph{Computer-Aided Software Engineering}) que interviene de manera exclusiva en la transición \emph{Red}$\rightarrow$\emph{Green} del ciclo TDD, generando el script de prueba en Python con \texttt{pytest} a partir de especificaciones estructuradas, para entregar al equipo de desarrollo el punto de partida sobre el cual escribir el código de producción mínimo. La solución se desarrolló derivando sus requisitos de una revisión sistemática de la literatura, seleccionando su pila tecnológica (React~18, Django~4.2, PostgreSQL~15 y despliegue en contenedores Docker) mediante evaluación multicriterio ponderada, e integrando el modelo Claude 3.5 Sonnet a través de un constructor de \emph{prompts} estructurados y un validador que verifica la sintaxis del código generado mediante el árbol sintáctico abstracto (AST) de Python. Para su comprobación se diseñaron dos estudios acordes con ese alcance: un estudio de usabilidad y aceptación tecnológica con 25 participantes, mediante los instrumentos SUS y TAM, y un estudio de calidad de las pruebas generadas con 10 expertos, mediante una rúbrica estructurada.
+    
+    Las contribuciones de este trabajo son tres. Primera, TDDMachine, una herramienta CASE que integra en un único flujo la captura estructurada de tres tipos de especificación (requisitos funcionales, casos de uso e historias de usuario; RF, CU e HU), la generación del estado inicial de las pruebas mediante un LLM y la validación sintáctica del código generado mediante el AST de Python, brecha que ninguna de las herramientas del estado del arte cubre de forma integrada. Segunda, una revisión sistemática de 109 estudios primarios que caracteriza los estándares y notaciones para estructurar los requisitos y su relación con la generación automática de pruebas, y que fundamenta el diseño de la herramienta. Tercera, evidencia empírica de la viabilidad y la aceptación de la propuesta, obtenida mediante un estudio de usabilidad y aceptación tecnológica con 25 participantes y un estudio de calidad de las pruebas con 10 expertos.
+    
+    El resto del artículo se organiza como sigue. La Sección~\ref{sec:trabajos} presenta una revisión sistemática de la literatura, conducida según los lineamientos de Kitchenham, que sitúa la contribución frente al estado del arte. La Sección~\ref{sec:metodologia} describe la metodología de desarrollo y evaluación. La Sección~\ref{sec:resultados} reporta los resultados de generación, usabilidad, aceptación y calidad. La Sección~\ref{sec:discusion} discute los hallazgos frente a los objetivos y trabajos previos y expone las amenazas a la validez. Finalmente, la Sección~\ref{sec:conclusiones} resume las conclusiones y las líneas de trabajo futuro.
+    
+    %% ------------------------------------------------------------------------
+    \section{Trabajos relacionados}
+    \label{sec:trabajos}
+    
+    Con el fin de fundamentar los requisitos de TDDMachine y situar su aporte frente al estado del arte, se condujo una revisión sistemática de la literatura (\emph{Systematic Literature Review}, SLR) siguiendo los lineamientos metodológicos de Kitchenham et~al., que estructuran el proceso en tres fases (planificación, ejecución y reporte) \cite{kitchenham2009slr}, y se reportó conforme a la declaración PRISMA (\emph{Preferred Reporting Items for Systematic Reviews and Meta-Analyses}) de 2020 \cite{prisma2020}. Antes de la ejecución se definió un protocolo que fija las preguntas de investigación, la estrategia y las cadenas de búsqueda, los criterios de inclusión y exclusión (que incorporan la valoración de calidad metodológica como criterio aplicado a texto completo, CE1) y el procedimiento de extracción de datos, con el objeto de garantizar la trazabilidad y la reproducibilidad de la revisión.
+    
+    \subsection{Preguntas de investigación}
+    \label{subsec:rqs}
+    
+    El objetivo de la revisión es determinar cómo debe capturarse de forma estructurada la especificación de software para habilitar la generación automática de pruebas, cuestión que fundamenta el diseño de los formularios de entrada de TDDMachine. De este objetivo se derivaron las cuatro preguntas de investigación de la Tabla~\ref{tab:rqs}: RQ1 indaga los estándares existentes para estructurar los requisitos; RQ2, los campos que deben incluir los formularios de captura; RQ3, el modo en que dicha estructuración facilita la generación de pruebas; y RQ4, las herramientas CASE que ya implementan estas ideas y sus limitaciones.
+    
+    \begin{table}[!tb]
+        \caption{Preguntas de investigación de la revisión sistemática}
+        \label{tab:rqs}
+        \centering
+        \small
+        \begin{tabular}{@{}p{0.07\columnwidth}p{0.83\columnwidth}@{}}
+            \toprule
+            \textbf{ID} & \textbf{Pregunta de investigación} \\
+            \midrule
+            RQ1 & ¿Cuáles son los estándares y metodologías existentes para la captura estructurada de requisitos funcionales? \\
+            RQ2 & ¿Qué características deben tener los formularios y esquemas para estandarizar la captura de especificaciones? \\
+            RQ3 & ¿Cómo facilitan estos estándares la generación automática de casos de prueba? \\
+            RQ4 & ¿Qué herramientas CASE existentes implementan estas metodologías? \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \subsection{Estrategia y cadenas de búsqueda}
+    \label{subsec:busqueda}
+    
+    La estrategia de búsqueda se estructuró con el marco PICOC (\emph{Population, Intervention, Comparison, Outcomes, Context}), que operacionaliza el objetivo de la revisión en cinco elementos. La Tabla~\ref{tab:picoc} detalla los términos asignados a cada elemento.
+    
+    \begin{table}[!tb]
+        \caption{Operacionalización de la búsqueda mediante PICOC}
+        \label{tab:picoc}
+        \centering
+        \small
+        \begin{tabular}{@{}p{0.20\columnwidth}p{0.70\columnwidth}@{}}
+            \toprule
+            \textbf{Elemento} & \textbf{Términos} \\
+            \midrule
+            Población (P)   & Sistemas de software, aplicaciones web y proyectos de desarrollo de software. \\
+            Intervención (I)& Estándares de captura de requisitos, formularios estructurados, metodologías de documentación y herramientas CASE. \\
+            Comparación (C) & Enfoques tradicionales frente a enfoques estructurados; distintos estándares de documentación. \\
+            Resultados (O)  & Estandarización de la especificación, facilidad para la generación automática de pruebas y reducción del tiempo de documentación. \\
+            Contexto (C)    & Ingeniería de requisitos, desarrollo de software y pruebas automatizadas. \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    Estos cinco elementos delimitan la población de interés (proyectos y sistemas de software), la intervención (estándares, formularios y herramientas de captura estructurada de requisitos), la comparación (enfoques estructurados frente a los tradicionales), los resultados esperados (estandarización de la especificación y generación automática de pruebas) y el contexto (ingeniería de requisitos y pruebas automatizadas). A partir de estos términos se construyeron cadenas de búsqueda booleanas específicas para cada tipo de especificación ---requisitos funcionales, casos de uso e historias de usuario---, que se aplicaron sobre cuatro bases de datos (Scopus, IEEE~Xplore, ACM~Digital~Library y Web of Science) y se complementaron con la exploración de repositorios de código abierto (GitHub) para identificar implementaciones prácticas. La Tabla~\ref{tab:cadenas} presenta dichas cadenas en su forma canónica.
+    
+    \begin{table*}[!tb]
+        \caption{Cadenas de búsqueda en forma canónica (adaptadas a la sintaxis de cada base de datos)}
+        \label{tab:cadenas}
+        \centering
+        \footnotesize
+        \begin{tabular}{@{}p{0.14\textwidth}p{0.80\textwidth}@{}}
+            \toprule
+            \textbf{Categoría} & \textbf{Cadena de búsqueda} \\
+            \midrule
+            Requisitos funcionales & \texttt{(\,"requirement* specification" OR "requirement* template" OR "requirement* boilerplate" OR "requirement* pattern" OR "structured requirement*" OR "controlled natural language"\,) AND (\,"requirements engineering" OR "software engineering"\,)} \\
+            \addlinespace
+            Casos de uso & \texttt{(\,"use case template" OR "use case specification" OR "use case model*" OR "use case description" OR "restricted use case" OR "structured use case"\,) AND (\,"requirements engineering" OR "software engineering"\,)} \\
+            \addlinespace
+            Historias de usuario & \texttt{(\,"user stor* template" OR "user stor* format" OR "user stor* pattern" OR "user stor* documentation" OR "structured user stor*"\,) AND (\,"acceptance criteria" OR "INVEST" OR "agile" OR "scrum" OR "requirements engineering"\,)} \\
+            \bottomrule
+        \end{tabular}
+    \end{table*}
+    
+    Como muestra la Tabla~\ref{tab:cadenas}, las cadenas emplean truncamiento (\texttt{*}) y sinónimos idiomáticos para maximizar la cobertura, y se adaptaron a la sintaxis de cada base ---Scopus (\texttt{TITLE-ABS-KEY}), Web of Science (\texttt{TS=}), IEEE~Xplore (\texttt{"All Metadata"}) y ACM~Digital~Library (\texttt{AllField})--- preservando los mismos bloques conceptuales, de modo que la recuperación resultara comparable entre las cuatro fuentes.
+    
+    \subsection{Criterios de selección y proceso de cribado}
+    \label{subsec:seleccion}
+    
+    La selección de los estudios se rigió por los criterios de inclusión (CI) y exclusión (CE) de la Tabla~\ref{tab:criterios}, definidos a priori y asignados cada uno a una única etapa del proceso para evitar su aplicación duplicada, tal como indica la columna \emph{Etapa} de dicha tabla.
+    
+    \begin{table}[!tb]
+        \caption{Criterios de inclusión y exclusión aplicados}
+        \label{tab:criterios}
+        \centering
+        \small
+        \setlength{\tabcolsep}{4pt}
+        \begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.60\columnwidth}l@{}}
+            \toprule
+            \multicolumn{2}{@{}l}{\textbf{Criterios de inclusión (CI)}} & \textbf{Etapa} \\
+            \midrule
+            CI1 & Publicados entre 2015 y la fecha de ejecución de la búsqueda. & Elegib. \\
+            CI2 & Describen estándares, modelos o metodologías de captura estructurada de requisitos. & Tít./res. \\
+            CI3 & Presentan formularios, esquemas o criterios para estandarizar especificaciones. & Tít./res. \\
+            CI4 & Abordan la relación entre estructuración de requisitos y generación de pruebas. & Tít./res. \\
+            CI5 & Tratan herramientas CASE para la gestión de requisitos. & Tít./res. \\
+            CI6 & Publicados en inglés. & Elegib. \\
+            CI7 & Estudios primarios: artículos de revista, ponencias de congreso, capítulos de libro, libros o tesis doctorales. & Elegib. \\
+            \midrule
+            \multicolumn{2}{@{}l}{\textbf{Criterios de exclusión (CE)}} & \textbf{Etapa} \\
+            \midrule
+            CE1 & Estudios puramente teóricos sin aplicación práctica, o que no presentan evidencia empírica, rigor metodológico ni claridad de reporte suficientes (calidad insuficiente). & Texto compl. \\
+            CE2 & Fuera del alcance temático: no abordan la captura estructurada de requisitos ni su relación con la generación de pruebas. & Tít./res. \\
+            CE3 & Estudios secundarios (revisiones sistemáticas, \emph{surveys} y mapeos), que no aportan evidencia primaria. & Elegib. \\
+            CE4 & No-artículos (actas, prefacios y material preliminar de congresos) y literatura gris sin revisión por pares (salvo estándares oficiales). & Elegib. \\
+            CE5 & Duplicados, versiones preliminares o solapamientos entre categorías. & Deduplic. \\
+            CE6 & Sin acceso al texto completo. & Texto compl. \\
+            \bottomrule
+        \end{tabular}
+        \\[3pt]
+        {\footnotesize La columna \emph{Etapa} indica el único filtro del flujo PRISMA (Fig.~\ref{fig:prisma}) en el que se aplica cada criterio: Deduplic.\ = deduplicación; Elegib.\ = elegibilidad (metadatos: año, idioma y tipo de documento); Tít./res.\ = cribado por título y resumen (pertinencia temática); Texto compl.\ = lectura a texto completo (calidad metodológica).}
+    \end{table}
+    
+    El proceso, ilustrado en el diagrama PRISMA de la Fig.~\ref{fig:prisma}, comprende cuatro filtros consecutivos. El primero es la identificación de los registros recuperados por las cadenas de la Tabla~\ref{tab:cadenas} en cada base. El segundo elimina los duplicados (CE5), dando prioridad a las fuentes primarias (ACM~Digital~Library e IEEE~Xplore) sobre los índices bibliográficos (Scopus y Web of Science), que replican gran parte de su contenido. El tercero es la elegibilidad, en la que se aplican de una sola vez, y sobre los metadatos de las bases, todos los criterios formales: año de publicación desde 2015 (CI1), idioma inglés (CI6) y tipo de documento admisible ---estudios primarios: artículos de revista, ponencias de congreso, capítulos de libro, libros y tesis doctorales (CI7)---, con la exclusión de los no-artículos ---actas y material preliminar de congresos--- (CE4) y de los estudios secundarios ---revisiones, \emph{surveys} y mapeos sistemáticos--- (CE3). El cuarto es el cribado por título y resumen, que retiene únicamente los estudios pertinentes al objetivo operativo de la revisión ---que un artefacto de requisitos estructurado se vincule de forma explícita con la generación o derivación automática de pruebas (CI2--CI5; CE2)---. De este modo, el tipo de documento se resuelve una sola vez en la elegibilidad, el cribado por título y resumen queda circunscrito a la pertinencia temática, y la etapa final ---la lectura a texto completo--- se reserva a la evaluación de la calidad metodológica (CE1) y a la confirmación del acceso al documento (CE6).
+    
+    \begin{figure}[!tb]
+        \centering
+        \includegraphics[width=\columnwidth]{fig_prisma.png}
+        \caption{Flujo PRISMA consolidado de la revisión sistemática (requisitos funcionales, casos de uso e historias de usuario en las cuatro bases). La elegibilidad aplica en una sola etapa los criterios de año, idioma y tipo de documento; el cribado por título y resumen se circunscribe a la pertinencia temática; y de los 155 estudios leídos a texto completo, 109 resultaron incluidos tras valorar la calidad metodológica.}
+        \label{fig:prisma}
+    \end{figure}
+    
+    La Fig.~\ref{fig:prisma} cuantifica el resultado de cada filtro. Partiendo de 6\,795 registros identificados en las cuatro bases, la eliminación de duplicados ---concentrada, como corresponde, en Scopus y Web of Science--- deja 5\,628 registros únicos; los criterios de elegibilidad ---año, idioma y tipo de documento--- los reducen a 2\,642 (se descartan 2\,758 registros por año o idioma y 228 por tipo de documento); y el cribado por título y resumen ---incorporando estudios complementarios para la categoría de historias de usuario, un estudio del volumen ICSR~2016 y un estudio de requisitos funcionales recuperado tras obtener el acceso a su texto completo--- deja 155 estudios seleccionados a texto completo. Sobre estos 155 se realizó la lectura a texto completo, gobernada por el criterio de calidad metodológica (CE1): 109 estudios quedaron incluidos y 46 se excluyeron ---16 por calidad metodológica insuficiente y 30 cuya condición de fuera del alcance temático (27) o de estudio secundario (3) solo pudo confirmarse con el documento completo---. La Tabla~\ref{tab:distrib} desglosa la identificación, la deduplicación y la elegibilidad por categoría de especificación y base de datos.
+    
+    \begin{table*}[!tb]
+        \caption{Identificación, deduplicación y elegibilidad por categoría de especificación y base de datos}
+        \label{tab:distrib}
+        \centering
+        \small
+        \setlength{\tabcolsep}{6pt}
+        \begin{tabular}{@{}llccc@{}}
+            \toprule
+            \textbf{Especificación} & \textbf{Base de datos} & \textbf{Identificados} & \textbf{Tras duplicados} & \textbf{Tras elegibilidad\textsuperscript{b}} \\
+            \midrule
+            \multirow{5}{*}{Requisitos funcionales} & Scopus & 1\,646 & 1\,312 & 522 \\
+            & Web of Science      & 1\,607 & 1\,066 & 379 \\
+            & IEEE Xplore         & 961    & 947    & 409 \\
+            & ACM Digital Library & 1\,013\textsuperscript{a} & 1\,013 & 859 \\
+            \cmidrule(l){2-5}
+            & \textbf{Subtotal}   & \textbf{5\,227} & \textbf{4\,338} & \textbf{2\,169} \\
+            \midrule
+            \multirow{5}{*}{Casos de uso} & Scopus & 483 & 360 & 116 \\
+            & Web of Science      & 310 & 173 & 55 \\
+            & IEEE Xplore         & 138 & 136 & 49 \\
+            & ACM Digital Library & 539 & 539 & 191 \\
+            \cmidrule(l){2-5}
+            & \textbf{Subtotal}   & \textbf{1\,470} & \textbf{1\,208} & \textbf{411} \\
+            \midrule
+            \multirow{5}{*}{Historias de usuario} & Scopus & 25 & 20 & 18 \\
+            & Web of Science      & 18 & 7 & 4 \\
+            & IEEE Xplore         & 6 & 6 & 4 \\
+            & ACM Digital Library & 49 & 49 & 36 \\
+            \cmidrule(l){2-5}
+            & \textbf{Subtotal}   & \textbf{98} & \textbf{82} & \textbf{62} \\
+            \midrule
+            \textbf{Total} & & \textbf{6\,795} & \textbf{5\,628} & \textbf{2\,642} \\
+            \bottomrule
+        \end{tabular}
+        \\[3pt]
+        {\footnotesize Los duplicados se eliminaron dando prioridad a las fuentes primarias (ACM, IEEE) sobre los índices (Scopus, Web of Science). \textsuperscript{a}\,La exportación de ACM para requisitos funcionales se acotó a 2015--2026 (por el límite de exportación de la plataforma), por lo que su columna de identificados ya excluye lo anterior a 2015. \textsuperscript{b}\,Elegibilidad: se aplican en una sola etapa todos los criterios formales sobre los metadatos ---año de publicación $\geq$\,2015 (CI1), idioma inglés (CI6) y tipo de documento admisible: estudios primarios (artículos de revista, ponencias de congreso, capítulos de libro, libros y tesis doctorales; CI7), excluyendo no-artículos (CE4) y estudios secundarios (CE3)---. De los 5\,628 registros únicos, 2\,758 se descartaron por año o idioma y 228 por tipo de documento; sobre los 2\,642 elegibles se aplicó el cribado por título y resumen (Tabla~\ref{tab:seleccion}).}
+    \end{table*}
+    
+    El desglose de la Tabla~\ref{tab:distrib} muestra que los requisitos funcionales concentran la mayor parte de los registros recuperados (5\,227 de 6\,795) y que la reducción por deduplicación y elegibilidad es proporcionalmente mayor en Scopus y Web of Science, coherente con su papel de índices que replican en buena medida la producción de las bibliotecas primarias. A partir de los 2\,642 registros elegibles, la Tabla~\ref{tab:seleccion} reporta, por categoría, cuántos estudios se seleccionaron para la lectura a texto completo y cuántos quedaron finalmente incluidos.
+    
+    \begin{table}[!tb]
+        \caption{Estudios seleccionados a texto completo e incluidos, por categoría}
+        \label{tab:seleccion}
+        \centering
+        \small
+        \setlength{\tabcolsep}{6pt}
+        \begin{tabular}{@{}lcc@{}}
+            \toprule
+            \textbf{Categoría} & \textbf{\shortstack{Seleccionados a\\ texto completo\textsuperscript{a}}} & \textbf{Incluidos\textsuperscript{b}} \\
+            \midrule
+            Requisitos funcionales & 122 & 87 \\
+            Casos de uso           & 22  & 13 \\
+            Historias de usuario   & 11  & 9  \\
+            \midrule
+            \textbf{Total}         & \textbf{155} & \textbf{109} \\
+            \bottomrule
+        \end{tabular}
+        \\[3pt]
+        {\footnotesize \textsuperscript{a}\,Registros que superan el cribado por título y resumen ---circunscrito a la pertinencia temática con el objetivo de la revisión (CI2--CI5; CE2)---, partiendo de los 2\,642 registros ya elegibles por año, idioma y tipo de documento; incorpora estudios complementarios para la categoría de historias de usuario, un estudio del volumen ICSR~2016 y un estudio de requisitos funcionales recuperado tras obtener el acceso a su texto completo. \textsuperscript{b}\,Estudios que, tras la lectura a texto completo, cumplen la calidad metodológica suficiente (CE1). De los 155 leídos, 46 se excluyeron: 16 por calidad metodológica insuficiente y 30 cuya condición de fuera del alcance temático (27) o de estudio secundario (3) solo pudo confirmarse con el documento completo.}
+    \end{table}
+    
+    Como recoge la Tabla~\ref{tab:seleccion}, de los 155 estudios leídos a texto completo se incluyeron 109, con tasas de inclusión del 71\,\% en requisitos funcionales (87 de 122), del 59\,\% en casos de uso (13 de 22) y del 82\,\% en historias de usuario (9 de 11); esta última categoría, pese a su menor volumen absoluto, aportó la proporción más alta de estudios pertinentes al objetivo de la revisión.
+    
+    \subsection{Extracción de datos y síntesis por pregunta de investigación}
+    \label{subsec:sintesis}
+    
+    De cada estudio incluido se extrajeron, mediante una plantilla estandarizada, los siguientes campos: año, autores, DOI, tipo de estudio, contexto de aplicación, estándares o metodologías descritos, campos de especificación identificados, herramientas CASE mencionadas y relación con la generación automática de pruebas. La extracción completa de los 109 estudios incluidos ---distribuidos en 87 de requisitos funcionales, 13 de casos de uso y 9 de historias de usuario, y compuesta por 72 ponencias de congreso, 36 artículos de revista y una tesis doctoral--- se proporciona como material complementario y el conjunto se referencia de forma exhaustiva en \cite{Kudo2019Conceptual,Sandhu2026Framework,Bunder2019Model,Agrawal2023Requirements,Gupta2019Software,Mahanto2018Achieving,Kudo2023Aligning,Intana2023Approach,Intana2023Automated,Orekhov2026Example,Roldan2019Ontology,Trinh2026Fstg,Paiva2020Requirements,Oran2017Analysing,Veizaga2020Leveraging,Yue2015Rtcm,Wang2022Automatic,Zhang2018Specifying,Khamaiseh2017Software,Clerissi2017Towards,Li2026Test,Franca2026Req2test,Miranda2020Preliminary,Bhatia2025Automated,Jang2025Automatic,Longo2016Web,Tatale2020Enhancing,RochaSilva2020Ensuring,Gralha2021Impact,Araujo2017Generating,CorreaSouza2018Automated,Nogueira2016Automatic,Tiwari2015Approach,Wang2015Automatic,Baxter2023Roboworld,Carvalho2016Modelling,Ecar2018Cosmic,Saraiva2023Adoption,Matula2018Enterprise,Charoenreh2020Enhancing,Lim2024Test,Liu2022Ears2tf,Zheng2021Generating,Nguyen2023Analysis,Fischbach2019Automated,Olajubu2018Automated,Pudlitz2020What,Frattini2023Cira,HolodnikJanczura2017Extension,Lucassen2016Use,Abdeen2023Approach,Venkatesh2016Cost,Ansari2017Constructing,Wang2015Umtg,Erazo2017Maritaca,Louzaoui2016Invalid,Borg2022Quality,Wen2026Research,Liu2016Validating,Khaldi2026Agentic,Herwanto2025Enhancing,Wu2022Node,Martins2024Cm,Wiecher2019Test,Wiecher2021Besos,Wiecher2020Scenarios,Zafar2021Towards,Liu2022Automatic,Diniz2019Reducing,Shimizu2025Automatic,Salari2026Test,Wei2024Requirements,Palshikar2019Extraction,Saraiva2023Privacy,Rodriguez2023Behaviour,Medeiros2019Requirements,Fisher2016Making,Fathima2026Automated,Morales2024Dsl,Bandyszak2015Supporting,Silva2021Empirical,RochaSilva2022Towards,Arruda2026Deriving,LeonQuinstedt2026Rest,Jang2021Automatic,Hamza2020Generating,DosSantos2019Extraction,Fredericks2015Automated,Fazzolino2019Feature,Campanile2022Evaluation,Motwani2019Automatically,Moketar2016Testmereq,Jorge2018Integrating,Zafar2021Model,Varpe2025User,Sinha2015Requirements,Ishinari2025Improving,Ishinari2026Data,Chernorutsky2018Industrial,Mai2019Mcp,Trinh2026Tcg,Dilorenzo2026Recommending,Baker2026Industrial,Yue2016Practical,Tran2025Famres,DosSantos2018Automated,Malik2020Automating,Osama2021Srcm,Crapo2017Requirements}; la Fig.~\ref{fig:years} presenta la distribución temporal de este conjunto por categoría de artefacto de requisitos.
+    
+    \begin{figure}[!tb]
+        \centering
+        \includegraphics[width=\columnwidth]{fig_years.png}
+        \caption{Distribución temporal de los 109 estudios incluidos (2015--2026), apilada por categoría de artefacto de requisitos. La cifra sobre cada barra indica el total del año.}
+        \label{fig:years}
+    \end{figure}
+    
+    Como se observa en la Fig.~\ref{fig:years}, la producción sobre requisitos funcionales se mantiene sostenida a lo largo de toda la ventana temporal (2015--2026) y concentra la mayor parte del corpus, mientras que el incremento observado en los años más recientes coincide con la difusión de los modelos de lenguaje de gran escala en la ingeniería de software. Sobre este mismo conjunto de estudios, la Tabla~\ref{tab:sintesis} sintetiza las frecuencias de estándares, notaciones y técnicas de derivación de pruebas observadas en el texto completo, cuyo análisis se organiza a continuación en torno a las cuatro preguntas de investigación.
+    
+    \begin{table}[!tb]
+        \caption{Síntesis de la evidencia de los 109 estudios incluidos: frecuencia de estándares/notaciones y de técnicas de derivación de pruebas (presencia en el texto completo)}
+        \label{tab:sintesis}
+        \centering
+        \small
+        \setlength{\tabcolsep}{6pt}
+        \begin{tabular}{@{}p{6.9cm}r@{}}
+            \toprule
+            \textbf{Estándar / notación de especificación} & \textbf{\%} \\
+            \midrule
+            Modelos UML (diagramas de caso de uso, secuencia, máquina de estados) & 66 \\
+            Narrativa de historia de usuario (rol--objetivo, 3C) & 36 \\
+            Gherkin / BDD (\emph{Given--When--Then}) & 33 \\
+            TDD / ATDD (criterios de aceptación ejecutables) & 25 \\
+            Lenguaje natural controlado (CNL) & 22 \\
+            Plantillas de casos de uso (Cockburn / RUCM) & 20 \\
+            Criterios de aceptación & 20 \\
+            Ontologías de requisitos & 17 \\
+            EARS (requisitos funcionales) & 10 \\
+            INVEST (historias de usuario) & 6 \\
+            ISO/IEC/IEEE 29148 (marco normativo) & 5 \\
+            \midrule
+            \textbf{Técnica de derivación de pruebas} & \textbf{\%} \\
+            \midrule
+            Formalización / plantillas / gramáticas & 77 \\
+            Procesamiento de lenguaje natural (NLP) & 44 \\
+            Pruebas basadas en modelos (MBT) & 41 \\
+            Modelos de lenguaje de gran escala (LLM) & 24 \\
+            Ontologías / web semántica & 17 \\
+            \bottomrule
+        \end{tabular}
+        \\[3pt]
+        {\footnotesize Las frecuencias se calcularon sobre los 109 estudios incluidos y reflejan la presencia de cada estándar, notación o técnica detectada en el análisis a texto completo. Siglas: UML, \emph{Unified Modeling Language}; BDD, \emph{behaviour-driven development}; ATDD, \emph{acceptance test-driven development}; RUCM, \emph{Restricted Use Case Modeling}; EARS, \emph{Easy Approach to Requirements Syntax}. Las categorías no son mutuamente excluyentes.}
+    \end{table}
+    
+    \textit{RQ1 (estándares para la captura estructurada).} La evidencia muestra que ningún estándar normativo único gobierna la práctica; en cambio, cada tipo de especificación se estructura mediante una notación predominante. Los casos de uso se capturan mayoritariamente con modelos UML ---diagramas de caso de uso, de secuencia o máquinas de estado, presentes en el 66\,\% de los estudios \cite{Kudo2019Conceptual,Sandhu2026Framework,Bunder2019Model,Agrawal2023Requirements,Gupta2019Software,Mahanto2018Achieving,Kudo2023Aligning,Intana2023Approach,Intana2023Automated,Orekhov2026Example,Roldan2019Ontology,Abdeen2023Approach,Oran2017Analysing,Fredericks2015Automated,Fischbach2019Automated,Olajubu2018Automated,Bhatia2025Automated,Jang2021Automatic,Nogueira2016Automatic,Jang2025Automatic,Liu2022Automatic,Wiecher2021Besos,Ansari2017Constructing,Arruda2026Deriving,Liu2022Ears2tf,Silva2021Empirical,Tatale2020Enhancing,RochaSilva2020Ensuring,DosSantos2019Extraction,Trinh2026Fstg,Paiva2020Requirements,Zheng2021Generating,Ishinari2025Improving,Chernorutsky2018Industrial,Jorge2018Integrating,Louzaoui2016Invalid,Veizaga2020Leveraging,Zafar2021Model,Carvalho2016Modelling,Miranda2020Preliminary,Yue2015Rtcm,Crapo2017Requirements,Sinha2015Requirements,Wei2024Requirements,Baxter2023Roboworld,Osama2021Srcm,Wiecher2020Scenarios,Khamaiseh2017Software,Bandyszak2015Supporting,Wiecher2019Test,RochaSilva2022Towards,Zafar2021Towards,Clerissi2017Towards,Varpe2025User,Pudlitz2020What,Li2026Test,Tiwari2015Approach,Wang2022Automatic,Wang2015Automatic,Palshikar2019Extraction,Hamza2020Generating,Erazo2017Maritaca,Mai2019Mcp,Diniz2019Reducing,Zhang2018Specifying,Trinh2026Tcg,Wang2015Umtg,Malik2020Automating,Ecar2018Cosmic,Gralha2021Impact,HolodnikJanczura2017Extension,Lucassen2016Use}--- y con plantillas de estilo Cockburn o su formalización RUCM (20\,\%)~\cite{Rodriguez2023Behaviour,Roldan2019Ontology,CorreaSouza2018Automated,Oran2017Analysing,Trinh2026Fstg,Paiva2020Requirements,Araujo2017Generating,Veizaga2020Leveraging,Yue2015Rtcm,Medeiros2019Requirements,Khamaiseh2017Software,Clerissi2017Towards,Li2026Test,Tiwari2015Approach,Wang2022Automatic,Wang2015Automatic,Erazo2017Maritaca,Mai2019Mcp,Zhang2018Specifying,Trinh2026Tcg,Wang2015Umtg,Gralha2021Impact}; los requisitos funcionales, con lenguaje natural controlado (22\,\%)~\cite{Kudo2023Aligning,Intana2023Approach,CorreaSouza2018Automated,Fischbach2019Automated,Olajubu2018Automated,Bhatia2025Automated,Nogueira2016Automatic,Arruda2026Deriving,Liu2022Ears2tf,Silva2021Empirical,Charoenreh2020Enhancing,Araujo2017Generating,Veizaga2020Leveraging,Carvalho2016Modelling,Miranda2020Preliminary,Yue2015Rtcm,Franca2026Req2test,Baxter2023Roboworld,Osama2021Srcm,RochaSilva2022Towards,Wang2022Automatic,Zhang2018Specifying,Malik2020Automating,Lim2024Test} y con el enfoque EARS (10\,\%)~\cite{Sandhu2026Framework,Fischbach2019Automated,Olajubu2018Automated,Liu2022Ears2tf,Veizaga2020Leveraging,Crapo2017Requirements,Wei2024Requirements,Osama2021Srcm,Salari2026Test,Pudlitz2020What,Lim2024Test}; y las historias de usuario, con la narrativa estructurada rol--objetivo y el esquema 3C (36\,\%)~\cite{Rodriguez2023Behaviour,Kudo2019Conceptual,Bunder2019Model,Gupta2019Software,Saraiva2023Adoption,Kudo2023Aligning,Nguyen2023Analysis,Intana2023Approach,Orekhov2026Example,Oran2017Analysing,DosSantos2018Automated,Fischbach2019Automated,Bhatia2025Automated,Martins2024Cm,Frattini2023Cira,Silva2021Empirical,RochaSilva2020Ensuring,Matula2018Enterprise,Paiva2020Requirements,Jorge2018Integrating,Miranda2020Preliminary,Saraiva2023Privacy,Yue2015Rtcm,Franca2026Req2test,Medeiros2019Requirements,Khamaiseh2017Software,Moketar2016Testmereq,RochaSilva2022Towards,Pudlitz2020What,Li2026Test,Wu2022Node,Malik2020Automating,Ecar2018Cosmic,Herwanto2025Enhancing,Baker2026Industrial,Gralha2021Impact,Dilorenzo2026Recommending,HolodnikJanczura2017Extension,Lucassen2016Use}, el modelo INVEST (6\,\%)~\cite{Khaldi2026Agentic,Abdeen2023Approach,Jorge2018Integrating,Zafar2021Model,Herwanto2025Enhancing,Lucassen2016Use} y los escenarios Gherkin/BDD (33\,\%)~\cite{Rodriguez2023Behaviour,Kudo2019Conceptual,Sandhu2026Framework,Bunder2019Model,Saraiva2023Adoption,Kudo2023Aligning,Nguyen2023Analysis,Oran2017Analysing,DosSantos2018Automated,Fischbach2019Automated,Wiecher2021Besos,Martins2024Cm,Arruda2026Deriving,Silva2021Empirical,Tatale2020Enhancing,RochaSilva2020Ensuring,Matula2018Enterprise,Fazzolino2019Feature,Paiva2020Requirements,Jorge2018Integrating,Veizaga2020Leveraging,Zafar2021Model,Campanile2022Evaluation,Saraiva2023Privacy,Yue2015Rtcm,Franca2026Req2test,Baxter2023Roboworld,Wiecher2020Scenarios,Wiecher2019Test,RochaSilva2022Towards,Zafar2021Towards,Clerissi2017Towards,Li2026Test,Wang2022Automatic,Wang2015Automatic,Malik2020Automating}. El marco normativo ISO/IEC/IEEE~29148:2018 actúa como paraguas de referencia, aunque se cita explícitamente en una minoría de estudios (5\,\%) \cite{iso29148}, \cite{Kudo2019Conceptual,Orekhov2026Example,Medeiros2019Requirements,Li2026Test,Baker2026Industrial}. Esta distribución fundamenta que TDDMachine soporte los tres artefactos con sus respectivas estructuras predominantes.
+    
+    \textit{RQ2 (características de los formularios).} Del análisis de las plantillas descritas por los estudios incluidos se identificaron los campos recurrentes que todo formulario debe capturar: para los requisitos funcionales, nombre, descripción, tipo, criterios de aceptación y prioridad; para los casos de uso, nombre, actores, objetivo, el flujo básico y los flujos alternativos~\cite{Intana2023Approach,Intana2023Automated,CorreaSouza2018Automated,Nogueira2016Automatic,Trinh2026Fstg,Veizaga2020Leveraging,Saraiva2023Privacy,Yue2015Rtcm,Franca2026Req2test,Khamaiseh2017Software,Clerissi2017Towards,Li2026Test,Tiwari2015Approach,Wang2022Automatic,Wang2015Automatic,Palshikar2019Extraction,Erazo2017Maritaca,Mai2019Mcp,Zhang2018Specifying,Trinh2026Tcg,Wang2015Umtg} y las precondiciones y postcondiciones~\cite{Rodriguez2023Behaviour,Longo2016Web,Kudo2023Aligning,Nguyen2023Analysis,Orekhov2026Example,Roldan2019Ontology,DosSantos2018Automated,Olajubu2018Automated,Jang2025Automatic,Liu2022Automatic,Motwani2019Automatically,Tatale2020Enhancing,RochaSilva2020Ensuring,Trinh2026Fstg,Zheng2021Generating,Chernorutsky2018Industrial,Jorge2018Integrating,Louzaoui2016Invalid,Veizaga2020Leveraging,Fisher2016Making,Zafar2021Model,Saraiva2023Privacy,Yue2015Rtcm,Medeiros2019Requirements,Wen2026Research,Osama2021Srcm,Wiecher2020Scenarios,Khamaiseh2017Software,Moketar2016Testmereq,Zafar2021Towards,Clerissi2017Towards,Liu2016Validating,Pudlitz2020What,Li2026Test,Tiwari2015Approach,Wang2022Automatic,Wang2015Automatic,Erazo2017Maritaca,Mai2019Mcp,Diniz2019Reducing,Zhang2018Specifying,Trinh2026Tcg,Wang2015Umtg,Malik2020Automating}; y para las historias de usuario, la narrativa estructurada ``como\,[rol], quiero\,[objetivo], para\,[beneficio]''~\cite{Rodriguez2023Behaviour,Kudo2019Conceptual,Bunder2019Model,Gupta2019Software,Saraiva2023Adoption,Kudo2023Aligning,Nguyen2023Analysis,Intana2023Approach,Orekhov2026Example,Oran2017Analysing,DosSantos2018Automated,Fischbach2019Automated,Bhatia2025Automated,Martins2024Cm,Frattini2023Cira,Silva2021Empirical,RochaSilva2020Ensuring,Matula2018Enterprise,Paiva2020Requirements,Jorge2018Integrating,Miranda2020Preliminary,Saraiva2023Privacy,Yue2015Rtcm,Franca2026Req2test,Medeiros2019Requirements,Khamaiseh2017Software,Moketar2016Testmereq,RochaSilva2022Towards,Pudlitz2020What,Li2026Test,Wu2022Node,Malik2020Automating,Ecar2018Cosmic,Herwanto2025Enhancing,Baker2026Industrial,Gralha2021Impact,Dilorenzo2026Recommending,HolodnikJanczura2017Extension,Lucassen2016Use} junto con sus criterios de aceptación~\cite{Rodriguez2023Behaviour,Gupta2019Software,Nguyen2023Analysis,Orekhov2026Example,DosSantos2018Automated,Fischbach2019Automated,Olajubu2018Automated,Frattini2023Cira,Silva2021Empirical,Tatale2020Enhancing,RochaSilva2020Ensuring,Paiva2020Requirements,Veizaga2020Leveraging,Franca2026Req2test,Medeiros2019Requirements,Khamaiseh2017Software,RochaSilva2022Towards,Li2026Test,Malik2020Automating,Baker2026Industrial,Dilorenzo2026Recommending,HolodnikJanczura2017Extension}. Estos campos, coincidentes con las plantillas canónicas de Cockburn y su formalización RUCM~\cite{Rodriguez2023Behaviour,Roldan2019Ontology,CorreaSouza2018Automated,Oran2017Analysing,Trinh2026Fstg,Paiva2020Requirements,Araujo2017Generating,Veizaga2020Leveraging,Yue2015Rtcm,Medeiros2019Requirements,Khamaiseh2017Software,Clerissi2017Towards,Li2026Test,Tiwari2015Approach,Wang2022Automatic,Wang2015Automatic,Erazo2017Maritaca,Mai2019Mcp,Zhang2018Specifying,Trinh2026Tcg,Wang2015Umtg,Gralha2021Impact}, con el estándar ISO/IEC/IEEE~29148 y con el modelo INVEST/Connextra, se implementaron como obligatorios en la herramienta; los de aparición minoritaria (estado, origen, dependencias o estimación) se dispusieron como opcionales.
+    
+    \textit{RQ3 (relación con la generación de pruebas).} Predominan las técnicas que explotan una entrada estructurada o formalizada: la formalización mediante plantillas, gramáticas o lenguaje natural controlado aparece en el 77\,\% de los estudios \cite{Rodriguez2023Behaviour,Morales2024Dsl,Sandhu2026Framework,Bunder2019Model,Agrawal2023Requirements,Khaldi2026Agentic,Kudo2023Aligning,Intana2023Approach,Orekhov2026Example,Roldan2019Ontology,Abdeen2023Approach,CorreaSouza2018Automated,Oran2017Analysing,Fredericks2015Automated,Fischbach2019Automated,Olajubu2018Automated,Bhatia2025Automated,Jang2021Automatic,Nogueira2016Automatic,Jang2025Automatic,Liu2022Automatic,Motwani2019Automatically,Wiecher2021Besos,Martins2024Cm,Ansari2017Constructing,Venkatesh2016Cost,Arruda2026Deriving,Liu2022Ears2tf,Silva2021Empirical,Charoenreh2020Enhancing,RochaSilva2020Ensuring,Matula2018Enterprise,DosSantos2019Extraction,Trinh2026Fstg,Paiva2020Requirements,Araujo2017Generating,Zheng2021Generating,Chernorutsky2018Industrial,Jorge2018Integrating,Veizaga2020Leveraging,Zafar2021Model,Carvalho2016Modelling,Campanile2022Evaluation,Miranda2020Preliminary,Saraiva2023Privacy,Borg2022Quality,LeonQuinstedt2026Rest,Yue2015Rtcm,Franca2026Req2test,Crapo2017Requirements,Sinha2015Requirements,Medeiros2019Requirements,Wen2026Research,Baxter2023Roboworld,Osama2021Srcm,Wiecher2020Scenarios,Khamaiseh2017Software,Bandyszak2015Supporting,Wiecher2019Test,Moketar2016Testmereq,RochaSilva2022Towards,Zafar2021Towards,Clerissi2017Towards,Varpe2025User,Pudlitz2020What,Li2026Test,Tiwari2015Approach,Wang2022Automatic,Wang2015Automatic,Palshikar2019Extraction,Erazo2017Maritaca,Mai2019Mcp,Zhang2018Specifying,Trinh2026Tcg,Wang2015Umtg,Wu2022Node,Malik2020Automating,Ecar2018Cosmic,Herwanto2025Enhancing,Gralha2021Impact,Dilorenzo2026Recommending,HolodnikJanczura2017Extension,Lucassen2016Use,Lim2024Test}; el procesamiento de lenguaje natural, en el 44\,\%~\cite{Morales2024Dsl,Sandhu2026Framework,Bunder2019Model,Intana2023Approach,Fathima2026Automated,Olajubu2018Automated,Bhatia2025Automated,Jang2025Automatic,Motwani2019Automatically,Frattini2023Cira,Ansari2017Constructing,Ishinari2026Data,Arruda2026Deriving,Liu2022Ears2tf,Silva2021Empirical,Charoenreh2020Enhancing,RochaSilva2020Ensuring,Trinh2026Fstg,Araujo2017Generating,Zheng2021Generating,Ishinari2025Improving,Veizaga2020Leveraging,Campanile2022Evaluation,Miranda2020Preliminary,Borg2022Quality,LeonQuinstedt2026Rest,Franca2026Req2test,Wei2024Requirements,Wen2026Research,Baxter2023Roboworld,Osama2021Srcm,RochaSilva2022Towards,Clerissi2017Towards,Pudlitz2020What,Li2026Test,Wang2022Automatic,Wang2015Automatic,Palshikar2019Extraction,Erazo2017Maritaca,Mai2019Mcp,Zhang2018Specifying,Trinh2026Tcg,Wang2015Umtg,Wu2022Node,Malik2020Automating,Herwanto2025Enhancing,Gralha2021Impact,Lim2024Test}; las pruebas basadas en modelos, en el 41\,\%~\cite{Morales2024Dsl,Sandhu2026Framework,Bunder2019Model,Roldan2019Ontology,Abdeen2023Approach,DosSantos2018Automated,Fredericks2015Automated,Fischbach2019Automated,Olajubu2018Automated,Bhatia2025Automated,Jang2021Automatic,Nogueira2016Automatic,Jang2025Automatic,Liu2022Automatic,Venkatesh2016Cost,Liu2022Ears2tf,Tatale2020Enhancing,RochaSilva2020Ensuring,DosSantos2019Extraction,Trinh2026Fstg,Fazzolino2019Feature,Paiva2020Requirements,Zheng2021Generating,Jorge2018Integrating,Zafar2021Model,Carvalho2016Modelling,Miranda2020Preliminary,Yue2015Rtcm,Franca2026Req2test,Baxter2023Roboworld,Khamaiseh2017Software,Bandyszak2015Supporting,Zafar2021Towards,Clerissi2017Towards,Varpe2025User,Pudlitz2020What,Tiwari2015Approach,Wang2022Automatic,Wang2015Automatic,Hamza2020Generating,Erazo2017Maritaca,Diniz2019Reducing,Zhang2018Specifying,Wang2015Umtg,Malik2020Automating}; y el empleo de modelos de lenguaje de gran escala, en el 24\,\%~\cite{Morales2024Dsl,Khaldi2026Agentic,Orekhov2026Example,Fathima2026Automated,Bhatia2025Automated,Jang2025Automatic,Shimizu2025Automatic,Ishinari2026Data,Arruda2026Deriving,Trinh2026Fstg,Ishinari2025Improving,Louzaoui2016Invalid,Borg2022Quality,LeonQuinstedt2026Rest,Franca2026Req2test,Sinha2015Requirements,Wei2024Requirements,Wen2026Research,Salari2026Test,Varpe2025User,Li2026Test,Trinh2026Tcg,Wu2022Node,Herwanto2025Enhancing,Baker2026Industrial,Dilorenzo2026Recommending}, con una tendencia creciente en los años más recientes. Los campos estructurados ---en particular los criterios de aceptación y las pre/postcondiciones--- resultan directamente transformables en aserciones verificables, de modo que la estandarización de la entrada reduce la ambigüedad del lenguaje natural y mejora la coherencia de las pruebas generadas automáticamente, en línea con la evidencia de que la calidad de la especificación de entrada determina la del resultado \cite{wang2024survey,yang2024evaluation}.
+    
+    \textit{RQ4 (herramientas CASE existentes).} Las herramientas identificadas se agrupan en dos familias. La primera deriva pruebas a partir de especificaciones estructuradas de requisitos ---por ejemplo, generadores desde casos de uso restringidos (RUCM/UMTG, aToucan, MARITACA), desde requisitos en lenguaje natural (CiRA, TestMEReq, EARS2TF) y, en los trabajos más recientes, asistidos por LLM (Req2Test, REST-at)~\cite{Morales2024Dsl,Khaldi2026Agentic,Orekhov2026Example,Fathima2026Automated,Bhatia2025Automated,Jang2025Automatic,Shimizu2025Automatic,Ishinari2026Data,Arruda2026Deriving,Trinh2026Fstg,Ishinari2025Improving,Louzaoui2016Invalid,Borg2022Quality,LeonQuinstedt2026Rest,Franca2026Req2test,Sinha2015Requirements,Wei2024Requirements,Wen2026Research,Salari2026Test,Varpe2025User,Li2026Test,Trinh2026Tcg,Wu2022Node,Herwanto2025Enhancing,Baker2026Industrial,Dilorenzo2026Recommending}---, pero suele detenerse en la especificación de la prueba sin cubrir el ciclo TDD. La segunda genera pruebas a partir del código fuente o de texto libre ---\emph{ChatUniTest} \cite{chen2024chatunitest}, \emph{TestSpark} \cite{sapozhnikov2024testspark}, \emph{Pynguin} \cite{lukasczyk2022pynguin} y \emph{Pytester} \cite{takerngsaksiri2025pytester}---, por lo que opera en una fase posterior, en un esquema \emph{test-last}. Ninguna integra la captura estructurada de requisitos con la generación de la prueba de la etapa \emph{Red} asistida por un LLM, brecha que TDDMachine aborda. Del análisis se desprende, además, que los modelos de propósito general con elevada capacidad de síntesis y procesamiento de código ---Claude 3.5 Sonnet y GPT-4--- fueron los preferidos en la literatura reciente, acorde con la revisión de LLM para ingeniería de software de Hou et~al. \cite{hou2024llm4se}.
+    
+    \subsection{Posicionamiento frente al estado del arte}
+    \label{subsec:posicionamiento}
+    
+    Para situar la contribución frente a un conjunto amplio de sistemas, la Tabla~\ref{tab:comparacion} contrasta TDDMachine con catorce herramientas representativas del estado del arte, agrupadas en tres familias: (i)~generadores de pruebas a partir de especificaciones estructuradas de requisitos ---casos de uso restringidos con UMTG \cite{Wang2015Umtg}, RTCM/aToucan \cite{Yue2015Rtcm}, MARITACA \cite{Erazo2017Maritaca} y la generación de pruebas de aceptación desde casos de uso \cite{Wang2022Automatic}; requisitos en lenguaje natural con CiRA \cite{Frattini2023Cira}, TestMEReq \cite{Moketar2016Testmereq}, EARS2TF \cite{Liu2022Ears2tf} y la conversión de requisitos a casos de prueba \cite{Gupta2019Software}---; (ii)~propuestas recientes asistidas por LLM ---Req2Test \cite{Franca2026Req2test} y REST-at \cite{LeonQuinstedt2026Rest}---; y (iii)~generadores que parten del código fuente o de texto libre ---\emph{ChatUniTest} \cite{chen2024chatunitest}, \emph{TestSpark} \cite{sapozhnikov2024testspark}, \emph{Pynguin} \cite{lukasczyk2022pynguin} y \emph{Pytester} \cite{takerngsaksiri2025pytester}. El contraste evidencia que las herramientas basadas en requisitos rara vez integran un motor LLM y ninguna incorpora validación del código generado mediante AST ni la gestión y exportación del ciclo de pruebas; las basadas en LLM no capturan estructuradamente los tres tipos de artefacto; y las orientadas al código operan en un esquema \emph{test-last}, una vez que existe el código de producción. TDDMachine es la única propuesta que reúne captura estructurada de los tres artefactos, motor LLM, validación sintáctica por AST y gestión integrada, situándose además explícitamente en la etapa \emph{Red} del ciclo TDD.
+    
+    \begin{table*}[!tb]
+        \caption{Comparación de TDDMachine con catorce herramientas representativas del estado del arte}
+        \label{tab:comparacion}
+        \centering
+        \small
+        \setlength{\tabcolsep}{5pt}
+        \begin{tabular}{@{}lccccc@{}}
+            \toprule
+            \textbf{Herramienta} & \textbf{Entrada\textsuperscript{a}} & \textbf{Artefacto} & \textbf{Motor\textsuperscript{b}} & \textbf{Valid.\ AST} & \textbf{Gestión\textsuperscript{c}} \\
+            \midrule
+            \textbf{TDDMachine (este trabajo)} & RE & RF, CU, HU & LLM & Sí & Sí \\
+            \midrule
+            \multicolumn{6}{@{}l}{\textit{Generadores desde especificaciones estructuradas de requisitos}} \\
+            UMTG \cite{Wang2015Umtg}            & RE & CU        & NLP     & No & Parc. \\
+            RTCM / aToucan \cite{Yue2015Rtcm}  & RE & CU        & NLP     & No & No \\
+            Pruebas de aceptación desde CU \cite{Wang2022Automatic} & RE & CU & NLP & No & No \\
+            MARITACA \cite{Erazo2017Maritaca}        & RE & CU        & NLP/MBT & No & No \\
+            CiRA \cite{Frattini2023Cira}            & LN & RF        & NLP/ML  & No & Parc. \\
+            TestMEReq \cite{Moketar2016Testmereq}       & RE & RF        & MBT     & No & No \\
+            EARS2TF \cite{Liu2022Ears2tf}         & RE & RF        & Semiformal & No & No \\
+            Convertir requisitos a pruebas \cite{Gupta2019Software} & RE & RF & NLP & No & No \\
+            \midrule
+            \multicolumn{6}{@{}l}{\textit{Propuestas asistidas por LLM}} \\
+            Req2Test \cite{Franca2026Req2test}        & RE & HU        & LLM     & No & Parc. \\
+            REST-at \cite{LeonQuinstedt2026Rest}         & RE & RF        & LLM     & No & Parc. \\
+            \midrule
+            \multicolumn{6}{@{}l}{\textit{Generadores desde código fuente o texto libre (\emph{test-last})}} \\
+            ChatUniTest \cite{chen2024chatunitest}      & CF & ---   & LLM   & Parc. & Parc. \\
+            TestSpark \cite{sapozhnikov2024testspark}   & CF & ---   & LLM/EV & Parc. & Sí \\
+            Pynguin \cite{lukasczyk2022pynguin}         & CF & ---   & EV    & Sí   & No \\
+            Pytester \cite{takerngsaksiri2025pytester}  & TL & ---   & RL    & No   & No \\
+            \bottomrule
+        \end{tabular}
+        \\[3pt]
+        {\footnotesize \textsuperscript{a}\,Entrada: RE\,=\,requisitos estructurados; LN\,=\,requisitos en lenguaje natural; CF\,=\,código fuente; TL\,=\,texto libre. \textsuperscript{b}\,Motor: LLM\,=\,modelo de lenguaje de gran escala; NLP\,=\,procesamiento de lenguaje natural; MBT\,=\,pruebas basadas en modelos; EV\,=\,algoritmos evolutivos; RL\,=\,aprendizaje por refuerzo; ML\,=\,aprendizaje automático. \textsuperscript{c}\,Gestión: capacidades integradas de revisión, edición y exportación del ciclo de pruebas. Únicamente TDDMachine interviene de forma explícita en la etapa \emph{Red} del ciclo TDD (antes de que exista código de producción).}
+    \end{table*}
+    
+    \subsection{Amenazas a la validez de la revisión}
+    \label{subsec:amenazas}
+    
+    La revisión presenta las limitaciones habituales de una SLR acotada. La validez de constructo está condicionada por la restricción a cuatro bases de datos (Scopus, IEEE~Xplore, ACM~Digital~Library y Web of Science) y a publicaciones en inglés desde 2015, lo que pudo dejar fuera literatura relevante en otras fuentes o idiomas; se mitigó mediante cadenas de búsqueda construidas con el enfoque PICOC ---con truncamiento y sinónimos para maximizar la cobertura--- y complementadas con la exploración de repositorios de código abierto. Para acotar el riesgo de sesgo de selección, el cribado y la extracción se condujeron mediante un protocolo de revisión por múltiples autores: el segundo autor ejecutó la selección inicial de los estudios; el primer autor revisó el proceso paso a paso para corroborar y corregir las decisiones; y los autores tercero, cuarto y quinto realizaron una revisión completa del proceso. Las discrepancias se resolvieron por consenso y, en su defecto, por mayoría entre los cinco autores. Este procedimiento, junto con la aplicación de criterios de inclusión y exclusión explícitos, una plantilla de extracción estandarizada y el registro documentado de las razones de exclusión, mitiga el sesgo de un revisor único y fortalece la fiabilidad de la selección. La validez interna conserva, no obstante, la limitación inherente a la interpretación humana de los criterios, atenuada por la triangulación entre revisores.
+    
+    %% ------------------------------------------------------------------------
+    \section{Metodología}
+    \label{sec:metodologia}
+    
+    El desarrollo de TDDMachine se organizó en seis fases sucesivas ---análisis de requisitos, especificación, diseño arquitectónico, implementación de módulos, verificación y validación, y despliegue--- bajo un enfoque de ingeniería de software basada en componentes (\emph{Component-Based Software Engineering}, CBSE). El alcance de la herramienta se delimitó de forma explícita: interviene únicamente en la transición \emph{Red}$\rightarrow$\emph{Green} del ciclo TDD, generando el script de prueba que el equipo de desarrollo utilizará como estado inicial; las etapas \emph{Green} y \emph{Refactor} quedan fuera de su alcance. En consecuencia, el lenguaje soportado es Python y el \emph{framework} de pruebas, \texttt{pytest}.
+    
+    \subsection{Diseño y desarrollo de la herramienta}
+    \label{subsec:desarrollo}
+    
+    Los requisitos se derivaron de la revisión sistemática descrita en la Sección~\ref{sec:trabajos}: a partir de los campos identificados en las plantillas de los estudios incluidos y en los estándares de referencia se determinó qué información capturar en cada formulario, clasificando como obligatorios los campos recurrentes ---los presentes de forma consistente en dichas plantillas--- y como opcionales los restantes. De este análisis se obtuvieron dieciocho requisitos funcionales organizados en cuatro módulos ---autenticación y gestión de usuarios, gestión de proyectos, captura de especificaciones, y generación y gestión de pruebas--- y un conjunto de requisitos no funcionales de seguridad, rendimiento, usabilidad, integración y disponibilidad, especificados conforme a ISO/IEC/IEEE~29148:2018 e ISO/IEC~25010 \cite{iso29148}. La selección de los componentes tecnológicos se realizó mediante una matriz de decisión multicriterio ponderada, en la que cada alternativa se calificó de 1 a 5 sobre criterios técnicos con pesos porcentuales; resultaron seleccionados React~18 con Ant~Design en el \emph{frontend}, Django~4.2 con Django REST Framework en el \emph{backend}, PostgreSQL~15 como gestor de base de datos y Claude 3.5 Sonnet como modelo de generación.
+    
+    Sobre esos requisitos se construyó una arquitectura cliente-servidor organizada en cuatro capas con interfaces bien definidas ---presentación, lógica de negocio, persistencia e infraestructura---, resumida en la Fig.~\ref{fig:arquitectura}. El \emph{frontend} en React~18 se comunica con el \emph{backend} Django mediante una interfaz de programación de aplicaciones (API) de estilo REST (\emph{Representational State Transfer}), cuyos interceptores adjuntan a cada solicitud el token de autenticación JWT (\emph{JSON Web Token}). La capa de lógica de negocio implementa tres servicios principales que materializan el flujo de generación: \texttt{PromptBuilder}, que construye \emph{prompts} estructurados a partir del tipo y el contenido de cada especificación; \texttt{ClaudeService}, que gestiona las llamadas a la API de Anthropic con reintentos automáticos y espera exponencial ante fallos transitorios; y \texttt{PytestValidator}, que verifica la sintaxis del código generado analizando el árbol sintáctico abstracto (AST) de Python. Esta separación aísla la construcción del \emph{prompt}, la invocación del modelo y el control de calidad sintáctico, de modo que cada etapa puede evolucionar o sustituirse de forma independiente. Para favorecer la reproducibilidad, \texttt{ClaudeService} invocó el modelo con la versión \texttt{\llmversion}, temperatura \texttt{\llmtemperatura} y límite de tokens de salida \texttt{\llmmaxtokens}, sobre una ventana de contexto de 200\,000 tokens, durante el periodo de acceso \llmperiodo.
+    
+    \begin{figure}[!tb]
+        \centering
+        \includegraphics[width=\columnwidth]{fig_arquitectura.png}
+        \caption{Arquitectura por capas de TDDMachine. La capa de presentación (React~18 con Ant~Design) captura las tres especificaciones y revisa el script en un editor Monaco; la capa de lógica de negocio (Django~4.2 con Django REST Framework) encadena los servicios \texttt{PromptBuilder}, \texttt{ClaudeService} ---único punto de integración con la API de Claude 3.5 Sonnet--- y \texttt{PytestValidator}; la capa de persistencia (PostgreSQL~15 en Supabase) almacena proyectos, especificaciones y pruebas; y la capa de infraestructura despliega el \emph{backend} en contenedor Docker sobre Cloud~Run y el \emph{frontend} como aplicación de página única en Render.}
+        \label{fig:arquitectura}
+    \end{figure}
+    
+    La organización en capas de la Fig.~\ref{fig:arquitectura}, coherente con el enfoque de ingeniería de software basada en componentes adoptado, permite sustituir o actualizar cada componente ---por ejemplo, el modelo de lenguaje de la capa de lógica de negocio o el gestor de base de datos de la capa de persistencia--- sin alterar el resto del sistema.
+    
+    En cuanto a la estructura del script generado, el servicio \texttt{PromptBuilder} instruye al modelo para que produzca pruebas \texttt{pytest} organizadas con \emph{fixtures} ---el mecanismo de \texttt{pytest} para la preparación y el desmontaje del entorno de prueba (\emph{setup}/\emph{teardown})--- y aserciones derivadas de los criterios de aceptación de la especificación. Un aspecto propio de la etapa \emph{Red} es el tratamiento de las dependencias externas del código aún inexistente, en particular el acceso a la base de datos, la invocación del LLM o la comunicación de red: el estado inicial de la prueba debe aislar la unidad bajo prueba de esas dependencias mediante \emph{dobles de prueba} (\emph{test doubles}). En el ecosistema de Python este aislamiento se realiza con la biblioteca estándar \texttt{unittest.mock} ---que permite crear objetos simulados (\emph{mocks}) y sustituir dependencias mediante \texttt{patch}, de forma análoga a \emph{Mockito} en Java--- y su envoltorio para \texttt{pytest}, el complemento \texttt{pytest-mock} (\emph{fixture} \texttt{mocker}); para las pruebas que sí deben ejercitar la capa de persistencia, el complemento \texttt{pytest-django} aporta una base de datos de prueba transaccional a través de la \emph{fixture} \texttt{db}. Por ello, las directrices del \texttt{PromptBuilder} contemplan la generación de \emph{fixtures} y, cuando la especificación involucra acceso a datos, la simulación de dichas dependencias; el refuerzo de la generación automática de \emph{mocks} y \emph{fixtures} para dependencias de datos complejas constituye una de las líneas de mejora identificadas en la evaluación experta.
+    
+    El resultado de la validación determina el tratamiento de cada prueba: cuando es exitosa, se almacena con estado ``Generada''; ante un error de sintaxis, se registra con estado ``Error de generación'' y se presenta igualmente al usuario para su corrección manual en un editor Monaco integrado con resaltado de sintaxis, autocompletado y detección de errores en tiempo real. El módulo de gestión permite revisar, clasificar (Generada, Revisada, Aprobada, Descartada) y exportar las pruebas aprobadas como un archivo \texttt{.py} descargable. El despliegue se realizó sobre infraestructura en la nube ---\emph{frontend} en Render, \emph{backend} en contenedor Docker sobre Cloud Run y base de datos PostgreSQL gestionada en Supabase, con integración continua desde el repositorio GitHub del proyecto.
+    
+    \subsection{Diseño de la evaluación}
+    \label{subsec:validacion}
+    
+    La comprobación se estructuró en dos estudios complementarios, diseñados en concordancia con el alcance de la herramienta. El Estudio~1, de usabilidad y aceptación tecnológica, contó con la participación voluntaria de 25 estudiantes de sexto semestre de Ingeniería en Software, quienes completaron cuatro tareas que cubrieron el flujo de la etapa \emph{Red}: creación de proyecto y registro de un caso de uso, especificación de un requisito funcional, redacción de una historia de usuario, y generación, revisión y exportación del script \texttt{pytest}. La usabilidad se midió con la escala SUS (\emph{System Usability Scale}), cuestionario estandarizado de 10 ítems en escala Likert de 5 puntos cuyo puntaje se transforma a una escala de 0 a 100, interpretada según la escala de adjetivos de Bangor et~al. \cite{brooke1996sus,bangor2009sus}. La aceptación tecnológica se midió con un instrumento basado en el modelo TAM (\emph{Technology Acceptance Model}) de 16 ítems distribuidos en cuatro constructos ---Utilidad Percibida (PU), Facilidad de Uso Percibida (PEOU), Confianza en Resultados (CR) e Intención de Uso (IU)---, con un umbral de aceptación de 3,5/5 por constructo \cite{davis1989tam}.
+    
+    El Estudio~2, de calidad de las pruebas, contó con 10 expertos en \emph{testing} que evaluaron mediante una rúbrica estructurada, en escala de 1 a 5, cinco criterios ---completitud, claridad, trazabilidad, viabilidad de ejecución y cobertura de escenarios--- sobre 15 casos de prueba generados. Además de la revisión estructural de cada script, la viabilidad de ejecución se contrastó ejecutando las pruebas generadas contra el código de producción alojado en los repositorios públicos del proyecto: los expertos comprobaron que la totalidad de los scripts fallaba en su primera ejecución ---el comportamiento esperado de la etapa \emph{Red}, en la que aún no existe implementación--- y pasaba una vez incorporado el código mínimo correspondiente (etapa \emph{Green}), lo que permitió constatar su corrección funcional y no únicamente su validez sintáctica.
+    
+    %% ------------------------------------------------------------------------
+    \section{Resultados}
+    \label{sec:resultados}
+    
+    \subsection{Efectividad de la generación automática}
+    \label{subsec:generacion}
+    
+    Durante la fase de evaluación se registraron 70 intentos de generación de scripts \texttt{pytest} a partir de las especificaciones capturadas. La Tabla~\ref{tab:generacion} resume los resultados por tipo de especificación: la tasa global de scripts válidos fue del 91,4\,\%, con el mejor desempeño en requisitos funcionales (96,4\,\%) y el menor en historias de usuario (83,3\,\%). Los seis intentos fallidos correspondieron a errores detectados por \texttt{PytestValidator} durante el análisis del AST ---en cuatro casos, bloques de código incompletos atribuibles a especificaciones con criterios de aceptación ambiguos, y en dos, errores estructurales en la función de prueba---; en todos ellos el sistema preservó la trazabilidad registrando la prueba con estado ``Error de generación'' para su corrección manual.
+    
+    \begin{table}[!tb]
+        \caption{Generación de scripts \texttt{pytest} por tipo de especificación}
+        \label{tab:generacion}
+        \centering
+        \small
+        \begin{tabular}{@{}lcccc@{}}
+            \toprule
+            \textbf{Especificación} & \textbf{Intentos} & \textbf{Válidos} & \textbf{Error} & \textbf{Éxito} \\
+            \midrule
+            Requisitos funcionales & 28 & 27 & 1 & 96,4\,\% \\
+            Casos de uso           & 24 & 22 & 2 & 91,7\,\% \\
+            Historias de usuario   & 18 & 15 & 3 & 83,3\,\% \\
+            \midrule
+            \textbf{Total}         & \textbf{70} & \textbf{64} & \textbf{6} & \textbf{91,4\,\%} \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \subsection{Usabilidad y aceptación tecnológica}
+    \label{subsec:sustam}
+    
+    Los 25 participantes completaron las cuatro tareas en un tiempo medio de 42,0 minutos (desviación estándar, DE\,=\,8,2). El puntaje SUS promedio fue de 74,46/100 (DE\,=\,6,55; mínimo 62,5; máximo 85,0), que supera el umbral de ``Bueno'' (68 puntos) de la escala de Bangor et~al. y sitúa a la herramienta por encima del promedio de los sistemas evaluados con este instrumento \cite{bangor2009sus}. En cuanto a la aceptación tecnológica, la Tabla~\ref{tab:tam} presenta la estadística descriptiva y la fiabilidad por constructo del modelo TAM.
+    
+    \begin{table}[!tb]
+        \caption{Estadística descriptiva y fiabilidad por constructo TAM (n\,=\,25)}
+        \label{tab:tam}
+        \centering
+        \small
+        \setlength{\tabcolsep}{3pt}
+        \begin{tabular}{@{}lccccc@{}}
+            \toprule
+            \textbf{Constructo} & \textbf{Ítems} & \textbf{Media} & \textbf{DE} & \textbf{$\alpha$} & \textbf{Interp.} \\
+            \midrule
+            Utilidad Percibida (PU)   & 5 & 4,14 & 0,56 & 0,847 & Alta \\
+            Facilidad de Uso (PEOU)   & 4 & 4,02 & 0,63 & 0,812 & Alta \\
+            Confianza Result. (CR)    & 4 & 3,76 & 0,71 & 0,798 & Mod.-Alta \\
+            Intención de Uso (IU)     & 3 & 4,08 & 0,60 & 0,831 & Alta \\
+            \midrule
+            \textbf{Global}           & \textbf{16} & \textbf{4,00} & \textbf{0,63} & \textbf{0,883} & \textbf{Alta} \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    Como muestra la Tabla~\ref{tab:tam}, los cuatro constructos superaron el umbral de 3,5/5: la Utilidad Percibida (4,14) y la Intención de Uso (4,08) obtuvieron los valores más altos, mientras que la Confianza en Resultados (3,76) fue el constructo más próximo al umbral, lo que refleja la incertidumbre de los participantes respecto de la fiabilidad del código generado por IA. El instrumento presentó una consistencia interna adecuada, con un coeficiente Alfa de Cronbach global de 0,883 y valores por constructo superiores a 0,79. La evidencia a nivel de participante se sintetiza en la Fig.~\ref{fig:sustam}, que reúne la distribución de los puntajes SUS individuales (a) y la matriz de correlaciones de Pearson entre los constructos TAM (b).
+    
+    \begin{figure}[!tb]
+        \centering
+        \includegraphics[width=\columnwidth]{fig_sus_tam.png}
+        \caption{Resultados del estudio de usabilidad y aceptación tecnológica (n\,=\,25). (a)~Distribución de los puntajes SUS individuales sobre las bandas interpretativas de la escala de Bangor et~al.; la línea discontinua indica la media (74,46). (b)~Matriz de correlaciones de Pearson entre los cuatro constructos del modelo TAM; la intensidad del color representa la magnitud del coeficiente.}
+        \label{fig:sustam}
+    \end{figure}
+    
+    La distribución de la Fig.~\ref{fig:sustam}(a) indica que el 80\,\% de los participantes (20 de 25) alcanzó al menos el umbral de ``Bueno'' (SUS\,$\geq$\,68), sin ningún caso por debajo del nivel mínimo aceptable de la escala. El mapa de correlaciones de la Fig.~\ref{fig:sustam}(b), por su parte, muestra que todas las asociaciones entre constructos son positivas y estadísticamente significativas (p\,<\,0,05) y que la más fuerte se produce entre la Utilidad Percibida y la Intención de Uso (r\,=\,0,711; p\,<\,0,01), lo que confirma el supuesto central del modelo TAM.
+    
+    \subsection{Calidad de las pruebas generadas}
+    \label{subsec:calidad}
+    
+    La evaluación experta arrojó una calidad media global de 4,08/5,0 sobre los cinco criterios de la rúbrica. La Tabla~\ref{tab:calidad} presenta la valoración media, la desviación estándar y la interpretación por criterio.
+    
+    \begin{table}[!tb]
+        \caption{Calidad de las pruebas por criterio (escala 1--5, n\,=\,10 expertos)}
+        \label{tab:calidad}
+        \centering
+        \small
+        \begin{tabular}{@{}lccc@{}}
+            \toprule
+            \textbf{Criterio} & \textbf{Media} & \textbf{DE} & \textbf{Interpretación} \\
+            \midrule
+            Completitud            & 4,2 & 0,45 & Muy bueno \\
+            Claridad               & 4,3 & 0,42 & Muy bueno \\
+            Trazabilidad           & 4,0 & 0,58 & Bueno \\
+            Viabilidad de ejecución & 3,9 & 0,67 & Bueno \\
+            Cobertura de escenarios & 4,0 & 0,61 & Bueno \\
+            \midrule
+            \textbf{Media global}  & \textbf{4,08} & \textbf{0,55} & \textbf{Muy bueno} \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    Según la Tabla~\ref{tab:calidad}, los criterios mejor valorados fueron la claridad (4,3) y la completitud (4,2), calificados como ``Muy bueno'', mientras que la viabilidad de ejecución (3,9) resultó el criterio más próximo al umbral, lo que sugiere oportunidades de mejora en la precisión de las aserciones respecto de las condiciones de la especificación de origen. Al desagregar por tipo de prueba, las pruebas unitarias generadas desde requisitos funcionales alcanzaron la calidad más alta (4,24), seguidas de las de integración desde casos de uso (4,08) y las de sistema desde historias de usuario (3,92). La Fig.~\ref{fig:gradient} relaciona esta desagregación con la validez de generación de la Tabla~\ref{tab:generacion} según el tipo de artefacto de requisitos de origen.
+    
+    \begin{figure}[!tb]
+        \centering
+        \includegraphics[width=\columnwidth]{fig_gradient.png}
+        \caption{Validez de generación de scripts \texttt{pytest} (Tabla~\ref{tab:generacion}) y calidad experta media de las pruebas (Tabla~\ref{tab:calidad}) según el tipo de artefacto de requisitos de origen. Ambos indicadores descienden de forma concordante desde los requisitos funcionales hacia las historias de usuario, conforme aumenta la ambigüedad de la especificación.}
+        \label{fig:gradient}
+    \end{figure}
+    
+    Como evidencia la Fig.~\ref{fig:gradient}, ambos indicadores exhiben una tendencia concordante: al pasar de los requisitos funcionales a los casos de uso y a las historias de usuario ---es decir, a medida que disminuye la estructura de la especificación y aumenta su ambigüedad---, la proporción de scripts válidos desciende del 96,4\,\% al 91,7\,\% y al 83,3\,\%, y la calidad experta lo hace de 4,24 a 4,08 y a 3,92. Esta concordancia sugiere que el grado de estructura del artefacto de requisitos constituye un determinante común del éxito de la generación y de la calidad de las pruebas resultantes.
+    
+    Más allá de las puntuaciones de la rúbrica, la viabilidad de ejecución se corroboró de forma funcional ejecutando las pruebas generadas contra el código de producción del proyecto: la totalidad de los scripts falló en su primera ejecución ---el comportamiento correcto de la etapa \emph{Red}, previa a la existencia de implementación--- y pasó tras incorporar el código mínimo de la etapa \emph{Green}, lo que evidencia que los scripts no solo son sintácticamente válidos sino también funcionalmente correctos como estado inicial de prueba. En el cuestionario cualitativo, los expertos contrastaron de manera informal las pruebas generadas con las que ellos redactarían manualmente y coincidieron en que la herramienta reproduce las pruebas esperadas para cada especificación y, en varios casos, propone escenarios adicionales pertinentes que no habían anticipado; entre las oportunidades de mejora señalaron reforzar los escenarios negativos y de valor límite, recomendación recogida en las líneas de trabajo futuro.
+    
+    %% ------------------------------------------------------------------------
+    \section{Discusión}
+    \label{sec:discusion}
+    
+    Los hallazgos de este trabajo se interpretan a la luz del cuerpo de 109 estudios primarios incluidos en la revisión sistemática \cite{Kudo2019Conceptual,Sandhu2026Framework,Bunder2019Model,Agrawal2023Requirements,Gupta2019Software,Mahanto2018Achieving,Kudo2023Aligning,Intana2023Approach,Intana2023Automated,Orekhov2026Example,Roldan2019Ontology,Abdeen2023Approach,Oran2017Analysing,Fredericks2015Automated,Fischbach2019Automated,Olajubu2018Automated,Bhatia2025Automated,Jang2021Automatic,Nogueira2016Automatic,Jang2025Automatic,Liu2022Automatic,Wiecher2021Besos,Ansari2017Constructing,Arruda2026Deriving,Liu2022Ears2tf,Silva2021Empirical,Tatale2020Enhancing,RochaSilva2020Ensuring,DosSantos2019Extraction,Trinh2026Fstg,Paiva2020Requirements,Zheng2021Generating,Ishinari2025Improving,Chernorutsky2018Industrial,Jorge2018Integrating,Louzaoui2016Invalid,Veizaga2020Leveraging,Zafar2021Model,Carvalho2016Modelling,Miranda2020Preliminary,Yue2015Rtcm,Crapo2017Requirements,Sinha2015Requirements,Wei2024Requirements,Baxter2023Roboworld,Osama2021Srcm,Wiecher2020Scenarios,Khamaiseh2017Software,Bandyszak2015Supporting,Wiecher2019Test,RochaSilva2022Towards,Zafar2021Towards,Clerissi2017Towards,Varpe2025User,Pudlitz2020What,Li2026Test,Tiwari2015Approach,Wang2022Automatic,Wang2015Automatic,Palshikar2019Extraction,Hamza2020Generating,Erazo2017Maritaca,Mai2019Mcp,Diniz2019Reducing,Zhang2018Specifying,Trinh2026Tcg,Wang2015Umtg,Malik2020Automating,Ecar2018Cosmic,Gralha2021Impact,HolodnikJanczura2017Extension,Lucassen2016Use,Rodriguez2023Behaviour,CorreaSouza2018Automated,Araujo2017Generating,Medeiros2019Requirements,Charoenreh2020Enhancing,Franca2026Req2test,Salari2026Test,Saraiva2023Adoption,Nguyen2023Analysis,DosSantos2018Automated,Martins2024Cm,Frattini2023Cira,Matula2018Enterprise,Saraiva2023Privacy,Moketar2016Testmereq,Wu2022Node,Herwanto2025Enhancing,Baker2026Industrial,Dilorenzo2026Recommending,Khaldi2026Agentic,Fazzolino2019Feature,Campanile2022Evaluation,Yue2016Practical,Morales2024Dsl,Longo2016Web,Fathima2026Automated,Shimizu2025Automatic,Motwani2019Automatically,Venkatesh2016Cost,Ishinari2026Data,Tran2025Famres,Fisher2016Making,Borg2022Quality,LeonQuinstedt2026Rest,Wen2026Research,Liu2016Validating,Lim2024Test}, que delimita el estado del arte en la captura estructurada de requisitos y su relación con la generación automática de pruebas. Los resultados aportan evidencia de que la generación estructurada del estado inicial de las pruebas asistida por un LLM es viable y bien aceptada. La tasa global de scripts válidos del 91,4\,\% se sitúa en el rango alto de lo reportado por la literatura para tareas afines ---por ejemplo, el 78\,\% de \emph{Pytester} en la generación de casos de prueba ejecutables desde texto en lenguaje natural \cite{takerngsaksiri2025pytester}---, si bien esta referencia es solo indicativa, pues procede de corpus, métricas y condiciones experimentales distintos y no de una comparación directa. La coincidencia sugiere, no obstante, que combinar la captura estructurada de especificaciones con la validación sintáctica automática mediante AST es una vía prometedora frente a los enfoques que operan sobre texto libre sin verificación integrada. Este hallazgo es coherente con la evidencia de la literatura de que la calidad de la especificación de entrada es el factor determinante de la coherencia de las pruebas generadas: el mejor desempeño se obtuvo precisamente en los requisitos funcionales, más estructurados, y el menor en las historias de usuario, más ambiguas \cite{wang2024survey,yang2024evaluation}.
+    
+    El posicionamiento de TDDMachine en la etapa \emph{Red} del ciclo TDD la diferencia de herramientas como \emph{ChatUniTest}, \emph{TestSpark} o \emph{Pynguin}, orientadas a generar pruebas desde código fuente existente \cite{chen2024chatunitest,sapozhnikov2024testspark,lukasczyk2022pynguin}. Al intervenir antes de que exista código de producción, la herramienta se alinea con el principio fundamental del TDD de escribir primero la prueba y, con ello, con la evidencia de que anticipar las pruebas reduce la densidad de defectos y el esfuerzo de corrección posterior a la entrega \cite{nagappan2008tdd,rafique2013meta,erdogmus2005testfirst}. Los niveles de usabilidad (SUS\,=\,74,46) y de aceptación (todos los constructos TAM por encima del umbral, con la Utilidad Percibida como predictor más fuerte de la Intención de Uso) indican, además, que la herramienta es percibida como útil y fácil de usar por usuarios sin experiencia previa en \texttt{pytest}, lo que aborda directamente la barrera de adopción del TDD asociada a la curva de aprendizaje del \emph{testing} \cite{ghafari2020inconclusive,bangor2009sus,davis1989tam}. El puntaje SUS obtenido es comparable al de otras herramientas de soporte al desarrollo guiado por pruebas previamente evaluadas con el mismo instrumento \cite{guerrero2025tddtool}.
+    
+    Entre las amenazas a la validez deben considerarse las siguientes. La validez externa está limitada por el tamaño y la composición de las muestras: los 25 participantes del Estudio~1 pertenecen a un mismo semestre y carrera, y los 10 expertos del Estudio~2, aunque suficientes para un estudio piloto, resultan insuficientes para un análisis robusto de concordancia entre evaluadores; además, el conjunto de especificaciones empleado no cubre todos los dominios de aplicación posibles. Por ello, la generalización a profesionales y a contextos industriales requiere estudios de mayor escala. La corroboración funcional de las pruebas se realizó ejecutándolas contra el código de producción del propio proyecto, por lo que su comportamiento en \emph{pipelines} de integración continua de terceros y sobre bases de código heterogéneas queda por confirmar. Finalmente, las mediciones corresponden a una primera sesión de interacción, de modo que la estabilidad de las percepciones en un uso sostenido queda por verificar.
+    
+    %% ------------------------------------------------------------------------
+    \section{Conclusiones}
+    \label{sec:conclusiones}
+    
+    Este trabajo presentó TDDMachine, una herramienta CASE que automatiza la generación del estado inicial de las pruebas ---la etapa \emph{Red} del ciclo TDD--- a partir de especificaciones estructuradas y mediante el modelo de lenguaje Claude 3.5 Sonnet, con validación sintáctica automática del código generado por análisis del AST de Python. La herramienta, cuyos requisitos se derivaron de una revisión sistemática de 109 estudios primarios y cuya pila tecnológica se seleccionó por evaluación multicriterio, produjo scripts \texttt{pytest} válidos en el 91,4\,\% de los intentos, alcanzó una calidad media evaluada por expertos de 4,08/5,0, obtuvo un puntaje SUS de 74,46/100 y superó el umbral de aceptación tecnológica en los cuatro constructos TAM. En conjunto, estos resultados validan la hipótesis central del proyecto: es posible construir una herramienta CASE que, a partir de especificaciones estructuradas y empleando un LLM como motor de generación y el AST como mecanismo de control de calidad, automatice la generación del estado inicial de pruebas para la metodología TDD.
+    
+    En el plano teórico, el estudio conecta dos marcos previamente tratados por separado: el principio \emph{test-first} del TDD ---escribir la prueba antes que el código--- y la teoría de aceptación tecnológica que explica la adopción de una herramienta a partir de su utilidad y facilidad de uso percibidas. Al situar la generación asistida por LLM en la etapa \emph{Red} y evidenciar que esa anticipación es percibida como útil y usable, el trabajo aporta un puente empírico entre la anticipación de pruebas como práctica de calidad y la aceptación de las herramientas que la soportan. La principal contribución es, por tanto, empírica y metodológica: la evidencia de que anteponer una captura estructurada de requisitos a la generación por LLM, y verificar el resultado mediante AST, mejora la proporción de scripts válidos respecto de enfoques que operan sobre texto libre, y de que este proceso es percibido como útil y usable por desarrolladores noveles. Como líneas de trabajo futuro se plantean: la extensión de la validación mediante la ejecución real de los scripts en entornos controlados para medir la tasa de éxito en la etapa \emph{Green}; la incorporación de instrucciones explícitas en los \emph{prompts} para forzar escenarios negativos y de valor límite, atendiendo a la principal recomendación de los expertos; la ampliación de la evaluación a profesionales y a mayor diversidad de dominios; y la preparación de la versión en inglés del manuscrito para su envío a \emph{Enfoque UTE}.
+    
+    %% ------------------------------------------------------------------------
+    %% DECLARACIONES OBLIGATORIAS DE ENFOQUE UTE (2026)
+    %% ------------------------------------------------------------------------
+    \seccionetica{%
+        Both evaluation studies involved voluntary participants and followed an ethics protocol. Every participant provided written informed consent before any activity; the consent form stated the voluntary nature of participation, its exclusively academic purpose, the tasks to be performed, the data to be collected, the confidentiality guarantees, the right to withdraw at any time without penalty, and the data-retention period. The collected data were handled confidentially, stored in access-restricted digital forms, and reported only in aggregate, without individual identification.
+    }
+    
+    \seccionfunding{%
+        This research received no external funding.
+    }
+    
+    \seccionconflicto{%
+        The authors declare that they have no conflict of interest.
+    }
+    
+    \seccioniadeclaracion{%
+        The authors declare that generative artificial intelligence tools were used to assist in language editing and in the drafting and structuring of this manuscript. The core scientific content, the design of the tool, the experimental design, the data collection and the analysis of results are the sole work and responsibility of the authors, who take full responsibility for the content of the manuscript.
+    }
+    
+    \secciondatos{%
+        The source code of TDDMachine (frontend and backend), the deployment configuration and the corpus of input specifications used in the evaluation are publicly available at \url{\repourl}.
+    }
+    
+    %% ------------------------------------------------------------------------
+    \bibliographystyle{IEEEtran}
+    \bibliography{references}
+    
+\end{document}
