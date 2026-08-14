@@ -1,0 +1,1010 @@
+[
+{
+"id": 1,
+"grupo": "Ecuador",
+"sigla": "EPN",
+"nombre": "Escuela Politécnica Nacional",
+"pais": "EC",
+"url": "https://www.epn.edu.ec"
+},
+{
+"id": 2,
+"grupo": "Ecuador",
+"sigla": "ESPOL",
+"nombre": "Escuela Superior Politécnica del Litoral",
+"pais": "EC",
+"url": "https://www.espol.edu.ec"
+},
+{
+"id": 3,
+"grupo": "Ecuador",
+"sigla": "ESPOCH",
+"nombre": "Escuela Superior Politécnica de Chimborazo",
+"pais": "EC",
+"url": "https://www.espoch.edu.ec"
+},
+{
+"id": 4,
+"grupo": "Ecuador",
+"sigla": "ESPAM MFL",
+"nombre": "Escuela Superior Politécnica Agropecuaria de Manabí Manuel Félix López",
+"pais": "EC",
+"url": "https://www.espam.edu.ec"
+},
+{
+"id": 5,
+"grupo": "Ecuador",
+"sigla": "ESPE",
+"nombre": "Universidad de las Fuerzas Armadas ESPE",
+"pais": "EC",
+"url": "https://www.espe.edu.ec"
+},
+{
+"id": 6,
+"grupo": "Ecuador",
+"sigla": "UCE",
+"nombre": "Universidad Central del Ecuador",
+"pais": "EC",
+"url": "https://www.uce.edu.ec"
+},
+{
+"id": 7,
+"grupo": "Ecuador",
+"sigla": "UCuenca",
+"nombre": "Universidad de Cuenca",
+"pais": "EC",
+"url": "https://www.ucuenca.edu.ec"
+},
+{
+"id": 8,
+"grupo": "Ecuador",
+"sigla": "UG",
+"nombre": "Universidad de Guayaquil",
+"pais": "EC",
+"url": "https://www.ug.edu.ec"
+},
+{
+"id": 9,
+"grupo": "Ecuador",
+"sigla": "UNL",
+"nombre": "Universidad Nacional de Loja",
+"pais": "EC",
+"url": "https://www.unl.edu.ec"
+},
+{
+"id": 10,
+"grupo": "Ecuador",
+"sigla": "UAE",
+"nombre": "Universidad Agraria del Ecuador",
+"pais": "EC",
+"url": "https://www.uagraria.edu.ec"
+},
+{
+"id": 11,
+"grupo": "Ecuador",
+"sigla": "UTA",
+"nombre": "Universidad Técnica de Ambato",
+"pais": "EC",
+"url": "https://uta.edu.ec"
+},
+{
+"id": 12,
+"grupo": "Ecuador",
+"sigla": "UTB",
+"nombre": "Universidad Técnica de Babahoyo",
+"pais": "EC",
+"url": "https://utb.edu.ec"
+},
+{
+"id": 13,
+"grupo": "Ecuador",
+"sigla": "UTC",
+"nombre": "Universidad Técnica de Cotopaxi",
+"pais": "EC",
+"url": "https://www.utc.edu.ec"
+},
+{
+"id": 14,
+"grupo": "Ecuador",
+"sigla": "UTMACH",
+"nombre": "Universidad Técnica de Machala",
+"pais": "EC",
+"url": "https://www.utmachala.edu.ec"
+},
+{
+"id": 15,
+"grupo": "Ecuador",
+"sigla": "UTM",
+"nombre": "Universidad Técnica de Manabí",
+"pais": "EC",
+"url": "https://www.utm.edu.ec"
+},
+{
+"id": 16,
+"grupo": "Ecuador",
+"sigla": "UTN",
+"nombre": "Universidad Técnica del Norte",
+"pais": "EC",
+"url": "https://www.utn.edu.ec"
+},
+{
+"id": 17,
+"grupo": "Ecuador",
+"sigla": "UTEQ",
+"nombre": "Universidad Técnica Estatal de Quevedo",
+"pais": "EC",
+"url": "https://www.uteq.edu.ec"
+},
+{
+"id": 18,
+"grupo": "Ecuador",
+"sigla": "UTELVT",
+"nombre": "Universidad Técnica Luis Vargas Torres de Esmeraldas",
+"pais": "EC",
+"url": "https://www.utelvt.edu.ec"
+},
+{
+"id": 19,
+"grupo": "Ecuador",
+"sigla": "UEB",
+"nombre": "Universidad Estatal de Bolívar",
+"pais": "EC",
+"url": "https://www.ueb.edu.ec"
+},
+{
+"id": 20,
+"grupo": "Ecuador",
+"sigla": "UNESUM",
+"nombre": "Universidad Estatal del Sur de Manabí",
+"pais": "EC",
+"url": "https://unesum.edu.ec"
+},
+{
+"id": 21,
+"grupo": "Ecuador",
+"sigla": "UNEMI",
+"nombre": "Universidad Estatal de Milagro",
+"pais": "EC",
+"url": "https://www.unemi.edu.ec"
+},
+{
+"id": 22,
+"grupo": "Ecuador",
+"sigla": "UEA",
+"nombre": "Universidad Estatal Amazónica",
+"pais": "EC",
+"url": "https://www.uea.edu.ec"
+},
+{
+"id": 23,
+"grupo": "Ecuador",
+"sigla": "UPSE",
+"nombre": "Universidad Estatal Península de Santa Elena",
+"pais": "EC",
+"url": "https://www.upse.edu.ec"
+},
+{
+"id": 24,
+"grupo": "Ecuador",
+"sigla": "ULEAM",
+"nombre": "Universidad Laica Eloy Alfaro de Manabí",
+"pais": "EC",
+"url": "https://www.uleam.edu.ec"
+},
+{
+"id": 25,
+"grupo": "Ecuador",
+"sigla": "UNACH",
+"nombre": "Universidad Nacional de Chimborazo",
+"pais": "EC",
+"url": "https://www.unach.edu.ec"
+},
+{
+"id": 26,
+"grupo": "Ecuador",
+"sigla": "UNAE",
+"nombre": "Universidad Nacional de Educación",
+"pais": "EC",
+"url": "https://unae.edu.ec"
+},
+{
+"id": 27,
+"grupo": "Ecuador",
+"sigla": "UPEC",
+"nombre": "Universidad Politécnica Estatal del Carchi",
+"pais": "EC",
+"url": "https://upec.edu.ec"
+},
+{
+"id": 28,
+"grupo": "Ecuador",
+"sigla": "Yachay Tech",
+"nombre": "Universidad de Investigación de Tecnología Experimental Yachay",
+"pais": "EC",
+"url": "https://yachaytech.edu.ec"
+},
+{
+"id": 29,
+"grupo": "Ecuador",
+"sigla": "Ikiam",
+"nombre": "Universidad Regional Amazónica Ikiam",
+"pais": "EC",
+"url": "https://www.ikiam.edu.ec"
+},
+{
+"id": 30,
+"grupo": "Ecuador",
+"sigla": "UArtes",
+"nombre": "Universidad de las Artes",
+"pais": "EC",
+"url": "https://www.uartes.edu.ec"
+},
+{
+"id": 31,
+"grupo": "Ecuador",
+"sigla": "Amawtay Wasi",
+"nombre": "Universidad Intercultural de las Nacionalidades y Pueblos Indígenas Amawtay Wasi",
+"pais": "EC",
+"url": "https://uaw.edu.ec"
+},
+{
+"id": 32,
+"grupo": "Ecuador",
+"sigla": "USECIPOL",
+"nombre": "Universidad de Seguridad Ciudadana y Ciencias Policiales",
+"pais": "EC",
+"url": "https://usecipol.edu.ec"
+},
+{
+"id": 33,
+"grupo": "Ecuador",
+"sigla": "IAEN",
+"nombre": "Instituto de Altos Estudios Nacionales",
+"pais": "EC",
+"url": "https://www.iaen.edu.ec"
+},
+{
+"id": 34,
+"grupo": "Ecuador",
+"sigla": "UASB",
+"nombre": "Universidad Andina Simón Bolívar, sede Ecuador",
+"pais": "EC",
+"url": "https://www.uasb.edu.ec"
+},
+{
+"id": 35,
+"grupo": "Ecuador",
+"sigla": "FLACSO",
+"nombre": "FLACSO Ecuador",
+"pais": "EC",
+"url": "https://www.flacso.edu.ec"
+},
+{
+"id": 36,
+"grupo": "Ecuador",
+"sigla": "PUCE",
+"nombre": "Pontificia Universidad Católica del Ecuador",
+"pais": "EC",
+"url": "https://www.puce.edu.ec"
+},
+{
+"id": 37,
+"grupo": "Ecuador",
+"sigla": "UCSG",
+"nombre": "Universidad Católica de Santiago de Guayaquil",
+"pais": "EC",
+"url": "https://www.ucsg.edu.ec"
+},
+{
+"id": 38,
+"grupo": "Ecuador",
+"sigla": "UCACUE",
+"nombre": "Universidad Católica de Cuenca",
+"pais": "EC",
+"url": "https://www.ucacue.edu.ec"
+},
+{
+"id": 39,
+"grupo": "Ecuador",
+"sigla": "ULVR",
+"nombre": "Universidad Laica Vicente Rocafuerte de Guayaquil",
+"pais": "EC",
+"url": "https://www.ulvr.edu.ec"
+},
+{
+"id": 40,
+"grupo": "Ecuador",
+"sigla": "UTPL",
+"nombre": "Universidad Técnica Particular de Loja",
+"pais": "EC",
+"url": "https://www.utpl.edu.ec"
+},
+{
+"id": 41,
+"grupo": "Ecuador",
+"sigla": "UTE",
+"nombre": "Universidad UTE",
+"pais": "EC",
+"url": "https://ute.edu.ec"
+},
+{
+"id": 42,
+"grupo": "Ecuador",
+"sigla": "UDA",
+"nombre": "Universidad del Azuay",
+"pais": "EC",
+"url": "https://www.uazuay.edu.ec"
+},
+{
+"id": 43,
+"grupo": "Ecuador",
+"sigla": "UPS",
+"nombre": "Universidad Politécnica Salesiana",
+"pais": "EC",
+"url": "https://www.ups.edu.ec"
+},
+{
+"id": 44,
+"grupo": "Ecuador",
+"sigla": "UISEK",
+"nombre": "Universidad Internacional SEK",
+"pais": "EC",
+"url": "https://uisek.edu.ec"
+},
+{
+"id": 45,
+"grupo": "Ecuador",
+"sigla": "UEES",
+"nombre": "Universidad de Especialidades Espíritu Santo",
+"pais": "EC",
+"url": "https://uees.edu.ec"
+},
+{
+"id": 46,
+"grupo": "Ecuador",
+"sigla": "USFQ",
+"nombre": "Universidad San Francisco de Quito",
+"pais": "EC",
+"url": "https://www.usfq.edu.ec"
+},
+{
+"id": 47,
+"grupo": "Ecuador",
+"sigla": "UDLA",
+"nombre": "Universidad de las Américas",
+"pais": "EC",
+"url": "https://www.udla.edu.ec"
+},
+{
+"id": 48,
+"grupo": "Ecuador",
+"sigla": "UIDE",
+"nombre": "Universidad Internacional del Ecuador",
+"pais": "EC",
+"url": "https://www.uide.edu.ec"
+},
+{
+"id": 49,
+"grupo": "Ecuador",
+"sigla": "UNIANDES",
+"nombre": "Universidad Regional Autónoma de los Andes",
+"pais": "EC",
+"url": "https://www.uniandes.edu.ec"
+},
+{
+"id": 50,
+"grupo": "Ecuador",
+"sigla": "UPACÍFICO",
+"nombre": "Universidad del Pacífico Escuela de Negocios",
+"pais": "EC",
+"url": "https://upacifico.edu.ec"
+},
+{
+"id": 51,
+"grupo": "Ecuador",
+"sigla": "UTI",
+"nombre": "Universidad Tecnológica Indoamérica",
+"pais": "EC",
+"url": "https://www.indoamerica.edu.ec"
+},
+{
+"id": 52,
+"grupo": "Ecuador",
+"sigla": "Casa Grande",
+"nombre": "Universidad Casa Grande",
+"pais": "EC",
+"url": "https://www.casagrande.edu.ec"
+},
+{
+"id": 53,
+"grupo": "Ecuador",
+"sigla": "UTEG",
+"nombre": "Universidad Tecnológica Empresarial de Guayaquil",
+"pais": "EC",
+"url": "https://www.uteg.edu.ec"
+},
+{
+"id": 54,
+"grupo": "Ecuador",
+"sigla": "UISRAEL",
+"nombre": "Universidad Tecnológica Israel",
+"pais": "EC",
+"url": "https://www.uisrael.edu.ec"
+},
+{
+"id": 55,
+"grupo": "Ecuador",
+"sigla": "UDET",
+"nombre": "Universidad de Especialidades Turísticas",
+"pais": "EC",
+"url": "https://www.udet.edu.ec"
+},
+{
+"id": 56,
+"grupo": "Ecuador",
+"sigla": "UMET",
+"nombre": "Universidad Metropolitana del Ecuador",
+"pais": "EC",
+"url": "https://umet.edu.ec"
+},
+{
+"id": 57,
+"grupo": "Ecuador",
+"sigla": "U. Otavalo",
+"nombre": "Universidad de Otavalo",
+"pais": "EC",
+"url": "https://www.uotavalo.edu.ec"
+},
+{
+"id": 58,
+"grupo": "Ecuador",
+"sigla": "USGP",
+"nombre": "Universidad San Gregorio de Portoviejo",
+"pais": "EC",
+"url": "https://www.sangregorio.edu.ec"
+},
+{
+"id": 59,
+"grupo": "Ecuador",
+"sigla": "U. Hemisferios",
+"nombre": "Universidad de los Hemisferios",
+"pais": "EC",
+"url": "https://www.uhemisferios.edu.ec"
+},
+{
+"id": 60,
+"grupo": "Ecuador",
+"sigla": "UNIB.E",
+"nombre": "Universidad Iberoamericana del Ecuador",
+"pais": "EC",
+"url": "https://unibe.edu.ec"
+},
+{
+"id": 61,
+"grupo": "Ecuador",
+"sigla": "ECOTEC",
+"nombre": "Universidad Tecnológica Ecotec",
+"pais": "EC",
+"url": "https://ecotec.edu.ec"
+},
+{
+"id": 62,
+"grupo": "Ecuador",
+"sigla": "UDR",
+"nombre": "Universidad del Río",
+"pais": "EC",
+"url": "https://udr.edu.ec"
+},
+{
+"id": 63,
+"grupo": "Ecuador",
+"sigla": "UBE",
+"nombre": "Universidad Bolivariana del Ecuador",
+"pais": "EC",
+"url": "https://ube.edu.ec"
+},
+{
+"id": 64,
+"grupo": "Mundo",
+"sigla": "MIT",
+"nombre": "Massachusetts Institute of Technology",
+"pais": "EE.UU.",
+"url": "https://www.mit.edu"
+},
+{
+"id": 65,
+"grupo": "Mundo",
+"sigla": "Stanford",
+"nombre": "Stanford University",
+"pais": "EE.UU.",
+"url": "https://www.stanford.edu"
+},
+{
+"id": 66,
+"grupo": "Mundo",
+"sigla": "Harvard",
+"nombre": "Harvard University",
+"pais": "EE.UU.",
+"url": "https://www.harvard.edu"
+},
+{
+"id": 67,
+"grupo": "Mundo",
+"sigla": "Oxford",
+"nombre": "University of Oxford",
+"pais": "Reino Unido",
+"url": "https://www.ox.ac.uk"
+},
+{
+"id": 68,
+"grupo": "Mundo",
+"sigla": "Cambridge",
+"nombre": "University of Cambridge",
+"pais": "Reino Unido",
+"url": "https://www.cam.ac.uk"
+},
+{
+"id": 69,
+"grupo": "Mundo",
+"sigla": "Caltech",
+"nombre": "California Institute of Technology",
+"pais": "EE.UU.",
+"url": "https://www.caltech.edu"
+},
+{
+"id": 70,
+"grupo": "Mundo",
+"sigla": "UC Berkeley",
+"nombre": "University of California, Berkeley",
+"pais": "EE.UU.",
+"url": "https://www.berkeley.edu"
+},
+{
+"id": 71,
+"grupo": "Mundo",
+"sigla": "Princeton",
+"nombre": "Princeton University",
+"pais": "EE.UU.",
+"url": "https://www.princeton.edu"
+},
+{
+"id": 72,
+"grupo": "Mundo",
+"sigla": "Imperial",
+"nombre": "Imperial College London",
+"pais": "Reino Unido",
+"url": "https://www.imperial.ac.uk"
+},
+{
+"id": 73,
+"grupo": "Mundo",
+"sigla": "U Chicago",
+"nombre": "University of Chicago",
+"pais": "EE.UU.",
+"url": "https://www.uchicago.edu"
+},
+{
+"id": 74,
+"grupo": "Mundo",
+"sigla": "ETH Zurich",
+"nombre": "ETH Zurich",
+"pais": "Suiza",
+"url": "https://ethz.ch"
+},
+{
+"id": 75,
+"grupo": "Mundo",
+"sigla": "Yale",
+"nombre": "Yale University",
+"pais": "EE.UU.",
+"url": "https://www.yale.edu"
+},
+{
+"id": 76,
+"grupo": "Mundo",
+"sigla": "UPenn",
+"nombre": "University of Pennsylvania",
+"pais": "EE.UU.",
+"url": "https://www.upenn.edu"
+},
+{
+"id": 77,
+"grupo": "Mundo",
+"sigla": "UCL",
+"nombre": "University College London",
+"pais": "Reino Unido",
+"url": "https://www.ucl.ac.uk"
+},
+{
+"id": 78,
+"grupo": "Mundo",
+"sigla": "Cornell",
+"nombre": "Cornell University",
+"pais": "EE.UU.",
+"url": "https://www.cornell.edu"
+},
+{
+"id": 79,
+"grupo": "Mundo",
+"sigla": "Tsinghua",
+"nombre": "Tsinghua University",
+"pais": "China",
+"url": "https://www.tsinghua.edu.cn/en/"
+},
+{
+"id": 80,
+"grupo": "Mundo",
+"sigla": "Peking",
+"nombre": "Peking University",
+"pais": "China",
+"url": "https://english.pku.edu.cn"
+},
+{
+"id": 81,
+"grupo": "Mundo",
+"sigla": "Johns Hopkins",
+"nombre": "Johns Hopkins University",
+"pais": "EE.UU.",
+"url": "https://www.jhu.edu"
+},
+{
+"id": 82,
+"grupo": "Mundo",
+"sigla": "Columbia",
+"nombre": "Columbia University",
+"pais": "EE.UU.",
+"url": "https://www.columbia.edu"
+},
+{
+"id": 83,
+"grupo": "Mundo",
+"sigla": "Toronto",
+"nombre": "University of Toronto",
+"pais": "Canadá",
+"url": "https://www.utoronto.ca"
+},
+{
+"id": 84,
+"grupo": "Mundo",
+"sigla": "UCLA",
+"nombre": "University of California, Los Angeles",
+"pais": "EE.UU.",
+"url": "https://www.ucla.edu"
+},
+{
+"id": 85,
+"grupo": "Mundo",
+"sigla": "NUS",
+"nombre": "National University of Singapore",
+"pais": "Singapur",
+"url": "https://nus.edu.sg"
+},
+{
+"id": 86,
+"grupo": "Mundo",
+"sigla": "U Tokyo",
+"nombre": "The University of Tokyo",
+"pais": "Japón",
+"url": "https://www.u-tokyo.ac.jp/en/"
+},
+{
+"id": 87,
+"grupo": "Mundo",
+"sigla": "TUM",
+"nombre": "Technical University of Munich",
+"pais": "Alemania",
+"url": "https://www.tum.de/en/"
+},
+{
+"id": 88,
+"grupo": "Mundo",
+"sigla": "Melbourne",
+"nombre": "The University of Melbourne",
+"pais": "Australia",
+"url": "https://www.unimelb.edu.au"
+},
+{
+"id": 89,
+"grupo": "Mundo",
+"sigla": "Edinburgh",
+"nombre": "University of Edinburgh",
+"pais": "Reino Unido",
+"url": "https://www.ed.ac.uk"
+},
+{
+"id": 90,
+"grupo": "Mundo",
+"sigla": "EPFL",
+"nombre": "EPFL",
+"pais": "Suiza",
+"url": "https://www.epfl.ch/en/"
+},
+{
+"id": 91,
+"grupo": "Mundo",
+"sigla": "Michigan",
+"nombre": "University of Michigan-Ann Arbor",
+"pais": "EE.UU.",
+"url": "https://umich.edu"
+},
+{
+"id": 92,
+"grupo": "Mundo",
+"sigla": "Northwestern",
+"nombre": "Northwestern University",
+"pais": "EE.UU.",
+"url": "https://www.northwestern.edu"
+},
+{
+"id": 93,
+"grupo": "Mundo",
+"sigla": "Fudan",
+"nombre": "Fudan University",
+"pais": "China",
+"url": "https://www.fudan.edu.cn/en/"
+},
+{
+"id": 94,
+"grupo": "Mundo",
+"sigla": "PSL",
+"nombre": "PSL University",
+"pais": "Francia",
+"url": "https://www.psl.eu/en"
+},
+{
+"id": 95,
+"grupo": "Mundo",
+"sigla": "HKU",
+"nombre": "University of Hong Kong",
+"pais": "Hong Kong",
+"url": "https://www.hku.hk"
+},
+{
+"id": 96,
+"grupo": "Mundo",
+"sigla": "Zhejiang",
+"nombre": "Zhejiang University",
+"pais": "China",
+"url": "https://www.zju.edu.cn/english/"
+},
+{
+"id": 97,
+"grupo": "Mundo",
+"sigla": "NYU",
+"nombre": "New York University",
+"pais": "EE.UU.",
+"url": "https://www.nyu.edu"
+},
+{
+"id": 98,
+"grupo": "Mundo",
+"sigla": "SJTU",
+"nombre": "Shanghai Jiao Tong University",
+"pais": "China",
+"url": "https://www.sjtu.edu.cn"
+},
+{
+"id": 99,
+"grupo": "Mundo",
+"sigla": "KCL",
+"nombre": "King's College London",
+"pais": "Reino Unido",
+"url": "https://www.kcl.ac.uk"
+},
+{
+"id": 100,
+"grupo": "Mundo",
+"sigla": "UCSD",
+"nombre": "University of California, San Diego",
+"pais": "EE.UU.",
+"url": "https://www.ucsd.edu"
+},
+{
+"id": 101,
+"grupo": "Mundo",
+"sigla": "LMU",
+"nombre": "LMU Munich",
+"pais": "Alemania",
+"url": "https://www.lmu.de"
+},
+{
+"id": 102,
+"grupo": "Mundo",
+"sigla": "Duke",
+"nombre": "Duke University",
+"pais": "EE.UU.",
+"url": "https://www.duke.edu"
+},
+{
+"id": 103,
+"grupo": "Mundo",
+"sigla": "Manchester",
+"nombre": "University of Manchester",
+"pais": "Reino Unido",
+"url": "https://www.manchester.ac.uk"
+},
+{
+"id": 104,
+"grupo": "Mundo",
+"sigla": "UBC",
+"nombre": "University of British Columbia",
+"pais": "Canadá",
+"url": "https://www.ubc.ca"
+},
+{
+"id": 105,
+"grupo": "Mundo",
+"sigla": "Sydney",
+"nombre": "The University of Sydney",
+"pais": "Australia",
+"url": "https://www.sydney.edu.au"
+},
+{
+"id": 106,
+"grupo": "Mundo",
+"sigla": "Paris-Saclay",
+"nombre": "Université Paris-Saclay",
+"pais": "Francia",
+"url": "https://www.universite-paris-saclay.fr/en"
+},
+{
+"id": 107,
+"grupo": "Mundo",
+"sigla": "Kyoto",
+"nombre": "Kyoto University",
+"pais": "Japón",
+"url": "https://www.kyoto-u.ac.jp/en"
+},
+{
+"id": 108,
+"grupo": "Mundo",
+"sigla": "Illinois",
+"nombre": "University of Illinois Urbana-Champaign",
+"pais": "EE.UU.",
+"url": "https://illinois.edu"
+},
+{
+"id": 109,
+"grupo": "Mundo",
+"sigla": "UT Austin",
+"nombre": "The University of Texas at Austin",
+"pais": "EE.UU.",
+"url": "https://www.utexas.edu"
+},
+{
+"id": 110,
+"grupo": "Mundo",
+"sigla": "UW",
+"nombre": "University of Washington",
+"pais": "EE.UU.",
+"url": "https://www.washington.edu"
+},
+{
+"id": 111,
+"grupo": "Mundo",
+"sigla": "NTU",
+"nombre": "Nanyang Technological University",
+"pais": "Singapur",
+"url": "https://www.ntu.edu.sg"
+},
+{
+"id": 112,
+"grupo": "Mundo",
+"sigla": "McGill",
+"nombre": "McGill University",
+"pais": "Canadá",
+"url": "https://www.mcgill.ca"
+},
+{
+"id": 113,
+"grupo": "Mundo",
+"sigla": "CUHK",
+"nombre": "The Chinese University of Hong Kong",
+"pais": "Hong Kong",
+"url": "https://www.cuhk.edu.hk/english/index.html"
+},
+{
+"id": 114,
+"grupo": "Mundo",
+"sigla": "CMU",
+"nombre": "Carnegie Mellon University",
+"pais": "EE.UU.",
+"url": "https://www.cmu.edu"
+},
+{
+"id": 115,
+"grupo": "Mundo",
+"sigla": "Wisconsin",
+"nombre": "University of Wisconsin-Madison",
+"pais": "EE.UU.",
+"url": "https://www.wisc.edu"
+},
+{
+"id": 116,
+"grupo": "Mundo",
+"sigla": "USTC",
+"nombre": "University of Science and Technology of China",
+"pais": "China",
+"url": "https://en.ustc.edu.cn"
+},
+{
+"id": 117,
+"grupo": "Mundo",
+"sigla": "WUSTL",
+"nombre": "Washington University in St. Louis",
+"pais": "EE.UU.",
+"url": "https://washu.edu"
+},
+{
+"id": 118,
+"grupo": "Mundo",
+"sigla": "Monash",
+"nombre": "Monash University",
+"pais": "Australia",
+"url": "https://www.monash.edu"
+},
+{
+"id": 119,
+"grupo": "Mundo",
+"sigla": "SNU",
+"nombre": "Seoul National University",
+"pais": "Corea del Sur",
+"url": "https://en.snu.ac.kr"
+},
+{
+"id": 120,
+"grupo": "Mundo",
+"sigla": "Heidelberg",
+"nombre": "Heidelberg University",
+"pais": "Alemania",
+"url": "https://www.uni-heidelberg.de/en"
+},
+{
+"id": 121,
+"grupo": "Mundo",
+"sigla": "HKUST",
+"nombre": "Hong Kong University of Science and Technology",
+"pais": "Hong Kong",
+"url": "https://hkust.edu.hk/"
+},
+{
+"id": 122,
+"grupo": "Mundo",
+"sigla": "Karolinska",
+"nombre": "Karolinska Institutet",
+"pais": "Suecia",
+"url": "https://ki.se/en"
+},
+{
+"id": 123,
+"grupo": "Mundo",
+"sigla": "TU Delft",
+"nombre": "Delft University of Technology",
+"pais": "Países Bajos",
+"url": "https://www.tudelft.nl/en/"
+},
+{
+"id": 124,
+"grupo": "Mundo",
+"sigla": "ANU",
+"nombre": "Australian National University",
+"pais": "Australia",
+"url": "https://www.anu.edu.au/"
+},
+{
+"id": 125,
+"grupo": "Mundo",
+"sigla": "KU Leuven",
+"nombre": "KU Leuven",
+"pais": "Bélgica",
+"url": "https://www.kuleuven.be/english/"
+},
+{
+"id": 126,
+"grupo": "Mundo",
+"sigla": "Queensland",
+"nombre": "The University of Queensland",
+"pais": "Australia",
+"url": "https://www.uq.edu.au/"
+}
+]
