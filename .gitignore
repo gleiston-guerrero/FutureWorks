@@ -1,6 +1,3 @@
-*.zip 
-@'
-
 # ================= LaTeX: archivos generados =================
 *.aux
 *.bbl
@@ -34,32 +31,33 @@
 # ================= Office: temporales de bloqueo =================
 ~$*
 
+# ================= Comprimidos =================
+*.zip
+!/RutAI/RutAI_figures_v1.0.zip
+!/RutAI/Zenodo/RutAI_replication_package_v1.0_lite.zip
+!/RutAI/Datos recopilados/battery/bugreport/*.zip
+
+# ================= Datos personales: no versionar =================
+ALUMNOS QUE CURSAN*.xls
+listado de estudiantes.xlsx
+
 # ================= PDF generados desde .tex =================
-'@ | Out-File -FilePath .gitignore -Encoding utf8 -Append
-/Alarmas Geolocalizables/els-cas-templates/cas-dc-sample.pdf
-/Alarmas Geolocalizables/els-cas-templates/cas-sc-sample.pdf
-/Alarmas Geolocalizables/els-cas-templates/doc/elsdoc-cas.pdf
-/Alarmas Geolocalizables/RutAI/informerevisor.pdf
-/Alarmas Geolocalizables/RutAI/rutai-pmc.pdf
-/Alarmas Geolocalizables/RutAI/rutai-pmc-es.pdf
-/BellChat V2/bellchatv2.pdf
-/BellChat V2/BellChatV3.pdf
-/BellChat V2/BellChatV4.pdf
-/BellChat V2/IEEE Transactions on Human-Machine Systems/bellchatv2.pdf
-/BellChat V2/main.pdf
-/ChildrenWorkOut/LaTeX/FitKids/main.pdf
-/CompetenciasEnEscolares/QuizKids/main.pdf
-/Eduación e IA/protocolo_iagen_v2.pdf
-/Eduación e IA/solicitud_promedios.pdf
-/latex/main.pdf
-/LLMTDD/Enfoque_UTE/main_en.pdf
-/LLMTDD/llmtdd/main.pdf
-/NeuroPlay/NeuroPlay.pdf
-/ParentalControl/cas-dc-sample.pdf
-/ParentalControl/cas-sc-sample.pdf
-/ParentalControl/doc/elsdoc-cas.pdf
-/Requirements Engineering/Guia_Rubrica_PFC_Entrega3_2A.pdf
-/Requirements Engineering/Guia_Rubrica_PFC_Entrega4_2B.pdf
-/Torddis-anteriores/Torddis-Manuscript/tordis-eait.pdf
-/Torddis-anteriores/Torddis-Manuscript/tordis-eait-anon.pdf
-/Torddis-anteriores/Torddis-Manuscript/tordis-eait-supplementary-main.pdf
+bellchatv2.pdf
+BellChatV3.pdf
+BellChatV4.pdf
+cas-dc-sample.pdf
+cas-sc-sample.pdf
+elsdoc-cas.pdf
+Guia_Rubrica_PFC_Entrega3_2A.pdf
+Guia_Rubrica_PFC_Entrega4_2B.pdf
+informerevisor.pdf
+main.pdf
+main_en.pdf
+NeuroPlay.pdf
+protocolo_iagen_v2.pdf
+rutai-pmc.pdf
+rutai-pmc-es.pdf
+solicitud_promedios.pdf
+tordis-eait.pdf
+tordis-eait-anon.pdf
+tordis-eait-supplementary-main.pdf

@@ -1,0 +1,258 @@
+(()=>{const ck=document.cookie?document.cookie.split('; ').map(c=>c.split('=')[0]):[];const H=([...document.scripts].map(x=>x.src).join(' ')+' '+document.documentElement.innerHTML.slice(0,400000)).toLowerCase();const sig=[['OneTrust',/onetrust|cookielaw|optanon/],['Cookiebot',/cookiebot|cybot/],['Usercentrics',/usercentrics/],['Didomi',/didomi/],['TCF',/_tcfapi|quantcast/],['TrustArc',/trustarc|truste/],['Osano',/osano/],['CookieYes',/cookieyes|cky-/],['Complianz',/complianz/],['Iubenda',/iubenda/],['Termly',/termly/],['Tarteaucitron',/tarteaucitron/],['Klaro',/klaro-/]];const cmp=sig.filter(x=>x[1].test(H)).map(x=>x[0]);if(typeof window._tcfapi==='function'&&!cmp.includes('TCF'))cmp.push('TCF');const kw=/cookie/i,bk=/accept|agree|allow|consent|acept|rechaz|reject|zustimm|akzept|ablehn/i;let b=false;for(const el of document.querySelectorAll('div,section,aside,footer,dialog,form')){const st=getComputedStyle(el);if((st.position==='fixed'||st.position==='sticky')&&el.offsetHeight>18){const t=el.innerText||'';if(kw.test(t)&&[...el.querySelectorAll('button,a,input')].some(x=>bk.test(x.innerText||x.value||''))){b=true;break;}}}const o=JSON.stringify({host:location.host,cookies:ck.length,names:ck.slice(0,10),cmp,banner:b});try{copy(o)}catch(e){}console.log(o);o})()
+
+
+Escuela Politécnica Nacional
+EPN
+{"host":"www.epn.edu.ec","cookies":2,"names":["_ga_6MFE5HRHXE","_ga"],"cmp":["CookieYes"],"banner":false}
+
+Escuela Superior Politécnica del Litoral
+ESPOL
+{"host":"www.espol.edu.ec","cookies":4,"names":["TS014590ac","_ga_2QNGYSJLK4","_ga","_gid"],"cmp":["CookieYes"],"banner":true}
+
+
+Escuela Superior Politécnica de Chimborazo
+ESPOCH
+{"host":"www.espoch.edu.ec","cookies":1,"names":["cookieyes-consent"],"cmp":["CookieYes"],"banner":true}
+
+Escuela Superior Politécnica Agropecuaria de Manabí Manuel Félix López
+ESPAM MFL
+{"host":"www.espam.edu.ec","cookies":0,"names":[],"cmp":["CookieYes"],"banner":false}
+
+Universidad de las Fuerzas Armadas ESPE
+ESPE
+{"host":"www.espe.edu.ec","cookies":7,"names":["_ga_DNYB2YPXC9","_ga","__utma","__utmc","__utmz","__utmt","__utmb"],"cmp":["CookieYes"],"banner":false}
+
+
+Universidad Central del Ecuador
+UCE
+no disponible
+
+Universidad de Cuenca
+UCuenca
+{"host":"www.ucuenca.edu.ec","cookies":12,"names":["_ga","_ga_23BSZ91CCT","wp-wpml_current_language","pys_session_limit","pys_start_session","pys_first_visit","pysTrafficSource","pys_landing_page","last_pysTrafficSource","last_pys_landing_page"],"cmp":["Cookiebot","CookieYes"],"banner":true}
+
+Universidad de Guayaquil
+UG
+{"host":"www.ug.edu.ec","cookies":2,"names":["pvc_visits[0]","srs_unique_visitor"],"cmp":["CookieYes"],"banner":true}
+
+Universidad Nacional de Loja
+UNL
+{"host":"www.unl.edu.ec","cookies":2,"names":["_ga_HCDKPL9C20","_ga"],"cmp":["TrustArc","CookieYes"],"banner":false}
+
+Universidad Agraria del Ecuador
+UAE
+{"host":"www.uagraria.edu.ec","cookies":4,"names":["_ga","_gid","_gat","_ga_5PM2XSRM63"],"cmp":[],"banner":false}
+
+Universidad Técnica de Ambato
+UTA
+{"host":"uta.edu.ec","cookies":0,"names":[],"cmp":["CookieYes"],"banner":false}
+
+Universidad Técnica de Babahoyo
+UTB
+{"host":"utb.edu.ec","cookies":4,"names":["_gid","_gat_gtag_UA_68893477_2","_ga_WNXLYS2MLG","_ga"],"cmp":["TrustArc"],"banner":false}
+
+Universidad Técnica de Cotopaxi
+UTC
+{"host":"www.utc.edu.ec","cookies":0,"names":[],"cmp":[],"banner":false}
+
+Universidad Técnica de Machala
+UTMACH
+{"host":"www.utmachala.edu.ec","cookies":0,"names":[],"cmp":[],"banner":false}
+
+Universidad Técnica de Manabí
+UTM
+{"host":"www.utm.edu.ec","cookies":1,"names":["sppb_user_timezone"],"cmp":["CookieYes"],"banner":false}
+
+Universidad Técnica del Norte
+UTN
+{"host":"www.utn.edu.ec","cookies":2,"names":["_ga_SBC1J4DHX0","_ga"],"cmp":[],"banner":false}
+
+Universidad Técnica Estatal de Quevedo
+UTEQ
+{"host":"www.uteq.edu.ec","cookies":3,"names":["_ga_WVWWZZ7544","_ga","_ga_SSTPXREYGZ"],"cmp":["CookieYes"],"banner":false}
+
+Universidad Técnica Luis Vargas Torres de Esmeraldas
+UTELVT
+{"host":"www.utelvt.edu.ec","cookies":0,"names":[],"cmp":["CookieYes"],"banner":false}
+
+Universidad Estatal de Bolívar
+UEB
+{"host":"www.ueb.edu.ec","cookies":1,"names":["XSRF-TOKEN"],"cmp":["CookieYes"],"banner":false}
+
+Universidad Estatal del Sur de Manabí
+UNESUM
+{"host":"unesum.edu.ec","cookies":0,"names":[],"cmp":["CookieYes"],"banner":false}
+
+Universidad Estatal de Milagro
+UNEMI
+{"host":"www.unemi.edu.ec","cookies":7,"names":["_ga","_ga_MQGK6RGL8F","_clck","_fbp","_hjSessionUser_3074996","_hjSession_3074996","_clsk"],"cmp":["CookieYes"],"banner":false}
+
+Universidad Estatal Amazónica
+UEA
+{"host":"www.uea.edu.ec","cookies":2,"names":["_ga_450T1JQNMR","_ga"],"cmp":["CookieYes"],"banner":false}
+
+Universidad Estatal Península de Santa Elena
+UPSE
+{"host":"www.upse.edu.ec","cookies":1,"names":["sppb_user_timezone"],"cmp":["CookieYes"],"banner":false}
+
+Universidad Laica Eloy Alfaro de Manabí
+ULEAM
+{"host":"www.uleam.edu.ec","cookies":4,"names":["_gid","_gat_gtag_UA_81009815_1","_ga_12F9F68E6S","_ga"],"cmp":[],"banner":false}
+
+Universidad Nacional de Chimborazo
+UNACH
+{"host":"www.unach.edu.ec","cookies":5,"names":["_gid","_gat_gtag_UA_133447811_1","_ga_YQBSJ5PHNG","_ga","srs_unique_visitor"],"cmp":[],"banner":false}
+
+Universidad Nacional de Educación
+UNAE
+{"host":"unae.edu.ec","cookies":6,"names":["_ga_5FWX93M6TG","pll_language","_gid","_gat_gtag_UA_154339291_1","_ga_R13W2764LB","_ga"],"cmp":["CookieYes"],"banner":false}
+
+Universidad Politécnica Estatal del Carchi
+UPEC
+{"host":"upec.edu.ec","cookies":7,"names":["sbjs_migrations","sbjs_current_add","sbjs_first_add","sbjs_current","sbjs_first","sbjs_udata","sbjs_session"],"cmp":["CookieYes"],"banner":false}
+
+Universidad de Investigación de Tecnología Experimental Yachay
+Yachay Tech
+{"host":"yachaytech.edu.ec","cookies":0,"names":[],"cmp":["CookieYes"],"banner":false}
+
+Universidad Regional Amazónica Ikiam
+Ikiam
+{"host":"www.ikiam.edu.ec","cookies":2,"names":["_ga_HFS94B3LXM","_ga"],"cmp":["CookieYes"],"banner":false}
+
+Universidad de las Artes
+UArtes
+{"host":"www.uartes.edu.ec","cookies":2,"names":["_ga_8044E6TKJB","_ga"],"cmp":["CookieYes"],"banner":false}
+
+Universidad Intercultural de las Nacionalidades y Pueblos Indígenas Amawtay Wasi
+Amawtay Wasi
+{"host":"uaw.edu.ec","cookies":0,"names":[],"cmp":["CookieYes"],"banner":false}
+
+Universidad de Seguridad Ciudadana y Ciencias Policiales
+USECIPOL
+{"host":"usecipol.edu.ec","cookies":0,"names":[],"cmp":[],"banner":false}
+
+Instituto de Altos Estudios Nacionales
+IAEN
+{"host":"www.iaen.edu.ec","cookies":0,"names":[],"cmp":[],"banner":false}
+
+Universidad Andina Simón Bolívar, sede Ecuador
+UASB
+{"host":"www.uasb.edu.ec","cookies":22,"names":["_gcl_au","_ga_8G7C03T250","pys_session_limit","pys_start_session","pys_first_visit","pysTrafficSource","pys_landing_page","last_pysTrafficSource","last_pys_landing_page","_fbp"],"cmp":["Cookiebot","TCF","CookieYes"],"banner":true}
+
+FLACSO Ecuador
+FLACSO
+{"host":"www.flacso.edu.ec","cookies":4,"names":["_ga_KVZM8KVKWH","_ga","_gid","_gat"],"cmp":["TrustArc","CookieYes"],"banner":false}
+
+Pontificia Universidad Católica del Ecuador
+PUCE
+{"host":"www.puce.edu.ec","cookies":13,"names":["_ga","_ga_H8JQ0KWN0K","_gcl_au","_ga_1TG94HC9HF","_fbp","_tt_enable_cookie","_ttp","_clck","_clsk","_hjSessionUser_4991704"],"cmp":[],"banner":false}
+
+Universidad Católica de Santiago de Guayaquil
+UCSG
+{"host":"www.ucsg.edu.ec","cookies":15,"names":["PHPSESSID","pmpro_visit","sbjs_migrations","sbjs_current_add","sbjs_first_add","sbjs_current","sbjs_first","sbjs_udata","sbjs_session","_ga_Z1DV026L7M"],"cmp":["CookieYes","Complianz"],"banner":true}
+
+Universidad Católica de Cuenca
+UCACUE
+{"host":"www.ucacue.edu.ec","cookies":17,"names":["pys_session_limit","pys_start_session","pys_first_visit","pysTrafficSource","pys_landing_page","last_pysTrafficSource","last_pys_landing_page","_fbp","_ga_MSV6X9XSF1","_ga"],"cmp":["Cookiebot","CookieYes"],"banner":true}
+
+Universidad Laica Vicente Rocafuerte de Guayaquil
+ULVR
+{"host":"www.ulvr.edu.ec","cookies":0,"names":[],"cmp":["CookieYes"],"banner":false}
+
+Universidad Técnica Particular de Loja
+UTPL
+{"host":"www.utpl.edu.ec","cookies":5,"names":["_fbp","_ga","_ga_5W6THEE90T","_clck","_clsk"],"cmp":[],"banner":false}
+
+Universidad UTE
+UTE
+{"host":"ute.edu.ec","cookies":3,"names":["burst_uid","_ga_GP7MSYBCD5","_ga"],"cmp":["CookieYes"],"banner":false}
+
+Universidad del Azuay
+UDA
+{"host":"www.uazuay.edu.ec","cookies":2,"names":["_hjSessionUser_3811066","_hjSession_3811066"],"cmp":["TrustArc"],"banner":true}
+
+Universidad Politécnica Salesiana
+UPS
+{"host":"www.ups.edu.ec","cookies":17,"names":["_gid","_gat","_gcl_au","_clck","LFR_SESSION_STATE_20102","_ga_G3SXTJRVXE","_ga","_fbp","_tt_enable_cookie","_ttp"],"cmp":[],"banner":false}
+
+Universidad Internacional SEK
+UISEK
+{"host":"uisek.edu.ec","cookies":14,"names":["pvc_visits[0]","_tt_enable_cookie","_ttp","_gid","_gat_UA-27018080-1","_gat_gtag_UA_120295323_1","_ga_XJR5CJJLR4","_ga","_ga_ES4V2WR0X1","_gcl_au"],"cmp":[],"banner":false}
+
+Universidad de Especialidades Espíritu Santo
+UEES
+{"host":"uees.edu.ec","cookies":17,"names":["_gcl_au","_gid","_gat_UA-172180399-2","_gat_UA-217409406-3","_fbp","_ga","_tt_enable_cookie","_ttp","_twpid","_clck"],"cmp":["CookieYes"],"banner":false}
+
+Universidad San Francisco de Quito
+USFQ
+{"host":"www.usfq.edu.ec","cookies":3,"names":["_ga_G80CBJM3N2","_ga","_fbp"],"cmp":["TrustArc"],"banner":false}
+
+Universidad de las Américas
+UDLA
+www.udla.edu.ec
+{"host":"www.udla.edu.ec","cookies":6,"names":["NEXT_LOCALE","rxVisitor","dtSa","dtCookie","rxvt","dtPC"],"cmp":["Cookiebot","Usercentrics"],"banner":true}
+
+Universidad Internacional del Ecuador
+UIDE
+{"host":"www.uide.edu.ec","cookies":7,"names":["_uetsid","_uetvid","cookieyes-consent","_pin_unauth","tfpsi","_clck","_clsk"],"cmp":["CookieYes"],"banner":true}
+
+Universidad Regional Autónoma de los Andes
+UNIANDES
+{"host":"www.uniandes.edu.ec","cookies":0,"names":[],"cmp":["CookieYes"],"banner":false}
+
+Universidad del Pacífico Escuela de Negocios
+UPACÍFICO
+{"host":"upacifico.edu.ec","cookies":4,"names":["_gcl_au","ma_popup_visitor","_ga_4DXVYNQP5Y","_ga"],"cmp":["CookieYes"],"banner":false}
+
+Universidad Tecnológica Indoamérica
+UTI
+{"host":"www.indoamerica.edu.ec","cookies":24,"names":["pys_session_limit","pys_start_session","pys_first_visit","pysTrafficSource","pys_landing_page","last_pysTrafficSource","last_pys_landing_page","_fbp","_cs_c","_cs_id"],"cmp":["Cookiebot","CookieYes"],"banner":false}
+
+Universidad Casa Grande
+Casa Grande
+{"host":"www.casagrande.edu.ec","cookies":4,"names":["_gcl_au","_ga_9X04C12TB4","_ga","_fbp"],"cmp":[],"banner":false
+
+Universidad Tecnológica Empresarial de Guayaquil
+UTEG
+{"host":"www.uteg.edu.ec","cookies":16,"names":["wp-wpml_current_language","gp_easy_passthrough_session","pys_session_limit","pys_start_session","pys_first_visit","pysTrafficSource","pys_landing_page","last_pysTrafficSource","last_pys_landing_page","pbid"],"cmp":[],"banner":false}
+
+Universidad Tecnológica Israel
+UISRAEL
+{"host":"www.uisrael.edu.ec","cookies":12,"names":["pys_session_limit","pys_start_session","pys_first_visit","pysTrafficSource","pys_landing_page","last_pysTrafficSource","last_pys_landing_page","_fbp","pbid","_ga_V27RS2GGDQ"],"cmp":["Cookiebot","Complianz"],"banner":true}
+
+Universidad de Especialidades Turísticas
+UDET
+{"host":"udet.edu.ec","cookies":5,"names":["_ga_XNE2Q2CKBY","_gid","_gat_gtag_UA_214964925_1","_ga_EJ3V1JB3S2","_ga"],"cmp":[],"banner":false}
+
+Universidad Metropolitana del Ecuador
+UMET
+{"host":"umet.edu.ec","cookies":9,"names":["-CvHXKGnZahzY_yQ","QYyzCie-THwMxo","wVMTf_","NOmWDnU","pll_language","_gcl_au","_ga","_ga_2J1L9P1VMY","_fbp"],"cmp":["CookieYes"],"banner":false}
+
+Universidad de Otavalo
+U. Otavalo
+{"host":"www.uotavalo.edu.ec","cookies":0,"names":[],"cmp":["CookieYes"],"banner":false}
+
+Universidad San Gregorio de Portoviejo
+USGP
+{"host":"www.sangregorio.edu.ec","cookies":8,"names":["_gcl_au","_tt_enable_cookie","_ttp","ttcsid","ttcsid_CPCA7BBC77U09VQADIEG","vk","sk","spvc"],"cmp":[],"banner":false}
+
+
+Universidad de los Hemisferios
+U. Hemisferios
+{"host":"www.uhemisferios.edu.ec","cookies":11,"names":["PHPSESSID","_ga_ZFRLYLC1Y6","_ga","_gid","_gat_UA-134045233-1","_fbp","_gcl_au","__hstc","hubspotutk","__hssrc"],"cmp":["CookieYes"],"banner":false}
+
+Universidad Iberoamericana del Ecuador
+UNIB.E
+{"host":"unibe.edu.ec","cookies":0,"names":[],"cmp":["CookieYes"],"banner":false}
+
+Universidad Tecnológica Ecotec
+ECOTEC
+{"host":"ecotec.edu.ec","cookies":22,"names":["_gcl_au","cmplz_consent_mode","_ga_MFVR4S8MFR","_ga","pll_language","ft_utm_source","ft_utm_medium","ft_landing","ft_referrer","ft_timestamp"],"cmp":["Complianz"],"banner":true}
+
+Universidad del Río
+UDR
+{"host":"udr.edu.ec","cookies":4,"names":["_ga_5HXBYBZBNB","_ga","_ga_8F7QTS9R25","_ga_WQNLTBSK8V"],"cmp":[],"banner":false}
+
+Universidad Bolivariana del Ecuador
+UBE
+{"host":"ube.edu.ec","cookies":0,"names":[],"cmp":["CookieYes"],"banner":true}
