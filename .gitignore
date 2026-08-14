@@ -1,1 +1,65 @@
 *.zip 
+@'
+
+# ================= LaTeX: archivos generados =================
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.nav
+*.snm
+*.vrb
+*.idx
+*.ind
+*.ilg
+*.glo
+*.gls
+*.glg
+*.acn
+*.acr
+*.alg
+*.ist
+*.bcf
+*.run.xml
+*.xdv
+
+# ================= Office: temporales de bloqueo =================
+~$*
+
+# ================= PDF generados desde .tex =================
+'@ | Out-File -FilePath .gitignore -Encoding utf8 -Append
+/Alarmas Geolocalizables/els-cas-templates/cas-dc-sample.pdf
+/Alarmas Geolocalizables/els-cas-templates/cas-sc-sample.pdf
+/Alarmas Geolocalizables/els-cas-templates/doc/elsdoc-cas.pdf
+/Alarmas Geolocalizables/RutAI/informerevisor.pdf
+/Alarmas Geolocalizables/RutAI/rutai-pmc.pdf
+/Alarmas Geolocalizables/RutAI/rutai-pmc-es.pdf
+/BellChat V2/bellchatv2.pdf
+/BellChat V2/BellChatV3.pdf
+/BellChat V2/BellChatV4.pdf
+/BellChat V2/IEEE Transactions on Human-Machine Systems/bellchatv2.pdf
+/BellChat V2/main.pdf
+/ChildrenWorkOut/LaTeX/FitKids/main.pdf
+/CompetenciasEnEscolares/QuizKids/main.pdf
+/Eduación e IA/protocolo_iagen_v2.pdf
+/Eduación e IA/solicitud_promedios.pdf
+/latex/main.pdf
+/LLMTDD/Enfoque_UTE/main_en.pdf
+/LLMTDD/llmtdd/main.pdf
+/NeuroPlay/NeuroPlay.pdf
+/ParentalControl/cas-dc-sample.pdf
+/ParentalControl/cas-sc-sample.pdf
+/ParentalControl/doc/elsdoc-cas.pdf
+/Requirements Engineering/Guia_Rubrica_PFC_Entrega3_2A.pdf
+/Requirements Engineering/Guia_Rubrica_PFC_Entrega4_2B.pdf
+/Torddis-anteriores/Torddis-Manuscript/tordis-eait.pdf
+/Torddis-anteriores/Torddis-Manuscript/tordis-eait-anon.pdf
+/Torddis-anteriores/Torddis-Manuscript/tordis-eait-supplementary-main.pdf

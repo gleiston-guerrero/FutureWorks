@@ -42,6 +42,14 @@
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 \setlist{leftmargin=1.5em, topsep=2pt, itemsep=1pt}
 
+% Evita desbordes de margen por rutas largas en \texttt y URLs
+\usepackage[htt]{hyphenat}
+\emergencystretch=3em
+\tolerance=2000
+\hyphenpenalty=1000
+\Urlmuskip=0mu plus 1mu\relax
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do\/\do\-\do\_\do\.}
+
 % ---- Encabezado / pie ------------------------------------------------
 \pagestyle{fancy}
 \fancyhf{}
@@ -73,7 +81,7 @@
     left=7pt,right=7pt,top=5pt,bottom=5pt,fonttitle=\bfseries\color{white},coltitle=white,colbacktitle=uteqgreen,#1}
 \newtcolorbox{alertbox}[1][]{colback=red!4,colframe=red!60!black,boxrule=0.8pt,arc=2pt,
     left=7pt,right=7pt,top=5pt,bottom=5pt,fonttitle=\bfseries\color{white},coltitle=white,colbacktitle=red!60!black,#1}
-\newtcolorbox{evidbox}[1][]{colback=teal1!7,colframe=teal1,boxrule=0.8pt,arc=2pt,
+\newtcolorbox{evidbox}[1][]{colback=teal1!7,colframe=teal1,boxrule=0.8pt,arc=2pt,breakable,
     left=7pt,right=7pt,top=5pt,bottom=5pt,fonttitle=\bfseries\color{white},coltitle=white,colbacktitle=teal1,#1}
 \newtcolorbox{pubbox}[1][]{colback=purpleimpact!5,colframe=purpleimpact,boxrule=0.8pt,arc=2pt,
     left=7pt,right=7pt,top=5pt,bottom=5pt,fonttitle=\bfseries\color{white},coltitle=white,colbacktitle=purpleimpact,#1}
@@ -107,6 +115,7 @@
     Modalidad: & Grupal (3--4 integrantes) · sistema de software \textbf{real} con cliente identificable\\
     Repositorio: & GitHub obligatorio · Registro OSF del protocolo · Depósito Zenodo con Identificador de Objeto Digital\footnote{En inglés: \emph{Digital Object Identifier}, DOI.} (DOI)\\
     Entregable: & Manuscrito final en formato de la revista objetivo (PDF $+$ fuente LaTeX) $+$ paquete de replicación FAIR $+$ defensa oral\\
+    Marco ético: & Paquete Integral de Anexos y Guías de Elaboración --- Solicitud de Aprobación Ética de los Proyectos Fin de Curso (ISR-401, 2026--2027 PPA). La documentación ética aprobada reposa en \texttt{08\_Etica/} y su vigencia es condición de admisión (gatekeeper G8).\\
     Semana: & 17 del Período Académico Ordinario (PPA) 2026--2027 (Segunda entrega del segundo parcial y defensa final)\\
     Corte: & Domingo 15 de noviembre de 2026, 23:59 (fecha del último commit válido)\\
     Defensa: & Semanas 17 (calendario acordado con la docencia; presentación oral de 25 minutos $+$ 10 minutos de preguntas)\\
@@ -122,6 +131,13 @@
     Toda cifra o resultado que no pueda regenerarse ejecutando los scripts sobre los datos crudos publicados en Zenodo se considera fabricación y anula el envío del manuscrito.
     El uso de un Modelo Grande de Lenguaje\footnote{En inglés: \emph{Large Language Model}, LLM.} (LLM) para pulir la redacción de párrafos cuyo contenido ustedes ya escribieron con base en datos empíricos es aceptable y debe declararse en la sección de agradecimientos siguiendo las directrices de \cite{elsevier_ai_2023,springer_ai_2023}; el uso de un LLM para \emph{producir} resultados, cifras, tablas o conclusiones no lo es.
 \end{alertbox}
+
+\begin{notabox}[title=Cláusula de armonización con el Paquete de Anexos y Guías de Aprobación Ética]
+    Esta guía y el Paquete Integral de Anexos y Guías de Elaboración forman un solo cuerpo normativo y deben cumplirse simultáneamente.
+    Primero, nomenclatura única de entregas: Entrega 1 (1A, semana 4), Entrega 2 (1B, semana 10), Entrega 3 (2A, semana 13) y Entrega 4 (2B/Defensa, semana 17); ambos documentos usan esta equivalencia.
+    Segundo, carpeta ética: toda la documentación ética reside en \texttt{08\_Etica/}, carpeta que forma parte del árbol obligatorio de la Sección 9.1; la carpeta \texttt{06\_Experimento/} se reserva para el componente empírico.
+    Tercero, zonas de evidencia: la evidencia se organiza en zona pública [P] y zona restringida [R] según la Sección 3; ninguna exigencia de esta guía se cumple publicando datos identificables.
+\end{notabox}
 
 % =====================================================================
 %  SECCION 1: CONTEXTO
@@ -165,8 +181,9 @@ El equipo debe partir del ERS/SRS completo con todas las observaciones docentes 
 Debe existir al menos el 50\,\% de los datos primarios necesarios ya recogidos y en proceso de análisis: al menos 12 de las 16 entrevistas objetivo transcritas, al menos 30 de las 60 respuestas de cuestionario capturadas por perfil dominante, y la codificación temática abierta iniciada según Hennink, Kaiser y Marconi \cite{hennink2017saturation}.
 
 \submark{2.3 Ético-legal}
-Cada participante que se incorpore en esta ronda terminal debe firmar un nuevo consentimiento informado, redactado en cumplimiento de la Ley Orgánica de Protección de Datos Personales del Ecuador \cite{ley_datos_ecuador_2021}, con autorización explícita para el eventual uso de sus datos anonimizados en publicaciones científicas revisadas por pares.
-Los datos publicados en Zenodo deben estar anonimizados según los principios de minimización y seudonimización descritos por la propia Ley y por las guías de investigación cualitativa reproducible \cite{molleri2020checklist,wilkinson2016fair}.
+El paquete ético base del proyecto (documentos A.1 a A.13 del Anexo A más los específicos de su categoría de riesgo) debe estar completo y \textbf{vigente} en \texttt{08\_Etica/}, junto con la \texttt{Adenda\_Segunda\_Ronda.pdf} cargada en la Entrega 3 (2A) con fecha anterior al primer consentimiento nuevo, conforme al Paquete Integral de Anexos y Guías de Aprobación Ética.
+Cada participante que se incorpore en esta ronda terminal debe firmar un nuevo consentimiento informado, redactado en cumplimiento de la Ley Orgánica de Protección de Datos Personales del Ecuador \cite{ley_datos_ecuador_2021}, con autorización explícita para el uso de sus datos anonimizados en publicaciones científicas revisadas por pares y para el depósito del conjunto de datos anonimizado en Zenodo con licencia CC BY 4.0.
+Ningún consentimiento autoriza la publicación de datos identificables: la firma, la cédula, el rostro y la voz permanecen en la zona restringida [R] definida en la Sección 3; los datos publicados en Zenodo deben estar anonimizados según los principios de minimización y seudonimización de la propia Ley y de las guías de investigación reproducible \cite{molleri2020checklist,wilkinson2016fair}.
 
 \submark{2.4 Instrumentales}
 Debe existir el paquete de análisis versionado en \texttt{06\_Experimento/scripts\_analisis/} con al menos las funciones de importación de datos, limpieza básica y estadísticos descriptivos operativas y con \texttt{README} de instrucciones de ejecución reproducible.
@@ -179,20 +196,27 @@ Debe existir el paquete de análisis versionado en \texttt{06\_Experimento/scrip
 En esta entrega los equipos completan la recolección de datos hasta alcanzar los mínimos empíricos comprometidos con la revista objetivo.
 La segunda ronda extendida iniciada en la Entrega 3 (2A) se cierra con la tercera ronda de campo, orientada específicamente a llenar los vacíos detectados en la codificación temática abierta y a alcanzar el punto de saturación de significado documentado por \cite{hennink2017saturation}.
 
-\begin{longtable}{@{}L{0.32\linewidth} L{0.32\linewidth} L{0.30\linewidth}@{}}
-    \hh{Tipo de evidencia} & \hh{Cantidad mínima terminal} & \hh{Formato y ubicación}\\
+\begin{evidbox}[title=Zonas de evidencia --- se conservan de la Entrega 3 (2A)]
+    Toda la evidencia reside dentro del repositorio, organizada en dos zonas.
+    Zona pública [P]: transcripciones anonimizadas, copias enmascaradas de consentimientos (con cédula y firma cubiertas y el código de participante visible), fotografías sin rostros ni coordenadas GPS, respuestas de cuestionario sin columnas identificativas, documentos anonimizados, actas enmascaradas, codificación temática y fichas técnicas de cada archivo multimedia (duración, códec, tamaño y hash SHA-256).
+    Zona restringida [R]: material identificable (consentimientos originales, videos y audios sin anonimizar, actas con firma visible y documentos originales), almacenado en \texttt{02\_Evidencias/00\_Restringido/} como contenedor cifrado con AES-256 (7-Zip o VeraCrypt), con la contraseña entregada únicamente al docente por el SGA, nunca dentro del repositorio.
+    Verificación: el hash SHA-256 de cada archivo se calcula antes de cifrar y consta en \texttt{checksums.sha256} y en \texttt{fichas\_tecnicas.csv}; un archivo de la ficha que no aparezca en el contenedor, o cuyo hash no coincida, se trata como evidencia ausente o sustituida y dispara el gatekeeper G4.
+\end{evidbox}
+
+\begin{longtable}{@{}L{0.28\linewidth} L{0.34\linewidth} L{0.32\linewidth}@{}}
+    \hh{Tipo de evidencia} & \hh{Cantidad mínima terminal (objetivo 2B de cierre)} & \hh{Zona, formato y ubicación}\\
     \endfirsthead
-    \hh{Tipo de evidencia} & \hh{Cantidad mínima terminal} & \hh{Formato y ubicación}\\
+    \hh{Tipo de evidencia} & \hh{Cantidad mínima terminal (objetivo 2B de cierre)} & \hh{Zona, formato y ubicación}\\
     \endhead
-    Consentimientos firmados & \(\geq 24\) participantes distintos, con al menos 3 perfiles bien representados & JPG/PNG/PDF; \texttt{02\_Evidencias/Consentimientos/}\\
-    Videos reales de entrevistas & \(\geq 24\) archivos, con duración total \(\geq 360\) minutos & MP4 H.264; \texttt{02\_Evidencias/Video/}\\
-    Audios reales de entrevistas & \(\geq 24\) archivos, redundantes con los videos & MP3/WAV; \texttt{02\_Evidencias/Audio/}\\
-    Transcripciones anonimizadas & Una por entrevista, en Markdown o JSON estructurado, con seudónimos que sustituyan nombres propios & MD o JSON; \texttt{02\_Evidencias/Transcripciones/}\\
-    Codificación temática cerrada y curva de saturación & Tabla completa $+$ figura de la curva de saturación con inflexión visible (códigos nuevos por entrevista tendiendo a cero) & CSV $+$ PNG/PDF; \texttt{02\_Evidencias/Codificacion\_Tematica/}\\
-    Respuestas del cuestionario & \(n \geq 60\) respuestas por perfil dominante, o justificación con cálculo de potencia estadística (Cohen $d=0{,}5$, $\alpha=0{,}05$, $1-\beta=0{,}80$) siguiendo \cite{molleri2020checklist} & CSV/XLSX exportado; \texttt{02\_Evidencias/Cuestionario/Respuestas/}\\
-    Documentos originales de la organización cliente & \(\geq 5\) documentos de tipos distintos & PDF; \texttt{02\_Evidencias/Documentos\_Organizacion/}\\
-    Sesiones de validación cerradas \emph{(walkthrough)} & \(\geq 6\) sesiones grabadas con acta firmada, 3 con usuarios técnicos $+$ 3 con usuarios no técnicos & MP4 $+$ PDF de acta firmada\\
-    Sesión final de miembro-verificación \emph{(member checking)} & 1 sesión con al menos 3 participantes previos del estudio confirmando la interpretación de los resultados \cite{birt2016member} & MP4 $+$ PDF de acta\\
+    Consentimientos firmados & \(\geq 16\) participantes distintos acumulados (24 recomendado), con al menos 3 perfiles bien representados & [R] original cifrado en \texttt{00\_Restringido/} $+$ [P] copia enmascarada en \texttt{Consentimientos/}\\
+    Videos reales de entrevistas & \(\geq 16\) archivos, con duración total \(\geq 240\) minutos & [R] contenedor cifrado $+$ ficha técnica pública en \texttt{fichas\_tecnicas.csv}\\
+    Audios reales de entrevistas & \(\geq 16\) archivos, redundantes con los videos & [R] contenedor cifrado $+$ ficha técnica pública\\
+    Transcripciones anonimizadas & Una por entrevista, en Markdown o JSON estructurado, con seudónimos y código de participante que sustituyan nombres propios & [P] \texttt{02\_Evidencias/Transcripciones/}\\
+    Codificación temática cerrada y curva de saturación & Tabla completa $+$ figura de la curva de saturación con inflexión visible (códigos nuevos por entrevista tendiendo a cero) & [P] CSV $+$ PNG/PDF en \texttt{Codificacion\_Tematica/}\\
+    Respuestas del cuestionario & \(n \geq 60\) respuestas por perfil dominante, o justificación con cálculo de potencia estadística (Cohen $d=0{,}5$, $\alpha=0{,}05$, $1-\beta=0{,}80$) siguiendo \cite{molleri2020checklist} & [P] CSV/XLSX sin columnas identificativas en \texttt{Cuestionario/Respuestas/}\\
+    Documentos originales de la organización cliente & \(\geq 5\) documentos de tipos distintos & [P] anonimizados en \texttt{Documentos\_Organizacion/}; originales en [R]\\
+    Sesiones de validación cerradas \emph{(walkthrough)} & \(\geq 6\) sesiones con acta firmada, 3 con usuarios técnicos $+$ 3 con usuarios no técnicos & [P] acta enmascarada $+$ [R] grabación en el contenedor cifrado\\
+    Sesión final de miembro-verificación \emph{(member checking)} & 1 sesión con al menos 3 participantes previos del estudio confirmando la interpretación de los resultados \cite{birt2016member} & [P] acta enmascarada $+$ [R] grabación en el contenedor cifrado\\
 \end{longtable}
 
 \begin{notabox}[title=Sobre el punto de saturación y su reporte editorial]
@@ -204,6 +228,7 @@ La segunda ronda extendida iniciada en la Entrega 3 (2A) se cierra con la tercer
 \begin{alertbox}[title=Regla estricta de evidencias --- terminal]
     En esta entrega terminal, cualquier evidencia declarada en el ERS o en el manuscrito y \textbf{ausente} del repositorio o \textbf{no verificable} anula el sub-criterio correspondiente y activa el gatekeeper G4 si el patrón se repite en más de dos casos.
     Todo archivo cuyo contenido no corresponda al tipo declarado (\texttt{.mp3} de 54 bytes ASCII, \texttt{.jpg} en blanco, \texttt{.mp4} con imagen anime en lugar de una entrevista real) se considera evidencia falsificada, dispara el gatekeeper G4 con nota máxima 2,50/10 y descalifica automáticamente el manuscrito para el envío.
+    El docente descifra el contenedor \texttt{02\_Evidencias/00\_Restringido/}, ejecuta \texttt{ffprobe} y \texttt{sha256sum} y contrasta contra \texttt{fichas\_tecnicas.csv}; publicar datos identificables (firma, cédula, rostro, voz o coordenadas GPS) en la zona pública activa el gatekeeper G8, con retiro inmediato del material.
 \end{alertbox}
 
 % =====================================================================
@@ -322,7 +347,7 @@ Esta sección orienta la elección del ángulo específico del manuscrito para c
 Para cada proyecto se ofrece: el dominio del sistema (con la abreviatura interna que ya se ha usado en el semestre); la pregunta de investigación principal sugerida; el enfoque metodológico recomendado; los perfiles de participantes que definen los estratos muestrales; y las palabras clave alineadas con el vocabulario editorial de la revista objetivo.
 Cada equipo puede modificar la pregunta principal, pero debe declarar la modificación por escrito y justificar por qué mantiene el compromiso con el mínimo empírico.
 
-\begin{longtable}{@{}p{0.09\linewidth} p{0.20\linewidth} p{0.31\linewidth} p{0.12\linewidth} p{0.20\linewidth}@{}}
+\begin{longtable}{@{}p{0.115\linewidth} p{0.185\linewidth} p{0.30\linewidth} p{0.12\linewidth} p{0.20\linewidth}@{}}
     \hh{Equipo} & \hh{Dominio del sistema} & \hh{Pregunta de investigación sugerida} & \hh{Enfoque} & \hh{Palabras clave para revista}\\
     \endfirsthead
     \hh{Equipo} & \hh{Dominio del sistema} & \hh{Pregunta de investigación sugerida} & \hh{Enfoque} & \hh{Palabras clave para revista}\\
@@ -396,7 +421,7 @@ Los tres a cuatro integrantes deben participar en la presentación con al menos 
 El tribunal formula preguntas a integrantes específicos y evalúa la capacidad individual de responder por las decisiones metodológicas y por los datos.
 
 \submark{8.3 Materiales de presentación}
-Se depositan en \texttt{08\_Defensa/} del repositorio los siguientes materiales: presentación en PDF (obligatorio) y en formato editable (recomendado); guion de la presentación con los tiempos por diapositiva; video de la defensa grabada localmente; folleto de una hoja (formato Letter, A4 opcional) con el resumen estructurado y los resultados principales, listo para entregar al tribunal impreso.
+Se depositan en \texttt{09\_Defensa/} del repositorio los siguientes materiales: presentación en PDF (obligatorio) y en formato editable (recomendado); guion de la presentación con los tiempos por diapositiva; video de la defensa grabada localmente; folleto de una hoja (formato Letter, A4 opcional) con el resumen estructurado y los resultados principales, listo para entregar al tribunal impreso.
 
 \submark{8.4 Preparación de la demostración}
 La demostración corta del prototipo debe cubrir dos escenarios de la matriz de trazabilidad, previamente identificados por el equipo, y debe ejecutarse en un entorno estable (idealmente en un despliegue Docker con \texttt{docker compose up}).
@@ -417,9 +442,9 @@ La estructura extiende la ya normada en la Entrega 3 (2A) para incorporar la car
 \submark{9.1 Estructura de carpetas obligatoria en la Entrega 4 (2B)}
 \begin{evidbox}[title=Árbol de carpetas obligatorio de la Entrega 4 (2B / Defensa)]
     \begingroup
-        \small\ttfamily
+        \footnotesize\ttfamily
         \begin{tabbing}
-            MMMM\=MMMM\=MMMM\=MMMM\=MMMM\=\kill
+            MM\=MM\=MM\=MM\=MM\=\kill
             Nombre\_Proyecto\_ISR401/\\
             \>README.md\\
             \>LICENSE\\
@@ -433,9 +458,10 @@ La estructura extiende la ya normada en la Entrega 3 (2A) para incorporar la car
             \>\>ERS\_SRS\_2B\_v2.0.tex\\
             \>\>referencias.bib\\
             \>02\_Evidencias/\\
-            \>\>Consentimientos/\\
-            \>\>Video/\\
-            \>\>Audio/\\
+            \>\>00\_Restringido/ [R] cifrado AES-256\\
+            \>\>\>evidencias\_restringidas.7z\\
+            \>\>\>fichas\_tecnicas.csv\\
+            \>\>Consentimientos/ [P] enmascarados\\
             \>\>Transcripciones/\\
             \>\>Fotos\_Entorno/\\
             \>\>Cuestionario/\\
@@ -468,7 +494,13 @@ La estructura extiende la ya normada en la Entrega 3 (2A) para incorporar la car
             \>\>\>ANONYMIZATION.md\\
             \>\>\>ETHICS.md\\
             \>\>\>README\_dataset.md\\
-            \>08\_Defensa/\\
+            \>08\_Etica/\\
+            \>\>A01\_Protocolo\_Investigacion.pdf ... A13 (Anexo A)\\
+            \>\>Categoria\_A/ | \_B/ | \_C/\\
+            \>\>Aval\_Institucional.pdf\\
+            \>\>Adenda\_Segunda\_Ronda.pdf\\
+            \>\>README\_Etica.md\\
+            \>09\_Defensa/\\
             \>\>presentacion.pdf\\
             \>\>presentacion.pptx\\
             \>\>guion.pdf\\
@@ -485,7 +517,7 @@ La estructura extiende la ya normada en la Entrega 3 (2A) para incorporar la car
     \hh{Archivo} & \hh{Contenido mínimo obligatorio}\\
     \endhead
     \texttt{README.md} & Nombre del sistema, integrantes con roles y ORCID, resumen del dominio, enlace al ERS PDF v2.0, enlace al manuscrito final, enlace al DOI del paquete Zenodo, enlace al registro OSF (con las desviaciones), enlace al SWHID de Software Heritage, cita recomendada, instrucciones para reproducir el análisis experimental.\\
-    \texttt{LICENSE} & Licencia MIT o Apache-2.0 para el código del MVP; CC BY 4.0 para los datos y el documento; scope explícito de cada licencia.\\
+    \texttt{LICENSE} & Licencia MIT o Apache-2.0 para el código del MVP; CC BY 4.0 para el documento y el conjunto de datos anonimizado; \emph{scope} explícito de cada licencia, declarando de forma expresa que el contenido de \texttt{02\_Evidencias/00\_Restringido/} no se licencia, no se redistribuye y no forma parte del depósito abierto.\\
     \texttt{CITATION.cff} & Archivo YAML v1.2.0 \cite{druskat2021cff} con \texttt{authors} (con ORCID), \texttt{title}, \texttt{version 2.0}, \texttt{date-released}, \texttt{doi} de Zenodo, \texttt{identifiers} con el SWHID. Su presencia habilita el botón \emph{Cite this repository} de GitHub.\\
     \texttt{CHANGELOG.md} & Historial de versiones desde la Entrega 1A hasta la Entrega 4 (2B), con las adiciones, cambios y correcciones por versión, siguiendo Keep a Changelog.\\
     \texttt{checksums.sha256} & Hash SHA-256 de todos los archivos multimedia y del paquete Zenodo; generado con \texttt{sha256sum} y verificable con \texttt{sha256sum -c}.\\
@@ -498,12 +530,15 @@ La estructura extiende la ya normada en la Entrega 3 (2A) para incorporar la car
     \endfirsthead
     \hh{\phantom{X}} & \hh{Ítem verificable}\\
     \endhead
-    $\square$ & La estructura de carpetas coincide exactamente con la del árbol de la Sección 9.1.\\
+    $\square$ & La estructura de carpetas coincide exactamente con la del árbol de la Sección 9.1, incluidas \texttt{02\_Evidencias/00\_Restringido/}, \texttt{08\_Etica/} y \texttt{09\_Defensa/}.\\
+    $\square$ & La documentación ética está completa y vigente en \texttt{08\_Etica/}: paquete base A.1--A.13, aval institucional y \texttt{Adenda\_Segunda\_Ronda.pdf} con fecha anterior al primer consentimiento nuevo.\\
+    $\square$ & El contenedor \texttt{02\_Evidencias/00\_Restringido/} abre con la contraseña entregada por el SGA y su contenido corresponde a \texttt{fichas\_tecnicas.csv} (\texttt{ffprobe} y \texttt{sha256sum} coinciden).\\
     $\square$ & Existen los seis archivos raíz obligatorios, incluido \texttt{fair\_assessment.pdf}.\\
     $\square$ & El PDF del ERS/SRS v2.0 está unificado, numerado, con historial de versiones y con enlace al DOI de Zenodo en la portada.\\
-    $\square$ & Todos los archivos multimedia siguen la nomenclatura \texttt{YYYY-MM-DD\_Tipo\_Nombre\_Tecnica.ext}.\\
+    $\square$ & Todos los archivos multimedia siguen la nomenclatura \texttt{YYYY-MM-DD\_Tipo\_Codigo\_Tecnica.ext} y usan el código de participante, no el nombre propio.\\
     $\square$ & Cada archivo declarado como audio o video pasa \texttt{ffprobe} sin error y muestra duración mayor a cero.\\
-    $\square$ & Cada consentimiento firmado es una imagen o PDF con firma manuscrita visible y cédula legible.\\
+    $\square$ & Cada consentimiento de la zona pública tiene cédula y firma enmascaradas, y su original íntegro está en el contenedor cifrado \texttt{00\_Restringido/}.\\
+    $\square$ & Ninguna evidencia publicada conserva datos identificables: fotografías sin rostros ni coordenadas GPS y respuestas sin columnas de nombre, correo, teléfono o IP.\\
     $\square$ & El paquete Zenodo tiene DOI persistente y aparece en el \texttt{CITATION.cff} y en el \texttt{README.md}.\\
     $\square$ & El repositorio GitHub tiene SWHID asignado por Software Heritage y aparece en \texttt{CITATION.cff}.\\
     $\square$ & El registro OSF está actualizado con la sección de desviaciones respecto del protocolo.\\
@@ -533,7 +568,7 @@ Los pesos suman $10{,}00$ y se reparten en tres bloques: cierre del ERS/SRS y de
         C1 & ERS/SRS v2.0 completo y coherente & PDF unificado con las observaciones docentes de 2A resueltas; sin secciones \emph{pendientes}; sin fragmentos por integrante & 1,00 & Sin unificación $=$ 0\\
         C2 & Modelado UML y trazabilidad terminales & Diagramas UML consistentes con el código del MVP; matriz de trazabilidad con al menos 60 filas cerradas & 0,75 & Trazabilidad Ley$\rightarrow$Mockup completa\\
         C3 & Prototipo funcional (MVP) & Cobertura $\geq 80\%$ de RF \emph{Must have}, despliegue con \texttt{docker compose up} o equivalente, video de demostración corto & 0,75 & Sin ejecutable $=$ 0\\
-        C4 & Trabajo de campo terminal y consentimientos & $\geq 24$ consentimientos, $\geq 24$ videos, $\geq 24$ audios, cuestionario $n \geq 60$ por perfil o \emph{power calc}, sesión de \emph{member checking} & 0,50 & Evidencia falsificada $\Rightarrow$ G4\\
+        C4 & Trabajo de campo terminal, zonas y consentimientos & $\geq 16$ consentimientos (24 recomendado), $\geq 16$ videos ($\geq 240$ min), $\geq 16$ audios, cuestionario $n \geq 60$ por perfil o \emph{power calc}, sesión de \emph{member checking}, zonas [P]/[R] respetadas & 0,50 & Evidencia falsificada o datos identificables publicados $\Rightarrow$ G4/G8\\
         \multicolumn{5}{@{}l}{\hg{Bloque B --- Componente empírico y publicación (5,00 puntos)}}\\
         C5 & Análisis empírico ejecutado y reproducible & \emph{Scripts} en R o Python que reproducen tablas y figuras del manuscrito; pruebas de supuestos y de hipótesis con tamaño de efecto e intervalos de confianza & 1,00 & Sin reproducibilidad $=$ 0\\
         C6 & Curva de saturación o cálculo de potencia estadística & Curva con inflexión visible (Enfoques 1 y 3) o \emph{power calculation} explícito (Enfoques 1 y 2) & 0,50 & Ausencia motivaría rechazo editorial\\
@@ -553,10 +588,11 @@ Los pesos suman $10{,}00$ y se reparten en tres bloques: cierre del ERS/SRS y de
     \item \textbf{G1}: Entrega dentro del plazo con enlace verificable al repositorio GitHub. Fuera de plazo $\Rightarrow$ nota máxima 2,50/10.
     \item \textbf{G2}: Manuscrito completo, en la plantilla oficial de la revista o conferencia objetivo, en un único PDF con fuente LaTeX en el repositorio. Ausencia o plantilla \emph{genérica} $\Rightarrow$ nota máxima 4,00/10.
     \item \textbf{G3}: Depósito Zenodo con DOI persistente y \emph{CITATION.cff} actualizado con el DOI. Ausencia $\Rightarrow$ el criterio C9 vale cero.
-    \item \textbf{G4}: Evidencia audiovisual real, \emph{scripts} de análisis reproducibles y referencias verificables. Cualquier evidencia falsificada, cifra no reproducible o referencia inventada $\Rightarrow$ nota máxima 2,50/10 y descalificación del envío del manuscrito.
-    \item \textbf{G5}: Cumplimiento de los mínimos empíricos terminales: 24 entrevistas, 60 respuestas por perfil o \emph{power calculation}, curva de saturación con inflexión o \emph{power calc}. Falta $\Rightarrow$ nota máxima 4,00/10.
+    \item \textbf{G4}: Evidencia audiovisual real en la zona restringida cifrada, con hash coincidente en \texttt{fichas\_tecnicas.csv}, \emph{scripts} de análisis reproducibles y referencias verificables. Cualquier evidencia falsificada, ausente del contenedor, con hash no coincidente, cifra no reproducible o referencia inventada $\Rightarrow$ nota máxima 2,50/10 y descalificación del envío del manuscrito.
+    \item \textbf{G5}: Cumplimiento de los mínimos empíricos terminales: 16 entrevistas acumuladas (24 recomendado), 60 respuestas por perfil o \emph{power calculation}, curva de saturación con inflexión o \emph{power calc}. Falta $\Rightarrow$ nota máxima 4,00/10.
     \item \textbf{G6}: Actualización del registro OSF con desviaciones respecto del protocolo. Falta $\Rightarrow$ el criterio C9 vale la mitad.
     \item \textbf{G7}: Defensa oral efectivamente realizada por todos los integrantes; ausencia injustificada de un integrante en la defensa $\Rightarrow$ nota individual máxima 4,00/10 para el ausente.
+    \item \textbf{G8}: Documentación ética vigente en \texttt{08\_Etica/} --- paquete base A.1--A.13, aval institucional y \texttt{Adenda\_Segunda\_Ronda.pdf} con fecha anterior al primer consentimiento nuevo --- y respeto de las zonas [P]/[R] de la Sección 3. Su ausencia $\Rightarrow$ nota máxima 2,50/10; la publicación de datos identificables en la zona pública $\Rightarrow$ 2,50/10 y retiro inmediato del material.
 \end{itemize}
 
 \begin{alertbox}[title=Regla operativa de la rúbrica --- síntesis]
@@ -575,7 +611,7 @@ Los pesos suman $10{,}00$ y se reparten en tres bloques: cierre del ERS/SRS y de
     \hh{Semana} & \hh{Hito} & \hh{Entregable esperado}\\
     \endhead
     14 & Elección de la revista y refinamiento metodológico & Declaración escrita de la revista o conferencia objetivo enviada al docente; incorporación de las observaciones docentes de la Entrega 3 (2A) al ERS y al manuscrito.\\
-    14 & Cierre de la recolección de datos & Al menos 20 de las 24 entrevistas transcritas; codificación temática avanzada; cuestionario aplicado a $n \geq 45$ por perfil dominante.\\
+    14 & Cierre de la recolección de datos & Al menos el 80\,\% de las entrevistas objetivo transcritas (mínimo 16, 24 recomendado); codificación temática avanzada; cuestionario aplicado a $n \geq 45$ por perfil dominante.\\
     15 & Análisis empírico completo y borrador de resultados & \emph{Scripts} de análisis versionados producen todas las tablas y figuras; borrador de la sección de resultados incorporado al manuscrito.\\
     15 & Miembro-verificación \emph{(member checking)} & Sesión con al menos 3 participantes previos confirmando la interpretación de los resultados; acta firmada en el repositorio.\\
     16 & Cierre del manuscrito y depósito Zenodo & Manuscrito con secciones de discusión, amenazas a la validez y conclusiones cerradas; DOI de Zenodo obtenido; SWHID de Software Heritage obtenido; \texttt{CITATION.cff} actualizado.\\

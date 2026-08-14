@@ -1,0 +1,483 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage[scaled=0.92]{helvet}
+\usepackage[a4paper,top=2.8cm,bottom=2.8cm,left=3cm,right=2.5cm]{geometry}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{natbib}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[colorlinks=true,linkcolor=azulinst,citecolor=azulinst,urlcolor=azulinst]{hyperref}
+
+\definecolor{azulinst}{RGB}{20,60,110}
+\definecolor{grisclaro}{RGB}{243,245,248}
+\definecolor{comentario}{RGB}{110,120,130}
+
+\bibliographystyle{apalike}
+
+\renewcommand{\refname}{Referencias}
+\renewcommand{\contentsname}{Contenido}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\abstractname}{Resumen del protocolo}
+\renewcommand{\appendixname}{Anexo}
+
+\captionsetup{font=small,labelfont=bf}
+\setlength{\parskip}{0.55em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\tolerance=1200
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\lstset{
+	basicstyle=\ttfamily\scriptsize,
+	backgroundcolor=\color{grisclaro},
+	commentstyle=\color{comentario}\itshape,
+	keywordstyle=\color{azulinst},
+	breaklines=true,
+	frame=single,
+	rulecolor=\color{grisclaro},
+	framesep=6pt,
+	xleftmargin=0pt,
+	showstringspaces=false,
+	language=Python,
+	literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1 {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1 {Ñ}{{\~N}}1 {¿}{{?`}}1 {¡}{{!`}}1
+}
+
+\title{\textbf{La brecha de medición del uso de la inteligencia artificial en educación}\\[0.35em]
+	\large Protocolo de investigación para un estudio multinivel con elicitación indirecta en escuela, colegio y universidad}
+\author{}
+\date{4 de agosto de 2026 --- Versión 2.0}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+	\noindent Este protocolo define un estudio transversal multinivel destinado a estimar la magnitud del desajuste entre el uso de inteligencia artificial generativa que los estudiantes declaran y el que efectivamente realizan, en tres niveles educativos de un mismo territorio: educación primaria (escuela), educación secundaria (colegio) y educación superior (universidad). El estudio incorpora un experimento de listas (\emph{unmatched count technique}) embebido en la encuesta, lo que permite estimar la prevalencia de uso no declarado sin exigir acceso a registros institucionales de actividad. La corroboración conductual se especifica en dos escenarios alternativos según la infraestructura tecnológica disponible en cada institución, de modo que el núcleo inferencial del estudio permanezca invariante ante esa contingencia. La contribución central no es descriptiva sino metodológica: se busca demostrar que las conclusiones sustantivas del campo sobre efectos pedagógicos de la IA dependen del instrumento de medición empleado, y que el sesgo de deseabilidad social varía sistemáticamente según el nivel educativo, el canal de entrega y el clima normativo institucional.
+\end{abstract}
+
+\vspace{0.6em}
+\hrule
+\vspace{1.2em}
+
+\tableofcontents
+\newpage
+
+% =====================================================================
+\section{Planteamiento: el problema no es el uso, es la medición}
+% =====================================================================
+
+La literatura sobre inteligencia artificial generativa en educación se encuentra en un estado de saturación descriptiva. Existen decenas de revisiones sistemáticas que sintetizan efectos sobre rendimiento, motivación y compromiso, y prácticamente todas coinciden en un mismo señalamiento metodológico: la evidencia disponible se apoya de forma predominante en datos de autorreporte \citep{alfarwan2025generative}. Ese señalamiento se ha repetido tantas veces que ha dejado de leerse como una limitación y ha pasado a leerse como una convención aceptada del campo.
+
+El supuesto implícito de esa convención es que el autorreporte, aunque imperfecto, produce un error aleatorio y por tanto no compromete las inferencias. Ese supuesto es falso en este dominio específico. El uso de IA en tareas académicas es un comportamiento socialmente sancionado en la mayoría de las instituciones, y los comportamientos socialmente sancionados producen error sistemático, no aleatorio. La evidencia empírica reciente lo confirma con una magnitud que invalida buena parte de las estadísticas de adopción publicadas: en una encuesta a 338 estudiantes universitarios, aproximadamente el 60\,\% declaró usar IA mientras que el 90\,\% atribuyó ese uso a sus pares, y el análisis cualitativo de las explicaciones de los propios estudiantes identificó la deseabilidad social como el motor principal de esa discrepancia \citep{ling2026underreporting}.
+
+La consecuencia es de primer orden. Si el uso de IA está medido con error sistemático descendente, entonces todo estudio que lo emplee como variable independiente --- para predecir rendimiento, autorregulación, pensamiento crítico o descarga metacognitiva --- está estimando coeficientes sesgados por atenuación. Esto afecta directamente a la línea de investigación más activa del campo, que documenta que el apoyo de IA mejora el desempeño de corto plazo en la tarea pero puede inducir dependencia tecnológica y ``pereza metacognitiva'', deteriorando la capacidad de autorregulación \citep{fan2025metacognitive}, y a los instrumentos que se están construyendo sobre esa base conceptual \citep{dizon2026assessing}.
+
+% =====================================================================
+\section{Vacíos de conocimiento que este estudio aborda}
+% =====================================================================
+
+\begin{enumerate}[leftmargin=1.4em,itemsep=0.45em]
+	\item \textbf{Vacío de estimación.} No existe una cuantificación de la brecha entre uso declarado y uso real que emplee técnicas de elicitación indirecta validadas en contextos educativos hispanohablantes. La única evidencia sólida disponible procede de un único campus universitario estadounidense \citep{ling2026underreporting}, cuyos propios autores advierten que la magnitud y la dirección del error dependen del contexto normativo.
+	\item \textbf{Vacío de nivel educativo.} La investigación sobre IA generativa en educación escolar se concentra en secundaria y en profesorado en formación, con muy escasa producción sobre educación primaria \citep{alfarwan2025generative}. No existe ningún estudio que estime la brecha de medición de forma comparable en primaria, secundaria y superior dentro de un mismo sistema educativo.
+	\item \textbf{Vacío de canal.} Ningún estudio ha examinado si el canal de entrega --- digital frente a manuscrito --- modula la prevalencia de uso de IA o la disposición a declararlo. La coexistencia de ambos canales en el sistema educativo estudiado convierte esta variable en una oportunidad de diseño y no en un obstáculo, según se desarrolla en la §\,\ref{sec:canal}.
+	\item \textbf{Vacío psicométrico.} Las comparaciones de medias latentes entre grupos exigen invarianza escalar como precondición, y los instrumentos existentes de uso de IA no la han establecido. Cualquier comparación entre niveles educativos que omita esta verificación es interpretativamente inválida.
+\end{enumerate}
+
+% =====================================================================
+\section{Preguntas de investigación e hipótesis}
+% =====================================================================
+
+\subsection{Preguntas}
+
+\begin{description}[leftmargin=3.3em,style=nextline,itemsep=0.4em]
+	\item[\textbf{PI\,1}] ¿Cuál es la magnitud de la brecha entre la prevalencia de uso de IA estimada por interrogación directa y la estimada por elicitación indirecta, en cada uno de los niveles educativos?
+	\item[\textbf{PI\,2}] ¿Varía sistemáticamente esa brecha según el nivel educativo, el canal de entrega predominante y el clima normativo institucional percibido?
+	\item[\textbf{PI\,3}] ¿Cambian las conclusiones sustantivas sobre la relación entre uso de IA, descarga metacognitiva y calibración metacognitiva cuando el predictor se mide por vía directa frente a la vía indirecta?
+\end{description}
+
+La PI\,3 es la que confiere al estudio valor para una revista de alto impacto. Las dos primeras producen una estimación local; la tercera produce una advertencia metodológica generalizable a todo el campo.
+
+\subsection{Hipótesis}
+
+\begin{description}[leftmargin=3.3em,style=nextline,itemsep=0.4em]
+	\item[\textbf{H\,1}] La prevalencia estimada por elicitación indirecta será significativamente superior a la estimada por interrogación directa en todos los niveles con brazo experimental.
+	\item[\textbf{H\,2}] La brecha será mayor en instituciones con políticas prohibitivas explícitas que en instituciones con políticas permisivas o ambiguas, por incremento de la sanción social percibida.
+	\item[\textbf{H\,3}] La prevalencia de uso será menor en contextos de entrega manuscrita que en contextos de entrega digital, pero la brecha declarativa no necesariamente lo será, porque la sanción social opera sobre la declaración y no sobre el canal.
+	\item[\textbf{H\,4}] La asociación entre uso de IA y descarga metacognitiva será de mayor magnitud cuando el predictor se corrija por deseabilidad social, por reducción del sesgo de atenuación.
+	\item[\textbf{H\,5}] El uso de IA se asociará a sobreestimación del desempeño propio, es decir, a menor calibración metacognitiva.
+\end{description}
+
+% =====================================================================
+\section{Marco teórico}
+% =====================================================================
+
+El estudio articula cuatro cuerpos teóricos. El primero es la teoría del sesgo de deseabilidad social en investigación por encuesta, que establece que los encuestados subdeclaran comportamientos socialmente reprobados y sobredeclaran los socialmente valorados, y que fundamenta el desarrollo de técnicas de interrogación indirecta como alternativa a la pregunta directa \citep{coutts2011sensitive}.
+
+El segundo es la teoría de la descarga cognitiva y metacognitiva aplicada al aprendizaje asistido por IA, que sostiene que la delegación de procesos de monitoreo, evaluación y regulación a un agente externo reduce el compromiso cognitivo interno y, sostenida en el tiempo, deteriora la capacidad de autorregulación del aprendiz \citep{fan2025metacognitive,dizon2026assessing}.
+
+El tercero es la teoría de la calibración metacognitiva, entendida como la correspondencia entre el desempeño que el estudiante anticipa y el que efectivamente obtiene. La hipótesis de la descarga predice descalibración por exceso de confianza: la fluidez del producto generado se interpreta como evidencia de comprensión propia. Este constructo aporta una variable dependiente que no depende de ningún registro institucional, lo que resulta decisivo en el escenario de infraestructura limitada.
+
+El cuarto es el marco del clima normativo institucional, que permite tratar la política de IA de cada institución no como un dato de contexto sino como un moderador teóricamente relevante de la magnitud del sesgo de respuesta.
+
+% =====================================================================
+\section{Diseño metodológico}
+% =====================================================================
+
+\subsection{Tipo de diseño}
+
+Estudio transversal, comparativo entre niveles educativos, con un experimento de encuesta embebido de asignación aleatoria individual. El componente experimental es el experimento de listas o \emph{unmatched count technique} (UCT), en el cual los participantes se asignan aleatoriamente a un grupo de control que recibe una lista de reactivos no sensibles y a un grupo de tratamiento que recibe la misma lista más el reactivo sensible, y en ambos casos se solicita únicamente el número total de reactivos aplicables, nunca cuáles \citep{hinsley2019asking}.
+
+\subsection{Arquitectura en dos bloques}
+\label{sec:arquitectura}
+
+El diseño separa deliberadamente dos bloques con dependencias distintas de infraestructura.
+
+\textbf{Bloque nuclear, invariante.} Comprende las capas de encuesta en los tres niveles educativos. No requiere ningún sistema de gestión del aprendizaje, ningún registro institucional y ninguna negociación de acceso a datos. Sostiene las preguntas PI\,1 y PI\,2 en su totalidad, y la PI\,3 en su formulación basada en calibración metacognitiva. Este bloque constituye la contribución principal y su viabilidad está asegurada.
+
+\textbf{Bloque de corroboración, contingente.} Comprende la evidencia conductual derivada de registros digitales. Su alcance depende de la infraestructura efectivamente disponible en cada institución, y por ello se especifica en dos escenarios alternativos (§\,\ref{sec:escenarios}). Ningún resultado del bloque nuclear depende de este bloque.
+
+Esta separación es una decisión de arquitectura, no una concesión. Elimina el principal riesgo de inviabilidad del proyecto y permite iniciar el trabajo de campo sin esperar el desenlace de las negociaciones institucionales.
+
+\subsection{Contexto y muestra}
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\caption{Estructura de la muestra por nivel educativo.}
+	\begin{tabularx}{\textwidth}{L{2.7cm} L{2.1cm} c L{2.4cm} X}
+		\toprule
+		\textbf{Nivel} & \textbf{Rango etario} & \textbf{$N$ objetivo} & \textbf{Canal de entrega} & \textbf{Rol en el diseño} \\
+		\midrule
+		Universidad & 18 o más & 600 & Digital & Núcleo inferencial; brazo UCT completo \\
+		\addlinespace
+		Colegio & 13--17 & 600 & Físico, con frecuencia manuscrito & Núcleo inferencial; brazo UCT completo \\
+		\addlinespace
+		Escuela & 9--12 & 300 & Físico, predominantemente manuscrito & Componente descriptivo; sin brazo UCT \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+El tamaño muestral responde a una restricción específica del método: el estimador de diferencia de medias del UCT genera intervalos de confianza sensiblemente más anchos que los de una pregunta directa, por lo que requiere muestras considerablemente mayores para alcanzar la misma precisión \citep{hinsley2019asking}. Las cifras constituyen un objetivo preliminar que debe confirmarse mediante simulación de potencia antes del trabajo de campo, asumiendo una prevalencia declarada base del 60\,\% y una brecha mínima detectable de 15 puntos porcentuales.
+
+\subsection{Capas de medición}
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\caption{Operacionalización del constructo ``uso de IA'' en capas independientes, con su bloque de pertenencia.}
+	\begin{tabularx}{\textwidth}{L{1.6cm} L{4.2cm} L{1.9cm} X}
+		\toprule
+		\textbf{Capa} & \textbf{Instrumento} & \textbf{Bloque} & \textbf{Constructo capturado} \\
+		\midrule
+		Capa 1 & Autorreporte directo de frecuencia y tipo de uso & Nuclear & Uso declarado \\
+		\addlinespace
+		Capa 2a & Estimación del uso de los pares & Nuclear & Norma percibida; indicador indirecto de subdeclaración \\
+		\addlinespace
+		Capa 2b & Experimento de listas (UCT) & Nuclear & Prevalencia corregida por deseabilidad social \\
+		\addlinespace
+		Capa 2c & Calibración metacognitiva: expectativa declarada frente a resultado declarado & Nuclear & Descalibración por sobreconfianza \\
+		\addlinespace
+		Capa 3 & Metadatos de artefactos y trazas de plataforma & Contingente & Uso observado, por agregación \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+La inclusión simultánea de la pregunta directa y del experimento de listas no es redundante: permite ejecutar las pruebas de placebo que verifican los supuestos identificadores del método, en particular la ausencia de efectos de diseño y la ignorabilidad de la asignación al tratamiento \citep{imai2011multivariate}.
+
+\subsection{Diseño de las listas}
+
+La construcción de las listas sigue tres reglas derivadas de las guías de buena práctica del método \citep{hinsley2019asking}: los reactivos no sensibles deben ser temáticamente próximos pero no correlacionados entre sí; la lista debe incluir al menos un reactivo de prevalencia alta y uno de prevalencia baja para evitar efectos de techo y de piso; y el número de reactivos no debe exceder cinco para no comprometer la carga cognitiva de la tarea.
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\caption{Ejemplo de lista para el nivel universitario (versión a pilotear).}
+	\begin{tabularx}{\textwidth}{L{1.9cm} X}
+		\toprule
+		\textbf{Grupo} & \textbf{Reactivos presentados} \\
+		\midrule
+		Control & (1) He entregado un trabajo después de la fecha límite. (2) He utilizado un traductor automático para una tarea. (3) He estudiado a partir de apuntes de un compañero. (4) He cursado una asignatura completa sin comprar el libro de texto. \\
+		\addlinespace
+		Tratamiento & Los cuatro reactivos anteriores más: (5) He entregado como propio un texto generado sustancialmente por una herramienta de IA sin declararlo. \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+Para el nivel de colegio, el reactivo sensible debe reformularse en función del canal manuscrito, dado que la formulación anterior presupone traslado directo de texto. La versión a pilotear es: \emph{he copiado a mano, en un trabajo entregado como propio, un texto que me generó una herramienta de IA}. Esta reformulación es imprescindible; conservar la redacción universitaria produciría una subestimación artificial atribuible al instrumento y no al comportamiento.
+
+\subsection{Adaptación por nivel educativo: una restricción que debe respetarse}
+
+La tarea del UCT exige que el participante comprenda que informar un total no revela cuáles reactivos aplican. Esa comprensión metarrepresentacional no puede asumirse por debajo de los trece años aproximadamente, y su ausencia produce estimaciones no interpretables en lugar de estimaciones sesgadas. Por esa razón el brazo UCT se restringe a colegio y universidad.
+
+Para el nivel de escuela primaria se sustituye por tres fuentes convergentes: autorreporte directo con formato simplificado y vocabulario adaptado, estimación del uso de los compañeros de clase, e informe docente sobre uso observado en el aula. Este componente se reporta como descriptivo y como generador de hipótesis, y se declara explícitamente como tal en el manuscrito. Presentarlo de otro modo constituiría exactamente el tipo de sobreextensión inferencial que el estudio pretende denunciar.
+
+% =====================================================================
+\section{El canal de entrega como variable de diseño}
+\label{sec:canal}
+% =====================================================================
+
+En el sistema educativo estudiado, la universidad opera con entrega digital mediante sistema de gestión, mientras que escuela y colegio operan con entrega física y frecuentemente manuscrita. Esta asimetría podría tratarse como una limitación de comparabilidad. El presente protocolo la trata como una variable teóricamente informativa, por dos razones.
+
+En primer lugar, la entrega manuscrita impone un costo de transcripción que la entrega digital no impone. El traslado directo de texto generado deja de ser posible y es reemplazado por una copia manual deliberada. Esto no impide el uso de IA, pero altera su función: desplaza el uso desde la sustitución de la producción textual hacia la generación de contenido, la comprensión previa o la resolución del problema. La comparación entre canales permite por tanto examinar si el canal modifica el \emph{tipo} de uso y no solo su frecuencia.
+
+En segundo lugar, y de forma más relevante para la tesis del estudio, el canal manuscrito funciona como cuasi-control de las tecnologías de detección. Cualquier herramienta de detección automática de texto generado resulta inaplicable sobre un documento manuscrito. Si la prevalencia estimada por vía indirecta resulta sustancial en contextos manuscritos, ello constituye evidencia de que el problema de medición no se resuelve con detección tecnológica, que es precisamente la respuesta institucional dominante. Este resultado, de obtenerse, tiene implicaciones de política educativa que exceden el caso local.
+
+% =====================================================================
+\section{Escenarios de corroboración conductual}
+\label{sec:escenarios}
+% =====================================================================
+
+El bloque contingente se especifica en dos escenarios mutuamente excluyentes por institución. La determinación del escenario aplicable se realiza en la fase de acuerdos institucionales y se documenta antes del inicio del trabajo de campo.
+
+\subsection{Escenario A: la institución no dispone de sistema de gestión}
+
+Es el escenario vigente en escuela y colegio, donde las entregas son físicas y con frecuencia manuscritas, y no existe registro digital de la actividad académica.
+
+\textbf{Fuentes sustitutas de corroboración.} No se intenta reconstruir un registro conductual inexistente. En su lugar se incorporan tres fuentes convergentes de bajo costo y alta viabilidad.
+
+\begin{enumerate}[leftmargin=1.4em,itemsep=0.4em]
+	\item \textbf{Registro docente estructurado.} Una planilla breve cumplimentada por el docente al recibir cada lote de entregas, con tres indicadores por trabajo: presencia de vocabulario o estructura discordante respecto del desempeño habitual del estudiante, presencia de contenido correcto pero no tratado en clase, y capacidad del estudiante de explicar oralmente su propio trabajo cuando se le consulta. Los indicadores se agregan por aula y nunca se emplean para atribuir comportamiento a un estudiante identificado.
+	\item \textbf{Prueba de verificación oral por muestreo.} En una submuestra aleatoria de aulas, el docente formula dos preguntas breves sobre el trabajo entregado y registra únicamente si la respuesta evidencia dominio del contenido. Es un indicador de correspondencia entre producto y comprensión, no de autoría.
+	\item \textbf{Encuesta de calibración metacognitiva.} Los estudiantes registran su calificación esperada antes de conocer la real y su calificación percibida después. La discrepancia constituye la variable dependiente de la H\,5 y no requiere ninguna infraestructura.
+\end{enumerate}
+
+\textbf{Alcance inferencial.} Este escenario sostiene íntegramente PI\,1 y PI\,2, y sostiene PI\,3 en su formulación basada en calibración metacognitiva. No permite contrastar la estimación del UCT contra una traza digital independiente. Esa limitación se declara de forma explícita en el manuscrito.
+
+\subsection{Escenario B: la institución dispone de sistema de gestión}
+
+Es el escenario vigente en la universidad, y el escenario aplicable a escuela o colegio en caso de que adopten una plataforma durante el desarrollo del proyecto. El sistema disponible en la universidad es de naturaleza transaccional: registra entregas, cuestionarios y accesos, pero no aloja la producción del documento ni conserva borradores. Esta característica descarta la telemetría de escritura y redirige la corroboración hacia dos fuentes distintas.
+
+\textbf{Fuente B\,1: metadatos de los artefactos entregados.} Los documentos que el estudiante sube conservan metadatos internos generados por la aplicación que los produjo. En formato \texttt{docx} residen en \texttt{docProps/app.xml} y \texttt{docProps/core.xml}, e incluyen el tiempo acumulado de edición, el número de revisiones guardadas, las marcas de creación y última modificación, la aplicación productora y los recuentos de palabras y caracteres. En formato \texttt{pdf} residen en el diccionario de información del documento. El procedimiento de extracción se detalla en el Anexo\,\ref{anexo:extraccion}.
+
+Estos metadatos permiten construir un indicador de densidad de producción, definido como el cociente entre extensión del documento y tiempo acumulado de edición. Un documento extenso con tiempo de edición mínimo y una única revisión presenta un perfil de producción incompatible con la redacción incremental.
+
+\textbf{Advertencias metodológicas de obligada declaración.} El campo de tiempo acumulado se pierde o se altera en conversiones de formato; la exportación desde suites en línea deja los campos prácticamente vacíos; y copiar contenido a una plantilla nueva reinicia todos los valores. Un tiempo de edición reducido no constituye evidencia de uso de IA: es igualmente compatible con redacción previa en otra aplicación o con transcripción de un borrador manuscrito. Por consiguiente, estos indicadores se emplean exclusivamente en forma agregada y como corroboración de tendencia, nunca como criterio de clasificación individual.
+
+\textbf{Fuente B\,2: trazas transaccionales de la plataforma.} Se solicitan únicamente los campos efectivamente disponibles, enumerados en el Anexo\,\ref{anexo:diccionario}. Se excluyen deliberadamente dos elementos. Los puntajes de detectores automáticos de texto generado no se emplean como criterio de verdad, dado que su tasa de falsos positivos no está establecida de forma independiente y penaliza sistemáticamente a quienes escriben en una segunda lengua; si el proveedor los suministra, se tratan como una medida imperfecta adicional dentro del propio argumento de brecha de medición. Los registros de red o de servidor intermediario hacia dominios de servicios de IA se excluyen por razones éticas y no se solicitan en ninguna circunstancia.
+
+\subsection{Regla de vinculación aplicable a ambos escenarios}
+\label{sec:vinculacion}
+
+El experimento de listas reduce el sesgo porque garantiza que ninguna respuesta puede atribuirse a un individuo. Vincular respuestas individuales con registros individuales destruiría esa garantía y, con ella, el mecanismo que da validez al instrumento. Por consiguiente, toda vinculación se realiza por agregación y no por persona.
+
+La unidad de vinculación es la sección o aula, con un mínimo de treinta estudiantes por unidad. La prevalencia estimada por UCT en una sección se contrasta contra los indicadores conductuales medios de esa misma sección. El diseño pierde potencia estadística, dado que la unidad de análisis pasa a ser la sección y no el estudiante, pero conserva la validez del instrumento y hace la solicitud institucional sustancialmente más viable de autorizar.
+
+Si en algún momento se requiriera análisis a nivel individual, deberá emplearse una muestra dividida: un subgrupo con pregunta directa y consentimiento explícito de vinculación, y un subgrupo con UCT sin vinculación, comparados entre sí y nunca dentro del mismo participante.
+
+% =====================================================================
+\section{Plan de análisis}
+% =====================================================================
+
+\begin{enumerate}[leftmargin=1.4em,itemsep=0.5em]
+	\item \textbf{Estimación de prevalencia.} Estimador de diferencia de medias entre grupo de tratamiento y grupo de control para obtener la prevalencia del reactivo sensible en cada nivel, con intervalos de confianza por \emph{bootstrap}.
+	\item \textbf{Pruebas de supuestos.} Verificación de ausencia de efectos de diseño mediante comparación de las distribuciones de conteo, y pruebas de placebo no paramétricas aprovechando la pregunta directa \citep{imai2011multivariate}.
+	\item \textbf{Modelado multivariante.} Regresión no lineal para el UCT según el estimador de \citet{imai2011multivariate}, con nivel educativo, canal de entrega, clima normativo, sexo y alfabetización en IA como covariables.
+	\item \textbf{Brecha como variable dependiente.} Modelado de la diferencia entre estimación indirecta y estimación directa por institución, con clima normativo y canal como predictores principales.
+	\item \textbf{Invarianza de medición.} Análisis factorial confirmatorio multigrupo con contraste secuencial configural, métrico y escalar entre colegio y universidad, como precondición para cualquier comparación de medias latentes.
+	\item \textbf{Análisis de consecuencia sustantiva.} Reestimación de los modelos uso de IA $\rightarrow$ descarga metacognitiva y uso de IA $\rightarrow$ calibración metacognitiva, con el predictor medido de ambas formas, y contraste formal de la diferencia entre coeficientes.
+	\item \textbf{Corroboración ecológica.} En las secciones del Escenario\,B, correlación a nivel de sección entre prevalencia estimada por UCT e indicadores de densidad de producción, reportada como evidencia convergente y con declaración explícita de la falacia ecológica.
+\end{enumerate}
+
+Todo el análisis se preinscribirá en un repositorio público antes de la recolección de datos, con especificación previa de las reglas de decisión. En un estudio cuya tesis es que el campo mide mal, la preinscripción no es un adorno metodológico sino un requisito de coherencia argumental.
+
+% =====================================================================
+\section{Consideraciones éticas}
+% =====================================================================
+
+El estudio involucra menores de edad en dos de los tres niveles, lo que exige aprobación de comité de ética institucional, consentimiento informado de padres o tutores y asentimiento del menor documentado por separado. El instrumento indaga sobre un comportamiento potencialmente sancionable por reglamento institucional, por lo que la protección del participante es una obligación estructural del diseño, no un trámite: el UCT se selecciona precisamente porque hace imposible atribuir el comportamiento sensible a un individuo concreto.
+
+Se establecen cuatro garantías adicionales. Ningún dato se compartirá con las instituciones en forma desagregada ni permitirá identificar unidades con menos de treinta respondientes. Ningún resultado se comunicará de manera que pueda fundamentar sanciones disciplinarias. El registro docente del Escenario\,A se recoge de forma agregada por aula y sin identificación del estudiante, y se destruye tras la codificación. Y el reporte institucional se limita a estimaciones agregadas acompañadas de recomendaciones de política, nunca de listados.
+
+En el Escenario\,B, la extracción de metadatos se realiza sobre infraestructura de la institución y devuelve exclusivamente la tabla de indicadores, sin que el contenido de los documentos abandone el entorno institucional ni sea accedido por el equipo investigador.
+
+% =====================================================================
+\section{Riesgos y mitigaciones}
+% =====================================================================
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\caption{Riesgos principales del proyecto y estrategias de mitigación.}
+	\begin{tabularx}{\textwidth}{L{4.6cm} X}
+		\toprule
+		\textbf{Riesgo} & \textbf{Mitigación} \\
+		\midrule
+		El UCT no reduce el sesgo, resultado documentado en parte de la literatura & Incorporar pregunta directa y pruebas de placebo; preinscribir el hallazgo nulo como resultado publicable \\
+		\addlinespace
+		Muestra insuficiente para la precisión requerida & Simulación de potencia previa; muestreo por conglomerados con aulas completas \\
+		\addlinespace
+		Ausencia de infraestructura digital en escuela y colegio & Escenario\,A plenamente especificado; el bloque nuclear no depende de infraestructura \\
+		\addlinespace
+		Metadatos ausentes o alterados por conversión de formato & Reporte de la tasa de recuperación de cada campo; exclusión de casos con campos vacíos y análisis de sensibilidad \\
+		\addlinespace
+		Falta de comparabilidad entre niveles & Contraste formal de invarianza escalar antes de comparar medias latentes \\
+		\addlinespace
+		Confusión entre efecto de canal y efecto de nivel educativo & Declaración explícita de la confusión estructural; interpretación conjunta y no separada de ambos factores \\
+		\addlinespace
+		Sesgo de selección por autoselección voluntaria & Aplicación en horario de clase con tasa de respuesta documentada por aula \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+% =====================================================================
+\section{Estrategia de publicación}
+% =====================================================================
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\caption{Revistas objetivo, en orden de prioridad.}
+	\begin{tabularx}{\textwidth}{L{5.2cm} L{2.1cm} X}
+		\toprule
+		\textbf{Revista} & \textbf{Posición} & \textbf{Argumento de ajuste} \\
+		\midrule
+		\emph{Computers \& Education} & Q1 & Contribución transversal a la comunidad educativa, no restringida a una asignatura \\
+		\addlinespace
+		\emph{British Journal of Educational Technology} & Q1 & Cubre el rango completo de educación y formación; sede del debate sobre descarga metacognitiva \\
+		\addlinespace
+		\emph{Int. Journal of Educational Technology in Higher Education} & Q1, acceso abierto & Alta visibilidad y decisión editorial rápida; verificar cargo por procesamiento \\
+		\addlinespace
+		\emph{Education and Information Technologies} & Q1--Q2 & Alternativa realista con buena aceptación de estudios multinivel \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+Los cuartiles y factores de impacto deben verificarse en la edición vigente del \emph{Journal Citation Reports} antes de la decisión final, dado que numerosas fuentes secundarias difunden métricas desactualizadas. Se recomienda que, una vez elegida la revista, las referencias del manuscrito privilegien trabajos publicados en ella, conforme a la política editorial del proyecto.
+
+% =====================================================================
+\section{Cronograma}
+% =====================================================================
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\caption{Cronograma estimado.}
+	\begin{tabularx}{\textwidth}{c L{6.2cm} X}
+		\toprule
+		\textbf{Mes} & \textbf{Actividad} & \textbf{Producto} \\
+		\midrule
+		1--2 & Revisión focalizada y preinscripción & Protocolo registrado \\
+		2--3 & Construcción y pilotaje cognitivo de listas por canal & Instrumento validado \\
+		3--4 & Aprobación ética, acuerdos y determinación de escenario por institución & Dictamen y convenios \\
+		4--6 & Trabajo de campo en los tres niveles & Base de datos \\
+		6--8 & Análisis y verificación de supuestos & Resultados \\
+		8--10 & Redacción y envío & Manuscrito \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+% =====================================================================
+\section{Limitaciones anticipadas}
+% =====================================================================
+
+El diseño es transversal y por tanto no permite inferencia causal sobre la evolución del uso ni sobre sus efectos. La elicitación indirecta reduce pero no elimina el sesgo de deseabilidad social, y existe evidencia de que su desempeño varía según el modo de administración y el contexto \citep{coutts2011sensitive,hinsley2019asking}. El componente de educación primaria carece de brazo experimental y no admite comparación inferencial con los otros dos niveles.
+
+Existe además una confusión estructural entre nivel educativo y canal de entrega, dado que en el sistema estudiado ambos covarían casi perfectamente. El estudio no puede separar experimentalmente ambos efectos y así lo declara; la interpretación de las diferencias entre niveles debe formularse como diferencias entre configuraciones de nivel y canal, no como efectos puros de nivel. La replicación en un sistema donde ambos factores se crucen constituye la extensión natural del proyecto.
+
+Finalmente, la corroboración conductual solo está disponible en el Escenario\,B y opera a nivel ecológico, por lo que no autoriza inferencias sobre individuos.
+
+\newpage
+\appendix
+\renewcommand{\thesection}{\Alph{section}}
+
+% =====================================================================
+\section{Diccionario de variables solicitadas al sistema de gestión}
+\label{anexo:diccionario}
+% =====================================================================
+
+Aplicable exclusivamente al Escenario\,B. Todos los campos se entregan seudonimizados con identificador irreversible generado por la institución, en formato CSV o Parquet, un archivo por nivel educativo, para una ventana temporal de un semestre completo. No se solicita ningún campo de identificación directa ni direcciones de red.
+
+\begin{table}[htbp]
+	\centering
+	\small
+	\caption{Campos solicitados, confirmados como disponibles.}
+	\begin{tabularx}{\textwidth}{L{3.7cm} L{2.2cm} X}
+		\toprule
+		\textbf{Campo} & \textbf{Tipo} & \textbf{Uso analítico} \\
+		\midrule
+		\texttt{id\_seudo} & Texto & Clave de agregación por sección \\
+		\texttt{id\_seccion} & Texto & Unidad de vinculación \\
+		\texttt{ts\_entrega} & Fecha y hora & Distancia al cierre \\
+		\texttt{ts\_cierre} & Fecha y hora & Referencia de la distancia \\
+		\texttt{n\_ediciones} & Entero & Reemplazos previos al cierre \\
+		\texttt{long\_texto} & Entero & Extensión, en tareas de texto en línea \\
+		\texttt{descarga\_material} & Booleano & Consulta previa de recursos \\
+		\texttt{n\_sesiones\_sem} & Entero & Frecuencia de acceso semanal \\
+		\texttt{dur\_sesiones\_sem} & Minutos & Duración agregada semanal \\
+		\texttt{n\_mensajes\_foro} & Entero & Participación, donde aplique \\
+		\texttt{ts\_inicio\_intento} & Fecha y hora & Cuestionarios de opción múltiple \\
+		\texttt{ts\_fin\_intento} & Fecha y hora & Duración del intento \\
+		\bottomrule
+	\end{tabularx}
+\end{table}
+
+% =====================================================================
+\section{Procedimiento de extracción de metadatos de artefactos}
+\label{anexo:extraccion}
+% =====================================================================
+
+Aplicable exclusivamente al Escenario\,B. El procedimiento se ejecuta sobre infraestructura de la institución y produce como única salida una tabla de indicadores. El contenido de los documentos no se transfiere ni se inspecciona.
+
+\begin{lstlisting}
+import zipfile, csv, hashlib
+from pathlib import Path
+import xml.etree.ElementTree as ET
+
+NS_APP  = "{http://schemas.openxmlformats.org/officeDocument/2006/extended-properties}"
+NS_CORE = "{http://purl.org/dc/terms/}"
+
+CAMPOS = ["id_seudo", "formato", "total_time_min", "revisiones",
+          "creado", "modificado", "aplicacion", "palabras", "caracteres"]
+
+def seudonimo(nombre, sal):
+    return hashlib.sha256((sal + nombre).encode()).hexdigest()[:16]
+
+def leer_docx(ruta):
+    d = {}
+    with zipfile.ZipFile(ruta) as z:
+        app = ET.fromstring(z.read("docProps/app.xml"))
+        d["total_time_min"] = app.findtext(NS_APP + "TotalTime")
+        d["revisiones"]     = app.findtext(NS_APP + "Revision")
+        d["aplicacion"]     = app.findtext(NS_APP + "Application")
+        d["palabras"]       = app.findtext(NS_APP + "Words")
+        d["caracteres"]     = app.findtext(NS_APP + "Characters")
+        core = ET.fromstring(z.read("docProps/core.xml"))
+        d["creado"]      = core.findtext(NS_CORE + "created")
+        d["modificado"]  = core.findtext(NS_CORE + "modified")
+    return d
+
+def procesar(directorio, sal, salida):
+    filas = []
+    for ruta in Path(directorio).glob("**/*.docx"):
+        try:
+            fila = leer_docx(ruta)
+        except Exception:
+            fila = {}                  # documento ilegible: se registra vacio
+        fila["id_seudo"] = seudonimo(ruta.name, sal)
+        fila["formato"]  = "docx"
+        filas.append({c: fila.get(c) for c in CAMPOS})
+    with open(salida, "w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=CAMPOS)
+        w.writeheader()
+        w.writerows(filas)
+    return len(filas)
+\end{lstlisting}
+
+La tasa de recuperación de cada campo debe reportarse en el manuscrito. Los documentos con campos vacíos se excluyen del indicador de densidad de producción y se someten a análisis de sensibilidad, dado que su ausencia puede no ser aleatoria: la exportación desde suites en línea, que vacía sistemáticamente estos campos, es a su vez un indicador de flujo de trabajo.
+
+\newpage
+\bibliography{referencias}
+
+\end{document}

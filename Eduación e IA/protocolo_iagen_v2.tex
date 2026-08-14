@@ -1,0 +1,433 @@
+% =====================================================================
+%  PROTOCOLO DE INVESTIGACION
+%  Descarga cognitiva con inteligencia artificial generativa en la
+%  escritura academica: calidad del texto, retencion del aprendizaje
+%  y detectabilidad experta
+%
+%  Compilacion:  pdflatex -> bibtex -> pdflatex -> pdflatex
+%  Archivo principal: protocolo_iagen.tex
+%  Bibliografia:      referencias.bib
+% =====================================================================
+
+\documentclass[12pt,a4paper,openany]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage{mathptmx}
+\usepackage[scaled=0.90]{helvet}
+\usepackage{courier}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{enumitem}
+\usepackage{ragged2e}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{natbib}
+
+\usepackage[
+a4paper,
+inner=3.0cm,
+outer=2.5cm,
+top=2.8cm,
+bottom=2.8cm,
+headheight=15pt
+]{geometry}
+
+\usepackage[
+colorlinks=true,
+linkcolor=azulinstitucional,
+citecolor=azulinstitucional,
+urlcolor=azulinstitucional,
+pdftitle={Protocolo de investigacion: descarga cognitiva con IA generativa en la escritura academica},
+pdfauthor={Gleiston Ciceron Guerrero Ulloa}
+]{hyperref}
+
+% ---------------------------------------------------------------------
+%  Identidad visual sobria y legible
+% ---------------------------------------------------------------------
+\definecolor{azulinstitucional}{RGB}{20,60,110}
+\definecolor{grisclaro}{RGB}{242,244,247}
+\definecolor{grismedio}{RGB}{120,130,140}
+
+\bibliographystyle{apalike}
+\setcitestyle{authoryear,round}
+
+\titleformat{\chapter}[display]
+{\normalfont\sffamily\Large\bfseries\color{azulinstitucional}}
+{\MakeUppercase{\chaptertitlename}\ \thechapter}
+{10pt}
+{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{28pt}
+
+\titleformat{\section}
+{\normalfont\sffamily\large\bfseries\color{azulinstitucional}}
+{\thesection}{0.8em}{}
+
+\titleformat{\subsection}
+{\normalfont\sffamily\normalsize\bfseries}
+{\thesubsection}{0.8em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\sffamily\color{grismedio}Protocolo de investigaci\'on --- IA generativa y escritura acad\'emica}
+\fancyhead[R]{\footnotesize\sffamily\color{grismedio}\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\captionsetup{font=small,labelfont={bf,sf},labelsep=period}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.25}
+\setlist{itemsep=2pt,topsep=4pt,parsep=0pt}
+
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\Centering\arraybackslash}p{#1}}
+
+% ---------------------------------------------------------------------
+%  Entorno para cajas de definicion en lenguaje llano
+% ---------------------------------------------------------------------
+\newsavebox{\cajaguardada}
+\newenvironment{cajaterminos}[1]
+{\begin{lrbox}{\cajaguardada}\begin{minipage}{\dimexpr\textwidth-2\fboxsep\relax}\vspace{3pt}\textbf{\sffamily\small #1}\par\vspace{3pt}\small}
+        {\vspace{3pt}\end{minipage}\end{lrbox}\par\vspace{4pt}\noindent\colorbox{grisclaro}{\usebox{\cajaguardada}}\par\vspace{8pt}}
+
+\newcommand{\casilla}{\fbox{\rule{0pt}{7pt}\rule{7pt}{0pt}}}
+
+\begin{document}
+    
+    % =====================================================================
+    %  PORTADA
+    % =====================================================================
+    \begin{titlepage}
+        \centering
+        \vspace*{1.5cm}
+        {\sffamily\large\color{grismedio} UNIVERSIDAD T\'ECNICA ESTATAL DE QUEVEDO\par}
+        {\sffamily\normalsize\color{grismedio} Facultad de Ciencias de la Computaci\'on --- Carrera de Software\par}
+        \vspace{2.2cm}
+        {\sffamily\Large\bfseries\color{azulinstitucional} PROTOCOLO DE INVESTIGACI\'ON\par}
+        \vspace{1.0cm}
+        \rule{\textwidth}{1.2pt}
+        \vspace{0.8cm}
+        {\sffamily\LARGE\bfseries Descarga cognitiva con inteligencia artificial generativa en la escritura acad\'emica\par}
+        \vspace{0.5cm}
+        {\sffamily\large Calidad del texto, retenci\'on del aprendizaje y detectabilidad experta: un estudio aleatorizado de dos grupos\par}
+        \vspace{0.8cm}
+        \rule{\textwidth}{1.2pt}
+        \vfill
+        {\sffamily\normalsize\textbf{Investigador principal}\par}
+        {\normalsize Ing. Gleiston Cicer\'on Guerrero Ulloa, PhD.\par}
+        \vspace{0.6cm}
+        {\sffamily\normalsize\textbf{Versi\'on del protocolo}\par}
+        {\normalsize Versi\'on 2.0 --- adaptada a dise\~no de dos grupos con evaluaci\'on preliminar y cuestionario final\par}
+        \vspace{0.6cm}
+        {\normalsize\color{grismedio} Quevedo, Ecuador\par}
+        \vspace{1.0cm}
+    \end{titlepage}
+    
+    \pagenumbering{roman}
+    \tableofcontents
+    \clearpage
+    \pagenumbering{arabic}
+    
+    % =====================================================================
+    \chapter{Presentaci\'on del protocolo}
+    % =====================================================================
+    
+    \section{Qu\'e problema aborda este estudio}
+    
+    La incorporaci\'on de la inteligencia artificial generativa a la escritura acad\'emica plantea una pregunta que las encuestas de percepci\'on no pueden responder: cuando un estudiante delega en una herramienta generativa la elaboraci\'on de un texto, obtiene un producto de mejor apariencia, pero ¿conserva el conocimiento que habr\'ia construido al escribirlo por su cuenta? La distinci\'on importa porque el rendimiento inmediato y el aprendizaje duradero no son la misma cosa, y las condiciones que mejoran el primero con frecuencia deterioran el segundo \citep{bjork2013self}.
+    
+    Este protocolo describe un experimento dise\~nado para responder esa pregunta con evidencia causal. El estudio eval\'ua en una sesi\'on preliminar de dos horas la competencia inicial en redacci\'on mediante un ensayo de tema libre y, junto con el promedio general acumulado, conforma de manera equilibrada dos \'unicos grupos de trabajo: uno que escribe con asistencia de IA generativa y otro que trabaja de forma tradicional sin IA. Al final del proceso, el aprendizaje y retenci\'on del contenido se eval\'uan rigurosamente mediante un cuestionario sobre el tema del ensayo.
+    
+    \section{Tres aportaciones que este dise\~no permite reclamar}
+    
+    \textbf{Primera: evidencia causal sobre retenci\'on mediante evaluaci\'on directa.} La literatura acumula estudios de aceptaci\'on y de satisfacci\'on \citep{deng2024chatgpt}. El presente dise\~no incorpora una asignaci\'on estratificada rigurosa a partir de las competencias iniciales de redacci\'on y el promedio general, comparando un grupo con IA frente a un grupo control sin IA, lo que permite aislar el efecto real de la herramienta sobre el aprendizaje medido mediante un cuestionario final sobre el tema del ensayo.
+    
+    \textbf{Segunda: la brecha entre confianza y competencia.} El estudio mide, para cada estudiante y en cada sesi\'on, la calificaci\'on que anticipa y la que realmente obtiene, permitiendo analizar si la fluidez percibida al escribir con IA genera una sobreestimaci\'on de dominio no respaldada por la evaluaci\'on conceptual final.
+    
+    \textbf{Tercera: la capacidad real de detecci\'on de revisores expertos.} Como el equipo investigador conoce con certeza qu\'e textos se produjeron con asistencia generativa y cu\'ales no, es posible calcular con precisi\'on la exactitud y los errores de revisores experimentados y de herramientas autom\'aticas al juzgar la autor\'ia de los escritos \citep{perkins2024detection}.
+    
+    \section{C\'omo leer este documento}
+    
+    El cap\'itulo~\ref{cap:marco} presenta el marco te\'orico e hip\'otesis. El cap\'itulo~\ref{cap:diseno} detalla la estructura experimental con los dos grupos, la sesi\'on preliminar de 2 horas y el cuestionario final. El cap\'itulo~\ref{cap:variables} define las variables e instrumentos. El cap\'itulo~\ref{cap:analisis} especifica el plan de an\'alisis estad\'istico, y el cap\'itulo~\ref{cap:potencia} el c\'alculo de la muestra para dos grupos. Los cap\'itulos finales cubren \'etica, cronograma, limitaciones y anexos.
+    
+    % =====================================================================
+    \chapter{Marco te\'orico e hip\'otesis}
+    \label{cap:marco}
+    % =====================================================================
+    
+    \section{Cuatro mecanismos que explican lo que esperamos observar}
+    
+    \subsection{Delegar el trabajo mental a una herramienta externa (descarga cognitiva)}
+    Las personas reducen la carga mental trasladando parte del procesamiento a recursos externos \citep{risko2016cognitive}. Aquello que se delega totalmente tiende a no quedar codificado en la memoria a largo plazo.
+    
+    \subsection{Lo que cuesta m\'as se aprende mejor (dificultades deseables)}
+    Las condiciones que implican un esfuerzo de elaboraci\'on mejoran la retenci\'on posterior \citep{bjork2013self}. La asistencia generativa alivia la b\'usqueda y estructuraci\'on conceptual, lo que podr\'ia reducir la apropiaci\'on del tema.
+    
+    \subsection{Producir es recordar (efecto de generaci\'on)}
+    La informaci\'on redactada y generada por uno mismo se recuerda significativamente mejor que la procesada de forma pasiva \citep{slamecka1978generation}.
+    
+    \subsection{Confundir facilidad con dominio (ilusiones metacognitivas de fluidez)}
+    La prosa fluida generada por IA puede inducir al estudiante a creer que domina el tema, registrando una alta confianza que contrasta con su desempeño en el cuestionario final.
+    
+    \section{Preguntas de investigaci\'on}
+    
+    \begin{description}[leftmargin=2.2cm,style=nextline,font=\bfseries\sffamily]
+        \item[PI1.] ¿Difiere la calidad del ensayo producido con asistencia de IA respecto del producido sin ella?
+        \item[PI2.] ¿Existe diferencia en la retenci\'on y dominio del tema, evaluados mediante cuestionario al final del proceso, entre el grupo que trabaja con IA y el grupo sin IA?
+        \item[PI3.] ¿Modifica el uso de IA el esfuerzo mental percibido y la precisi\'on metacognitiva del estudiante?
+        \item[PI4.] ¿Con qu\'e exactitud identifican los revisores expertos los textos elaborados con IA generativa?
+    \end{description}
+    
+    \section{Hip\'otesis}
+    
+    \begin{description}[leftmargin=1.4cm,style=nextline,font=\bfseries\sffamily]
+        \item[H1.] Los ensayos producidos con asistencia de IA obtendr\'an en las sesiones de producci\'on puntuaciones de calidad inmediata iguales o superiores a los redactados sin IA.
+        \item[H2.] En la evaluaci\'on final mediante el cuestionario sobre el tema del ensayo, el grupo que trabaj\'o sin IA obtendr\'a puntuaciones significativamente superiores al grupo que trabaj\'o con IA.
+        \item[H3.] El esfuerzo mental reportado ser\'a menor en el grupo que utiliza asistencia de IA.
+        \item[H4.] La sobreestimaci\'on del propio desempe\~no (sesgo metacognitivo) ser\'a mayor en los participantes que utilicen IA generativa.
+        \item[H5.] Los revisores expertos discriminar\'an los textos asistidos por encima del azar, pero con un nivel de error de falsos positivos no despreciable.
+    \end{description}
+    
+    % =====================================================================
+    \chapter{Dise\~no experimental}
+    \label{cap:diseno}
+    % =====================================================================
+    
+    \section{Tipo de dise\~no}
+    
+    El estudio se estructura como un experimento aleatorizado con **dos grupos independientes** (Grupo Con IA y Grupo Sin IA). Se realiza una sesi\'on preliminar de evaluaci\'on inicial y una evaluaci\'on final de contenidos mediante cuestionario.
+    
+    \section{Estructura de los dos grupos}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Estructura de los dos grupos experimentales en el estudio.}
+        \label{tab:grupos}
+        \small
+        \begin{tabular}{L{3.5cm} L{4.5cm} L{5.0cm}}
+            \toprule
+            \textbf{Grupo} & \textbf{Modalidad de trabajo} & \textbf{Evaluaci\'on final} \\
+            \midrule
+            Grupo A --- Con IA & Con asistencia de IA Generativa & Cuestionario sobre el tema del ensayo \\
+            Grupo B --- Sin IA (Control) & Redacci\'on aut\'onoma sin IA & Cuestionario sobre el tema del ensayo \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \section{Participantes y criterios de elegibilidad}
+    
+    Participan estudiantes universitarios matriculados en las asignaturas seleccionadas. Es requisito obligatorio completar la sesi\'on preliminar de 2 horas y la firma del consentimiento informado.
+    
+    \section{Procedimiento de asignaci\'on aleatoria equilibrada}
+    \label{sec:asignacion}
+    
+    Para garantizar que ambos grupos queden perfectamente equilibrados en competencia escritural previa y nivel acad\'emico general, se sigue el siguiente procedimiento:
+    
+    \begin{enumerate}[label=\textbf{Paso \arabic*.},leftmargin=1.9cm]
+        \item \textbf{Sesi\'on preliminar (2 horas):} Todos los participantes asisten a una sesi\'on de dos horas (120 minutos) de duraci\'on en la que elaboran un **ensayo de tema libre** sin acceso a herramientas de IA. Este texto se eval\'ua con la r\'ubrica del Anexo~\ref{anx:rubrica} para medir objetivamente la competencia inicial en la elaboraci\'on de ensayos.
+        \item \textbf{Registro del promedio general:} Se obtiene el promedio general acumulado de cada estudiante (previo consentimiento expreso).
+        \item \textbf{Puntuaci\'on combinada y estratificaci\'on:} Se calcula un \'indice combinado que pondera la calificaci\'on del ensayo preliminar y el promedio general acumulado. Con esta puntuaci\'on se ordena a los participantes y se los divide en estratos de nivel (alto, medio, bajo).
+        \item \textbf{Asignaci\'on aleatoria a los dos grupos:} Dentro de cada estrato, los participantes se sortean en proporci\'on 1:1 para conformar exclusivamente dos grupos: **Grupo A (Con IA)** y **Grupo B (Sin IA)**.
+    \end{enumerate}
+    
+    \section{Condiciones de administraci\'on de las sesiones}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Especificaciones operativas de las sesiones de producci\'on.}
+        \label{tab:condiciones}
+        \small
+        \begin{tabular}{L{4.5cm} L{9.0cm}}
+            \toprule
+            \textbf{Elemento} & \textbf{Especificaci\'on} \\
+            \midrule
+            Sesi\'on preliminar & 2 horas (120 min), ensayo tema libre sin IA para medir competencia inicial \\
+            Entrega de material de ensayo & El mismo d\'ia al inicio de la sesi\'on para ambos grupos \\
+            Duraci\'on de redacci\'on & 120 minutos en laboratorio supervisado \\
+            Condici\'on Grupo Con IA & Acceso a herramienta generativa designada con registro de prompts \\
+            Condici\'on Grupo Sin IA & Procesador de texto local, sin conexi\'on ni herramientas de IA \\
+            Evaluaci\'on final & Cuestionario individual sobre el tema del ensayo \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \section{Rotaci\'on de temas de ensayo}
+    
+    Para evitar sesgos por la dificultad intr\'inseca del tema, los temas de ensayo se equiparan previamente mediante pilotaje y se rotan de forma contrabalanceada entre las sesiones.
+    
+    \section{Estructura del estudio: sedes e instituciones}
+    
+    El estudio contempla la aplicaci\'on en la UTEQ (campus central y La Mar\'ia) e instituciones participantes. La estratificaci\'on y asignaci\'on a los dos grupos se realiza internamente en cada sede y carrera.
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Distribuci\'on muestral estimada para 2 grupos seg\'un n\'umero de sedes.}
+        \label{tab:sedes}
+        \small
+        \begin{tabular}{C{2.8cm} C{3.4cm} C{3.2cm} C{3.2cm}}
+            \toprule
+            \textbf{Instituciones} & \textbf{Por grupo en cada una} & \textbf{Total por instituci\'on} & \textbf{Total del estudio (2 grupos)} \\
+            \midrule
+            2 & 45 & 90 & 180 \\
+            3 & 30 & 60 & 180 \\
+            4 & 23 & 46 & 184 \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    % =====================================================================
+    \chapter{Variables e instrumentos}
+    \label{cap:variables}
+    % =====================================================================
+    
+    \section{Mapa general de variables}
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Matriz de variables, instrumentos y momentos de medici\'on.}
+        \label{tab:variables}
+        \footnotesize
+        \begin{tabular}{L{3.6cm} L{2.0cm} L{4.3cm} L{3.4cm}}
+            \toprule
+            \textbf{Variable} & \textbf{Tipo} & \textbf{Instrumento} & \textbf{Momento} \\
+            \midrule
+            Competencia inicial & Covariable & Ensayo preliminar tema libre (2h) & Sesi\'on preliminar \\
+            Promedio general & Covariable & R\'ecord acad\'emico acumulado & Sesi\'on preliminar \\
+            Asignaci\'on de grupo & Independiente & Sorteo aleatorio estratificado & Previo a intervenci\'on \\
+            Calidad del ensayo & Principal & R\'ubrica anal\'itica (Anexo~\ref{anx:rubrica}) & Tras sesi\'on de ensayo \\
+            Retenci\'on y dominio & Principal & Cuestionario sobre tema del ensayo & Al final del proceso \\
+            Esfuerzo mental & Secundaria & Escala de Paas (Anexo~\ref{anx:paas}) & Al finalizar el ensayo \\
+            Calibraci\'on metacognitiva & Secundaria & Ficha de predicci\'on (Anexo~\ref{anx:calibracion}) & Antes de entregar ensayo \\
+            Detecci\'on de IA & Subestudio & Formulario del revisor (Anexo~\ref{anx:revisor}) & Fase de evaluaci\'on \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \section{Evaluaci\'on de la calidad del ensayo}
+    
+    Los ensayos son evaluados a ciegas por revisores expertos mediante la r\'ubrica anal\'itica (Anexo~\ref{anx:rubrica}), que mide tesis y argumentaci\'on, evidencia, precisi\'on conceptual, estructura y originalidad.
+    
+    \section{Evaluaci\'on final mediante cuestionario sobre el tema del ensayo}
+    
+    Al finalizar las sesiones de intervenci\'on, se aplica un **cuestionario sobre el tema del ensayo** (Anexo~\ref{anx:prueba}). Este cuestionario incluye preguntas de opci\'on m\'ultiple, desarrollo conceptual y transferencia de contenidos para determinar el grado de retenci\'on y dominio alcanzado por los estudiantes de cada grupo.
+    
+    % =====================================================================
+    \chapter{Plan de an\'alisis estad\'istico}
+    \label{cap:analisis}
+    % =====================================================================
+    
+    \section{Modelo principal y contraste de retenci\'on}
+    
+    La comparaci\'on de la calidad del ensayo entre el Grupo Con IA y el Grupo Sin IA se efect\'ua mediante modelos mixtos ajustados por la competencia inicial y el promedio general acumulado.
+    
+    Para contrastar la hip\'otesis principal de retenci\'on (H2), se realiza un **ANCOVA** sobre las puntuaciones del cuestionario final sobre el tema del ensayo, utilizando como covariables la puntuaci\'on del ensayo preliminar de 2 horas y el promedio general acumulado:
+    
+    \begin{quote}
+        \ttfamily\small
+        puntuacion\_cuestionario \textasciitilde{} grupo + ensayo\_preliminar + promedio\_acumulado + (1|sede)
+    \end{quote}
+    
+    % =====================================================================
+    \chapter{Tama\~no muestral y potencia}
+    \label{cap:potencia}
+    % =====================================================================
+    
+    \section{C\'alculo para dos grupos independientes}
+    
+    El c\'alculo de potencia en G*Power para una prueba $t$ de diferencia entre dos grupos independientes ($\alpha = 0{,}05$, potencia $1-\beta = 0{,}80$, tama\~no de efecto $d = 0{,}50$) determina un m\'inimo de **64 participantes por grupo** ($N = 128$). Previendo un 15\% de p\'erdida, la meta global de reclutamiento se establece en **180 participantes** (90 por grupo).
+    
+    \begin{table}[htbp]
+        \centering
+        \caption{Escenarios de potencia para el contraste entre los dos grupos experimentales.}
+        \label{tab:potencia}
+        \small
+        \begin{tabular}{C{2.6cm} C{2.6cm} C{2.6cm} C{3.4cm}}
+            \toprule
+            \textbf{$d$ objetivo} & \textbf{Potencia} & \textbf{$n$ por grupo} & \textbf{$N$ total (2 grupos)} \\
+            \midrule
+            0{,}40 & 0{,}80 & 99 & 198 \\
+            0{,}50 & 0{,}80 & 64 & 128 \\
+            0{,}50 & 0{,}90 & 86 & 172 \\
+            0{,}60 & 0{,}80 & 45 & 90 \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    % =====================================================================
+    \chapter{\'Etica y ciencia abierta}
+    % =====================================================================
+    
+    El protocolo contempla la aprobaci\'on del comit\'e de \'etica, firma de consentimiento informado (Anexo~\ref{anx:consentimiento}), anonimizaci\'on de datos y prerregistro en OSF.
+    
+    % =====================================================================
+    \appendix
+    \renewcommand{\chaptername}{Anexo}
+    % =====================================================================
+    
+    \chapter{Consentimiento informado}
+    \label{anx:consentimiento}
+    
+    \begin{center}
+        {\sffamily\normalsize\bfseries\color{azulinstitucional} CONSENTIMIENTO INFORMADO PARA PARTICIPANTES\par}
+    \end{center}
+    
+    \section*{Resumen del procedimiento}
+    Usted participar\'a en:
+    \begin{enumerate}
+        \item Una **sesi\'on preliminar de dos horas** para redactar un **ensayo de tema libre** que evaluar\'a su competencia inicial de redacci\'on.
+        \item Asignaci\'on aleatoria a uno de los **dos grupos de estudio** (Grupo Con IA o Grupo Sin IA), considerando su ensayo preliminar y su promedio general acumulado.
+        \item Sesi\'on de redacci\'on del ensayo seg\'un el grupo asignado.
+        \item Un **cuestionario final sobre el tema del ensayo** para medir la retenci\'on y aprendizaje.
+    \end{enumerate}
+    
+    \chapter{R\'ubrica anal\'itica de calidad del ensayo}
+    \label{anx:rubrica}
+    
+    Se mantiene la r\'ubrica est\'andar de 5 criterios (Tesis, Evidencia, Precisi\'on conceptual, Estructura, Originalidad) con puntuaci\'on sobre 100 puntos.
+    
+    \chapter{Formulario del revisor}
+    \label{anx:revisor}
+    
+    Incluye la evaluaci\'on por r\'ubrica, recomendaci\'on editorial y el juicio de detecci\'on de IA con nivel de certeza.
+    
+    \chapter{Ficha de predicci\'on de calificaci\'on}
+    \label{anx:calibracion}
+    
+    Registro de la calificaci\'on estimada por el estudiante antes de entregar el ensayo para evaluar el sesgo metacognitivo.
+    
+    \chapter{Escala de esfuerzo mental (Paas)}
+    \label{anx:paas}
+    
+    Escala de 1 a 9 puntos aplicada al finalizar la redacci\'on.
+    
+    \chapter{Cuestionario sobre el tema del ensayo}
+    \label{anx:prueba}
+    
+    Instrumento de evaluaci\'on final que mide la retenci\'on conceptual, comprensi\'on y capacidad de transferencia sobre los temas abordados en los ensayos.
+    
+    \chapter{Ficha de la sesi\'on preliminar y l\'inea base}
+    \label{anx:linea}
+    
+    \textbf{C\'odigo del participante:} \rule{3.0cm}{0.4pt} \quad \textbf{Fecha:} \rule{2.2cm}{0.4pt}
+    
+    \vspace{8pt}
+    \textbf{Instrucciones de la sesi\'on preliminar (Duraci\'on: 2 horas / 120 minutos):}
+    
+    A continuaci\'on dispone de dos horas para elaborar un **ensayo argumentativo sobre un tema libre**. No est\'a permitido el uso de herramientas de inteligencia artificial. El resultado de este ensayo, en conjunto con su promedio general acumulado, ser\'a utilizado para conformar de manera equilibrada los dos grupos experimentales del estudio.
+    
+    % =====================================================================
+    \bibliography{referenciasprotocolo}
+    \addcontentsline{toc}{chapter}{Referencias}
+    
+\end{document}
