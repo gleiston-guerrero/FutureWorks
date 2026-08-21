@@ -1,0 +1,5 @@
+[
+  { "id": 1, "grupo": "mundo",   "sigla": "MIT",    "pais": "US", "url": "https://www.mit.edu" },
+  { "id": 2, "grupo": "mundo",   "sigla": "TUM",    "pais": "DE", "url": "https://www.tum.de" },
+  { "id": 3, "grupo": "ecuador", "sigla": "UTEQ",   "pais": "EC", "url": "https://www.uteq.edu.ec" }
+]

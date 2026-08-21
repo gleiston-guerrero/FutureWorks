@@ -1,0 +1,79 @@
+MANUSCRITO UAIS — "Two barriers to equitable access"
+Version del 14 de agosto de 2026, con las observaciones del informe de evaluacion acogidas.
+
+CONTENIDO
+---------
+privacidad_UAIS_en.tex        Manuscrito en ingles (version de envio a UAIS)
+privacidad_UAIS_es.tex        Version en espanol, equivalente en contenido
+privacidad_mundo.bib          Bibliografia verificada (60 entradas, todas citadas)
+respuesta_a_observaciones.md  Respuesta punto por punto al informe de evaluacion
+sn-jnl.cls, sn-basic.bst      Plantilla de Springer Nature (por comodidad)
+
+fig_forest.pdf                Figura 1: diferencias de riesgo con IC 95 %
+fig_cookies.pdf               Figura 2: cookies previas al consentimiento
+fig_wcag_niveles.pdf          Figura 3: nodos por nivel WCAG, con y sin reglas AAA
+fig_paises.pdf                Figura E1: composicion del grupo de referencia
+fig_cronologia.pdf            Figura E2: cronologia de los regimenes
+
+figuras.py                    Genera las cinco figuras (matplotlib)
+stats.py                      Reanalisis estadistico completo
+
+privacidad_UAIS_en.pdf        PDF compilado (ingles)
+privacidad_UAIS_es.pdf        PDF compilado (espanol)
+
+COMPILACION EN WINDOWS (MiKTeX o TeX Live)
+------------------------------------------
+Todos los archivos deben estar en la MISMA carpeta. Desde esa carpeta:
+
+    pdflatex privacidad_UAIS_en
+    bibtex   privacidad_UAIS_en
+    pdflatex privacidad_UAIS_en
+    pdflatex privacidad_UAIS_en
+
+Lo mismo con privacidad_UAIS_es. La version en espanol necesita el paquete
+babel-spanish; MiKTeX lo instala solo la primera vez que compila.
+
+Con latexmk (una sola orden):
+
+    latexmk -pdf privacidad_UAIS_en
+
+REGENERAR LAS FIGURAS
+---------------------
+Requiere Python 3 con matplotlib:
+
+    pip install matplotlib
+    python figuras.py
+
+Las figuras estan calibradas para el ancho de columna real de sn-jnl (372 pt).
+Si se cambia la plantilla o la opcion de columnas, ajustar las llamadas a
+plt.subplots(figsize=...) dentro de figuras.py.
+
+REANALISIS ESTADISTICO
+----------------------
+Requiere Python 3 con numpy y scipy:
+
+    pip install numpy scipy
+    python stats.py
+
+DOS CIFRAS CORREGIDAS RESPECTO DE LA VERSION ANTERIOR
+-----------------------------------------------------
+Tras la verificacion manual de las seis instituciones que la version anterior
+nombraba de forma individual:
+
+  - Cambridge: aviso de privacidad, ausente -> presente (falso negativo).
+    El grupo de referencia pasa de 58/63 a 59/63 (92,1 % -> 93,7 %).
+  - Harvard: marco legal citado, presente -> ausente (falso positivo).
+    El grupo de referencia pasa de 48/63 a 47/63 (76,2 % -> 74,6 %).
+
+Ambas correcciones estan documentadas en la Seccion 3.4 del manuscrito y
+propagadas a todas las tablas, figuras y pruebas estadisticas. Ninguna
+conclusion cambia de signo. Si prefiere NO tocar el conjunto de datos,
+avise y se revierten.
+
+ACCIONES QUE SOLO PUEDEN COMPLETAR LOS AUTORES
+----------------------------------------------
+En el .tex, los marcadores en gris [AUTORES: ...] senalan lo que falta:
+financiacion, contribucion CRediT, ORCID, declaracion sobre IA generativa y,
+sobre todo, el DOI del deposito en Zenodo u OSF de los datos y el codigo.
+Sin la declaracion de disponibilidad de datos con DOI, el manuscrito no pasa
+el control editorial de Springer.

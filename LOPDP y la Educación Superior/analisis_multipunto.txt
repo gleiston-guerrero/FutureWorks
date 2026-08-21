@@ -1,0 +1,152 @@
+==============================================================================
+ANALISIS DE LA AUDITORIA MULTIPUNTO
+==============================================================================
+Archivos leidos: 9
+   resultados_EC_r1.json
+   resultados_EC_r2.json
+   resultados_EC_r3.json
+   resultados_EU_r1.json
+   resultados_EU_r2.json
+   resultados_EU_r3.json
+   resultados_US_r1.json
+   resultados_US_r2.json
+   resultados_US_r3.json
+
+------------------------------------------------------------------------------
+1. CONTROL DE CALIDAD POR PASADA
+------------------------------------------------------------------------------
+Punto   Pasada  Sitios     OK  Fallos  Ubicacion verificada
+EC           1     126    124       2  SI  EC, EC
+EC           2     126    124       2  SI  EC, EC
+EC           3     126    125       1  SI  EC
+EU           1     126    125       1  SI  DE, DE
+EU           2     126    125       1  SI  DE, DE
+EU           3     126    125       1  SI  DE
+US           1     126    126       0  SI  US, US
+US           2     126    126       0  SI  US, US
+US           3     126    125       1  SI  US
+
+Si alguna fila dice NO! la pasada se midio desde un pais distinto del
+declarado y NO debe usarse. Repitala con la VPN correctamente conectada.
+
+------------------------------------------------------------------------------
+1b. CALIBRACION ENTRE PUNTOS (control de artefactos de medicion)
+------------------------------------------------------------------------------
+Las cookies TOTALES (funcionales incluidas) no deberian depender del pais
+desde el que se mide. Si un punto deposita muchas menos, la pagina se cargo
+de forma incompleta desde ahi y la medicion de rastreo NO es comparable.
+
+  EC    cookies por sitio: media  11.12   total     1390   n=125
+  EU    cookies por sitio: media   7.03   total      879   n=125
+  US    cookies por sitio: media  11.09   total     1386   n=125
+
+  EC    desviacion respecto al punto mas alto:   +0.0 %   -> OK
+  EU    desviacion respecto al punto mas alto:  -36.7 %   -> SOSPECHOSO
+  US    desviacion respecto al punto mas alto:   -0.3 %   -> OK
+
+  *** AVISO GRAVE ***
+  Al menos un punto deposita mas de un 15 % menos cookies que los demas.
+  Eso apunta a un problema del nodo de salida de la VPN (bloqueo, latencia
+  o perdida de contenido de terceros), NO a segmentacion geografica.
+  Repita ese punto desde OTRO servidor del mismo pais antes de usar los
+  resultados. Las diferencias de rastreo que vea ahora son inseguras.
+
+------------------------------------------------------------------------------
+2. ESTABILIDAD ENTRE PASADAS DEL MISMO PUNTO
+------------------------------------------------------------------------------
+Porcentaje de sitios que dieron el MISMO resultado en todas sus pasadas.
+Responde a la critica de 'una sola pasada': si la estabilidad es alta, la
+medida es fiable; si es baja, hay que informarlo como ruido de medicion.
+
+Indicador                                          EC         EU         US
+rastreo_antes_del_consentimiento                99.2%      95.2%      97.6%
+alguna_cookie_antes_del_consentimiento         100.0%      94.4%      98.4%
+banner_visible                                 100.0%      96.8%      99.2%
+cmp_detectada                                   99.2%      97.6%      99.2%
+sin_fallo_de_nivel_A                           100.0%      97.6%      99.2%
+
+------------------------------------------------------------------------------
+3. PROPORCIONES CONSOLIDADAS POR PUNTO DE OBSERVACION
+------------------------------------------------------------------------------
+Regla de mayoria sobre las pasadas. IC 95 % de Wilson.
+
+  rastreo_antes_del_consentimiento
+      EC     85/125   68.0%  [ 59.4,  75.5]
+      EU     75/126   59.5%  [ 50.8,  67.7]
+      US     82/126   65.1%  [ 56.4,  72.8]
+
+  alguna_cookie_antes_del_consentimiento
+      EC    112/125   89.6%  [ 83.0,  93.8]
+      EU    105/126   83.3%  [ 75.9,  88.8]
+      US    110/126   87.3%  [ 80.4,  92.0]
+
+  banner_visible
+      EC     38/125   30.4%  [ 23.0,  38.9]
+      EU     34/126   27.0%  [ 20.0,  35.3]
+      US     36/126   28.6%  [ 21.4,  37.0]
+
+  cmp_detectada
+      EC     26/125   20.8%  [ 14.6,  28.7]
+      EU     22/126   17.5%  [ 11.8,  25.0]
+      US     23/126   18.3%  [ 12.5,  25.9]
+
+  sin_fallo_de_nivel_A
+      EC     31/125   24.8%  [ 18.1,  33.0]
+      EU     26/126   20.6%  [ 14.5,  28.5]
+      US     31/126   24.6%  [ 17.9,  32.8]
+
+------------------------------------------------------------------------------
+4. PRUEBA DE McNEMAR EXACTA, POR PARES DE PUNTOS
+------------------------------------------------------------------------------
+Solo se usan los sitios medidos con exito en AMBOS puntos.
+a = si en los dos; b = si en el primero y no en el segundo;
+c = no en el primero y si en el segundo; d = no en ninguno.
+Los pares DISCORDANTES (b y c) son los que llevan toda la informacion.
+
+  rastreo_antes_del_consentimiento
+      EC vs EU:  n=125  a= 74 b= 11 c=  0 d= 40  discordantes= 11  p=0.0010  RM pareada=23.00 [1.36, 390.32]  <-- SIGNIFICATIVO
+      EC vs US:  n=125  a= 81 b=  4 c=  0 d= 40  discordantes=  4  p=0.1250  RM pareada=9.00 [0.48, 167.17]
+      EU vs US:  n=126  a= 74 b=  1 c=  8 d= 43  discordantes=  9  p=0.0391  RM pareada=0.12 [0.02, 1.00]  <-- SIGNIFICATIVO
+
+  alguna_cookie_antes_del_consentimiento
+      EC vs EU:  n=125  a=104 b=  8 c=  0 d= 13  discordantes=  8  p=0.0078  RM pareada=17.00 [0.98, 294.55]  <-- SIGNIFICATIVO
+      EC vs US:  n=125  a=109 b=  3 c=  0 d= 13  discordantes=  3  p=0.2500  RM pareada=7.00 [0.36, 135.52]
+      EU vs US:  n=126  a=104 b=  1 c=  6 d= 15  discordantes=  7  p=0.1250  RM pareada=0.17 [0.02, 1.38]
+
+  banner_visible
+      EC vs EU:  n=125  a= 33 b=  5 c=  1 d= 86  discordantes=  6  p=0.2188  RM pareada=5.00 [0.58, 42.80]
+      EC vs US:  n=125  a= 35 b=  3 c=  1 d= 86  discordantes=  4  p=0.6250  RM pareada=3.00 [0.31, 28.84]
+      EU vs US:  n=126  a= 32 b=  2 c=  4 d= 88  discordantes=  6  p=0.6875  RM pareada=0.50 [0.09, 2.73]
+
+  cmp_detectada
+      EC vs EU:  n=125  a= 22 b=  4 c=  0 d= 99  discordantes=  4  p=0.1250  RM pareada=9.00 [0.48, 167.17]
+      EC vs US:  n=125  a= 23 b=  3 c=  0 d= 99  discordantes=  3  p=0.2500  RM pareada=7.00 [0.36, 135.52]
+      EU vs US:  n=126  a= 21 b=  1 c=  2 d=102  discordantes=  3  p=1.0000  RM pareada=0.50 [0.05, 5.51]
+
+  sin_fallo_de_nivel_A
+      EC vs EU:  n=125  a= 26 b=  5 c=  0 d= 94  discordantes=  5  p=0.0625  RM pareada=11.00 [0.61, 198.94]
+      EC vs US:  n=125  a= 31 b=  0 c=  0 d= 94  discordantes=  0  p=1.0000  RM pareada=n/d
+      EU vs US:  n=126  a= 26 b=  0 c=  5 d= 95  discordantes=  5  p=0.0625  RM pareada=0.09 [0.01, 1.64]
+
+------------------------------------------------------------------------------
+5. Q DE COCHRAN (los tres puntos a la vez)
+------------------------------------------------------------------------------
+Contrasta si la proporcion es la misma en los tres puntos de observacion.
+
+  rastreo_antes_del_consentimiento            n=125  Q= 15.500  p=0.0004  <-- SIGNIFICATIVO
+  alguna_cookie_antes_del_consentimiento      n=125  Q= 10.889  p=0.0043  <-- SIGNIFICATIVO
+  banner_visible                              n=125  Q=  3.000  p=0.2231
+  cmp_detectada                               n=125  Q=  5.200  p=0.0743
+  sin_fallo_de_nivel_A                        n=125  Q= 10.000  p=0.0067  <-- SIGNIFICATIVO
+
+------------------------------------------------------------------------------
+COMO SE INFORMA ESTO EN EL ARTICULO
+------------------------------------------------------------------------------
+El resultado central es la fila 'rastreo_antes_del_consentimiento' de la
+seccion 4, restringida a las instituciones EUROPEAS del grupo de referencia:
+   python analizar_multipunto.py --paises DE,FR,ES,NL,BE,SE,CH,GB
+Si b (rastrea visto desde Ecuador, no rastrea visto desde la UE) es grande
+y c es pequeno, eso ES la segmentacion geografica del cumplimiento, medida
+de forma directa. Informe siempre b, c, n, el valor p exacto y la razon de
+momios pareada, no solo el valor p.
+
