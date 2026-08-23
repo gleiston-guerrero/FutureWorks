@@ -1,0 +1,16 @@
+﻿id,grupo,sigla,revisor,cod 1.1.1,cod 1.4.3,cod 2.4.4,n 1.1.1,f 1.1.1,n 1.4.3,f 1.4.3,n 2.4.4,f 2.4.4,reg 1.1.1,reg 1.4.3,reg 2.4.4,cls 1.1.1,cls 1.4.3,cls 2.4.4
+7,mundo,UC Berkeley,Revisor1,1,1,1,15,0,15,0,15,0,1,1,1,B,B,B
+14,mundo,UCL,Revisor1,P,1,P,20,3,20,3,20,3,P,P,P,B,B,B
+15,mundo,Cornell,Revisor1,1,1,P,24,3,24,3,24,3,P,P,P,C,C,C
+22,mundo,NUS,Revisor1,P,1,P,24,3,24,3,24,3,P,P,P,C,C,C
+29,mundo,Northwestern,Revisor1,0,P,1,25,18,25,2,25,0,0,P,1,A,A,A
+40,mundo,Manchester,Revisor1,1,P,1,20,0,25,2,25,0,1,P,1,A,A,A
+58,mundo,HKUST,Revisor1,1,P,1,25,0,20,3,25,0,1,P,1,A,A,A
+83,ecuador,UNESUM,Revisor1,1,1,1,21,0,12,0,25,0,1,1,1,A,A,A
+95,ecuador,USECIPOL,Revisor1,0,1,1,17,7,25,0,25,0,0,1,1,A,A,A
+96,ecuador,IAEN,Revisor1,0,P,1,15,5,,,,,0,-,-,A,C,C
+102,ecuador,ULVR,Revisor1,0,P,0,9,4,25,2,25,8,0,P,0,A,A,A
+103,ecuador,UTPL,Revisor1,P,0,P,25,5,6,6,82,2,P,0,P,A,A,B
+106,ecuador,UPS,Revisor1,0,P,P,25,7,25,4,25,3,0,P,P,A,A,A
+114,ecuador,UTI,Revisor1,0,P,1,25,7,25,4,25,0,0,P,1,A,A,A
+124,ecuador,ECOTEC,Revisor1,P,P,P,32,5,32,5,32,5,P,P,P,B,B,B
