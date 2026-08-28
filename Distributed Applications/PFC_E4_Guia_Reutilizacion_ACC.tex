@@ -1,0 +1,736 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,provide=*]{babel}
+\usepackage{csquotes}
+\usepackage{charter}
+\usepackage[scaled=0.92]{helvet}
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.2cm,right=2.2cm,headheight=14pt]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{uteqBlue}{HTML}{0E3F7E}
+\definecolor{uteqMid}{HTML}{1E5AA8}
+\definecolor{uteqTeal}{HTML}{2E86A1}
+\definecolor{uteqGreen}{HTML}{4FAE60}
+\definecolor{uteqAmber}{HTML}{F2A413}
+\definecolor{uteqSoft}{HTML}{EAF1F9}
+\definecolor{uteqRed}{HTML}{B02418}
+\definecolor{uteqGray}{HTML}{3A3A3A}
+\definecolor{grisCodigo}{HTML}{F2F4F6}
+\definecolor{filaReuso}{HTML}{EDF7EE}
+\definecolor{filaCambia}{HTML}{FDF4E3}
+\definecolor{filaNuevo}{HTML}{FBEDEC}
+
+\hypersetup{colorlinks=true,linkcolor=uteqBlue,urlcolor=uteqMid,citecolor=uteqBlue}
+
+\titleformat{\section}{\normalfont\Large\bfseries\color{uteqBlue}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{uteqMid}}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{uteqTeal}}{\thesubsubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{16pt}{7pt}
+\titlespacing*{\subsection}{0pt}{12pt}{5pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\footnotesize\color{uteqBlue}PFC Entrega 4 $\cdot$ Guía de reutilización $\cdot$ Equipo ACC}
+\fancyhead[R]{\footnotesize\color{uteqBlue}Aplicaciones Distribuidas (ISR-701) $\cdot$ \thepage}
+\fancyfoot[C]{\footnotesize\color{uteqGray}Prof. Ing. Gleiston C. Guerrero-Ulloa, Mgs. $\cdot$ UTEQ}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.15}
+
+\lstset{
+	basicstyle=\ttfamily\scriptsize,
+	backgroundcolor=\color{grisCodigo},
+	frame=single,
+	rulecolor=\color{uteqBlue},
+	breaklines=true,
+	columns=fullflexible,
+	xleftmargin=5pt,
+	xrightmargin=5pt,
+	framexleftmargin=5pt
+}
+
+\newtcolorbox{uteqbox}[1]{colback=uteqSoft,colframe=uteqBlue,boxrule=0.8pt,arc=2pt,
+	left=7pt,right=7pt,top=6pt,bottom=6pt,title={\bfseries #1},
+	fonttitle=\normalsize\color{white},colbacktitle=uteqBlue}
+\newtcolorbox{pisoBox}[1]{colback=white,colframe=uteqRed,boxrule=0.9pt,arc=2pt,
+	left=7pt,right=7pt,top=6pt,bottom=6pt,title={\bfseries #1},
+	fonttitle=\normalsize\color{white},colbacktitle=uteqRed}
+\newtcolorbox{avisoBox}[1]{colback=white,colframe=uteqAmber,boxrule=0.9pt,arc=2pt,
+	left=7pt,right=7pt,top=6pt,bottom=6pt,title={\bfseries #1},
+	fonttitle=\normalsize\color{uteqGray},colbacktitle=uteqAmber}
+\newtcolorbox{defBox}[1]{colback=white,colframe=uteqGreen,boxrule=0.9pt,arc=2pt,
+	left=7pt,right=7pt,top=6pt,bottom=6pt,title={\bfseries #1},
+	fonttitle=\normalsize\color{white},colbacktitle=uteqGreen}
+
+\newcommand{\reuso}{\cellcolor{filaReuso}\textbf{REUTILIZA}}
+\newcommand{\cambia}{\cellcolor{filaCambia}\textbf{MODIFICA}}
+\newcommand{\nuevo}{\cellcolor{filaNuevo}\textbf{NUEVO}}
+
+\begin{document}
+
+\begin{titlepage}
+	\centering
+	\vspace*{0.8cm}
+	{\small\color{uteqGray} UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO\\ Facultad de Ciencias de la Computación\\ Carrera de Ingeniería de Software\par}
+	\vspace{14pt}
+	{\color{uteqBlue}\rule{\textwidth}{2pt}}\\[7pt]
+	\colorbox{uteqBlue}{\parbox{0.96\textwidth}{\centering\vspace{5pt}{\large\bfseries\color{white} GUÍA DE REUTILIZACIÓN Y ENTREGA --- PFC ENTREGA 4}\vspace{5pt}}}\\[7pt]
+	{\color{uteqBlue}\rule{\textwidth}{2pt}}\\[16pt]
+	{\LARGE\bfseries\color{uteqBlue} Equipo ACC --- Soporte Técnico ISP\par}
+	\vspace{5pt}
+	{\large\color{uteqGray} Qué ya tienen, cómo se entrega ahora, qué cambia y qué es nuevo\par}
+	\vspace{20pt}
+	\begin{minipage}{0.93\textwidth}
+		\small
+		\begin{tabular}{@{}p{4.6cm}p{9.8cm}@{}}
+			\toprule
+			\textbf{Documento rector} & \emph{Guía Integral de la Entrega 4 del Proyecto Fin de Curso}, v1.0. Esta guía \textbf{no la sustituye}: se acopla a ella \\
+			\textbf{Asignatura} & Aplicaciones Distribuidas (ISR-701), séptimo semestre \\
+			\textbf{Período} & Regular 2026--2027 \\
+			\textbf{Equipo} & ACC (3--4 integrantes) \\
+			\textbf{Semana de entrega} & \textbf{18} \\
+			\textbf{Cierre} & \textbf{Viernes 4 de septiembre de 2026, 23:55} (último \emph{commit} admitido) \\
+			\textbf{Fecha de esta guía} & Semana 17 --- quedan \textbf{nueve días naturales} hasta el cierre \\
+			\textbf{Rama de trabajo} & \texttt{feature/entrega-4}, fusionada a \texttt{main} por \emph{pull request} \\
+			\textbf{Calificación} & Según la rúbrica de nueve dimensiones de la guía rectora \\
+			\bottomrule
+		\end{tabular}
+	\end{minipage}
+	\vfill
+	{\small\color{uteqGray} Quevedo, Ecuador\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Cómo leer esta guía}
+
+La Entrega 4 no empieza de cero. La guía rectora lo dice con claridad: la E4 hereda el análisis del dominio y el prototipo de comunicación de la E1, la arquitectura de microservicios REST con Docker Compose de la E2, y la capa de datos distribuida en CockroachDB con el \emph{pipeline} PySpark de la E3. \textbf{Ninguna de esas piezas se descarta.} La E4 las envuelve, las refactoriza y las expone a los usuarios finales por dos canales nuevos.
+
+Esta guía traduce ese principio a la situación concreta del equipo ACC. Cada bloque de trabajo aparece clasificado con una de tres etiquetas:
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{2.6cm}p{12.6cm}@{}}
+		\toprule
+		\reuso & El artefacto ya existe y se conserva tal como está. Solo hay que verificar que sigue funcionando y volverlo a presentar en el paquete final \\
+		\addlinespace
+		\cambia & El artefacto ya existe pero debe transformarse. Se indica exactamente qué se toca y qué se conserva \\
+		\addlinespace
+		\nuevo & No existe. Hay que construirlo desde cero en esta entrega \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\begin{uteqbox}{La regla que ordena todo el trabajo}
+	Antes de escribir una línea de código nueva, el equipo debe hacer el inventario de la sección 2. La mayor parte de la Entrega 4 no es construcción: es \textbf{recuperar, verificar, refactorizar y volver a presentar}. Lo verdaderamente nuevo son las dos aplicaciones cliente y el instrumental de medición.
+\end{uteqbox}
+
+\begin{pisoBox}{Dónde está el equipo en el calendario}
+	Esta guía se entrega en la \textbf{semana 17}. El cierre es el \textbf{viernes 4 de septiembre de 2026 a las 23:55}, hora del último \emph{commit} admitido: lo que se envíe después no se evalúa. Quedan \textbf{nueve días naturales}, dos de ellos fin de semana.\\[5pt]
+	Por tanto, cuando esta guía menciona el trabajo de semanas anteriores no está proponiendo un plan: está describiendo lo que el equipo \textbf{debía tener ya}. Si algo de eso falta, no se planifica, se triaja: vaya directamente a la sección 10.
+\end{pisoBox}
+
+\section{Inventario: lo que ACC ya tiene}
+
+Esta tabla es el punto de partida y es una \textbf{auditoría, no una planificación}: todo lo que aparece aquí debía estar terminado en las entregas de las semanas 4, 7 y 11. El equipo debe recorrerla hoy mismo, marcar el estado real de cada artefacto y anotar dónde está en el repositorio. Un artefacto que no se encuentre hoy no es trabajo pendiente: es un hueco que hay que tapar en nueve días o asumir como pérdida consciente.
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{3.7cm}p{1.5cm}p{5.2cm}p{4.4cm}@{}}
+		\toprule
+		\textbf{Artefacto existente} & \textbf{Origen} & \textbf{Cómo se entrega ahora en la E4} & \textbf{Estado} \\
+		\midrule
+		\endhead
+		Problema del dominio cuantificado y modelo de fallos & E1 & Se integra en la Introducción del manuscrito, con las cifras verificadas de nuevo & \cambia \\
+		\addlinespace
+		Diagramas C4 niveles 1 y 2 & E1 & Van a la sección de Arquitectura. El nivel 3 se rehace porque cambia (ver más abajo) & \reuso \\
+		\addlinespace
+		ADR-001 a ADR-004 & E1--E3 & Se conservan íntegros en \texttt{docs/adr/}. Se les añade el impacto que la E4 tuvo sobre ellos & \cambia \\
+		\addlinespace
+		Servidor y clientes de sockets TCP, servicio gRPC, relojes de Lamport & E1 \newline PE-U1 & Se conservan como el canal de telemetría de los equipos del abonado y como el orden causal del ciclo de vida del ticket & \reuso \\
+		\addlinespace
+		Microservicios REST con base de datos propia & E2 & Se refactorizan en cuatro capas (Módulo A). \textbf{La API externa no cambia} & \cambia \\
+		\addlinespace
+		API Gateway con enrutamiento, autenticación y límite de tasa & E2 & Se conserva. Ahora sirve a dos clientes en lugar de a ninguno & \reuso \\
+		\addlinespace
+		Especificación OpenAPI 3.0 & E2 & Se conserva y se verifica que sigue describiendo la API real & \cambia \\
+		\addlinespace
+		Autenticación con JWT y \texttt{/auth/login} & E2 & Es el mismo \emph{endpoint} que consumirán la web y la móvil & \reuso \\
+		\addlinespace
+		\texttt{docker-compose.yml} y \texttt{Dockerfile} multi-etapa & E2 & Se amplía con web, colector de trazas y servicios nuevos & \cambia \\
+		\addlinespace
+		Clúster CockroachDB de tres nodos y fragmentación por zona y fecha & E3 & \textbf{Sin cambios.} La guía rectora lo dice literalmente: la persistencia distribuida de la E3 se mantiene & \reuso \\
+		\addlinespace
+		Prueba de tolerancia a fallos del clúster y consultas comparadas & E3 & Se conservan como evidencia y alimentan el panel de disponibilidad Raft & \reuso \\
+		\addlinespace
+		\emph{Pipeline} PySpark sobre telemetría e histórico & E3 \newline PE-U4 & Se empaqueta \textbf{en el mismo \emph{compose}} y se conserva en \texttt{apps/spark/} & \cambia \\
+		\addlinespace
+		Métricas Prometheus del clúster (\texttt{crdb\_*}) & E3 & Se reutilizan y se les añaden cuatro métricas de aplicación & \cambia \\
+		\addlinespace
+		Análisis individual del modelo de consistencia y de la tecnología de datos & TA-IND-02 \newline FORM-IC-02 & Alimentan la sección de Fundamento teórico y Trabajos relacionados & \reuso \\
+		\addlinespace
+		\emph{Issues} abiertos por el equipo revisor & FORM-TL-05 & Debían responderse en la semana 17. Los que sigan abiertos hay que cerrarlos esta semana & \cambia \\
+		\addlinespace
+		Caso real documentado de las exposiciones & Cortes 1 y 2 & Sostiene la motivación del problema en la Introducción & \reuso \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\begin{avisoBox}{Lo que más se subestima de este inventario}
+	El clúster de la E3 y el canal TCP de la PE-U1 llevan semanas sin ejecutarse. \textbf{Levántelos hoy}, antes que cualquier otra cosa. Si se rompieron por un cambio posterior, eso debía haberse detectado en la semana 15 y ahora consume días que no sobran: es lo primero que hay que resolver.
+\end{avisoBox}
+
+\section{Lo que la Entrega 4 pide de nuevo al equipo ACC}
+
+\subsection{Las dos aplicaciones cliente, que son el corazón de la entrega}
+
+\begin{pisoBox}{Requisito estricto de la guía rectora}
+	Cada equipo debe presentar dos aplicaciones cliente que consumen la misma API distribuida: una aplicación web y una aplicación móvil. Ambas son obligatorias y no sustituibles entre sí. \textbf{La ausencia total de una de ellas aplica un factor multiplicativo de 0,5 sobre la nota final de la entrega.}
+\end{pisoBox}
+
+La guía rectora concreta en su Tabla 1 qué debe ser cada una para ACC:
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{2.5cm}p{12.5cm}@{}}
+		\toprule
+		\textbf{Web (SPA)} & Consola de operadores y coordinadores, con vista de acuerdo de nivel de servicio por zona y por técnico \\
+		\addlinespace
+		\textbf{Móvil} & Cliente para técnicos de campo: tickets asignados, cierre en sitio, geolocalización y cámara para evidencias \\
+		\addlinespace
+		\textbf{Patrones GoF} & Command (acciones sobre tickets), Chain of Responsibility (escalado), Observer (acuerdo de nivel de servicio), Repository y Strategy (rutas) \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\begin{defBox}{Una coincidencia que conviene aprovechar}
+	Los cinco patrones asignados a ACC no son decorativos ni intercambiables: \textbf{Command} da la traza auditable de cada acción sobre un ticket, \textbf{Chain of Responsibility} implementa el escalado por prioridad, \textbf{Observer} es el mecanismo que dispara la evaluación del acuerdo de nivel de servicio, \textbf{Strategy} encapsula las políticas de asignación de rutas a técnicos y \textbf{Repository} aísla el acceso al clúster. Los cinco están en el camino crítico del dominio, así que documentarlos en el ADR-005 es describir lo que el sistema hace, no adornarlo.
+\end{defBox}
+
+\subsection{Resumen de los ocho módulos}
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{1.0cm}p{3.5cm}p{1.6cm}p{9.0cm}@{}}
+		\toprule
+		\textbf{Mód.} & \textbf{Qué exige} & \textbf{Etiqueta} & \textbf{Qué significa concretamente para ACC} \\
+		\midrule
+		\endhead
+		A & Refactorización del \emph{backend} en capas & \cambia & El código de E2 y E3 se reorganiza en cuatro paquetes. La API externa no cambia \\
+		\addlinespace
+		B & Aplicación web (SPA) & \nuevo & Consola de operadores con vista de acuerdo por zona y por técnico \\
+		\addlinespace
+		C & Aplicación móvil & \nuevo & Cliente de técnico de campo con cierre en sitio, geolocalización y cámara \\
+		\addlinespace
+		D & Pirámide de pruebas & \cambia & Las pruebas de E2 y E3 se conservan y se les añaden contrato, extremo a extremo y carga \\
+		\addlinespace
+		E & \emph{Pipeline} de siete trabajos & \cambia & El flujo existente se amplía a siete trabajos y publica imágenes con el \emph{hash} del \emph{commit} \\
+		\addlinespace
+		F & Observabilidad distribuida & \cambia & Las métricas del clúster se conservan; se añaden cuatro de aplicación, trazas y panel de seis vistas \\
+		\addlinespace
+		G & Evaluación experimental ISO 25010 & \nuevo & El protocolo de medición completo. \textbf{Con la ampliación de la sección 5} \\
+		\addlinespace
+		H & Consolidación del documento & \cambia & El manuscrito acumulativo que integra E1 a E4 \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\section{Procedimiento por módulo}
+
+\subsection{Módulo A --- Refactorización del \emph{backend} \emph{[Arquitecto]}}
+
+\textbf{Entrada:} el microservicio principal de la E3 conectado al clúster CockroachDB. \textbf{Se conserva su comportamiento externo íntegro.}
+
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+	\item Reorganice el código de cada microservicio en cuatro paquetes: \texttt{presentation}, \texttt{application}, \texttt{domain} e \texttt{infrastructure}.
+	\item Extraiga al paquete \texttt{domain} las entidades y objetos de valor del dominio de tickets: \texttt{Ticket}, \texttt{Incidencia}, \texttt{Abonado}, \texttt{Tecnico}, \texttt{Visita}, \texttt{Diagnostico} y el acuerdo de nivel de servicio. \textbf{Estas clases no llevan anotaciones de persistencia}: las anotaciones se quedan en las clases de \texttt{infrastructure}.
+	\item Introduzca puertos, es decir interfaces, en \texttt{domain}, y sus adaptadores en \texttt{infrastructure}: repositorios sobre el clúster, clientes HTTP y publicadores de mensajes.
+	\item Documente cinco patrones GoF en \texttt{docs/adr/ADR-005-\allowbreak patrones-gof.md} con el formato Nygard. Para ACC: Command, Chain of Responsibility, Observer, Repository y Strategy. Cada uno debe nombrar las clases reales que ocupan cada rol.
+	\item Actualice las pruebas de E2 y E3 para que se apoyen en dobles de prueba de los puertos, salvo las de integración.
+\end{enumerate}
+
+\textbf{Salida:} misma API externa, estructura interna desacoplada, cobertura unitaria $\geq 70\,\%$.
+
+\begin{avisoBox}{La trampa más común de este módulo}
+	Mover archivos de carpeta no es refactorizar en capas. La prueba es la dirección de las dependencias: si una clase de \texttt{domain} importa algo de \texttt{infrastructure}, la refactorización no está hecha. Ejecute esa comprobación antes de dar el módulo por cerrado.
+\end{avisoBox}
+
+\subsection{Módulo B --- Aplicación web \emph{[Desarrollador]}}
+
+Todo el módulo es nuevo. Se crea en \texttt{apps/web/}.
+
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+	\item Proyecto con TypeScript en modo estricto y verificador de estilo obligatorio.
+	\item Arquitectura por características: cada módulo de negocio agrupa componentes, servicios de acceso a la API, \emph{hooks} o servicios, y pruebas.
+	\item Cubra al menos cinco rutas. Para ACC la ruta principal de dominio es el tablero de operación: \texttt{/}, \texttt{/login}, \texttt{/operacion}, \texttt{/settings} y \texttt{/about}, con las rutas protegidas por credencial.
+	\item La vista de operación debe mostrar el \textbf{cumplimiento del acuerdo de nivel de servicio por zona y por técnico}, que es lo que la guía rectora asigna a ACC, y la cola de incidencias abiertas.
+	\item Integre internacionalización en español e inglés, tema claro y oscuro, y estados explícitos de carga y de error.
+	\item Consuma la API a través del API Gateway. Guarde la credencial en \emph{cookie} de solo servidor o en almacenamiento de sesión con expiración; \textbf{nunca en almacenamiento local plano}.
+	\item Empaquete con \texttt{Dockerfile} multi-etapa, servido por Nginx, y agréguelo a \texttt{docker-compose.yml}.
+	\item Publique el \texttt{.tar.gz} de la distribución como artefacto del \emph{pipeline}, versionado con el \emph{hash} del \emph{commit}.
+\end{enumerate}
+
+\subsection{Módulo C --- Aplicación móvil \emph{[Desarrollador]}}
+
+Todo el módulo es nuevo. Se crea en \texttt{apps/mobile/}.
+
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+	\item Proyecto con nivel mínimo de interfaz de programación 26 y objetivo 34, o su equivalente si el equipo elige multiplataforma.
+	\item Arquitectura de modelo, vista y modelo de vista, con un repositorio por característica.
+	\item Autenticación contra el \textbf{mismo} \emph{endpoint} \texttt{/auth/login} del \emph{backend}; la credencial se guarda cifrada.
+	\item Listado y detalle del recurso principal, que para ACC es \textbf{el ticket asignado al técnico}, con recarga por gesto y modo sin conexión mediante caché local.
+	\item Integre al menos dos capacidades del dispositivo. Para ACC la guía rectora asigna \textbf{geolocalización} (posición del técnico al cerrar en sitio) y \textbf{cámara} (evidencia fotográfica del cierre). Ambas tienen sentido de dominio, así que no hay que forzarlas.
+	\item Pruebas unitarias de los modelos de vista y al menos una prueba instrumentada de extremo a extremo.
+	\item Genere el paquete de instalación firmado con clave de depuración y publíquelo como artefacto del \emph{pipeline} en \texttt{release/apk/}.
+\end{enumerate}
+
+\begin{defBox}{Por qué la app móvil no es un adorno en este proyecto}
+	El cierre en sitio con hora, posición y fotografía es lo que produce el dato de \textbf{tiempo real de reparación}. Sin la app móvil, el tiempo medio de reparación del sistema es una estimación de escritorio. Con ella, es una medición. Esa es la razón por la que el módulo importa para la evaluación del Módulo G, y no solo para la nota de la Dimensión 3.
+\end{defBox}
+
+\subsection{Módulo D --- Pirámide de pruebas \emph{[Responsable de Calidad]}}
+
+\begin{center}
+	\footnotesize
+	\begin{tabular}{@{}p{2.5cm}p{1.6cm}p{10.4cm}@{}}
+		\toprule
+		\textbf{Nivel} & \textbf{Etiqueta} & \textbf{Qué hacer} \\
+		\midrule
+		Unitarias & \cambia & Se conservan las de E2 y E3, adaptadas a los puertos. Cobertura $\geq 70\,\%$ en \emph{backend}, web y móvil \\
+		\addlinespace
+		Integración & \cambia & Pruebas de repositorio contra un CockroachDB efímero levantado por el propio marco de pruebas \\
+		\addlinespace
+		Contrato & \nuevo & Web y móvil como consumidores, \emph{backend} como proveedor. Es lo que garantiza que los dos clientes hablan la misma API \\
+		\addlinespace
+		Extremo a extremo & \nuevo & Suite para la web y suite instrumentada para la móvil \\
+		\addlinespace
+		Carga & \cambia & Dos escenarios obligatorios: \textbf{50 usuarios durante 5 minutos} y \textbf{rampa progresiva de 0 a 200 usuarios en 10 minutos} \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+Cada tipo de prueba se ejecuta en un trabajo distinto del \emph{pipeline} y sus resultados se almacenan como artefactos.
+
+\subsection{Módulo E --- \emph{Pipeline} de integración y entrega \emph{[Responsable de Calidad]}}
+
+El archivo \texttt{.github/workflows/ci-cd.yml} define siete trabajos encadenados: \texttt{lint}, \texttt{test-backend}, \texttt{test-web}, \texttt{test-mobile}, \texttt{build-images}, \texttt{build-mobile-apk} e \texttt{integration}. Solo cuando todos están en verde se publican las imágenes etiquetadas con el \emph{hash} del \emph{commit}.
+
+\begin{avisoBox}{Verificación que exige la rúbrica}
+	El indicador de nivel 4 pide los siete trabajos \textbf{en verde en el último \emph{commit} de la entrega}. Compruébelo el día anterior, no el mismo día: un fallo en \texttt{build-mobile-apk} a última hora deja la Dimensión 5 en nivel bajo aunque todo lo demás funcione.
+\end{avisoBox}
+
+\subsection{Módulo F --- Observabilidad \emph{[Arquitecto]}}
+
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+	\item Añada el \emph{starter} de trazas al microservicio principal y configure el exportador hacia un colector agregado al \emph{compose}.
+	\item \textbf{Reutilice las métricas del clúster de la E3} y añada cuatro de aplicación: total de peticiones etiquetado por ruta, método y código; duración de las peticiones; total de eventos de negocio; y sesiones activas.
+	\item Emita registros en formato JSON en el \emph{backend} y en la móvil, incluyendo el identificador de traza para correlación.
+	\item Construya el panel con las seis vistas obligatorias: tasa de peticiones, latencia en los percentiles 50, 95 y 99, tasa de errores de servidor, disponibilidad del consenso del clúster, uso de recursos por contenedor y latencia de extremo a extremo desde el cliente móvil.
+	\item Exporte el panel como JSON versionado en \texttt{ops/grafana/\allowbreak pfc-dashboard.json}.
+\end{enumerate}
+
+\begin{defBox}{Qué evento de negocio debe contar ACC}
+	La métrica de eventos de negocio no es genérica. Para ACC debe contar, como mínimo: tickets creados, tickets agrupados en una incidencia, tickets escalados y tickets cerrados en sitio. Esos cuatro contadores son los que después alimentan la evaluación del Módulo G.
+\end{defBox}
+
+\section{Ampliación del Módulo G para el equipo ACC}
+
+Esta es la única exigencia que esta guía añade a la guía rectora, y es pequeña en esfuerzo.
+
+\subsection{Qué pide la guía rectora y qué le falta}
+
+El Módulo G define el protocolo: sujeto de estudio, instrumentos, \textbf{bloque completo con diez repeticiones por escenario descartando la primera y la última}, métricas objetivas de la Tabla 2, análisis con media, desviación típica e intervalo de confianza al 95\,\%, y amenazas a la validez con al menos tres internas y dos externas.
+
+Ese protocolo está completo salvo en un punto: tal como está, mide el sistema \emph{una sola vez} y contrasta cada métrica con su umbral. Eso responde a «¿cumple el sistema?», que es una evaluación de conformidad. No responde a «¿qué aporta la decisión de diseño que tomamos?», porque no hay nada contra lo que comparar.
+
+\begin{uteqbox}{La ampliación en una frase}
+	El mismo bloque, los mismos escenarios, las mismas diez repeticiones, ejecutados dos veces: con la correlación de incidencias desactivada y con ella activada. Nada más cambia.
+\end{uteqbox}
+
+\subsection{Las tres adiciones, en orden de ejecución}
+
+\subsubsection{Adición 1 --- Un condicional y una variable de entorno \emph{[Desarrollador]}}
+
+En el punto donde hoy se crea la incidencia a partir de un ticket, introduzca tres comportamientos seleccionables con la variable \texttt{CORREL}:
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{1.4cm}p{4.0cm}p{9.6cm}@{}}
+		\toprule
+		\textbf{Valor} & \textbf{Comportamiento} & \textbf{Qué hace} \\
+		\midrule
+		\texttt{c0} & Sin correlación & Un ticket, una incidencia. Es la línea base \\
+		\addlinespace
+		\texttt{c1} & Zona y ventana & Agrupa tickets del mismo sector abiertos dentro de una ventana deslizante \\
+		\addlinespace
+		\texttt{c2} & Zona, ventana y telemetría & Añade los reportes de los equipos del abonado y los latidos de los nodos, ordenados causalmente antes de agrupar \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+No son tres implementaciones ni tres ramas: es una estrategia seleccionable, que además es exactamente el patrón \textbf{Strategy} que la guía rectora ya le asigna a ACC. La variable se declara en \texttt{.env.example}.
+
+\subsubsection{Adición 2 --- El inyector de averías \emph{[Desarrollador]}}
+
+Un guion en \texttt{experimentos/\allowbreak inyector\_averias.py} que provoca una avería en la topología simulada y \textbf{deja constancia de a quién afectó}. Del orden de cien líneas.
+
+\begin{lstlisting}
+experimentos/
+  protocolo-e4.md            # ya exigido por la guia rectora
+  inyector_averias.py        # NUEVO: provoca la averia y escribe la verdad de campo
+  resultados/
+    verdad_campo.csv         # NUEVO: abonado_id, nodo, instante, severidad
+    iso25010.csv             # ya exigido
+    correlacion.csv          # NUEVO: incidencias efectivas, precision, exhaustividad
+    boxplot_latencia.png     # ya exigido
+\end{lstlisting}
+
+\begin{defBox}{Por qué este guion es la pieza más valiosa de toda la entrega}
+	En un proveedor real, nadie sabe con certeza qué abonados estaban afectados por una avería: se deduce después, con error. Como aquí la avería la provoca el propio equipo, esa lista se conoce con exactitud. Eso permite calcular la calidad del agrupamiento contra una respuesta conocida, sin etiquetado manual y sin discusión posible. Sin ese archivo, las métricas de la Adición 3 no se pueden calcular.
+\end{defBox}
+
+\subsubsection{Adición 3 --- Dos métricas más en la tabla que ya existe \emph{[Responsable de Calidad]}}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{4.0cm}p{6.4cm}p{4.6cm}@{}}
+		\toprule
+		\textbf{Métrica} & \textbf{Cómo se calcula} & \textbf{Qué responde} \\
+		\midrule
+		Incidencias efectivas & Número de incidencias abiertas que el despachador debe atender tras una avería & La carga real de trabajo \\
+		\addlinespace
+		Precisión del agrupamiento & De los tickets agrupados en una incidencia, proporción que sí correspondía a esa avería según \texttt{verdad\_campo.csv} & Si agrupó bien lo que agrupó \\
+		\addlinespace
+		Exhaustividad del agrupamiento & De los tickets de la avería, proporción que fue agrupada & Si agrupó todo lo que debía \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\begin{avisoBox}{Las dos se reportan siempre juntas}
+	Una estrategia que meta todos los tickets del país en una sola incidencia tendría exhaustividad perfecta y precisión pésima. Reportar solo una de las dos da una imagen falsa, y es el primer error que un lector técnico detecta.
+\end{avisoBox}
+
+\subsection{Cómo se analiza la comparación}
+
+El Módulo G pide media, desviación típica e intervalo de confianza al 95\,\% para contrastar cada métrica con su umbral. Eso es lo correcto para una evaluación de conformidad. Para \emph{comparar dos configuraciones entre sí} hace falta algo más, y es barato de añadir porque son dos líneas en el cuaderno de análisis:
+
+\begin{itemize}[leftmargin=*,itemsep=4pt]
+	\item \textbf{Mediana además de media}, porque las latencias no se distribuyen de forma simétrica y la media se desplaza con unos pocos valores extremos.
+	\item Una \textbf{prueba U de Mann-Whitney} entre las dos configuraciones. Compara si un grupo tiende a dar valores mayores que el otro sin suponer que los datos siguen una distribución normal, que es justamente lo que no se cumple aquí.
+	\item Un \textbf{tamaño del efecto} con el estadístico $\hat{A}_{12}$ de Vargha-Delaney, que se lee como la probabilidad de que una corrida tomada al azar de un grupo supere a una del otro. Responde a «¿la diferencia es grande?», que no es lo mismo que «¿la diferencia existe?».
+	\item \textbf{Diagramas de caja} por escenario y configuración, no gráficos de barras con la media.
+	\item Las proporciones --- precisión, exhaustividad y tasa de fusión errónea --- se reportan con \textbf{intervalo de confianza binomial}, no como porcentaje desnudo.
+\end{itemize}
+
+\begin{avisoBox}{Un cero observado no es un cero garantizado}
+	Si en las corridas no aparece ninguna fusión errónea, el resultado no es «nunca ocurre», sino «no se observó en $n$ corridas». El intervalo de confianza binomial da el rango honesto y debe escribirse así en el documento.
+\end{avisoBox}
+
+\subsection{Los escenarios del bloque experimental}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{1.3cm}p{5.4cm}p{8.3cm}@{}}
+		\toprule
+		\textbf{Cód.} & \textbf{Escenario} & \textbf{Configuración} \\
+		\midrule
+		Esc-1 & Carga nominal & 50 usuarios durante 5 minutos, sin avería. Es el escenario que la Tabla 2 usa para los umbrales \\
+		\addlinespace
+		Esc-2 & Avería masiva & 100 abonados afectados por una sola avería, con la rampa de 0 a 200 usuarios \\
+		\addlinespace
+		Esc-3 & Avería mayor & 500 abonados afectados por una sola avería \\
+		\addlinespace
+		Esc-4 & Dos averías simultáneas & Dos averías en zonas distintas al mismo tiempo, 100 abonados cada una \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+Los escenarios 2, 3 y 4 se ejecutan bajo \texttt{c0}, \texttt{c1} y \texttt{c2}; el escenario 1 solo bajo la configuración que el equipo declare como predeterminada. Con las diez repeticiones del protocolo rector, son 100 corridas.
+
+\begin{pisoBox}{Dos comprobaciones sin las cuales el experimento no vale}
+	\textbf{Control negativo.} Bajo \texttt{c0} y con 500 abonados afectados, el sistema debe abrir del orden de 500 incidencias. Si no ocurre, la carga no está reproduciendo el fenómeno y ninguna comparación posterior tiene sentido.\\[5pt]
+	\textbf{Escenario 4 obligatorio.} Una estrategia que agrupa bien una avería puede fundir erróneamente dos. Ese error solo aparece si se le presentan dos a la vez. Sin el escenario 4, el resultado sale bueno y es falso.
+\end{pisoBox}
+
+\subsection{Amenazas a la validez}
+
+La guía rectora pide al menos tres internas y dos externas. Para ACC, las candidatas naturales son:
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{2.0cm}p{12.9cm}@{}}
+		\toprule
+		\textbf{Tipo} & \textbf{Amenaza y mitigación} \\
+		\midrule
+		Interna & Ruido de la máquina anfitriona y competencia entre contenedores. Se mitiga con el descarte de la primera y la última repetición \\
+		Interna & Semilla de la generación de reportes de abonado. Se mitiga fijándola y declarándola \\
+		Interna & Efecto del orden de ejecución de las configuraciones. Se mitiga alternando el orden entre bloques \\
+		\addlinespace
+		Externa & El patrón de reporte de los abonados es sintético y la topología simulada \\
+		Externa & La escala del despliegue local frente a la de un proveedor con decenas de miles de abonados \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\subsection{Qué debe quedar archivado, y por qué no se puede reconstruir después}
+
+Las mediciones de latencia y rendimiento no significan nada sin el entorno en que se tomaron. Esa información se pierde en cuanto el equipo actualiza una dependencia o cambia de máquina, y \textbf{no hay forma de recuperarla más tarde}. Debe quedar registrada en \texttt{experimentos/protocolo-e4.md} el mismo día de las corridas.
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{4.4cm}p{10.5cm}@{}}
+		\toprule
+		\textbf{Qué se archiva} & \textbf{Detalle exigido} \\
+		\midrule
+		Entorno de ejecución & Modelo de procesador, número de núcleos, memoria RAM, tipo de disco, sistema operativo y versión, versión del motor de contenedores \\
+		\addlinespace
+		Versiones exactas & Etiqueta o \emph{hash} de cada imagen usada, versión del entorno de ejecución del \emph{backend}, del clúster y de la herramienta de carga \\
+		\addlinespace
+		Semillas & Semilla de la generación de reportes de abonado y del inyector de averías, una por corrida \\
+		\addlinespace
+		Datos crudos & Los archivos de \textbf{todas} las corridas, no solo los resúmenes. Los resúmenes se pueden recalcular; los crudos, no \\
+		\addlinespace
+		Verdad de campo & \texttt{verdad\_campo.csv} de cada corrida, emparejado con su identificador \\
+		\addlinespace
+		Cuaderno de análisis & El que regenera todas las figuras y tablas a partir de los crudos, sin intervención manual \\
+		\addlinespace
+		Instantánea citable & Una versión congelada del repositorio con identificador persistente, generada al cerrar la entrega \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\begin{defBox}{La prueba de que el archivo está completo}
+	Otra persona, con solo el repositorio y el \texttt{README.md}, debe poder clonar, levantar el sistema, ejecutar una corrida y \textbf{regenerar todas las figuras del documento} sin preguntar nada al equipo. Si necesita preguntar algo, eso que falta es precisamente lo que hay que archivar.
+\end{defBox}
+
+\section{Estructura del repositorio: qué existe y qué nace}
+
+La guía rectora fija la estructura final. Esta tabla indica el origen de cada carpeta para que el equipo sepa qué crear y qué solo mover.
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{5.4cm}p{1.9cm}p{7.5cm}@{}}
+		\toprule
+		\textbf{Ruta} & \textbf{Etiqueta} & \textbf{Observación para ACC} \\
+		\midrule
+		\endhead
+		\texttt{docs/adr/ADR-001..004} & \reuso & Se conservan; se les añade el impacto de la E4 \\
+		\texttt{docs/adr/ADR-005-\allowbreak patrones-gof.md} & \nuevo & Los cinco patrones asignados a ACC, formato Nygard \\
+		\texttt{docs/adr/ADR-006-\allowbreak eleccion-movil.md} & \nuevo & Justificación con al menos dos criterios cuantitativos \\
+		\texttt{docs/api/openapi.yaml} & \cambia & Verificar que describe la API real tras el Módulo A \\
+		\texttt{docs/diagrams/c4-nivel1,2} & \reuso & Sin cambios \\
+		\texttt{docs/diagrams/c4-nivel3} & \cambia & Se actualiza con la web y la móvil \\
+		\texttt{db/schema.sql} & \reuso & El esquema de la E3 \\
+		\texttt{services/} & \cambia & Refactorización en cuatro capas \\
+		\texttt{apps/web/} & \nuevo & Módulo B \\
+		\texttt{apps/mobile/} & \nuevo & Módulo C \\
+		\texttt{apps/spark/} & \cambia & Heredado de la E3; ahora dentro del mismo \emph{compose} \\
+		\texttt{experimentos/\allowbreak protocolo-e4.md} & \nuevo & El protocolo del Módulo G ampliado \\
+		\texttt{experimentos/\allowbreak inyector\_averias.py} & \nuevo & Adición 2 de esta guía \\
+		\texttt{experimentos/resultados/} & \nuevo & Datos crudos, incluida la verdad de campo \\
+		\texttt{ops/grafana/\allowbreak pfc-dashboard.json} & \nuevo & Panel exportado como código \\
+		\texttt{ops/prometheus/} & \cambia & Se añaden las cuatro métricas de aplicación \\
+		\texttt{ops/otel-collector/} & \nuevo & Colector de trazas \\
+		\texttt{tests/contract/} & \nuevo & Contratos de los dos clientes \\
+		\texttt{tests/e2e-web/} & \nuevo & Suite de la web \\
+		\texttt{tests/integration/},\allowbreak{} \texttt{tests/load/} & \cambia & Se conservan y se amplían con los dos escenarios de carga \\
+		\texttt{release/apk/},\allowbreak{} \texttt{release/screenshots/} & \nuevo & Artefactos generados por el \emph{pipeline} \\
+		\texttt{.env.example} & \cambia & Añadir las variables de web, móvil y \texttt{CORREL} \\
+		\texttt{docker-compose.yml} & \cambia & \emph{Backend}, clúster, web y colector \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\section{Del material acumulado al documento final}
+
+El manuscrito de la E4 es acumulativo: integra actualizadas todas las secciones de E1, E2 y E3, y las cita internamente, nunca como fuentes externas. Mínimo 20 páginas de contenido y 12 referencias en formato IEEE con identificador verificable.
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{3.4cm}p{1.0cm}p{2.6cm}p{7.6cm}@{}}
+		\toprule
+		\textbf{Sección} & \textbf{Págs.} & \textbf{Procede de} & \textbf{Qué hay que hacer con ese material} \\
+		\midrule
+		\endhead
+		Resumen bilingüe & 1 & Nuevo & Máximo 200 palabras cada versión \\
+		Introducción & 1,5 & E1 y exposiciones & Verificar las cifras y las fuentes; añadir las contribuciones del semestre \\
+		Trabajos relacionados & 2 & TA-IND-02, FORM-IC-02 & Ampliar a un mínimo de seis fuentes indexadas sobre bases distribuidas, microservicios, móvil y calidad \\
+		Fundamento teórico & 3 & E1 y E3 & Capas y SOLID, patrones, móvil, integración continua, observabilidad e ISO 25010 \\
+		Arquitectura & 2 & E1 y E2 & C4 de nivel 1 a 3, los seis ADR y el \emph{stack} consolidado \\
+		Aplicación web & 2 & Nuevo & Manual del Módulo B, capturas de las cinco rutas y evidencia de internacionalización \\
+		Aplicación móvil & 2 & Nuevo & Manual del Módulo C, capturas y evidencia de las dos capacidades usadas \\
+		Pruebas y CI/CD & 2 & E2, E3 y nuevo & Pirámide, resumen del \emph{pipeline} y cobertura \\
+		Observabilidad & 1,5 & E3 y nuevo & Panel como figura y ejemplo de traza distribuida \\
+		Evaluación ISO 25010 & 2 & Nuevo & Tabla de métricas con intervalo de confianza y discusión, \textbf{incluida la comparación de la sección 5} \\
+		Discusión y amenazas & 1,5 & Nuevo & Interpretación, alcance y limitaciones \\
+		Conclusiones & 1 & Todo & Cierre del ciclo E1 a E4 \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\begin{avisoBox}{Dónde entra la ampliación del Módulo G en el documento}
+	No crea una sección nueva. La comparación entre configuraciones entra en \textbf{Evaluación ISO 25010} como un bloque de resultados con su tabla, y su lectura entra en \textbf{Discusión y amenazas}. La estructura de la Tabla 3 de la guía rectora se respeta sin tocar.
+\end{avisoBox}
+
+\section{Lo que debía estar terminado}
+
+Antes del plan de los días que quedan, conviene fijar con precisión qué exigían las semanas ya transcurridas. Esta tabla no es un reproche: es el mapa para saber dónde mirar si algo falla.
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{1.8cm}p{5.8cm}p{7.3cm}@{}}
+		\toprule
+		\textbf{Semana} & \textbf{Qué debía quedar terminado} & \textbf{Cómo comprobarlo hoy en un minuto} \\
+		\midrule
+		4 & E1 y PE-U1: análisis, C4, ADR-001, sockets, gRPC y relojes de Lamport & El servidor de sockets arranca y los CSV de latencia están en el repositorio \\
+		\addlinespace
+		7 & E2: microservicios, puerta de enlace, OpenAPI, autenticación y \emph{compose} & \texttt{docker compose up} levanta y \texttt{/auth/login} devuelve credencial \\
+		\addlinespace
+		11 & E3: clúster de tres nodos, fragmentación y prueba de tolerancia a fallos & Los tres nodos responden y existe el vídeo de la prueba \\
+		\addlinespace
+		14 & \emph{Pipeline} PySpark y medición de \emph{speedup} & Los resultados de tiempos están en el repositorio \\
+		\addlinespace
+		16 & Revisión cruzada: \emph{issues} recibidos del equipo revisor & Ningún \emph{issue} abierto sin respuesta \\
+		\addlinespace
+		17 & Módulos A, B y C encaminados; el grueso del código nuevo & La web y la móvil compilan, aunque estén incompletas \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section{Plan de los nueve días restantes}
+
+El cierre es el viernes 4 de septiembre a las 23:55. Este plan supone que los Módulos A, B y C están al menos empezados. Si no lo están, aplique primero el triaje de la sección 10.
+
+\begin{center}
+	\small
+	\begin{longtable}{@{}p{2.6cm}p{1.5cm}p{5.2cm}p{5.0cm}@{}}
+		\toprule
+		\textbf{Día} & \textbf{Semana} & \textbf{Trabajo} & \textbf{Al acostarse debe estar hecho} \\
+		\midrule
+		\endhead
+		Jueves 27 & 17 & Auditoría de la sección 2. Levantar clúster y canal TCP. Cerrar \emph{issues} de la revisión cruzada & El inventario marcado y el sistema heredado en pie \\
+		\addlinespace
+		Viernes 28 & 17 & Módulo A: dependencias hacia el dominio, ADR-005 con los cinco patrones & Ninguna clase de \texttt{domain} importa \texttt{infrastructure} \\
+		\addlinespace
+		Sábado 29 & 17 & \textbf{Módulo C, día completo}: autenticación, listado de tickets, detalle & La app móvil arranca, autentica y lista tickets reales \\
+		\addlinespace
+		Domingo 30 & 17 & Módulo C: cierre en sitio con posición y fotografía. Módulo B: rutas y \emph{login} & Las dos capacidades del dispositivo funcionan \\
+		\addlinespace
+		Lunes 31 & 18 & Módulo B: vista de acuerdo por zona y por técnico, idiomas, tema, estados & Las cinco rutas navegables y protegidas \\
+		\addlinespace
+		Martes 1 & 18 & Adiciones 1 y 2: \texttt{CORREL} y el inyector de averías. Módulo F & \texttt{CORREL} conmuta; el panel muestra las seis vistas \\
+		\addlinespace
+		Miércoles 2 & 18 & \textbf{Módulo G}: las 100 corridas, lanzadas por lotes desde la mañana & Los datos crudos y la verdad de campo en el repositorio \\
+		\addlinespace
+		Jueves 3 & 18 & Módulos D y E: pruebas de contrato y extremo a extremo; los siete trabajos en verde. Análisis y figuras & El \emph{pipeline} verde y todas las figuras generadas \\
+		\addlinespace
+		Viernes 4 & 18 & Módulo H: manuscrito, fusión a \texttt{main} por \emph{pull request}, verificación final & \textbf{Último \emph{commit} antes de las 23:55} \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\begin{avisoBox}{Dos decisiones de calendario que conviene no discutir}
+	\textbf{El sábado es para la aplicación móvil.} Es el módulo con más sorpresas: firma del paquete, permisos del dispositivo, emulador, versiones del entorno de compilación. Dejarla para el final es la forma más común de perder la mitad de la nota.\\[5pt]
+	\textbf{Las corridas del Módulo G se lanzan el miércoles por la mañana.} Cien corridas por lotes no caben en una noche, y si algo falla a mitad hace falta un día de margen para repetirlas.
+\end{avisoBox}
+
+\section{Triaje: qué hacer si algo no está}
+
+Con nueve días no cabe todo. Si el equipo llega tarde, la peor decisión es repartir el esfuerzo por igual. Esta tabla ordena el trabajo por \textbf{lo que cuesta no tenerlo}, de mayor a menor.
+
+\begin{center}
+	\small
+	\begin{longtable}{@{}p{0.9cm}p{5.4cm}p{3.0cm}p{5.0cm}@{}}
+		\toprule
+		\textbf{Ord.} & \textbf{Si falta esto} & \textbf{Coste} & \textbf{Mínimo aceptable en un día} \\
+		\midrule
+		\endhead
+		1 & La aplicación móvil, por completo & \textbf{Factor 0,5 sobre toda la nota} & Que arranque, autentique contra \texttt{/auth/login}, liste tickets y use dos capacidades del dispositivo \\
+		\addlinespace
+		2 & La aplicación web, por completo & \textbf{Factor 0,5 sobre toda la nota} & Cinco rutas, \emph{login} con credencial y la vista de acuerdo por zona \\
+		\addlinespace
+		3 & Los datos del Módulo G & Hunde la evaluación y la discusión & Reducir a los escenarios 1, 3 y 4, manteniendo las diez repeticiones \\
+		\addlinespace
+		4 & El \emph{pipeline} con los siete trabajos & Dimensión 5 en nivel bajo & Que los siete existan y estén en verde, aunque las pruebas sean mínimas \\
+		\addlinespace
+		5 & El manuscrito de 20 páginas & Dimensión 8 completa & Escribir sobre lo medido, nunca sobre lo planeado \\
+		\addlinespace
+		6 & La refactorización en capas & Dimensión 1 & Al menos el microservicio principal en cuatro paquetes \\
+		\addlinespace
+		7 & El panel con las seis vistas & Dimensión 6 & Las seis vistas, aunque sin refinar \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\begin{pisoBox}{Lo que nunca se recorta, aunque falte tiempo}
+	\textbf{El control negativo} y \textbf{el escenario de dos averías simultáneas}. Sin el primero no se sabe si la carga reproduce el fenómeno; sin el segundo, la fusión errónea queda oculta y el resultado sale bueno y falso. Antes que recortarlos, reduzca el número de escenarios.\\[5pt]
+	\textbf{El registro del entorno de ejecución.} Son diez minutos de trabajo y es el único dato de toda la entrega que no se puede reconstruir después.
+\end{pisoBox}
+
+\begin{avisoBox}{Sobre reducir las repeticiones}
+	La tentación evidente es bajar de diez repeticiones a tres. \textbf{No lo haga.} Es preferible ejecutar menos escenarios con las diez repeticiones completas que todos los escenarios con tres: con tres corridas, el intervalo de confianza sale tan ancho que ninguna comparación resulta concluyente y el trabajo de medir se pierde entero.
+\end{avisoBox}
+
+\section{Defensa oral}
+
+Además de las ocho preguntas obligatorias del Anexo B de la guía rectora, el equipo ACC debe poder responder estas cuatro:
+
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+	\item Con 500 abonados afectados por una sola avería, ¿cuántas incidencias efectivas ve el operador con cada configuración de \texttt{CORREL}?
+	\item ¿Cuál fue la precisión y la exhaustividad del agrupamiento con telemetría, y qué significa cada una para el técnico que recibe la orden de trabajo?
+	\item ¿Con qué frecuencia se fundieron erróneamente dos averías simultáneas, y qué le pasa al abonado de la segunda zona cuando eso ocurre?
+	\item ¿Cómo mantienen coherente el ciclo de vida del ticket cuando los eventos llegan desde la consola web, desde la app del técnico y desde la telemetría?
+\end{enumerate}
+
+\section{Lista de verificación final}
+
+A la lista del Anexo A de la guía rectora, el equipo ACC añade estas comprobaciones:
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{0.7cm}p{14.2cm}@{}}
+		\toprule
+		\textbf{$\square$} & \textbf{Verificación adicional para ACC} \\
+		\midrule
+		$\square$ & \texttt{CORREL} conmuta entre \texttt{c0}, \texttt{c1} y \texttt{c2} sin tocar código ni cambiar de rama \\
+		$\square$ & El inyector de averías escribe \texttt{verdad\_campo.csv} en cada corrida \\
+		$\square$ & \textbf{Control negativo validado}: con \texttt{c0} y 500 abonados, el sistema abre del orden de 500 incidencias \\
+		$\square$ & El escenario de dos averías simultáneas está ejecutado y la fusión errónea reportada \\
+		$\square$ & Precisión y exhaustividad se reportan juntas, nunca una sola \\
+		$\square$ & Las diez repeticiones por escenario están completas y se descartaron la primera y la última \\
+		$\square$ & La vista de acuerdo de nivel de servicio por zona y por técnico funciona en la consola web \\
+		$\square$ & La app móvil cierra un ticket en sitio con posición y fotografía \\
+		$\square$ & Los cuatro contadores de eventos de negocio de ACC aparecen en el panel \\
+		$\square$ & Los cinco patrones del ADR-005 se corresponden con clases reales del código \\
+		$\square$ & El entorno de ejecución está registrado: procesador, núcleos, RAM, disco, sistema y versiones \\
+		$\square$ & Están los datos crudos de las 100 corridas, no solo los resúmenes \\
+		$\square$ & La comparación entre configuraciones reporta mediana, prueba estadística y tamaño del efecto \\
+		$\square$ & El cuaderno de análisis regenera todas las figuras sin intervención manual \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\vspace{6pt}
+\begin{uteqbox}{Nota final para el equipo}
+	La Entrega 4 parece enorme porque son ocho módulos, pero la mayor parte del sistema ya está construido: el clúster, los microservicios, la puerta de enlace, el canal de telemetría y el \emph{pipeline} de datos vienen de las entregas anteriores y se conservan. Lo verdaderamente nuevo son las dos aplicaciones cliente y el instrumental de medición. Y la ampliación que esta guía añade cabe en un condicional, un guion de cien líneas y dos columnas más en una tabla que de todos modos hay que llenar.
+\end{uteqbox}
+
+\end{document}
