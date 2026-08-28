@@ -1,0 +1,56 @@
+%% ============================================================================
+%% CORRECCIÓN PARCIAL DE main.tex — el ámbito o frontera del sistema
+%%
+%% Tres inserciones. Ninguna sustituye texto existente: las tres se AÑADEN.
+%% La indentación es de cuatro espacios, como el resto de main.tex (no tabulador),
+%% para no dejar el archivo con dos estilos mezclados.
+%%
+%% Requiere añadir a references.bib las entradas de references-ambito.bib.
+%% La entrada `iso29148` ya existe y se reutiliza.
+%% ============================================================================
+
+
+%% ----------------------------------------------------------------------------
+%% INSERCIÓN 1 de 3
+%%   Archivo:  main.tex
+%%   Sección:  \subsection{Extracción de datos y síntesis por pregunta de
+%%             investigación}  (\label{subsec:sintesis})
+%%   Lugar:    párrafo NUEVO, inmediatamente DESPUÉS del párrafo que empieza por
+%%             «\textit{RQ2 (características de los formularios).}» y ANTES del
+%%             que empieza por «\textit{RQ3 (relación con la generación...)}».
+%%   Acción:   añadir; no reemplaza nada.
+%% ----------------------------------------------------------------------------
+
+    Un campo ausente merece mención aparte. Entre los campos recurrentes identificados no figura el ámbito o frontera del sistema (\emph{scope}) al que se refiere el caso de uso, pese a que la plantilla canónica de Cockburn lo sitúa entre los campos de cabecera, junto con el nivel de objetivo \cite{cockburn2001usecases}, y a que la propia definición de actor lo presupone: UML caracteriza al actor como una entidad externa al sujeto modelado, de modo que sin sujeto declarado la condición de actor no queda determinada \cite{omg2017uml,larman2004uml}. La omisión es consecuente con el criterio de frecuencia empleado para clasificar los campos: uno necesario pero raramente documentado queda por debajo del umbral. Su ausencia es inocua mientras el actor es una persona ante una interfaz, porque entonces la frontera se sobreentiende; deja de serlo en los sistemas ciberfísicos y de la Internet de las Cosas, donde el caso de uso lo inicia un dispositivo que pertenece al producto pero no al software, y su condición de actor o de componente interno depende por completo de dónde se trace esa frontera \cite{daun2023context,boutot2024ucm4iot}. Ese es, además, el terreno en el que más recientemente se ha ensayado la generación de modelos de casos de uso asistida por LLM, con resultados condicionados por la precisión con que se delimite el sistema \cite{tabassum2024llmusecase}.
+
+
+%% ----------------------------------------------------------------------------
+%% INSERCIÓN 2 de 3
+%%   Archivo:  main.tex
+%%   Sección:  \subsection{Amenazas a la validez de la revisión}
+%%             (\label{subsec:amenazas})
+%%   Lugar:    párrafo NUEVO al final de la subsección, después del párrafo que
+%%             termina en «...atenuada por la triangulación entre revisores.» y
+%%             antes de «\section{Metodología}».
+%%   Acción:   añadir; no reemplaza nada.
+%% ----------------------------------------------------------------------------
+
+    A lo anterior se añade una amenaza propia del procedimiento de síntesis. La clasificación de los campos de especificación en obligatorios y opcionales se apoyó en su frecuencia de aparición en las plantillas de los estudios incluidos, criterio que privilegia lo documentado con asiduidad sobre lo necesario: un campo imprescindible en un dominio concreto, pero poco reportado en la literatura analizada, queda clasificado como opcional o directamente omitido. El ámbito o frontera del sistema es el caso más claro (Sección~\ref{subsec:sintesis}), y su omisión afecta de forma desigual a los dominios de aplicación, pues resulta inocua cuando el actor es una persona y determinante cuando lo es un dispositivo \cite{cockburn2001usecases,daun2023context}. Este sesgo es consecuencia del corpus: los estudios incluidos en la categoría de casos de uso describen mayoritariamente sistemas con un usuario ante una interfaz, de manera que la frecuencia observada refleja esa población y no necesariamente las necesidades de los sistemas ciberfísicos. La mitigación consiste en contrastar los campos derivados de la frecuencia con los de las plantillas canónicas de referencia, contraste que este trabajo incorpora de forma parcial y que queda señalado como línea de mejora.
+
+
+%% ----------------------------------------------------------------------------
+%% INSERCIÓN 3 de 3
+%%   Archivo:  main.tex
+%%   Sección:  \section{Conclusiones}  (\label{sec:conclusiones})
+%%   Lugar:    dentro de la enumeración de líneas de trabajo futuro del último
+%%             párrafo. Se REEMPLAZA el fragmento:
+%%
+%%                 la ampliación de la evaluación a profesionales y a mayor
+%%                 diversidad de dominios; y la preparación de la versión en
+%%                 inglés del manuscrito para su envío a \emph{Enfoque UTE}.
+%%
+%%             por el fragmento de abajo (añade un elemento a la lista y
+%%             conserva los dos que ya estaban).
+%% ----------------------------------------------------------------------------
+
+    la incorporación del ámbito del sistema y del nivel de objetivo a la plantilla de casos de uso, para que los iniciados por un dispositivo ---propios de los sistemas ciberfísicos--- puedan especificarse sin ambigüedad sobre qué es actor y qué componente interno; la ampliación de la evaluación a profesionales y a mayor diversidad de dominios; y la preparación de la versión en inglés del manuscrito para su envío a \emph{Enfoque UTE}.

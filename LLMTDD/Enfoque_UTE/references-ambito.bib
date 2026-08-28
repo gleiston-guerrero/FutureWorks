@@ -1,0 +1,76 @@
+%% ============================================================================
+%% Entradas nuevas para references.bib — ámbito/frontera del sistema.
+%%
+%% Todas verificadas contra fuente primaria (agosto de 2026):
+%%   Cockburn y Larman ......... Open Library (ISBN, editorial, año, serie)
+%%   OMG UML 2.5.1 ............. omg.org/spec/UML/2.5.1 (número de documento)
+%%   Boutot et al. ............. Crossref, DOI 10.1016/j.cola.2023.101251
+%%   Tabassum et al. ........... Crossref, DOI 10.1145/3652620.3687810
+%%   Daun y Tenbergen .......... Crossref, DOI 10.1002/smr.2451
+%%
+%% `iso29148` YA EXISTE en references.bib y se reutiliza; no se duplica aquí.
+%%
+%% Campos omitidos a propósito: la dirección editorial de Larman no consta en
+%% la ficha catalográfica consultada, y no se completa por inferencia.
+%% ============================================================================
+
+@book{cockburn2001usecases,
+	author    = {Alistair Cockburn},
+	title     = {Writing Effective Use Cases},
+	series    = {The Agile Software Development Series},
+	publisher = {Addison-Wesley},
+	address   = {Boston, MA, USA},
+	year      = {2001},
+	isbn      = {978-0-201-70225-5}
+}
+
+@book{larman2004uml,
+	author    = {Craig Larman},
+	title     = {Applying {UML} and Patterns: An Introduction to Object-Oriented Analysis and Design and Iterative Development},
+	edition   = {3},
+	publisher = {Prentice Hall PTR},
+	year      = {2004},
+	isbn      = {978-0-13-148906-6}
+}
+
+@manual{omg2017uml,
+	author       = {{Object Management Group}},
+	title        = {{OMG} Unified Modeling Language ({OMG} {UML}), Version 2.5.1},
+	organization = {Object Management Group},
+	note         = {Document formal/17-12-05},
+	month        = dec,
+	year         = {2017},
+	url          = {https://www.omg.org/spec/UML/2.5.1/}
+}
+
+@article{boutot2024ucm4iot,
+	author  = {Paul Boutot and Mirza Rehenuma Tabassum and Abdul Abedin and Sadaf Mustafiz},
+	title   = {Requirements development for {IoT} systems with {UCM4IoT}},
+	journal = {Journal of Computer Languages},
+	volume  = {78},
+	pages   = {101251},
+	year    = {2024},
+	issn    = {2590-1184},
+	doi     = {10.1016/j.cola.2023.101251}
+}
+
+@inproceedings{tabassum2024llmusecase,
+	author    = {Mirza Rehenuma Tabassum and Matthew J. Ritchie and Sadaf Mustafiz and J{\"o}rg Kienzle},
+	title     = {Using {LLMs} for Use Case Modelling of {IoT} Systems: An Experience Report},
+	booktitle = {Proceedings of the {ACM/IEEE} 27th International Conference on Model Driven Engineering Languages and Systems},
+	publisher = {ACM},
+	year      = {2024},
+	pages     = {611--619},
+	doi       = {10.1145/3652620.3687810}
+}
+
+@article{daun2023context,
+	author  = {Marian Daun and Bastian Tenbergen},
+	title   = {Context modeling for cyber-physical systems},
+	journal = {Journal of Software: Evolution and Process},
+	volume  = {35},
+	number  = {7},
+	pages   = {e2451},
+	year    = {2023},
+	doi     = {10.1002/smr.2451}
+}
