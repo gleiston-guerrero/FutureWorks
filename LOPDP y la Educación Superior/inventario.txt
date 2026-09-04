@@ -1,0 +1,444 @@
+﻿.gitattributes	10
+.gitignore	203
+anadir_id_auditoria.py	2682
+anexo_universidades_cookies.html	63522
+archivos_faltantes.zip	22
+archivos_faltantes\MANIFIESTO.csv	6396
+archivos_faltantes\no_publicar\con_nombres_evaluadores\validacion_manual_wcag_auditoria_lote.xlsx	51864
+archivos_faltantes\no_publicar\con_nombres_evaluadores\wcag_doble_evaluacion_5_sitios.csv	6520
+archivos_faltantes\no_publicar\con_nombres_evaluadores\wcag_pares_kappa.csv	1335
+archivos_faltantes\no_publicar\con_nombres_evaluadores\wcag_validacion_15_sitios.csv	17592
+archivos_faltantes\no_publicar\con_nombres_evaluadores\wcag_validacion_final.xlsx	25927
+archivos_faltantes\no_publicar\manuscritos_previos\privacidad_ies.bib	8457
+archivos_faltantes\no_publicar\manuscritos_previos\privacidad_ies.tex	23798
+archivos_faltantes\no_publicar\manuscritos_previos\privacidad_mundo.tex	41406
+archivos_faltantes\no_publicar\notas_internas\hallazgos-auditoria-wcag.md	2381
+archivos_faltantes\no_publicar\notas_internas\hallazgos-comparativa-mundo.md	2644
+archivos_faltantes\no_publicar\notas_internas\hallazgos-privacidad-ies.md	2391
+archivos_faltantes\no_publicar\notas_internas\hallazgos-validacion-manual-wcag.md	7622
+archivos_faltantes\no_publicar\notas_internas\respuesta-observaciones-uais.md	18899
+archivos_faltantes\para_repositorio\code\analysis\estudio.py	2385
+archivos_faltantes\para_repositorio\code\analysis\kappa_wcag.py	2124
+archivos_faltantes\para_repositorio\code\analysis\qa_cookies.py	3970
+archivos_faltantes\para_repositorio\code\analysis\reconciliar.py	5585
+archivos_faltantes\para_repositorio\data\manual\codificacion_manual_15_universidades.csv	3782
+archivos_faltantes\para_repositorio\data\manual\recodificacion_143.csv	7153
+archivos_faltantes\para_repositorio\data\manual\recodificacion_244.csv	8054
+archivos_faltantes\para_repositorio\data\manual\wcag_doble_evaluacion_5_sitios.csv	5672
+archivos_faltantes\para_repositorio\data\manual\wcag_pares_kappa.csv	927
+archivos_faltantes\para_repositorio\data\manual\wcag_validacion_15_sitios.csv	15700
+archivos_faltantes\para_repositorio\data\manual\wcag_validacion_anonimizado.xlsx	25043
+archivos_faltantes\para_repositorio\data\processed\cambios_reconciliacion.csv	4519
+archivos_faltantes\para_repositorio\data\processed\estudio_126_sitios.csv	50434
+archivos_faltantes\para_repositorio\data\processed\estudio_reglas_por_sitio.csv	50279
+archivos_faltantes\para_repositorio\data\processed\qa_irregularidades.csv	52807
+archivos_faltantes\para_repositorio\docs\reports\reporte_cookies_combinado.html	70296
+archivos_faltantes\para_repositorio\docs\reports\reporte_cookies_extranjeras.html	37638
+archivos_faltantes\para_repositorio\docs\reports\reporte_cookies_nacionales.html	42793
+archivos_faltantes\revisar\CHECKSUMS.txt	715
+archivos_faltantes\revisar\cookies_126_sitios_v2.csv	47698
+archivos_faltantes\revisar\cookies_126_sitios_v2.xlsx	33664
+auditar_multipunto.js	33662
+auditor_uni\auditar.js	13862
+auditor_uni\LEEME.txt	4036
+auditor_uni\package.json	336
+auditor_uni\package-lock.json	2131
+auditor_uni\resultados.csv	23298
+auditor_uni\resultados.json	295158
+auditor_uni\universidades.json	19540
+auditoria_multipunto_windows\analizar_multipunto.py	15383
+auditoria_multipunto_windows\auditar_multipunto.js	20091
+auditoria_multipunto_windows\construir_lista.py	12565
+auditoria_multipunto_windows\datos_multipunto\meta_EC_r1.json	4836
+auditoria_multipunto_windows\datos_multipunto\meta_EC_r2.json	4836
+auditoria_multipunto_windows\datos_multipunto\meta_EC_r3.json	4076
+auditoria_multipunto_windows\datos_multipunto\meta_EU_r1.json	4972
+auditoria_multipunto_windows\datos_multipunto\meta_EU_r2.json	4972
+auditoria_multipunto_windows\datos_multipunto\meta_EU_r3.json	4284
+auditoria_multipunto_windows\datos_multipunto\meta_GB_r1.json	2048
+auditoria_multipunto_windows\datos_multipunto\meta_GB_r2.json	4700
+auditoria_multipunto_windows\datos_multipunto\meta_GB_r3.json	4700
+auditoria_multipunto_windows\datos_multipunto\meta_GB_r4.json	4700
+auditoria_multipunto_windows\datos_multipunto\meta_US_r1.json	4796
+auditoria_multipunto_windows\datos_multipunto\meta_US_r2.json	4796
+auditoria_multipunto_windows\datos_multipunto\meta_US_r3.json	4180
+auditoria_multipunto_windows\datos_multipunto\resultados_EC_r1.csv	27336
+auditoria_multipunto_windows\datos_multipunto\resultados_EC_r1.json	292704
+auditoria_multipunto_windows\datos_multipunto\resultados_EC_r2.csv	27306
+auditoria_multipunto_windows\datos_multipunto\resultados_EC_r2.json	292239
+auditoria_multipunto_windows\datos_multipunto\resultados_EC_r3.csv	27366
+auditoria_multipunto_windows\datos_multipunto\resultados_EC_r3.json	294539
+auditoria_multipunto_windows\datos_multipunto\resultados_EU_r1.csv	25132
+auditoria_multipunto_windows\datos_multipunto\resultados_EU_r1.json	278036
+auditoria_multipunto_windows\datos_multipunto\resultados_EU_r2.csv	25394
+auditoria_multipunto_windows\datos_multipunto\resultados_EU_r2.json	277479
+auditoria_multipunto_windows\datos_multipunto\resultados_EU_r3.csv	25389
+auditoria_multipunto_windows\datos_multipunto\resultados_EU_r3.json	279624
+auditoria_multipunto_windows\datos_multipunto\resultados_GB_r1.csv	5053
+auditoria_multipunto_windows\datos_multipunto\resultados_GB_r1.json	49546
+auditoria_multipunto_windows\datos_multipunto\resultados_GB_r2.csv	25445
+auditoria_multipunto_windows\datos_multipunto\resultados_GB_r2.json	278364
+auditoria_multipunto_windows\datos_multipunto\resultados_GB_r3.csv	26005
+auditoria_multipunto_windows\datos_multipunto\resultados_GB_r3.json	282156
+auditoria_multipunto_windows\datos_multipunto\resultados_GB_r4.csv	25997
+auditoria_multipunto_windows\datos_multipunto\resultados_GB_r4.json	284224
+auditoria_multipunto_windows\datos_multipunto\resultados_US_r1.csv	26999
+auditoria_multipunto_windows\datos_multipunto\resultados_US_r1.json	293237
+auditoria_multipunto_windows\datos_multipunto\resultados_US_r2.csv	27079
+auditoria_multipunto_windows\datos_multipunto\resultados_US_r2.json	294460
+auditoria_multipunto_windows\datos_multipunto\resultados_US_r3.csv	27035
+auditoria_multipunto_windows\datos_multipunto\resultados_US_r3.json	293701
+auditoria_multipunto_windows\ejecutar.bat	5634
+auditoria_multipunto_windows\INICIO_RAPIDO.txt	6002
+auditoria_multipunto_windows\INSTALAR.bat	4957
+auditoria_multipunto_windows\LEEME_MULTIPUNTO.txt	2807
+auditoria_multipunto_windows\package.json	357
+auditoria_multipunto_windows\package-lock.json	2100
+auditoria_multipunto_windows\protocolo_multipunto.pdf	377263
+auditoria_multipunto_windows\protocolo_multipunto.tex	34854
+auditoria_multipunto_windows\universidades.json	21499
+capturas\1.4.3\berkeley.png	797016
+capturas\1.4.3\cornell.png	1976333
+capturas\1.4.3\ecotec.png	1463657
+capturas\1.4.3\hkust.png	1910303
+capturas\1.4.3\iaen.png	847650
+capturas\1.4.3\indoamerica.png	1212247
+capturas\1.4.3\manchester.png	1108113
+capturas\1.4.3\northwestern.png	1382984
+capturas\1.4.3\nus.png	810315
+capturas\1.4.3\ucl.png	642116
+capturas\1.4.3\ulvr.png	1100484
+capturas\1.4.3\unesum.png	1129481
+capturas\1.4.3\ups.png	1459374
+capturas\1.4.3\usecipol.png	1317177
+capturas\1.4.3\utpl.png	933266
+capturas\2.4.4\berkeley.png	759157
+capturas\2.4.4\cornell.png	1965214
+capturas\2.4.4\ecotec.png	958042
+capturas\2.4.4\hkust.png	1765149
+capturas\2.4.4\iaen.png	1166659
+capturas\2.4.4\indoamerica.png	823542
+capturas\2.4.4\manchester.png	1083513
+capturas\2.4.4\northwestern.png	1369748
+capturas\2.4.4\nus.png	805467
+capturas\2.4.4\ucl.png	615107
+capturas\2.4.4\ulvr.png	800960
+capturas\2.4.4\unesum.png	1127132
+capturas\2.4.4\ups.png	1278155
+capturas\2.4.4\usecipol.png	1248233
+capturas\2.4.4\utpl.png	1722493
+capturas\berkeley.png	1220762
+capturas\cornell.png	2005279
+capturas\ecotec.png	1290860
+capturas\hkust.png	1487368
+capturas\iaen.png	1000656
+capturas\indoamerica.png	1186844
+capturas\manchester.png	1099500
+capturas\northwestern.png	1353525
+capturas\nus.png	811859
+capturas\ucl.png	633814
+capturas\ulvr.png	908082
+capturas\unesum.png	1104612
+capturas\ups.png	1265144
+capturas\usecipol.png	1195603
+capturas\utpl.png	2022662
+claude_analizar_multipunto.py	13379
+claude_auditar.js	13564
+claude_auditar_multipunto.js	18715
+claude_figuras_uais.py	11599
+claude_seleccion63-mundo.json	9525
+claude_stats_uais.py	7636
+CODEBOOK.md	19069
+cookies_126_sitios_v3.csv	66294
+cookies_divergencias_v2.csv	762
+cookies_nombres_sin_clasificar.csv	4181
+ejecutar_auditoria\analizar_multipunto.py	15389
+ejecutar_auditoria\auditar_multipunto.js	20116
+ejecutar_auditoria\ejecutar.bat	5778
+ejecutar_auditoria\INICIO_RAPIDO.txt	6002
+ejecutar_auditoria\INSTALAR.bat	4957
+ejecutar_auditoria\package.json	347
+ejecutar_auditoria\package-lock.json	2080
+ejecutar_auditoria\universidades.json	21499
+ejecutar_auditoria\universidades_EJEMPLO.json	300
+fig_vantage.py	1533
+figuras_uais.py	11869
+kappa_uais.py	7232
+MANIFIESTO.csv	6396
+manual_validacion_manual.pdf	174979
+No Subir\【ShanghaiRanking】 2025 Academic Ranking of World Unhiversities.xlsx	46773
+No Subir\【ShanghaiRanking】 2026 Academic Ranking of World Unhiversities.xlsx	81997
+No Subir\2027 QS World University Rankings 1.3 (For qs.com).xlsx	311633
+No Subir\analisis_multipunto.txt	8063
+No Subir\auditoria_multipunto_windows.zip	408115
+No Subir\auditoria_multipunto_windows\datos_multipunto (2).zip	427149
+No Subir\auditoria_multipunto_windows\datos_multipunto.zip	230113
+No Subir\auditoria_multipunto_windows\datos_multipunto\resultados.zip	310741
+No Subir\bat.zip	3088
+No Subir\clasificacion_repositorio.csv	137048
+No Subir\diagnostico_decisivo.txt	2262
+No Subir\ejecutar_auditoria.zip	23479
+No Subir\ejecutar_auditoria\datos_multipunto.zip	191983
+No Subir\evaluaciones\anexo_evidencia_pallo.pdf	2780580
+No Subir\evaluaciones\Anteriores\5 evaluaciones.zip	6276727
+No Subir\evaluaciones\Anteriores\5 evaluaciones\Capturas.zip	6265701
+No Subir\evaluaciones\Anteriores\5 evaluaciones\codificacion_posicion_1.csv	1062
+No Subir\evaluaciones\Anteriores\5 evaluaciones\codificacion_posicion_1.xlsx	11751
+No Subir\evaluaciones\Anteriores\5 evaluaciones\codificacion_posicion_2.csv	1049
+No Subir\evaluaciones\Anteriores\5 evaluaciones\codificacion_posicion_2.xlsx	11747
+No Subir\evaluaciones\Anteriores\5 evaluaciones\codificacion_posicion_3.xlsx	11688
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_BERKELEY_1.1.1_1.png	183831
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_BERKELEY_1.1.1_2.png	321392
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_BERKELEY_1.4.3_1.png	242138
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_BERKELEY_2.4.4_1.png	281582
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_IAEN_1.1.1.png	367162
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_IAEN_1.4.3.png	487698
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_IAEN_2.4.4.png	613615
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_UCL_1.1.1.png	517006
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_UCL_1.4.3.png	310471
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_UCL_2.4.4.png	489112
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_UNESUM_1.1.1.png	575856
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_UNESUM_1.4.3.png	557211
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_UNESUM_2.4.4_1.png	324752
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_USECIPOL_1.1.1.png	207371
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_USECIPOL_1.4.3.png	338286
+No Subir\evaluaciones\Anteriores\5 evaluaciones\UTEQ_USECIPOL_2.4.4.png	563995
+No Subir\evaluaciones\Anteriores\5 evaluaciones\validacion_manual_accesibilidad (1).xlsx	12860
+No Subir\evaluaciones\Anteriores\5 evaluaciones\validacion_manual_accesibilidad_5_sitios.xlsx	12860
+No Subir\evaluaciones\Anteriores\Analisis APPWEB.zip	4339858
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_1.xlsx	2985595
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_alava.xlsx	221607
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_carvajal.xlsx	14405
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_cinco.zip	8350001
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_cruz.xlsx	225462
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_cuatro.zip	4339406
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_diez.xlsx	2985595
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_diez.zip	8118815
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_dos.zip	11754782
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_escudero.xlsx	14243
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_moncayo.xlsx	13595
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_nueve.xlsx	2041257
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_ocho.zip	434200
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_pallo.xlsx	14592
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_rios.xlsx	14523
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_seis.zip	1615720
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_siete.zip	340760
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_tejada.xlsx	13657
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_tres.xlsx	2546657
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_umaginga.xlsx	4217588
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_uno.xlsx	4215084
+No Subir\evaluaciones\Anteriores\validacion_manual_accesibilidad_z_arias.xlsx	14285
+No Subir\evaluaciones\doble evaluación\5_doble_validaciones.zip	6207091
+No Subir\evaluaciones\doble evaluación\doble evaluación_accesibilidad_andrea.xlsx	12872
+No Subir\evaluaciones\doble evaluación\UTEQ_BERKELEY_1.1.1.png	406385
+No Subir\evaluaciones\doble evaluación\UTEQ_BERKELEY_1.4.3.png	422002
+No Subir\evaluaciones\doble evaluación\UTEQ_BERKELEY_2.4.4.png	253300
+No Subir\evaluaciones\doble evaluación\UTEQ_IAEN_1.1.1.png	353824
+No Subir\evaluaciones\doble evaluación\UTEQ_IAEN_1.4.3.png	468686
+No Subir\evaluaciones\doble evaluación\UTEQ_IAEN_2.4.4.png	621801
+No Subir\evaluaciones\doble evaluación\UTEQ_UCL_1.1.1.png	394905
+No Subir\evaluaciones\doble evaluación\UTEQ_UCL_1.4.3.png	245223
+No Subir\evaluaciones\doble evaluación\UTEQ_UCL_2.4.4.png	180492
+No Subir\evaluaciones\doble evaluación\UTEQ_UNESUM_1.1.1.png	528642
+No Subir\evaluaciones\doble evaluación\UTEQ_UNESUM_1.4.3.png	524816
+No Subir\evaluaciones\doble evaluación\UTEQ_UNESUM_2.4.4.png	460099
+No Subir\evaluaciones\doble evaluación\UTEQ_USECIPOL_1.1.1.png	456779
+No Subir\evaluaciones\doble evaluación\UTEQ_USECIPOL_1.4.3.png	498037
+No Subir\evaluaciones\doble evaluación\UTEQ_USECIPOL_2.4.4.png	496651
+No Subir\evaluaciones\Evaluacion a paginas de universidades_tejada.zip	5867984
+No Subir\evaluaciones\EvidenciasFB.rar	8113568
+No Subir\evaluaciones\validacion_manual_accesibilidad_calle.zip	11227210
+No Subir\evaluaciones\validacion_manual_accesibilidad_carvajal.zip	13499313
+No Subir\evaluaciones\validacion_manual_accesibilidad_cruz.zip	1776058
+No Subir\evaluaciones\validacion_manual_accesibilidad_figueroa.xlsx	5038592
+No Subir\evaluaciones\validacion_manual_accesibilidad_pallo.xlsx	11084
+No Subir\evaluaciones\validacion_manual_accesibilidad_panama.xlsx	5789859
+No Subir\evaluaciones\validacion_manual_accesibilidad_rios.zip	928336
+No Subir\evaluaciones\validacion_manual_accesibilidad_seis.rar	8113568
+No Subir\evaluaciones\validacion_manual_accesibilidad_taipe.zip	8350019
+No Subir\Evidencia de Banner de cookies y de Cookies - Pacheco.docx	7979379
+No Subir\extractor_1_1_1.js	2941
+No Subir\files.zip	22
+No Subir\Libro1.xlsx	18218
+No Subir\manuscrito_UAIS_final.zip	721613
+No Subir\muestra_111.js	2607
+No Subir\p1_estudio_principal.zip	36650
+No Subir\Parte de Andrea.txt	13214
+No Subir\plantilla_1_1_1.csv	15737
+No Subir\recodificacion_111.csv	984
+No Subir\recodificacion_143.csv	7156
+No Subir\recodificacion_244.csv	8057
+No Subir\Springer_UAIS Version Before\analisis_4puntos.txt	3887
+No Subir\Springer_UAIS Version Before\analisis_final.txt	10313
+No Subir\Springer_UAIS Version Before\privacidad_UAIS_en.aux	26192
+No Subir\Springer_UAIS Version Before\privacidad_UAIS_en.bbl	18924
+No Subir\Springer_UAIS Version Before\privacidad_UAIS_en.blg	1006
+No Subir\Springer_UAIS Version Before\privacidad_UAIS_en.log	39448
+No Subir\Springer_UAIS Version Before\privacidad_UAIS_en.out	8310
+No Subir\Springer_UAIS Version Before\privacidad_UAIS_en.synctex.gz	352743
+No Subir\Springer_UAIS Version Before\privacidad_UAIS_es.aux	27600
+No Subir\Springer_UAIS Version Before\privacidad_UAIS_es.bbl	18924
+No Subir\Springer_UAIS Version Before\privacidad_UAIS_es.blg	1006
+No Subir\Springer_UAIS Version Before\privacidad_UAIS_es.log	42337
+No Subir\Springer_UAIS Version Before\privacidad_UAIS_es.out	9216
+No Subir\Springer_UAIS Version Before\privacidad_UAIS_es.synctex.gz	408559
+No Subir\Springer_UAIS\15 Evaluaciones\Evaluacion_manual_Fajardo.rar	432788
+No Subir\Springer_UAIS\15 Evaluaciones\evaluacion_manual_Fred_Beltran.rar	13030978
+No Subir\Springer_UAIS\15 Evaluaciones\Excel+Capturas_Castro_Espinoza.rar	20575596
+No Subir\Springer_UAIS\15 Evaluaciones\manual_accesibilidad_zamora_arias.xlsx	873618
+No Subir\Springer_UAIS\5 Evaluaciones\evaluación Villamarín.rar	2329059
+No Subir\Springer_UAIS\5 Evaluaciones\evaluación Villamarín\IAEN_1-1-1_01.png	1385598
+No Subir\Springer_UAIS\5 Evaluaciones\evaluación Villamarín\IAEN_1-4-3_01.png	876702
+No Subir\Springer_UAIS\5 Evaluaciones\evaluación Villamarín\IAEN_2-4-4_01.png	101574
+No Subir\Springer_UAIS\5 Evaluaciones\evaluación Villamarín\validacion_manual_accesibilidad_Villamarín.xlsx	14397
+No Subir\Springer_UAIS\5 Evaluaciones\validacion_manual_accesibilidad_1-Farinango.xlsx	13397
+No Subir\Springer_UAIS\5 Evaluaciones\validacion_manual_accesibilidad_Gaibor.xlsx	12489
+No Subir\Springer_UAIS\auditoria_v3\resultados.zip	2108043
+No Subir\Springer_UAIS\privacidad_UAIS_en.aux	27121
+No Subir\Springer_UAIS\privacidad_UAIS_en.bbl	20424
+No Subir\Springer_UAIS\privacidad_UAIS_en.blg	1007
+No Subir\Springer_UAIS\privacidad_UAIS_en.log	46021
+No Subir\Springer_UAIS\privacidad_UAIS_en.out	8230
+No Subir\Springer_UAIS\privacidad_UAIS_en.synctex.gz	409113
+No Subir\validacion_manual_accesibilidad.csv	1970
+No Subir\validacion_manual_accesibilidad.xlsx	8680
+No Subir\validacion_manual_accesibilidad_1.xlsx	13444
+No Subir\verificacion_banner_cookies - Pacheco.csv	18773
+No Subir\World University Rankings2026.xlsx	18221
+preparar_repositorio.ps1	5612
+preparar_repositorio.py	20761
+privacidad_mundo.bib	32183
+protocolo_multipunto.pdf	377263
+README.md	15084
+reconstruir_cookies.py	7628
+reporte_cookies_extranjeras.csv	8198
+reporte_cookies_nacionales.csv	12794
+sensibilidad_muestreo.py	6388
+Springer_UAIS Version Before\analizar_multipunto.py	16718
+Springer_UAIS Version Before\auditar_multipunto.js	21254
+Springer_UAIS Version Before\CAMBIOS-ronda2.md	12385
+Springer_UAIS Version Before\fig_cookies.pdf	16265
+Springer_UAIS Version Before\fig_cookies_live.pdf	44412
+Springer_UAIS Version Before\fig_cronologia.pdf	28900
+Springer_UAIS Version Before\fig_forest.pdf	32081
+Springer_UAIS Version Before\fig_paises.pdf	15343
+Springer_UAIS Version Before\fig_vantage.pdf	29095
+Springer_UAIS Version Before\fig_vantage.py	1624
+Springer_UAIS Version Before\fig_wcag_niveles.pdf	16516
+Springer_UAIS Version Before\figuras.py	11599
+Springer_UAIS Version Before\figuras_uais.py	12510
+Springer_UAIS Version Before\kappa_uais.py	4976
+Springer_UAIS Version Before\LEEME.txt	3305
+Springer_UAIS Version Before\linea_tiempo_leyes.pdf	79965
+Springer_UAIS Version Before\mapa_calor_paises.pdf	160412
+Springer_UAIS Version Before\privacidad_en.pdf	588774
+Springer_UAIS Version Before\privacidad_en.tex	40175
+Springer_UAIS Version Before\privacidad_es.pdf	608231
+Springer_UAIS Version Before\privacidad_es.tex	42598
+Springer_UAIS Version Before\privacidad_mundo.bib	25003
+Springer_UAIS Version Before\privacidad_UAIS_en.pdf	609533
+Springer_UAIS Version Before\privacidad_UAIS_en.tex	102529
+Springer_UAIS Version Before\privacidad_UAIS_es.pdf	604406
+Springer_UAIS Version Before\privacidad_UAIS_es.tex	109727
+Springer_UAIS Version Before\README.txt	1363
+Springer_UAIS Version Before\references.bib	17361
+Springer_UAIS Version Before\respuesta_a_observaciones.md	18899
+Springer_UAIS Version Before\sn-basic.bst	35733
+Springer_UAIS Version Before\sn-jnl.cls	55955
+Springer_UAIS Version Before\stats.py	7636
+Springer_UAIS\auditoria_v3\1_ecuador.bat	1123
+Springer_UAIS\auditoria_v3\2_alemania_datacenter.bat	1137
+Springer_UAIS\auditoria_v3\3_alemania_residencial.bat	1111
+Springer_UAIS\auditoria_v3\4_suiza.bat	1072
+Springer_UAIS\auditoria_v3\5_reino_unido.bat	1083
+Springer_UAIS\auditoria_v3\6_estados_unidos.bat	1083
+Springer_UAIS\auditoria_v3\auditar_multipunto.js	33662
+Springer_UAIS\auditoria_v3\meta_CH_r1.json	4367
+Springer_UAIS\auditoria_v3\meta_CH_r2.json	4367
+Springer_UAIS\auditoria_v3\meta_CH_r3.json	4367
+Springer_UAIS\auditoria_v3\meta_EC_r0.json	2065
+Springer_UAIS\auditoria_v3\meta_EC_r1.json	4318
+Springer_UAIS\auditoria_v3\meta_EC_r2.json	4318
+Springer_UAIS\auditoria_v3\meta_EC_r3.json	4318
+Springer_UAIS\auditoria_v3\meta_EU_r1.json	4514
+Springer_UAIS\auditoria_v3\meta_EU_r2.json	4514
+Springer_UAIS\auditoria_v3\meta_EU_r3.json	4514
+Springer_UAIS\auditoria_v3\meta_GB_r1.json	4344
+Springer_UAIS\auditoria_v3\meta_GB_r2.json	4344
+Springer_UAIS\auditoria_v3\meta_GB_r3.json	4344
+Springer_UAIS\auditoria_v3\meta_US_r1.json	4422
+Springer_UAIS\auditoria_v3\meta_US_r2.json	4422
+Springer_UAIS\auditoria_v3\meta_US_r3.json	4422
+Springer_UAIS\auditoria_v3\package.json	328
+Springer_UAIS\auditoria_v3\package-lock.json	2068
+Springer_UAIS\auditoria_v3\preparar_validacion.js	26083
+Springer_UAIS\auditoria_v3\resultados_CH_r1.csv	41380
+Springer_UAIS\auditoria_v3\resultados_CH_r1.json	841723
+Springer_UAIS\auditoria_v3\resultados_CH_r2.csv	41224
+Springer_UAIS\auditoria_v3\resultados_CH_r2.json	839445
+Springer_UAIS\auditoria_v3\resultados_CH_r3.csv	40617
+Springer_UAIS\auditoria_v3\resultados_CH_r3.json	827293
+Springer_UAIS\auditoria_v3\resultados_EC_r0.csv	2100
+Springer_UAIS\auditoria_v3\resultados_EC_r0.json	34942
+Springer_UAIS\auditoria_v3\resultados_EC_r1.csv	47048
+Springer_UAIS\auditoria_v3\resultados_EC_r1.json	962997
+Springer_UAIS\auditoria_v3\resultados_EC_r2.csv	46944
+Springer_UAIS\auditoria_v3\resultados_EC_r2.json	956920
+Springer_UAIS\auditoria_v3\resultados_EC_r3.csv	46630
+Springer_UAIS\auditoria_v3\resultados_EC_r3.json	954277
+Springer_UAIS\auditoria_v3\resultados_EU_r1.csv	43297
+Springer_UAIS\auditoria_v3\resultados_EU_r1.json	886539
+Springer_UAIS\auditoria_v3\resultados_EU_r2.csv	43485
+Springer_UAIS\auditoria_v3\resultados_EU_r2.json	891754
+Springer_UAIS\auditoria_v3\resultados_EU_r3.csv	42893
+Springer_UAIS\auditoria_v3\resultados_EU_r3.json	880263
+Springer_UAIS\auditoria_v3\resultados_GB_r1.csv	42864
+Springer_UAIS\auditoria_v3\resultados_GB_r1.json	879799
+Springer_UAIS\auditoria_v3\resultados_GB_r2.csv	42705
+Springer_UAIS\auditoria_v3\resultados_GB_r2.json	881386
+Springer_UAIS\auditoria_v3\resultados_GB_r3.csv	43027
+Springer_UAIS\auditoria_v3\resultados_GB_r3.json	885344
+Springer_UAIS\auditoria_v3\resultados_US_r1.csv	46664
+Springer_UAIS\auditoria_v3\resultados_US_r1.json	945272
+Springer_UAIS\auditoria_v3\resultados_US_r2.csv	46620
+Springer_UAIS\auditoria_v3\resultados_US_r2.json	948678
+Springer_UAIS\auditoria_v3\resultados_US_r3.csv	46654
+Springer_UAIS\auditoria_v3\resultados_US_r3.json	947729
+Springer_UAIS\auditoria_v3\universidades.json	21499
+Springer_UAIS\auditoria_v3\validacion\IAEN_elementos.csv	11757
+Springer_UAIS\auditoria_v3\validacion\IAEN_ficha.html	6660940
+Springer_UAIS\auditoria_v3\validacion\IAEN_pagina.png	1554506
+Springer_UAIS\auditoria_v3\validacion\UC_Berkeley_elementos.csv	13281
+Springer_UAIS\auditoria_v3\validacion\UC_Berkeley_ficha.html	1672237
+Springer_UAIS\auditoria_v3\validacion\UC_Berkeley_pagina.png	4550990
+Springer_UAIS\auditoria_v3\validacion\UCL_elementos.csv	15103
+Springer_UAIS\auditoria_v3\validacion\UCL_ficha.html	1605638
+Springer_UAIS\auditoria_v3\validacion\UCL_pagina.png	3123026
+Springer_UAIS\auditoria_v3\validacion\UNESUM_elementos.csv	12785
+Springer_UAIS\auditoria_v3\validacion\UNESUM_ficha.html	42863
+Springer_UAIS\auditoria_v3\validacion\UNESUM_pagina.png	796791
+Springer_UAIS\auditoria_v3\validacion\USECIPOL_elementos.csv	15157
+Springer_UAIS\auditoria_v3\validacion\USECIPOL_ficha.html	44523
+Springer_UAIS\auditoria_v3\validacion\USECIPOL_pagina.png	581315
+Springer_UAIS\fig_cookies.pdf	16267
+Springer_UAIS\fig_cookies_live.pdf	44412
+Springer_UAIS\fig_cronologia.pdf	28900
+Springer_UAIS\fig_forest.pdf	32081
+Springer_UAIS\fig_paises.pdf	15343
+Springer_UAIS\fig_vantage.pdf	17643
+Springer_UAIS\fig_vantage.py	2516
+Springer_UAIS\fig_wcag_niveles.pdf	16516
+Springer_UAIS\figuras_uais.py	11599
+Springer_UAIS\informe_revision_UAIS_dos_barreras.tex	27257
+Springer_UAIS\linea_tiempo_leyes.pdf	79965
+Springer_UAIS\mapa_calor_paises.pdf	160412
+Springer_UAIS\privacidad_mundo.bib	26857
+Springer_UAIS\privacidad_UAIS_en.pdf	630066
+Springer_UAIS\privacidad_UAIS_en.tex	116723
+Springer_UAIS\privacidad_UAIS_es.pdf	677625
+Springer_UAIS\sn-basic.bst	35733
+Springer_UAIS\sn-jnl.cls	55955
+Springer_UAIS\verificar_multipunto.py	8529
+Springer_UAIS\verificar_pasada_unica.py	4152
+tops.json	20142
+universidades.json	21499

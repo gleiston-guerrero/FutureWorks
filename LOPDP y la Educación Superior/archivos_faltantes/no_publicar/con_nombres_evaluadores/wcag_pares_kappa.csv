@@ -1,0 +1,16 @@
+id,sigla,criterio,evaluador_primera,codigo_primera,n_primera,f_primera,evaluador_segunda,codigo_segunda,acuerdo,entra_en_kappa,motivo_exclusion
+7,UC Berkeley,1.1.1,Calle Delgado Kamila Annabella,0,10,7,Andrea,1,0,si,
+7,UC Berkeley,1.4.3,Calle Delgado Kamila Annabella,1,7,0,Andrea,1,1,si,
+7,UC Berkeley,2.4.4,Calle Delgado Kamila Annabella,1,9,0,Andrea,1,1,si,
+14,UCL,1.1.1,Calle Delgado Kamila Annabella,1,5,0,Andrea,0,0,si,
+14,UCL,1.4.3,Calle Delgado Kamila Annabella,1,4,0,Andrea,1,1,si,
+14,UCL,2.4.4,Calle Delgado Kamila Annabella,P,16,2,Andrea,1,0,si,
+83,UNESUM,1.1.1,Taipe Mora Zaida Melissa,0,27,6,Andrea,0,1,si,
+83,UNESUM,1.4.3,Taipe Mora Zaida Melissa,P,18,1,Andrea,P,1,si,
+83,UNESUM,2.4.4,Taipe Mora Zaida Melissa,0,25,8,Andrea,0,1,si,
+95,USECIPOL,1.1.1,Beltran Montiel Fred Adrian,0,17,7,Andrea,0,1,si,
+95,USECIPOL,1.4.3,Beltran Montiel Fred Adrian,1,25,0,Andrea,1,1,si,
+95,USECIPOL,2.4.4,Beltran Montiel Fred Adrian,1,25,0,Andrea,1,1,si,
+96,IAEN,1.1.1,Pallo Pinto Daniel Alejandro,0,7,2,Andrea,0,1,si,
+96,IAEN,1.4.3,Pallo Pinto Daniel Alejandro,0,16,4,Andrea,1,0,si,
+96,IAEN,2.4.4,Pallo Pinto Daniel Alejandro,P,18,2,Andrea,1,,no,"La captura de la segunda evaluacion muestra un enlace cuyo unico texto es 'Clic aqui', lo que descarta el codigo 1 que declaro; el par se retira por evidencia contradictoria."

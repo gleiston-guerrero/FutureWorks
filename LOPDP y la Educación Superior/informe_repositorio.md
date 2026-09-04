@@ -1,0 +1,311 @@
+# Informe de preparacion del repositorio
+
+Generado: 2026-09-02 22:56 UTC
+Destino: `C:\Repositorios\wcag-preconsent-tracking-university-websites`
+Apartados en: `C:\Repositorios`
+
+## Resumen
+
+- REPOSITORIO: 177
+- YA_EN_SITIO: 182
+- NO_PUBLICAR: 256
+- REVISAR: 4
+- CONFLICTO: 0
+- DUPLICADO: 5
+- DESCARTE: 0
+- OMITIR: 4
+- Tamano del deposito: 182.6 MB
+
+## Candidatos a rescate desde 'No Subir'
+
+No se publican. Revise si alguno debe entrar en el deposito.
+
+- `No Subir/clasificacion_repositorio.csv`: clasificacion previa de archivos
+- `No Subir/extractor_1_1_1.js`: instrumento de muestreo del criterio 1.1.1
+- `No Subir/muestra_111.js`: instrumento de muestreo del criterio 1.1.1
+- `No Subir/plantilla_1_1_1.csv`: plantilla entregada a los evaluadores
+- `No Subir/recodificacion_111.csv`: completa la serie 1.1.1 / 1.4.3 / 2.4.4
+- `No Subir/recodificacion_143.csv`: variante con tamano distinto al publicado
+- `No Subir/recodificacion_244.csv`: variante con tamano distinto al publicado
+
+## Colisiones de destino (resolver antes de aplicar)
+
+Ninguno.
+
+## Sin clasificar o pendientes de decision
+
+- `archivos_faltantes/revisar/CHECKSUMS.txt`: regla de ruta
+- `archivos_faltantes/revisar/cookies_126_sitios_v2.csv`: regla de ruta
+- `archivos_faltantes/revisar/cookies_126_sitios_v2.xlsx`: regla de ruta
+- `auditor_uni/universidades.json`: regla de ruta
+
+## Duplicados exactos omitidos
+
+- `ejecutar_auditoria/INICIO_RAPIDO.txt`: identico a auditoria_multipunto_windows/INICIO_RAPIDO.txt
+- `MANIFIESTO.csv`: identico a archivos_faltantes/MANIFIESTO.csv, misma ruta destino
+- `protocolo_multipunto.pdf`: identico a auditoria_multipunto_windows/protocolo_multipunto.pdf
+- `Springer_UAIS/auditoria_v3/auditar_multipunto.js`: identico a auditar_multipunto.js
+- `universidades.json`: identico a Springer_UAIS/auditoria_v3/universidades.json, misma ruta destino
+
+## Apartados del deposito publico
+
+- `archivos_faltantes/MANIFIESTO.csv`: regla de ruta
+- `archivos_faltantes/no_publicar/con_nombres_evaluadores/validacion_manual_wcag_auditoria_lote.xlsx`: regla de ruta
+- `archivos_faltantes/no_publicar/con_nombres_evaluadores/wcag_doble_evaluacion_5_sitios.csv`: regla de ruta
+- `archivos_faltantes/no_publicar/con_nombres_evaluadores/wcag_pares_kappa.csv`: regla de ruta
+- `archivos_faltantes/no_publicar/con_nombres_evaluadores/wcag_validacion_15_sitios.csv`: regla de ruta
+- `archivos_faltantes/no_publicar/con_nombres_evaluadores/wcag_validacion_final.xlsx`: regla de ruta
+- `archivos_faltantes/no_publicar/manuscritos_previos/privacidad_ies.bib`: regla de ruta
+- `archivos_faltantes/no_publicar/manuscritos_previos/privacidad_ies.tex`: regla de ruta
+- `archivos_faltantes/no_publicar/manuscritos_previos/privacidad_mundo.tex`: regla de ruta
+- `archivos_faltantes/no_publicar/notas_internas/hallazgos-auditoria-wcag.md`: regla de ruta
+- `archivos_faltantes/no_publicar/notas_internas/hallazgos-comparativa-mundo.md`: regla de ruta
+- `archivos_faltantes/no_publicar/notas_internas/hallazgos-privacidad-ies.md`: regla de ruta
+- `archivos_faltantes/no_publicar/notas_internas/hallazgos-validacion-manual-wcag.md`: regla de ruta
+- `archivos_faltantes/no_publicar/notas_internas/respuesta-observaciones-uais.md`: regla de ruta
+- `archivos_faltantes.zip`: regla de ruta
+- `auditoria_multipunto_windows/analizar_multipunto.py`: regla de ruta
+- `auditoria_multipunto_windows/auditar_multipunto.js`: regla de ruta
+- `auditoria_multipunto_windows/construir_lista.py`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/meta_EC_r1.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/meta_EC_r2.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/meta_EC_r3.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/meta_EU_r1.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/meta_EU_r2.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/meta_EU_r3.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/meta_GB_r1.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/meta_GB_r2.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/meta_GB_r3.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/meta_GB_r4.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/meta_US_r1.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/meta_US_r2.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/meta_US_r3.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_EC_r1.csv`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_EC_r1.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_EC_r2.csv`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_EC_r2.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_EC_r3.csv`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_EC_r3.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_EU_r1.csv`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_EU_r1.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_EU_r2.csv`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_EU_r2.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_EU_r3.csv`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_EU_r3.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_GB_r1.csv`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_GB_r1.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_GB_r2.csv`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_GB_r2.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_GB_r3.csv`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_GB_r3.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_GB_r4.csv`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_GB_r4.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_US_r1.csv`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_US_r1.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_US_r2.csv`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_US_r2.json`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_US_r3.csv`: regla de ruta
+- `auditoria_multipunto_windows/datos_multipunto/resultados_US_r3.json`: regla de ruta
+- `auditoria_multipunto_windows/ejecutar.bat`: regla de ruta
+- `auditoria_multipunto_windows/INSTALAR.bat`: regla de ruta
+- `auditoria_multipunto_windows/package-lock.json`: regla de ruta
+- `auditoria_multipunto_windows/package.json`: regla de ruta
+- `auditoria_multipunto_windows/universidades.json`: regla de ruta
+- `claude_analizar_multipunto.py`: regla de ruta
+- `claude_auditar.js`: regla de ruta
+- `claude_auditar_multipunto.js`: regla de ruta
+- `claude_figuras_uais.py`: regla de ruta
+- `claude_stats_uais.py`: regla de ruta
+- `ejecutar_auditoria/analizar_multipunto.py`: regla de ruta
+- `ejecutar_auditoria/auditar_multipunto.js`: regla de ruta
+- `ejecutar_auditoria/ejecutar.bat`: regla de ruta
+- `ejecutar_auditoria/INSTALAR.bat`: regla de ruta
+- `ejecutar_auditoria/package-lock.json`: regla de ruta
+- `ejecutar_auditoria/package.json`: regla de ruta
+- `ejecutar_auditoria/universidades.json`: regla de ruta
+- `ejecutar_auditoria/universidades_EJEMPLO.json`: regla de ruta
+- `No Subir/2027 QS World University Rankings 1.3 (For qs.com).xlsx`: regla de ruta
+- `No Subir/analisis_multipunto.txt`: regla de ruta
+- `No Subir/auditoria_multipunto_windows/datos_multipunto/resultados.zip`: regla de ruta
+- `No Subir/auditoria_multipunto_windows/datos_multipunto (2).zip`: regla de ruta
+- `No Subir/auditoria_multipunto_windows/datos_multipunto.zip`: regla de ruta
+- `No Subir/auditoria_multipunto_windows.zip`: regla de ruta
+- `No Subir/bat.zip`: regla de ruta
+- `No Subir/clasificacion_repositorio.csv`: CANDIDATO A RESCATE: clasificacion previa de archivos
+- `No Subir/diagnostico_decisivo.txt`: regla de ruta
+- `No Subir/ejecutar_auditoria/datos_multipunto.zip`: regla de ruta
+- `No Subir/ejecutar_auditoria.zip`: regla de ruta
+- `No Subir/evaluaciones/anexo_evidencia_pallo.pdf`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/Capturas.zip`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/codificacion_posicion_1.csv`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/codificacion_posicion_1.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/codificacion_posicion_2.csv`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/codificacion_posicion_2.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/codificacion_posicion_3.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_BERKELEY_1.1.1_1.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_BERKELEY_1.1.1_2.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_BERKELEY_1.4.3_1.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_BERKELEY_2.4.4_1.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_IAEN_1.1.1.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_IAEN_1.4.3.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_IAEN_2.4.4.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_UCL_1.1.1.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_UCL_1.4.3.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_UCL_2.4.4.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_UNESUM_1.1.1.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_UNESUM_1.4.3.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_UNESUM_2.4.4_1.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_USECIPOL_1.1.1.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_USECIPOL_1.4.3.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/UTEQ_USECIPOL_2.4.4.png`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/validacion_manual_accesibilidad (1).xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones/validacion_manual_accesibilidad_5_sitios.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/5 evaluaciones.zip`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/Analisis APPWEB.zip`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_1.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_alava.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_carvajal.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_cinco.zip`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_cruz.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_cuatro.zip`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_diez.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_diez.zip`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_dos.zip`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_escudero.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_moncayo.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_nueve.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_ocho.zip`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_pallo.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_rios.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_seis.zip`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_siete.zip`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_tejada.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_tres.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_umaginga.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_uno.xlsx`: regla de ruta
+- `No Subir/evaluaciones/Anteriores/validacion_manual_accesibilidad_z_arias.xlsx`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/5_doble_validaciones.zip`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/doble evaluación_accesibilidad_andrea.xlsx`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_BERKELEY_1.1.1.png`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_BERKELEY_1.4.3.png`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_BERKELEY_2.4.4.png`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_IAEN_1.1.1.png`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_IAEN_1.4.3.png`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_IAEN_2.4.4.png`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_UCL_1.1.1.png`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_UCL_1.4.3.png`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_UCL_2.4.4.png`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_UNESUM_1.1.1.png`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_UNESUM_1.4.3.png`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_UNESUM_2.4.4.png`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_USECIPOL_1.1.1.png`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_USECIPOL_1.4.3.png`: regla de ruta
+- `No Subir/evaluaciones/doble evaluación/UTEQ_USECIPOL_2.4.4.png`: regla de ruta
+- `No Subir/evaluaciones/Evaluacion a paginas de universidades_tejada.zip`: regla de ruta
+- `No Subir/evaluaciones/EvidenciasFB.rar`: regla de ruta
+- `No Subir/evaluaciones/validacion_manual_accesibilidad_calle.zip`: regla de ruta
+- `No Subir/evaluaciones/validacion_manual_accesibilidad_carvajal.zip`: regla de ruta
+- `No Subir/evaluaciones/validacion_manual_accesibilidad_cruz.zip`: regla de ruta
+- `No Subir/evaluaciones/validacion_manual_accesibilidad_figueroa.xlsx`: regla de ruta
+- `No Subir/evaluaciones/validacion_manual_accesibilidad_pallo.xlsx`: regla de ruta
+- `No Subir/evaluaciones/validacion_manual_accesibilidad_panama.xlsx`: regla de ruta
+- `No Subir/evaluaciones/validacion_manual_accesibilidad_rios.zip`: regla de ruta
+- `No Subir/evaluaciones/validacion_manual_accesibilidad_seis.rar`: regla de ruta
+- `No Subir/evaluaciones/validacion_manual_accesibilidad_taipe.zip`: regla de ruta
+- `No Subir/Evidencia de Banner de cookies y de Cookies - Pacheco.docx`: regla de ruta
+- `No Subir/extractor_1_1_1.js`: CANDIDATO A RESCATE: instrumento de muestreo del criterio 1.1.1
+- `No Subir/files.zip`: regla de ruta
+- `No Subir/Libro1.xlsx`: regla de ruta
+- `No Subir/manuscrito_UAIS_final.zip`: regla de ruta
+- `No Subir/muestra_111.js`: CANDIDATO A RESCATE: instrumento de muestreo del criterio 1.1.1
+- `No Subir/p1_estudio_principal.zip`: regla de ruta
+- `No Subir/Parte de Andrea.txt`: regla de ruta
+- `No Subir/plantilla_1_1_1.csv`: CANDIDATO A RESCATE: plantilla entregada a los evaluadores
+- `No Subir/recodificacion_111.csv`: CANDIDATO A RESCATE: completa la serie 1.1.1 / 1.4.3 / 2.4.4
+- `No Subir/recodificacion_143.csv`: CANDIDATO A RESCATE: variante con tamano distinto al publicado
+- `No Subir/recodificacion_244.csv`: CANDIDATO A RESCATE: variante con tamano distinto al publicado
+- `No Subir/Springer_UAIS/15 Evaluaciones/Evaluacion_manual_Fajardo.rar`: regla de ruta
+- `No Subir/Springer_UAIS/15 Evaluaciones/evaluacion_manual_Fred_Beltran.rar`: regla de ruta
+- `No Subir/Springer_UAIS/15 Evaluaciones/Excel+Capturas_Castro_Espinoza.rar`: regla de ruta
+- `No Subir/Springer_UAIS/15 Evaluaciones/manual_accesibilidad_zamora_arias.xlsx`: regla de ruta
+- `No Subir/Springer_UAIS/5 Evaluaciones/evaluación Villamarín/IAEN_1-1-1_01.png`: regla de ruta
+- `No Subir/Springer_UAIS/5 Evaluaciones/evaluación Villamarín/IAEN_1-4-3_01.png`: regla de ruta
+- `No Subir/Springer_UAIS/5 Evaluaciones/evaluación Villamarín/IAEN_2-4-4_01.png`: regla de ruta
+- `No Subir/Springer_UAIS/5 Evaluaciones/evaluación Villamarín/validacion_manual_accesibilidad_Villamarín.xlsx`: regla de ruta
+- `No Subir/Springer_UAIS/5 Evaluaciones/evaluación Villamarín.rar`: regla de ruta
+- `No Subir/Springer_UAIS/5 Evaluaciones/validacion_manual_accesibilidad_1-Farinango.xlsx`: regla de ruta
+- `No Subir/Springer_UAIS/5 Evaluaciones/validacion_manual_accesibilidad_Gaibor.xlsx`: regla de ruta
+- `No Subir/Springer_UAIS/auditoria_v3/resultados.zip`: regla de ruta
+- `No Subir/Springer_UAIS/privacidad_UAIS_en.aux`: regla de ruta
+- `No Subir/Springer_UAIS/privacidad_UAIS_en.bbl`: regla de ruta
+- `No Subir/Springer_UAIS/privacidad_UAIS_en.blg`: regla de ruta
+- `No Subir/Springer_UAIS/privacidad_UAIS_en.log`: regla de ruta
+- `No Subir/Springer_UAIS/privacidad_UAIS_en.out`: regla de ruta
+- `No Subir/Springer_UAIS/privacidad_UAIS_en.synctex.gz`: regla de ruta
+- `No Subir/Springer_UAIS Version Before/analisis_4puntos.txt`: regla de ruta
+- `No Subir/Springer_UAIS Version Before/analisis_final.txt`: regla de ruta
+- `No Subir/Springer_UAIS Version Before/privacidad_UAIS_en.aux`: regla de ruta
+- `No Subir/Springer_UAIS Version Before/privacidad_UAIS_en.bbl`: regla de ruta
+- `No Subir/Springer_UAIS Version Before/privacidad_UAIS_en.blg`: regla de ruta
+- `No Subir/Springer_UAIS Version Before/privacidad_UAIS_en.log`: regla de ruta
+- `No Subir/Springer_UAIS Version Before/privacidad_UAIS_en.out`: regla de ruta
+- `No Subir/Springer_UAIS Version Before/privacidad_UAIS_en.synctex.gz`: regla de ruta
+- `No Subir/Springer_UAIS Version Before/privacidad_UAIS_es.aux`: regla de ruta
+- `No Subir/Springer_UAIS Version Before/privacidad_UAIS_es.bbl`: regla de ruta
+- `No Subir/Springer_UAIS Version Before/privacidad_UAIS_es.blg`: regla de ruta
+- `No Subir/Springer_UAIS Version Before/privacidad_UAIS_es.log`: regla de ruta
+- `No Subir/Springer_UAIS Version Before/privacidad_UAIS_es.out`: regla de ruta
+- `No Subir/Springer_UAIS Version Before/privacidad_UAIS_es.synctex.gz`: regla de ruta
+- `No Subir/validacion_manual_accesibilidad.csv`: regla de ruta
+- `No Subir/validacion_manual_accesibilidad.xlsx`: regla de ruta
+- `No Subir/validacion_manual_accesibilidad_1.xlsx`: regla de ruta
+- `No Subir/verificacion_banner_cookies - Pacheco.csv`: regla de ruta
+- `No Subir/World University Rankings2026.xlsx`: regla de ruta
+- `No Subir/【ShanghaiRanking】 2025 Academic Ranking of World Unhiversities.xlsx`: regla de ruta
+- `No Subir/【ShanghaiRanking】 2026 Academic Ranking of World Unhiversities.xlsx`: regla de ruta
+- `privacidad_mundo.bib`: regla de ruta
+- `Springer_UAIS/fig_vantage.py`: regla de ruta
+- `Springer_UAIS/figuras_uais.py`: regla de ruta
+- `Springer_UAIS/informe_revision_UAIS_dos_barreras.tex`: regla de ruta
+- `Springer_UAIS/privacidad_mundo.bib`: renombrado para evitar colision de destino
+- `Springer_UAIS/privacidad_UAIS_en.pdf`: regla de ruta
+- `Springer_UAIS/privacidad_UAIS_en.tex`: regla de ruta
+- `Springer_UAIS/privacidad_UAIS_es.pdf`: regla de ruta
+- `Springer_UAIS/sn-basic.bst`: regla de ruta
+- `Springer_UAIS/sn-jnl.cls`: regla de ruta
+- `Springer_UAIS Version Before/analizar_multipunto.py`: regla de ruta
+- `Springer_UAIS Version Before/auditar_multipunto.js`: regla de ruta
+- `Springer_UAIS Version Before/CAMBIOS-ronda2.md`: regla de ruta
+- `Springer_UAIS Version Before/fig_cookies.pdf`: regla de ruta
+- `Springer_UAIS Version Before/fig_cookies_live.pdf`: regla de ruta
+- `Springer_UAIS Version Before/fig_cronologia.pdf`: regla de ruta
+- `Springer_UAIS Version Before/fig_forest.pdf`: regla de ruta
+- `Springer_UAIS Version Before/fig_paises.pdf`: regla de ruta
+- `Springer_UAIS Version Before/fig_vantage.pdf`: regla de ruta
+- `Springer_UAIS Version Before/fig_vantage.py`: regla de ruta
+- `Springer_UAIS Version Before/fig_wcag_niveles.pdf`: regla de ruta
+- `Springer_UAIS Version Before/figuras.py`: regla de ruta
+- `Springer_UAIS Version Before/figuras_uais.py`: regla de ruta
+- `Springer_UAIS Version Before/kappa_uais.py`: regla de ruta
+- `Springer_UAIS Version Before/LEEME.txt`: regla de ruta
+- `Springer_UAIS Version Before/linea_tiempo_leyes.pdf`: regla de ruta
+- `Springer_UAIS Version Before/mapa_calor_paises.pdf`: regla de ruta
+- `Springer_UAIS Version Before/privacidad_en.pdf`: regla de ruta
+- `Springer_UAIS Version Before/privacidad_en.tex`: regla de ruta
+- `Springer_UAIS Version Before/privacidad_es.pdf`: regla de ruta
+- `Springer_UAIS Version Before/privacidad_es.tex`: regla de ruta
+- `Springer_UAIS Version Before/privacidad_mundo.bib`: regla de ruta
+- `Springer_UAIS Version Before/privacidad_UAIS_en.pdf`: regla de ruta
+- `Springer_UAIS Version Before/privacidad_UAIS_en.tex`: regla de ruta
+- `Springer_UAIS Version Before/privacidad_UAIS_es.pdf`: regla de ruta
+- `Springer_UAIS Version Before/privacidad_UAIS_es.tex`: regla de ruta
+- `Springer_UAIS Version Before/README.txt`: regla de ruta
+- `Springer_UAIS Version Before/references.bib`: regla de ruta
+- `Springer_UAIS Version Before/respuesta_a_observaciones.md`: regla de ruta
+- `Springer_UAIS Version Before/sn-basic.bst`: regla de ruta
+- `Springer_UAIS Version Before/sn-jnl.cls`: regla de ruta
+- `Springer_UAIS Version Before/stats.py`: regla de ruta
+
+## Basura tecnica
+
+Ninguno.
