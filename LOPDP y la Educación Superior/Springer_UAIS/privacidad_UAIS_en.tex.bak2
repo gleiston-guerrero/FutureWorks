@@ -488,8 +488,11 @@
 	
 	\backmatter
 	
+	\bmhead{Supplementary information}
+	The audit script, its configuration, the raw per-site JavaScript Object Notation (JSON) output of the twelve multi-vantage passes together with the location-verification records, the complete cookie inventory with its classification under both taxonomies, the documentary matrix, the record of the five Ecuadorian sites whose certificate chain was found deficient in August 2026, the codebook and the analysis scripts are deposited in a public repository under \url{https://doi.org/10.5281/zenodo.22405998}. Every figure reported in Section~\ref{sec:results-vantage}, including the vendor-level attribution, is reproducible from those files with the analysis script released alongside them.
+	
 	\bmhead{Acknowledgements}
-	The authors thank those who read and commented on successive versions of this article, whose observations prompted the multi-vantage replication reported in Section~\ref{sec:results-vantage}. They also acknowledge Universidad T\'ecnica Estatal de Quevedo and the Ministry of Education of Ecuador for the research facilities they make available to their staff, in particular institutional access to scientific databases and bibliographic resources. Neither institution funded this study, and neither had any role in its design, in the collection or coding of data, in the analysis or in the decision to publish.
+	The authors thank the reviewers whose comments on successive versions of this article prompted the multi-vantage replication reported in Section~\ref{sec:results-vantage}.
 	
 	\section*{Statements and Declarations}
 	
@@ -499,12 +502,16 @@
 	
 	\bmhead{Competing interests}
 	The corresponding author and the third author are affiliated with Universidad T\'ecnica Estatal de Quevedo, which is one of the 63 Ecuadorian institutions assessed in this study and appears in Appendix~\ref{ap:ecuador}. The second author is affiliated with the Ministry of Education of Ecuador, a public body of the same national education system. Neither institution had any role in the design of the study, in the collection or coding of data, in the analysis or in the decision to publish, and the coding of the authors' own institution follows the same codebook and is reported in Appendix~\ref{ap:ecuador} without exception.
+	% AUTORES: si el Ministerio de Educacion participo de algun modo en diseno, financiacion
+	% o aprobacion, debe declararse aqui. Se recomienda que la codificacion de la propia
+	% UTEQ sea reproducida por un tercero independiente antes del envio.
 	
 	\bmhead{Author contributions}
+	% AUTORES: verificar que esta asignacion CRediT corresponde a la contribucion real.
 	G.G.-U.: conceptualisation, methodology, software, formal analysis, writing --- original draft. A.Z.P.: investigation, data curation, writing --- review and editing. E.D.-M.: investigation, validation, writing --- review and editing. All authors read and approved the final manuscript.
 	
 	\bmhead{Data availability}
-	The datasets generated and analysed during the current study are openly available in Zenodo at \url{https://doi.org/10.5281/zenodo.22405998} under a Creative Commons Attribution 4.0 International licence, and mirrored at \url{https://github.com/gleiston-guerrero/wcag-preconsent-tracking-university-websites}. The deposit contains the audit script and its configuration, the raw per-site JavaScript Object Notation (JSON) output of the twelve multi-vantage passes together with the location-verification records, the complete cookie inventory with its classification under both taxonomies, the documentary matrix, the record of the five Ecuadorian sites whose certificate chain was found deficient in August 2026, a codebook defining every variable and a checksum manifest for all deposited files. Every figure reported in Section~\ref{sec:results-vantage}, including the vendor-level attribution, is reproducible from those files with the analysis scripts released alongside them.
+	The datasets generated and analysed during the current study are openly available in Zenodo at \url{https://doi.org/10.5281/zenodo.22405998} under a Creative Commons Attribution 4.0 International licence, and mirrored at \url{https://github.com/gleiston-guerrero/wcag-preconsent-tracking-university-websites}. The deposit includes a codebook defining every variable and a checksum manifest for all deposited files.
 	
 	\bmhead{Code availability}
 	The audit script and the analysis code are available in the same deposit, \url{https://doi.org/10.5281/zenodo.22405998}, under an MIT licence. Every table and figure reported here regenerates from the deposited raw data with those scripts.
@@ -513,6 +520,9 @@
 	Not applicable. The study analysed publicly accessible web pages and involved no human participants, no animals and no personal data.
 	
 	\bmhead{Use of generative artificial intelligence}
+	% AUTORES: ajustar el alcance declarado a lo que realmente se hizo. UAIS exige que la
+	% declaracion sea especifica; los ORCID se introducen en el sistema de envio de Springer
+	% y no en el manuscrito, por lo que se ha suprimido el apartado correspondiente.
 	Generative artificial intelligence tools were used to assist with language editing and with the drafting of auxiliary analysis scripts. They were not used to generate, select or interpret data, nor to produce any of the results, tables or figures reported here. The authors reviewed all such output and take full responsibility for the content of this article.
 	
 	% =============================================================================
