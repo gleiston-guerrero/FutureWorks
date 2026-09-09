@@ -1,0 +1,583 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,provide=*]{babel}
+\usepackage{csquotes}
+\usepackage{charter}
+\usepackage[scaled=0.92]{helvet}
+\usepackage[a4paper,top=2.6cm,bottom=2.6cm,left=2.4cm,right=2.4cm,headheight=14pt]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{azulUTEQ}{HTML}{123A5F}
+\definecolor{azulClaro}{HTML}{E8EEF4}
+\definecolor{grisTexto}{HTML}{3A3A3A}
+\definecolor{acento}{HTML}{A6242B}
+\definecolor{verdeOK}{HTML}{1F6F4A}
+\definecolor{grisCodigo}{HTML}{F2F4F6}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=azulUTEQ,
+	urlcolor=azulUTEQ,
+	citecolor=azulUTEQ
+}
+
+\titleformat{\section}{\normalfont\Large\bfseries\color{azulUTEQ}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{azulUTEQ}}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{grisTexto}}{\thesubsubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{18pt}{8pt}
+\titlespacing*{\subsection}{0pt}{14pt}{6pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\footnotesize\color{azulUTEQ}TA-PFC-E4 $\cdot$ TiendaTech (equipo AGLS) $\cdot$ Aplicaciones Distribuidas (ISR-701)}
+\fancyhead[R]{\footnotesize\color{azulUTEQ}\thepage}
+
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.18}
+
+\lstset{
+	basicstyle=\ttfamily\footnotesize,
+	backgroundcolor=\color{grisCodigo},
+	frame=single,
+	rulecolor=\color{azulUTEQ},
+	breaklines=true,
+	columns=fullflexible,
+	xleftmargin=6pt,
+	xrightmargin=6pt,
+	framexleftmargin=6pt
+}
+
+\newtcolorbox{aviso}[1]{
+	colback=azulClaro,
+	colframe=azulUTEQ,
+	boxrule=0.8pt,
+	arc=2pt,
+	left=8pt,
+	right=8pt,
+	top=7pt,
+	bottom=7pt,
+	title={\bfseries #1},
+	fonttitle=\normalsize\color{white},
+	colbacktitle=azulUTEQ
+}
+
+\newtcolorbox{alerta}[1]{
+	colback=white,
+	colframe=acento,
+	boxrule=0.9pt,
+	arc=2pt,
+	left=8pt,
+	right=8pt,
+	top=7pt,
+	bottom=7pt,
+	title={\bfseries #1},
+	fonttitle=\normalsize\color{white},
+	colbacktitle=acento
+}
+
+\begin{document}
+
+\begin{titlepage}
+	\centering
+	\vspace*{1.2cm}
+	{\color{azulUTEQ}\rule{\textwidth}{2pt}}\\[10pt]
+	{\LARGE\bfseries\color{azulUTEQ} Guía y rúbrica de la entrega final TA-PFC-E4\par}
+	\vspace{8pt}
+	{\Large\bfseries\color{azulUTEQ} PFC A --- TiendaTech (equipo AGLS)\par}
+	\vspace{10pt}
+	{\color{azulUTEQ}\rule{\textwidth}{2pt}}\\[16pt]
+	{\large Asignatura: Aplicaciones Distribuidas (ISR-701)\par}
+	\vspace{4pt}
+	{\large Carrera de Ingeniería de Software $\cdot$ Universidad Técnica Estatal de Quevedo\par}
+	\vspace{26pt}
+	{\large\bfseries Entrega acumulativa total y paquete de evidencias\par}
+	{\large\bfseries orientado a publicación en revista JCR híbrida\par}
+	\vspace{26pt}
+	\begin{minipage}{0.86\textwidth}
+		\centering
+		\color{grisTexto}
+		\small
+		\textbf{Revista objetivo:} Journal of Systems and Software (Elsevier), ISSN 0164-1212.\\
+		JIF 2025 = 3,8 $\cdot$ Q2 en \emph{Computer Science, Software Engineering} $\cdot$ SCIE $\cdot$ modelo híbrido.\\[6pt]
+		Tipo de artículo previsto: \emph{Applied Research Report}, pista \emph{In Practice}.\\[6pt]
+		Datos bibliométricos verificados en Journal Citation Reports el 25 de agosto de 2026; conjunto de datos actualizado el 17 de junio de 2026.
+	\end{minipage}
+	\vfill
+	{\small Quevedo, Ecuador $\cdot$ 25 de agosto de 2026\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Regla de esta entrega}
+
+TA-PFC-E4 es una \textbf{entrega total}. El equipo debe presentar el sistema completo, la documentación completa y el paquete completo de evidencias, con independencia de lo que haya entregado en E1, E2 o E3. No se acepta la frase «eso ya se entregó»: si un artefacto no está en este paquete, no existe para efectos de calificación.
+
+Esta guía añade una segunda finalidad a la habitual. Además de cerrar el proyecto académico, la entrega debe producir el \textbf{paquete de evidencias del que se derivará un manuscrito enviable a una revista indexada en Journal Citation Reports}. Por eso varios requisitos que en otras entregas eran opcionales aquí son obligatorios: datos crudos, repeticiones, oráculo de consistencia y paquete de replicación citable.
+
+\begin{aviso}{Qué cambia respecto a las guías anteriores}
+	La diferencia no es de cantidad sino de naturaleza. Hasta ahora el sistema tenía que \emph{funcionar} y estar \emph{documentado}. Ahora, además, tiene que \emph{medir algo} y esa medición tiene que poder repetirla otra persona en otra máquina y obtener el mismo resultado. Ese es el salto de ingeniería a investigación.
+\end{aviso}
+
+\section{La revista objetivo y por qué es esta}
+
+\subsection{Identificación}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{4.4cm}p{10.6cm}@{}}
+		\toprule
+		\textbf{Revista} & Journal of Systems and Software (JSS), Elsevier \\
+		\textbf{ISSN} & 0164-1212 (impreso) $\cdot$ 1873-1228 (electrónico) \\
+		\textbf{Indexación} & Web of Science, SCIE \\
+		\textbf{JIF 2025} & 3,8 \\
+		\textbf{Cuartil JCR} & Q2 en \emph{Computer Science, Software Engineering} \\
+		\textbf{Modelo} & Híbrido: existe vía de suscripción sin coste para el autor; el acceso abierto es opcional y de pago \\
+		\textbf{Tipo de artículo} & \emph{Applied Research Report} dentro de la pista \emph{In Practice} \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\subsection{Las cinco razones de la elección}
+
+\begin{enumerate}[leftmargin=*,itemsep=5pt]
+	\item \textbf{Es híbrida}, que es el requisito de partida. Publicar por la vía de suscripción no cuesta nada al equipo ni a la universidad. El cargo por publicar en abierto (\emph{article processing charge}, APC) es opcional.
+	\item \textbf{Tiene un tipo de artículo hecho a medida de este trabajo.} La pista \emph{In Practice} acepta \emph{Applied Research Reports}, definidos por la propia revista como informes que documentan la aplicación de una tecnología en un caso real, con resultados y lecciones aprendidas. Un PFC bien ejecutado encaja en esa definición; no encajaría en la de «artículo de investigación fundamental».
+	\item \textbf{Acepta explícitamente resultados negativos y estudios de replicación.} Esto es decisivo: si el experimento concluye que 2PC y la saga no se diferencian de forma apreciable, el trabajo \emph{sigue siendo publicable}. En la mayoría de revistas un resultado nulo es un rechazo seguro.
+	\item \textbf{Publica activamente sobre microservicios.} Hay artículos recientes de la propia revista sobre acoplamiento entre microservicios, patrones de rendimiento y evaluación experimental de arquitecturas \cite{zhong2023measuring,meijer2024experimental,henning2024benchmarking}. El estado del arte del manuscrito puede anclarse en la propia revista, que es lo que un editor espera ver.
+	\item \textbf{Ofrece una ruta de congreso.} La iniciativa \emph{Journal First} permite presentar en ASE, ICSME, SANER, RE, ESEM, PROFES o APSEC un artículo ya aceptado en la revista. Para un equipo de pregrado eso convierte una publicación en dos hitos curriculares.
+\end{enumerate}
+
+\subsection{Escalera de respaldo}
+
+Si la revista objetivo rechaza el manuscrito, no se rehace el trabajo: se reorienta. Las tres alternativas están verificadas en JCR y son igualmente híbridas.
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{5.6cm}rp{1.6cm}p{2.0cm}p{4.0cm}@{}}
+		\toprule
+		\textbf{Revista} & \textbf{JIF} & \textbf{Cuartil} & \textbf{Editorial} & \textbf{Cuándo redirigir} \\
+		\midrule
+		IEEE Trans. on Services Computing & 6,2 & Q1 & IEEE & Solo si el experimento resulta excepcionalmente sólido \\
+		\addlinespace
+		Software: Practice and Experience & 3,5 & Q2 & Wiley & Si el rechazo es por «poca novedad» pero se valora la ingeniería \\
+		\addlinespace
+		Concurrency and Computation: Practice and Experience & 2,2 & Q3 & Wiley & Si el rechazo es por alcance; es la más receptiva a trabajos de sistemas distribuidos aplicados \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\begin{aviso}{Consecuencia práctica de la escalera}
+	Las evidencias que exige esta guía son la \emph{unión} de lo que piden las cuatro revistas, no solo la primera. Así, un rechazo se resuelve reformateando y reenviando en días, no repitiendo mediciones.
+\end{aviso}
+
+\section{La contribución publicable de TiendaTech}
+
+\subsection{Lo que no es publicable}
+
+Conviene decirlo sin rodeos. No es publicable «hemos construido una tienda en línea con microservicios», ni «hemos usado CockroachDB y Spark», ni «hemos aplicado los patrones GoF». Todo eso es correcto como trabajo de asignatura y es, exactamente, lo que un editor devuelve sin enviar a revisores. Un sistema construido es el \emph{escenario} del artículo, nunca su \emph{resultado}.
+
+\subsection{Lo que sí es publicable}
+
+TiendaTech tiene un resultado potencial que ningún otro PFC de la asignatura tiene tan a la mano: la decisión entre \textbf{confirmación en dos fases (2PC)} y \textbf{saga con compensación} para la transacción de compra. La guía de la asignatura ya la señala como la decisión clave a defender. Convertirla en resultado exige medirla, y medirla exige exactamente lo que esta entrega pide.
+
+El marco conceptual está publicado y es citable: las sagas fueron formuladas para transacciones largas que no pueden mantener bloqueos \cite{garciamolina1987sagas}; el compromiso entre consistencia y disponibilidad bajo partición está formalizado \cite{gilbert2002brewer}; y la relación entre 2PC y consenso está establecida \cite{gray2006consensus}. Lo que no está resuelto, y por eso admite una contribución aplicada, es \emph{cuánto} cuesta cada opción en un comercio electrónico concreto cuando la pasarela de pago externa falla.
+
+\subsection{Preguntas de investigación}
+
+\begin{aviso}{Las tres preguntas de TiendaTech}
+	\textbf{PI-1 (principal).} ¿Qué coste en latencia de \emph{checkout} y qué tasa de inconsistencia observable impone la coordinación mediante 2PC frente a una saga con compensación, en una tienda de comercio electrónico basada en microservicios, cuando la pasarela de pago externa falla por omisión o por temporización?\\[6pt]
+	\textbf{PI-2.} ¿Cómo se degrada cada estrategia al aumentar la concurrencia de compras sobre el mismo SKU?\\[6pt]
+	\textbf{PI-3 (diferenciador).} ¿Con qué exactitud el motor de reglas de compatibilidad y el asistente basado en recuperación aumentada generan configuraciones válidas y dentro de presupuesto, frente a un conjunto de casos con respuesta conocida?
+\end{aviso}
+
+PI-1 y PI-2 son obligatorias: sostienen el artículo. PI-3 es opcional pero recomendable, porque es lo que distingue a TiendaTech de cualquier otra tienda con microservicios y porque un revisor preguntará por ella al leer el título del proyecto.
+
+\section{Diseño experimental exigido}
+
+Esta es la sección que decide si el trabajo es publicable. Léase entera antes de tocar código.
+
+\subsection{Factores y condiciones}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{3.6cm}p{4.4cm}p{7.0cm}@{}}
+		\toprule
+		\textbf{Factor} & \textbf{Niveles} & \textbf{Cómo se implementa} \\
+		\midrule
+		Estrategia de coordinación & 2PC $\mid$ saga con compensación & Intercambiable mediante variable de entorno, sin recompilar y sin cambiar de rama \\
+		\addlinespace
+		Concurrencia & 50 $\mid$ 100 $\mid$ 200 $\mid$ 400 usuarios virtuales & Parámetro del script de carga \\
+		\addlinespace
+		Modo de fallo de la pasarela & sin fallo $\mid$ omisión ($p=0{,}10$) $\mid$ temporización de 5 s ($p=0{,}10$) & Proxy inyector de fallos con semilla fija \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+El diseño es factorial completo: $2 \times 4 \times 3 = 24$ condiciones. Cada condición se ejecuta \textbf{cinco veces de forma independiente}, con reinicio completo del entorno entre ejecuciones y con descarte de los primeros 60 segundos de calentamiento. Total: 120 ejecuciones. Con ejecuciones de cinco minutos, son diez horas de máquina, perfectamente asumibles en un fin de semana y planificables por lotes.
+
+\subsection{Variables de respuesta}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{4.6cm}p{4.0cm}p{6.4cm}@{}}
+		\toprule
+		\textbf{Variable} & \textbf{Unidad} & \textbf{Por qué se mide} \\
+		\midrule
+		Latencia de \emph{checkout} p50, p95, p99 & milisegundos & Es el coste que paga el usuario por la consistencia \\
+		\addlinespace
+		Rendimiento (\emph{throughput}) & órdenes confirmadas por segundo & Capacidad efectiva del sistema \\
+		\addlinespace
+		Tasa de abortos & \% de compras iniciadas que no concluyen & Coste comercial directo de la estrategia \\
+		\addlinespace
+		\textbf{Tasa de inconsistencia observable} & \% de órdenes con invariante violada & \textbf{Es el resultado central del artículo} \\
+		\addlinespace
+		Tiempo de convergencia de la compensación & segundos & Solo para la saga: cuánto dura el estado inconsistente \\
+		\addlinespace
+		Consumo de CPU y memoria por servicio & \% y MiB & Coste de infraestructura de cada estrategia \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\subsection{Los invariantes que define el oráculo}
+
+Un \emph{oráculo de consistencia} es simplemente un programa que, al terminar cada ejecución, revisa la base de datos y responde sí o no a la pregunta «¿quedó todo cuadrado?». Sin él no hay forma de medir la variable central, y sin esa variable no hay artículo. TiendaTech debe verificar al menos estos cuatro invariantes:
+
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+	\item Para toda orden en estado \texttt{CONFIRMADA} existe un cobro registrado por el importe exacto de la orden.
+	\item Para toda orden en estado \texttt{CONFIRMADA} el stock del SKU fue descontado exactamente una vez.
+	\item No existe ningún SKU con stock negativo en ningún instante del registro.
+	\item Para toda orden en estado \texttt{CANCELADA} o \texttt{COMPENSADA}, el stock fue devuelto y no existe cobro pendiente.
+\end{enumerate}
+
+\subsection{Análisis estadístico}
+
+No basta con promedios. El manuscrito debe reportar, para cada comparación:
+
+\begin{itemize}[leftmargin=*,itemsep=4pt]
+	\item Mediana e intervalo de confianza del 95\,\%, no solo la media.
+	\item Una prueba de diferencia entre grupos que no asuma distribución normal, porque las latencias nunca la tienen. La habitual es la \textbf{prueba U de Mann-Whitney} (una prueba que compara si un grupo tiende a dar valores mayores que el otro, sin suponer forma de la distribución).
+	\item Una medida de \textbf{tamaño del efecto}, es decir, de cuán grande es la diferencia y no solo de si existe. Se recomienda el estadístico $\hat{A}_{12}$ de Vargha-Delaney, que se interpreta como la probabilidad de que una ejecución tomada al azar de un grupo supere a una del otro.
+	\item Diagramas de caja por condición, no gráficos de barras con la media.
+\end{itemize}
+
+\begin{alerta}{Error que hunde manuscritos de este tipo}
+	Reportar una sola ejecución por condición y presentar la media como si fuera un hecho. Un revisor pide de inmediato las repeticiones y la dispersión; si no existen, el trabajo se rechaza sin discusión posible. Las cinco repeticiones no son un adorno metodológico: son la diferencia entre un dato y una anécdota.
+\end{alerta}
+
+\subsection{Amenazas a la validez}
+
+El manuscrito debe incluir una sección de amenazas a la validez, y el documento del PFC también. Se exige cubrir las cuatro categorías, en lenguaje llano y sin autoindulgencia:
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{3.4cm}p{11.6cm}@{}}
+		\toprule
+		\textbf{Tipo} & \textbf{Qué debe discutir el equipo} \\
+		\midrule
+		Interna & Ruido de la máquina, interferencia entre contenedores, efecto del calentamiento, semillas de la inyección de fallos \\
+		\addlinespace
+		Externa & El catálogo y el patrón de compra son sintéticos; hasta dónde se puede generalizar a una tienda real ecuatoriana \\
+		\addlinespace
+		De constructo & Si «inconsistencia observable» capta realmente lo que importa al negocio, y qué queda fuera de los cuatro invariantes \\
+		\addlinespace
+		De conclusión & Número de repeticiones, potencia de las pruebas, riesgo de comparaciones múltiples \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section{Evidencias obligatorias}
+
+Cada evidencia tiene un código. El repositorio, el documento y la exposición deben referirse a ellas por ese código. La columna de criterio de aceptación es la que aplica el docente: si no se cumple literalmente, la evidencia se considera ausente.
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{0.9cm}p{4.6cm}p{4.2cm}p{5.0cm}@{}}
+		\toprule
+		\textbf{Cód.} & \textbf{Evidencia} & \textbf{Artefacto entregable} & \textbf{Criterio de aceptación} \\
+		\midrule
+		\endhead
+		E01 & Repositorio público con historial real & URL de GitHub & Los cuatro integrantes con \emph{commits} sustantivos en al menos seis semanas distintas \\
+		E02 & Despliegue reproducible & \texttt{docker-compose.yml} & El sistema completo levanta con un solo comando en una máquina limpia \\
+		E03 & Coordinación conmutable & Variable \texttt{COORD=2pc$\mid$saga} & Cambiar el valor y reiniciar basta para conmutar; no se permiten dos ramas divergentes \\
+		E04 & Inyector de fallos & Servicio proxy ante la pasarela & Modos omisión y temporización, probabilidad y semilla configurables \\
+		E05 & Carga determinista & Script de Locust parametrizado & Misma semilla produce la misma secuencia de peticiones \\
+		E06 & Datos crudos & 120 archivos CSV + \emph{notebook} & Las figuras del documento se regeneran ejecutando el \emph{notebook} \\
+		E07 & Oráculo de consistencia & Script verificador & Comprueba los cuatro invariantes y emite un informe por ejecución \\
+		E08 & Casos de compatibilidad & Conjunto de $\geq 100$ casos con respuesta conocida & Matriz de confusión del motor de reglas y del asistente RAG \\
+		E09 & Cómputo paralelo & Job PySpark + medición & \emph{Speedup} con 1, 2, 4 y 8 \emph{workers} y fracción paralelizable estimada según la ley de Amdahl \\
+		E10 & Trazas distribuidas & Captura exportada & Recorrido completo de una orden a través de todos los servicios \\
+		E11 & Observabilidad & Tablero Grafana + métricas & Tablero versionado como código, no captura de pantalla \\
+		E12 & Pruebas & Informe de cobertura & Cobertura $\geq 70\,\%$, más pruebas de integración del \emph{checkout} \\
+		E13 & Calidad del producto & Evaluación ISO/IEC 25010:2023 & Al menos cuatro características con métrica real y valor medido \cite{iso25010_2023} \\
+		E14 & Documento del PFC & \texttt{.tex} + PDF compilado & Compila desde el repositorio clonado; bibliografía IEEE con DOI que resuelven \\
+		E15 & Borrador del manuscrito & \texttt{.tex} + PDF & Estructura de \emph{Applied Research Report}; máximo 8.000 palabras \\
+		E16 & Declaración de uso de IA & Sección del documento & Herramienta, propósito, alcance y qué revisó cada integrante \\
+		E17 & Paquete de replicación & DOI de Zenodo & El DOI resuelve y el paquete contiene E05, E06, E07 y E08 \\
+		E18 & Carátula de entrega & PDF subido al SGA & Datos de identificación y la URL del repositorio en una sola línea \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\section{Cobertura de los temas de la asignatura}
+
+La entrega final debe demostrar que ningún tema de las cinco unidades quedó sin aplicación. Esta tabla es el mapa que el docente usará para verificarlo y la que el equipo debe reproducir en el documento.
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{1.2cm}p{5.4cm}p{8.2cm}@{}}
+		\toprule
+		\textbf{Unidad} & \textbf{Tema} & \textbf{Evidencia concreta exigida en TiendaTech} \\
+		\midrule
+		\endhead
+		U1 & Transparencias ANSA & Tabla con al menos cinco de las ocho, cada una con el mecanismo del sistema que la realiza \\
+		U1 & Sockets TCP & Canal de reserva atómica de stock Inventario--Órdenes, con delimitación de mensajes por longitud \\
+		U1 & gRPC / RPC & Contratos \texttt{.proto} de Órdenes, Inventario y Recomendación-IA \\
+		U1 & Relojes de Lamport y vectoriales & Ordenación total de reservas concurrentes sobre el mismo SKU; reconciliación del carrito multidispositivo \\
+		U1 & Tolerancia a fallos & \emph{Heartbeats} entre réplicas y cortacircuitos hacia la pasarela; evidencia E04 \\
+		U1 & Elección de líder & Bully o anillo para el nodo que serializa números de orden; traza de una reelección \\
+		U1 & Teorema CAP & Posición argumentada por agregado: CP en stock y órdenes, AP en catálogo y reseñas \cite{gilbert2002brewer} \\
+		U1 & Coordinación y consistencia & \textbf{Es el núcleo del artículo}: 2PC frente a saga, evidencias E03, E06 y E07 \cite{garciamolina1987sagas,gray2006consensus} \\
+		U1 & Seguridad & JWT, OAuth2, TLS, control de acceso por rol y tokenización de datos de pago \\
+		U1 & SLA y alta disponibilidad & Objetivo declarado y medición de su cumplimiento en las 120 ejecuciones \\
+		\addlinespace
+		U3 & Microservicios con base propia & Diagrama C4 nivel 3 y justificación de fronteras \cite{difrancesco2019architecting} \\
+		U3 & API REST + OpenAPI & Especificación OpenAPI 3.0 validada, versionada en el repositorio \\
+		U3 & API Gateway & Enrutamiento, autenticación centralizada y limitación de tasa al recomendador \\
+		U3 & Mensajería asíncrona & RabbitMQ para eventos de dominio; justificación frente a Kafka \\
+		U3 & Docker y orquestación & Evidencia E02; manifiestos de Kubernetes para el servicio de recomendación \\
+		U3 & Patrones de despliegue & Demostración de una liberación \emph{canary} del modelo de recomendación \\
+		\addlinespace
+		U2 & Fragmentación & Particionado del catálogo por categoría y de las órdenes por fecha \\
+		U2 & Replicación y consistencia & Clúster CockroachDB con consistencia serializable; configuración versionada \\
+		U2 & Tolerancia a fallos en datos & Prueba documentada de caída de un nodo sin pérdida de transacciones confirmadas \\
+		\addlinespace
+		U4 & Procesamiento distribuido & Evidencia E09 sobre el histórico de navegación y compras \\
+		U4 & Ley de Amdahl & Fracción secuencial estimada a partir de la curva de \emph{speedup} medida, no supuesta \\
+		\addlinespace
+		U5 & N-capas y SOLID & Estructura de capas por microservicio, con evidencia de acoplamiento medido \cite{zhong2023measuring} \\
+		U5 & Patrones GoF & Repository, Strategy, Factory, Observer y Proxy, cada uno con el fragmento de código que lo realiza \\
+		U5 & Inyección de dependencias & Contenedor IoC configurado, con ejemplo de sustitución de implementación en pruebas \\
+		U5 & CI/CD & Flujo de GitHub Actions con pruebas, construcción de imagen y análisis de calidad \\
+		U5 & Observabilidad & Evidencias E10 y E11 \\
+		U5 & Pruebas & Evidencia E12 \\
+		U5 & Calidad ISO/IEC 25010 & Evidencia E13 \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\section{Estructura del repositorio}
+
+El repositorio es el entregable principal. Debe seguir esta estructura, porque la rúbrica la verifica literalmente.
+
+\begin{lstlisting}
+tiendatech/
+  README.md                 <- instrucciones de compilacion y ejecucion (criterio de piso)
+  docker-compose.yml        <- E02: levanta el sistema completo
+  .env.example              <- E03: incluye COORD=2pc|saga
+  services/                 <- un directorio por microservicio
+  gateway/
+  faultproxy/               <- E04: inyector de fallos ante la pasarela
+  experiments/
+    load/                   <- E05: scripts de Locust parametrizados
+    runner.sh               <- orquesta las 120 ejecuciones
+    oracle/                 <- E07: verificador de los cuatro invariantes
+    data/raw/               <- E06: 120 CSV, uno por ejecucion
+    analysis/               <- E06: notebook que regenera todas las figuras
+  ai/
+    ruleset/                <- motor de reglas de compatibilidad
+    rag/                    <- asistente con recuperacion aumentada
+    benchmark/              <- E08: 100+ casos con respuesta conocida
+  spark/                    <- E09: job PySpark y medicion de speedup
+  observability/            <- E11: Prometheus y tableros Grafana como codigo
+  k8s/                      <- manifiestos de Kubernetes
+  docs/
+    pfc/                    <- E14: documento LaTeX del PFC y su .bib
+    manuscript/             <- E15: borrador del manuscrito y su .bib
+    ai-usage.md             <- E16: declaracion de uso de IA
+  CITATION.cff              <- E17: metadatos para el DOI de Zenodo
+\end{lstlisting}
+
+\section{Del documento del PFC al manuscrito}
+
+El manuscrito no se escribe desde cero: se destila del documento del PFC. Esta tabla indica de dónde sale cada sección y cuánto debe ocupar.
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{3.8cm}p{1.7cm}p{9.3cm}@{}}
+		\toprule
+		\textbf{Sección} & \textbf{Extensión} & \textbf{De dónde sale y qué debe contener} \\
+		\midrule
+		Introducción & 1,5 pág. & Del problema cuantificado de E1. Termina enunciando PI-1 y PI-2 \\
+		\addlinespace
+		Trabajo relacionado & 1,5 pág. & Nuevo. De 15 a 25 referencias, con al menos cinco de la propia revista objetivo \\
+		\addlinespace
+		Contexto y arquitectura & 2 pág. & Del C4 y los ADR de E1 y E2, muy condensado. No es el capítulo de arquitectura del PFC \\
+		\addlinespace
+		Diseño del estudio & 2,5 pág. & Sección 4 de esta guía: factores, variables, invariantes, análisis \\
+		\addlinespace
+		Resultados & 3 pág. & De E06 y E07. Solo hechos medidos, sin interpretación \\
+		\addlinespace
+		Discusión y lecciones aprendidas & 2 pág. & La interpretación, y lo que un equipo de ingeniería debería decidir a la vista de los datos \\
+		\addlinespace
+		Amenazas a la validez & 0,7 pág. & Sección 4.6 de esta guía \\
+		\addlinespace
+		Conclusiones & 0,5 pág. & Respuesta explícita a PI-1 y PI-2, incluso si es negativa \\
+		\addlinespace
+		Disponibilidad de datos & 3 líneas & El DOI de Zenodo de E17 \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\begin{aviso}{Sobre las referencias del manuscrito}
+	Cada afirmación no trivial debe apoyarse en una referencia verificada, con todos sus campos coherentes entre sí y con DOI que resuelva. El archivo \texttt{references\_PFC\_TiendaTech.bib} que acompaña a esta guía contiene el mínimo obligatorio, ya verificado, e incluye ocho artículos recientes publicados en la propia revista objetivo. Ampliarlo es responsabilidad del equipo; inventar o mezclar campos de fuentes distintas es una falta de integridad académica, no un descuido de formato.
+\end{aviso}
+
+\section{Cronograma de las semanas finales}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{1.8cm}p{6.4cm}p{6.6cm}@{}}
+		\toprule
+		\textbf{Semana} & \textbf{Objetivo} & \textbf{Hito verificable} \\
+		\midrule
+		15 & Cerrar E02, E03 y E04 & El sistema conmuta entre 2PC y saga y el inyector funciona \\
+		15 & Cerrar E05 y E07 & Una ejecución piloto completa produce CSV e informe del oráculo \\
+		16 & Ejecutar el experimento & Los 120 CSV de E06 en el repositorio \\
+		16 & Cerrar E08 y E09 & Matriz de confusión y curva de \emph{speedup} \\
+		16 & Cerrar E10, E11, E12 y E13 & Trazas, tablero, cobertura y evaluación de calidad \\
+		17 & Cerrar E14 y E16 & Documento del PFC compilando desde clonación limpia \\
+		17 & Cerrar E15 y E17 & Borrador del manuscrito y DOI de Zenodo \\
+		17 & Defensa oral & Demostración en vivo y respuesta a las preguntas de la sección 10 \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\begin{alerta}{Riesgo de planificación}
+	El experimento de la semana 16 es el único hito que no admite improvisación: si el sistema no conmuta entre estrategias al final de la semana 15, no hay datos, y sin datos no hay entrega ni artículo. Adelantar E03 y E04 es la decisión más rentable del proyecto.
+\end{alerta}
+
+\section{Preguntas de la defensa oral}
+
+El equipo debe poder responder estas preguntas sin consultar el documento. Cada integrante debe poder responder cualquiera de ellas, no solo la de su parte.
+
+\begin{enumerate}[leftmargin=*,itemsep=4pt]
+	\item ¿Dónde se ubica TiendaTech en el teorema CAP y por qué la respuesta es distinta para el inventario y para el catálogo?
+	\item ¿Qué midieron exactamente para responder a PI-1 y cuál es el resultado, con su intervalo de confianza?
+	\item ¿Qué tamaño del efecto obtuvieron y qué significa ese número en términos de negocio?
+	\item Si la pasarela de pago falla justo después de descontar el stock, ¿qué ocurre con cada estrategia y en cuánto tiempo se resuelve?
+	\item ¿Qué fracción del \emph{job} de recomendación resultó paralelizable y cómo lo dedujeron de la curva medida?
+	\item ¿Qué amenaza a la validez de su estudio consideran la más seria y por qué no pudieron eliminarla?
+	\item Si tuvieran que desplegar TiendaTech mañana en producción, ¿qué estrategia elegirían y con qué dato lo justifican?
+\end{enumerate}
+
+\section{Rúbrica de evaluación}
+
+\subsection{Criterios de piso}
+
+\begin{alerta}{Incumplir cualquiera de estos criterios implica calificación CERO en toda la entrega}
+	\textbf{P1.} El estudiante debe subir al SGA un documento PDF con carátula que muestre claramente, en una sola línea, la URL del repositorio donde se encuentra el trabajo desarrollado. Si la URL está rota, el repositorio no es accesible o no se cumple esta directriz, la calificación es CERO.\\[6pt]
+	\textbf{P2.} Si el PDF no se genera correctamente a partir del LaTeX mediante clonación del repositorio y compilación del archivo \texttt{.tex}, la calificación es CERO. Las instrucciones de compilación (compilador, orden de comandos, archivo principal, dependencias) deben estar documentadas en el archivo \texttt{README.md} del repositorio.\\[6pt]
+	\textbf{P3.} Si el sistema no levanta con un solo comando desde una máquina limpia siguiendo el \texttt{README.md}, la calificación es CERO.\\[6pt]
+	\textbf{P4.} Si no existen los datos crudos de E06 o el oráculo de E07, la calificación es CERO: sin ellos la entrega no tiene resultado medido y esta entrega se define por tenerlo.\\[6pt]
+	\textbf{P5.} Si se detectan referencias fabricadas, DOI que no resuelven o citas cuyos campos no corresponden a la obra real, la calificación es CERO por falta de integridad académica.\\[6pt]
+	\textbf{P6.} Si falta la declaración de uso de IA (E16), la calificación es CERO.
+\end{alerta}
+
+\subsection{Criterios calificables}
+
+Superados los criterios de piso, se califica sobre 100 puntos.
+
+\begin{center}
+	\small
+	\begin{longtable}{@{}p{0.9cm}p{5.6cm}rp{6.6cm}@{}}
+		\toprule
+		\textbf{Cód.} & \textbf{Criterio} & \textbf{Pts.} & \textbf{Descriptor de nivel máximo} \\
+		\midrule
+		\endhead
+		C1 & Rigor del diseño experimental & 20 & Las 24 condiciones con cinco repeticiones, semillas fijadas, calentamiento descartado y procedimiento descrito con detalle suficiente para repetirlo \\
+		\addlinespace
+		C2 & Calidad del resultado y del análisis & 15 & Medianas con intervalo de confianza, prueba no paramétrica, tamaño del efecto y diagramas de caja. Se acepta y se valora un resultado negativo bien sustentado \\
+		\addlinespace
+		C3 & Reproducibilidad & 12 & Otro equipo regenera todas las figuras ejecutando el \emph{notebook} sobre los datos del repositorio, sin intervención manual \\
+		\addlinespace
+		C4 & Cobertura de los temas de la asignatura & 15 & Los 27 temas de la tabla de la sección 6 con evidencia concreta y localizable, no declarativa \\
+		\addlinespace
+		C5 & Arquitectura distribuida y su justificación & 10 & Fronteras de microservicios argumentadas, posición CAP por agregado, decisión 2PC frente a saga defendida con los datos propios \\
+		\addlinespace
+		C6 & Calidad del software y pruebas & 8 & Cobertura $\geq 70\,\%$, integración y carga; evaluación ISO/IEC 25010 con métricas reales \\
+		\addlinespace
+		C7 & Documento LaTeX y bibliografía & 8 & Compila sin advertencias graves, sin referencias sin resolver, bibliografía verificada con DOI, figuras y tablas referenciadas en el texto \\
+		\addlinespace
+		C8 & Borrador del manuscrito & 7 & Estructura completa de \emph{Applied Research Report}, extensión adecuada y al menos cinco referencias de la revista objetivo \\
+		\addlinespace
+		C9 & Defensa oral y dominio individual & 5 & Cada integrante responde cualquier pregunta de la sección 10, no solo la de su módulo \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\subsection{Penalizaciones individuales}
+
+\begin{itemize}[leftmargin=*,itemsep=3pt]
+	\item Integrante sin \emph{commits} sustantivos: se le descuenta el 50\,\% de la nota del grupo.
+	\item Integrante que no responde ninguna pregunta en la defensa: se le descuenta el 30\,\%.
+	\item Indicios de texto generado por IA presentado como propio sin declararlo en E16: se aplica el criterio de piso P6 y se remite el caso según la normativa de integridad académica.
+\end{itemize}
+
+\section{Lista de verificación final}
+
+Antes de subir la entrega, el equipo debe poder marcar las diecisiete casillas. Si alguna queda sin marcar, la entrega no está lista.
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{0.7cm}p{14.3cm}@{}}
+		\toprule
+		\textbf{$\square$} & \textbf{Verificación} \\
+		\midrule
+		$\square$ & El PDF de carátula con la URL del repositorio en una sola línea está subido al SGA \\
+		$\square$ & Clonamos el repositorio en una máquina limpia y el \texttt{.tex} compiló siguiendo el \texttt{README.md} \\
+		$\square$ & \texttt{docker compose up} levanta el sistema completo y responde en el navegador \\
+		$\square$ & Cambiar \texttt{COORD} conmuta la estrategia sin tocar código \\
+		$\square$ & El inyector de fallos produce omisión y temporización de forma reproducible \\
+		$\square$ & Están los 120 CSV y el informe del oráculo de cada ejecución \\
+		$\square$ & El \emph{notebook} regenera todas las figuras del documento sin intervención manual \\
+		$\square$ & La matriz de confusión del motor y del RAG está sobre 100 casos o más \\
+		$\square$ & La curva de \emph{speedup} tiene los cuatro puntos y la fracción de Amdahl está calculada \\
+		$\square$ & Hay una traza distribuida completa de una orden exportada al repositorio \\
+		$\square$ & El tablero de Grafana está versionado como código \\
+		$\square$ & La cobertura de pruebas es $\geq 70\,\%$ y el informe está en el repositorio \\
+		$\square$ & La evaluación ISO/IEC 25010 tiene al menos cuatro características con valor medido \\
+		$\square$ & Todos los DOI de la bibliografía resuelven al artículo correcto \\
+		$\square$ & El borrador del manuscrito tiene las nueve secciones y cita cinco o más artículos de la revista objetivo \\
+		$\square$ & La declaración de uso de IA está completa y firmada por los cuatro integrantes \\
+		$\square$ & El DOI de Zenodo resuelve y el paquete contiene datos, oráculo, cargas y casos de compatibilidad \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\vspace{8pt}
+\begin{aviso}{Una última advertencia honesta para el equipo}
+	Cumplir esta guía no garantiza que el manuscrito sea aceptado. La tasa de rechazo de una revista JCR es alta incluso para grupos de investigación consolidados, y un primer envío rechazado es el desenlace más frecuente, no el fracaso. Lo que sí garantiza es que el trabajo será \emph{evaluable}: llegará a revisores en lugar de ser devuelto por el editor, y las observaciones que reciban valdrán más que la nota de la asignatura.
+\end{aviso}
+
+\nocite{*}
+\bibliographystyle{ieeetr}
+\bibliography{references_PFC_TiendaTech}
+
+\end{document}

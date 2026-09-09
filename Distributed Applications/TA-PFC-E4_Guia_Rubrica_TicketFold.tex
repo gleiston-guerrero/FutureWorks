@@ -1,0 +1,561 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,provide=*]{babel}
+\usepackage{csquotes}
+\usepackage{charter}
+\usepackage[scaled=0.92]{helvet}
+\usepackage[a4paper,top=2.6cm,bottom=2.6cm,left=2.4cm,right=2.4cm,headheight=14pt]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{azulUTEQ}{HTML}{123A5F}
+\definecolor{azulClaro}{HTML}{E8EEF4}
+\definecolor{grisTexto}{HTML}{3A3A3A}
+\definecolor{acento}{HTML}{A6242B}
+\definecolor{grisCodigo}{HTML}{F2F4F6}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=azulUTEQ,
+	urlcolor=azulUTEQ,
+	citecolor=azulUTEQ
+}
+
+\titleformat{\section}{\normalfont\Large\bfseries\color{azulUTEQ}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{azulUTEQ}}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{18pt}{8pt}
+\titlespacing*{\subsection}{0pt}{14pt}{6pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\footnotesize\color{azulUTEQ}TA-PFC-E4 $\cdot$ TicketFold (equipo ACC) $\cdot$ Aplicaciones Distribuidas (ISR-701)}
+\fancyhead[R]{\footnotesize\color{azulUTEQ}\thepage}
+
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.18}
+
+\lstset{
+	basicstyle=\ttfamily\footnotesize,
+	backgroundcolor=\color{grisCodigo},
+	frame=single,
+	rulecolor=\color{azulUTEQ},
+	breaklines=true,
+	columns=fullflexible,
+	xleftmargin=6pt,
+	xrightmargin=6pt,
+	framexleftmargin=6pt
+}
+
+\newtcolorbox{aviso}[1]{
+	colback=azulClaro,
+	colframe=azulUTEQ,
+	boxrule=0.8pt,
+	arc=2pt,
+	left=8pt,
+	right=8pt,
+	top=7pt,
+	bottom=7pt,
+	title={\bfseries #1},
+	fonttitle=\normalsize\color{white},
+	colbacktitle=azulUTEQ
+}
+
+\newtcolorbox{alerta}[1]{
+	colback=white,
+	colframe=acento,
+	boxrule=0.9pt,
+	arc=2pt,
+	left=8pt,
+	right=8pt,
+	top=7pt,
+	bottom=7pt,
+	title={\bfseries #1},
+	fonttitle=\normalsize\color{white},
+	colbacktitle=acento
+}
+
+\begin{document}
+
+\begin{titlepage}
+	\centering
+	\vspace*{1.2cm}
+	{\color{azulUTEQ}\rule{\textwidth}{2pt}}\\[10pt]
+	{\LARGE\bfseries\color{azulUTEQ} Guía y rúbrica de la entrega final TA-PFC-E4\par}
+	\vspace{8pt}
+	{\Large\bfseries\color{azulUTEQ} PFC D --- TicketFold (equipo ACC)\par}
+	\vspace{4pt}
+	{\normalsize\color{grisTexto}\emph{denominación anterior: Soporte Técnico de Internet}\par}
+	\vspace{10pt}
+	{\color{azulUTEQ}\rule{\textwidth}{2pt}}\\[16pt]
+	{\large Asignatura: Aplicaciones Distribuidas (ISR-701)\par}
+	\vspace{4pt}
+	{\large Carrera de Ingeniería de Software $\cdot$ Universidad Técnica Estatal de Quevedo\par}
+	\vspace{24pt}
+	{\large\bfseries Entrega acumulativa total y paquete de evidencias\par}
+	{\large\bfseries orientado a publicación en revista JCR híbrida\par}
+	\vspace{24pt}
+	\begin{minipage}{0.86\textwidth}
+		\centering
+		\color{grisTexto}
+		\small
+		\textbf{Revista objetivo:} IEEE Transactions on Network and Service Management, ISSN 1932-4537.\\
+		JIF 2025 = 5,7 $\cdot$ Q1 en \emph{Computer Science, Information Systems} $\cdot$ SCIE $\cdot$ modelo híbrido.\\[6pt]
+		Su alcance incluye expresamente \emph{Applications and Case Studies} y declara acoger trabajos aplicados sobre sistemas reales.\\[6pt]
+		Datos bibliométricos verificados en Journal Citation Reports el 25 de agosto de 2026; conjunto de datos actualizado el 17 de junio de 2026.
+	\end{minipage}
+	\vfill
+	{\small Quevedo, Ecuador $\cdot$ 25 de agosto de 2026\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Regla de esta entrega}
+
+TA-PFC-E4 es una \textbf{entrega total}: el sistema completo, la documentación completa y el paquete completo de evidencias, con independencia de lo entregado en E1, E2 o E3. Si un artefacto no está en este paquete, no existe a efectos de calificación.
+
+\begin{aviso}{La ventaja peculiar de este proyecto}
+	TicketFold tiene algo que ninguno de los otros tres PFC posee: \textbf{verdad de campo por construcción}. Como la avería la provoca el propio equipo en el simulador, se sabe con exactitud qué abonados quedaron afectados. Eso permite medir la precisión y la exhaustividad de la correlación contra una respuesta conocida, sin etiquetado manual y sin discusión. Es la clase de dato que un revisor de una revista de gestión de redes espera ver y casi nunca recibe de un sistema real.
+\end{aviso}
+
+\section{Del nombre a la publicabilidad}
+
+\subsection{Por qué el nombre actual no sirve}
+
+«Soporte Técnico de Internet» nombra un departamento, no un sistema, y menos aún una contribución. Es genérico hasta el punto de que describe igual de bien a un centro de llamadas que a una mesa de ayuda o a un proveedor entero. No se puede usar como identificador de repositorio ni de paquete. Y traducido al inglés produce un título que no dice absolutamente nada sobre qué problema se resolvió.
+
+\subsection{Nombre adoptado}
+
+\begin{aviso}{Denominación oficial a partir de esta entrega}
+	\textbf{Nombre del sistema:} \textsc{TicketFold}\\[6pt]
+	\textbf{Descriptor:} correlación de incidencias masivas guiada por telemetría en la gestión de solicitudes de un proveedor de Internet.\\[6pt]
+	\textbf{Título previsto del manuscrito:} \emph{TicketFold: telemetry-driven correlation of mass incidents in an ISP ticketing system and its effect on SLA compliance --- an applied evaluation}.
+\end{aviso}
+
+El nombre alude al mecanismo: muchos tickets individuales \emph{se pliegan} en una sola incidencia subyacente. Se comprobó que está libre en buscadores, en GitHub y en directorios de software; el equipo debe repetir y documentar esa comprobación antes de fijarlo. Alternativas admisibles si prefieren otra: \textsc{IncidentFold} o \textsc{NetCorrel}.
+
+\section{La revista objetivo y por qué es esta}
+
+\subsection{Identificación}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{4.4cm}p{10.6cm}@{}}
+		\toprule
+		\textbf{Revista} & IEEE Transactions on Network and Service Management (TNSM) \\
+		\textbf{ISSN} & 1932-4537 (electrónico; la revista se publica solo en línea) \\
+		\textbf{Indexación} & Web of Science, SCIE \\
+		\textbf{JIF 2025} & 5,7 \\
+		\textbf{Cuartil JCR} & Q1 en \emph{Computer Science, Information Systems} \\
+		\textbf{Modelo} & Híbrido: la vía de suscripción no tiene coste para el autor \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\subsection{Las cuatro razones de la elección}
+
+\begin{enumerate}[leftmargin=*,itemsep=5pt]
+	\item \textbf{Es híbrida y es Q1}, y cumple así el requisito de partida sin renunciar al primer cuartil.
+	\item \textbf{Es el destino temáticamente exacto.} Su alcance cubre modelos y arquitecturas de gestión, aprovisionamiento de servicios, garantía de fiabilidad y calidad, funciones de gestión, políticas y estándares. Eso es, literalmente, el dominio del proyecto. No hay otra revista en la cartera de la asignatura que coincida tan bien con un PFC.
+	\item \textbf{Acoge expresamente aplicaciones y estudios de caso.} La revista declara publicar tanto contribuciones teóricas como \emph{trabajos aplicados sobre sistemas reales}, y enumera «Applications and Case Studies» entre sus temas. Un informe aplicado bien medido no queda fuera de alcance.
+	\item \textbf{Publica exactamente este mecanismo, y de forma continuada.} La correlación de alarmas y la identificación de causa raíz son una línea sostenida de la revista, desde el trabajo clásico sobre correlación incremental de alarmas \cite{tang2008alarm} y localización de fallos por libro de códigos \cite{reali2018codebook} hasta los enfoques recientes sobre diagnóstico no supervisado \cite{mdini2020unsupervised}, minería de registros \cite{notaro2023logrule} y causa raíz en sistemas de microservicios \cite{yang2024micronet}. El estado del arte del manuscrito se ancla en la propia revista.
+\end{enumerate}
+
+\begin{alerta}{Honestidad sobre las probabilidades}
+	Que el encaje temático sea perfecto no significa que la aceptación sea probable. TNSM es una revista Q1 de IEEE con revisores especializados que conocen esta literatura al detalle. El manuscrito será juzgado contra los trabajos citados arriba, no contra otros proyectos de fin de curso. La escalera de respaldo es parte del plan, no un consuelo.
+\end{alerta}
+
+\subsection{Escalera de respaldo}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{5.2cm}rp{1.5cm}p{2.0cm}p{4.5cm}@{}}
+		\toprule
+		\textbf{Revista} & \textbf{JIF} & \textbf{Cuartil} & \textbf{Editorial} & \textbf{Cuándo redirigir} \\
+		\midrule
+		Journal of Network and Computer Applications & 7,7 & Q1 & Elsevier & Acepta también notas breves: útil si la contribución resulta acotada \\
+		\addlinespace
+		IEEE Transactions on Reliability & 5,4 & Q1 & IEEE & Si el peso del artículo recae en el MTTR y la fiabilidad del servicio \\
+		\addlinespace
+		International Journal of Network Management & 2,5 & Q3 & Wiley & Recurso final: es la revista de gestión de redes con perfil más aplicado y menos exigente \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+
+
+Las tres son híbridas y están verificadas en JCR. Para el \emph{International Journal of Network Management} se consultó su ficha individual: JIF 2025 de 2,5, indexada en SCIE, con rango 159/266 en \emph{Computer Science, Information Systems} y 81/127 en \emph{Telecommunications}, y con el 82,3\,\% de sus artículos publicados por la vía de suscripción, lo que confirma el modelo híbrido.
+
+\section{La contribución publicable de TicketFold}
+
+\subsection{El fenómeno}
+
+Se cae un nodo de distribución en una zona y doscientos abonados llaman en veinte minutos. El sistema abre doscientos tickets. El despachador ve doscientos problemas donde hay uno solo, asigna técnicos a domicilios que no tienen avería propia, y el tiempo medio de reparación se dispara mientras el SLA se incumple en cascada. Ese es el problema real del dominio, y es un problema de sistemas distribuidos: los indicios llegan por canales distintos (portal web, aplicación, centro de llamadas, telemetría de los equipos del abonado) y hay que ordenarlos causalmente antes de poder agruparlos.
+
+\subsection{La contribución}
+
+TicketFold no propone un algoritmo de correlación nuevo. Aporta lo que la literatura de la revista objetivo tiene menos: una \textbf{evaluación aplicada, con verdad de campo conocida, del efecto que la correlación de tickets guiada por telemetría produce sobre la carga del despachador, el tiempo medio de reparación y el cumplimiento del acuerdo de nivel de servicio}, medida en un sistema real desplegado y comparada contra el despacho sin correlación. El compromiso entre disponibilidad y consistencia que subyace a la decisión de aceptar tickets durante una partición está formalizado \cite{gilbert2002brewer}, y la ordenación causal de eventos que llegan por canales distintos es un resultado clásico \cite{lamport1978time}.
+
+\subsection{Preguntas de investigación}
+
+\begin{aviso}{Las tres preguntas de TicketFold}
+	\textbf{PI-1 (principal).} ¿En qué medida la correlación automática guiada por telemetría reduce el número de incidencias efectivas que debe atender el despachador y el tiempo medio de reparación, frente al despacho sin correlación, al crecer la escala de la avería?\\[6pt]
+	\textbf{PI-2 (calidad de la correlación y SLA).} ¿Con qué precisión y exhaustividad agrupa cada estrategia, medidas contra la avería realmente inyectada, y cómo cambia el cumplimiento del SLA por nivel de prioridad?\\[6pt]
+	\textbf{PI-3 (posición CAP).} ¿Qué precio paga la decisión de mantener disponible la recepción de tickets durante una partición: cuántos duplicados se generan, cuánto tarda la reconciliación y se preserva la consistencia del cálculo de SLA y de facturación?
+\end{aviso}
+
+PI-3 es la que distingue este trabajo. La guía de la asignatura ya señala que este es el único de los cuatro PFC que debe posicionarse como AP en la recepción de incidencias y como CP en SLA y facturación. Medir esa decisión, en lugar de solo enunciarla, es lo que convierte una posición arquitectónica en un resultado.
+
+\section{Diseño experimental exigido}
+
+\subsection{Las tres estrategias de correlación comparadas}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{1.1cm}p{4.8cm}p{9.1cm}@{}}
+		\toprule
+		\textbf{Cód.} & \textbf{Estrategia} & \textbf{Qué implementa} \\
+		\midrule
+		C0 & Sin correlación & Línea base: un ticket, una incidencia. Reproduce el desbordamiento del despachador y demuestra que el fenómeno existe \\
+		\addlinespace
+		C1 & Zona y ventana temporal & Agrupa tickets del mismo sector abiertos dentro de una ventana deslizante, sin mirar la red \\
+		\addlinespace
+		C2 & Zona, ventana y telemetría & Añade los reportes de estado de los equipos del abonado y los latidos de los nodos, ordenados causalmente antes de agrupar \cite{lamport1978time} \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+Las tres deben ser conmutables mediante una variable de entorno. No se admiten tres ramas divergentes: eso impide comparar y hace la medición irreproducible.
+
+\subsection{Experimento 1 --- Efecto de la correlación}
+
+Diseño factorial completo: 3 estrategias $\times$ 3 escalas de avería (10, 100 y 500 abonados afectados) $\times$ 2 regímenes (una avería masiva única y dos averías simultáneas en zonas distintas) $=$ 18 condiciones. Cinco repeticiones independientes por condición. Total: \textbf{90 ejecuciones}. El segundo régimen es esencial: una estrategia que agrupa bien una avería puede fusionar erróneamente dos, y ese error solo aparece si se le presentan dos.
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{5.4cm}p{3.2cm}p{6.4cm}@{}}
+		\toprule
+		\textbf{Variable de respuesta} & \textbf{Unidad} & \textbf{Por qué se mide} \\
+		\midrule
+		\textbf{Incidencias efectivas} & recuento & \textbf{Carga real del despachador: el resultado central} \\
+		Precisión de la agrupación & proporción & De los tickets agrupados en una incidencia, cuántos correspondían de verdad a esa avería \\
+		Exhaustividad de la agrupación & proporción & De los tickets de la avería, cuántos fueron agrupados \\
+		Tasa de fusión errónea & \% de casos & Solo en el régimen de dos averías: con qué frecuencia se funden en una \\
+		Tiempo medio de reparación (MTTR) & minutos & Efecto de negocio de la correlación \\
+		Cumplimiento del SLA por prioridad & \% & Es el eje del dominio y debe reportarse desglosado \\
+		Visitas técnicas evitadas & recuento & Traduce el resultado a coste operativo \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\begin{aviso}{Precisión y exhaustividad en lenguaje común}
+	La \emph{precisión} responde a «de lo que agrupé, cuánto estaba bien agrupado»; la \emph{exhaustividad} (o \emph{recall}) responde a «de lo que debía agrupar, cuánto agrupé». Una estrategia que mete todos los tickets del país en una sola incidencia tiene exhaustividad perfecta y precisión pésima. Por eso hay que reportar las dos, nunca una sola.
+\end{aviso}
+
+\subsection{Experimento 2 --- La posición AP puesta a prueba}
+
+Se provoca una partición de red que aísla el 20\,\% de los nodos durante 60 segundos mientras los abonados siguen reportando. Cinco repeticiones. Se mide: tickets aceptados durante la partición, tickets duplicados detectados tras reconciliar, tiempo de convergencia del estado, y verificación de que el cálculo de SLA y los registros de facturación quedaron consistentes pese a la disponibilidad concedida en la recepción.
+
+\subsection{Experimento 3 --- Analítica de telemetría}
+
+Procesamiento con PySpark del histórico de incidencias y telemetría para identificar zonas problemáticas y calcular el MTTR agregado. Se mide el \emph{speedup} con 1, 2, 4 y 8 \emph{workers} y se estima la fracción paralelizable según la ley de Amdahl a partir de la curva medida, no supuesta.
+
+\subsection{Los invariantes que define el oráculo}
+
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+	\item Todo ticket confirmado pertenece a exactamente una incidencia, ni cero ni dos.
+	\item Todo ticket cerrado tiene diagnóstico registrado y técnico asignado.
+	\item El cálculo de SLA de un ticket no cambia retroactivamente una vez cerrado el ticket.
+	\item Tras la reconciliación no existen dos tickets del mismo abonado por la misma avería.
+	\item El ciclo de vida de todo ticket respeta la máquina de estados: no hay saltos ni retrocesos no permitidos.
+\end{enumerate}
+
+\subsection{Análisis estadístico}
+
+Para toda comparación se exige mediana con intervalo de confianza del 95\,\%, prueba U de Mann-Whitney (compara si un grupo tiende a dar valores mayores que otro sin suponer distribución normal), tamaño del efecto mediante el estadístico $\hat{A}_{12}$ de Vargha-Delaney, y diagramas de caja por condición. La precisión y la exhaustividad se reportan con intervalo de confianza binomial.
+
+\subsection{Amenazas a la validez}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{3.2cm}p{11.8cm}@{}}
+		\toprule
+		\textbf{Tipo} & \textbf{Qué debe discutir el equipo} \\
+		\midrule
+		Interna & Ruido de la máquina, semillas de la inyección de averías, sincronía artificial de las llamadas de abonados \\
+		\addlinespace
+		Externa & El patrón de reporte de abonados es sintético; la topología simulada frente a la de un proveedor real; hasta dónde se generaliza a un ISP con decenas de miles de abonados \\
+		\addlinespace
+		De constructo & Si «incidencias efectivas» capta la carga real del despachador, y si el MTTR simulado se corresponde con el operativo \\
+		\addlinespace
+		De conclusión & Repeticiones, potencia estadística y comparaciones múltiples entre tres estrategias y tres escalas \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section{Datos de abonados: obligación de sintetizarlos}
+
+\begin{alerta}{No se usan datos reales de abonados}
+	Nombres, cédulas, direcciones, números de contrato y registros de llamadas de abonados son datos personales. Ningún dato real puede aparecer en el repositorio, en el paquete de replicación, en el documento ni en las capturas de pantalla. Todos los experimentos se ejecutan sobre un conjunto sintético generado por el equipo, con distribuciones realistas de densidad por zona, tasa de avería y patrón horario de reporte. El generador es una evidencia entregable y su descripción ocupa un párrafo del manuscrito.
+\end{alerta}
+
+\section{Evidencias obligatorias}
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{0.9cm}p{4.6cm}p{4.2cm}p{5.0cm}@{}}
+		\toprule
+		\textbf{Cód.} & \textbf{Evidencia} & \textbf{Artefacto entregable} & \textbf{Criterio de aceptación} \\
+		\midrule
+		\endhead
+		E01 & Repositorio público renombrado & URL de GitHub & Nombre \textsc{TicketFold}; los cuatro integrantes con \emph{commits} sustantivos en al menos seis semanas distintas \\
+		E02 & Comprobación del nombre & Nota en el \texttt{README.md} & Evidencia de la búsqueda de colisiones en buscador, GitHub y directorios \\
+		E03 & Despliegue reproducible & \texttt{docker-compose.yml} & El sistema completo, incluidos los CPE simulados, levanta con un solo comando \\
+		E04 & Estrategia conmutable & \texttt{CORREL=c0$\mid$c1$\mid$c2} & Cambiar el valor y reiniciar basta para conmutar entre las tres \\
+		E05 & Generador de abonados sintéticos & Script parametrizado & Densidad por zona, topología y patrón horario con semilla fija; sin ningún dato real \\
+		E06 & Simulador de CPE y telemetría & Equipos de abonado simulados & Reportan estado y latidos por TCP; tasa de pérdida parametrizable \\
+		E07 & Inyector de averías & Herramienta con verdad de campo & Registra exactamente qué abonados quedaron afectados por cada avería inyectada \\
+		E08 & Generador de reportes de abonado & Script de carga determinista & Simula llegada por portal, aplicación y centro de llamadas; misma semilla, misma secuencia \\
+		E09 & Inyector de particiones & Herramienta de partición de red & Aísla un porcentaje de nodos durante una ventana configurable \\
+		E10 & Oráculo de consistencia & Script verificador & Comprueba los cinco invariantes y emite informe por ejecución \\
+		E11 & Datos crudos & CSV de las 90 ejecuciones y de los experimentos 2 y 3 & Las figuras del documento se regeneran ejecutando el \emph{notebook} \\
+		E12 & Tabla de calidad de correlación & Matriz estrategia $\times$ escala & Precisión, exhaustividad y fusión errónea con intervalos de confianza \\
+		E13 & Medición del SLA & Tabla por nivel de prioridad & Cumplimiento antes y después de la correlación, con MTTR \\
+		E14 & Cómputo paralelo & Job PySpark + medición & \emph{Speedup} con 1, 2, 4 y 8 \emph{workers} y fracción de Amdahl calculada \\
+		E15 & Trazas distribuidas & Captura exportada & Recorrido completo de un ticket desde su apertura hasta su cierre \\
+		E16 & Observabilidad & Tablero Grafana + métricas & Incidencias en tiempo real y cumplimiento de SLA; versionado como código \\
+		E17 & Pruebas & Informe de cobertura & Cobertura $\geq 70\,\%$ del motor de SLA y del de correlación; integración del despacho \\
+		E18 & Calidad del producto & Evaluación ISO/IEC 25010:2023 & Al menos cuatro características con métrica real, priorizando fiabilidad y eficiencia \cite{iso25010_2023} \\
+		E19 & Documento del PFC & \texttt{.tex} + PDF & Compila desde el repositorio clonado; bibliografía IEEE con DOI que resuelven \\
+		E20 & Borrador del manuscrito & \texttt{.tex} + PDF & Título y estructura de la sección 9; formato de IEEE Transactions \\
+		E21 & Declaración de uso de IA & Sección del documento & Herramienta, propósito, alcance y qué revisó cada integrante \\
+		E22 & Paquete de replicación & DOI de Zenodo & El DOI resuelve; contiene E05 a E11 \\
+		E23 & Carátula de entrega & PDF subido al SGA & Datos de identificación y la URL del repositorio en una sola línea \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\section{Cobertura de los temas de la asignatura}
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{1.2cm}p{5.2cm}p{8.4cm}@{}}
+		\toprule
+		\textbf{Unidad} & \textbf{Tema} & \textbf{Evidencia concreta exigida en TicketFold} \\
+		\midrule
+		\endhead
+		U1 & Transparencias ANSA & Al menos cinco de las ocho, cada una con el mecanismo que la realiza \\
+		U1 & Sockets TCP & Evidencia E06: telemetría y latidos desde los equipos del abonado \\
+		U1 & gRPC / RPC & Contratos \texttt{.proto} entre Tickets, Diagnóstico y Técnicos-Agenda \\
+		U1 & Relojes de Lamport y vectoriales & \textbf{Núcleo del artículo}: ordenación causal del ciclo de vida del ticket cuando los eventos llegan por web, aplicación y centro de llamadas \cite{lamport1978time} \\
+		U1 & Tolerancia a fallos & Evidencias E06 y E09; fallo por omisión y temporización en los reportes de red \\
+		U1 & Elección de líder & Nodo despachador que asigna técnicos y correlaciona incidencias; traza de una reelección \\
+		U1 & Teorema CAP & \textbf{Medido, no solo enunciado}: AP en recepción de tickets y CP en SLA y facturación, sostenido con el experimento 2 \cite{gilbert2002brewer} \\
+		U1 & Coordinación y consistencia & 2PC para asignar técnico, reservar franja y actualizar ticket; consenso en el clúster de datos \\
+		U1 & Seguridad & JWT, control de acceso por cuatro roles, TLS y auditoría de cada cambio de estado \\
+		U1 & SLA y alta disponibilidad & \textbf{Es el eje del dominio}: evidencia E13, con tiempos por prioridad y cumplimiento medido \\
+		\addlinespace
+		U3 & Microservicios con base propia & Diagrama C4 nivel 3 y justificación de fronteras \\
+		U3 & API REST + OpenAPI & Especificación OpenAPI 3.0 validada y versionada \\
+		U3 & API Gateway & Enrutamiento, autenticación y limitación de tasa \\
+		U3 & Mensajería asíncrona & Colas con enrutamiento por prioridad; \textbf{justificación empírica} de la elección entre broker de colas y flujo de eventos para cada uno de los dos flujos \\
+		U3 & Docker y orquestación & Evidencia E03; manifiestos de Kubernetes para absorber picos de incidencias \\
+		U3 & Patrones de despliegue & Demostración de una actualización sin afectar la recepción de incidencias \\
+		\addlinespace
+		U2 & Fragmentación & Particionado de tickets por zona geográfica y por fecha \\
+		U2 & Replicación y consistencia & Clúster CockroachDB; consistencia fuerte donde el SLA y la facturación lo exigen \\
+		U2 & Tolerancia a fallos en datos & Prueba documentada de caída de un nodo sin perder tickets registrados \\
+		\addlinespace
+		U4 & Procesamiento distribuido & Evidencia E14 sobre telemetría e histórico de incidencias \\
+		U4 & Ley de Amdahl & Fracción secuencial estimada de la curva medida, no supuesta \\
+		\addlinespace
+		U5 & N-capas y SOLID & Estructura de capas por microservicio con responsabilidades únicas \\
+		U5 & Patrones GoF & State para el ciclo de vida del ticket, Strategy para priorización y cálculo de SLA, Observer, Repository y Proxy \\
+		U5 & Inyección de dependencias & Contenedor IoC con ejemplo de sustitución en pruebas \\
+		U5 & CI/CD & Flujo de GitHub Actions con pruebas, imagen y análisis de calidad \\
+		U5 & Observabilidad & Evidencias E15 y E16 \\
+		U5 & Pruebas & Evidencia E17 \\
+		U5 & Calidad ISO/IEC 25010 & Evidencia E18 \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\section{Del documento del PFC al manuscrito}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{3.8cm}p{1.7cm}p{9.3cm}@{}}
+		\toprule
+		\textbf{Sección} & \textbf{Extensión} & \textbf{De dónde sale y qué debe contener} \\
+		\midrule
+		Introducción & 1,5 pág. & El desbordamiento del despachador ante una avería masiva y su efecto sobre el SLA. Termina enunciando PI-1, PI-2 y PI-3 \\
+		\addlinespace
+		Trabajo relacionado & 2 pág. & De 20 a 30 referencias. \textbf{Al menos ocho de la propia revista objetivo}: la literatura de correlación de alarmas y causa raíz está mayoritariamente publicada allí \\
+		\addlinespace
+		Diseño de TicketFold & 2 pág. & Arquitectura, máquina de estados del ticket, telemetría y las tres estrategias \\
+		\addlinespace
+		Diseño del estudio & 2,5 pág. & Sección 5 de esta guía, con énfasis en cómo se obtiene la verdad de campo \\
+		\addlinespace
+		Resultados & 3 pág. & De E11, E12 y E13. Solo hechos medidos \\
+		\addlinespace
+		Discusión y lecciones aprendidas & 2 pág. & Qué estrategia recomendarían a un proveedor real y qué le costaría implantarla \\
+		\addlinespace
+		Amenazas a la validez & 0,7 pág. & Sección 5.7 de esta guía \\
+		\addlinespace
+		Conclusiones & 0,5 pág. & Respuesta explícita a las tres preguntas \\
+		\addlinespace
+		Disponibilidad de datos & 3 líneas & DOI de Zenodo de E22 y mención de que los datos de abonados son sintéticos \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\begin{aviso}{Sobre el formato del manuscrito}
+	A diferencia de los otros tres PFC, este va a una revista de IEEE. El manuscrito debe prepararse desde el principio con la plantilla de IEEE Transactions y con el estilo bibliográfico de IEEE. Empezar con otro formato y convertir al final es una fuente segura de errores de última hora.
+\end{aviso}
+
+\section{Cronograma de las semanas finales}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{1.8cm}p{6.4cm}p{6.6cm}@{}}
+		\toprule
+		\textbf{Semana} & \textbf{Objetivo} & \textbf{Hito verificable} \\
+		\midrule
+		14 & Renombrado a \textsc{TicketFold} & Repositorio, código, contenedores y documento renombrados; comprobación de colisiones documentada \\
+		15 & Cerrar E04, E05, E06 y E07 & Las tres estrategias conmutan; el simulador de CPE y el inyector con verdad de campo funcionan \\
+		15 & Cerrar E08, E09 y E10 & Generador de reportes, inyector de particiones y oráculo operativos; ejecución piloto completa \\
+		16 & Experimentos 1, 2 y 3 & Datos crudos de E11, tabla de correlación E12 y medición de SLA E13 \\
+		16 & Cerrar E14 a E18 & Spark, trazas, tablero, pruebas y calidad \\
+		17 & Cerrar E19 y E21 & Documento compilando desde clonación limpia \\
+		17 & Cerrar E20 y E22 & Borrador del manuscrito en plantilla IEEE y DOI de Zenodo \\
+		17 & Defensa oral & Demostración en vivo de una avería masiva con y sin correlación \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\begin{alerta}{Riesgo de planificación}
+	La pieza crítica es E07, el inyector de averías con verdad de campo. Sin él no hay precisión ni exhaustividad que medir, y sin esas dos métricas el artículo se queda en una descripción del sistema. Debe estar funcionando al final de la semana 15.
+\end{alerta}
+
+\section{Preguntas de la defensa oral}
+
+\begin{enumerate}[leftmargin=*,itemsep=4pt]
+	\item ¿Por qué la creación de tickets se posiciona como AP y el SLA y la facturación como CP? ¿Qué evidencia propia lo respalda?
+	\item Con quinientos abonados afectados por una sola avería, ¿cuántas incidencias efectivas ve el despachador con cada una de las tres estrategias?
+	\item ¿Cuál fue la precisión y la exhaustividad de la correlación con telemetría, y qué significa cada una en operación real?
+	\item ¿Con qué frecuencia fusionaron erróneamente dos averías simultáneas, y qué consecuencia tiene eso para el abonado de la segunda zona?
+	\item ¿Cuánto bajó el MTTR y cómo se traduce en cumplimiento del SLA por nivel de prioridad?
+	\item Durante la partición de red, ¿cuántos tickets duplicados se generaron y cuánto tardó la reconciliación?
+	\item ¿Cómo mantienen coherente el ciclo de vida del ticket cuando los eventos llegan por web, aplicación y centro de llamadas?
+	\item ¿Qué justifica empíricamente su elección de mensajería para el despacho frente a la del flujo de telemetría?
+\end{enumerate}
+
+\section{Rúbrica de evaluación}
+
+\subsection{Criterios de piso}
+
+\begin{alerta}{Incumplir cualquiera de estos criterios implica calificación CERO en toda la entrega}
+	\textbf{P1.} El estudiante debe subir al SGA un documento PDF con carátula que muestre claramente, en una sola línea, la URL del repositorio donde se encuentra el trabajo desarrollado. Si la URL está rota, el repositorio no es accesible o no se cumple esta directriz, la calificación es CERO.\\[6pt]
+	\textbf{P2.} Si el PDF no se genera correctamente a partir del LaTeX mediante clonación del repositorio y compilación del archivo \texttt{.tex}, la calificación es CERO. Las instrucciones de compilación (compilador, orden de comandos, archivo principal, dependencias) deben estar documentadas en el archivo \texttt{README.md} del repositorio.\\[6pt]
+	\textbf{P3.} Si aparece cualquier dato real de un abonado en el repositorio, en el paquete de replicación, en el documento o en las capturas, la calificación es CERO. Los experimentos se ejecutan sobre datos sintéticos sin excepción.\\[6pt]
+	\textbf{P4.} Si el sistema no levanta con un solo comando desde una máquina limpia siguiendo el \texttt{README.md}, la calificación es CERO.\\[6pt]
+	\textbf{P5.} Si el inyector de averías no registra la verdad de campo, es decir, qué abonados quedaron afectados por cada avería, la calificación es CERO: sin ella no existe forma válida de medir la calidad de la correlación y el estudio carece de resultado.\\[6pt]
+	\textbf{P6.} Si la estrategia C0 no produce el desbordamiento esperado del despachador en la escala de 500 abonados, la calificación es CERO por experimento mal construido: significa que la carga simulada no reproduce el fenómeno y ninguna comparación posterior es válida.\\[6pt]
+	\textbf{P7.} Si se detectan referencias fabricadas, DOI que no resuelven o citas cuyos campos no corresponden a la obra real, la calificación es CERO por falta de integridad académica.\\[6pt]
+	\textbf{P8.} Si falta la declaración de uso de IA (E21), la calificación es CERO.
+\end{alerta}
+
+\subsection{Criterios calificables}
+
+\begin{center}
+	\small
+	\begin{longtable}{@{}p{0.9cm}p{5.6cm}rp{6.6cm}@{}}
+		\toprule
+		\textbf{Cód.} & \textbf{Criterio} & \textbf{Pts.} & \textbf{Descriptor de nivel máximo} \\
+		\midrule
+		\endhead
+		C1 & Rigor del diseño experimental & 17 & Los tres experimentos completos, con control negativo validado, verdad de campo registrada, semillas fijadas y cinco repeticiones \\
+		\addlinespace
+		C2 & Calidad de la correlación y su análisis & 15 & Precisión, exhaustividad y fusión errónea con intervalos de confianza, y discusión del compromiso entre ambas \\
+		\addlinespace
+		C3 & Medición del SLA y del MTTR & 11 & Cumplimiento desglosado por prioridad, antes y después, con tamaño del efecto \\
+		\addlinespace
+		C4 & Posición CAP sostenida con evidencia & 9 & El experimento 2 respalda la elección AP en recepción y CP en SLA, con duplicados y convergencia medidos \\
+		\addlinespace
+		C5 & Reproducibilidad & 11 & Otro equipo regenera todas las figuras ejecutando el \emph{notebook}, sin intervención manual \\
+		\addlinespace
+		C6 & Cobertura de los temas de la asignatura & 13 & Los 27 temas de la tabla de la sección 8 con evidencia concreta y localizable \\
+		\addlinespace
+		C7 & Calidad del software y pruebas & 7 & Cobertura $\geq 70\,\%$ de los motores de SLA y de correlación; integración y carga \\
+		\addlinespace
+		C8 & Documento LaTeX y bibliografía & 8 & Compila sin advertencias graves ni referencias sin resolver; bibliografía verificada \\
+		\addlinespace
+		C9 & Borrador del manuscrito & 9 & Plantilla de IEEE Transactions aplicada, estructura completa y al menos ocho referencias de la revista objetivo \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\subsection{Penalizaciones individuales}
+
+\begin{itemize}[leftmargin=*,itemsep=3pt]
+	\item Integrante sin \emph{commits} sustantivos: se le descuenta el 50\,\% de la nota del grupo.
+	\item Integrante que no responde ninguna pregunta en la defensa: se le descuenta el 30\,\%.
+	\item Indicios de texto generado por IA presentado como propio sin declararlo en E21: se aplica el criterio de piso P8 y se remite el caso según la normativa de integridad académica.
+\end{itemize}
+
+\section{Lista de verificación final}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{0.7cm}p{14.3cm}@{}}
+		\toprule
+		\textbf{$\square$} & \textbf{Verificación} \\
+		\midrule
+		$\square$ & El repositorio, el código, los contenedores y el documento usan el nombre \textsc{TicketFold} \\
+		$\square$ & La comprobación de colisiones del nombre está documentada en el \texttt{README.md} \\
+		$\square$ & El PDF de carátula con la URL del repositorio en una sola línea está subido al SGA \\
+		$\square$ & Clonamos el repositorio en una máquina limpia y el \texttt{.tex} compiló siguiendo el \texttt{README.md} \\
+		$\square$ & \texttt{docker compose up} levanta el sistema y los CPE simulados \\
+		$\square$ & Cambiar \texttt{CORREL} conmuta entre las tres estrategias sin tocar código \\
+		$\square$ & \textbf{El inyector registra la verdad de campo de cada avería} \\
+		$\square$ & \textbf{La estrategia C0 desborda al despachador con 500 abonados} (control negativo validado) \\
+		$\square$ & No hay ni un solo dato real de abonado en ningún artefacto entregado \\
+		$\square$ & Están los datos crudos de los tres experimentos y el informe del oráculo \\
+		$\square$ & La tabla de correlación reporta precisión y exhaustividad, no solo una de las dos \\
+		$\square$ & El régimen de dos averías simultáneas está medido y la fusión errónea reportada \\
+		$\square$ & El cumplimiento del SLA está desglosado por nivel de prioridad \\
+		$\square$ & El \emph{notebook} regenera todas las figuras sin intervención manual \\
+		$\square$ & La curva de \emph{speedup} tiene los cuatro puntos y la fracción de Amdahl está calculada \\
+		$\square$ & Todos los DOI de la bibliografía resuelven al artículo correcto \\
+		$\square$ & El borrador usa la plantilla de IEEE Transactions y cita ocho o más artículos de la revista objetivo \\
+		$\square$ & La declaración de uso de IA está completa y firmada por los cuatro integrantes \\
+		$\square$ & El DOI de Zenodo resuelve y el paquete contiene generador, simuladores, inyectores, datos y oráculo \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\vspace{8pt}
+\begin{aviso}{Una última observación para el equipo}
+	Este proyecto tiene el encaje temático más limpio de los cuatro y, a la vez, los revisores más especializados. La ventaja está en la verdad de campo: pocos trabajos de este dominio pueden decir con certeza qué abonados estaban realmente afectados, porque en producción nadie lo sabe. Ustedes sí, porque provocan la avería. Explotar esa ventaja con honestidad, reportando también los casos en que la correlación falla, es lo que distingue un artículo creíble de uno que promete demasiado.
+\end{aviso}
+
+\nocite{*}
+\bibliographystyle{ieeetr}
+\bibliography{references_PFC_TicketFold}
+
+\end{document}

@@ -1,0 +1,849 @@
+<!doctype html><html lang="es"><meta charset="utf-8">
+	<title>Validacion manual — USECIPOL</title>
+	<style>
+	 body{font:14px/1.5 Arial,sans-serif;margin:24px;color:#222;max-width:1280px}
+	 h1{color:#1F3864;margin-bottom:2px} h2{color:#1F3864;margin-top:28px;border-bottom:2px solid #1F3864;padding-bottom:3px}
+	 .meta{color:#555;font-size:13px} table{border-collapse:collapse;width:100%;margin-top:8px}
+	 th{background:#1F3864;color:#fff;font-size:12px;padding:6px;text-align:left}
+	 td{border:1px solid #ccc;padding:5px;vertical-align:top;font-size:12px}
+	 tr.alerta td{background:#FFF4E5} code{font-size:11px;color:#B8860B;word-break:break-all}
+	 .aviso{background:#FFF2CC;border-left:4px solid #B8860B;padding:10px;margin:14px 0}
+	 .tally{background:#F2F2F2;border:1px solid #ccc;padding:8px 10px;margin-top:10px;font-size:13px;display:flex;gap:26px;flex-wrap:wrap}
+	 .tally .cod b{font-size:16px;color:#1F3864}
+	 .v button{font:12px Arial;margin:1px;padding:3px 7px;border:1px solid #aaa;background:#fff;cursor:pointer;border-radius:3px}
+	 .v button.sel.ok{background:#1F3864;color:#fff;border-color:#1F3864}
+	 .v button.sel.no{background:#B8860B;color:#fff;border-color:#B8860B}
+	 .v button.sel.na{background:#777;color:#fff;border-color:#777}
+	 #resumen{position:fixed;right:18px;bottom:18px;background:#1F3864;color:#fff;padding:12px 14px;border-radius:6px;font-size:13px;box-shadow:0 2px 10px rgba(0,0,0,.3);max-width:330px}
+	 #resumen b{font-size:15px} #resumen button{margin-top:8px;font:12px Arial;padding:5px 9px;cursor:pointer;border:0;border-radius:3px;background:#fff;color:#1F3864;font-weight:bold}
+	 #resumen pre{margin:6px 0 0;font:12px Consolas,monospace;white-space:pre-wrap}
+	</style>
+	<h1>USECIPOL — Universidad de Seguridad Ciudadana y Ciencias Policiales</h1>
+	<p class="meta">https://usecipol.edu.ec · generado el 2026-08-17 16:11
+	   · ventana 1280x720, zoom 100 %, sin interaccion con banners</p>
+	<div class="aviso"><b>Como se usa.</b> Pulse un boton en cada fila. El contador de cada criterio calcula solo
+	   <b>n</b>, <b>f</b> y el codigo que corresponde segun el umbral del manual. <b>No aplica</b> es para las
+	   excepciones legitimas, como logotipos o texto deshabilitado, y esas filas salen del denominador.
+	   La columna <i>lectura automatica</i> indica donde mirar, no que concluir.
+	   Nada se guarda: al terminar, copie el resumen al Excel.</div>
+	
+	<h2>Criterio 1.1.1 — Contenido no textual (nivel A)</h2>
+	<p class="meta">Se listan <b>22</b> elementos de <b>22</b> presentes en la pagina.
+	   Los primeros son los que axe no pudo decidir.</p>
+	<div class="tally" id="t_a">
+		<span>n = <b>22</b></span>
+		<span>evaluados <b class="ev">0</b></span>
+		<span>incumplen f = <b class="f">0</b></span>
+		<span>proporcion <b class="p">—</b></span>
+		<span class="cod">codigo: <b>—</b></span>
+	</div>
+	<table data-grupo="a">
+		<tr><th>#</th><th>Elemento</th><th>Valor medido</th><th>Contexto</th><th>Lectura automatica</th><th style="width:190px">Su veredicto</th></tr>
+		<tr class="">
+			<td>1</td>
+			<td><code>div:nth-of-type(1) &gt; a &gt; div &gt; div &gt; img</code><br><small>image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.0o_86pdiuqg22.png</small></td>
+			<td>alt="Usecipol"</td>
+			<td><small>dentro de un enlace: el alt debe describir el DESTINO 256x63</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>2</td>
+			<td><code>div &gt; nav &gt; div:nth-of-type(1) &gt; a &gt; svg</code><br><small></small></td>
+			<td>alt="Inicio"</td>
+			<td><small>dentro de un enlace: el alt debe describir el DESTINO 17x17</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>3</td>
+			<td><code>main &gt; section:nth-of-type(1) &gt; div &gt; div:nth-of-type(4) &gt; img</code><br><small>image?url=https%3A%2F%2Fstrapi.usecipol.macod.ec%2Fuploads%2</small></td>
+			<td>alt="Imagen destacada de la Universidad de Seguridad y Ciencias Policiales"</td>
+			<td><small> 1280x520</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>4</td>
+			<td><code>section:nth-of-type(1) &gt; div &gt; div:nth-of-type(7) &gt; div:nth-of-type(1) &gt; img</code><br><small>image?url=%2F_next%2Fstatic%2Fmedia%2Fescudo1.2r09zqxup-1y4.</small></td>
+			<td>alt="Escudo de la Universidad de Seguridad Ciudadana y Ciencias Policiales"</td>
+			<td><small> 128x128</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>5</td>
+			<td><code>div:nth-of-type(1) &gt; div &gt; div &gt; div:nth-of-type(1) &gt; img</code><br><small>image?url=%2Fescudo%2FMesa%20de%20trabajo%201.png&amp;w=1920&amp;q=7</small></td>
+			<td>alt="Escudo pieza 1"</td>
+			<td><small> 224x224</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>6</td>
+			<td><code>div:nth-of-type(1) &gt; div &gt; div &gt; div:nth-of-type(2) &gt; img</code><br><small>image?url=%2Fescudo%2FMesa%20de%20trabajo%202.png&amp;w=1920&amp;q=7</small></td>
+			<td>alt="Escudo pieza 2"</td>
+			<td><small> 226x226</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>7</td>
+			<td><code>div:nth-of-type(1) &gt; div &gt; div &gt; div:nth-of-type(3) &gt; img</code><br><small>image?url=%2Fescudo%2FMesa%20de%20trabajo%203.png&amp;w=1920&amp;q=7</small></td>
+			<td>alt="Escudo pieza 3"</td>
+			<td><small> 55x55</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>8</td>
+			<td><code>div:nth-of-type(1) &gt; div &gt; div &gt; div:nth-of-type(4) &gt; img</code><br><small>image?url=%2Fescudo%2FMesa%20de%20trabajo%204.png&amp;w=1920&amp;q=7</small></td>
+			<td>alt="Escudo pieza 4"</td>
+			<td><small> 83x83</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>9</td>
+			<td><code>div &gt; div:nth-of-type(2) &gt; div:nth-of-type(2) &gt; div &gt; img</code><br><small>image?url=https%3A%2F%2Fstrapi.usecipol.macod.ec%2Fuploads%2</small></td>
+			<td>alt="Rector de USECIPOL"</td>
+			<td><small> 570x570</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>10</td>
+			<td><code>section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; a:nth-of-type(1) &gt; img</code><br><small>image?url=https%3A%2F%2Fstrapi.usecipol.macod.ec%2Fuploads%2</small></td>
+			<td>alt="USECIPOL desarrolló su deliberación pública como parte del proceso de Rendición de Cuentas"</td>
+			<td><small>dentro de un enlace: el alt debe describir el DESTINO 600x476</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>11</td>
+			<td><code>section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; a:nth-of-type(2) &gt; img</code><br><small>image?url=https%3A%2F%2Fstrapi.usecipol.macod.ec%2Fuploads%2</small></td>
+			<td>alt="Jornada de proceso de adquisición de libros para la Dirección de Idiomas"</td>
+			<td><small>dentro de un enlace: el alt debe describir el DESTINO 292x230</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>12</td>
+			<td><code>section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; a:nth-of-type(3) &gt; img</code><br><small>image?url=https%3A%2F%2Fstrapi.usecipol.macod.ec%2Fuploads%2</small></td>
+			<td>alt="Visita protocolaria por parte de FUNDEBIP"</td>
+			<td><small>dentro de un enlace: el alt debe describir el DESTINO 292x230</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>13</td>
+			<td><code>section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; a:nth-of-type(4) &gt; img</code><br><small>image?url=https%3A%2F%2Fstrapi.usecipol.macod.ec%2Fuploads%2</small></td>
+			<td>alt="Reunión de planificación con la Dirección Nacional de Educación (DNE)"</td>
+			<td><small>dentro de un enlace: el alt debe describir el DESTINO 292x230</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>14</td>
+			<td><code>section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; a:nth-of-type(5) &gt; img</code><br><small>image?url=https%3A%2F%2Fstrapi.usecipol.macod.ec%2Fuploads%2</small></td>
+			<td>alt="Reunión con representantes del CECPOL"</td>
+			<td><small>dentro de un enlace: el alt debe describir el DESTINO 292x230</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>15</td>
+			<td><code>div:nth-of-type(2) &gt; div &gt; a:nth-of-type(1) &gt; div:nth-of-type(1) &gt; img</code><br><small>image?url=%2F1.png&amp;w=1920&amp;q=75</small></td>
+			<td>alt="Ministerio del Interior"</td>
+			<td><small>dentro de un enlace: el alt debe describir el DESTINO 496x375</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>16</td>
+			<td><code>div:nth-of-type(2) &gt; div &gt; a:nth-of-type(2) &gt; div:nth-of-type(1) &gt; img</code><br><small>image?url=%2F2.png&amp;w=1920&amp;q=75</small></td>
+			<td>alt="Policía Nacional del Ecuador"</td>
+			<td><small>dentro de un enlace: el alt debe describir el DESTINO 496x375</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>17</td>
+			<td><code>main &gt; div &gt; div &gt; div:nth-of-type(1) &gt; img</code><br><small>image?url=https%3A%2F%2Fstrapi.usecipol.macod.ec%2Fuploads%2</small></td>
+			<td>alt="Ventana emergente"</td>
+			<td><small> 540x540</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>18</td>
+			<td><code>body &gt; footer &gt; div:nth-of-type(1) &gt; div:nth-of-type(1) &gt; img</code><br><small>image?url=%2F_next%2Fstatic%2Fmedia%2Flogo2.0smisw4gh22fd.pn</small></td>
+			<td>alt="Usecipol"</td>
+			<td><small> 144x39</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>19</td>
+			<td><code>div:nth-of-type(2) &gt; div &gt; div &gt; a:nth-of-type(1) &gt; img</code><br><small>image?url=%2Ffooter1.png&amp;w=256&amp;q=75</small></td>
+			<td>alt="Ministerio del Interior"</td>
+			<td><small>dentro de un enlace: el alt debe describir el DESTINO 107x40</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>20</td>
+			<td><code>div:nth-of-type(2) &gt; div &gt; div &gt; a:nth-of-type(2) &gt; img</code><br><small>image?url=%2Ffooter2.png&amp;w=256&amp;q=75</small></td>
+			<td>alt="Policía Nacional del Ecuador"</td>
+			<td><small>dentro de un enlace: el alt debe describir el DESTINO 107x40</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>21</td>
+			<td><code>div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; button:nth-of-type(1) &gt; div &gt; img</code><br><small>image?url=%2Ftranslate%2Fecuador.png&amp;w=1920&amp;q=75</small></td>
+			<td>alt="Español"</td>
+			<td><small> 22x22</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>22</td>
+			<td><code>div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; button:nth-of-type(2) &gt; div &gt; img</code><br><small>image?url=%2Ftranslate%2Fusa.png&amp;w=1920&amp;q=75</small></td>
+			<td>alt="English"</td>
+			<td><small> 20x20</small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr>
+	</table>
+	
+	<h2>Criterio 1.4.3 — Contraste minimo (nivel AA)</h2>
+	<p class="meta">Se listan <b>25</b> elementos de <b>62</b> presentes en la pagina.
+	   Los primeros son los que axe no pudo decidir.</p>
+	<div class="tally" id="t_b">
+		<span>n = <b>25</b></span>
+		<span>evaluados <b class="ev">0</b></span>
+		<span>incumplen f = <b class="f">0</b></span>
+		<span>proporcion <b class="p">—</b></span>
+		<span class="cod">codigo: <b>—</b></span>
+	</div>
+	<table data-grupo="b">
+		<tr><th>#</th><th>Elemento</th><th>Valor medido</th><th>Contexto</th><th>Lectura automatica</th><th style="width:190px">Su veredicto</th></tr>
+		<tr class="">
+			<td>1</td>
+			<td><code>nav &gt; div &gt; nav &gt; div:nth-of-type(2) &gt; button</code><br><small>Institucional</small></td>
+			<td>10.20:1  (umbral 4.5:1)</td>
+			<td><small>11pt rgb(255, 255, 255) sobre rgb(27,63,126)</small></td>
+			<td>cumple auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>2</td>
+			<td><code>nav &gt; div &gt; nav &gt; div:nth-of-type(3) &gt; button</code><br><small>Oferta Académica</small></td>
+			<td>10.20:1  (umbral 4.5:1)</td>
+			<td><small>11pt rgb(255, 255, 255) sobre rgb(27,63,126)</small></td>
+			<td>cumple auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>3</td>
+			<td><code>nav &gt; div &gt; nav &gt; div:nth-of-type(4) &gt; button</code><br><small>Admisiones</small></td>
+			<td>10.20:1  (umbral 4.5:1)</td>
+			<td><small>11pt rgb(255, 255, 255) sobre rgb(27,63,126)</small></td>
+			<td>cumple auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>4</td>
+			<td><code>nav &gt; div &gt; nav &gt; div:nth-of-type(5) &gt; button</code><br><small>Investigación</small></td>
+			<td>10.20:1  (umbral 4.5:1)</td>
+			<td><small>11pt rgb(255, 255, 255) sobre rgb(27,63,126)</small></td>
+			<td>cumple auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>5</td>
+			<td><code>nav &gt; div &gt; nav &gt; div:nth-of-type(6) &gt; button</code><br><small>Vinculación</small></td>
+			<td>10.20:1  (umbral 4.5:1)</td>
+			<td><small>11pt rgb(255, 255, 255) sobre rgb(27,63,126)</small></td>
+			<td>cumple auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>6</td>
+			<td><code>nav &gt; div &gt; nav &gt; div:nth-of-type(7) &gt; button</code><br><small>Transparencia</small></td>
+			<td>10.20:1  (umbral 4.5:1)</td>
+			<td><small>11pt rgb(255, 255, 255) sobre rgb(27,63,126)</small></td>
+			<td>cumple auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>7</td>
+			<td><code>nav &gt; div &gt; nav &gt; div:nth-of-type(8) &gt; button</code><br><small>Servicios en Línea</small></td>
+			<td>10.20:1  (umbral 4.5:1)</td>
+			<td><small>11pt rgb(255, 255, 255) sobre rgb(27,63,126)</small></td>
+			<td>cumple auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="alerta">
+			<td>8</td>
+			<td><code>section:nth-of-type(1) &gt; div &gt; div:nth-of-type(7) &gt; div:nth-of-type(1) &gt; p</code><br><small>UNIVERSIDAD DE</small></td>
+			<td>—</td>
+			<td><small>11pt oklab(0.999994 0.0000455677 0.0000200868 / 0.7) sobre rgb(248,250,252)</small></td>
+			<td>NO CALCULABLE: color no legible</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="alerta">
+			<td>9</td>
+			<td><code>div &gt; div:nth-of-type(7) &gt; div:nth-of-type(1) &gt; h1 &gt; span:nth-of-type(1)</code><br><small>SEGURIDAD CIUDADANA</small></td>
+			<td>1.05:1  (umbral 3:1)</td>
+			<td><small>45pt negrita [texto grande] rgb(255, 255, 255) sobre rgb(248,250,252)</small></td>
+			<td>INCUMPLE auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="alerta">
+			<td>10</td>
+			<td><code>div &gt; div:nth-of-type(7) &gt; div:nth-of-type(1) &gt; h1 &gt; span:nth-of-type(2)</code><br><small>Y CIENCIAS POLICIALES</small></td>
+			<td>1.74:1  (umbral 3:1)</td>
+			<td><small>45pt negrita [texto grande] rgb(239, 184, 20) sobre rgb(248,250,252)</small></td>
+			<td>INCUMPLE auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="alerta">
+			<td>11</td>
+			<td><code>div &gt; div:nth-of-type(7) &gt; div:nth-of-type(1) &gt; div &gt; span:nth-of-type(2)</code><br><small>FORMANDO LÍDERES CON EXCELENCIA Y COMPROMISO</small></td>
+			<td>—</td>
+			<td><small>11pt oklab(0.999994 0.0000455677 0.0000200868 / 0.8) sobre rgb(248,250,252)</small></td>
+			<td>NO CALCULABLE: color no legible</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>12</td>
+			<td><code>div &gt; div:nth-of-type(7) &gt; div:nth-of-type(2) &gt; a:nth-of-type(1) &gt; span</code><br><small>EXPLORAR PROGRAMAS</small></td>
+			<td>5.60:1  (umbral 4.5:1)</td>
+			<td><small>11pt rgb(27, 63, 126) sobre rgb(239,184,20)</small></td>
+			<td>cumple auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="alerta">
+			<td>13</td>
+			<td><code>section:nth-of-type(1) &gt; div &gt; div:nth-of-type(7) &gt; div:nth-of-type(2) &gt; a:nth-of-type(2)</code><br><small>PROCESO DE ADMISIÓN</small></td>
+			<td>1.05:1  (umbral 4.5:1)</td>
+			<td><small>11pt rgb(255, 255, 255) sobre rgb(248,250,252)</small></td>
+			<td>INCUMPLE auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>14</td>
+			<td><code>section:nth-of-type(2) &gt; div:nth-of-type(3) &gt; header &gt; div &gt; span</code><br><small>MENSAJE INSTITUCIONAL</small></td>
+			<td>9.60:1  (umbral 4.5:1)</td>
+			<td><small>9pt negrita rgb(11, 61, 145) sobre rgb(248,250,252)</small></td>
+			<td>cumple auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>15</td>
+			<td><code>section:nth-of-type(2) &gt; div:nth-of-type(3) &gt; header &gt; h2 &gt; span</code><br><small>Saludo del Rector</small></td>
+			<td>9.75:1  (umbral 3:1)</td>
+			<td><small>36pt negrita [texto grande] rgb(27, 63, 126) sobre rgb(248,250,252)</small></td>
+			<td>cumple auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="alerta">
+			<td>16</td>
+			<td><code>div &gt; div:nth-of-type(2) &gt; div:nth-of-type(2) &gt; div &gt; p:nth-of-type(1)</code><br><small>Reciban un cordial y respetuoso saludo desde la Rectoría de </small></td>
+			<td>—</td>
+			<td><small>14pt lab(26.9569 -1.47016 -15.6993) sobre rgb(255,255,255)</small></td>
+			<td>NO CALCULABLE: color no legible</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="alerta">
+			<td>17</td>
+			<td><code>div &gt; div:nth-of-type(2) &gt; div:nth-of-type(2) &gt; div &gt; p:nth-of-type(2)</code><br><small>Es motivo de orgullo compartir con ustedes el compromiso que</small></td>
+			<td>—</td>
+			<td><small>14pt lab(26.9569 -1.47016 -15.6993) sobre rgb(255,255,255)</small></td>
+			<td>NO CALCULABLE: color no legible</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="alerta">
+			<td>18</td>
+			<td><code>div &gt; div:nth-of-type(2) &gt; div:nth-of-type(2) &gt; div &gt; p:nth-of-type(3)</code><br><small>En USECIPOL, cada programa académico, cada investigación y c</small></td>
+			<td>—</td>
+			<td><small>14pt lab(26.9569 -1.47016 -15.6993) sobre rgb(255,255,255)</small></td>
+			<td>NO CALCULABLE: color no legible</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="alerta">
+			<td>19</td>
+			<td><code>div &gt; div:nth-of-type(2) &gt; div &gt; div:nth-of-type(2) &gt; p:nth-of-type(1)</code><br><small>Rector</small></td>
+			<td>—</td>
+			<td><small>11pt oklab(0.999994 0.0000455678 0.0000200868 / 0.9) sobre rgb(248,250,252)</small></td>
+			<td>NO CALCULABLE: color no legible</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="alerta">
+			<td>20</td>
+			<td><code>div &gt; div:nth-of-type(2) &gt; div &gt; div:nth-of-type(2) &gt; p:nth-of-type(2)</code><br><small>USECIPOL</small></td>
+			<td>1.05:1  (umbral 3:1)</td>
+			<td><small>18pt negrita [texto grande] rgb(255, 255, 255) sobre rgb(248,250,252)</small></td>
+			<td>INCUMPLE auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>21</td>
+			<td><code>section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; header &gt; div &gt; span</code><br><small>ÚLTIMAS NOTICIAS</small></td>
+			<td>9.60:1  (umbral 4.5:1)</td>
+			<td><small>9pt negrita rgb(11, 61, 145) sobre rgb(248,250,252)</small></td>
+			<td>cumple auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>22</td>
+			<td><code>section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; header &gt; h2 &gt; span</code><br><small>Actualidad USECIPOL</small></td>
+			<td>9.75:1  (umbral 3:1)</td>
+			<td><small>36pt negrita [texto grande] rgb(27, 63, 126) sobre rgb(248,250,252)</small></td>
+			<td>cumple auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="alerta">
+			<td>23</td>
+			<td><code>section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; a:nth-of-type(1) &gt; span</code><br><small>NOTICIA</small></td>
+			<td>1.83:1  (umbral 4.5:1)</td>
+			<td><small>8pt negrita rgb(255, 255, 255) sobre rgb(241,182,48)</small></td>
+			<td>INCUMPLE auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="alerta">
+			<td>24</td>
+			<td><code>div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; a:nth-of-type(1) &gt; div:nth-of-type(2) &gt; h3</code><br><small>USECIPOL desarrolló su deliberación pública como parte del p</small></td>
+			<td>1.05:1  (umbral 3:1)</td>
+			<td><small>18pt negrita [texto grande] rgb(255, 255, 255) sobre rgb(248,250,252)</small></td>
+			<td>INCUMPLE auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="alerta">
+			<td>25</td>
+			<td><code>section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; a:nth-of-type(2) &gt; span</code><br><small>NOTICIA</small></td>
+			<td>1.83:1  (umbral 4.5:1)</td>
+			<td><small>8pt negrita rgb(255, 255, 255) sobre rgb(241,182,48)</small></td>
+			<td>INCUMPLE auto</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr>
+	</table>
+	
+	<h2>Criterio 2.4.4 — Proposito del enlace en su contexto (nivel A)</h2>
+	<p class="meta">Se listan <b>25</b> elementos de <b>38</b> presentes en la pagina.
+	   Los primeros son los que axe no pudo decidir.</p>
+	<div class="tally" id="t_c">
+		<span>n = <b>25</b></span>
+		<span>evaluados <b class="ev">0</b></span>
+		<span>incumplen f = <b class="f">0</b></span>
+		<span>proporcion <b class="p">—</b></span>
+		<span class="cod">codigo: <b>—</b></span>
+	</div>
+	<table data-grupo="c">
+		<tr><th>#</th><th>Elemento</th><th>Valor medido</th><th>Contexto</th><th>Lectura automatica</th><th style="width:190px">Su veredicto</th></tr>
+		<tr class="">
+			<td>1</td>
+			<td><code>html &gt; body &gt; header &gt; div:nth-of-type(1) &gt; a</code><br><small>/</small></td>
+			<td>"Inicio"</td>
+			<td><small>origen: aria-label </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>2</td>
+			<td><code>body &gt; header &gt; div:nth-of-type(1) &gt; div &gt; a:nth-of-type(1)</code><br><small>https://www.facebook.com/share/1bUc6EiPFL/?mibextid=wwXIfr</small></td>
+			<td>"Facebook"</td>
+			<td><small>origen: aria-label </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>3</td>
+			<td><code>body &gt; header &gt; div:nth-of-type(1) &gt; div &gt; a:nth-of-type(2)</code><br><small>https://www.instagram.com/usecipol_oficial?igsh=MXJpeWV5MHVl</small></td>
+			<td>"Instagram"</td>
+			<td><small>origen: aria-label </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>4</td>
+			<td><code>body &gt; header &gt; div:nth-of-type(1) &gt; div &gt; a:nth-of-type(3)</code><br><small>https://www.tiktok.com/@usecipol.oficial?_r=1&amp;_t=ZM-911Ajb2U</small></td>
+			<td>"Tiktok"</td>
+			<td><small>origen: aria-label </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>5</td>
+			<td><code>body &gt; header &gt; div:nth-of-type(1) &gt; div &gt; a:nth-of-type(4)</code><br><small>https://www.google.com</small></td>
+			<td>"LinkedIn"</td>
+			<td><small>origen: aria-label </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>6</td>
+			<td><code>body &gt; header &gt; div:nth-of-type(1) &gt; div &gt; a:nth-of-type(5)</code><br><small>https://www.google.com</small></td>
+			<td>"YouTube"</td>
+			<td><small>origen: aria-label </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="alerta">
+			<td>7</td>
+			<td><code>nav &gt; div &gt; nav &gt; div:nth-of-type(1) &gt; a</code><br><small>/</small></td>
+			<td>(vacio)</td>
+			<td><small>origen: SIN NOMBRE ACCESIBLE </small></td>
+			<td>INCUMPLE (sin nombre accesible)</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>8</td>
+			<td><code>section:nth-of-type(1) &gt; div &gt; div:nth-of-type(7) &gt; div:nth-of-type(2) &gt; a:nth-of-type(1)</code><br><small>/carreras-grado</small></td>
+			<td>"EXPLORAR PROGRAMAS"</td>
+			<td><small>origen: texto | contexto: EXPLORAR PROGRAMAS PROCESO DE ADMISIÓN </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>9</td>
+			<td><code>section:nth-of-type(1) &gt; div &gt; div:nth-of-type(7) &gt; div:nth-of-type(2) &gt; a:nth-of-type(2)</code><br><small>/procesos</small></td>
+			<td>"PROCESO DE ADMISIÓN"</td>
+			<td><small>origen: texto | contexto: EXPLORAR PROGRAMAS PROCESO DE ADMISIÓN </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>10</td>
+			<td><code>main &gt; section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; a:nth-of-type(1)</code><br><small>/noticias/noticia-20</small></td>
+			<td>"NOTICIA
+USECIPOL desarrolló su deliberación pública como parte del pro"</td>
+			<td><small>origen: texto | contexto: NOTICIA USECIPOL desarrolló su deliberación pública como parte del proceso de Rendición de </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>11</td>
+			<td><code>main &gt; section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; a:nth-of-type(2)</code><br><small>/noticias/noticia-18</small></td>
+			<td>"NOTICIA
+Jornada de proceso de adquisición de libros para la Dirección "</td>
+			<td><small>origen: texto | contexto: NOTICIA USECIPOL desarrolló su deliberación pública como parte del proceso de Rendición de </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>12</td>
+			<td><code>main &gt; section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; a:nth-of-type(3)</code><br><small>/noticias/noticia-16</small></td>
+			<td>"NOTICIA
+Visita protocolaria por parte de FUNDEBIP"</td>
+			<td><small>origen: texto | contexto: NOTICIA USECIPOL desarrolló su deliberación pública como parte del proceso de Rendición de </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>13</td>
+			<td><code>main &gt; section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; a:nth-of-type(4)</code><br><small>/noticias/noticia-15</small></td>
+			<td>"NOTICIA
+Reunión de planificación con la Dirección Nacional de Educació"</td>
+			<td><small>origen: texto | contexto: NOTICIA USECIPOL desarrolló su deliberación pública como parte del proceso de Rendición de </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>14</td>
+			<td><code>main &gt; section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; div:nth-of-type(1) &gt; a:nth-of-type(5)</code><br><small>/noticias/noticia-14</small></td>
+			<td>"NOTICIA
+Reunión con representantes del CECPOL"</td>
+			<td><small>origen: texto | contexto: NOTICIA USECIPOL desarrolló su deliberación pública como parte del proceso de Rendición de </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>15</td>
+			<td><code>main &gt; section:nth-of-type(3) &gt; div:nth-of-type(3) &gt; div:nth-of-type(2) &gt; a</code><br><small>/noticias</small></td>
+			<td>"Ver más noticias"</td>
+			<td><small>origen: texto | contexto: Ver más noticias </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>16</td>
+			<td><code>main &gt; section:nth-of-type(4) &gt; div:nth-of-type(2) &gt; div &gt; a:nth-of-type(1)</code><br><small>https://www.ministeriodelinterior.gob.ec/</small></td>
+			<td>"Ministerio del Interior"</td>
+			<td><small>origen: alt de imagen </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>17</td>
+			<td><code>main &gt; section:nth-of-type(4) &gt; div:nth-of-type(2) &gt; div &gt; a:nth-of-type(2)</code><br><small>https://www.policia.gob.ec/</small></td>
+			<td>"Policía Nacional del Ecuador"</td>
+			<td><small>origen: alt de imagen </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>18</td>
+			<td><code>div:nth-of-type(1) &gt; div:nth-of-type(1) &gt; ul &gt; li:nth-of-type(1) &gt; a</code><br><small>mailto:info@usecipol.edu.ec</small></td>
+			<td>"info@usecipol.edu.ec"</td>
+			<td><small>origen: texto | contexto: info@usecipol.edu.ec </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>19</td>
+			<td><code>footer &gt; div:nth-of-type(1) &gt; div:nth-of-type(1) &gt; div &gt; a:nth-of-type(1)</code><br><small>https://www.facebook.com/share/1bUc6EiPFL/?mibextid=wwXIfr</small></td>
+			<td>"Facebook"</td>
+			<td><small>origen: aria-label </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>20</td>
+			<td><code>footer &gt; div:nth-of-type(1) &gt; div:nth-of-type(1) &gt; div &gt; a:nth-of-type(2)</code><br><small>https://www.instagram.com/usecipol_oficial?igsh=MXJpeWV5MHVl</small></td>
+			<td>"Instagram"</td>
+			<td><small>origen: aria-label </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>21</td>
+			<td><code>footer &gt; div:nth-of-type(1) &gt; div:nth-of-type(1) &gt; div &gt; a:nth-of-type(3)</code><br><small>https://www.tiktok.com/@usecipol.oficial?_r=1&amp;_t=ZM-911Ajb2U</small></td>
+			<td>"Tiktok"</td>
+			<td><small>origen: aria-label </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>22</td>
+			<td><code>footer &gt; div:nth-of-type(1) &gt; div:nth-of-type(1) &gt; div &gt; a:nth-of-type(4)</code><br><small>https://www.google.com</small></td>
+			<td>"LinkedIn"</td>
+			<td><small>origen: aria-label </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>23</td>
+			<td><code>footer &gt; div:nth-of-type(1) &gt; div:nth-of-type(1) &gt; div &gt; a:nth-of-type(5)</code><br><small>https://www.google.com</small></td>
+			<td>"YouTube"</td>
+			<td><small>origen: aria-label </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>24</td>
+			<td><code>div:nth-of-type(1) &gt; div:nth-of-type(2) &gt; ul &gt; li:nth-of-type(1) &gt; a</code><br><small>/historia</small></td>
+			<td>"Historia"</td>
+			<td><small>origen: texto | contexto: Historia </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr><tr class="">
+			<td>25</td>
+			<td><code>div:nth-of-type(1) &gt; div:nth-of-type(2) &gt; ul &gt; li:nth-of-type(2) &gt; a</code><br><small>/quienes-somos</small></td>
+			<td>"Quiénes Somos"</td>
+			<td><small>origen: texto | contexto: Quiénes Somos </small></td>
+			<td>REQUIERE JUICIO</td>
+			<td class="v">
+				<button class="ok" data-v="ok">cumple</button>
+				<button class="no" data-v="no">incumple</button>
+				<button class="na" data-v="na">no aplica</button>
+			</td></tr>
+	</table>
+	<div id="resumen"><b>Resumen para el Excel</b><pre id="txt">sin evaluar</pre>
+	   <button onclick="copiar()">Copiar al portapapeles</button></div>
+	<script>
+	var TOT = {a: 22, b: 62, c: 38};
+	var CRIT = {a: '1.1.1', b: '1.4.3', c: '2.4.4'};
+	document.querySelectorAll('table').forEach(function (tb) {
+		tb.addEventListener('click', function (e) {
+			var b = e.target.closest('button'); if (!b) return;
+			var celda = b.parentElement;
+			celda.querySelectorAll('button').forEach(function (x) { x.classList.remove('sel'); });
+			b.classList.add('sel');
+			recuento();
+		});
+	});
+	function recuento() {
+		var salida = [];
+		['a', 'b', 'c'].forEach(function (g) {
+			var tb = document.querySelector('table[data-grupo="' + g + '"]');
+			var filas = tb.querySelectorAll('tr[class], tr:not(:first-child)');
+			var ok = tb.querySelectorAll('button.sel.ok').length;
+			var no = tb.querySelectorAll('button.sel.no').length;
+			var na = tb.querySelectorAll('button.sel.na').length;
+			var n = ok + no;
+			var ev = ok + no + na;
+			var box = document.getElementById('t_' + g);
+			box.querySelector('.ev').textContent = ev;
+			box.querySelector('.f').textContent = no;
+			var cod = '—', prop = '—';
+			if (n > 0) {
+				var r = no / n;
+				prop = (100 * r).toFixed(1) + ' %';
+				cod = no === 0 ? '1' : (r <= 0.20 ? 'P' : '0');
+			}
+			box.querySelector('.p').textContent = prop;
+			box.querySelector('.cod b').textContent = cod;
+			salida.push(CRIT[g] + '  codigo=' + cod + '  n=' + n + ' f=' + no +
+				(na ? ' (no aplica ' + na + ')' : '') + '  de ' + TOT[g] + ' en la pagina');
+		});
+		document.getElementById('txt').textContent = salida.join('
+');
+	}
+	function copiar() {
+		var t = document.getElementById('txt').textContent;
+		navigator.clipboard.writeText('USECIPOL
+' + t).then(function () {
+			alert('Resumen copiado. Peguelo en la columna de observaciones del Excel.');
+		});
+	}
+	recuento();
+	</script>
+	</html>

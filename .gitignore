@@ -61,3 +61,7 @@ solicitud_promedios.pdf
 tordis-eait.pdf
 tordis-eait-anon.pdf
 tordis-eait-supplementary-main.pdf
+
+# Entornos virtuales de Python
+.venv/
+**/.venv/

@@ -1,0 +1,519 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,provide=*]{babel}
+\usepackage{csquotes}
+\usepackage{charter}
+\usepackage[scaled=0.92]{helvet}
+\usepackage[a4paper,top=2.6cm,bottom=2.6cm,left=2.4cm,right=2.4cm,headheight=14pt]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{azulUTEQ}{HTML}{123A5F}
+\definecolor{azulClaro}{HTML}{E8EEF4}
+\definecolor{grisTexto}{HTML}{3A3A3A}
+\definecolor{acento}{HTML}{A6242B}
+\definecolor{filaGris}{HTML}{F4F6F8}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=azulUTEQ,
+	urlcolor=azulUTEQ,
+	citecolor=azulUTEQ
+}
+
+\titleformat{\section}{\normalfont\Large\bfseries\color{azulUTEQ}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{azulUTEQ}}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{18pt}{8pt}
+\titlespacing*{\subsection}{0pt}{14pt}{6pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\footnotesize\color{azulUTEQ}Revistas JCR Q1 para los PFC $\cdot$ Aplicaciones Distribuidas (ISR-701)}
+\fancyhead[R]{\footnotesize\color{azulUTEQ}\thepage}
+
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.15}
+
+\newcommand{\jcrnote}[1]{{\footnotesize\itshape #1}}
+
+\newtcolorbox{aviso}[1]{
+	colback=azulClaro,
+	colframe=azulUTEQ,
+	boxrule=0.8pt,
+	arc=2pt,
+	left=8pt,
+	right=8pt,
+	top=7pt,
+	bottom=7pt,
+	title={\bfseries #1},
+	fonttitle=\normalsize\color{white},
+	colbacktitle=azulUTEQ
+}
+
+\newtcolorbox{alerta}[1]{
+	colback=white,
+	colframe=acento,
+	boxrule=0.9pt,
+	arc=2pt,
+	left=8pt,
+	right=8pt,
+	top=7pt,
+	bottom=7pt,
+	title={\bfseries #1},
+	fonttitle=\normalsize\color{white},
+	colbacktitle=acento
+}
+
+\begin{document}
+
+\begin{titlepage}
+	\centering
+	\vspace*{1.6cm}
+	{\color{azulUTEQ}\rule{\textwidth}{2pt}}\\[10pt]
+	{\LARGE\bfseries\color{azulUTEQ} Revistas JCR Q1 idóneas para los manuscritos\\[6pt] derivados de los Proyectos de Fin de Curso\par}
+	\vspace{10pt}
+	{\color{azulUTEQ}\rule{\textwidth}{2pt}}\\[18pt]
+	{\large Asignatura: Aplicaciones Distribuidas (ISR-701)\par}
+	\vspace{4pt}
+	{\large Carrera de Ingeniería de Software $\cdot$ Universidad Técnica Estatal de Quevedo\par}
+	\vspace{30pt}
+	{\large\bfseries Análisis de los cuatro PFC y cartera de revistas verificada\par}
+	\vspace{6pt}
+	{\large en Journal Citation Reports (edición 2026, datos de citación de 2025)\par}
+	\vspace{40pt}
+	\begin{minipage}{0.82\textwidth}
+		\centering
+		\color{grisTexto}
+		\small
+		Documento elaborado para el Ing. Gleiston Guerrero-Ulloa.\\[4pt]
+		Todos los cuartiles, factores de impacto y porcentajes de acceso abierto de este informe proceden de una consulta directa a Journal Citation Reports realizada con acceso institucional el 25 de agosto de 2026.\\[4pt]
+		Conjunto de datos JCR actualizado el 17 de junio de 2026.
+	\end{minipage}
+	\vfill
+	{\small Quevedo, Ecuador $\cdot$ 25 de agosto de 2026\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Resumen ejecutivo}
+
+Este informe responde a dos preguntas distintas que conviene no mezclar: qué revistas JCR Q1 encajan con el contenido de cada uno de los cuatro Proyectos de Fin de Curso (PFC) de la asignatura, y qué probabilidad real tiene un manuscrito derivado de esos proyectos de superar el filtro editorial de esas revistas. La primera pregunta se responde con datos; la segunda, con una advertencia que conviene leer antes que las tablas.
+
+La respuesta con datos es que existen \textbf{169 revistas Q1} en las seis categorías de informática y telecomunicaciones pertinentes a la asignatura, \textbf{206 revistas Q1} en las dos categorías de educación y \textbf{52 revistas Q1} en la categoría de inteligencia artificial. De ese universo se han seleccionado, para este informe, las que tienen un alcance editorial compatible con el contenido concreto de cada PFC, combinando deliberadamente revistas de suscripción, en las que publicar no cuesta nada, y revistas de acceso abierto total, en las que hay que pagar un cargo por publicar.
+
+La advertencia es que \textbf{ninguno de los cuatro PFC, tal como está descrito en la guía de la asignatura, constituye todavía un manuscrito publicable en una revista Q1}. Los cuatro son proyectos de construcción de sistemas, no estudios de investigación. Una revista Q1 de informática no publica despliegues documentados: exige una contribución identificable, una comparación contra el estado del arte y una evaluación experimental reproducible. Enviar el documento del PFC tal cual conduce, con altísima probabilidad, a un rechazo de escritorio, es decir, a que el editor devuelva el trabajo sin enviarlo siquiera a revisores, normalmente en cuestión de días. La sección \ref{sec:viabilidad} detalla los cinco añadidos que convierten un PFC en un manuscrito y clasifica los cuatro proyectos por su cercanía a ese umbral.
+
+\begin{aviso}{Lectura recomendada}
+	Si dispone de poco tiempo, lea la sección \ref{sec:viabilidad} (viabilidad) y la sección \ref{sec:recomendacion} (recomendación operativa por PFC). Las tablas intermedias son material de consulta.
+\end{aviso}
+
+\section{Nota metodológica}
+
+\subsection{Fuente y fecha de los datos}
+
+Todos los datos bibliométricos de este informe proceden de \textbf{Journal Citation Reports (JCR) de Clarivate}, consultado directamente con acceso institucional el 25 de agosto de 2026. El pie de la propia herramienta declara que el conjunto de datos fue actualizado el 17 de junio de 2026 y que contiene 22.643 revistas en 254 categorías.
+
+Conviene aclarar una confusión de nomenclatura que genera errores frecuentes en actas y convocatorias. Clarivate nombra la edición por su año de publicación: la edición vigente se llama \textbf{JCR 2026}. Sin embargo, los factores de impacto que contiene se calculan con las citas del año 2025, por lo que la propia herramienta rotula la columna como \textbf{«2025 JIF»}. Ambas etiquetas designan lo mismo. En este informe se usa siempre «JIF 2025» porque es como aparece en la interfaz y en los archivos exportados.
+
+\subsection{Filtros aplicados}
+
+Se ejecutaron tres consultas independientes sobre la pantalla \emph{Browse journals} de JCR, todas con el filtro \emph{JIF Quartile = Q1} y el año 2025:
+
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+	\item Seis categorías de informática y telecomunicaciones: \emph{Computer Science, Hardware \& Architecture}; \emph{Computer Science, Information Systems}; \emph{Computer Science, Interdisciplinary Applications}; \emph{Computer Science, Software Engineering}; \emph{Computer Science, Theory \& Methods}; y \emph{Telecommunications}. Resultado: 169 revistas.
+	\item Dos categorías de educación: \emph{Education \& Educational Research} y \emph{Education, Scientific Disciplines}. Resultado: 206 revistas.
+	\item Una categoría de inteligencia artificial: \emph{Computer Science, Artificial Intelligence}. Resultado: 52 revistas.
+\end{enumerate}
+
+Las columnas recuperadas fueron nombre de la revista, ISSN, eISSN, categoría, edición del índice, citas totales, JIF 2025, cuartil JIF, JCI 2025 y porcentaje de artículos citables en acceso abierto.
+
+\subsection{Glosario en lenguaje común}
+
+Los términos técnicos de bibliometría se usan aquí con su nombre habitual, pero conviene fijar su significado.
+
+\begin{itemize}[leftmargin=*,itemsep=4pt]
+	\item \textbf{Factor de impacto} (\emph{Journal Impact Factor}, JIF): número medio de veces que se citó, durante 2025, un artículo publicado por esa revista en los dos años anteriores. Es una medida de la revista, no del artículo.
+	\item \textbf{Cuartil} (Q1 a Q4): posición de la revista dentro de su categoría temática cuando se ordenan todas por factor de impacto. Q1 significa que está en el 25\,\% superior de su categoría. Una misma revista puede ser Q1 en una categoría y Q2 en otra; basta ser Q1 en una para que se la considere Q1.
+	\item \textbf{Índice o edición} (SCIE, SSCI, ESCI): la colección de Web of Science donde está indexada la revista. SCIE (ciencias) y SSCI (ciencias sociales) son los índices principales; ESCI es un índice emergente. Desde 2023 las revistas ESCI también reciben factor de impacto y cuartil, pero \textbf{si una convocatoria exige explícitamente SCIE o SSCI, una revista ESCI no cumple aunque su cuartil sea Q1}. Esta distinción está señalada en todas las tablas.
+	\item \textbf{Cargo por publicar} (\emph{Article Processing Charge}, APC): lo que cobra la revista al autor para dejar el artículo en acceso abierto. En una revista híbrida el APC es opcional: si se publica por la vía de suscripción no se paga nada. En una revista de acceso abierto total el APC es obligatorio.
+	\item \textbf{Rechazo de escritorio} (\emph{desk reject}): decisión del editor de devolver el manuscrito sin someterlo a revisión por pares, normalmente porque queda fuera del alcance de la revista o porque no presenta una contribución de investigación identificable. Es el desenlace más probable de enviar un informe de proyecto sin reconvertir.
+\end{itemize}
+
+\subsection{Lo que deliberadamente no se usó}
+
+No se emplearon Scimago (SJR), \emph{journalmetrics.org}, \emph{research.com}, \emph{resurchify} ni ningún otro agregador. Esos sitios calculan cuartiles con datos de Scopus o de OpenAlex y con categorías distintas de las de Web of Science, de modo que sus etiquetas «Q1» no son comparables con las de JCR. La sección \ref{sec:desmentidos} documenta dos casos concretos de revistas que son Q1 en Scimago pero no en JCR.
+
+\section{El núcleo investigable de cada PFC}
+
+Antes de emparejar proyectos con revistas hay que identificar, en cada PFC, cuál es la pregunta que podría interesar a una comunidad científica. No todo el proyecto es publicable: lo publicable es, como mucho, una franja estrecha de él.
+
+\subsection{PFC A --- TiendaTech (equipo AGLS)}
+
+Comercio electrónico de hardware con un asistente de compatibilidad basado en inteligencia artificial que combina filtrado colaborativo, un motor de reglas y recuperación aumentada (RAG). El núcleo investigable no es la tienda: es el \textbf{asistente de compatibilidad}, y en particular la comparación entre el motor de reglas y el modelo de lenguaje a la hora de generar configuraciones válidas y dentro de presupuesto. Un segundo núcleo, más propio de sistemas distribuidos, es la \textbf{comparación empírica entre confirmación en dos fases (2PC) y saga con compensación} para la transacción de compra, medida en latencia, tasa de abortos y consistencia observada bajo fallo simulado de la pasarela de pago. Esa comparación es exactamente la decisión que la guía pide defender en la exposición oral, y es un experimento reproducible.
+
+\subsection{PFC B --- SGA Escuela Provincias Unidas (equipo BCEL)}
+
+Sistema de gestión académica para una unidad educativa con 344 estudiantes y 14 docentes. El núcleo investigable tiene dos caras. Desde la informática, la \textbf{auditoría verificable del orden de modificación de calificaciones} mediante relojes lógicos de Lamport en un despliegue multinodo: es un problema real, acotado y demostrable. Desde la educación, la \textbf{detección temprana de riesgo de deserción} a partir de los datos académicos procesados con Spark, que es el único componente del proyecto capaz de producir un resultado interpretable por una revista educativa. El tamaño de la institución es una limitación seria para cualquier afirmación estadística y debe declararse como tal.
+
+\subsection{PFC C --- Control y Administración de Laboratorios Informáticos (equipo FUVV)}
+
+Sistema distribuido de reserva, control de acceso y monitoreo de laboratorios de cómputo. \textbf{Es el proyecto más cercano a un manuscrito publicable}, y lo es porque su propia guía ya le atribuye una pregunta de investigación: cómo mejorar el acceso concurrente a los recursos del laboratorio. Tiene todo lo que un experimento necesita: un fenómeno medible (reservas concurrentes sobre el mismo equipo y franja), un mecanismo propuesto (ordenación total mediante relojes lógicos con arbitraje por nodo coordinador), un contraste posible (bloqueo optimista, bloqueo pesimista, arbitraje centralizado) y una prueba de carga que valida o refuta la propuesta. Si un solo PFC va a intentar la publicación, debería ser este.
+
+\subsection{PFC D --- Soporte Técnico de Internet (equipo ACC)}
+
+Gestión de tickets para un proveedor de servicios de Internet, con el cumplimiento de los acuerdos de nivel de servicio (SLA) como eje del dominio. El núcleo investigable es la \textbf{correlación automática de incidencias masivas por zona a partir de telemetría de red}, es decir, la capacidad del sistema de reconocer que doscientos tickets individuales son en realidad una sola avería, y el efecto de esa correlación sobre el tiempo medio de reparación (MTTR). Es un problema con literatura propia en gestión de redes y servicios, y con una métrica de resultado clara. Un segundo núcleo, más débil, es la justificación empírica de RabbitMQ frente a Kafka para dos flujos con perfiles distintos.
+
+\section{Advertencia de viabilidad}
+\label{sec:viabilidad}
+
+\begin{alerta}{Lo que hay que decirles a los equipos antes de darles esta lista}
+	Un documento de PFC bien ejecutado no es un manuscrito Q1. Le falta lo que hace que un trabajo sea investigación y no ingeniería documentada: una pregunta que nadie haya respondido todavía, una comparación contra alternativas existentes y una medición que otro grupo pueda repetir. Entregar la lista de revistas sin esta advertencia crea una expectativa que el proceso editorial va a desmentir en pocos días.
+\end{alerta}
+
+\subsection{Los cinco añadidos que convierten un PFC en manuscrito}
+
+\begin{enumerate}[leftmargin=*,itemsep=5pt]
+	\item \textbf{Una pregunta de investigación, no un objetivo de producto.} «Construir un sistema de reservas» es un objetivo de producto. «¿Reduce la ordenación por relojes lógicos la tasa de reservas conflictivas frente al bloqueo optimista, y a qué coste en latencia?» es una pregunta de investigación. La diferencia es que la segunda admite una respuesta negativa.
+	\item \textbf{Una línea base de comparación.} Todo resultado necesita un contrincante. Sin al menos una alternativa implementada y medida en las mismas condiciones, no hay resultado: hay una descripción.
+	\item \textbf{Un experimento repetible.} Escenario de carga documentado, número de repeticiones, medidas de dispersión y no solo promedios, y descripción del entorno de ejecución. Una sola ejecución no es una medición.
+	\item \textbf{Datos y código abiertos.} Repositorio citable con identificador persistente (por ejemplo, un DOI de Zenodo), scripts de generación de carga y datos crudos. Varias de las revistas de la cartera lo piden explícitamente y todas lo valoran.
+	\item \textbf{Un estado del arte real.} Entre quince y treinta referencias recientes del dominio concreto, no del dominio general. La guía de la asignatura ya advierte de esto para el PFC C: anclar las referencias a gestión académica, reservas y laboratorios, y no a control industrial o redes eléctricas inteligentes.
+\end{enumerate}
+
+\subsection{Madurez relativa de los cuatro proyectos}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{3.1cm}p{2.2cm}p{9.6cm}@{}}
+		\toprule
+		\textbf{PFC} & \textbf{Madurez} & \textbf{Qué le falta para ser manuscrito} \\
+		\midrule
+		C --- Laboratorios & \textbf{Alta} & Ya tiene pregunta y métrica. Le falta implementar y medir al menos dos alternativas de arbitraje y publicar los datos crudos de la prueba de carga. \\
+		\addlinespace
+		D --- Soporte ISP & Media & Necesita un conjunto de datos de telemetría, real o sintético pero justificado, y una métrica de correlación contrastada contra el despacho sin correlación. \\
+		\addlinespace
+		A --- TiendaTech & Media-baja & Necesita convertir la disyuntiva 2PC frente a saga en un experimento con inyección de fallos, o evaluar el asistente de compatibilidad contra un conjunto de casos con respuesta conocida. \\
+		\addlinespace
+		B --- SGA & Baja & El tamaño de la institución limita cualquier afirmación estadística. La vía más viable es la auditoría con relojes lógicos, no la analítica de deserción. \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section{Cómo leer las tablas}
+
+Cada tabla lista revistas Q1 verificadas cuyo alcance editorial es compatible con el PFC correspondiente. Las columnas son:
+
+\begin{itemize}[leftmargin=*,itemsep=3pt]
+	\item \textbf{JIF}: factor de impacto de 2025 según JCR.
+	\item \textbf{Cat.}: categoría JCR en la que la revista alcanza Q1, según la nomenclatura abreviada del cuadro siguiente.
+	\item \textbf{Ed.}: índice de Web of Science. Recuerde la advertencia sobre ESCI.
+	\item \textbf{\%OA}: porcentaje de artículos citables publicados en acceso abierto, dato de JCR. Un valor cercano a 100 indica revista de acceso abierto total; un valor bajo o medio indica revista híbrida o de suscripción.
+	\item \textbf{Coste}: si publicar exige pagar. «Suscripción» significa que existe una vía sin coste alguno para el autor.
+\end{itemize}
+
+Dentro de cada tabla las revistas se agrupan primero por la vía sin coste para el autor y después por la de acceso abierto con cargo obligatorio; dentro de cada grupo, por factor de impacto descendente. El orden de la tabla no es, por tanto, un orden de recomendación: esa se da en la sección \ref{sec:recomendacion}.
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}ll@{\hspace{1.2cm}}ll@{}}
+		\toprule
+		\textbf{Abrev.} & \textbf{Categoría JCR} & \textbf{Abrev.} & \textbf{Categoría JCR} \\
+		\midrule
+		CS-IS & CS, Information Systems & CS-AI & CS, Artificial Intelligence \\
+		CS-SE & CS, Software Engineering & TEL & Telecommunications \\
+		CS-TM & CS, Theory \& Methods & EDU & Education \& Educational Research \\
+		CS-HA & CS, Hardware \& Architecture & EDU-D & Education, Scientific Disciplines \\
+		CS-IA & CS, Interdisciplinary Applications & Varias & Q1 en más de una categoría \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\begin{aviso}{Sobre las cifras concretas de APC}
+	Las cantidades exactas cambian cada año y varían por acuerdos institucionales. Este informe indica el \emph{modelo} de publicación, que es el dato estable, y recoge en la sección \ref{sec:costes} solo aquellas cifras que se pudieron verificar en la página oficial del editor. Antes de enviar, confirme el importe en la página de la revista: varias revistas iberoamericanas de acceso abierto total no cobran nada pese a figurar con 100\,\% de acceso abierto.
+\end{aviso}
+
+\newpage
+\section{Cartera de revistas por PFC}
+
+\subsection{PFC A --- TiendaTech: comercio electrónico, recomendación e IA}
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{6.2cm}rp{1.2cm}p{1.3cm}rp{3.4cm}@{}}
+		\toprule
+		\textbf{Revista} & \textbf{JIF} & \textbf{Cat.} & \textbf{Ed.} & \textbf{\%OA} & \textbf{Coste} \\
+		\midrule
+		\endhead
+		ACM Transactions on Information Systems & 11,2 & CS-IS & SCIE & 10,3 & ACM Open \\
+		Expert Systems with Applications & 9,4 & CS-AI & SCIE & 13,2 & Suscripción \\
+		Information Processing \& Management & 8,1 & CS-IS & SCIE & 14,7 & Suscripción \\
+		Knowledge-Based Systems & 8,0 & CS-AI & SCIE & 12,8 & Suscripción \\
+		Decision Support Systems & 7,5 & Varias & SCIE & 21,0 & Suscripción \\
+		Electronic Commerce Research and Applications & 6,8 & Varias & SCIE & 12,9 & Suscripción \\
+		ACM Trans. on Interactive Intelligent Systems & 6,4 & CS-AI & SCIE & 34,9 & ACM Open \\
+		IEEE Transactions on Services Computing & 6,2 & Varias & SCIE & 2,3 & Suscripción \\
+		Future Generation Computer Systems & 5,9 & CS-TM & SCIE & 27,0 & Suscripción \\
+		International Journal of Electronic Commerce & 5,7 & CS-SE & SCIE & 8,3 & Suscripción \\
+		\addlinespace
+		Journal of Big Data & 10,8 & CS-TM & SCIE & 99,9 & APC obligatorio \\
+		Journal of Cloud Computing & 5,5 & CS-IS & SCIE & 100,0 & APC obligatorio \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\jcrnote{Nota de encaje: si el manuscrito trata del asistente de compatibilidad, la vía natural es \emph{Expert Systems with Applications} o \emph{Knowledge-Based Systems}. Si trata de la transacción de compra distribuida (2PC frente a saga), la vía es \emph{IEEE Transactions on Services Computing} o \emph{Future Generation Computer Systems}. \emph{Electronic Commerce Research and Applications} es la única que acepta con naturalidad el ángulo de negocio.}
+
+\subsection{PFC B --- SGA: gestión académica, auditoría y analítica educativa}
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{6.2cm}rp{1.2cm}p{1.3cm}rp{3.4cm}@{}}
+		\toprule
+		\textbf{Revista} & \textbf{JIF} & \textbf{Cat.} & \textbf{Ed.} & \textbf{\%OA} & \textbf{Coste} \\
+		\midrule
+		\endhead
+		Int. Journal of Educational Technology in Higher Education & 38,7 & EDU & SSCI & 100,0 & \textbf{OA sin APC} \\
+		Computers \& Education & 13,2 & Varias & SCIE/\hspace{0pt}SSCI & 39,6 & Suscripción \\
+		British Journal of Educational Technology & 13,0 & EDU & SSCI & 50,5 & Suscripción \\
+		Business \& Information Systems Engineering & 12,2 & CS-IS & SCIE & 80,9 & Suscripción \\
+		Journal of Educational Computing Research & 8,5 & EDU & SSCI & 6,7 & Suscripción \\
+		IEEE Transactions on Learning Technologies & 7,4 & Varias & SCIE/\hspace{0pt}SSCI & 13,9 & Suscripción \\
+		Education and Information Technologies & 7,2 & EDU & SSCI & 27,5 & Suscripción \\
+		Educational Technology \& Society & 7,1 & EDU & SSCI & 0,0 & Suscripción \\
+		IEEE Trans. on Dependable and Secure Computing & 6,8 & Varias & SCIE & 4,5 & Suscripción \\
+		Computers \& Security & 6,8 & CS-IS & SCIE & 28,8 & Suscripción \\
+		Interactive Learning Environments & 6,7 & EDU & SSCI & 6,7 & Suscripción \\
+		ACM Transactions on Computing Education & 4,0 & EDU-D & SCIE & 18,8 & ACM Open \\
+		\addlinespace
+		Computers and Education: Artificial Intelligence & 23,4 & Varias & ESCI & 100,0 & APC obligatorio \\
+		Smart Learning Environments & 17,9 & EDU & SSCI & 100,0 & APC obligatorio \\
+		Computers and Education Open & 12,3 & Varias & ESCI & 100,0 & APC obligatorio \\
+		Educación XX1 & 3,9 & EDU & SSCI & 97,6 & Verificar \\
+		RIED-Rev. Iberoamericana de Educación a Distancia & 3,5 & EDU & SSCI & 100,0 & Verificar \\
+		Journal of Learning Analytics & 3,4 & EDU & ESCI & 100,0 & Verificar \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\begin{alerta}{Cuidado con Computers \& Education}
+	Es la revista más prestigiosa de la lista educativa y, a la vez, la que con más probabilidad rechazará este trabajo. Su alcance editorial excluye expresamente las evaluaciones de software o de sistemas limitadas a una sola institución, y exige que el foco esté en el contexto de uso y en el impacto sobre la enseñanza, no en los detalles de implementación técnica. Un artículo sobre la arquitectura del SGA no encaja. Para el ángulo de arquitectura y auditoría, \emph{IEEE Transactions on Learning Technologies} y \emph{Journal of Educational Computing Research} (que tiene un tipo de artículo específico de sistemas y herramientas) son mucho mejores destinos.
+\end{alerta}
+
+\jcrnote{Nota adicional: \emph{Educación XX1}, \emph{RIED} y \emph{Journal of Learning Analytics} figuran con acceso abierto casi total pero pertenecen a modelos editoriales que en varios casos no cobran cargo alguno al autor. Son, además, las únicas de la cartera que publican en español. Verifique el importe en la página de cada una antes de descartarlas por coste.}
+
+\subsection{PFC C --- Laboratorios: concurrencia, coordinación y sistemas distribuidos}
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{6.2cm}rp{1.2cm}p{1.3cm}rp{3.4cm}@{}}
+		\toprule
+		\textbf{Revista} & \textbf{JIF} & \textbf{Cat.} & \textbf{Ed.} & \textbf{\%OA} & \textbf{Coste} \\
+		\midrule
+		\endhead
+		Journal of Network and Computer Applications & 7,7 & Varias & SCIE & 19,5 & Suscripción \\
+		IEEE Trans. on Dependable and Secure Computing & 6,8 & Varias & SCIE & 4,5 & Suscripción \\
+		IEEE Transactions on Services Computing & 6,2 & Varias & SCIE & 2,3 & Suscripción \\
+		IEEE Transactions on Parallel and Distributed Systems & 5,9 & CS-TM & SCIE & 6,1 & Suscripción \\
+		Future Generation Computer Systems & 5,9 & CS-TM & SCIE & 27,0 & Suscripción \\
+		Cluster Computing & 5,5 & Varias & SCIE & 10,0 & Suscripción \\
+		IEEE Transactions on Reliability & 5,4 & Varias & SCIE & 3,5 & Suscripción \\
+		IEEE Transactions on Cloud Computing & 5,3 & Varias & SCIE & 2,1 & Suscripción \\
+		Journal of Systems Architecture & 5,3 & Varias & SCIE & 18,9 & Suscripción \\
+		VLDB Journal & 5,3 & Varias & SCIE & 33,9 & Suscripción \\
+		ACM Trans. on Autonomous and Adaptive Systems & 5,2 & CS-TM & SCIE & 25,4 & ACM Open \\
+		Simulation Modelling Practice and Theory & 4,6 & CS-SE & SCIE & 17,9 & Suscripción \\
+		\addlinespace
+		Journal of King Saud Univ. --- Computer and Inf. Sciences & 6,4 & CS-IS & SCIE & 99,7 & APC obligatorio \\
+		IEEE Open Journal of the Computer Society & 6,0 & Varias & ESCI & 100,0 & APC obligatorio \\
+		Journal of Cloud Computing & 5,5 & CS-IS & SCIE & 100,0 & APC obligatorio \\
+		Array & 5,3 & CS-TM & ESCI & 100,0 & APC obligatorio \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\jcrnote{Nota de encaje: para un experimento de arbitraje de reservas concurrentes con relojes lógicos, las tres candidatas de primera línea son \emph{IEEE Transactions on Parallel and Distributed Systems} (la más exigente, pero el destino temáticamente exacto), \emph{Future Generation Computer Systems} (alcance explícitamente aplicado, más receptiva a trabajos de sistemas) y \emph{Journal of Network and Computer Applications}, que además de artículos completos acepta notas breves, un formato adecuado para una contribución acotada.}
+
+\subsection{PFC D --- Soporte ISP: gestión de red, SLA y telemetría}
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{6.2cm}rp{1.2cm}p{1.3cm}rp{3.4cm}@{}}
+		\toprule
+		\textbf{Revista} & \textbf{JIF} & \textbf{Cat.} & \textbf{Ed.} & \textbf{\%OA} & \textbf{Coste} \\
+		\midrule
+		\endhead
+		IEEE Internet of Things Journal & 8,7 & Varias & SCIE & 2,8 & Suscripción \\
+		Journal of Network and Computer Applications & 7,7 & Varias & SCIE & 19,5 & Suscripción \\
+		Internet of Things (Elsevier) & 7,1 & Varias & SCIE & 37,0 & Suscripción \\
+		Computers \& Security & 6,8 & CS-IS & SCIE & 28,8 & Suscripción \\
+		Telecommunications Policy & 6,5 & TEL & SCIE & 35,4 & Suscripción \\
+		\textbf{IEEE Trans. on Network and Service Management} & \textbf{5,7} & \textbf{CS-IS} & \textbf{SCIE} & \textbf{8,0} & \textbf{Suscripción} \\
+		IEEE Transactions on Reliability & 5,4 & Varias & SCIE & 3,5 & Suscripción \\
+		Ad Hoc Networks & 5,4 & CS-IS & SCIE & 15,8 & Suscripción \\
+		\addlinespace
+		Journal of Big Data & 10,8 & CS-TM & SCIE & 99,9 & APC obligatorio \\
+		Digital Communications and Networks & 6,3 & TEL & SCIE & 100,0 & APC obligatorio \\
+		IEEE Open Journal of the Communications Society & 6,2 & TEL & ESCI & 100,0 & APC obligatorio \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\jcrnote{Nota de encaje: \emph{IEEE Transactions on Network and Service Management} es, sin discusión, el destino temáticamente exacto de este PFC. Su alcance cubre modelos de gestión, aprovisionamiento, garantía de fiabilidad y políticas de servicio, que es literalmente el dominio del proyecto. Va destacada en la tabla por esa razón.}
+
+\subsection{Cartera transversal: arquitectura, calidad y revisiones}
+
+Estas revistas no dependen del dominio del PFC sino del tipo de contribución. Sirven a cualquiera de los cuatro equipos si el manuscrito se plantea como aportación de ingeniería de software, de calidad o de estado del arte.
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{6.2cm}rp{1.2cm}p{1.3cm}rp{3.4cm}@{}}
+		\toprule
+		\textbf{Revista} & \textbf{JIF} & \textbf{Cat.} & \textbf{Ed.} & \textbf{\%OA} & \textbf{Coste} \\
+		\midrule
+		\endhead
+		ACM Computing Surveys & 30,4 & CS-TM & SCIE & 28,9 & ACM Open \\
+		Computer Science Review & 17,5 & Varias & SCIE & 28,1 & Suscripción \\
+		ACM Trans. on Software Engineering and Methodology & 6,9 & CS-SE & SCIE & 20,9 & ACM Open \\
+		IEEE Transactions on Software Engineering & 6,0 & CS-SE & SCIE & 11,1 & Suscripción \\
+		ACM Transactions on Internet Technology & 5,1 & CS-SE & SCIE & 20,7 & ACM Open \\
+		World Wide Web & 4,5 & CS-SE & SCIE & 17,7 & Suscripción \\
+		Information and Software Technology & 4,6 & CS-SE & SCIE & 40,1 & Suscripción \\
+		Computer Standards \& Interfaces & 4,6 & CS-SE & SCIE & 23,0 & Suscripción \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\jcrnote{Nota de encaje: \emph{Computer Standards \& Interfaces} merece atención especial. Su alcance son los estándares, la calidad del software y su medición, lo que la convierte en el destino natural de un trabajo centrado en la evaluación con \mbox{ISO/IEC 25010:2023}, que es un requisito transversal de los cuatro PFC. \emph{ACM Computing Surveys} y \emph{Computer Science Review} publican exclusivamente revisiones, no investigación primaria: son la vía si un equipo convierte su estado del arte en una revisión sistemática, no si quiere publicar su sistema.}
+
+\newpage
+\section{Ruta sin coste y ruta con coste}
+\label{sec:costes}
+
+El criterio de mezclar revistas con y sin cargo por publicar se traduce en dos rutas concretas.
+
+\subsection{Ruta sin coste para el autor}
+
+Todas las revistas marcadas como «Suscripción» en las tablas anteriores permiten publicar \textbf{sin pagar nada}, siempre que no se solicite acceso abierto. Es la ruta por defecto y cubre la inmensa mayoría de la cartera, incluidas las mejores opciones temáticas de cada PFC: IEEE Transactions on Network and Service Management, IEEE Transactions on Parallel and Distributed Systems, Future Generation Computer Systems, Journal of Network and Computer Applications, IEEE Transactions on Learning Technologies e Information and Software Technology.
+
+A esta ruta se añaden dos casos particulares verificados:
+
+\begin{itemize}[leftmargin=*,itemsep=4pt]
+	\item \textbf{International Journal of Educational Technology in Higher Education} (Springer): acceso abierto total \textbf{sin cargo alguno para el autor}, porque los costes los cubre la Universitat Oberta de Catalunya. Con JIF 38,7 y Q1 en \emph{Education \& Educational Research}, es la mejor relación entre impacto y coste de todo el informe.
+	\item \textbf{Revistas de ACM}: desde el 1 de enero de 2026 ACM publica íntegramente en acceso abierto bajo el modelo ACM Open. Los autores de instituciones participantes no pagan nada. Para \emph{ACM Computing Surveys}, la tarifa de 2026 para autores no cubiertos es de 250 USD para miembros de ACM y 350 USD para no miembros, un orden de magnitud por debajo de cualquier otra opción de acceso abierto de esta cartera.
+\end{itemize}
+
+\subsection{Ruta con cargo por publicar}
+
+Las revistas marcadas como «APC obligatorio» son de acceso abierto total: no existe vía gratuita. Se incluyen en la cartera porque suelen tener procesos editoriales más rápidos y porque el artículo queda accesible sin barreras, lo que importa si el objetivo es difusión y no solo acreditación.
+
+Las siguientes cifras se pudieron verificar en la página oficial del editor; el resto deben consultarse directamente antes de decidir.
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{6.6cm}p{4.0cm}p{4.2cm}@{}}
+		\toprule
+		\textbf{Revista o familia} & \textbf{Cargo} & \textbf{Fuente} \\
+		\midrule
+		Revistas híbridas de IEEE (solo si se elige OA) & 2.800 USD & Lista oficial IEEE 2026 \\
+		Journal of Cloud Computing & 1.890 USD & Página Springer de la revista \\
+		Computers and Education: Artificial Intelligence & 2.500 USD & Lista de precios Elsevier \\
+		Cluster Computing (solo si se elige OA) & 3.290 USD & Página Springer de la revista \\
+		Education and Information Technologies (solo si se elige OA) & 3.690 USD & Página Springer de la revista \\
+		Computers \& Education (solo si se elige OA) & 5.190 USD & Lista de precios Elsevier \\
+		ACM Computing Surveys (no cubiertos por ACM Open) & 250--350 USD & ACM, tarifas 2026 \\
+		Int. J. of Educational Technology in Higher Education & \textbf{Sin cargo} & Página Springer de la revista \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section{Revistas que suelen citarse como Q1 y no lo son}
+\label{sec:desmentidos}
+
+Esta sección existe porque varias de las revistas que un equipo elegiría por intuición \textbf{no alcanzan el primer cuartil} en la edición vigente. La comprobación es directa: ninguna de ellas aparece en las listas Q1 de las categorías consultadas para este informe.
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{7.4cm}p{7.6cm}@{}}
+		\toprule
+		\textbf{Revista} & \textbf{Situación en JCR 2025} \\
+		\midrule
+		Journal of Systems and Software & No es Q1 en \emph{CS, Software Engineering} ni en \emph{CS, Theory \& Methods}. \\
+		Empirical Software Engineering & No es Q1 en \emph{CS, Software Engineering}. \\
+		Software: Practice and Experience & No es Q1 en \emph{CS, Software Engineering}. \\
+		IEEE Software & No es Q1 en \emph{CS, Software Engineering}. \\
+		Automated Software Engineering & No es Q1 en \emph{CS, Software Engineering}. \\
+		Journal of Software: Evolution and Process & No es Q1 en \emph{CS, Software Engineering}. \\
+		SoftwareX & No es Q1 en \emph{CS, Software Engineering}. \\
+		Journal of Parallel and Distributed Computing & No es Q1 en \emph{CS, Theory \& Methods}. \\
+		IEEE Access & No es Q1 en \emph{CS, Information Systems} ni en \emph{Telecommunications}. \\
+		Computer Networks & No es Q1 en \emph{CS, Hardware \& Architecture}, \emph{CS, Information Systems} ni \emph{Telecommunications}. \\
+		Computer Communications & No es Q1 en \emph{CS, Information Systems} ni en \emph{Telecommunications}. \\
+		Information Systems (Elsevier) & No es Q1 en \emph{CS, Information Systems}. \\
+		Data \& Knowledge Engineering & No es Q1 en \emph{CS, Information Systems} ni en \emph{CS, Artificial Intelligence}. \\
+		\textbf{IEEE Transactions on Education} & No es Q1 en \emph{Education, Scientific Disciplines}. Sí es Q1 en Scimago. \\
+		\textbf{Computer Applications in Engineering Education} & No es Q1 en \emph{CS, Interdisciplinary Applications} ni en \emph{Education, Scientific Disciplines}. Sí es Q1 en Scimago. \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+Las dos últimas filas son el ejemplo práctico de por qué no deben mezclarse las dos bases: son revistas legítimas y pertinentes para educación en ingeniería, pero quien las presente como «Q1» ante un comité que exige Clarivate estará citando Scimago sin decirlo.
+
+\section{Recomendación operativa por PFC}
+\label{sec:recomendacion}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{2.0cm}p{5.4cm}p{4.0cm}p{3.4cm}@{}}
+		\toprule
+		\textbf{PFC} & \textbf{Objetivo primero} & \textbf{Segunda opción} & \textbf{Opción abierta} \\
+		\midrule
+		\textbf{C} Laboratorios & Future Generation Computer Systems & IEEE Trans. on Parallel and Distributed Systems & Journal of Cloud Computing \\
+		\addlinespace
+		\textbf{D} ISP & IEEE Trans. on Network and Service Management & Journal of Network and Computer Applications & IEEE Open J. of the Communications Society \\
+		\addlinespace
+		\textbf{A} TiendaTech & Electronic Commerce Research and Applications & Expert Systems with Applications & Journal of Big Data \\
+		\addlinespace
+		\textbf{B} SGA & IEEE Transactions on Learning Technologies & Journal of Educational Computing Research & Int. J. of Educational Technology in Higher Education \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+Tres recomendaciones de procedimiento, en orden de importancia:
+
+\begin{enumerate}[leftmargin=*,itemsep=5pt]
+	\item \textbf{Un solo PFC debería intentar la publicación este período, y debería ser el C.} Es el único con una pregunta de investigación ya formulada en la propia guía y con un experimento que la valida. Intentarlo con los cuatro reparte el esfuerzo docente y produce cuatro rechazos en lugar de un envío defendible.
+	\item \textbf{Antes de escribir el manuscrito, escriba la pregunta y la línea base.} Si el equipo no puede nombrar contra qué compara su propuesta, todavía no hay artículo, y ninguna elección de revista lo arreglará.
+	\item \textbf{Considere una ruta intermedia antes de la revista.} Un congreso indexado con actas en IEEE o ACM da retroalimentación de revisores en semanas en lugar de meses, y el trabajo ampliado puede después extenderse a revista. Para un equipo de pregrado que nunca ha publicado, es una escalera más realista que el salto directo a Q1.
+\end{enumerate}
+
+\section{Trazabilidad de los datos}
+
+\begin{itemize}[leftmargin=*,itemsep=3pt]
+	\item Journal Citation Reports, Clarivate. Consulta directa con acceso institucional, 25 de agosto de 2026. Conjunto de datos actualizado el 17 de junio de 2026; 22.643 revistas en 254 categorías.
+	\item Consulta 1: seis categorías de informática y telecomunicaciones, cuartil Q1, año 2025. 169 revistas.
+	\item Consulta 2: dos categorías de educación, cuartil Q1, año 2025. 206 revistas.
+	\item Consulta 3: categoría \emph{Computer Science, Artificial Intelligence}, cuartil Q1, año 2025. 52 revistas.
+	\item Los modelos de publicación y los importes de la sección \ref{sec:costes} proceden de las páginas oficiales de IEEE, ACM, Springer y Elsevier.
+	\item Guía de aplicación de los temas de la asignatura al Proyecto Fin de Curso, Aplicaciones Distribuidas (ISR-701), período 2025--2026 SPA, documento de la asignatura.
+\end{itemize}
+
+\vspace{10pt}
+\begin{aviso}{Vigencia}
+	Los cuartiles de este informe corresponden a la edición JCR publicada en junio de 2026. La siguiente edición aparecerá en junio de 2027 y puede alterar cualquiera de las clasificaciones, especialmente en las revistas cuyo factor de impacto está cerca del corte del primer cuartil. Conviene revisar el documento cada año antes de entregarlo a un nuevo grupo.
+\end{aviso}
+
+\end{document}

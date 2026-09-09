@@ -1,0 +1,584 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,provide=*]{babel}
+\usepackage{csquotes}
+\usepackage{charter}
+\usepackage[scaled=0.92]{helvet}
+\usepackage[a4paper,top=2.6cm,bottom=2.6cm,left=2.4cm,right=2.4cm,headheight=14pt]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{azulUTEQ}{HTML}{123A5F}
+\definecolor{azulClaro}{HTML}{E8EEF4}
+\definecolor{grisTexto}{HTML}{3A3A3A}
+\definecolor{acento}{HTML}{A6242B}
+\definecolor{grisCodigo}{HTML}{F2F4F6}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=azulUTEQ,
+	urlcolor=azulUTEQ,
+	citecolor=azulUTEQ
+}
+
+\titleformat{\section}{\normalfont\Large\bfseries\color{azulUTEQ}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{azulUTEQ}}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{18pt}{8pt}
+\titlespacing*{\subsection}{0pt}{14pt}{6pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\footnotesize\color{azulUTEQ}TA-PFC-E4 $\cdot$ AcadTrace (equipo BCEL) $\cdot$ Aplicaciones Distribuidas (ISR-701)}
+\fancyhead[R]{\footnotesize\color{azulUTEQ}\thepage}
+
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.18}
+
+\lstset{
+	basicstyle=\ttfamily\footnotesize,
+	backgroundcolor=\color{grisCodigo},
+	frame=single,
+	rulecolor=\color{azulUTEQ},
+	breaklines=true,
+	columns=fullflexible,
+	xleftmargin=6pt,
+	xrightmargin=6pt,
+	framexleftmargin=6pt
+}
+
+\newtcolorbox{aviso}[1]{
+	colback=azulClaro,
+	colframe=azulUTEQ,
+	boxrule=0.8pt,
+	arc=2pt,
+	left=8pt,
+	right=8pt,
+	top=7pt,
+	bottom=7pt,
+	title={\bfseries #1},
+	fonttitle=\normalsize\color{white},
+	colbacktitle=azulUTEQ
+}
+
+\newtcolorbox{alerta}[1]{
+	colback=white,
+	colframe=acento,
+	boxrule=0.9pt,
+	arc=2pt,
+	left=8pt,
+	right=8pt,
+	top=7pt,
+	bottom=7pt,
+	title={\bfseries #1},
+	fonttitle=\normalsize\color{white},
+	colbacktitle=acento
+}
+
+\begin{document}
+
+\begin{titlepage}
+	\centering
+	\vspace*{1.2cm}
+	{\color{azulUTEQ}\rule{\textwidth}{2pt}}\\[10pt]
+	{\LARGE\bfseries\color{azulUTEQ} Guía y rúbrica de la entrega final TA-PFC-E4\par}
+	\vspace{8pt}
+	{\Large\bfseries\color{azulUTEQ} PFC B --- AcadTrace (equipo BCEL)\par}
+	\vspace{4pt}
+	{\normalsize\color{grisTexto}\emph{denominación anterior: SGA --- Escuela Provincias Unidas}\par}
+	\vspace{10pt}
+	{\color{azulUTEQ}\rule{\textwidth}{2pt}}\\[16pt]
+	{\large Asignatura: Aplicaciones Distribuidas (ISR-701)\par}
+	\vspace{4pt}
+	{\large Carrera de Ingeniería de Software $\cdot$ Universidad Técnica Estatal de Quevedo\par}
+	\vspace{24pt}
+	{\large\bfseries Entrega acumulativa total y paquete de evidencias\par}
+	{\large\bfseries orientado a publicación en revista JCR híbrida\par}
+	\vspace{24pt}
+	\begin{minipage}{0.86\textwidth}
+		\centering
+		\color{grisTexto}
+		\small
+		\textbf{Revista objetivo:} Computer Standards \& Interfaces (Elsevier), ISSN 0920-5489.\\
+		JIF 2025 = 4,6 $\cdot$ Q1 en \emph{Computer Science, Software Engineering} $\cdot$ SCIE $\cdot$ modelo híbrido.\\[6pt]
+		Tipo de contribución previsto: \emph{case study} de aplicación de estándares con evaluación empírica.\\[6pt]
+		Datos bibliométricos verificados en Journal Citation Reports el 25 de agosto de 2026; conjunto de datos actualizado el 17 de junio de 2026.
+	\end{minipage}
+	\vfill
+	{\small Quevedo, Ecuador $\cdot$ 25 de agosto de 2026\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Regla de esta entrega}
+
+TA-PFC-E4 es una \textbf{entrega total}. El equipo presenta el sistema completo, la documentación completa y el paquete completo de evidencias, con independencia de lo entregado en E1, E2 o E3. Si un artefacto no está en este paquete, no existe a efectos de calificación.
+
+A esa finalidad se añade una segunda: la entrega debe producir el paquete de evidencias del que se derivará un manuscrito enviable a una revista indexada en Journal Citation Reports. Y en este proyecto, a diferencia de los otros tres, hay un cambio previo que condiciona todo lo demás y que se aborda en la sección siguiente: \textbf{el proyecto tiene que cambiar de nombre}.
+
+\section{Del nombre a la publicabilidad}
+
+\subsection{Por qué «SGA --- Escuela Provincias Unidas» no es publicable}
+
+El nombre actual describe un encargo, no una contribución. Tiene cuatro defectos y cada uno cierra una puerta distinta.
+
+\begin{enumerate}[leftmargin=*,itemsep=4pt]
+	\item \textbf{«SGA» no informa de nada.} Es un acrónimo genérico que en la región designa a cientos de sistemas distintos. Un lector no puede deducir qué hace el sistema ni qué lo distingue, y un buscador académico no puede indexarlo de forma útil.
+	\item \textbf{Nombra al cliente.} «Escuela Provincias Unidas» convierte el título en el de un informe de consultoría para una institución concreta. Un editor lee eso y concluye, antes de la primera línea del resumen, que el trabajo no se generaliza. Es exactamente la razón por la que revistas como \emph{Computers \& Education} rechazan de plano las evaluaciones circunscritas a una sola institución.
+	\item \textbf{No nombra el mecanismo.} Los títulos que sobreviven al filtro editorial nombran \emph{lo que se aporta}, no \emph{para quién se hizo}. «Sistema de gestión académica» describe una categoría de producto que existe desde los años ochenta.
+	\item \textbf{Es intraducible sin pérdida.} El manuscrito se escribirá en inglés. «SGA» no tiene equivalente y «Escuela Provincias Unidas» solo añade ruido.
+\end{enumerate}
+
+\subsection{Criterios para el nuevo nombre}
+
+\begin{itemize}[leftmargin=*,itemsep=3pt]
+	\item Corto, pronunciable en español y en inglés, sin tildes ni caracteres especiales.
+	\item Nombra el \emph{mecanismo} que aporta el sistema, no el dominio ni el cliente.
+	\item No colisiona con un producto existente: se comprueba en un buscador, en GitHub y en el registro de marcas antes de fijarlo.
+	\item Sirve como nombre de repositorio, de organización y de paquete sin modificaciones.
+	\item Admite un subtítulo descriptivo que se pueda usar tal cual como título del artículo.
+\end{itemize}
+
+\subsection{Nombre adoptado}
+
+\begin{aviso}{Denominación oficial a partir de esta entrega}
+	\textbf{Nombre del sistema:} \textsc{AcadTrace}\\[6pt]
+	\textbf{Descriptor:} capa de auditoría verificable para expedientes académicos en sistemas escolares distribuidos.\\[6pt]
+	\textbf{Título previsto del manuscrito:} \emph{AcadTrace: standards-based, tamper-evident and causally-ordered auditing of academic records in a distributed school management system}.
+\end{aviso}
+
+Alternativas admisibles si el equipo prefiere otra, siempre que cumpla los criterios anteriores: \textsc{VeriAcad} o \textsc{TrazaAcad}. La escuela sigue siendo el caso de estudio y se nombra en la sección de contexto del artículo; deja de ser el nombre del proyecto.
+
+\begin{alerta}{Consecuencia operativa inmediata}
+	El cambio de nombre afecta al repositorio, a los espacios de nombres del código, a los contenedores, a la documentación y a la portada del documento. Hacerlo en la semana 17 es una fuente garantizada de errores. Se hace ahora, en un único \emph{commit} de renombrado, y se registra en el \texttt{README.md} la equivalencia con la denominación anterior para que el historial siga siendo legible.
+\end{alerta}
+
+\section{La revista objetivo y por qué es esta}
+
+\subsection{Identificación}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{4.4cm}p{10.6cm}@{}}
+		\toprule
+		\textbf{Revista} & Computer Standards \& Interfaces (CSI), Elsevier \\
+		\textbf{ISSN} & 0920-5489 (impreso) $\cdot$ 1872-7018 (electrónico) \\
+		\textbf{Indexación} & Web of Science, SCIE \\
+		\textbf{JIF 2025} & 4,6 \\
+		\textbf{Cuartil JCR} & Q1 en \emph{Computer Science, Software Engineering} \\
+		\textbf{Modelo} & Híbrido: la vía de suscripción no tiene coste para el autor \\
+		\textbf{Contribución} & Estudio de caso de aplicación de estándares con evaluación empírica \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\subsection{Las cuatro razones de la elección}
+
+\begin{enumerate}[leftmargin=*,itemsep=5pt]
+	\item \textbf{Es híbrida y es Q1.} Cumple el requisito de partida sin renunciar al primer cuartil, algo que no ocurre con la mayoría de las opciones realistas.
+	\item \textbf{Acepta explícitamente estudios de caso de aplicación de estándares.} La revista declara en su alcance que difunde experiencias de usuario y estudios de caso sobre la aplicación de estándares establecidos o emergentes, y que publica comentarios críticos sobre estándares. Eso convierte la evaluación con \mbox{ISO/IEC 25010:2023} \cite{iso25010_2023} y el cumplimiento de la LOPDP \cite{lopdp2021} en la \emph{columna vertebral} del artículo, no en un apéndice.
+	\item \textbf{Su alcance cubre las tres piezas de AcadTrace a la vez}: sistemas distribuidos y protocolos, calidad y proceso de software, y estándares de gestión de la información. No hay que forzar el encaje en ninguna dirección.
+	\item \textbf{Ya publicó un experimento empírico con equipos de estudiantes de pregrado del Ecuador} \cite{castillo2020iso29110}. Es la mejor prueba disponible de que el editor no descarta este perfil de trabajo por su origen ni por la condición de sus autores. Ese artículo debe citarse en el manuscrito y usarse como referencia de estilo metodológico.
+\end{enumerate}
+
+\subsection{Escalera de respaldo}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{5.4cm}rp{1.5cm}p{2.0cm}p{4.3cm}@{}}
+		\toprule
+		\textbf{Revista} & \textbf{JIF} & \textbf{Cuartil} & \textbf{Editorial} & \textbf{Cuándo redirigir} \\
+		\midrule
+		Education and Information Technologies & 7,2 & Q1 & Springer & Si el rechazo pide un encuadre educativo y no de estándares \\
+		\addlinespace
+		International Journal of Information Security & 5,0 & Q1 & Springer & Si los revisores centran todo en el modelo de adversario y la integridad \\
+		\addlinespace
+		Journal of Systems and Software & 3,8 & Q2 & Elsevier & Recurso general; su pista \emph{In Practice} acepta informes aplicados \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+Las tres son híbridas y están verificadas en JCR. Las evidencias que exige esta guía son la unión de lo que piden las cuatro revistas, de modo que un rechazo se resuelve reformateando, no repitiendo mediciones.
+
+\section{La contribución publicable de AcadTrace}
+
+\subsection{Lo que no es publicable}
+
+No es publicable «hemos construido un sistema de gestión académica con microservicios». Tampoco lo es la analítica de deserción: con 344 estudiantes y 14 docentes, cualquier afirmación estadística sobre rendimiento o abandono carece de potencia y un revisor la desmontará en el primer párrafo. Conviene aceptarlo pronto, porque es la vía que un equipo elegiría por intuición.
+
+\subsection{Lo que sí es publicable}
+
+Lo publicable es el mecanismo que la propia guía de la asignatura señala como requisito y no como extra: la \textbf{auditoría fiable del orden de modificación de calificaciones}. Reformulado como contribución, AcadTrace aporta una capa de auditoría que combina tres piezas conocidas por separado y las evalúa juntas en un caso real:
+
+\begin{enumerate}[leftmargin=*,itemsep=3pt]
+	\item Una \textbf{bitácora de solo anexado encadenada por hash}, es decir, un registro en el que cada entrada incluye el resumen criptográfico de la anterior, de modo que alterar o borrar cualquier evento rompe la cadena y queda en evidencia \cite{haber1991timestamp}.
+	\item \textbf{Ordenación causal} de los eventos mediante relojes lógicos de Lamport, que permite reconstruir quién cambió qué nota y en qué orden aunque los nodos no compartan reloj físico \cite{lamport1978time}.
+	\item \textbf{Relojes vectoriales} para reconciliar ediciones realizadas sin conexión, un escenario cotidiano en una escuela donde los docentes cargan notas desde el aula.
+\end{enumerate}
+
+Ninguna de las tres piezas es nueva. Lo que no está publicado, y por eso admite una contribución aplicada en una revista de estándares, es \emph{cuánto cuesta} esa combinación en un sistema académico real y \emph{qué manipulaciones detecta efectivamente}.
+
+\subsection{Preguntas de investigación}
+
+\begin{aviso}{Las tres preguntas de AcadTrace}
+	\textbf{PI-1 (principal).} ¿Qué sobrecarga en latencia, almacenamiento y tiempo de verificación impone una bitácora de auditoría encadenada por hash con ordenación causal sobre las operaciones de registro y modificación de calificaciones, frente a una bitácora convencional y frente a la ausencia de auditoría?\\[6pt]
+	\textbf{PI-2 (central para el valor del sistema).} ¿Qué proporción de manipulaciones detecta cada mecanismo, desglosada por tipo de manipulación, y con qué tasa de falsos positivos?\\[6pt]
+	\textbf{PI-3.} ¿Con qué eficacia los relojes vectoriales reconcilian ediciones concurrentes realizadas sin conexión, y qué proporción de conflictos requiere intervención humana?
+\end{aviso}
+
+\section{Diseño experimental exigido}
+
+\subsection{Los cuatro mecanismos comparados}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{1.3cm}p{5.0cm}p{8.7cm}@{}}
+		\toprule
+		\textbf{Cód.} & \textbf{Mecanismo} & \textbf{Qué implementa} \\
+		\midrule
+		M0 & Sin auditoría & Línea base: la nota se escribe y no queda rastro estructurado \\
+		\addlinespace
+		M1 & Bitácora convencional & Registro de eventos en tabla, sin encadenamiento ni orden causal \\
+		\addlinespace
+		M2 & Bitácora encadenada + Lamport & Cada evento incluye el hash del anterior y una marca lógica de Lamport \\
+		\addlinespace
+		M3 & M2 + relojes vectoriales & Añade reconciliación de ediciones concurrentes y detección de conflictos \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+Los cuatro mecanismos deben ser conmutables mediante una variable de entorno. No se admiten cuatro ramas divergentes del repositorio: eso impide comparar y hace la medición irreproducible.
+
+\subsection{Experimento 1 --- Sobrecarga}
+
+Diseño factorial completo: 4 mecanismos $\times$ 3 niveles de concurrencia (14, 50 y 100 docentes simultáneos) $\times$ 2 escenarios (operación normal y cierre de período) $=$ 24 condiciones. Cinco repeticiones independientes por condición, con reinicio completo del entorno y descarte de los primeros 60 segundos. Total: \textbf{120 ejecuciones}.
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{5.2cm}p{3.4cm}p{6.4cm}@{}}
+		\toprule
+		\textbf{Variable de respuesta} & \textbf{Unidad} & \textbf{Por qué se mide} \\
+		\midrule
+		Latencia de registrar una nota (p50, p95, p99) & milisegundos & Coste percibido por el docente \\
+		Latencia de modificar una nota & milisegundos & Es la operación auditada crítica \\
+		Sobrecarga de almacenamiento por evento & bytes & Coste de infraestructura de la trazabilidad \\
+		Tiempo de verificación de la cadena completa & segundos & Determina si la auditoría es practicable \\
+		Escalado del tiempo de verificación & s por cada 10.000 eventos & Determina si sigue siéndolo en cinco años \\
+		Disponibilidad durante el cierre de período & \% & Es el pico de carga real del dominio \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\subsection{Experimento 2 --- Detección de manipulaciones}
+
+Este es el experimento que sostiene el artículo. Se define un modelo de manipulación con cinco tipos, se inyectan 20 manipulaciones de cada tipo sobre M1, M2 y M3, y se mide qué detecta cada mecanismo.
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{1.1cm}p{6.2cm}p{7.7cm}@{}}
+		\toprule
+		\textbf{Cód.} & \textbf{Manipulación inyectada} & \textbf{Qué pone a prueba} \\
+		\midrule
+		T1 & Cambiar el valor de una nota directamente en la base de datos, sin pasar por la aplicación & Si la bitácora refleja el estado real o solo lo que la aplicación creyó hacer \\
+		\addlinespace
+		T2 & Eliminar un evento de la bitácora & Integridad del encadenamiento \\
+		\addlinespace
+		T3 & Intercambiar el orden de dos eventos consecutivos & Ordenación causal \\
+		\addlinespace
+		T4 & Insertar un evento retroactivo con marca anterior a la real & Resistencia a la falsificación de historia \\
+		\addlinespace
+		T5 & Alterar la marca de tiempo de un evento existente & Dependencia del reloj físico frente al lógico \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+Se reporta, por mecanismo y por tipo: \textbf{tasa de detección}, \textbf{tasa de falsos positivos} sobre 100 ejecuciones limpias, y \textbf{tiempo medio hasta la detección}. La tabla resultante es la figura principal del manuscrito.
+
+\subsection{Experimento 3 --- Reconciliación sin conexión}
+
+Comparación de M2 frente a M3 en tres niveles de solapamiento de ediciones concurrentes sobre la misma calificación (10\,\%, 30\,\% y 50\,\% de solapamiento), cinco repeticiones por condición. Variables: tiempo de reconciliación, proporción de conflictos resueltos automáticamente y proporción que requiere decisión humana.
+
+\subsection{Análisis estadístico}
+
+Para toda comparación se exige mediana con intervalo de confianza del 95\,\%, prueba U de Mann-Whitney (una prueba que compara si un grupo tiende a dar valores mayores que otro sin suponer distribución normal), tamaño del efecto mediante el estadístico $\hat{A}_{12}$ de Vargha-Delaney, y diagramas de caja por condición. Las tasas de detección se reportan con intervalo de confianza binomial, no como porcentaje desnudo.
+
+\subsection{Amenazas a la validez}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{3.2cm}p{11.8cm}@{}}
+		\toprule
+		\textbf{Tipo} & \textbf{Qué debe discutir el equipo} \\
+		\midrule
+		Interna & Ruido de la máquina, interferencia entre contenedores, semillas de la inyección de manipulaciones \\
+		\addlinespace
+		Externa & Una sola institución y 344 estudiantes sintéticos; hasta dónde se generaliza a un distrito o a una universidad \\
+		\addlinespace
+		De constructo & Si los cinco tipos de manipulación cubren el espacio de amenazas realista, y qué queda fuera (por ejemplo, un administrador con acceso al material criptográfico) \\
+		\addlinespace
+		De conclusión & Número de repeticiones, potencia estadística y comparaciones múltiples entre cuatro mecanismos \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section{Datos: obligación de usar información sintética}
+
+\begin{alerta}{Este proyecto trata datos de menores de edad}
+	AcadTrace gestiona calificaciones, asistencia y datos de identificación de aproximadamente 344 estudiantes menores de edad. La Ley Orgánica de Protección de Datos Personales \cite{lopdp2021} somete ese tratamiento a un régimen reforzado, y ninguna revista publica un estudio con datos de menores sin autorización documentada del responsable del tratamiento y de los representantes legales.\\[6pt]
+	\textbf{Por tanto: todos los experimentos se ejecutan sobre un conjunto de datos sintético, generado por el propio equipo, con distribuciones realistas de calificaciones, asistencia y horarios.} Ningún dato real de ningún estudiante puede aparecer en el repositorio, en el paquete de replicación, en el documento ni en las capturas de pantalla.
+\end{alerta}
+
+El generador de datos sintéticos es en sí mismo una evidencia entregable, y su descripción ocupa un párrafo del manuscrito. Publicarlo junto con los datos es lo que hace el estudio reproducible sin comprometer a nadie: es la solución, no un rodeo.
+
+\section{Evidencias obligatorias}
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{0.9cm}p{4.6cm}p{4.2cm}p{5.0cm}@{}}
+		\toprule
+		\textbf{Cód.} & \textbf{Evidencia} & \textbf{Artefacto entregable} & \textbf{Criterio de aceptación} \\
+		\midrule
+		\endhead
+		E01 & Repositorio público renombrado & URL de GitHub & Nombre \textsc{AcadTrace}; los cuatro integrantes con \emph{commits} sustantivos en al menos seis semanas distintas \\
+		E02 & Despliegue reproducible & \texttt{docker-compose.yml} & El sistema completo levanta con un solo comando en una máquina limpia \\
+		E03 & Mecanismo conmutable & \texttt{AUDIT=m0$\mid$m1$\mid$m2$\mid$m3} & Cambiar el valor y reiniciar basta para conmutar entre los cuatro mecanismos \\
+		E04 & Generador de datos sintéticos & Script parametrizado & Reproduce 344 estudiantes y 14 docentes con semilla fija; sin ningún dato real \\
+		E05 & Inyector de manipulaciones & Herramienta con los cinco tipos & Probabilidad, tipo y semilla configurables; registra lo que inyectó \\
+		E06 & Carga determinista & Script de Locust parametrizado & Misma semilla, misma secuencia de peticiones \\
+		E07 & Datos crudos & CSV de las 120 ejecuciones + los dos experimentos restantes & Las figuras del documento se regeneran ejecutando el \emph{notebook} \\
+		E08 & Verificador de la cadena & Script de auditoría & Recorre la bitácora, valida el encadenamiento y el orden causal, y emite informe \\
+		E09 & Matriz de detección & Tabla mecanismo $\times$ tipo & Tasa de detección con intervalo de confianza y falsos positivos \\
+		E10 & Cómputo paralelo & Job PySpark + medición & Estadísticas institucionales sobre datos sintéticos; \emph{speedup} con 1, 2, 4 y 8 \emph{workers} y fracción de Amdahl calculada \\
+		E11 & Trazas distribuidas & Captura exportada & Recorrido completo de una modificación de calificación \\
+		E12 & Observabilidad & Tablero Grafana + métricas & Versionado como código, no captura de pantalla \\
+		E13 & Pruebas & Informe de cobertura & Cobertura $\geq 70\,\%$; integración del flujo de matrícula y del de calificaciones \\
+		E14 & Calidad del producto & Evaluación ISO/IEC 25010:2023 & Al menos cuatro características con métrica real y valor medido, priorizando seguridad y fiabilidad \cite{iso25010_2023} \\
+		E15 & Cumplimiento normativo & Tabla de trazabilidad LOPDP & Cada obligación aplicable enfrentada al mecanismo que la satisface \cite{lopdp2021} \\
+		E16 & Documento del PFC & \texttt{.tex} + PDF & Compila desde el repositorio clonado; bibliografía IEEE con DOI que resuelven \\
+		E17 & Borrador del manuscrito & \texttt{.tex} + PDF & Título y estructura de la sección 9; máximo 8.000 palabras \\
+		E18 & Declaración de uso de IA & Sección del documento & Herramienta, propósito, alcance y qué revisó cada integrante \\
+		E19 & Paquete de replicación & DOI de Zenodo & El DOI resuelve; contiene E04, E05, E06, E07 y E08 \\
+		E20 & Carátula de entrega & PDF subido al SGA & Datos de identificación y la URL del repositorio en una sola línea \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\section{Cobertura de los temas de la asignatura}
+
+\begin{center}
+	\footnotesize
+	\begin{longtable}{@{}p{1.2cm}p{5.2cm}p{8.4cm}@{}}
+		\toprule
+		\textbf{Unidad} & \textbf{Tema} & \textbf{Evidencia concreta exigida en AcadTrace} \\
+		\midrule
+		\endhead
+		U1 & Transparencias ANSA & Al menos cinco de las ocho, cada una con el mecanismo que la realiza \\
+		U1 & Sockets TCP & Sincronización de asistencia desde dispositivos del aula al nodo central, con delimitación de mensajes por longitud \\
+		U1 & gRPC / RPC & Contratos \texttt{.proto} entre Matrícula, Calificaciones y Reportes \\
+		U1 & Relojes de Lamport y vectoriales & \textbf{Es el núcleo del artículo}: evidencias E03, E08 y E09 \cite{lamport1978time} \\
+		U1 & Tolerancia a fallos & \emph{Heartbeats} entre réplicas de Calificaciones; fallo de omisión en la sincronización móvil \\
+		U1 & Elección de líder & Nodo que ejecuta el cierre de período y consolida actas; traza de una reelección \\
+		U1 & Teorema CAP & Posición argumentada por agregado: CP en matrícula y notas, AP tolerable en consulta de horarios \cite{gilbert2002brewer} \\
+		U1 & Coordinación y consistencia & 2PC para la matrícula atómica; Raft como consenso del clúster de datos \\
+		U1 & Seguridad & JWT, control de acceso por cuatro roles, TLS y controles reforzados por tratarse de datos de menores \\
+		U1 & SLA y alta disponibilidad & Objetivo declarado para el período de matrícula y medición de su cumplimiento \\
+		\addlinespace
+		U3 & Microservicios con base propia & Diagrama C4 nivel 3 y justificación de fronteras \\
+		U3 & API REST + OpenAPI & Especificación OpenAPI 3.0 validada y versionada \\
+		U3 & API Gateway & Enrutamiento y autorización por rol antes de cada microservicio \\
+		U3 & Mensajería asíncrona & Eventos \texttt{NotaPublicada} y \texttt{MatriculaConfirmada}; justificación de la elección de \emph{broker} \\
+		U3 & Docker y orquestación & Evidencia E02; manifiestos de Kubernetes para Matrícula y Calificaciones \\
+		U3 & Patrones de despliegue & Demostración de una actualización \emph{blue-green} sin interrumpir la matrícula \\
+		\addlinespace
+		U2 & Fragmentación & Particionado por período lectivo y por grado o sección \\
+		U2 & Replicación y consistencia & Clúster CockroachDB con consistencia serializable; configuración versionada \\
+		U2 & Tolerancia a fallos en datos & Prueba documentada de caída de un nodo sin pérdida de calificaciones confirmadas \\
+		\addlinespace
+		U4 & Procesamiento distribuido & Evidencia E10 sobre el conjunto de datos sintético \\
+		U4 & Ley de Amdahl & Fracción secuencial estimada de la curva medida, no supuesta \\
+		\addlinespace
+		U5 & N-capas y SOLID & Estructura de capas por microservicio con responsabilidades únicas \\
+		U5 & Patrones GoF & Repository, Strategy, Observer y Factory, cada uno con el fragmento de código que lo realiza \\
+		U5 & Inyección de dependencias & Contenedor IoC con ejemplo de sustitución en pruebas \\
+		U5 & CI/CD & Flujo de GitHub Actions con pruebas, imagen y análisis de calidad \\
+		U5 & Observabilidad & Evidencias E11 y E12 \\
+		U5 & Pruebas & Evidencia E13 \\
+		U5 & Calidad ISO/IEC 25010 & Evidencia E14 \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\section{Del documento del PFC al manuscrito}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{3.8cm}p{1.7cm}p{9.3cm}@{}}
+		\toprule
+		\textbf{Sección} & \textbf{Extensión} & \textbf{De dónde sale y qué debe contener} \\
+		\midrule
+		Introducción & 1,5 pág. & El problema de la manipulación de calificaciones y su relevancia normativa. Termina enunciando PI-1, PI-2 y PI-3 \\
+		\addlinespace
+		Estándares y normativa aplicables & 1,5 pág. & \textbf{Sección distintiva de esta revista.} ISO/IEC 25010:2023 y LOPDP, con la tabla de trazabilidad de E15 \\
+		\addlinespace
+		Trabajo relacionado & 1,5 pág. & De 15 a 25 referencias, con al menos cinco de la propia revista objetivo \\
+		\addlinespace
+		Diseño de AcadTrace & 2 pág. & Los cuatro mecanismos, el modelo de manipulación y las decisiones de arquitectura \\
+		\addlinespace
+		Diseño del estudio & 2 pág. & Sección 5 de esta guía: los tres experimentos \\
+		\addlinespace
+		Resultados & 3 pág. & De E07 y E09. Solo hechos medidos \\
+		\addlinespace
+		Discusión y lecciones aprendidas & 2 pág. & Qué mecanismo recomendarían a una institución real y a qué coste \\
+		\addlinespace
+		Amenazas a la validez & 0,7 pág. & Sección 5.5 de esta guía \\
+		\addlinespace
+		Conclusiones & 0,5 pág. & Respuesta explícita a las tres preguntas, incluso si alguna es negativa \\
+		\addlinespace
+		Disponibilidad de datos & 3 líneas & DOI de Zenodo de E19 y mención expresa de que los datos son sintéticos \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\section{Cronograma de las semanas finales}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{1.8cm}p{6.4cm}p{6.6cm}@{}}
+		\toprule
+		\textbf{Semana} & \textbf{Objetivo} & \textbf{Hito verificable} \\
+		\midrule
+		14 & Renombrado a \textsc{AcadTrace} & Repositorio, código, contenedores y documento renombrados en un solo \emph{commit} \\
+		15 & Cerrar E03, E04 y E05 & Los cuatro mecanismos conmutan; el generador y el inyector funcionan \\
+		15 & Cerrar E06 y E08 & Ejecución piloto completa con informe del verificador \\
+		16 & Experimentos 1, 2 y 3 & Datos crudos de E07 y matriz de detección de E09 en el repositorio \\
+		16 & Cerrar E10 a E15 & Spark, trazas, tablero, pruebas, calidad y trazabilidad normativa \\
+		17 & Cerrar E16 y E18 & Documento compilando desde clonación limpia \\
+		17 & Cerrar E17 y E19 & Borrador del manuscrito y DOI de Zenodo \\
+		17 & Defensa oral & Demostración en vivo y respuesta a las preguntas de la sección 11 \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\begin{alerta}{Riesgo de planificación}
+	El renombrado de la semana 14 parece trivial y no lo es: toca el repositorio, los espacios de nombres, los contenedores y el documento. Si se pospone a la semana 17 coincidirá con el cierre del manuscrito y producirá referencias rotas justo cuando no hay tiempo para arreglarlas.
+\end{alerta}
+
+\section{Preguntas de la defensa oral}
+
+\begin{enumerate}[leftmargin=*,itemsep=4pt]
+	\item ¿Por qué el sistema cambió de nombre y qué se gana con ello de cara a la publicación?
+	\item ¿Cómo garantizan, con relojes lógicos, una auditoría fiable del orden de modificación de calificaciones entre nodos?
+	\item Si un administrador con acceso a la base de datos cambia una nota sin pasar por la aplicación, ¿lo detectan? ¿Con cuál de los cuatro mecanismos y en cuánto tiempo?
+	\item ¿Cuál es la sobrecarga medida de M2 frente a M0 y qué significa ese número para un docente que carga cincuenta notas?
+	\item ¿Por qué el sistema se posiciona como CP para matrícula y calificaciones?
+	\item ¿Qué microservicios escalan durante el período de matrícula y cómo lo demuestran con su prueba de carga?
+	\item ¿Por qué los datos son sintéticos y qué habría hecho falta para usar datos reales?
+	\item ¿Qué amenaza a la validez consideran la más seria y por qué no pudieron eliminarla?
+\end{enumerate}
+
+\section{Rúbrica de evaluación}
+
+\subsection{Criterios de piso}
+
+\begin{alerta}{Incumplir cualquiera de estos criterios implica calificación CERO en toda la entrega}
+	\textbf{P1.} El estudiante debe subir al SGA un documento PDF con carátula que muestre claramente, en una sola línea, la URL del repositorio donde se encuentra el trabajo desarrollado. Si la URL está rota, el repositorio no es accesible o no se cumple esta directriz, la calificación es CERO.\\[6pt]
+	\textbf{P2.} Si el PDF no se genera correctamente a partir del LaTeX mediante clonación del repositorio y compilación del archivo \texttt{.tex}, la calificación es CERO. Las instrucciones de compilación (compilador, orden de comandos, archivo principal, dependencias) deben estar documentadas en el archivo \texttt{README.md} del repositorio.\\[6pt]
+	\textbf{P3.} Si aparece cualquier dato real de un estudiante de la institución en el repositorio, en el paquete de replicación, en el documento o en las capturas, la calificación es CERO. Los experimentos se ejecutan sobre datos sintéticos sin excepción.\\[6pt]
+	\textbf{P4.} Si el sistema no levanta con un solo comando desde una máquina limpia siguiendo el \texttt{README.md}, la calificación es CERO.\\[6pt]
+	\textbf{P5.} Si no existen los datos crudos de E07 o el verificador de E08, la calificación es CERO: sin ellos la entrega no tiene resultado medido.\\[6pt]
+	\textbf{P6.} Si se detectan referencias fabricadas, DOI que no resuelven o citas cuyos campos no corresponden a la obra real, la calificación es CERO por falta de integridad académica.\\[6pt]
+	\textbf{P7.} Si falta la declaración de uso de IA (E18), la calificación es CERO.
+\end{alerta}
+
+\subsection{Criterios calificables}
+
+\begin{center}
+	\small
+	\begin{longtable}{@{}p{0.9cm}p{5.6cm}rp{6.6cm}@{}}
+		\toprule
+		\textbf{Cód.} & \textbf{Criterio} & \textbf{Pts.} & \textbf{Descriptor de nivel máximo} \\
+		\midrule
+		\endhead
+		C1 & Rigor del diseño experimental & 18 & Los tres experimentos completos, con semillas fijadas, cinco repeticiones y procedimiento descrito con detalle suficiente para repetirlo \\
+		\addlinespace
+		C2 & Matriz de detección de manipulaciones & 15 & Los cinco tipos sobre los tres mecanismos, con intervalos de confianza y falsos positivos medidos \\
+		\addlinespace
+		C3 & Reproducibilidad & 12 & Otro equipo regenera todas las figuras ejecutando el \emph{notebook}, sin intervención manual \\
+		\addlinespace
+		C4 & Trazabilidad normativa y de calidad & 10 & Tabla LOPDP completa y evaluación ISO/IEC 25010 con métricas reales \\
+		\addlinespace
+		C5 & Cobertura de los temas de la asignatura & 14 & Los 27 temas de la tabla de la sección 8 con evidencia concreta y localizable \\
+		\addlinespace
+		C6 & Arquitectura distribuida y su justificación & 9 & Fronteras de microservicios argumentadas, posición CAP por agregado, decisión de mecanismo defendida con datos propios \\
+		\addlinespace
+		C7 & Calidad del software y pruebas & 7 & Cobertura $\geq 70\,\%$, integración y carga en el pico de matrícula \\
+		\addlinespace
+		C8 & Documento LaTeX y bibliografía & 8 & Compila sin advertencias graves ni referencias sin resolver; bibliografía verificada con DOI \\
+		\addlinespace
+		C9 & Borrador del manuscrito & 7 & Título e identidad nuevos aplicados, estructura completa y al menos cinco referencias de la revista objetivo \\
+		\bottomrule
+	\end{longtable}
+\end{center}
+
+\subsection{Penalizaciones individuales}
+
+\begin{itemize}[leftmargin=*,itemsep=3pt]
+	\item Integrante sin \emph{commits} sustantivos: se le descuenta el 50\,\% de la nota del grupo.
+	\item Integrante que no responde ninguna pregunta en la defensa: se le descuenta el 30\,\%.
+	\item Indicios de texto generado por IA presentado como propio sin declararlo en E18: se aplica el criterio de piso P7 y se remite el caso según la normativa de integridad académica.
+\end{itemize}
+
+\section{Lista de verificación final}
+
+\begin{center}
+	\small
+	\begin{tabular}{@{}p{0.7cm}p{14.3cm}@{}}
+		\toprule
+		\textbf{$\square$} & \textbf{Verificación} \\
+		\midrule
+		$\square$ & El repositorio, el código, los contenedores y el documento usan el nombre \textsc{AcadTrace} \\
+		$\square$ & El PDF de carátula con la URL del repositorio en una sola línea está subido al SGA \\
+		$\square$ & Clonamos el repositorio en una máquina limpia y el \texttt{.tex} compiló siguiendo el \texttt{README.md} \\
+		$\square$ & \texttt{docker compose up} levanta el sistema completo y responde en el navegador \\
+		$\square$ & Cambiar \texttt{AUDIT} conmuta entre los cuatro mecanismos sin tocar código \\
+		$\square$ & No hay ni un solo dato real de estudiante en ningún artefacto entregado \\
+		$\square$ & El generador sintético reproduce el mismo conjunto con la misma semilla \\
+		$\square$ & Están los datos crudos de los tres experimentos y el informe del verificador \\
+		$\square$ & La matriz de detección cubre los cinco tipos sobre los tres mecanismos \\
+		$\square$ & El \emph{notebook} regenera todas las figuras sin intervención manual \\
+		$\square$ & La curva de \emph{speedup} tiene los cuatro puntos y la fracción de Amdahl está calculada \\
+		$\square$ & La tabla de trazabilidad LOPDP enfrenta cada obligación con su mecanismo \\
+		$\square$ & La cobertura de pruebas es $\geq 70\,\%$ y el informe está en el repositorio \\
+		$\square$ & Todos los DOI de la bibliografía resuelven al artículo correcto \\
+		$\square$ & El borrador del manuscrito cita cinco o más artículos de la revista objetivo \\
+		$\square$ & La declaración de uso de IA está completa y firmada por los cuatro integrantes \\
+		$\square$ & El DOI de Zenodo resuelve y el paquete contiene generador, inyector, cargas, datos y verificador \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+
+\vspace{8pt}
+\begin{aviso}{Una última advertencia honesta para el equipo}
+	De los cuatro proyectos de la asignatura, este era el que partía en peor posición para publicar: una sola escuela pequeña y un dominio que, tratado como analítica educativa, no da para una afirmación defendible. El cambio de nombre no es cosmético; es el reconocimiento de que la contribución está en el mecanismo de auditoría y no en el sistema de gestión. Con esa reorientación el trabajo pasa a ser evaluable. Sin ella, no lo es.
+\end{aviso}
+
+\nocite{*}
+\bibliographystyle{ieeetr}
+\bibliography{references_PFC_AcadTrace}
+
+\end{document}

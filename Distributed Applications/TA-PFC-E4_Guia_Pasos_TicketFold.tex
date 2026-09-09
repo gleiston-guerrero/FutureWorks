@@ -1,0 +1,828 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,provide=*]{babel}
+\usepackage{csquotes}
+\usepackage{charter}
+\usepackage[scaled=0.92]{helvet}
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.3cm,right=2.3cm,headheight=14pt]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{uteqBlue}{HTML}{0E3F7E}
+\definecolor{uteqMid}{HTML}{1E5AA8}
+\definecolor{uteqTeal}{HTML}{2E86A1}
+\definecolor{uteqGreen}{HTML}{4FAE60}
+\definecolor{uteqAmber}{HTML}{F2A413}
+\definecolor{uteqSoft}{HTML}{EAF1F9}
+\definecolor{uteqRed}{HTML}{B02418}
+\definecolor{uteqGray}{HTML}{3A3A3A}
+\definecolor{grisCodigo}{HTML}{F2F4F6}
+
+\hypersetup{colorlinks=true,linkcolor=uteqBlue,urlcolor=uteqMid,citecolor=uteqBlue}
+
+\titleformat{\section}{\normalfont\Large\bfseries\color{uteqBlue}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries\color{uteqMid}}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\bfseries\color{uteqTeal}}{\thesubsubsection}{0.5em}{}
+\titlespacing*{\section}{0pt}{17pt}{8pt}
+\titlespacing*{\subsection}{0pt}{13pt}{6pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\footnotesize\color{uteqBlue}TA-PFC-E4 $\cdot$ TicketFold (equipo ACC)}
+\fancyhead[R]{\footnotesize\color{uteqBlue}Aplicaciones Distribuidas (ISR-701) $\cdot$ \thepage}
+\fancyfoot[C]{\footnotesize\color{uteqGray}Prof. PhD. Gleiston C. Guerrero-Ulloa $\cdot$ UTEQ}
+
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.16}
+
+\lstset{
+	basicstyle=\ttfamily\footnotesize,
+	backgroundcolor=\color{grisCodigo},
+	frame=single,
+	rulecolor=\color{uteqBlue},
+	breaklines=true,
+	columns=fullflexible,
+	xleftmargin=6pt,
+	xrightmargin=6pt,
+	framexleftmargin=6pt
+}
+
+\newtcolorbox{uteqbox}[1]{
+	colback=uteqSoft, colframe=uteqBlue, boxrule=0.8pt, arc=2pt,
+	left=8pt, right=8pt, top=7pt, bottom=7pt,
+	title={\bfseries #1}, fonttitle=\normalsize\color{white}, colbacktitle=uteqBlue
+}
+
+\newtcolorbox{pisoBox}[1]{
+	colback=white, colframe=uteqRed, boxrule=0.9pt, arc=2pt,
+	left=8pt, right=8pt, top=7pt, bottom=7pt,
+	title={\bfseries #1}, fonttitle=\normalsize\color{white}, colbacktitle=uteqRed
+}
+
+\newtcolorbox{avisoBox}[1]{
+	colback=white, colframe=uteqAmber, boxrule=0.9pt, arc=2pt,
+	left=8pt, right=8pt, top=7pt, bottom=7pt,
+	title={\bfseries #1}, fonttitle=\normalsize\color{uteqGray}, colbacktitle=uteqAmber
+}
+
+\newtcolorbox{defBox}[1]{
+	colback=white, colframe=uteqGreen, boxrule=0.9pt, arc=2pt,
+	left=8pt, right=8pt, top=7pt, bottom=7pt,
+	title={\bfseries #1}, fonttitle=\normalsize\color{white}, colbacktitle=uteqGreen
+}
+
+\newcommand{\paso}[1]{\subsection{#1}}
+
+\begin{document}
+	
+	\begin{titlepage}
+		\centering
+		\vspace*{0.9cm}
+		{\small\color{uteqGray} UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO\\ Facultad de Ciencias de la Computación y Diseño Digital\\ Carrera de Ingeniería de Software\par}
+		\vspace{16pt}
+		{\color{uteqBlue}\rule{\textwidth}{2pt}}\\[8pt]
+		\colorbox{uteqBlue}{\parbox{0.96\textwidth}{\centering\vspace{5pt}{\large\bfseries\color{white} GUÍA PASO A PASO DE LA ENTREGA FINAL --- TA-PFC-E4}\vspace{5pt}}}\\[8pt]
+		{\color{uteqBlue}\rule{\textwidth}{2pt}}\\[18pt]
+		{\LARGE\bfseries\color{uteqBlue} TicketFold\par}
+		\vspace{5pt}
+		{\large\color{uteqGray} Correlación de incidencias masivas guiada por telemetría\par}
+		\vspace{4pt}
+		{\normalsize\color{uteqGray} Equipo ACC --- cuatro integrantes\par}
+		\vspace{3pt}
+		{\footnotesize\color{uteqGray}\emph{denominación anterior: Soporte Técnico de Internet}\par}
+		\vspace{22pt}
+		\begin{minipage}{0.92\textwidth}
+			\small
+			\begin{tabular}{@{}p{4.3cm}p{9.6cm}@{}}
+				\toprule
+				\textbf{Código de actividad} & TA-PFC-E4 \\
+				\textbf{Unidad} & Transversal (Unidades 1 a 5) \\
+				\textbf{Tipo} & Trabajo Autónomo (TA) --- Sumativa \\
+				\textbf{Modalidad} & Grupal (3--4 integrantes) \\
+				\textbf{Semana de entrega} & 17 (último día de la semana) \\
+				\textbf{Entregables} & Repositorio público + documento LaTeX (.tex y .pdf) + PDF de carátula en el SGA + defensa oral \\
+				\textbf{Calificación} & 0--100 puntos \\
+				\textbf{Carácter} & \textbf{Acumulativo total}: incluye y actualiza todo lo entregado en E1, E2 y E3 \\
+				\bottomrule
+			\end{tabular}
+		\end{minipage}
+		\vfill
+		{\small\color{uteqGray} Aplicaciones Distribuidas (ISR-701) $\cdot$ Quevedo, Ecuador\par}
+	\end{titlepage}
+	
+	\tableofcontents
+	\newpage
+	
+	\section{Cómo usar esta guía}
+	
+	Esta guía es un procedimiento, no un temario. Está escrita para ejecutarse en orden, paso por paso, marcando cada paso al terminarlo. Cada paso indica \textbf{qué hay que hacer}, \textbf{qué artefacto queda como evidencia} y \textbf{cómo se comprueba} que quedó bien hecho. Si un paso no produce su artefacto, el paso no está terminado, por mucho que el equipo sienta que avanzó.
+	
+	\begin{uteqbox}{La regla que define esta entrega}
+		TA-PFC-E4 es una \textbf{entrega total}. El equipo presenta el sistema completo, el documento completo y el paquete completo de evidencias, con independencia de lo que haya entregado en E1, E2 o E3. No se acepta la frase «eso ya se entregó»: si un artefacto no está en este paquete, no existe a efectos de calificación. Lo entregado antes no se repite tal cual, se \textbf{recupera, corrige y actualiza} con lo aprendido después.
+	\end{uteqbox}
+	
+	\subsection{Qué se acumula de las entregas anteriores}
+	
+	La entrega final consolida siete instrumentos previos. La tabla siguiente es el inventario: el equipo debe recuperar cada artefacto, verificar que sigue siendo cierto y corregirlo donde el sistema haya cambiado.
+	
+	\begin{center}
+		\footnotesize
+		\begin{longtable}{@{}p{2.5cm}p{1.5cm}p{11.2cm}@{}}
+			\toprule
+			\textbf{Instrumento} & \textbf{Semana} & \textbf{Qué debe reaparecer, actualizado, en la entrega final} \\
+			\midrule
+			\endhead
+			TA-PFC-E1 & 4 & Problema cuantificado, justificación de la arquitectura distribuida frente a dos alternativas, estado del arte, diagramas C4, ADR, análisis CAP, modelo de fallos, preguntas técnicas, métricas y plan de validación \\
+			\addlinespace
+			PE-U1 \newline GA-SUM-01 & 4 & Servidor y clientes con sockets TCP, servicio gRPC equivalente, relojes de Lamport, medición comparativa de latencia y su boxplot \\
+			\addlinespace
+			Exposición \newline Corte 1 & 4 & Caso real documentado y la decisión arquitectónica que de él se derivó \\
+			\addlinespace
+			Guía 2 (E2) \newline U3 $\cdot$ GA-SUM-02 & 7 & Microservicios con base de datos propia, API Gateway, OpenAPI 3.0, credencial temporal, Docker multi-etapa y \texttt{docker-compose} \\
+			\addlinespace
+			FORM-IC-02 \newline TA-IND-02 & 10--11 & Análisis individual de la tecnología de datos y del modelo de consistencia realmente implementado, con su topología de replicación \\
+			\addlinespace
+			Guía 3 (E3) \newline U2 $\cdot$ GA-SUM-03 & 11 & Clúster CockroachDB de tres nodos, fragmentación, prueba de tolerancia a fallos y comparación de consultas \\
+			\addlinespace
+			Exposición \newline Corte 2 & 13 & Defensa técnica del estado del proyecto \\
+			\addlinespace
+			PE-U4 \newline GA-SUM-05 & 14 & Pipeline en pandas y PySpark, medición de \emph{speedup} y análisis con la ley de Amdahl \\
+			\addlinespace
+			FORM-TL-05 & 16 & Los \emph{issues} que el equipo revisor abrió sobre este repositorio, todos respondidos \\
+			\addlinespace
+			\textbf{TA-PFC-E4} & \textbf{17} & \textbf{Todo lo anterior más el experimento propio de esta entrega, la calidad, la observabilidad y la defensa} \\
+			\bottomrule
+		\end{longtable}
+	\end{center}
+	
+	\subsection{Roles del equipo}
+	
+	Los roles se mantienen desde la primera entrega y deben ser visibles en el historial del repositorio: \textbf{Arquitecto}, \textbf{Desarrollador}, \textbf{Responsable de Calidad} y \textbf{Documentalista}. Cada paso de esta guía indica entre corchetes qué rol lo lidera; eso no exime a los demás de conocerlo, porque en la defensa oral cualquier integrante puede ser preguntado sobre cualquier parte.
+	
+	\section{Identificación del proyecto}
+	
+	El sistema gestiona las solicitudes de soporte de un proveedor de servicios de Internet: los abonados reportan incidencias, el sistema las clasifica por prioridad, asigna técnicos, agenda visitas y mide el cumplimiento de los acuerdos de nivel de servicio. Es el único de los cuatro proyectos en el que el acuerdo de nivel de servicio no es un atributo secundario sino el eje del dominio.
+	
+	El fenómeno técnico es este: se cae un nodo de distribución en una zona y doscientos abonados llaman en veinte minutos. El sistema abre doscientos tickets. El despachador ve doscientos problemas donde hay uno solo, envía técnicos a domicilios sin avería propia y el tiempo medio de reparación se dispara mientras el acuerdo de nivel de servicio se incumple en cascada. Los indicios llegan además por canales distintos --- portal web, aplicación, centro de llamadas y telemetría de los equipos del abonado --- y hay que ordenarlos causalmente antes de poder agruparlos.
+	
+	\begin{defBox}{El núcleo técnico de esta entrega, y una ventaja que solo tiene este proyecto}
+		TicketFold debe medir el efecto de \textbf{correlacionar tickets guiándose por la telemetría de red}. Y tiene algo que ningún otro PFC posee: \textbf{verdad de campo por construcción}. Como la avería la provoca el propio equipo en el simulador, se sabe con exactitud qué abonados quedaron afectados, y eso permite medir la calidad del agrupamiento contra una respuesta conocida, sin etiquetado manual y sin discusión. En un proveedor real nadie tiene ese dato.
+	\end{defBox}
+	
+	\section{Procedimiento paso a paso}
+	
+	\paso{Paso 0 --- Congelar el punto de partida \emph{[Arquitecto]}}
+	
+	Antes de tocar nada, deje constancia del estado actual. Esto permite demostrar después cuánto avanzó el equipo en las últimas semanas y facilita volver atrás si algo se rompe.
+	
+	\begin{enumerate}[leftmargin=*,itemsep=3pt]
+		\item Cree la etiqueta \texttt{pre-e4} en el repositorio sobre el último \emph{commit} actual: \texttt{git tag pre-e4 \&\& git push origin pre-e4}.
+		\item Registre en \texttt{docs/bitacora.md} la fecha, el SHA completo del \emph{commit} etiquetado y una lista honesta de lo que funciona y lo que no.
+		\item Verifique que el repositorio es \textbf{público} y accesible de forma anónima: \texttt{GIT\_TERMINAL\_PROMPT=0 git ls-remote <URL> HEAD} desde una sesión sin credenciales.
+		\item Compruebe que existe \texttt{LICENSE} y \texttt{.gitignore}.
+	\end{enumerate}
+	
+	\textbf{Evidencia:} etiqueta \texttt{pre-e4} y entrada inicial en \texttt{docs/bitacora.md}.
+	
+	\paso{Paso 1 --- Adoptar la denominación del sistema \emph{[Documentalista]}}
+	
+	El proyecto cambia de nombre. \textsc{Soporte Técnico de Internet} nombra un departamento, no un sistema: describe igual de bien a un centro de llamadas, a una mesa de ayuda o a un proveedor entero, y no sirve como identificador de repositorio. La denominación oficial a partir de esta entrega es \textsc{TicketFold}, con el descriptor «correlación de incidencias masivas guiada por telemetría en la gestión de solicitudes de un proveedor de Internet». El nombre alude al mecanismo: muchos tickets individuales se pliegan en una sola incidencia subyacente.
+	
+	\begin{enumerate}[leftmargin=*,itemsep=3pt]
+		\item Compruebe que el nombre está libre: búsqueda en un buscador general, búsqueda en GitHub y búsqueda en directorios de software. Guarde las tres capturas en \texttt{docs/nombre/}.
+		\item Renombre el repositorio y actualice la URL en todos los documentos.
+		\item Renombre los espacios de nombres del código, las imágenes de contenedor y los servicios de \texttt{docker-compose.yml}.
+		\item Añada al \texttt{README.md} una línea que declare la denominación anterior, para que el historial siga siendo legible.
+		\item Haga todo esto en \textbf{un único \emph{commit} de renombrado}, con mensaje descriptivo.
+	\end{enumerate}
+	
+	\begin{avisoBox}{Por qué esto va primero y no al final}
+		El renombrado toca el repositorio, el código, los contenedores y el documento. Hacerlo en la última semana, cuando se está cerrando el documento, produce referencias rotas justo cuando no queda tiempo para arreglarlas.
+	\end{avisoBox}
+	
+	\textbf{Evidencia:} \emph{commit} de renombrado, capturas de la comprobación de nombre y \texttt{README.md} actualizado.
+	
+	\paso{Paso 2 --- Recuperar y corregir el análisis de la Entrega 1 \emph{[Arquitecto]}}
+	
+	La Entrega 1 se escribió cuando el sistema todavía no existía. Ahora existe, así que buena parte de lo que se afirmó allí necesita corrección. Recupere el documento de E1 y revise, uno por uno, estos ocho elementos.
+	
+	\begin{center}
+		\footnotesize
+		\begin{longtable}{@{}p{0.7cm}p{4.6cm}p{9.9cm}@{}}
+			\toprule
+			\textbf{N.º} & \textbf{Elemento de E1} & \textbf{Qué hay que hacer ahora} \\
+			\midrule
+			\endhead
+			2.1 & Problema cuantificado & Verificar que las cifras siguen siendo verdaderas y que las fuentes siguen resolviendo. Sustituir las que hayan caducado \\
+			2.2 & Justificación de la arquitectura distribuida & Contrastarla con lo que el equipo aprendió construyendo el sistema. Si alguna razón resultó falsa, decirlo: rectificar con evidencia propia vale más que sostener el error \\
+			2.3 & Estado del arte & Ampliarlo a un mínimo de quince fuentes verificadas. Añadir lo publicado desde la semana 4 \\
+			2.4 & Diagramas C4 & Actualizar los niveles 1, 2 y 3 al sistema real, no al planificado. Añadir el diagrama de despliegue \\
+			2.5 & Registros de decisión (ADR) & Revisar los cinco de E1 y añadir uno por cada decisión tomada después. Cada ADR: contexto, decisión, alternativas consideradas y consecuencias \\
+			2.6 & Posición CAP y modelo de consistencia & Reescribirla \textbf{por agregado del dominio}, no para todo el sistema, y sostenerla con los datos del Paso 8 \\
+			2.7 & Modelo de fallos & Clasificar los fallos observados durante el desarrollo según el modelo de Cristian: caída, omisión, temporización y arbitrario \\
+			2.8 & Métricas y plan de validación & Confrontar las métricas prometidas en E1 con las realmente medidas. Explicar cada diferencia \\
+			\bottomrule
+		\end{longtable}
+	\end{center}
+	
+	\textbf{Evidencia:} capítulos actualizados del documento, con una nota explícita de qué cambió respecto de E1 y por qué.
+	
+	\paso{Paso 3 --- Recuperar la práctica de sockets, gRPC y relojes lógicos \emph{[Desarrollador]}}
+	
+	Lo entregado en PE-U1 no era un ejercicio aislado: era el cimiento de la comunicación del sistema. Ahora debe estar integrado y funcionando dentro del sistema real.
+	
+	\begin{enumerate}[leftmargin=*,itemsep=4pt]
+		\item Compruebe que el canal TCP sigue vivo dentro del sistema real y que cumple la función de dominio que le corresponde, que es el canal de telemetría y latidos desde los equipos del abonado hacia el sistema.
+		\item Verifique la delimitación de mensajes por longitud. Un canal TCP que asume que un \texttt{recv} devuelve un mensaje completo funciona en pruebas y falla en carga; si aún está así, corríjalo.
+		\item Compruebe que los contratos \texttt{.proto} están versionados en el repositorio y que el código generado no se sube (se regenera con \texttt{protoc} desde el \texttt{README.md}).
+		\item Rehaga la medición comparativa de latencia entre TCP y gRPC \textbf{sobre el sistema actual}, no sobre el prototipo de la semana 4: cien envíos por tecnología, con \texttt{time.perf\_counter()}, guardando media, mediana, desviación estándar y percentil 95 en CSV.
+		\item Regenere el diagrama de caja comparativo a 300 DPI.
+		\item Actualice los relojes de Lamport: deben ordenar de forma causal el ciclo de vida del ticket cuando los eventos llegan por web, aplicación y centro de llamadas, y los vectoriales detectan actualizaciones concurrentes del mismo ticket.
+	\end{enumerate}
+	
+	\textbf{Evidencia:} \texttt{experiments/data/latency\_sockets.csv}, \texttt{latency\_grpc.csv}, la figura del diagrama de caja y los \texttt{.proto} versionados.
+	
+	\paso{Paso 4 --- Recuperar y endurecer la capa de microservicios \emph{[Desarrollador]}}
+	
+	\begin{enumerate}[leftmargin=*,itemsep=4pt]
+		\item Verifique que cada microservicio conserva \textbf{su propia base de datos} y que ninguno accede a la de otro. Si algún servicio consulta directamente tablas ajenas, es el antipatrón de base de datos compartida y debe corregirse antes de la entrega.
+		\item Compruebe que todas las respuestas mantienen la forma uniforme \texttt{\{status, data, message, timestamp\}}.
+		\item Verifique el flujo de autenticación completo: emisión del \emph{token} con expiración, validación en cada servicio y respuesta \texttt{401} cuando falta o caduca.
+		\item Actualice la especificación \textbf{OpenAPI 3.0} de cada microservicio y valídela con una herramienta; los archivos van en \texttt{docs/api/}.
+		\item Compruebe en el API Gateway: enrutamiento a los servicios, autenticación centralizada, limitación de tasa y registro de cada petición con marca de tiempo, método, ruta, origen y código de respuesta.
+		\item Verifique que cada \texttt{Dockerfile} es multi-etapa y que \texttt{docker-compose.yml} levanta el sistema completo con un solo comando desde una máquina limpia.
+		\item Confirme que existe \texttt{.env.example} con todas las variables y \textbf{sin valores reales}.
+	\end{enumerate}
+	
+	\begin{pisoBox}{Comprobación obligatoria antes de seguir}
+		Clone el repositorio en una carpeta nueva, siga el \texttt{README.md} al pie de la letra y levante el sistema. Si hace falta cualquier paso no documentado, el \texttt{README.md} está incompleto y debe corregirse ahora. Esta comprobación se repite en el Paso 15 y es criterio de piso.
+	\end{pisoBox}
+	
+	\textbf{Evidencia:} \texttt{docker-compose.yml}, \texttt{.env.example}, \texttt{docs/api/*.yaml} y captura de los tres flujos de extremo a extremo.
+	
+	\paso{Paso 5 --- Recuperar el clúster de datos y su prueba de fallos \emph{[Arquitecto]}}
+	
+	\begin{enumerate}[leftmargin=*,itemsep=4pt]
+		\item Levante el clúster de tres nodos y compruebe que los tres están vivos.
+		\item Verifique que el esquema real del sistema está cargado, con al menos tres tablas relacionadas y un volumen de datos representativo.
+		\item Documente la \textbf{fragmentación} aplicada: particionado de tickets por zona geográfica y por fecha. Exprese el criterio de partición en notación de álgebra relacional dentro de un entorno matemático.
+		\item Ejecute la consulta de distribución de rangos y guarde la salida.
+		\item Repita la prueba de tolerancia a fallos: cuente registros, detenga un nodo, repita la consulta de inmediato, espere treinta segundos, observe la redistribución, reincorpore el nodo y mida el tiempo de reintegración. \textbf{Grabe la pantalla} durante toda la prueba.
+		\item Ejecute cinco consultas propias del dominio con plan de ejecución analizado, en clúster y en nodo único, y construya la tabla comparativa.
+	\end{enumerate}
+	
+	\textbf{Evidencia:} vídeo de la prueba de fallos, salidas de las consultas, tabla comparativa y captura del panel del clúster.
+	
+	\paso{Paso 6 --- Recuperar el procesamiento distribuido y la ley de Amdahl \emph{[Responsable de Calidad]}}
+	
+	\begin{enumerate}[leftmargin=*,itemsep=4pt]
+		\item Recupere el pipeline de PE-U4 y ejecútelo sobre los datos del sistema: la telemetría de red y el histórico de incidencias, para detectar zonas problemáticas y calcular el tiempo medio de reparación agregado.
+		\item \textbf{Consolide el trabajo del equipo.} Los equipos de la práctica PE-U4 se conformaron con independencia de los equipos de PFC, de modo que sus integrantes pudieron haberla realizado en grupos distintos y sobre el dominio de otro proyecto. Identifique quién de este equipo trabajó sobre qué dominio, reúna el material y \textbf{vuelva a ejecutar el pipeline sobre los datos de este sistema} si el que se usó allí pertenecía a otro PFC. Declare en el documento de dónde procede cada pieza.
+		\item \textbf{Decida y declare el conjunto de datos.} Si el volumen propio del sistema no alcanza la escala con la que se trabajó en PE-U4, indique el tamaño real, justifique por qué es el pertinente para este dominio y conserve además la medición sobre el conjunto público original como referencia de contraste. Documente en todos los casos la fuente, la licencia, la fecha y el número de registros.
+		\item Mantenga las cinco transformaciones equivalentes en la versión secuencial y en la distribuida, cada una en su celda, sin reutilizar resultados intermedios y forzando la materialización con una acción.
+		\item Mida con \texttt{time.perf\_counter()}, cinco repeticiones por transformación, reportando la \textbf{mediana} y \textbf{descartando explícitamente la ejecución de calentamiento}.
+		\item Mida la transformación de unión con uno, dos y cuatro ejecutores.
+		\item Calcule el \emph{speedup} experimental $S = T_{\text{sec}} / T_{\text{dist}}$ y despeje la fracción no escalable observada.
+	\end{enumerate}
+	
+	\begin{defBox}{Las fórmulas que deben aparecer en el documento, con sustitución numérica}
+		Speedup de Amdahl: $S(N) = \dfrac{1}{(1-p) + p/N}$ \qquad Límite: $S_{\max} = \dfrac{1}{1-p}$\\[4pt]
+		Fracción no escalable despejada: $p = \dfrac{1/S - 1/N}{1 - 1/N}$, con $N>1$ \qquad Eficiencia: $E(N) = S(N)/N$
+	\end{defBox}
+	
+	\begin{avisoBox}{Error conceptual que se penaliza}
+		La magnitud despejada con la fórmula anterior \textbf{no es la fracción secuencial del algoritmo}: es la \textbf{fracción no escalable observada}, que incluye la sobrecarga de planificación, serialización y redistribución del motor. Confundir ambas es un error conceptual, no un matiz de redacción.
+	\end{avisoBox}
+	
+	\textbf{Evidencia:} \texttt{resultados/tiempos\_crudos.csv}, \texttt{tiempos\_resumen.csv}, las tres figuras a 300 DPI (barras, \emph{speedup} con curvas teóricas para $p=0{,}5$; $0{,}75$; $0{,}9$; $0{,}95$, y eficiencia) y la captura de la interfaz de Spark con el grafo de la transformación de unión.
+	
+	\paso{Paso 7 --- Construir el banco de pruebas del experimento propio \emph{[Desarrollador]}}
+	
+	Este paso y el siguiente son el corazón de la entrega final. Todo lo anterior demuestra que el sistema \emph{funciona}; estos dos demuestran que el equipo \emph{sabe qué produce} su sistema y puede probarlo con números.
+	
+	\subsubsection{Las tres estrategias que hay que implementar}
+	
+	\begin{center}
+		\small
+		\begin{tabular}{@{}p{1.0cm}p{4.4cm}p{9.5cm}@{}}
+			\toprule
+			\textbf{Cód.} & \textbf{Estrategia} & \textbf{Qué implementa} \\
+			\midrule
+			C0 & Sin correlación & Línea base: un ticket, una incidencia. Reproduce el desbordamiento del despachador y demuestra que el fenómeno existe \\
+			C1 & Zona y ventana temporal & Agrupa tickets del mismo sector abiertos dentro de una ventana deslizante, sin mirar la red \\
+			C2 & Zona, ventana y telemetría & Añade los reportes de los equipos del abonado y los latidos de los nodos, ordenados causalmente antes de agrupar \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	Las tres deben ser \textbf{conmutables mediante una variable de entorno} \texttt{CORREL=c0|c1|c2}. No se admiten tres ramas divergentes: eso impide comparar y hace la medición irrepetible.
+	
+	\subsubsection{El inyector de averías con verdad de campo}
+	
+	Es la pieza que decide si esta entrega tiene resultado. La herramienta provoca una avería en la topología simulada y \textbf{registra exactamente qué abonados quedaron afectados}, con qué severidad y en qué instante. Esa bitácora es la referencia contra la que se mide todo lo demás.
+	
+	\begin{avisoBox}{Sin esta bitácora no hay medición posible}
+		Si el inyector no deja constancia de a quién afectó cada avería, el equipo no puede saber si un agrupamiento fue correcto o no, y la entrega queda reducida a una descripción del sistema. Es criterio de piso.
+	\end{avisoBox}
+	
+	\subsubsection{El generador de abonados sintéticos y de reportes}
+	
+	Guion parametrizado con la topología, la densidad de abonados por zona y el patrón horario de reporte, con semilla fija. Y un generador de reportes que simule la llegada por los tres canales --- portal, aplicación y centro de llamadas --- con retardos realistas entre el momento de la avería y el momento de la llamada.
+	
+	\subsubsection{El simulador de equipos de abonado y el inyector de particiones}
+	
+	Equipos de abonado simulados que reportan estado y latidos por TCP con tasa de pérdida parametrizable, y una herramienta capaz de aislar un porcentaje de nodos durante una ventana configurable.
+	
+	\subsubsection{El oráculo de consistencia}
+	
+	Verifica al final de cada corrida:
+	
+	\begin{enumerate}[leftmargin=*,itemsep=2pt]
+		\item Todo ticket confirmado pertenece a exactamente una incidencia, ni cero ni dos.
+		\item Todo ticket cerrado tiene diagnóstico registrado y técnico asignado.
+		\item El cálculo del acuerdo de nivel de servicio de un ticket no cambia retroactivamente una vez cerrado.
+		\item Tras la reconciliación no existen dos tickets del mismo abonado por la misma avería.
+		\item El ciclo de vida de todo ticket respeta la máquina de estados, sin saltos ni retrocesos no permitidos.
+	\end{enumerate}
+	
+	\textbf{Evidencia del paso:} variable de entorno operativa, inyector con verdad de campo, generadores, simulador, inyector de particiones y oráculo en el repositorio, más la corrida piloto completa.
+	
+	\paso{Paso 8 --- Ejecutar el experimento y analizarlo \emph{[Responsable de Calidad]}}
+	
+	\subsubsection{Experimento 1 --- Efecto de la correlación}
+	
+	Factorial completo: \textbf{3 estrategias} $\times$ \textbf{3 escalas de avería} (10, 100 y 500 abonados afectados) $\times$ \textbf{2 regímenes} (una avería masiva única, y dos averías simultáneas en zonas distintas) $=$ \textbf{18 condiciones}, con cinco repeticiones cada una. Total: \textbf{90 corridas}.
+	
+	\begin{avisoBox}{Por qué el segundo régimen no es opcional}
+		Una estrategia que agrupa bien una avería puede \textbf{fusionar erróneamente dos}, y ese error solo aparece si se le presentan dos a la vez. Sin ese régimen el resultado sale engañosamente bueno y un lector atento lo detecta de inmediato.
+	\end{avisoBox}
+	
+	\begin{center}
+		\small
+		\begin{tabular}{@{}p{5.2cm}p{3.0cm}p{6.4cm}@{}}
+			\toprule
+			\textbf{Variable} & \textbf{Unidad} & \textbf{Por qué se mide} \\
+			\midrule
+			\textbf{Incidencias efectivas} & recuento & \textbf{Carga real del despachador: el resultado central} \\
+			Precisión del agrupamiento & proporción & De lo agrupado, cuánto correspondía de verdad a esa avería \\
+			Exhaustividad del agrupamiento & proporción & De los tickets de la avería, cuántos fueron agrupados \\
+			Tasa de fusión errónea & \% de casos & Solo con dos averías: con qué frecuencia se funden en una \\
+			Tiempo medio de reparación & minutos & Efecto operativo de la correlación \\
+			Cumplimiento del acuerdo por prioridad & \% & Es el eje del dominio y se reporta desglosado \\
+			Visitas técnicas evitadas & recuento & Traduce el resultado a coste operativo \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	\begin{defBox}{Precisión y exhaustividad en lenguaje común}
+		La \emph{precisión} responde a «de lo que agrupé, cuánto estaba bien agrupado». La \emph{exhaustividad} responde a «de lo que debía agrupar, cuánto agrupé». Una estrategia que mete todos los tickets del país en una sola incidencia tiene exhaustividad perfecta y precisión pésima. Por eso se reportan siempre las dos, nunca una sola.
+	\end{defBox}
+	
+	\subsubsection{Experimento 2 --- La disponibilidad puesta a prueba}
+	
+	Se provoca una partición que aísla el veinte por ciento de los nodos durante sesenta segundos mientras los abonados siguen reportando, con cinco repeticiones. Se mide: tickets aceptados durante la partición, duplicados detectados tras reconciliar, tiempo de convergencia del estado, y verificación de que el cálculo del acuerdo de nivel de servicio y los registros de facturación quedaron consistentes pese a la disponibilidad concedida en la recepción.
+	
+	Este experimento convierte en resultado medido la posición arquitectónica que el proyecto viene sosteniendo desde la Entrega 1: disponibilidad en la recepción de incidencias, consistencia en el acuerdo de nivel de servicio y en la facturación.
+	
+	\subsubsection{Análisis estadístico obligatorio}
+	
+	Reportar promedios no basta y una sola ejecución por condición no es una medición. Para cada comparación, el documento debe presentar:
+	
+	\begin{itemize}[leftmargin=*,itemsep=4pt]
+		\item \textbf{Mediana con intervalo de confianza del 95\,\%}, no solo la media. Las latencias nunca se distribuyen de forma simétrica y la media engaña.
+		\item Una \textbf{prueba U de Mann-Whitney}: compara si un grupo tiende a dar valores mayores que otro sin suponer que los datos siguen una distribución normal.
+		\item Un \textbf{tamaño del efecto} con el estadístico $\hat{A}_{12}$ de Vargha-Delaney, que se lee como la probabilidad de que una ejecución tomada al azar de un grupo supere a una del otro. Sirve para responder «¿la diferencia es grande?», que es distinto de «¿la diferencia existe?».
+		\item \textbf{Diagramas de caja} por condición, nunca gráficos de barras con la media.
+		\item Las proporciones (tasas de acierto, de error o de violación) se reportan con \textbf{intervalo de confianza binomial}, no como porcentaje desnudo.
+	\end{itemize}
+	
+	\subsubsection{Amenazas a la validez}
+	
+	El documento debe incluir una sección propia con las cuatro categorías, escrita sin autoindulgencia. Reconocer una limitación real vale más que ocultarla.
+	
+	\begin{center}
+		\small
+		\begin{tabular}{@{}p{3.0cm}p{11.9cm}@{}}
+			\toprule
+			\textbf{Tipo} & \textbf{Qué debe discutir el equipo} \\
+			\midrule
+			Interna & Ruido de la máquina, interferencia entre contenedores, efecto del calentamiento, semillas de la inyección \\
+			\addlinespace
+			Externa & El patrón de reporte de los abonados es sintético y la topología simulada; hasta dónde se generaliza a un proveedor con decenas de miles de abonados \\
+			\addlinespace
+			De constructo & Si «incidencias efectivas» capta la carga real del despachador, y si el tiempo medio de reparación simulado se corresponde con el operativo \\
+			\addlinespace
+			De conclusión & Número de repeticiones, potencia de las pruebas y riesgo de comparaciones múltiples \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	\textbf{Evidencia:} datos crudos completos, cuaderno de análisis que regenera todas las figuras y la sección de amenazas a la validez.
+	
+	\paso{Paso 9 --- Pruebas, cobertura e integración continua \emph{[Responsable de Calidad]}}
+	
+	\begin{enumerate}[leftmargin=*,itemsep=4pt]
+		\item Escriba pruebas unitarias de la capa de lógica de negocio de cada microservicio. El objetivo no es el número: es que el motor de correlación y el motor de cálculo del acuerdo de nivel de servicio quede cubierto.
+		\item Implemente al menos \textbf{tres flujos de integración de extremo a extremo} a través del API Gateway.
+		\item Genere el informe de cobertura y publíquelo. \textbf{Umbral exigido: cobertura $\geq 70\,\%$.}
+		\item Mida la complejidad ciclomática y corrija lo que supere 10.
+		\item Cree \texttt{.github/workflows/ci-cd.yml} con cuatro trabajos: pruebas, análisis estático, construcción de la imagen y pruebas de integración levantando el sistema. Disparadores: envío a la rama principal y solicitud de incorporación de cambios.
+		\item Ejecute una prueba de carga con \textbf{50 usuarios durante 60 segundos} y capture el panel durante la prueba.
+		\item Provoque un fallo intencional, compruebe que el flujo se pone en rojo, corríjalo y compruebe que vuelve a verde. Guarde los enlaces a ambas ejecuciones: esa pareja es la evidencia de que el flujo realmente comprueba algo.
+	\end{enumerate}
+	
+	\textbf{Evidencia:} informe de cobertura, enlace al flujo en verde, enlace a la ejecución en rojo y su corrección, y resultados de la prueba de carga.
+	
+	\paso{Paso 10 --- Observabilidad \emph{[Arquitecto]}}
+	
+	\begin{enumerate}[leftmargin=*,itemsep=4pt]
+		\item Active el \textbf{registro estructurado} en formato JSON en todos los microservicios, con marca de tiempo, servicio, método, ruta, código de respuesta y tiempo de respuesta en milisegundos. Ningún registro puede contener datos sensibles.
+		\item Propague un \textbf{identificador de correlación} en las cabeceras a través de todos los servicios. Sin él no se puede reconstruir el recorrido de una operación, que es justamente lo que pregunta la revisión cruzada.
+		\item Exponga \texttt{/metrics} en cada microservicio con al menos un contador de peticiones, un histograma de duración y un medidor de conexiones activas.
+		\item Configure la recolección de métricas cada quince segundos.
+		\item Construya el panel con peticiones por segundo, latencia en los percentiles 50, 95 y 99, y tasa de errores. \textbf{El panel se versiona como código en el repositorio}, no como captura de pantalla.
+		\item Capture y exporte la \textbf{traza distribuida completa} de la operación central del sistema: un ticket completo, desde que el abonado lo abre hasta que se cierra, incluyendo su agrupamiento en una incidencia y la asignación del técnico
+	\end{enumerate}
+	
+	\textbf{Evidencia:} definición del panel en \texttt{observability/}, traza exportada y captura del panel con datos reales de la prueba de carga.
+	
+	\paso{Paso 11 --- Evaluación con ISO/IEC 25010:2023 \emph{[Responsable de Calidad]}}
+	
+	Complete la tabla con \textbf{métricas realmente medidas}, no estimadas. Una fila sin valor medido se evalúa como ausente.
+	
+	\begin{center}
+		\small
+		\begin{tabular}{@{}p{3.5cm}p{5.6cm}p{2.6cm}p{2.6cm}@{}}
+			\toprule
+			\textbf{Característica} & \textbf{Métrica} & \textbf{Valor objetivo} & \textbf{Valor medido} \\
+			\midrule
+			Fiabilidad --- disponibilidad & Tiempo en servicio durante una hora continua & $\geq 99{,}5\,\%$ & \\
+			Eficiencia de desempeño & Latencia p95 con 50 usuarios & $< 500$ ms & \\
+			Fiabilidad --- madurez & Tasa de errores de servidor & $< 1\,\%$ & \\
+			Mantenibilidad & Cobertura de pruebas y complejidad ciclomática & $\geq 70\,\%$ y $< 10$ & \\
+			Seguridad & Respuesta sin credencial en endpoints protegidos & \texttt{401} en el 100\,\% & \\
+			Adecuación funcional & Precisión y exhaustividad del agrupamiento con telemetría & $\geq 0{,}90$ ambas & \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	Para cada característica que no alcance el objetivo, el documento debe incluir un \textbf{plan de mejora concreto}: qué se haría, con qué esfuerzo estimado y qué se espera ganar. Declarar el incumplimiento con un plan realista puntúa más que maquillar el número.
+	
+	\textbf{Evidencia:} tabla completa en el documento y los datos crudos que la respaldan.
+	
+	\paso{Paso 12 --- Responder la revisión cruzada \emph{[todo el equipo]}}
+	
+	En la semana 16 el equipo revisor asignado abrió \emph{issues} sobre este repositorio. \textbf{Todos deben estar respondidos antes del cierre de la semana 17.} Para cada uno, elija una de las tres acciones y déjela registrada:
+	
+	\begin{center}
+		\small
+		\begin{tabular}{@{}p{3.6cm}p{11.3cm}@{}}
+			\toprule
+			\textbf{Acción} & \textbf{Qué hay que dejar registrado} \\
+			\midrule
+			Aceptar y corregir & Enlace al \emph{commit} o a la solicitud de incorporación de cambios que lo resuelve, y cierre del \emph{issue} \\
+			\addlinespace
+			Aceptar y diferir & Justificación técnica y registro como deuda técnica en el documento final, con el coste de arrastrarla \\
+			\addlinespace
+			Rebatir & Argumentación técnica con evidencia del propio código: archivo, función y líneas \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	Un \emph{issue} sin respuesta al cierre de la semana 17 cuenta como \textbf{deuda técnica no gestionada} y se penaliza. Rebatir bien fundamentado no perjudica a nadie: es parte del ejercicio.
+	
+	\textbf{Evidencia:} tabla en el documento con cada \emph{issue}, la acción tomada y el enlace que la prueba.
+	
+	\paso{Paso 13 --- Cerrar el documento acumulativo \emph{[Documentalista]}}
+	
+	El documento final es un único archivo LaTeX que contiene y actualiza todo lo anterior. Estructura obligatoria:
+	
+	\begin{center}
+		\footnotesize
+		\begin{longtable}{@{}p{0.7cm}p{4.4cm}p{10.1cm}@{}}
+			\toprule
+			\textbf{N.º} & \textbf{Sección} & \textbf{Contenido} \\
+			\midrule
+			\endhead
+			1 & Portada e índices & Portada institucional; índices de contenido, figuras y tablas generados automáticamente \\
+			2 & Resumen bilingüe & Máximo 250 palabras, en español e inglés, con objetivo, método, resultados y aporte \\
+			3 & Introducción & Problema cuantificado, contexto, objetivos y estructura del documento \\
+			4 & Estado del arte & Mínimo quince fuentes verificadas, organizadas por tema, con síntesis crítica propia \\
+			5 & Diseño del sistema & C4 niveles 1 a 3 y despliegue, ADR, fronteras de los microservicios \\
+			6 & Propiedades distribuidas & Posición CAP por agregado, modelo de consistencia, replicación, modelo de fallos \\
+			7 & Implementación & Comunicación, datos, procesamiento distribuido y capas, con código en \texttt{lstlisting} \\
+			8 & Diseño del estudio & Los experimentos del Paso 8: factores, variables, invariantes y análisis \\
+			9 & Resultados & Solo hechos medidos, con figuras y tablas propias. Sin interpretación \\
+			10 & Discusión & La interpretación, las decisiones que el equipo tomaría y las lecciones aprendidas \\
+			11 & Amenazas a la validez & Las cuatro categorías \\
+			12 & Calidad del producto & ISO/IEC 25010:2023, pruebas, cobertura, integración continua y observabilidad \\
+			13 & Gestión de la revisión cruzada & Tabla de \emph{issues} y su tratamiento \\
+			14 & Conclusiones & Respuesta explícita a cada pregunta del Paso 7, aunque la respuesta sea negativa \\
+			15 & Conclusiones individuales & \textbf{Mínimo 200 palabras por integrante}, con aprendizaje técnico específico \\
+			16 & Reflexión ética & \textbf{Mínimo media página}, citando el Código de Ética de ACM/IEEE-CS \\
+			17 & Declaraciones & Autoría con contribución individual y uso de IA generativa \\
+			18 & Bibliografía & Estilo IEEE con \texttt{biblatex} y \texttt{biber} \\
+			\bottomrule
+		\end{longtable}
+	\end{center}
+	
+	\begin{uteqbox}{Requisitos formales no negociables del documento}
+		\begin{itemize}[leftmargin=*,itemsep=2pt]
+			\item \textbf{Extensión mínima: 20 páginas de contenido}, sin contar portada, índices ni bibliografía.
+			\item \textbf{Mínimo 12 referencias} verificadas en estilo IEEE, todas con DOI que resuelva al trabajo citado.
+			\item Todo el \textbf{código} en \texttt{lstlisting}. Nunca como imagen.
+			\item Todas las \textbf{figuras} con \texttt{\textbackslash caption} descriptivo, \texttt{\textbackslash label} y referencia cruzada en el texto.
+			\item Todas las \textbf{tablas} con \texttt{booktabs}.
+			\item Todas las \textbf{ecuaciones} en entornos matemáticos numerados.
+			\item Todos los \textbf{diagramas} son propios del equipo. Ninguna captura de documentación ajena.
+			\item Rutas de imágenes \textbf{relativas}: una ruta local impide compilar desde una clonación limpia.
+			\item Compilación: \texttt{pdflatex} $\rightarrow$ \texttt{biber} $\rightarrow$ \texttt{pdflatex} $\rightarrow$ \texttt{pdflatex}, documentada en el \texttt{README.md}.
+			\item Similitud inferior al 15\,\% excluida la bibliografía.
+		\end{itemize}
+	\end{uteqbox}
+	
+	\paso{Paso 14 --- Declaraciones y paquete de reproducibilidad \emph{[Documentalista]}}
+	
+	\begin{enumerate}[leftmargin=*,itemsep=4pt]
+		\item Redacte la \textbf{declaración de uso de IA generativa}: qué herramienta, con qué propósito, en qué secciones y qué revisó cada integrante. Su ausencia es criterio de piso.
+		\item Redacte la \textbf{declaración de autoría} con el desglose de la contribución individual de cada integrante.
+		\item Prepare el \textbf{paquete de reproducibilidad}: generadores de datos, cargas, inyectores, oráculo, datos crudos y cuaderno de análisis, con \texttt{CITATION.cff} y versiones fijadas.
+		\item Compruebe la reproducibilidad de extremo a extremo: desde clonar el repositorio hasta regenerar todas las figuras, \textbf{en quince minutos o menos}, con los comandos exactos del \texttt{README.md}.
+	\end{enumerate}
+	
+	\paso{Paso 15 --- Entregar \emph{[Arquitecto]}}
+	
+	\begin{enumerate}[leftmargin=*,itemsep=4pt]
+		\item Suba al SGA un \textbf{PDF de carátula} con los datos de identificación del equipo y \textbf{la URL del repositorio en una sola línea, íntegra y sin cortes}.
+		\item Compruebe la URL abriéndola en una ventana privada, sin sesión iniciada.
+		\item Repita la comprobación del Paso 4: clonación limpia, seguir el \texttt{README.md}, compilar el \texttt{.tex} y levantar el sistema.
+		\item Verifique que cada integrante tiene \textbf{al menos cinco \emph{commits} sustantivos} en fechas distintas. Una carga masiva el último día no cuenta como colaboración.
+	\end{enumerate}
+	
+	\paso{Paso 16 --- Preparar la defensa oral \emph{[todo el equipo]}}
+	
+	La defensa dura quince minutos: diez de exposición y cinco de preguntas. Se estructura en las cinco fases habituales de la asignatura, todas identificables:
+	
+	\begin{center}
+		\small
+		\begin{tabular}{@{}p{1.1cm}p{3.5cm}p{10.3cm}@{}}
+			\toprule
+			\textbf{Fase} & \textbf{Duración} & \textbf{Contenido} \\
+			\midrule
+			F1 & 1 min & Apertura con el dato más contundente del experimento. Nunca con el índice. Equipo y roles \\
+			F2 & 3 min & Fundamento técnico del mecanismo central, un concepto por diapositiva, con diagrama propio \\
+			F3 & 3 min & Demostración en vivo: una avería masiva de quinientos abonados, mostrando primero el desbordamiento sin correlación y después el resultado con telemetría, sin tocar código \\
+			F4 & 3 min & Resultados medidos y qué decisión de ingeniería se deriva de ellos \\
+			F5 & 5 min & Tres conclusiones propias, una línea de trabajo futuro y defensa técnica ante preguntas \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	Reglas de las diapositivas que ya conoce el equipo: una idea, un diagrama y una fuente por diapositiva; máximo seis palabras por línea; cuerpo de 24 puntos y títulos de 32; máximo tres colores con significado; diagramas propios; y número de diapositivas aproximadamente igual al número de minutos.
+	
+	\begin{avisoBox}{Cuidado con el reparto del tiempo: aquí no caben tres minutos por persona}
+		En las exposiciones de los cortes 1 y 2, que duran de quince a veinte minutos, la regla es que cada integrante hable al menos tres minutos. \textbf{Esta defensa no dura eso}: son diez minutos de exposición y cinco de preguntas, y cuatro integrantes a tres minutos cada uno suman doce. La regla que aplica aquí es distinta: \textbf{cada integrante expone al menos dos minutos} y todos responden preguntas. Repartan las fases F1 a F4 entre los cuatro antes del ensayo, no el mismo día.
+	\end{avisoBox}
+	
+	\textbf{Preparación exigida:} ensayo cronometrado grabado en vídeo dos días antes, y ensayo con preguntas difíciles un día antes, con un estudiante de otro equipo haciendo de docente. En el ensayo se verifica el tiempo total, que nadie lea la pantalla y que los cambios de orador sean fluidos.
+	
+	\subsubsection{Preguntas que cualquier integrante debe poder responder}
+	
+	\begin{enumerate}[leftmargin=*,itemsep=3pt]
+		\item ¿Por qué la creación de tickets prioriza disponibilidad y el acuerdo de nivel de servicio prioriza consistencia? ¿Qué evidencia propia lo respalda?
+		\item Con quinientos abonados afectados por una sola avería, ¿cuántas incidencias efectivas ve el despachador con cada una de las tres estrategias?
+		\item ¿Cuál fue la precisión y la exhaustividad de la correlación con telemetría, y qué significa cada una en operación real?
+		\item ¿Con qué frecuencia fusionaron erróneamente dos averías simultáneas, y qué consecuencia tiene eso para el abonado de la segunda zona?
+		\item ¿Cuánto bajó el tiempo medio de reparación y cómo se traduce en cumplimiento por nivel de prioridad?
+		\item Durante la partición, ¿cuántos tickets duplicados se generaron y cuánto tardó la reconciliación?
+		\item ¿Cómo mantienen coherente el ciclo de vida del ticket cuando los eventos llegan por web, aplicación y centro de llamadas?
+		\item ¿Qué justifica empíricamente su elección de mensajería para el despacho frente a la del flujo de telemetría?
+	\end{enumerate}
+	
+	\section{Cobertura de los temas de la asignatura}
+	
+	Esta tabla es el mapa que el docente usa para verificar que ningún tema quedó sin aplicación demostrable. El equipo debe reproducirla en el documento, con el enlace o la referencia exacta a la evidencia de cada fila.
+	
+	\begin{center}
+		\footnotesize
+		\begin{longtable}{@{}p{1.1cm}p{4.9cm}p{8.9cm}@{}}
+			\toprule
+			\textbf{Unidad} & \textbf{Tema} & \textbf{Evidencia concreta exigida} \\
+			\midrule
+			\endhead
+			U1 & Transparencias ANSA & Al menos cinco de las ocho, cada una con el mecanismo que la realiza \\
+			U1 & Sockets TCP & Telemetría y latidos desde los equipos del abonado, con delimitación por longitud \\
+			U1 & gRPC y RPC & Contratos \texttt{.proto} entre Tickets, Diagnóstico y Técnicos \\
+			U1 & Relojes de Lamport y vectoriales & \textbf{Núcleo de la entrega}: orden causal del ciclo de vida del ticket entre tres canales \\
+			U1 & Tolerancia a fallos & Fallo por omisión y temporización en los reportes de red; inyector del Paso 7 \\
+			U1 & Elección de líder & Nodo despachador que asigna técnicos y correlaciona incidencias, con traza de una reelección \\
+			U1 & Teorema CAP & \textbf{Medido, no solo enunciado}: Experimento 2 del Paso 8 \\
+			U1 & Coordinación y consistencia & Confirmación en dos fases para asignar técnico, reservar franja y actualizar ticket \\
+			U1 & Seguridad & Autenticación, cuatro roles, cifrado en tránsito y auditoría de cada cambio de estado \\
+			U1 & Acuerdo de nivel de servicio & \textbf{Eje del dominio}: tiempos por prioridad y cumplimiento medido antes y después de correlacionar \\
+			U3 & Microservicios con base propia & Diagrama C4 nivel 3 y justificación de las fronteras \\
+			U3 & API REST y OpenAPI & Especificación validada y versionada en \texttt{docs/api/} \\
+			U3 & API Gateway & Enrutamiento, autenticación y limitación de tasa \\
+			U3 & Mensajería asíncrona & Colas con enrutamiento por prioridad y flujo de telemetría, con \textbf{justificación empírica} de la tecnología elegida para cada flujo \\
+			U3 & Contenedores y orquestación & \texttt{docker-compose} de un solo comando y manifiestos para absorber picos de incidencias \\
+			U3 & Patrones de despliegue & Actualización sin afectar la recepción de incidencias \\
+			U2 & Fragmentación & Partición por zona geográfica y por fecha, en notación de álgebra relacional \\
+			U2 & Replicación y consistencia & Clúster de tres nodos; consistencia fuerte donde el acuerdo y la facturación lo exigen \\
+			U2 & Tolerancia a fallos en datos & Vídeo de la caída de un nodo sin perder tickets registrados \\
+			U4 & Procesamiento distribuido & Análisis de telemetría e histórico de incidencias \\
+			U4 & Ley de Amdahl & Fracción no escalable despejada de la curva medida, con sustitución numérica \\
+			U5 & Capas y SOLID & Capas por microservicio; hallazgos de la revisión cruzada atendidos \\
+			U5 & Patrones de diseño & Estado del ticket, estrategia de priorización, observador, repositorio y apoderado \\
+			U5 & Inyección de dependencias & Contenedor configurado, con ejemplo de sustitución en pruebas \\
+			U5 & Integración y entrega continuas & Flujo con los cuatro trabajos y evidencia de que detecta fallos \\
+			U5 & Observabilidad & Panel de incidencias en tiempo real y de cumplimiento del acuerdo, versionado como código \\
+			U5 & Pruebas & Cobertura $\geq 70\,\%$ de los motores de correlación y de acuerdo, integración y carga \\
+			U5 & Calidad ISO/IEC 25010 & Tabla del Paso 11 con valores medidos, priorizando fiabilidad y eficiencia \\
+			\bottomrule
+		\end{longtable}
+	\end{center}
+	
+	\section{Cronograma de ejecución}
+	
+	\begin{center}
+		\small
+		\begin{tabular}{@{}p{1.6cm}p{5.6cm}p{7.6cm}@{}}
+			\toprule
+			\textbf{Semana} & \textbf{Pasos} & \textbf{Hito verificable al cierre} \\
+			\midrule
+			14 & Pasos 0 y 1 & Etiqueta \texttt{pre-e4} creada y renombrado completo en un solo \emph{commit} \\
+			\addlinespace
+			15 & Pasos 2 a 6 & Todo lo de E1, E2 y E3 recuperado, corregido y funcionando en el sistema actual \\
+			\addlinespace
+			15 & Paso 7 & \textbf{Banco de pruebas terminado}: las tres estrategias conmutan y el inyector de averías registra correctamente la verdad de campo \\
+			\addlinespace
+			16 & Paso 8 & Datos crudos de todas las ejecuciones en el repositorio y figuras regeneradas \\
+			\addlinespace
+			16 & Pasos 9 a 11 & Cobertura, flujo de integración en verde, panel con datos reales y tabla ISO/IEC 25010 \\
+			\addlinespace
+			16 & Paso 12 & Todos los \emph{issues} de la revisión cruzada respondidos \\
+			\addlinespace
+			17 & Pasos 13 y 14 & Documento compilando desde clonación limpia y paquete de reproducibilidad \\
+			\addlinespace
+			17 & Pasos 15 y 16 & Entrega en el SGA y defensa oral \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	\begin{avisoBox}{El riesgo real de esta planificación}
+		La pieza crítica es el inyector de averías con verdad de campo. Sin él no hay precisión ni exhaustividad que medir, y sin esas dos métricas la entrega se queda en una descripción del sistema. Debe estar funcionando al final de la semana 15.
+	\end{avisoBox}
+	
+	\section{Rúbrica de evaluación}
+	
+	\subsection{Criterios de piso}
+	
+	Se verifican \textbf{antes} de calificar los criterios. Todo aspecto o indicador ausente se evalúa con CERO en el criterio correspondiente: no hay evaluación parcial por ausencia.
+	
+	\begin{pisoBox}{Criterios de piso --- su incumplimiento implica calificación CERO}
+		\textbf{P1.} El estudiante debe subir al SGA un documento PDF con carátula que muestre claramente, en una sola línea, la URL del repositorio donde se encuentra el trabajo desarrollado. Si la URL está rota, el repositorio no es accesible, o no se cumple esta directriz, la calificación es CERO.\\[5pt]
+		\textbf{P2.} Si el PDF no se genera correctamente a partir del LaTeX mediante clonación del repositorio y compilación del archivo \texttt{.tex}, la calificación es CERO. Las instrucciones de compilación (compilador, orden de comandos, archivo principal, dependencias) deben estar documentadas en el archivo \texttt{README.md} del repositorio.\\[5pt]
+		\textbf{P3.} Si el sistema no levanta con un solo comando desde una máquina limpia siguiendo el \texttt{README.md}, la calificación es CERO.\\[5pt]
+		\textbf{P4.} Si no existen los datos crudos del experimento del Paso 8 o el verificador de invariantes del Paso 7, la calificación es CERO: sin ellos la entrega no tiene resultado medido.\\[5pt]
+		\textbf{P5.} Si el inyector de averías no registra la verdad de campo --- qué abonados quedaron afectados por cada avería --- la calificación es CERO: sin ella no existe forma válida de medir la calidad de la correlación y la entrega carece de resultado.\\[5pt]
+		\textbf{P6.} Si aparece cualquier dato real de un abonado en el repositorio, en el paquete de reproducibilidad, en el documento o en las capturas, la calificación es CERO. Los experimentos se ejecutan sobre datos sintéticos sin excepción.\\[5pt]
+		\textbf{P7.} Si se detectan referencias fabricadas, DOI que no resuelven o citas cuyos campos no corresponden a la obra real, la calificación es CERO por falta de integridad académica. La similitud debe ser inferior al 15\,\% excluida la bibliografía.\\[5pt]
+		\textbf{P8.} Si falta la declaración de uso de IA generativa, la calificación es CERO.
+	\end{pisoBox}
+	
+	\subsection{Criterios calificables}
+	
+	Superados los criterios de piso se califica sobre 100 puntos. Cada criterio se evalúa en cinco niveles y se calcula como $\text{Puntos}_i = \text{Nivel}_i \times (\text{Peso}_i/4)$, con $\text{Nivel}_i \in \{0,1,2,3,4\}$.
+	
+	\begin{center}
+		\small
+		\begin{tabular}{@{}p{2.2cm}p{9.0cm}p{3.4cm}@{}}
+			\toprule
+			\textbf{Nivel} & \textbf{Descripción} & \textbf{Equivalencia} \\
+			\midrule
+			4 --- Sobresaliente & Cumple todo lo descrito, con evidencia localizable & 90--100 \\
+			3 --- Satisfactorio & Cumple con calidad académica sólida, con omisiones menores & 75--89 \\
+			2 --- En desarrollo & Cumple parcialmente; requiere mejoras sustanciales & 60--74 \\
+			1 --- Insuficiente & No alcanza los mínimos & 40--59 \\
+			0 --- Ausente & No desarrollado, no entregado, plagio o datos fabricados & $<40$ \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	\begin{center}
+		\footnotesize
+		\begin{longtable}{@{}p{0.8cm}p{5.2cm}rp{7.4cm}@{}}
+			\toprule
+			\textbf{Cód.} & \textbf{Criterio} & \textbf{Peso} & \textbf{Descriptor de nivel 4} \\
+			\midrule
+			\endhead
+			C1 & Recuperación y corrección de las entregas previas & 12 & Los ocho elementos de E1 actualizados al sistema real, con nota explícita de qué cambió; PE-U1, E2, E3 y PE-U4 integrados y funcionando, no adjuntos como anexos sueltos \\
+			\addlinespace
+			C2 & Rigor del diseño experimental & 16 & Los dos experimentos completos, con control negativo validado, verdad de campo registrada, semillas fijadas y cinco repeticiones, descritos con detalle suficiente para que otro equipo los repita \\
+			\addlinespace
+			C3 & Resultado central y su análisis & 14 & Precisión, exhaustividad y fusión errónea con intervalos de confianza, discusión del compromiso entre ambas, y cumplimiento del acuerdo desglosado por prioridad con tamaño del efecto \\
+			\addlinespace
+			C4 & Reproducibilidad & 10 & Otro equipo clona, ejecuta y regenera todas las figuras en quince minutos o menos, sin intervención manual y sin pasos no documentados \\
+			\addlinespace
+			C5 & Cobertura de los temas de la asignatura & 12 & Todos los temas de la tabla de la sección 4 con evidencia concreta y localizable, no declarativa \\
+			\addlinespace
+			C6 & Arquitectura distribuida y su justificación & 9 & Fronteras de microservicios argumentadas, posición CAP por agregado sostenida con datos propios, ADR completos y coherentes con el código \\
+			\addlinespace
+			C7 & Calidad del producto, pruebas y observabilidad & 9 & Cobertura $\geq 70\,\%$, flujo de integración continua en verde con evidencia de que detecta fallos, panel con datos reales, traza distribuida completa y tabla ISO/IEC 25010 con valores medidos \\
+			\addlinespace
+			C8 & Gestión de la revisión cruzada & 5 & Todos los \emph{issues} respondidos con acción registrada y enlace que la prueba; los diferidos, justificados y anotados como deuda técnica \\
+			\addlinespace
+			C9 & Documento LaTeX y bibliografía & 8 & Compila sin advertencias graves ni referencias sin resolver; 20 páginas o más de contenido; 12 o más referencias IEEE con DOI verificado; figuras, tablas, ecuaciones y código en sus entornos \\
+			\addlinespace
+			C10 & Defensa oral y dominio individual & 5 & Las cinco fases identificables, tiempo respetado, demostración en vivo exitosa y cualquier integrante responde cualquier pregunta \\
+			\bottomrule
+		\end{longtable}
+	\end{center}
+	
+	\subsection{Penalizaciones no eliminatorias}
+	
+	\begin{center}
+		\small
+		\begin{tabular}{@{}p{9.6cm}p{5.0cm}@{}}
+			\toprule
+			\textbf{Situación} & \textbf{Penalización} \\
+			\midrule
+			Cada DOI inválido o mal asignado & $-0{,}5$ puntos, acumulable hasta $-5$ \\
+			Documento con menos de 20 páginas de contenido & Nivel máximo 2 en el criterio C9 \\
+			Uso de estilo APA en lugar de IEEE & Criterio C9 en 0 \\
+			\emph{Issue} de la revisión cruzada sin respuesta & $-1$ punto por \emph{issue} \\
+			Integrante sin \emph{commits} sustantivos & $-50\,\%$ de su nota individual \\
+			Integrante que no responde ninguna pregunta en la defensa & $-30\,\%$ de su nota individual \\
+			Advertencias de desbordamiento de caja en el PDF & Descuento dentro del criterio C9 \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	Se comunica siempre la \textbf{nota previa} junto a la \textbf{nota final}, para que el equipo vea con exactitud cuánto trabajo perdió por una regla de piso o por una penalización.
+	
+	\section{Lista de verificación final}
+	
+	Antes de subir la entrega, el equipo debe poder marcar todas las casillas. Si alguna queda sin marcar, la entrega no está lista.
+	
+	\begin{center}
+		\small
+		\begin{longtable}{@{}p{0.7cm}p{14.2cm}@{}}
+			\toprule
+			\textbf{$\square$} & \textbf{Verificación} \\
+			\midrule
+			\endhead
+			$\square$ & El repositorio, el código, los contenedores y el documento usan el nombre \textsc{TicketFold} \\
+			$\square$ & La comprobación de disponibilidad del nombre está documentada en el \texttt{README.md} \\
+			$\square$ & El PDF de carátula con la URL en una sola línea está subido al SGA y la URL abre en ventana privada \\
+			$\square$ & Clonamos el repositorio en una máquina limpia y el \texttt{.tex} compiló siguiendo el \texttt{README.md} \\
+			$\square$ & El sistema completo levanta con un solo comando \\
+			$\square$ & Cambiar \texttt{CORREL} conmuta entre las tres estrategias sin tocar código ni cambiar de rama \\
+			$\square$ & \textbf{El inyector registra la verdad de campo} y \textbf{la estrategia C0 desborda al despachador con quinientos abonados} \\
+			$\square$ & El régimen de dos averías simultáneas está medido y la fusión errónea reportada \\
+			$\square$ & El verificador de invariantes se ejecuta al final de cada corrida y emite su informe \\
+			$\square$ & Están los datos crudos de todas las ejecuciones, sin excepción \\
+			$\square$ & El cuaderno de análisis regenera todas las figuras del documento sin intervención manual \\
+			$\square$ & Las comparaciones reportan mediana, intervalo de confianza, prueba estadística y tamaño del efecto \\
+			$\square$ & Las proporciones se reportan con intervalo de confianza binomial \\
+			$\square$ & No hay ningún dato real de abonado en ningún artefacto entregado \\
+			$\square$ & La medición de latencia TCP frente a gRPC está rehecha sobre el sistema actual, con su diagrama de caja \\
+			$\square$ & El vídeo de la prueba de tolerancia a fallos del clúster está en el repositorio \\
+			$\square$ & La curva de \emph{speedup} tiene sus cuatro puntos y la fracción no escalable está despejada con sustitución numérica \\
+			$\square$ & La cobertura de pruebas es $\geq 70\,\%$ y el informe está publicado \\
+			$\square$ & El flujo de integración continua está en verde y existe la evidencia de la ejecución en rojo que se corrigió \\
+			$\square$ & El panel de observabilidad está versionado como código y muestra datos reales \\
+			$\square$ & Hay una traza distribuida completa exportada al repositorio \\
+			$\square$ & La tabla ISO/IEC 25010 tiene valores medidos y plan de mejora donde no se alcanza el objetivo \\
+			$\square$ & Todos los \emph{issues} de la revisión cruzada están respondidos con su acción registrada \\
+			$\square$ & El documento tiene 20 páginas o más de contenido y 12 referencias o más con DOI que resuelve \\
+			$\square$ & Las conclusiones individuales tienen 200 palabras o más cada una \\
+			$\square$ & La reflexión ética ocupa media página o más y cita el Código de Ética de ACM/IEEE-CS \\
+			$\square$ & Las declaraciones de autoría y de uso de IA generativa están completas y firmadas \\
+			$\square$ & Cada integrante tiene cinco \emph{commits} sustantivos o más, en fechas distintas \\
+			$\square$ & El ensayo cronometrado de la defensa se grabó y todos los integrantes hablan al menos tres minutos \\
+			\bottomrule
+		\end{longtable}
+	\end{center}
+	
+	\vspace{6pt}
+	\begin{uteqbox}{Nota final para el equipo}
+		Este proyecto tiene el encaje más limpio entre lo que la asignatura enseña y lo que el dominio necesita, y una ventaja metodológica que conviene explotar sin exagerarla: la verdad de campo. Pocos trabajos de gestión de redes pueden decir con certeza qué abonados estaban realmente afectados, porque en producción nadie lo sabe. Ustedes sí, porque provocan la avería. Usar esa ventaja con honestidad --- reportando también los casos en que la correlación falla --- es lo que distingue un resultado creíble de uno que promete demasiado.
+	\end{uteqbox}
+	
+\end{document}
