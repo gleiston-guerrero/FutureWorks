@@ -1,0 +1,573 @@
+% !TEX program = pdflatex
+% Rúbrica de cierre del Proyecto Fin de Curso (PFC) - ISR-401 - UTEQ - 2026-2027 PPA
+% Construida a partir de las Guías de desarrollo y consolidación emitidas el 2 de septiembre de 2026.
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noshorthands,es-tabla]{babel}
+\usepackage[top=2.6cm,bottom=2.4cm,left=2.3cm,right=2.3cm,headheight=34pt,headsep=12pt]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xltabular}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{uteqverde}{RGB}{0,102,51}
+\definecolor{uteqgranate}{RGB}{140,20,30}
+\definecolor{grisclaro}{RGB}{245,245,245}
+\definecolor{azulinfo}{RGB}{20,70,120}
+
+\tcbuselibrary{skins,breakable}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\includegraphics[height=0.95cm]{logoband.png}}
+\rhead{\footnotesize\color{uteqverde}Rúbrica de cierre — PFC\\[2pt]\color{black}ISR-401 · UTEQ · 2026-2027 PPA}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setlist[itemize]{leftmargin=1.2em,itemsep=2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=1.5em,itemsep=2pt,topsep=3pt}
+
+% ---------- Estilos de caja ----------
+\newtcolorbox{cajapiso}{
+    breakable, colback=uteqgranate!4, colframe=uteqgranate, boxrule=0.8pt,
+    coltitle=white, colbacktitle=uteqgranate, fonttitle=\bfseries,
+    title={Criterios de piso: si esto falla, la nota es CERO}, left=6pt, right=6pt
+}
+\newtcolorbox{cajaverde}[1]{
+    breakable, colback=uteqverde!4, colframe=uteqverde, boxrule=0.8pt,
+    coltitle=white, colbacktitle=uteqverde, fonttitle=\bfseries,
+    title={#1}, left=6pt, right=6pt
+}
+\newtcolorbox{cajaazul}[1]{
+    breakable, colback=azulinfo!4, colframe=azulinfo, boxrule=0.8pt,
+    coltitle=white, colbacktitle=azulinfo, fonttitle=\bfseries,
+    title={#1}, left=6pt, right=6pt
+}
+
+% ---------- Encabezado de cada equipo ----------
+\newcommand{\equipo}[3]{%
+    \clearpage
+    \section{#1}
+    \noindent\begin{tcolorbox}[colback=grisclaro,colframe=uteqverde!70,boxrule=0.6pt,left=6pt,right=6pt]
+    \textbf{Sistema:} #2\\
+    \textbf{Repositorio declarado:} {\ttfamily\footnotesize\def\_{\char`\_\allowbreak}#3}
+    \end{tcolorbox}
+}
+
+\newcommand{\equiponc}[3]{%
+    \section{#1}
+    \noindent\begin{tcolorbox}[colback=grisclaro,colframe=uteqverde!70,boxrule=0.6pt,left=6pt,right=6pt]
+    \textbf{Sistema:} #2\\
+    \textbf{Repositorio declarado:} {\ttfamily\footnotesize\def\_{\char`\_\allowbreak}#3}
+    \end{tcolorbox}
+}
+
+\newcommand{\rotuloparalelo}[1]{%
+    \clearpage
+    \begin{center}{\LARGE\bfseries\color{uteqverde}Paralelo 4.\textsuperscript{o} ``#1'' Software}\end{center}
+    \vspace{2pt}\hrule\vspace{14pt}
+}
+
+% ---------- Cabeceras de tabla ----------
+\newcommand{\cabA}{\toprule \textbf{Cód.} & \textbf{Lo que había que corregir (venía mal de la guía)} & \textbf{Pts} \\ \midrule}
+\newcommand{\cabB}{\toprule \textbf{Cód.} & \textbf{Lo que había que agregar (no existía)} & \textbf{Pts} \\ \midrule}
+
+% ---------- Filas comunes del bloque B ----------
+\newcommand{\rowDatos}[1]{B1 & \textbf{El paquete de datos \texttt{07\_Datos}.} Con esa estructura exacta y nada que la sustituya: \texttt{datos\_crudos/}, \texttt{datos\_procesados/}, \texttt{scripts/} con un orquestador que se ejecute con una sola orden, \texttt{resultados/}, \texttt{diccionario\_datos.csv}, \texttt{README\_datos.md}, \texttt{LICENSE-DATA.txt}, \texttt{checksums\_datos.sha256}, \texttt{desviaciones.md} y \texttt{registro\_deposito.md}. La prueba es sencilla: clono en limpio, corro la orden y me salen las mismas tablas y figuras del documento. Si tengo que tocar algo a mano, no está. #1 & 1{,}6 \\ \addlinespace}
+
+\newcommand{\rowAutoria}[1]{B2 & \textbf{La carpeta \texttt{10\_Autoria} completa, de A1 a A12.} Bitácora de sesiones, capturas por integrante, fuentes editables de los diagramas, grabaciones de sesión de trabajo, notas de campo, fotos del equipo en la organización, doble codificación, correspondencia con la organización, declaración de uso de IA por sección, aporte individual firmado, inventario EXIF y \texttt{.mailmap}. Se califica como conjunto: falta uno, el ítem no está completo. #1 & 1{,}6 \\ \addlinespace}
+
+\newcommand{\rowEtica}[1]{B6 & \textbf{Ética y protección de datos (sección 9 de la guía).} Consentimiento individual firmado, fechado y legible, con el código de sesión que lo amarra a su evidencia; nada de datos personales en la zona pública; declaración expresa de base de licitud, finalidad, plazo de conservación y responsable según la Ley Orgánica de Protección de Datos Personales; y ningún nombre de archivo que delate a un participante. #1 & 0{,}8 \\}
+
+% ---------- Cierre de cada equipo ----------
+\newcommand{\cierre}[2]{%
+\begin{cajaazul}{Cómo se cierra la nota de este equipo}
+Son \textbf{#1 ítems} calificables: #2. Todos entran dos veces: sumando (con su peso) y multiplicando (con su factor). La suma de los pesos da 10,00 exactos.
+\[ \text{Nota} \;=\; \Big(\textstyle\prod_{i=1}^{#1} f_i\Big)\times\Big(\textstyle\sum_{i=1}^{#1} p_i\,c_i\Big) \]
+\end{cajaazul}}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE\bfseries\color{uteqverde} Rúbrica de cierre del Proyecto Fin de Curso}\\[6pt]
+    {\large\bfseries Una rúbrica por equipo, construida sobre su propia guía de consolidación}\\[8pt]
+    Ingeniería de Requisitos (ISR-401) · Facultad de Ciencias de la Computación\\
+    Universidad Técnica Estatal de Quevedo · Paralelos 4.\textsuperscript{o} ``A'' y ``B'' Software\\[4pt]
+    \small Docente: PhD. Gleiston Cicerón Guerrero Ulloa
+\end{center}
+
+\vspace{4pt}
+\hrule
+\vspace{10pt}
+
+\section*{De qué va esto}
+
+El 2 de septiembre de 2026 cada equipo recibió su guía de desarrollo y consolidación, hecha sobre un clon completo de su repositorio. Ahí decía tres cosas: qué ya estaba bien, qué había que corregir y qué había que conseguir o construir. Esta rúbrica califica exactamente eso y nada más.
+
+Tres reglas de lectura antes de mirar las tablas:
+
+\begin{itemize}
+    \item \textbf{Lo que ya estaba hecho no se vuelve a calificar.} Ya está hecho. Aparece listado en cada equipo para que quede claro que no hay que rehacerlo, no para sumar puntos por segunda vez.
+    \item \textbf{Se califica lo que había que corregir y lo que había que agregar.} Nada más. Si la guía no lo pidió, aquí no aparece.
+    \item \textbf{Se revisa sobre un clon limpio del repositorio declarado, con corte a la fecha de cierre.} Lo que no esté en el repositorio, sencillamente no existe. Explicar un hallazgo no es corregirlo: tiene que quedar arreglado en el repositorio.
+\end{itemize}
+
+\section*{Cómo sale la nota}
+
+Cada ítem hace dos trabajos a la vez. Primero suma, con el peso que tiene asignado. Y segundo, multiplica: entra como factor a la nota completa. Por eso la fórmula tiene esta forma:
+
+\begin{equation*}
+\text{Nota} \;=\; \underbrace{\big[f_1 \cdot f_2 \cdot \ldots \cdot f_n\big]}_{\text{el castigo por dejar huecos}} \;\times\; \underbrace{\big[p_1c_1 + p_2c_2 + \ldots + p_nc_n\big]}_{\text{lo que efectivamente hicieron}}
+\end{equation*}
+
+En cristiano: \textbf{no se puede compensar}. No sirve escribir doscientas páginas de especificación si el paquete de datos quedó vacío. El que deja un ítem en cero no pierde solo los puntos de ese ítem: pierde una tajada de todo lo demás. Es a propósito. El expediente vale como conjunto o no vale.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{5.6cm}cc>{\raggedright\arraybackslash}p{5.6cm}@{}}
+\toprule
+\textbf{Cómo llegó el ítem} & \textbf{$c_i$ (suma)} & \textbf{$f_i$ (factor)} & \textbf{Cuándo pongo esto}\\
+\midrule
+Cumplido y comprobable & 1,00 & 1,00 & Lo abro, lo corro o lo reviso y funciona tal como lo pedía la guía.\\
+\addlinespace
+Está, pero a medias & 0,60 & 0,90 & Se hizo el trabajo y se nota, pero falta cobertura, falta una parte o hay que ayudarle para que funcione.\\
+\addlinespace
+Apenas un gesto & 0,30 & 0,75 & Existe el archivo o la carpeta, pero por dentro es casi un cascarón.\\
+\addlinespace
+No está & 0,00 & 0,60 & No aparece, o lo que aparece no es lo que se pidió.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{6pt}
+\begin{cajaazul}{Un ejemplo con números, para que no haya sorpresas}
+Un equipo con 12 ítems llega con 10 cumplidos, 1 a medias y 1 en cero. La suma ponderada le da 8,40. Pero el producto de factores queda en $0{,}90 \times 0{,}60 = 0{,}54$. Nota final: $8{,}40 \times 0{,}54 = \mathbf{4{,}54}$.
+
+Sí, duele. Esa es justamente la idea: el ítem que se deja tirado cuesta mucho más que sus propios puntos. Y al revés, cerrar los huecos pequeños es lo que más rápido levanta la nota. Por eso conviene atacar primero lo que está en cero, no lo que ya está en 0,60.
+\end{cajaazul}
+
+\vspace{6pt}
+\begin{cajaverde}{Regla de no retroceso}
+Lo que la guía marcó como ``ya está bien'' está protegido. Si alguien lo rehace, lo renombra, lo mueve o lo borra y con eso rompe evidencia que ya era válida, ese bloque pasa a contar como \textbf{no cumplido} y entra al producto con factor 0,60, aunque nunca haya estado en la lista de puntos. Dicho de otro modo: no toquen lo que ya funciona.
+\end{cajaverde}
+
+\section*{Criterios de piso}
+
+Esto se revisa \textbf{antes} de calcular nada. Si algo de aquí falla, no hay suma ni producto: la nota es cero y se acabó.
+
+\begin{cajapiso}
+\begin{enumerate}[label=\textbf{P\arabic*.}]
+    \item \textbf{Carátula y URL.} El equipo sube al SGA un PDF con carátula de identificación que muestre, en una sola línea, la URL del repositorio donde está el trabajo. URL rota, repositorio inaccesible o directriz incumplida: CERO.
+    \item \textbf{Reproducibilidad documental.} Si el PDF entregado no se genera clonando el repositorio y compilando el \texttt{.tex}, la calificación es CERO. Las instrucciones de compilación (compilador, orden de las órdenes, archivo principal y dependencias) tienen que estar en el \texttt{README.md}.
+    \item \textbf{Evidencia vacía.} Cualquier archivo cuyo nombre anuncie una pieza de evidencia y que no la contenga —incluidos los de cero o un byte con nombre de participante, de sesión o de resultado— implica CERO, sin importar cuántos sean.
+    \item \textbf{Autoría del historial.} Todo autor del historial debe ser un integrante declarado del equipo, firmando con su correo institucional. Personas ajenas, identidades genéricas o agentes automatizados firmando commits: CERO.
+    \item \textbf{Línea base congelada.} Tiene que existir una etiqueta anotada, publicada en el remoto y alcanzable desde la rama por defecto, que identifique la versión entregada. Si no está, o es ligera, o no es alcanzable: CERO.
+    \item \textbf{Paquete de datos.} La carpeta \texttt{07\_Datos} debe existir con la estructura indicada y la cadena de análisis debe correr con una sola orden desde los datos crudos. Su ausencia: CERO.
+    \item \textbf{Evidencia de autoría.} La carpeta \texttt{10\_Autoria} debe existir con los elementos A1 a A12. Su ausencia: CERO.
+    \item \textbf{Contribución individual.} El integrante que no acredite contribución verificable en el repositorio ni en la defensa obtiene factor individual cero, con independencia de la nota del equipo.
+    \item \textbf{Uso de IA no declarado.} Si aparece texto, código o evidencia producida con herramientas generativas y eso no consta en \texttt{10\_Autoria/declaracion\_uso\_ia.md}, o la declaración no cuadra con lo que encuentro en el repositorio, la calificación es CERO. La declaración cubre todas las secciones, incluidas aquellas donde no se usó ninguna herramienta.
+\end{enumerate}
+\end{cajapiso}
+
+\vspace{6pt}
+\noindent\textit{Nota sobre P6 y P7:} existir no es lo mismo que estar completo. P6 y P7 solo miran que la carpeta esté ahí con su estructura; qué tan bien está por dentro se califica en los ítems B1 y B2 de cada equipo.
+
+\rotuloparalelo{A}
+
+\equiponc{ACERS}{Sistema de gestión agrícola con IA para cultivos de verde y cacao}{https://github.com/charito20/ACERS\_Sistema\_de\_Gestion\_Agricola\_con\_IA}
+
+\subsection*{Lo que ya estaba hecho (no se califica, ya está)}
+\begin{itemize}
+    \item Las cinco integrantes firman con correo institucional y las cinco aparecen en el historial.
+    \item Los instrumentos de recolección están redactados y versionados, incluida la hoja de evaluación a ciegas.
+    \item Los scripts de análisis existen y declaran sus dependencias en \texttt{requirements.txt}.
+    \item El protocolo de anonimización de datos empresariales está redactado y versionado.
+\end{itemize}
+
+\subsection*{Bloque A — Lo que había que corregir (3,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabA
+A1 & \textbf{La especificación no cabe donde está.} 39 RF, 15 RNF y 15 CU metidos en 27 páginas significa que están enunciados en una tabla, no especificados. Cada requisito y cada caso de uso tiene que quedar desarrollado: actores, precondiciones, flujo principal, flujos alternativos y poscondiciones. & 0{,}80 \\ \addlinespace
+A2 & \textbf{El inventario técnico estaba vacío.} \texttt{02\_Evidencias/fichas\_tecnicas.csv} existía sin una sola fila. Ahora debe tener una fila por pieza: nombre, tipo, fecha de sesión, código de participante, duración, códec, tamaño y SHA-256. & 0{,}60 \\ \addlinespace
+A3 & \textbf{No había ni un audio ni un video en el repositorio.} Las grabaciones de las sesiones de elicitación deben estar depositadas, cifradas si llevan datos personales, con su inventario y el hash calculado \emph{antes} de cifrar. & 0{,}60 \\ \addlinespace
+A4 & \textbf{El registro previo era un archivo propio, no un comprobante.} \texttt{osf\_registration.md} lo escribieron ustedes. Hace falta el comprobante externo con sello temporal, en PDF, y con fecha anterior a la primera sesión de recolección. & 0{,}40 \\ \addlinespace
+A5 & \textbf{El 98\% del historial cayó en un solo día.} De aquí en adelante, commits el mismo día en que se hace el trabajo y con mensajes que digan qué cambió y por qué. Se mira el tramo posterior al 2 de septiembre. & 0{,}30 \\ \addlinespace
+A6 & \textbf{No había etiqueta de línea base.} Etiqueta anotada sobre el commit entregado, publicada en el remoto. & 0{,}30 \\
+\bottomrule
+\end{xltabular}
+
+\subsection*{Bloque B — Lo que había que agregar (7,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabB
+\rowDatos{}
+\rowAutoria{}
+B3 & \textbf{La evidencia de campo que faltaba levantar.} Grabaciones y consentimientos de todas las sesiones de elicitación con su inventario técnico, y los dos conjuntos de requisitos —el obtenido con el enfoque aplicado y el de comparación— versionados en texto plano. & 0{,}90 \\ \addlinespace
+B4 & \textbf{Los números que faltaba calcular y documentar.} Matriz que cruce cada obligación legal con el requisito que la cubre, citando el artículo o cláusula exacta; evaluación independiente de esa cobertura por dos personas, con las dos hojas y el kappa con su intervalo de confianza; justificación escrita del tamaño de muestra y del número de evaluadores, hecha \emph{antes} de analizar; y el registro de desviaciones respecto del protocolo. Todo salido de script, nada escrito a mano. & 0{,}70 \\ \addlinespace
+B5 & \textbf{Los seis requisitos del componente inteligente, de verdad especificados.} Detección o predicción agrícola, explicabilidad al productor, equidad entre productores o parcelas, supervisión humana sobre las recomendaciones que afectan a la producción, monitoreo posterior al despliegue y clasificación del nivel de riesgo. Cada uno con identificador, enunciado verificable, métrica, unidad, umbral, método de verificación, responsable y frecuencia, y todos amarrados en la matriz de trazabilidad al elemento de diseño y al caso de prueba. Ojo: el documento tenía 7 menciones de ``explicab'', cero de equidad y cero de monitoreo. Nombrar un concepto no es especificarlo. & 1{,}40 \\ \addlinespace
+\rowEtica{}
+\end{xltabular}
+
+\cierre{12}{6 del bloque A y 6 del bloque B}
+
+\equipo{MediCita}{Sistema de gestión inteligente para un centro médico}{https://github.com/ptigasis-Alexander/MediCita\_ISR401}
+
+\subsection*{Lo que ya estaba hecho (no se califica, ya está)}
+\begin{itemize}
+    \item El ERS se genera desde \LaTeX{} y la especificación supera con holgura los mínimos (40 RF, 18 RNF, 33 CU, 39 historias).
+    \item El inventario técnico de la evidencia trae duración, códec, tamaño y hash por archivo.
+    \item Los archivos obligatorios de la raíz están completos, incluido el manifiesto de sumas que antes faltaba.
+    \item Existen comprobante de registro del protocolo y registro de desviaciones.
+    \item Los datos procesados y los resultados están versionados en CSV, no incrustados solo en el documento.
+\end{itemize}
+
+\subsection*{Bloque A — Lo que había que corregir (3,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabA
+A1 & \textbf{La identidad fantasma.} \texttt{MediCita Team <team@medicita.local>} se quedó con 8 commits y no corresponde a ninguna persona declarada. Hay que atribuirlos a alguien concreto con \texttt{.mailmap} y decir por escrito quién los produjo. Mientras esa identidad exista sin atribución, ese trabajo no tiene autor acreditado. & 0{,}70 \\ \addlinespace
+A2 & \textbf{El fragmento roto.} \texttt{VIDEOS\_Validacion.7z.206} pesa 2 bytes. Verificar la integridad del volumen completo, recomponerlo, volver a publicar la serie y documentar en el README de esa carpeta cuántos fragmentos son y cuál es el hash del contenedor reconstruido. & 0{,}60 \\ \addlinespace
+A3 & \textbf{Dos matrices de trazabilidad a la vez.} \texttt{matriz\_trazabilidad.csv} y \texttt{matriz\_trazabilidad\_ACTUALIZADA.csv} conviviendo. Queda una sola vigente y la sustitución se registra en \texttt{CHANGELOG.md}. Dos versiones simultáneas equivalen a no saber cuál rige. & 0{,}60 \\ \addlinespace
+A4 & \textbf{Un solo script para todo el estudio.} Separar lectura de datos crudos, procesamiento y generación de tablas, dejando \texttt{run\_all.py} como orquestador único que se ejecuta con una sola orden. & 0{,}60 \\ \addlinespace
+A5 & \textbf{Carpeta ajena en la raíz.} \texttt{PE5\_U5\_PFC\_DIAZ\_GAMARRA\_HERRERA\_TIGASI\_TRUJILLO}, con 13 archivos, no pertenece a la estructura del proyecto. Se reubica fuera o se elimina del repositorio. & 0{,}30 \\ \addlinespace
+A6 & \textbf{El script con el nombre mal escrito.} \texttt{GENERA\_CHEDKSUMS.sh} pasa a \texttt{generar\_checksums.sh} y su uso queda documentado en el \texttt{README.md}. & 0{,}20 \\
+\bottomrule
+\end{xltabular}
+
+\subsection*{Bloque B — Lo que había que agregar (7,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabB
+\rowDatos{Aquí no vale decir que ya están los CSV sueltos: el paquete es un entregable con nombre y ubicación fijos.}
+\rowAutoria{}
+B3 & \textbf{La evidencia de campo que faltaba levantar.} Ficha de observación completa por cada sesión de validación con prototipo: participante, tarea, requisito observado, resultado, incidencias y tiempo. Más la cobertura de requisitos obligatorios verificada \emph{en la sesión}, con evidencia requisito por requisito y no solo el agregado, y el perfil agregado de los participantes sin nada que permita reidentificar a pacientes ni a personal sanitario. & 0{,}90 \\ \addlinespace
+B4 & \textbf{Los números que faltaba calcular y documentar.} Doble observación independiente de al menos el 20\% de las sesiones, con las dos fichas y el kappa con intervalo de confianza; la justificación del tamaño muestral de verdad (hoy \texttt{power\_calculation.csv} pesa 69 bytes, o sea, nada) con sus supuestos y fechada antes del análisis; y la capa pública anonimizada del conjunto de datos, separada de la capa restringida cifrada. & 0{,}70 \\ \addlinespace
+B5 & \textbf{Los seis requisitos del componente inteligente, de verdad especificados.} Asignación o recomendación automática de cita; explicabilidad diferenciando qué se le explica al paciente y qué al personal; equidad en el acceso a la cita con variable controlada, métrica y umbral; supervisión humana sobre toda decisión que afecte la atención de un paciente; monitoreo posterior al despliegue con indicadores, periodicidad y responsable; y clasificación del nivel de riesgo atendiendo expresamente a que son datos de salud. Cada uno con métrica, unidad, umbral, método, responsable y frecuencia, y todos en la matriz de trazabilidad. El documento traía 8 menciones de ``explicab'', cero de equidad y cero de monitoreo. & 1{,}40 \\ \addlinespace
+\rowEtica{El comprobante de registro previo ya está; lo que falta es el resto.}
+\end{xltabular}
+
+\cierre{12}{6 del bloque A y 6 del bloque B}
+
+\equipo{SIMPA}{Sistema Inteligente de Mantenimiento de Palma Africana}{https://github.com/AlanNVR/SIMPA\_ISR401}
+
+\subsection*{Lo que ya estaba hecho (no se califica, ya está)}
+\begin{itemize}
+    \item El ERS se compila desde fuente \LaTeX{} modular versionada, con bibliografía y figuras propias.
+    \item La especificación supera con holgura los mínimos (42 RF, 19 RNF, 18 CU, 24 historias) y el texto cubre explicabilidad, equidad y monitoreo.
+    \item El inventario técnico declara duración, códec, tamaño, SHA-256, contenedor y ruta interna por archivo. Es el formato correcto.
+    \item Los 16 consentimientos están firmados y nombrados con fecha, rol y código de entrevista.
+    \item Existe etiqueta anotada de línea base y comprobante de registro del protocolo.
+\end{itemize}
+
+\subsection*{Bloque A — Lo que había que corregir (3,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabA
+A1 & \textbf{La evidencia vive en otro repositorio.} Los 30 registros del inventario están en \texttt{SIMPA\_ISR401\_Evidencias}, que no es el repositorio declarado en la carátula. Hay que declarar por escrito, en el \texttt{README.md} y en la carátula, cuál es el oficial y cuál el complementario, con la relación exacta entre ambos. Quien clone solo el declarado tiene que poder llegar a la evidencia siguiendo esa declaración. & 0{,}60 \\ \addlinespace
+A2 & \textbf{Videos de menos de 45 segundos haciendo de entrevistas.} Seis videos del participante ENTR-03 declaran entre 20,7 y 43,9 segundos. Un fragmento de menos de un minuto no acredita una entrevista: o se reagrupan en la sesión completa a la que pertenecen, o se declara expresamente que son material complementario de observación. & 0{,}60 \\ \addlinespace
+A3 & \textbf{Una identidad ajena firmando cinco commits.} \texttt{117947536+artyjmt@users.noreply.github.com} no es del equipo. Detalle por escrito de esos cinco commits: qué archivos tocaron, quién los produjo y por qué figuran con esa firma. & 0{,}50 \\ \addlinespace
+A4 & \textbf{Correos que no cuadran.} Dos integrantes firman con correo personal y uno con el dominio mal escrito (\texttt{dhulcapil} en lugar de \texttt{dhuilcapil}). Corregir \texttt{git config user.email} y añadir \texttt{.mailmap} unificando las identidades históricas. & 0{,}40 \\ \addlinespace
+A5 & \textbf{Un hash sin verificar.} Un registro del inventario figura como \texttt{NO\_VERIFICADO}. Recalcular el SHA-256 sobre el archivo original antes de cifrar y actualizar el inventario. & 0{,}40 \\ \addlinespace
+A6 & \textbf{Las transcripciones en un solo archivote.} \texttt{Transcripciones\_Entrevistas.md} de 114.829 bytes agrupa todo. Se separan en un archivo por entrevista, nombrado con fecha y código de participante; el agrupado puede quedarse como índice si lo quieren. & 0{,}30 \\ \addlinespace
+A7 & \textbf{Falta la foto de aplicación del cuestionario.} Había una sola. Mínimo cinco, con la fecha conservada en los metadatos. & 0{,}20 \\
+\bottomrule
+\end{xltabular}
+
+\subsection*{Bloque B — Lo que había que agregar (7,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabB
+\rowDatos{Los cuatro scripts que ya tienen sirven, pero tienen que colgar de un orquestador único dentro del paquete.}
+\rowAutoria{}
+B3 & \textbf{Lo que faltaba levantar del experimento a ciegas.} Hoja de evaluación a ciegas completa, en formato largo: cada persona evaluadora, cada requisito, cada criterio y cada puntuación, con el orden de presentación aleatorizado y documentado. Más la comprobación de que quien evalúa desconoce la procedencia de cada requisito, y el registro de cualquier ruptura de esa condición. & 0{,}90 \\ \addlinespace
+B4 & \textbf{Los números que faltaba calcular y documentar.} Acuerdo entre evaluadores con kappa e intervalo de confianza calculado por script; tamaño del efecto con IC del 95\% para la comparación entre las dos procedencias; justificación del tamaño muestral y del número de evaluadores documentada \emph{antes} del análisis; y registro de desviaciones respecto del protocolo registrado. & 0{,}70 \\ \addlinespace
+B5 & \textbf{Los seis requisitos del componente inteligente, de verdad especificados.} Predicción de mantenimiento sobre un conjunto de prueba identificado; explicabilidad con elemento explicado, perfil destinatario, formato y criterio de aceptación; equidad con variable controlada, métrica y umbral; supervisión humana sobre las recomendaciones de mantenimiento; monitoreo convertido en plan con indicadores, periodicidad, responsable y umbral de alerta; y clasificación del nivel de riesgo con su justificación. Aquí el problema no es el vocabulario —``monitoreo'' aparece 25 veces y ``equidad'' 15— sino que falta el enunciado verificable. Todos en la matriz de trazabilidad. & 1{,}40 \\ \addlinespace
+\rowEtica{Los consentimientos ya están; falta la declaración legal completa y la separación de capas.}
+\end{xltabular}
+
+\cierre{13}{7 del bloque A y 6 del bloque B}
+
+\equipo{CarniCore}{Sistema para la gestión integral de un centro cárnico}{https://github.com/EdhuXav/CarniCore\_Proyecto\_ISR401}
+
+\subsection*{Lo que ya estaba hecho (no se califica, ya está)}
+\begin{itemize}
+    \item La autoría del historial es limpia: los cinco firmantes son integrantes declarados y todos usan correo institucional.
+    \item La especificación cumple con holgura los mínimos: 27 RF, 15 RNF, 12 CU y 19 historias de usuario.
+    \item El detector determinista de patrones de ambigüedad está versionado y es ejecutable.
+    \item El repositorio conserva los cinco archivos obligatorios de la raíz.
+\end{itemize}
+
+\subsection*{Bloque A — Lo que había que corregir (3,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabA
+A1 & \textbf{El inventario describe cajas, no evidencia.} Las 16 filas de \texttt{fichas\_tecnicas.csv} tienen todas \texttt{tipo = contenedor\_7z}. Eso inventaría contenedores, no piezas. Hay que reemplazarlo por un inventario con una fila por pieza: nombre, tipo, fecha de sesión, código de participante, duración, códec, tamaño y SHA-256 calculado antes de cifrar. & 0{,}80 \\ \addlinespace
+A2 & \textbf{El PDF pasó por iLovePDF.} Los metadatos declaran ese productor, o sea que el documento salió de un servicio web después de compilarse. Se publica el PDF tal como sale de la compilación local del \texttt{.tex}, sin recompresión ni recorte externo. Si hay que bajar el peso, se hace desde \LaTeX{} o con herramientas locales documentadas en el \texttt{README.md}. & 0{,}70 \\ \addlinespace
+A3 & \textbf{No había etiqueta de línea base.} Ni local ni remota. Etiqueta anotada sobre el commit entregado y publicada. & 0{,}60 \\ \addlinespace
+A4 & \textbf{Faltan las fotos de aplicación del cuestionario.} Mínimo cinco, con la fecha conservada en los metadatos. & 0{,}50 \\ \addlinespace
+A5 & \textbf{Una persona con dos identidades de Git.} Mismo correo, dos identidades. Añadir \texttt{.mailmap} en la raíz para que el recuento por autor salga correcto. & 0{,}40 \\
+\bottomrule
+\end{xltabular}
+
+\subsection*{Bloque B — Lo que había que agregar (7,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabB
+\rowDatos{}
+\rowAutoria{}
+B3 & \textbf{Lo que faltaba levantar para poder evaluar el detector.} Corpus completo de requisitos en texto plano y versionado, sobre el que se ejecuta el detector; ese mismo corpus anotado a mano por dos personas de forma independiente, con las dos hojas; y el comprobante de registro previo del protocolo con sello temporal externo anterior a la ejecución del análisis. & 0{,}90 \\ \addlinespace
+B4 & \textbf{Los números que faltaba calcular y documentar.} Kappa entre las dos anotaciones humanas; matriz de confusión del detector frente a esa anotación, con verdaderos y falsos positivos y negativos, generada por script; precisión, exhaustividad y medida F por categoría de ambigüedad con sus intervalos de confianza; y diccionario de datos de todas las salidas del detector. Ninguna de esas cifras puede estar escrita a mano en el documento. & 0{,}70 \\ \addlinespace
+B5 & \textbf{Los seis requisitos del componente inteligente, de verdad especificados.} Componente de detección con métrica, unidad, umbral mínimo aceptable y método; explicabilidad, o sea cómo justifica el sistema cada marca de ambigüedad ante el analista; equidad con métrica y umbral (el término aparece nueve veces en el texto y no hay un solo enunciado verificable); supervisión humana, es decir quién acepta o descarta cada marca y cómo queda registrado; monitoreo posterior al despliegue con indicadores y periodicidad; y clasificación del nivel de riesgo. Todos en la matriz de trazabilidad, atados al diseño y al caso de prueba. & 1{,}40 \\ \addlinespace
+\rowEtica{}
+\end{xltabular}
+
+\cierre{11}{5 del bloque A y 6 del bloque B}
+
+\equipo{Fabro Gym}{Sistema de gestión para gimnasio}{https://github.com/amorad35/FabroGym\_ISR401}
+
+\subsection*{Lo que ya estaba hecho (no se califica, ya está)}
+\begin{itemize}
+    \item La cadena de análisis es reproducible: \texttt{run\_all.py} y los cuatro scripts auxiliares leen entradas versionadas y producen tablas.
+    \item \texttt{fichas\_tecnicas.csv} con 54 registros, duración, códec, tamaño y SHA-256 es el formato correcto de documentación de evidencia.
+    \item El registro previo del protocolo está en el repositorio con su comprobante.
+    \item Las 16 transcripciones de \texttt{02\_Evidencias/Transcripciones} tienen contenido real y anonimización aplicada.
+    \item Los 17 consentimientos censurados están firmados y nombrados por código de sesión.
+\end{itemize}
+
+\subsection*{Bloque A — Lo que había que corregir (3,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabA
+A1 & \textbf{Diez transcripciones de 58 bytes en el paquete de publicación.} Las de \texttt{dataset\_zenodo/transcripciones/entrevistas/} solo traen tres líneas de rótulo. Un archivo con nombre de evidencia y sin evidencia adentro es evidencia vacía, y eso es criterio de piso. O se sustituyen por el contenido real anonimizado, idéntico al que sí existe en \texttt{02\_Evidencias/Transcripciones}, o se eliminan del paquete declarando por qué no forman parte de él. & 0{,}80 \\ \addlinespace
+A2 & \textbf{El ERS no usa los prefijos \texttt{RF-} ni \texttt{RNF-}.} El conteo automático devuelve cero requisitos funcionales y cero no funcionales, lo cual deja la especificación sin poder auditarse. Hay que normalizar todos los identificadores a \texttt{RF-nn} y \texttt{RNF-nn} en el documento, en la matriz de trazabilidad, en el catálogo de requisitos y en los scripts que los consumen, con numeración única y continua. & 0{,}80 \\ \addlinespace
+A3 & \textbf{No hay ninguna etiqueta de línea base.} \texttt{git tag -a} sobre el commit de la versión entregada, con mensaje que indique versión y fecha, y publicada. & 0{,}50 \\ \addlinespace
+A4 & \textbf{Correo personal e identidades duplicadas.} El analista líder firma con \texttt{coverrock2017@gmail.com} (57 commits) y hay una persona con dos identidades. Correo institucional configurado y \texttt{.mailmap} en la raíz. & 0{,}40 \\ \addlinespace
+A5 & \textbf{Dos copias divergentes del ERS.} La v2.0 en \texttt{01\_ERS} y la v2.2 dentro del dataset. Queda una sola versión vigente en \texttt{01\_ERS}, el cambio se registra en \texttt{CHANGELOG.md} y el paquete de datos la referencia en vez de duplicarla. & 0{,}25 \\ \addlinespace
+A6 & \textbf{Ninguna foto de aplicación del cuestionario.} Había 18 del entorno y cero del momento de aplicación. Mínimo cinco, con fecha en metadatos y respetando el consentimiento de quienes aparezcan. & 0{,}25 \\
+\bottomrule
+\end{xltabular}
+
+\subsection*{Bloque B — Lo que había que agregar (7,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabB
+\rowDatos{Tienen dos juegos de scripts y dos carpetas de datos en sitios distintos; el paquete pide uno solo, en su lugar.}
+\rowAutoria{}
+B3 & \textbf{Lo que faltaba levantar en campo.} Las fotografías de aplicación del cuestionario y la doble codificación independiente de al menos el 20\% del corpus de walkthroughs hecha por dos integrantes, con las dos hojas de codificación completas. & 0{,}90 \\ \addlinespace
+B4 & \textbf{Los números que faltaba calcular y documentar.} Kappa con intervalo de confianza sobre esa doble codificación; tamaño del efecto con IC del 95\% para las comparaciones entre perfiles técnicos y no técnicos, generado por script y no escrito a mano; diccionario de datos que describa columna por columna los CSV de \texttt{datos\_crudos} y \texttt{datos\_procesados}; y registro de desviaciones con fecha y motivo. & 0{,}70 \\ \addlinespace
+B5 & \textbf{Los seis requisitos del componente inteligente, de verdad especificados.} Recomendación de rutina con métrica de acierto, unidad, umbral y método; explicabilidad diciendo qué se explica, a qué perfil, en qué formato y con qué criterio se acepta (el material de campo ya lo tienen, falta el enunciado); equidad como criterio de no discriminación por edad, condición física o sexo, con métrica y umbral; supervisión humana sobre quién revisa y modifica la rutina propuesta y cómo queda registrado; monitoreo posterior al despliegue con indicadores, periodicidad y responsable; y clasificación del nivel de riesgo. Hoy hay 22 menciones de ``explicab'', cero de equidad y cero de monitoreo. & 1{,}40 \\ \addlinespace
+\rowEtica{Los consentimientos ya están; falta la capa pública derivada y la declaración legal.}
+\end{xltabular}
+
+\cierre{12}{6 del bloque A y 6 del bloque B}
+
+\equipo{SGCV-IA}{Sistema de Gestión de Clínica Veterinaria con IA}{https://github.com/ramaguas-ship-it/SGCV-IA}
+
+\subsection*{Lo que ya estaba hecho (no se califica, ya está)}
+\begin{itemize}
+    \item Las 16 transcripciones de entrevista tienen contenido real y su nombre codifica fecha, participante y técnica.
+    \item \texttt{fichas\_tecnicas.csv} incluye duración, códec, tamaño y hash SHA-256 por archivo. Es el formato correcto.
+    \item Los 16 consentimientos en PDF están firmados y nombrados con fecha y código de participante.
+    \item Las 14 fotografías de aplicación del cuestionario y las 19 del entorno cumplen.
+    \item El documento se genera desde \LaTeX{} con pdfTeX, y eso debe mantenerse hasta el cierre.
+\end{itemize}
+
+\subsection*{Bloque A — Lo que había que corregir (3,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabA
+A1 & \textbf{No hay un solo script de análisis en todo el repositorio.} Cero archivos \texttt{.py}, \texttt{.R} o \texttt{.ipynb}, y sin embargo hay 60 filas de encuesta y una matriz de 60 filas. Hace falta \texttt{07\_Datos/scripts/run\_all.py} que, con una sola orden, lea los datos crudos, produzca los procesados y genere todas las tablas y figuras que aparecen en sus documentos. & 0{,}80 \\ \addlinespace
+A2 & \textbf{Las carpetas de datos están de adorno.} \texttt{datos\_crudos} y \texttt{datos\_procesados} solo tienen \texttt{.gitkeep} salvo el CSV de encuesta. En crudos va el archivo exportado tal como salió del instrumento, sin editar; en procesados, el resultado de aplicar los scripts. Los \texttt{.gitkeep} se eliminan una vez pobladas. & 0{,}60 \\ \addlinespace
+A3 & \textbf{El ERS está compuesto en tamaño carta} (612 x 792 pt). Recompilar con \texttt{a4paper}, respetando A4 en todas las páginas y sin desbordes de tablas ni figuras. & 0{,}50 \\ \addlinespace
+A4 & \textbf{Correos que no cuadran.} Dos integrantes firman con correo personal (74 y 59 commits) y uno con el dominio \texttt{@msuteq.edu.ec}. Configurar \texttt{git config user.email} con el institucional y añadir \texttt{.mailmap} en la raíz. & 0{,}40 \\ \addlinespace
+A5 & \textbf{La etiqueta \texttt{v2B} no está acreditada como anotada.} Sustituirla por una anotada creada con \texttt{git tag -a} y mensaje descriptivo, alcanzable desde la rama por defecto, y publicarla con \texttt{git push --tags}. & 0{,}40 \\ \addlinespace
+A6 & \textbf{\texttt{Fotos\_Aplicacion/Provisionar} pesa 1 byte.} Se elimina. Ningún archivo cuyo nombre sugiera contenido puede quedar vacío: eso es criterio de piso. & 0{,}30 \\
+\bottomrule
+\end{xltabular}
+
+\subsection*{Bloque B — Lo que había que agregar (7,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabB
+\rowDatos{}
+\rowAutoria{}
+B3 & \textbf{Lo que faltaba levantar en campo.} Doble codificación independiente de al menos el 20\% de las 16 transcripciones, por dos integrantes distintos, con las dos hojas completas; y las sesiones de validación con usuarios sobre los requisitos de explicabilidad, con acta firmada por sesión y reparto explícito entre perfiles técnicos y no técnicos. & 0{,}90 \\ \addlinespace
+B4 & \textbf{Los números que faltaba calcular y documentar.} Kappa con su intervalo de confianza; curva de saturación de códigos (códigos nuevos por entrevista) en tabla y figura generadas por script; justificación del tamaño de muestra de la encuesta ($n = 60$) calculada y documentada antes del análisis; perfil de participantes en tabla agregada (rol, años de experiencia, frecuencia de uso) sin nada reidentificable; y registro de desviaciones con fecha y motivo. & 0{,}70 \\ \addlinespace
+B5 & \textbf{Los seis requisitos del componente inteligente, de verdad especificados.} Sugerencia diagnóstica asistida con exactitud mínima aceptable, unidad, conjunto de prueba y método; explicabilidad indicando qué elemento explica el sistema, a qué perfil, en qué formato, con qué criterio se considera comprensible y con qué instrumento se mide; equidad con variable o variables controladas, métrica, umbral y frecuencia de comprobación; supervisión humana diciendo quién puede anular la sugerencia, en qué plazo y cómo queda registrado; monitoreo posterior con indicadores, periodicidad, responsable y umbral de alerta; y clasificación del nivel de riesgo con su justificación. El ERS traía 15 menciones de ``explicab'' y ni una sola de equidad o monitoreo. & 1{,}40 \\ \addlinespace
+\rowEtica{Los consentimientos ya están; se trata de datos de salud animal y de sus dueños, así que la declaración legal y la separación de capas pesan.}
+\end{xltabular}
+
+\cierre{12}{6 del bloque A y 6 del bloque B}
+
+\rotuloparalelo{B}
+
+\equiponc{SIGBUNI}{Sistema inteligente de gestión bibliotecaria universitaria con IA}{https://github.com/TahinyMel/SIGBUNI\_ISR401}
+
+\subsection*{Lo que ya estaba hecho (no se califica, ya está)}
+\begin{itemize}
+    \item Los diez consentimientos están firmados, escaneados con legibilidad y nombrados con fecha, rol y técnica.
+    \item La entrevista a la bibliotecaria es un archivo de audio real, con duración y tasa de bits verificables.
+    \item La fuente \LaTeX{} del ERS existe y está versionada en dos archivos.
+\end{itemize}
+
+\subsection*{Bloque A — Lo que había que corregir (3,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabA
+A1 & \textbf{No existe ningún PDF del ERS.} Solo están los \texttt{.tex}. Compilar \texttt{ERS/SIGBUNI\_ISR401\_42B.tex} y publicar el PDF resultante, con las instrucciones de compilación en el \texttt{README.md}. Sin esto, el criterio de piso P2 ya está en riesgo. & 0{,}70 \\ \addlinespace
+A2 & \textbf{Un agente automatizado firma dos commits.} \texttt{Cursor Agent <cursoragent@cursor.com>} no es una persona. Explicación por escrito de qué produjeron esos dos commits y sobre qué archivos. Ningún autor del historial puede ser distinto de un integrante declarado con correo institucional; esto toca directamente los criterios P4 y P9. & 0{,}50 \\ \addlinespace
+A3 & \textbf{La estructura de carpetas no sigue la nomenclatura obligatoria.} \texttt{ERS}, \texttt{Evidencias}, \texttt{Modelado}, \texttt{Trazabilidad}, \texttt{MVP}, \texttt{Experimento} y \texttt{Publicacion} pasan a \texttt{01\_ERS}, \texttt{02\_Evidencias}, \texttt{03\_Modelado}, \texttt{04\_Trazabilidad}, \texttt{05\_MVP}, \texttt{06\_Experimento} y \texttt{07\_Datos}, con todas las rutas actualizadas. & 0{,}50 \\ \addlinespace
+A4 & \textbf{Faltan cuatro de los cinco archivos obligatorios de la raíz.} Crear \texttt{LICENSE}, \texttt{CITATION.cff}, \texttt{CHANGELOG.md} y \texttt{checksums.sha256}. & 0{,}40 \\ \addlinespace
+A5 & \textbf{Una integrante firma sus 50 commits con correo personal.} Configurar el institucional y añadir \texttt{.mailmap} unificando las identidades históricas. & 0{,}40 \\ \addlinespace
+A6 & \textbf{Veintinueve archivos de un byte.} Son justamente los que deberían describir el contenido de cada carpeta de evidencia. O se completan con la descripción real, o se eliminan. Una carpeta que solo contiene marcadores es una carpeta sin evidencia, y eso cae en P3. & 0{,}30 \\ \addlinespace
+A7 & \textbf{Once días sin actividad al momento de la verificación.} Se reanuda el trabajo con registro incremental diario y mensajes que digan qué cambió. Se mira el tramo posterior al 2 de septiembre. & 0{,}20 \\
+\bottomrule
+\end{xltabular}
+
+\subsection*{Bloque B — Lo que había que agregar (7,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabB
+\rowDatos{Hoy no hay ni carpeta ni componente empírico ejecutado, así que este ítem se construye desde cero.}
+\rowAutoria{}
+B3 & \textbf{Todo lo que falta levantar en campo, que es bastante.} Grabaciones de las entrevistas con su consentimiento, inventario técnico y hash calculado antes de cifrar; transcripciones completas por sesión y anonimizadas; la exportación en CSV de las respuestas del cuestionario (un PDF de encuestas manuscritas escaneadas no es un conjunto de datos analizable); fotografías del entorno y de la aplicación del cuestionario con fecha en metadatos; y los documentos originales de la organización con su autorización de uso. & 0{,}90 \\ \addlinespace
+B4 & \textbf{La trazabilidad y el protocolo, que no existen.} Matriz de trazabilidad completa y protocolo del componente empírico con registro previo y comprobante de sello temporal externo, fechado antes de la primera sesión de recolección. Más el diccionario de datos de lo que se recoja. & 0{,}70 \\ \addlinespace
+B5 & \textbf{Los seis requisitos del componente inteligente, de verdad especificados.} Componente inteligente de la biblioteca con métrica, unidad, umbral y método; explicabilidad —y aquí llama la atención que el sistema lleva ``IA'' en el nombre y el material entregado no menciona la explicabilidad ni una vez—; equidad en la recomendación o asignación de recursos entre perfiles de usuario; supervisión humana sobre las decisiones automáticas; monitoreo posterior al despliegue con indicadores y periodicidad; y clasificación del nivel de riesgo. Todos en la matriz de trazabilidad. & 1{,}40 \\ \addlinespace
+\rowEtica{Los consentimientos ya están; falta todo lo demás, empezando por el comprobante de registro previo.}
+\end{xltabular}
+
+\cierre{13}{7 del bloque A y 6 del bloque B}
+
+\equipo{SICST}{Sistema inteligente de seguimiento de terapia física}{https://github.com/AngeloP2114/Sistema\_Terapia\_Fisica\_ISR401\_2A}
+
+\subsection*{Lo que ya estaba hecho (no se califica, ya está)}
+\begin{itemize}
+    \item El ERS de la Entrega Final existe, tiene 150 páginas y se genera desde una cadena \LaTeX{}.
+    \item La especificación alcanza o supera los mínimos en requisitos funcionales, no funcionales, casos de uso e historias de usuario.
+    \item Los 14 consentimientos de pacientes están firmados y correctamente nombrados.
+    \item Las 16 fotografías de aplicación del cuestionario superan con holgura el mínimo.
+\end{itemize}
+
+\subsection*{Bloque A — Lo que había que corregir (3,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabA
+A1 & \textbf{El historial está repartido de forma imposible.} Una identidad concentra el 87\% de los commits (236 de 272) y un integrante declarado no tiene ninguno. El repositorio tiene que reflejar trabajo de todo el equipo, con commits identificables por persona, y debe aportarse la declaración de aporte individual con los identificadores de commit de cada quien. Si hubo un fallo de herramienta, va la constancia correspondiente. Ojo con P8: aquí se juega el factor individual. & 0{,}90 \\ \addlinespace
+A2 & \textbf{Falta el comprobante de registro previo del protocolo.} Tiene que ser el PDF del comprobante externo con sello temporal anterior a la primera sesión de recolección. Un archivo con instrucciones de cómo registrar no es un comprobante de registro. & 0{,}70 \\ \addlinespace
+A3 & \textbf{No hay etiqueta de línea base.} Ni local ni remota. Etiqueta anotada sobre el commit entregado y publicada. & 0{,}60 \\ \addlinespace
+A4 & \textbf{El nombre del repositorio todavía dice \texttt{\_2A}}, que era la entrega anterior. Renombrarlo para que identifique el proyecto y no la entrega, actualizar la URL en la carátula y en el \texttt{README.md}, y verificar que la URL antigua siga redirigiendo o comunicar la nueva por escrito. Si la URL de la carátula no abre, cae P1. & 0{,}40 \\ \addlinespace
+A5 & \textbf{Ocho archivos de cero o un byte.} Se revisan uno por uno: los marcadores de estructura pasan solo si su nombre no sugiere contenido de evidencia; cualquier otro se completa o se elimina. & 0{,}40 \\
+\bottomrule
+\end{xltabular}
+
+\subsection*{Bloque B — Lo que había que agregar (7,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabB
+\rowDatos{}
+\rowAutoria{}
+B3 & \textbf{Lo que faltaba levantar en campo.} Grabaciones de las sesiones de entrevista con duración suficiente, con su inventario técnico y el hash calculado antes de cifrar; transcripciones completas por sesión (un catálogo en CSV es un índice, no sustituye al contenido); y ficha de observación por sesión de validación con participante, tarea, requisito observado y resultado. & 0{,}90 \\ \addlinespace
+B4 & \textbf{Los números que faltaba calcular y documentar.} Doble codificación independiente de al menos el 20\% del corpus con kappa e intervalo de confianza; justificación del tamaño muestral del cuestionario y del número de participantes; y diccionario de datos de todos los archivos del paquete de datos, columna por columna. & 0{,}70 \\ \addlinespace
+B5 & \textbf{Los seis requisitos del componente inteligente, de verdad especificados.} Seguimiento automático de la ejecución del ejercicio con métrica, unidad, umbral y método; explicabilidad separando qué se le explica al paciente y qué al terapeuta, en qué formato y con qué criterio de aceptación; equidad como criterio de no discriminación por edad o condición, con métrica y umbral; supervisión humana, con el terapeuta pudiendo anular toda indicación automática y quedando registro de ello; monitoreo posterior con indicadores, periodicidad y responsable; y clasificación del nivel de riesgo atendiendo expresamente a que son datos de salud. El texto ya nombra equidad (7 veces) y monitoreo (7), pero nombrar no es especificar. & 1{,}40 \\ \addlinespace
+\rowEtica{Los consentimientos ya están; son datos de salud de pacientes, así que la declaración legal y la separación de capas no son negociables.}
+\end{xltabular}
+
+\cierre{11}{5 del bloque A y 6 del bloque B}
+
+\equipo{MundiPets}{Sistema de adopción y cruza responsable de mascotas}{https://github.com/andymendozap03/MundiPets-PFC-IngReq}
+
+\subsection*{Lo que ya estaba hecho (no se califica, ya está)}
+\begin{itemize}
+    \item El historial es el mejor distribuido del curso: cinco integrantes, tres meses, correo institucional y sin firmantes ajenos. Manténganlo.
+    \item El inventario técnico de la evidencia permite auditar sin abrir el contenedor. Es el formato correcto.
+    \item La cadena de análisis está completa: entradas versionadas, cinco scripts, orquestador único y nueve tablas de salida generadas.
+    \item El estudio ya produce matriz de confusión, acuerdo entre evaluadores y contraste de significancia.
+    \item El repositorio conserva los cinco archivos obligatorios de la raíz más la evaluación FAIR.
+\end{itemize}
+
+\subsection*{Bloque A — Lo que había que corregir (3,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabA
+A1 & \textbf{El MVP está en un submódulo que apunta a otro repositorio.} Quien clone sin \texttt{--recursive} no ve el MVP. Hay que declarar esa dependencia en el \texttt{README.md} con la orden exacta de clonación recursiva y verificar que el repositorio del submódulo sea accesible de forma anónima. & 0{,}80 \\ \addlinespace
+A2 & \textbf{No hay etiqueta de línea base.} Etiqueta anotada sobre el commit entregado y publicada. Es criterio de piso P5 y sin ella todo lo demás sobra. & 0{,}70 \\ \addlinespace
+A3 & \textbf{El manifiesto de sumas no verifica sobre un clon limpio.} Ejecutar la comprobación sobre un clon recién hecho y corregir toda ruta que no exista ahí, o separar el manifiesto en dos: uno para el contenido público y otro para el restringido. & 0{,}60 \\ \addlinespace
+A4 & \textbf{Diez identidades de Git para cinco personas.} Añadir \texttt{.mailmap} en la raíz unificando las diez en cinco. & 0{,}50 \\ \addlinespace
+A5 & \textbf{No hay fotografías de aplicación del cuestionario versionadas.} Solo estaba el \texttt{.gitkeep} en esa carpeta. Se depositan las fotos y se elimina el marcador. & 0{,}40 \\
+\bottomrule
+\end{xltabular}
+
+\subsection*{Bloque B — Lo que había que agregar (7,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabB
+\rowDatos{No existe y \texttt{07\_Publicacion} no la sustituye: el paquete de datos es un entregable con nombre y ubicación fijos. Los scripts ya funcionan, así que esto es sobre todo reubicar y documentar bien.}
+\rowAutoria{}
+B3 & \textbf{Lo que faltaba documentar del trabajo con los evaluadores expertos.} Protocolo de anotación con la definición operativa de cada categoría de ambigüedad y ejemplos límite, y el registro del entrenamiento previo de los evaluadores y de la ronda de calibración con sus resultados. Más el comprobante de registro previo del protocolo con sello temporal externo anterior a la recolección. & 0{,}90 \\ \addlinespace
+B4 & \textbf{Los números que faltaba completar.} Intervalos de confianza para precisión, exhaustividad y medida F del detector, por categoría; justificación del tamaño de la muestra de requisitos y del número de evaluadores; y diccionario de datos de \texttt{evaluacion\_expertos.csv} y \texttt{salida\_detector.csv}, columna por columna. Las tablas ya existen: lo que falta es la incertidumbre y la documentación alrededor. & 0{,}70 \\ \addlinespace
+B5 & \textbf{Los seis requisitos del componente inteligente, de verdad especificados.} Detector de ambigüedad con métrica, unidad, umbral mínimo aceptable y método; explicabilidad, o sea cómo justifica el sistema cada marca ante el analista y con qué criterio se considera suficiente (el concepto aparece muchas veces, el enunciado verificable no); equidad como criterio de no discriminación aplicable al emparejamiento de adopción, con métrica y umbral; supervisión humana sobre toda marca del detector y toda propuesta de emparejamiento; monitoreo posterior con indicadores, periodicidad y responsable; y clasificación del nivel de riesgo. Todos en la matriz de trazabilidad. & 1{,}40 \\ \addlinespace
+\rowEtica{}
+\end{xltabular}
+
+\cierre{11}{5 del bloque A y 6 del bloque B}
+
+\equipo{SIGA}{Sistema de Gestión Académica / Gestión de Aulas}{https://github.com/gsanchezc6-beep/SIGA\_FGMMN\_ISR401\_AVANCE\_2B}
+
+\subsection*{Lo que ya estaba hecho (no se califica, ya está)}
+\begin{itemize}
+    \item Es el único expediente sin un solo archivo vacío y con etiqueta de línea base publicada.
+    \item El componente empírico está completo en su cadena: protocolo, registro, datos crudos, datos procesados, scripts, \texttt{Makefile} y \texttt{replicar.py}.
+    \item El reporte del estudio existe como documento propio, con fuente \LaTeX{} y bibliografía versionadas.
+    \item La especificación cumple los mínimos y el texto cubre explicabilidad, equidad y monitoreo.
+    \item El registro de desviaciones respecto del protocolo está documentado, incluida la relativa a la clave de desciego.
+\end{itemize}
+
+\subsection*{Bloque A — Lo que había que corregir (3,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabA
+A1 & \textbf{Dos de los cuatro integrantes declarados no tienen ni un commit.} El historial es evidencia de autoría, así que cada integrante debe acreditar trabajo propio con commits identificables a su nombre y correo institucional, más la declaración de aporte individual con los identificadores de commit de cada persona. Aquí se juega P8. & 0{,}80 \\ \addlinespace
+A2 & \textbf{La clave de desciego sigue publicada en el repositorio público.} \texttt{06\_Experimento/clave\_desciego\_items.csv} tiene que salir de la zona pública y quedar en la restringida cifrada, dejando en su lugar una nota que explique dónde está y quién la custodia, y manteniendo la anotación de la desviación. & 0{,}70 \\ \addlinespace
+A3 & \textbf{Todo el historial se concentra entre el 30/08 y el 01/09, pero la evidencia de campo está fechada meses antes.} Hay que aportar por escrito el repositorio o la rama donde consta el trabajo anterior al 30/08, con sus fechas. Si hubo migración, se documenta en \texttt{CHANGELOG.md} indicando origen, fecha y motivo. & 0{,}60 \\ \addlinespace
+A4 & \textbf{El ERS está compuesto en tamaño carta.} Recompilar en A4 y verificar que no haya desbordes de tablas ni figuras. & 0{,}50 \\ \addlinespace
+A5 & \textbf{Dos etiquetas de línea base a la vez} (\texttt{2B-final} y \texttt{2B-final-v2.1}). Declarar cuál es la vigente en \texttt{README.md} y en \texttt{CHANGELOG.md}. Dos líneas base simultáneas equivalen a ninguna. & 0{,}40 \\
+\bottomrule
+\end{xltabular}
+
+\subsection*{Bloque B — Lo que había que agregar (7,00 puntos)}
+\begin{xltabular}{\textwidth}{@{}c>{\raggedright\arraybackslash}X c@{}}
+\cabB
+\rowDatos{Existía el 30/08 y desapareció en el clon del 02/09: hay que restituirla. \texttt{07\_Publicacion} no la sustituye.}
+\rowAutoria{}
+B3 & \textbf{Lo que faltaba levantar del experimento.} Hoja de evaluación a ciegas completa en formato largo: evaluador, requisito, criterio, puntuación y orden de presentación. Más el corpus fuente completo a partir del cual se generaron ambos conjuntos de requisitos, versionado en texto plano, y el registro íntegro de las instrucciones dadas a la herramienta generativa, con fecha, versión y parámetros. Este último punto no es opcional: es lo que hace auditable el estudio y lo que conecta con la declaración de uso de IA. & 0{,}90 \\ \addlinespace
+B4 & \textbf{Los números que faltaba calcular y documentar.} Acuerdo entre evaluadores con kappa e intervalo de confianza calculado por script; tamaño del efecto con IC del 95\% para la comparación entre procedencias; y justificación del tamaño muestral y del número de evaluadores, documentada antes del análisis. & 0{,}70 \\ \addlinespace
+B5 & \textbf{Los seis requisitos del componente inteligente, de verdad especificados.} Componente de asignación o predicción de uso de aulas con métrica, unidad, umbral y método; explicabilidad diciendo qué se explica, a qué perfil, en qué formato y con qué criterio de aceptación; equidad en la asignación entre carreras, docentes o franjas horarias, con métrica y umbral; supervisión humana sobre la asignación automática; monitoreo convertido en plan con indicadores, periodicidad, responsable y umbral de alerta (el texto lo nombra 41 veces y aun así no hay plan); y clasificación del nivel de riesgo con su justificación. Todos en la matriz de trazabilidad. & 1{,}40 \\ \addlinespace
+\rowEtica{}
+\end{xltabular}
+
+\cierre{11}{5 del bloque A y 6 del bloque B}
+
+\clearpage
+\section*{Hoja de cálculo para el día de la revisión}
+
+Para cada equipo se llena la misma planilla. Una fila por ítem calificable, en el orden en que aparecen en su rúbrica.
+
+\begin{center}
+\small
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+\textbf{Ítem} & \textbf{Peso $p_i$} & \textbf{Nivel} & \textbf{$c_i$} & \textbf{$p_i \cdot c_i$} & \textbf{$f_i$}\\
+\midrule
+A1 & & & & &\\
+A2 & & & & &\\
+\dots & & & & &\\
+B6 & & & & &\\
+\midrule
+\multicolumn{4}{r}{\textbf{Suma} $\sum p_i c_i$} & \rule{2.2cm}{0.4pt} & \\
+\multicolumn{4}{r}{\textbf{Producto} $\prod f_i$} & & \rule{2.2cm}{0.4pt}\\
+\midrule
+\multicolumn{5}{r}{\textbf{NOTA = Suma $\times$ Producto}} & \rule{2.2cm}{0.4pt}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\vspace{8pt}
+\begin{cajaverde}{Orden en que conviene revisar}
+Primero los criterios de piso, porque si uno falla no hay nada más que calcular. Después el bloque A, que es material que ya existe y se arregla barato. Después el bloque B, que es lo que cuesta tiempo y depende de terceros. Y la evidencia de autoría se revisa al final, pero se construye desde el primer día: buena parte de ella solo puede generarse mientras el trabajo ocurre, no después.
+\end{cajaverde}
+
+\vfill
+\noindent\rule{\textwidth}{0.4pt}\\
+{\footnotesize Documento de uso académico. Ingeniería de Requisitos (ISR-401). Universidad Técnica Estatal de Quevedo, período 2026-2027 PPA. Elaborado a partir de las Guías de desarrollo y consolidación del PFC emitidas el 2 de septiembre de 2026, que a su vez proceden de la verificación directa de cada repositorio declarado. Los pesos y los factores son los que rigen la calificación de la Entrega Final del PFC.}
+
+\end{document}

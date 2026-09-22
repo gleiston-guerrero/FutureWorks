@@ -1,0 +1,123 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+\usepackage[left=2.4cm,right=2.4cm,top=1.9cm,bottom=1.9cm]{geometry}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{gris}{gray}{0.35}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\color{gris} Acta de aprobación --- SRS v1.0.0 BIOPET}
+\fancyhead[R]{\footnotesize\color{gris} ISO/IEC/IEEE 29148:2018}
+\fancyfoot[C]{\footnotesize\color{gris} \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\setlist[itemize]{leftmargin=1.3em,itemsep=1pt,topsep=2pt}
+
+\begin{document}
+
+\begin{center}
+	{\footnotesize UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO\\[1pt]
+	FACULTAD DE CIENCIAS DE LA COMPUTACIÓN --- CARRERA DE SOFTWARE\\[1pt]
+	Proyecto de Fin de Carrera --- Aplicaciones Web --- Periodo académico 2025--2026}\\[10pt]
+	\rule{\textwidth}{0.8pt}\\[8pt]
+	{\large\bfseries ACTA DE APROBACIÓN DEL DOCENTE-DIRECTOR}\\[3pt]
+	{\normalsize Especificación de Requisitos de Software (SRS)}\\[6pt]
+	\rule{\textwidth}{0.8pt}
+\end{center}
+
+\vspace{0pt}
+
+\section*{1. Identificación del documento aprobado}
+
+\renewcommand{\arraystretch}{1.08}
+\noindent\begin{tabular}{@{}>{\bfseries}p{4.6cm}p{10.4cm}@{}}
+	\toprule
+	Proyecto & BIOPET --- Sistema web de gestión veterinaria \\
+	Documento & Especificación de Requisitos de Software (SRS) \\
+	Versión & v1.0.0 --- Entrega Final \\
+	Equipo & BMT \\
+	Integrantes & Fred Adrián Beltrán Montiel (ORCID 0009-0007-8303-2137) \newline Jaime Josué Mariscal Cabrera (ORCID 0009-0007-2206-3941) \newline Zaida Melissa Taipe Mora (ORCID 0009-0000-1227-3258) \\
+	Repositorio & \url{https://github.com/Grinjoww/ENTREGA-FINAL-BIOPET} \\
+	Corpus & 44 requisitos (25 funcionales y 19 no funcionales) \\
+	Fecha de aprobación & 12 de septiembre de 2026 \\
+	\bottomrule
+\end{tabular}
+
+\section*{2. Declaración de aprobación}
+
+Apruebo la Especificación de Requisitos de Software (SRS v1.0.0) del proyecto BIOPET como especificación válida de la Entrega Final del Proyecto de Fin de Carrera de la asignatura Aplicaciones Web.
+
+Dejo constancia expresa de que esta aprobación recae sobre el documento en su calidad de especificación, y no constituye una certificación de que el sistema especificado carezca de defectos.
+
+\section*{3. Verificación realizada}
+
+Contrasté el documento contra el repositorio declarado en su portada y constato lo siguiente.
+
+\begin{itemize}
+	\item Los 44 identificadores de requisito del documento coinciden exactamente con los 44 registrados en \texttt{docs/trazabilidad/matriz.csv}, sin identificadores huérfanos en ninguna de las dos direcciones.
+	\item Los 40 bloques de requisito aplican la plantilla completa, con criterio de aceptación observable, método de verificación, trazabilidad, prioridad, \emph{rationale} y estado. En la revisión anterior únicamente tres requisitos declaraban criterio de aceptación.
+	\item El vocabulario de estados quedó cerrado a tres valores y se aplica sin excepción en todo el documento.
+	\item Las secciones de interfaces externas, matriz de permisos por rol y operación, y estados del dominio, ausentes en la revisión anterior, están construidas a partir del código del propio repositorio.
+	\item Las historias de usuario, los casos de uso y las clases de prueba citadas como método de verificación existen en el repositorio.
+\end{itemize}
+
+\vspace{-4pt}
+\section*{4. Observación expresa sobre el estado del sistema}
+
+Apruebo con la siguiente observación, que el equipo debe atender y que afecta al estado del sistema, no a la validez de este documento.
+
+El sistema presenta un defecto de aislamiento de datos que el propio documento declara con precisión en REQ-F-006, REQ-F-013, REQ-NF-015, la sección 2.8.5 y la sección 7.3, y que verifiqué vigente en la rama principal del repositorio.
+
+El método de listado de consultas médicas evalúa el rol del solicitante, pero ambas ramas de la condición devuelven la misma consulta sin filtro por propietario, y el repositorio correspondiente no declara el método de filtrado que sí existe en los repositorios de citas y de vacunas.
+
+En consecuencia, un usuario autenticado con rol de dueño de mascota puede listar consultas médicas de mascotas ajenas mediante \texttt{GET /api/consultas}.
+
+Ese comportamiento incumple el criterio 3 de REQ-F-006, requisito de prioridad \emph{Must}, por lo que considero correcto que el equipo lo haya declarado en estado \emph{implementado} y no \emph{verificado}.
+
+La corrección requiere añadir al repositorio de consultas un método de filtrado por propietario y emplearlo en la rama correspondiente del servicio, replicando el patrón del módulo de mascotas.
+
+\vspace{-4pt}
+\section*{5. Recomendaciones para trabajo futuro}
+
+\begin{itemize}
+	\item El sistema no dispone de mecanismo de recuperación de contraseña, pese a que el registro de usuarios es público. Un usuario que olvide su credencial queda sin vía de acceso especificada.
+	\item El comportamiento ante la indisponibilidad del servicio de caché no está controlado: la consulta a la lista de revocación de tokens no captura la excepción de conexión, por lo que una caída de ese servicio deriva en error \texttt{500} en toda petición autenticada, sin que exista una decisión declarada de rechazar o aceptar en ese escenario.
+\end{itemize}
+
+\vspace{-2pt}
+\section*{6. Mérito registrado}
+
+Valoro expresamente la honestidad metodológica del documento: el equipo declara el defecto de aislamiento en cinco lugares distintos del texto, rebaja por ello el estado de un requisito \emph{Must} que en la versión anterior figuraba como verificado, y enumera sus limitaciones abiertas sin cerrarlas con datos no comprobables. Registro esa conducta como mérito del equipo.
+
+\vspace{6pt}
+
+\noindent\rule{\textwidth}{0.4pt}
+
+\vspace{4pt}
+
+\noindent\textbf{7. Suscripción}
+
+\vspace{18pt}
+
+\noindent\begin{tabular}{@{}p{10.5cm}@{}}
+	\hrulefill \\[3pt]
+	\textbf{Ing. Gleiston Cicerón Guerrero Ulloa, Ph.D.} \\
+	Docente-director del Proyecto de Fin de Carrera \\
+	Asignatura: Aplicaciones Web \\
+	Universidad Técnica Estatal de Quevedo \\
+\end{tabular}
+
+\vspace{8pt}
+
+\noindent{\footnotesize\color{gris} Documento suscrito mediante firma electrónica; su validez se verifica con el certificado digital incorporado a este archivo.}
+
+\end{document}
